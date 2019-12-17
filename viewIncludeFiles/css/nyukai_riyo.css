@@ -1,0 +1,30 @@
+.wrap {
+    padding-top: 20px;
+}
+.kaiin p {
+    margin-bottom: 0;
+}
+.kihon_joho td div,
+.oshirase td div {
+    float: left;
+    width: 50%;
+}
+.teikan_wrap {
+    margin-bottom: 30px;
+}
+@media screen and (max-width: 768px) {
+	.shinki_toroku tr{
+        padding: 1em 0;
+    }
+    .shinki_toroku .required {
+        margin-left: 0;
+    }
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,78 @@
+article {
+    display: flex;
+    justify-content: space-between;
+}
+.content_wrap {
+    margin-top: 40px;
+}
+.new_img {
+	margin-right: 20px;
+}
+.new_img p {
+    text-align: center;
+    margin-top: 10px;
+}
+.bg_gray {
+    width: 100%;
+    padding: 20px;
+    height: 250px;
+}
+.title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+input[type="text"] {
+    margin: 10px 0;
+	width: 80%;
+    height: 35px;
+    padding: 5px;
+}
+.search {
+    width: 150px;
+    height: 45px;
+    line-height: 45px;
+    margin-top: 25px;
+}
+section {
+    padding: 0 1em;
+}
+
+@media screen and (max-width: 800px) {
+	article {
+		display: block;
+	}
+	.new_img {
+		text-align: center;
+		margin-bottom: 30px;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	input[type="text"] {
+		width: 100%;
+	}
+	.bg_gray {
+		margin-bottom: 60px;
+	}
+}
+
+
+/*ファイヤ―フォックス*/
+@-moz-document url-prefix() {
+	.mh_c {
+		min-height: calc(100vh - 51px)!important;
+	}
+}
+
+/*IEのみ*/
+_:-ms-lang(x)::-ms-backdrop, .mh_c {
+	min-height: calc(100vh - 50px)!important;
+}
+
+/*edgeのみ*/
+@supports (-ms-ime-align:auto) {
+	.mh_c {
+		min-height: calc(100vh - 50px)!important;
+	}
+}

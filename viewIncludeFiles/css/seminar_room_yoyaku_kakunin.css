@@ -1,0 +1,38 @@
+dt {
+    background: #005699;
+    color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 3px 10px;
+    margin-top: 30px;
+	margin-bottom: 10px
+}
+.spb_arrows li:nth-of-type(1),
+.spb_arrows li:nth-of-type(2),
+.spb_arrows li:nth-of-type(3) {
+    line-height: 3;
+}
+@media screen and (max-width:768px) {
+	.sp_no {
+		display: block;
+	}
+	.btn_b {
+		position: static!important;
+		margin-top: 60px;
+	}
+	.spb_arrows li:nth-of-type(1),
+	.spb_arrows li:nth-of-type(2) {
+		line-height: inherit;
+	}
+}
+@media screen and (max-width:480px) {
+	.sp_no {
+		display: none;
+	}
+	.sp_bl {
+		display: none;
+	}
+	.spb_arrows li:nth-of-type(3) {
+		line-height: inherit;
+	}
+}

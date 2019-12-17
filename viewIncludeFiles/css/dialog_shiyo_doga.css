@@ -1,0 +1,47 @@
+section {
+	display: flex;
+}
+section div {
+	padding: 20px;
+}
+.blue {
+	color: #005699;
+}
+.blue:hover {
+	text-decoration: underline;
+}
+.title {
+	position: relative;
+	margin-left: 1em;
+	margin-bottom: 0.5em;
+}
+.title:before {
+    content: "";
+    display: inline-block;
+    border-left: 5px solid #005699;
+    height: 41px;
+    position: absolute;
+	left: -1em
+}
+.contner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.content {
+	margin-bottom: 30px;
+    padding: 20px;
+}
+.one_line {
+	line-height: 42px;
+}
+
+@media screen and (max-width: 480px) {
+	section {
+		display: block;
+		margin-top: 20px;
+	}
+	section div {
+		padding-top: 0;
+	}
+}

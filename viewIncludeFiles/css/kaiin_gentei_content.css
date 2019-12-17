@@ -1,0 +1,50 @@
+.title {
+	font-size: 15px;
+	margin: 10px;
+}
+.bg_gray {
+	padding: 20px;
+	margin: 0 20px 20px 20px;
+}
+section {
+	padding: 0 20px;
+	margin-bottom: 50px;
+}
+section:last-child {
+	margin-bottom: 0;
+}
+.text {
+	margin: 20px 0 20px 0 ;
+	width: 100%;
+}
+.img {
+	margin-left: 1em;
+}
+.btn_text {
+	text-align: center;
+	margin-top: 30px;
+}
+.button {
+	margin-top: 0!important;
+}
+.blue {
+	color: #005699;
+}
+
+@media screen and (max-width: 480px) {
+	.title {
+		margin-right: 0;
+	}
+	section {
+		padding: 0;
+	}
+	.bg_gray {
+		margin: 0 0 20px 0;
+	}
+	.img {
+		margin-left: 0;
+	}
+	.img img {
+		width: 100%;
+	}
+}

@@ -1,0 +1,76 @@
+th {
+	font-weight: normal;
+	width: 100%;
+}
+.button {
+    width: 120px;
+    font-size: 12px;
+    height: 30px;
+    line-height: 30px;
+    margin: 0!important;
+	margin-right: 2em!important;
+}
+.btn {
+    display: flex;
+    justify-content: flex-end;
+}
+.btn .button:nth-of-type(2) {
+	margin-right: 0!important;
+}
+
+/*ファイヤ―フォックス*/
+@-moz-document url-prefix() {
+	.mh_c {
+		min-height: calc(100vh - 51px)!important;
+	}
+}
+
+/*IEのみ*/
+_:-ms-lang(x)::-ms-backdrop, .mh_c {
+	min-height: calc(100vh - 50px)!important;
+}
+
+@media screen and (max-width: 768px){
+	th {
+		background: inherit;
+		color: #333;
+		margin-bottom: 0;
+	}
+	.btn {
+		margin-bottom: 20px
+	}
+	tr {
+		border-bottom: 1px solid #005699;
+	}
+}
+@media screen and (max-width: 480px){
+	table {
+		margin-bottom: 70px;
+	}
+	.button {
+		width: 300px;
+		height: 45px;
+		margin: 0 auto 20px!important;
+	}
+	.btn .button:first-of-type {
+		margin-bottom: 20px!important;
+	}
+	.btn .button:nth-of-type(2) {
+		margin: 0 auto!important;
+	}
+	td {
+		width: 100%;
+		margin: 0 auto;
+	}
+	td,
+	th {
+		padding: 0
+	}
+	.btn {
+		display: block;
+	}
+	tr:last-child {
+		border-bottom: none;
+	}
+
+}

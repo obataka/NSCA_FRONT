@@ -1,0 +1,50 @@
+.wrap {
+    padding-top: 20px;
+}
+.mh_c {
+    min-height: calc(100vh - 182px);
+}
+table {
+	margin-top: 30px;
+}
+td {
+    width: 60%;
+}
+
+@media screen and (max-width:768px) {
+	.mh_c {
+		min-height: calc(100vh - 115px);
+	}
+	table {
+		margin-bottom: 60px;
+	}
+	td {
+		width: 100%;
+	}
+	.btn_b {
+		position: inherit!important;
+	}
+	
+	/*ファイヤ―フォックス*/
+	@-moz-document url-prefix() {
+		.mh_c {
+			min-height: calc(100vh - 116px)!important;
+		}
+	}
+	
+	/*IEのみ*/
+	_:-ms-lang(x)::-ms-backdrop, .mh_c {
+		min-height: calc(100vh - 115px)!important;
+	}
+	
+	/*edgeのみ*/
+	@supports (-ms-ime-align:auto) {
+		.mh_c {
+			min-height: calc(100vh - 115px)!important;
+		}
+	}
+}
+
+@media screen and (max-width: 480px) {
+
+}

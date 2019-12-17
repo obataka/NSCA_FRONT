@@ -1,0 +1,109 @@
+.shiken_joho {
+	border: 1px solid #005699;
+	padding: 40px 30px;
+	margin: 50px 0;
+}
+.title {
+	display: block;
+	font-size: 15px;
+	margin-bottom: 20px
+}
+.kome:before {
+	content: "※";
+}
+.kome {
+    text-indent: -1em;
+    padding-left: 1em;
+    display: block;
+}
+.bg_blue {
+	width: 49%;
+	margin-top: 30px;
+	padding: 20px 10px;
+}
+.flex_wrap .title {
+	color: #fff;
+}
+.bg_white {
+	width: 100%;
+}
+.text {
+	width: 100%;
+	margin: 0;
+}
+.comment {
+	text-align: center;
+	margin-top: 35px;
+}
+.button {
+	margin-top: 0!important;
+	font-size: 14px;
+	width: 50%;
+	height: 40px;
+	line-height: normal;
+}
+.spb_arrows li:nth-of-type(1),
+.spb_arrows li:nth-of-type(3),
+.spb_arrows li:nth-of-type(4),
+.spb_arrows li:nth-of-type(5) {
+    line-height: 3;
+}
+@media screen and (max-width: 955px){
+	.sp_bl {
+		display: block!important;
+	}
+	.spb_arrows_6ver.sp_no {
+		display: none;
+	}
+	.spb_arrows ul:nth-of-type(2) li:nth-of-type(2) {
+		line-height: 3;
+	}
+	.spb_arrows ul:nth-of-type(2) li:nth-of-type(3) {
+		line-height: inherit;
+	}
+} 
+@media screen and (max-width: 768px){
+	.flex_wrap {
+		display: block;
+	}
+	.bg_blue {
+		width: 100%;
+		margin: 1em 0 40px 0;
+	}
+}
+@media screen and (max-width: 480px){
+	.sp_bl {
+		display: none!important;
+	}
+	.spb_arrows_6ver.sp_no {
+		display: block;
+		margin: 0;
+	}
+	.spb_arrows_6ver>ul.step-anchor>li.active>span {
+		height: auto;
+	}
+	.spb_arrows_6ver>ul.step-anchor>li>span {
+		height: auto;
+	}
+	.shiken_joho {
+		padding: 20px 10px;
+	}
+	.button {
+		width: 80%;
+	}
+	.spb_arrows li:nth-of-type(1),
+	.spb_arrows li:nth-of-type(3),
+	.spb_arrows li:nth-of-type(4),
+	.spb_arrows li:nth-of-type(5),
+	.spb_arrows li:nth-of-type(6) {
+		line-height: inherit;
+	}
+}
+
+/*IEのみ*/
+@media all and (-ms-high-contrast: none) {
+	div button {
+		line-height: 3 !important;
+	}
+}
+

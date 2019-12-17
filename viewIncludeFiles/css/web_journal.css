@@ -1,0 +1,70 @@
+.content {
+	margin-bottom: 50px;
+}
+.content:last-child {
+	margin-bottom: 0;
+}
+dl {
+	display: flex;
+	padding: 20px;
+}
+dd {
+	margin-left: 2em;
+	position: inherit;
+	width: 100%;
+}
+.btn_wrap {
+	justify-content: space-evenly;
+}
+.button {
+	width: 150px;
+	font-size: 15px;
+	font-weight: normal;
+	margin-top: 0!important;
+	height: 40px;
+	line-height: 40px;
+}
+.btn_wrap p {
+    text-align: center;
+}
+.img {
+	text-align: center;
+	margin: 20px 0;
+}
+.otsukaseiyaku_img {
+	text-align: right;
+}
+.text {
+    width: 100%;
+    padding: 0 20px 20px 20px;
+}
+@media screen and (max-width: 768px) {
+	.otsukaseiyaku_img {
+		margin-bottom: 20px		
+	}
+}
+@media screen and (max-width: 480px) {
+	dl {
+		display: block;
+		padding: 10px;
+	}
+	dt {
+		text-align: center;
+	}
+	dd {
+		margin: 0; 
+		margin-top: 20px;
+	}
+	.btn_wrap div {
+		margin-top: 20px
+	}
+	.img img {
+		width: 100%;
+	}
+	.text {
+		padding: 0 0 20px 0;
+	}
+	.otsukaseiyaku_img {
+		text-align: center;
+	}
+}

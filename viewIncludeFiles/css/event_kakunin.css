@@ -1,0 +1,86 @@
+.bg_gray {
+	padding: 20px;
+	width: 95%;
+	margin: 20px auto 0 auto;
+}
+.sbt {
+	display: inline-block;
+	background: #005699;
+	color: #fff;
+	padding: 3px 30px;
+	width: auto!important;
+}
+.bg_gray span {
+	display: inline-block;
+	border: 1px solid #005699;
+	width: 100px;
+	text-align: center;
+	color: #005699;
+	margin-right: 1em;
+}
+.event_name {
+	margin: 10px 0;
+	width: 100%!important;
+}
+.bg_gray div {
+	display: flex;
+}
+.bg_gray p {
+	width: 50%;
+}
+.spb_arrows_3ver>ul.step-anchor>li.active>span,
+.spb_arrows_3ver>ul.step-anchor>li>span {
+    height: 80px;
+}
+.spb_arrows li:nth-of-type(2) {
+    line-height: 3;
+}
+.btn_gray {
+	margin-bottom: 20px;
+}
+
+@media screen and (max-width: 768px) {
+	.spb_arrows li:nth-of-type(1),
+	.spb_arrows li:nth-of-type(2),
+	.spb_arrows li:nth-of-type(3) {
+		line-height: 2;
+	}
+	.spb_arrows_3ver>ul.step-anchor>li.active>span, 
+	.spb_arrows_3ver>ul.step-anchor>li>span {
+		height: auto!important;
+	}
+}
+@media screen and (max-width: 480px) {
+	.bg_gray div {
+		display: block!important;
+	}
+	.bg_gray div p:first-child {
+		margin-bottom: 10px;
+	}
+	.bg_gray {
+		margin-bottom: 50px;
+		width: 100%;
+		padding: 20px 10px;
+	}
+	.bg_gray p {
+		width: 100%;
+	}
+	.bg_gray span {
+		display: block;
+	}
+	.spb_arrows li:nth-of-type(1), 
+	.spb_arrows li:nth-of-type(2),
+	.spb_arrows li:nth-of-type(3) {
+		line-height: inherit;
+	}
+	.spb_arrows_3ver>ul.step-anchor>li.active>span,
+	.spb_arrows_3ver>ul.step-anchor>li>span {
+		height: auto!important;
+	}
+}
+
+/*Androidのみ*/
+.Android .spb_arrows.height_62>ul.step-anchor>li:nth-of-type(1)>span,
+.Android .spb_arrows.height_62>ul.step-anchor>li:nth-of-type(3)>span {
+    line-height: 1.5;
+}

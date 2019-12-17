@@ -1,0 +1,591 @@
+.flex_wrap {
+	display: block;
+}
+.link ul {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+}
+.link li {
+	margin-right: 1.5em;
+}
+.link li:last-child {
+	margin-right: 0;
+}
+.link li a {
+	color: #005699;
+}
+.link li a:hover {
+	text-decoration: underline;
+}
+section{
+	display: flex;
+    flex-wrap: wrap;
+	margin-bottom: 50px;
+	justify-content: space-between;
+}
+.button {
+	font-weight: normal;
+	font-size: 11px!important;
+}
+.content_top {
+    border: 1px solid #005699;
+    display: flex;
+	margin-bottom: 3em;
+}
+.joho {
+    background: #ddd;
+    width: 24%;
+    padding: 2em
+}
+.content_top p {
+    font-size: 12px;
+    margin-bottom: 1em;
+}
+.title {
+    font-size: 16px!important;
+}
+span {
+    background: none;
+    padding: 0;
+}
+.content_top .button {
+    font-size: 12px;
+    height: 40px;
+    line-height: 40px;
+    margin: 0!important;
+}
+.btn_kaito {
+	width: 60px!important;
+    bottom: 39px;
+    left: 125px;
+}
+.btn_kaiin_sbt,
+.btn_hoken {
+	width: 100%!important;
+}
+.content_top .btn_kaiin_sbt {
+    margin-bottom: 1em!important;
+}
+.shiken {
+    width: 29%;
+    margin: 2em 0;
+    padding: 0 2em;
+    border-right: 1px solid #005699;
+}
+.shiken p {
+    margin-bottom: 0;
+}
+.cscs {
+    margin-bottom: 2em;
+}
+.nsca {
+    margin: 2em 0;
+}
+.btn_wrap {
+    display: flex;
+    margin-top: 40px;
+	flex-wrap: wrap;
+}
+.shiken .btn_wrap button:first-child {
+    margin-bottom: 10px!important;
+}
+.ceu {
+    padding: 2em;
+	width: 47%;
+}
+.ceu .btn_wrap button:first-child {
+    margin-right: 10px!important;
+}
+.ceu .cscs,
+.ceu .nsca {
+	font-size: 14px;
+}
+.ceu p:nth-of-type(3) {
+    font-size: 11px;
+    text-align: right;
+}
+.ceu .title {
+	float: left;
+}
+.content_top .btn_ceu {
+	float: right;
+	width: 170px;
+}
+.content_top .btn_7{
+	margin-right: 1em!important;
+}
+.ceu .btn_wrap .button {
+	width: 180px;
+}
+.ceu .btn_wrap {
+	justify-content: center;
+	margin-top: 2.6em;
+}
+.news {
+    padding: 20px 10px;
+}
+.news .title {
+	color: #fff;
+	margin-bottom: 1em;
+}
+.news .bg_white {
+    padding: 15px 30px;
+}
+.mp_btn {
+	width: 200px!important;
+    font-size: 11px;
+    height: 40px!important;
+    line-height: inherit!important;
+    margin: 0!important;
+    float: right;
+}
+.news .bg_white li {
+    float: left;
+    width: 100%;
+    border-bottom: 1px solid #005699;
+    line-height: 40px;
+    padding: 5px 10px;
+}
+.page {
+    display: flex;
+    justify-content: flex-end;
+	font-size: 12px;
+	margin-top: 10px;
+	color: #fff;
+}
+.page li {
+	margin-right: 1em;
+}
+.page li:last-child {
+    margin-right: 0;
+}
+.page ol {
+    display: flex;
+}
+.page_icon {
+    color: #fff;
+    margin-left: 1em;
+}
+.bg_gray {
+	padding: 1em 2em 2em 2em;
+}
+.event {
+	margin-top: 2em;
+}
+.event ul li {
+	border-bottom: 1px solid #005699;
+	padding: 1em 0.5em;
+}
+.sub {
+    display: flex;
+    font-size: 10px;
+    margin-bottom: 1em;
+}
+.sub_1 {
+    margin-right: 1em;
+    border: 1px solid #005699;
+	color: #005699;
+}
+.sub_2 {
+    color: #fff;
+    background: #005699;
+    border: 1px solid #005699;
+}
+.sub_1,
+.sub_2 {
+    text-align: center;
+    padding: 2px 0;
+    width: 80px;
+}
+ .event .page,
+ .event .page_icon {
+    color: #333;
+}
+ .bg_blue {
+    padding: 30px 10px;
+	margin-top: 2em;
+}
+ .bg_blue .title {
+    color: #fff;
+    margin-bottom: 10px;
+	clear: both;
+}
+ .moshikomi .title,
+ .shiharai .title {
+    color: #333;
+}
+ .moshikomi,
+ .shiharai {
+    padding: 20px 20px 40px ;
+	width: 49%;
+	float: left;
+}
+ .moshikomi ul,
+ .shiharai ul {
+	padding: 0 20px;
+}
+ .moshikomi li,
+ .shiharai li {
+	padding: 10px 5px;
+	border-bottom: 1px solid #005699;
+	line-height: 2;
+}
+ .moshikomi .mp_btn,
+ .shiharai .mp_btn {
+	width: 60px!important;
+	height: 25px!important;
+}
+.moshikomi .sub {
+    float: right;
+	margin-bottom: 0;
+}
+.moshikomi .mp_btn_2 {
+    margin-right: 10px!important;
+    padding: 0 10px;
+}
+ .shiharai {
+	margin-left: 17px;
+}
+ .shiharai .mp_btn {
+	width: 60px
+}
+.content_5 figure {
+	border-bottom: 1px solid #005699;
+}
+ .kaiin,
+ .denshi,
+ .buppan {
+	width: 32%;
+	color: #333!important;
+}
+ .kaiin .title,
+ .denshi .title,
+ .buppan .title {
+	color: #333!important;
+}
+.kaiin {
+    height: fit-content;
+}
+ .kaiin .kaiin_btn {
+	margin: 50px 0;
+}
+ .kaiin .button {
+	float: none;
+	margin-top: 15px!important;
+	width: 100%!important;
+	height: 50px
+}
+ .buppan .price:before {
+    content: "￥";
+}
+ figure {
+	text-align: center;
+}
+ figure img {
+	margin-top: 10px
+}
+ figcaption {
+	padding: 10px 0;
+}
+ .denshi .button,
+ .buppan .button {
+	margin: 20px auto 0 auto!important;
+    float: none;
+}
+tr {
+	padding: 20px 0;
+}
+th img {
+	margin-right: 10px;
+}
+.price {
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 50px;
+}
+ .kyujin {
+	margin: 50px 0;
+}
+ .kyujin .page,
+ .kyujin .page_icon {
+	color: #333;
+}
+ .kyujin .sub {
+    display: inline-block;
+    margin-bottom: 0;
+    margin-right: 5px;
+}
+ .kyujin .bg_gray li {
+    border-bottom: 1px solid #005699;
+    padding: 10px;
+}
+@media screen and (max-width: 1000px){
+	.flex_wrap {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		width: 80%;
+		margin: 0 auto;
+	}
+	.price {
+		margin-left: 0;
+		margin-top: 20px;
+	}
+	.content_top .btn_kaiin_sbt,
+	.content_top .btn_hoken {
+		width: 80%;
+		margin-right: auto!important;
+		margin-left: auto!important;
+	}
+	.shiken .btn_wrap .button {
+		width: 100%;
+	}
+	.moshikomi,
+	.shiharai {
+		float: none;
+		width: 100%;
+	}
+	.shiharai {
+		margin-left: 0;
+		margin-top: 20px;
+	}
+	.kaiin, 
+	.denshi,
+	.buppan {
+		width: 100%;
+	}
+	.content_5 figure {
+		border-bottom: none;
+		margin-right: 1em;
+	}
+	.content_5 figure:last-child {
+		margin-right: 0;
+	}
+	.denshi,
+	.buppan {
+		margin-top: 20px;
+	}
+	table {
+		width: 45%;
+	}
+	table tr {
+		border: none;
+	}
+	.kaiin .button {
+		width: 80%!important;
+		margin: 15px auto!important;
+	}
+	.kyujin .sub {
+		display: block;
+		margin-bottom: 10px;
+	}
+	.bg_gray {
+		padding:  5px;
+	}
+	.bg_white li:last-child {
+		border: none;
+	}
+	.bg_gray li:last-child {
+		border: none;
+	}
+	.joho {
+		width: 50%;
+		float: left;
+		background: none;
+	}
+	.shiken {
+		width: 50%;
+		border-right: none;
+		float: left;
+		border-left: 1px solid #005699;
+	}
+	.content_top {
+		display: block;
+	}
+	.ceu {
+		width: 100%;
+		clear: both;
+		background: #ddd;
+	}
+	.ceu .btn_wrap .button {
+		width: 80%!important;
+	}
+	.ceu .btn_wrap button:first-child {
+		margin-right: 0!important;
+		margin-bottom: 1em!important;
+	}
+
+}
+@media screen and (max-width: 768px){
+	.link ul {
+		justify-content: flex-start;
+	}
+	.mp_btn {
+		float: none;
+		margin-top: 10px!important;
+	}
+	.moshikomi .sub {
+		float: none;
+	}
+	td {
+		width: 50%!important;
+		margin: 0 auto!important;
+	}
+	th {
+		background: inherit!important;
+		height: auto!important;
+		margin-bottom: 0!important;
+	}
+	.price {
+		margin-top: 5px;
+	}
+}
+@media screen and (max-width: 480px){
+	.news .bg_white {
+		padding: 5px;
+	}
+	.bg_white {
+		padding: 10px 5px!important;
+	}
+	.news .bg_white li {
+		line-height: unset;
+	}
+	.joho {
+		width: 100%;
+		background: #ddd;
+	}
+	.shiken {
+		border: none;
+		width: 100%;
+	}
+	.ceu .btn_wrap .button {
+		width: 114px;
+	}
+	.moshikomi,
+	.shiharai {
+		padding: 5px;
+	}
+	.moshikomi ul,
+	.shiharai ul {
+		padding: 0 10px;
+	}
+	.moshikomi .sub {
+		float: none;
+	}
+	.content_top .btn_kaiin_sbt,
+	.content_top .btn_hoken,
+	.shiken .btn_wrap .button,
+	.ceu .btn_wrap .button {
+		width: 100%!important;
+	}
+	th img,
+	figure img {
+		width: 100%;
+	}
+	td {
+		width: 100%!important;
+	}
+}
+
+/*IEのみ*/
+@media all and (-ms-high-contrast: none) {
+	.news button span {
+		line-height: 38px !important;
+	}
+	.event button span,
+	.kaiin button span,
+	.buppan button span {
+		line-height: 44px!important;
+	}
+	.moshikomi button span {
+		line-height: 27px!important;
+	}
+	.sub p {
+		line-height: 18px !important;
+		height: 20px;
+	}
+
+}
+
+/*Androidのみ*/
+.Android .title {
+	line-height: 26px;
+}
+
+
+
+/****後々必要(消す)↓****/
+.joho p:nth-of-type(6),
+.link,
+.btn_kaito,
+.btn_ceu,
+.btn_hoken,
+.news_1 li:nth-child(1) button,
+.news_1 li:nth-child(3) button,
+.sub .sub_2,
+.shiharai .mp_btn,
+.moshikomi li:nth-child(2) .mp_btn_2 {
+	display: none!important;
+}
+.content_top .joho .btn_kaiin_sbt {
+	margin-top: 100px!important;
+}
+.content_5 .bg_white {
+	width: 49%;
+}
+.content_5 .bg_white tr {
+	border: none;
+}
+@media screen and (max-width: 1000px){
+	.denshi, .buppan {
+		margin-top: 0!important;
+	}
+	table {
+		width: 100%!important;
+	}
+}
+@media screen and (max-width: 768px) {
+	.content_5 .bg_white {
+		display: block;
+		width: 100%;
+	}
+	.mp_btn {
+		margin: 20px auto!important;
+	}
+	.moshikomi .mp_btn,
+	.shiharai .mp_btn {
+		width: 200px!important;
+		height: 40px!important;
+	}
+	.news .bg_white {
+		padding: 15px 10px;
+	}
+	.moshikomi ul,
+	.shiharai ul {
+		padding: 0;
+	}
+	.denshi, 
+	.buppan {
+		margin-top: 20px!important;
+	}
+	.buppan th {
+		text-align: center;
+	}
+	.news .bg_white li {
+		line-height: inherit!important;
+	}
+}
+@media screen and (max-width: 480px) {
+	.moshikomi .sub {
+		display: block;
+
+	}
+	.moshikomi .mp_btn_2 {
+     margin: 10px auto!important;
+}
+
+
+	
+}
+/****後々必要↑****/

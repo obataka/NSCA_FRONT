@@ -1,0 +1,204 @@
+.content {
+	margin-bottom: 50px;
+	padding: 20px;
+}
+.bg_eee {
+	background: #eee;
+}
+.ta_left {
+	text-align: left;
+}
+.text {
+	margin-bottom: 20px!important;
+	margin: 0;
+	width: 100%;
+}
+.black {
+	font-size: 12px;
+	font-weight: normal;
+}
+.red {
+	color: red;
+	font-weight: normal;
+	font-size: 12px;
+}
+.table_title {
+	font-size: 15px;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+table {
+	border: 1px solid #ddd;
+}
+tr {
+    display: table-row!important;
+	border: none;
+}
+th {
+	text-align: center;
+	padding: 1em;
+	background: #005699;
+	color: #fff;
+}
+td {
+	width: auto;
+	text-align: center;
+	padding: 1em
+}
+td:first-child {
+	text-align: left;
+	background: #eee;
+}
+th,
+td {
+	border: 1px solid #ddd;
+}
+.usage_fee td:nth-of-type(1) {
+	width: 25%
+}
+.usage_fee td:nth-of-type(2),
+.usage_fee td:nth-of-type(3) {
+	width: 10%
+}
+.usage_fee td:nth-of-type(4) {
+	width: 13%
+}
+.training_place td{
+	width: 15%;
+}
+.training_place td:nth-of-type(1) {
+	width: 10%;
+}
+.training_place td:nth-of-type(4) {
+	width: 9%;
+}
+.coach_training td:nth-of-type(1),
+.coach_training td:nth-of-type(3), 
+.coach_training td:nth-of-type(4) {
+	width: 15%;
+}
+.coach_training td:nth-of-type(2) {
+	width: 20%;
+}
+.contrach td:nth-of-type(1),
+.contrach td:nth-of-type(3) {
+	width: 12%;
+}
+.contrach td:nth-of-type(2) {
+	width: 7%;
+}
+.contrach td:nth-of-type(4) {
+	width: 33%;
+}
+.contrach td:nth-of-type(5) {
+	width: 11%;
+}
+.charter td:nth-of-type(2) {
+    width: 15%;
+}
+.coach_seminar td:nth-of-type(1) {
+	width: 18%;
+}
+.coach_seminar td:nth-of-type(2) {
+	width: 15%;
+}
+.coach_seminar td:nth-of-type(3) {
+	text-align: left
+}
+.coach_seminar td:nth-of-type(4) {
+	width: 20%;
+}
+.measurement td:nth-of-type(1) {
+	width: 33%;
+}
+.measurement td:nth-of-type(2) {
+	width: 18%;
+}
+.measurement td:nth-of-type(4) {
+	width: 18%;
+}
+.measurement {
+	margin-bottom: 5px;
+}
+.cancel_policy {
+	margin-bottom: 5px;
+}
+.content ul li:before {
+	content: "・";
+	display: inline-block;
+	text-indent: -1em;
+}
+.content ul {
+	padding-left: 1em;
+}
+
+@media screen and (max-width: 768px) {
+	.bg_blue {
+		padding: 15px;
+	}
+	table {
+		width: 100%;
+	}
+	thead {
+		display: none;
+	}
+	tr {
+		width: 100%;
+	}
+	td {
+		display: block;
+		text-align: left;
+		width: 100%!important;
+		height: auto;
+	}
+	td:first-child {
+		background: #005699;
+		color: #fff;
+		font-weight: bold;
+		text-align: center;
+		border: none;
+	}
+	td:before {
+		content: attr(data-label);
+		font-weight: bold;
+		display: block;
+		margin-bottom: 5px;
+	}
+	.sp_table_title {
+		text-align: center!important;
+		background: #ddd!important;
+		color: #333!important;
+		font-weight: normal!important;
+	}
+	.cancel_policy td {
+		text-align: center;
+	}
+}
+@media screen and (max-width: 480px) {
+	.img_wrap {
+		display: block;
+	}
+	.img_wrap img {
+		width: 100%;
+		margin-bottom: 20px;
+	}
+	.img_wrap img:last-child {
+		margin-bottom: 0;
+	}
+	h3 {
+		padding: 10px;
+		line-height: 1;
+	}
+	h3 span {
+		font-size: 11px;
+		margin-left: 1em;
+	}
+	.content {
+		padding: 10px 0;
+	}
+	.precautions li {
+		margin-bottom: 20px;
+	}
+
+	
+}

@@ -1,0 +1,78 @@
+.checkbox {
+    margin-left: 0;
+    margin-right: 40px;
+	vertical-align: bottom;
+}
+#bei_kaiin_no {
+    margin-right: 1.5em;
+	width: 6em;
+}
+#shikaku_kbn {
+	width: 9em;
+}
+.bg_gray {
+	padding: 20px;
+	width: 95%;
+	margin: 20px auto 100px auto;
+}
+.sbt {
+	display: inline-block;
+	background: #005699;
+	color: #fff;
+	padding: 3px 30px;
+	width: auto!important;
+}
+.bg_gray span {
+	display: inline-block;
+	border: 1px solid #005699;
+	width: 100px;
+	text-align: center;
+	color: #005699;
+	margin-right: 1em;
+}
+.event_name {
+	margin: 10px 0;
+	width: 100%!important;
+}
+.bg_gray div {
+	display: flex;
+}
+.bg_gray p {
+	width: 50%;
+}
+section.btn_wrap {
+	margin-top: 20px;
+}
+.btn_b_2 {
+	width: auto;
+}
+@media screen and (max-width: 768px){
+	section .btn_gray {
+		margin-bottom: 20px!important;
+	}	
+	.checkbox {
+		margin-bottom: 1em;
+	}
+}
+@media screen and (max-width: 480px){
+	.w_20 {
+		width: 28%!important;
+	}
+	.w_30 {
+		width: 165px!important;
+	}
+	.bg_gray div {
+		display: block!important;
+	}
+	.bg_gray div p:first-child {
+		margin-bottom: 10px;
+	}
+	.bg_gray {
+		margin-bottom: 50px;
+		width: 100%;
+		padding: 20px 10px;
+	}
+	.bg_gray span {
+		display: block;
+	}
+}

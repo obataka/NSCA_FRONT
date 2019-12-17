@@ -1,0 +1,82 @@
+.button {
+    margin: 20px 0!important;
+    font-size: 15px;
+    height: auto;
+    line-height: inherit;
+    width: auto;
+    padding: 5px;
+    font-weight: normal;
+	float: right;
+}
+.title {
+	position: relative;
+    margin-left: 1em;
+    margin-bottom: 10px;
+}
+.contner {
+	border-bottom: 1px solid #005699;
+	margin-bottom: 30px;
+}
+.contner .title:before {
+    content: "";
+    display: inline-block;
+    border-left: 5px solid #005699;
+    height: 42px;
+    position: absolute;
+	left: -1em
+}
+.contner .content {
+	margin-bottom: 30px;
+    padding: 20px;
+	width: 440px;
+	height: 380px;
+}
+.one_line {
+	line-height: 42px;
+}
+.contner,
+.contner_img {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.contner_img .content {
+	margin-bottom: 30px;
+    padding: 20px;
+	width: 300px;
+}
+.contner_img:after {
+	content: "";
+	display: block;
+	width: 300px;
+}
+.contner_img .title:before {
+	content: "";
+    display: inline-block;
+    border-left: 5px solid #005699;
+    height: 30px;
+    position: absolute;
+	left: -1em
+}
+.contner_img .title {
+	line-height: 30px
+}
+
+
+
+@media screen and (max-width: 480px) {
+	.contner .content {
+		width: 100%;
+		height: auto;
+	}
+	.contner,
+	.contner_img {
+		display: block;
+	}
+	.content img {
+		width: 100%;
+	}
+	.content {
+		padding: 20px 10px!important;
+	}
+}

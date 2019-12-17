@@ -1,0 +1,113 @@
+.wrap {
+    padding-top: 20px;
+}
+.tokuten_title {
+    position: relative;
+    top: 44px;
+    left: 35px;
+    display: flex;
+	width: 268px;
+}
+.tokuten_title input[type="radio"] {
+    visibility: hidden;
+    position: absolute;
+    width: 0;
+}
+.tokuten_title input[type="radio"] + label::before {
+    display: none
+}
+.tokuten_title input[type="radio"]:checked + label::after {
+    content: none;
+}
+.tokuten_title input:checked + label {
+    background: #005699!important;
+    color: #fff!important;
+}
+.tokuten_title input[type="radio"] + label {
+    background: #fff;
+    color: #333;
+    padding-left: 0;
+    border: 1px solid #005699;
+    width: 120px;
+    text-align: center;
+    padding: 0.5em;
+    display: block;
+    margin-right: 1em;
+	cursor: pointer;
+}
+.blue {
+	color: #005699;
+}
+.kaiin, 
+.shikaku {
+    width: 100%;
+    border: 1px solid #005699;
+    margin: 0 auto;
+    margin-top: 43px;
+}
+.kaiin_content_wrap,
+.shikaku_content_wrap {
+    padding: 2em 0;
+    border-bottom: 1px solid #005699;
+    width: 90%;
+    margin: 0 auto;
+    position: relative;
+}
+.kaiin_content_wrap:last-child,
+.shikaku_content_wrap:last-child {
+    border: none;
+}
+.kaiin img,
+.shikaku img {
+    float: right;
+}
+.kaiin .right,
+.shikaku .right {
+    float: left;
+    margin-left: 1em;
+}
+.btn p {
+    text-align: center;
+    margin-top: 10px;
+	font-size: 14px;
+}
+@media screen and (max-width: 768px){
+	.riyo_title input[type="radio"] + label {
+        width: 40%;
+        padding: 0.5em 0em;
+    }
+    .kaiin,
+    .shikaku {
+        margin-top: 43px;
+        text-align: center;
+    }
+    .riyo_title {
+        left: 16px;
+        top: 31px;
+        width: 90%;
+    }
+    .kaiin img,
+    .shikaku img {
+        float: none;
+    }
+    .kaiin .right,
+    .shikaku .right {
+        float: none;
+        margin-right: 0;
+        text-align: left;
+    }
+	.title {
+		margin: 20px 0;
+	}
+	.btn {
+		margin-bottom: 30px;
+	}
+}
+@media screen and (max-width: 480px){
+	.button {
+		width: 268px;
+	}
+}
+
+
+

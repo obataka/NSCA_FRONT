@@ -1,0 +1,84 @@
+.wrap {
+    padding-top: 20px;
+}
+.spb_arrows_3ver li:first-of-type,
+.spb_arrows_3ver li:nth-of-type(2) {
+    line-height: 44px;
+}
+.kaiin_sbt tr {
+    padding: 2em 0;
+    width: 96%;
+    margin: 0 auto;
+}
+.kaiin_sbt {
+    background: #005699;
+    margin: 0;
+    padding: 1.5em;
+    margin-bottom: 60px;
+}
+.kaiin_sbt tr:first-of-type {
+	border: none;
+}
+.kaihi span:before {
+    border-left: 4px solid #005699;
+    content: "";
+    height: 20px;
+    position: absolute;
+    right: 35px;
+}
+.kaihi span {
+    position:relative;
+}
+.kaihi {
+    border: 1px solid #005699;
+    padding: 2em!important;
+    margin-bottom: 3em!important;
+    width: 90%;
+}
+.kaihi th {
+    width: 100%;
+}
+.kaihi p {
+    margin-bottom: 0;
+    padding-left: 1em;
+}
+table {
+    background: #fff;
+}
+@media screen and (max-width: 768px) {
+	.spb_arrows_3ver li span {
+		height: auto;
+	}
+	.spb_arrows_3ver li:first-of-type,
+	.spb_arrows_3ver li:nth-of-type(2) {
+		line-height: 22px;
+	}
+	.kaiin_sbt {
+		margin-top: 30px;
+	}
+	.kaihi th{
+		background: #fff;
+		color: #333333;
+	}
+	.kaihi {
+		padding: 20px!important;
+		padding-bottom: 50px!important;
+		border-top: 1px solid #005699;
+	}
+	.kaihi p{
+		font-size: 13px;
+	}
+	.btn_gray {
+		margin-bottom: 20px!important;
+	}
+}
+
+@media screen and (max-width: 480px){
+	.kaihi {
+		padding: 1em 10px 2.5em !important;
+	}
+	.kaihi p {
+		padding-left: 0;
+	}
+
+}

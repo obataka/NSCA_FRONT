@@ -1,0 +1,67 @@
+.table {
+	padding: 20px;
+}
+tr {
+	display: table-row;
+	border: none;
+}
+th {
+	padding: 10px;
+	border: 1px solid #a2a2a2;
+	background: #005699;
+	color: #fff;
+	width: 70%;
+	text-align: center;
+}
+td {
+	width: auto;
+	padding: 10px;
+	border: 1px solid #a2a2a2;
+}
+.date {
+	text-align: center;
+}
+@media screen and (max-width: 768px) {
+	th {
+		display: table-cell;
+	}
+	td {
+		display: table-cell;
+	}
+}
+@media screen and (max-width: 480px) {
+	th {
+		display: none;
+		border: none;
+		height: 30px;
+	}
+	td {
+		border: none;
+		padding: 5px 10px;
+		display: block;
+	}
+	td:nth-of-type(1) {
+		margin-top: 10px;
+		background: #005699;
+		color: #fff;
+		padding: 10px;
+	}
+	td:nth-of-type(2n) {
+		border: 1px solid #005699;
+	}
+	td:nth-of-type(2n):before {
+		content: attr(data-label);
+		font-weight: bold;
+		display: block;
+		color: #333;
+		text-align: left;
+		height: 30px;
+		font-size: 13px;
+	}
+	.date {
+		text-align: left;
+	}
+	.table {
+		padding: 10px;
+	}
+}

@@ -1,0 +1,140 @@
+.top_btn button {
+    display: inline-block;
+    width: auto;
+    font-size: 16px;
+    margin-top: 10px!important;
+    line-height: 0;
+    padding: 1em;
+    height: auto;
+	font-weight: normal;
+	float: right;
+}
+.product_wrap {
+    padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+	margin-bottom: 50px;
+}
+.product_wrap:before{
+  content:"";
+  display: block;
+  width:23%;
+  order:1;
+}
+.product_wrap:after{
+  content:"";
+  display: block;
+  width:23%;
+}
+.product_title {
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 18px;
+}
+.product_img {
+	text-align: center;
+	margin-bottom: 10px;
+}
+.product {
+    padding: 20px 10px;
+    width: 190px;
+    margin-top: 30px;
+	margin-right: 20px;
+}
+.product:nth-of-type(4n) {
+    margin-right: 0;
+}
+tr {
+    padding: 0;
+	border: none;
+	margin-bottom: 5px;
+	    display: -webkit-inline-box;
+}
+tr:last-child {
+	margin-bottom: 0;
+}
+td {
+    width: auto;
+    padding: 0;
+}
+th {
+    width: 5.5em;
+	display: inline-block;
+}
+.zei {
+    display: block;
+    font-size: 11px;
+}
+input[type="number"] {
+    width: 3em;
+}
+table {
+    width: auto;
+}
+.setsumei {
+    padding: 30px;
+}
+.btn_wrap {
+	margin-top: 50px;
+}
+
+@media screen and (max-width:940px){
+    th{
+        background: inherit;
+        color: inherit;
+        height: auto;
+		padding: 0;
+		margin-bottom: 0;
+    }
+	.product:nth-of-type(4n) {
+		margin-right: 20px;
+	}
+	.product:nth-of-type(3n) {
+		margin-right: 0;
+	}
+}
+
+@media screen and (max-width:689px){
+	.product_wrap {
+		justify-content: space-around;
+	}
+	.product:nth-of-type(3n) {
+		margin-right: 20px;
+	}
+	.product:nth-of-type(2n) {
+		margin-right: 0;
+	}
+	.btn_gray {
+		margin-bottom: 20px;
+	}
+	.product_wrap:before{
+	display: none;
+	}
+	.product_wrap:after{
+	display: none;
+	}
+}
+
+@media screen and (max-width:480px){
+    .product_wrap {
+		display: block;
+		padding: 0;
+	}
+	.product {
+		width: 100%;
+	}
+	.product_title {
+		text-align: center;
+	}
+	td {
+		font-size: inherit;
+	}
+	table {
+		width: 175px;
+		margin: 0 auto;
+	}
+}
+
+
+

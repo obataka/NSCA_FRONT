@@ -1,0 +1,108 @@
+table {
+	border: 1px solid #ddd;
+	margin-bottom: 30px;
+	margin-top: 30px;
+}
+table:last-of-type {
+	margin-bottom: 10px;
+}
+tr {
+    display: table-row!important;
+	border: none;
+}
+th {
+	text-align: center;
+	padding: 1em;
+	background: #005699;
+	color: #fff;
+	width: auto;
+}
+td:first-child {
+    text-align: left;
+}
+td {
+	width: auto;
+	text-align: center;
+	padding: 1em
+}
+td p {
+    display: flex;
+}
+td p img {
+    margin-right: 30px;
+}
+th,
+td {
+	border: 1px solid #ddd;
+}
+.total {
+    text-align: right;
+    margin-bottom: 76px;
+    font-weight: bold;
+    font-size: 16px;
+}
+.total span {
+    margin-left: 4em;
+}
+
+@media screen and (max-width: 768px) {
+	table {
+		width: 100%;
+		border: none;
+	}
+	thead {
+		display: none;
+	}
+	th,
+	td {
+		border: none;
+	}
+	tr { 
+		width: 100%;
+	}
+	td {
+		display: block;
+		text-align: right;
+		width: 100%!important;
+		height: 40px;
+		border-bottom: 1px solid #005699;
+	}
+	td:first-child {
+		font-weight: bold;
+		text-align: center;
+		height: auto;
+		border-top: 1px solid #005699;
+	}
+	td:last-of-type {
+		border-top: none;
+	}
+	td:before {
+		content: attr(data-label);
+		float: left;
+		font-weight: bold;
+		margin-right: 10px;
+	}
+	td p {
+		text-align: left;
+	}
+	.btn_gray {
+		margin-bottom: 20px;
+	}
+	.btn_b {
+		position: inherit!important;
+		width: auto;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	td[data-label="商品名"] {
+		display: block;
+	}
+	td p {
+		display: block;
+	}
+	td p img {
+		display: block;
+		margin: 0 auto 1em auto;
+	}
+}

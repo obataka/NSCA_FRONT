@@ -1,0 +1,53 @@
+section {
+	padding: 20px
+}
+.year:before {
+	content: "";
+	border: 3px solid #005699;
+	margin-right: 0.5em;
+}
+.year {
+	font-size: 15px;
+	font-weight: bold;
+}
+.table {
+	padding: 20px;
+}
+tr {
+	display: table-row;
+	border: none;
+}
+th {
+	padding: 10px;
+	border: 1px solid #a2a2a2;
+	background: #005699;
+	color: #fff;
+	width: 12%;
+}
+td {
+	width: auto;
+	padding: 10px;
+	border: 1px solid #a2a2a2;
+}
+@media screen and (max-width: 768px) {
+	th {
+		width: 100%;
+		padding: 0;
+		text-align: center;
+		line-height: 40px;
+		margin: 0;
+	}
+	
+}
+@media screen and (max-width: 480px) {
+	section {
+		padding: 0;
+		margin-bottom: 40px;
+	}
+	.year {
+		margin: 10px 0;
+	}
+	.table {
+		padding: 0;
+	}
+}

@@ -1,0 +1,123 @@
+.sp_br {
+	display: none;
+}
+.spb_arrows li:nth-of-type(1),
+.spb_arrows li:nth-of-type(3),
+.spb_arrows li:nth-of-type(4),
+.spb_arrows li:nth-of-type(5) {
+    line-height: 40px;
+}
+.spb_arrows li:nth-of-type(2) small {
+    font-size: 11px;
+}
+input[type="radio"] + label {
+    margin-right: 1.5em;
+}
+.yotei {
+    margin: 20px 0px;
+}
+.gakui {
+	margin-top: 20px;
+}
+.select_wrap {
+    margin: 0 10px;
+}
+#yotei_year {
+	width: 29%!important;
+}
+#yotei_month,
+#yotei_day {
+	width: 17%!important;
+}
+.gakui select {
+    width: 38%;
+}
+.gakui textarea {
+    width: 43%;
+    height: 35px;
+	margin-left: 2em;
+}
+.gakui textarea[placeholder] {
+    font-size: 12px;
+    line-height: 22px;
+    overflow: hidden;
+}
+.hitsuyo ul {
+    margin-top: 13px;
+}
+.hitsuyo li {
+	text-indent: -1em;
+	padding-left: 1em;
+	line-height: normal;
+}
+.caution p {
+	margin-bottom: 7px;
+}
+.checkbox {
+	margin-top: 0.5em;
+	margin-bottom: 0;
+}
+
+@media screen and (max-width: 955px){
+	.sp_bl {
+		display: block!important;
+	}
+	.spb_arrows_6ver.sp_no {
+		display: none;
+	}
+	.spb_arrows ul:nth-of-type(2) li:nth-of-type(2) {
+		line-height: 3;
+	}
+	.spb_arrows ul:nth-of-type(2) li:nth-of-type(3) {
+		line-height: inherit;
+	}
+} 
+
+@media screen and (max-width: 800px) {
+	#yotei_year {
+		margin-left: 0;
+	}
+}
+
+@media screen and (max-width: 480px){
+	.sp_br {
+		display: block;
+	}
+	.sp_bl {
+		display: none!important;
+	}
+	.gakui select,
+	textarea {
+		width: 100%!important;
+		margin: 0;
+	}
+	.gakui textarea {
+		margin-left: 0;
+	}
+	#gakui_bunya {
+		margin-bottom: 1em;
+	}
+	.select_wrap:first-of-type {
+		margin-left: 0!important;
+	}
+	.gakui textarea {
+		display: block;
+	}
+	.spb_arrows_6ver.sp_no {
+		display: block;
+		margin: 0;
+	}
+	.spb_arrows_6ver>ul.step-anchor>li.active>span,
+	.spb_arrows_6ver>ul.step-anchor>li>span {
+		height: auto;
+	}
+	.spb_arrows li:nth-of-type(1),
+	.spb_arrows li:nth-of-type(3),
+	.spb_arrows li:nth-of-type(4),
+	.spb_arrows li:nth-of-type(5) {
+		line-height: inherit;
+	}
+	.spb_arrows li:nth-of-type(2) small {
+		font-size: smaller;
+	}
+}

@@ -1,0 +1,18 @@
+table {
+	margin-bottom: 20px;
+}
+article {
+	margin-bottom: 50px;
+}
+.bg_gray {
+	padding: 20px;
+}
+.btn_gray {
+	margin-bottom: 10px;
+}
+
+@media screen and (max-width:480px) {
+	.bg_gray {
+		padding: 20px 10px;
+	}
+}

@@ -1,0 +1,20 @@
+.wrap {
+    padding-top: 20px;
+}
+.riyu textarea {
+	margin-top: 5px;
+}
+td div {
+    float: left;
+}
+.teikan_wrap {
+	margin-bottom: 30px;
+}
+.doi .checkbox {
+    line-height: 21px;
+}
+@media all and (-ms-high-contrast: none){
+	.doi .checkbox {
+		line-height: 23px;
+	}
+}

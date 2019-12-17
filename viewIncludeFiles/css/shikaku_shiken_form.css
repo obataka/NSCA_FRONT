@@ -1,0 +1,192 @@
+.text {
+	margin: 20px 0 10px 0;
+	width: 100%;
+}
+.shiken {
+    margin-top: 10px;
+    padding: 30px 25px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.shiken span{
+	border: 1px solid #005699;
+	padding: 2px 20px;
+	margin-right: 2em;
+	color: #005699;
+}
+.shiken p{
+	width: 50%;
+}
+.sub {
+	font-weight: normal;
+}
+.shikaku div {
+	float: none;
+}
+.date {
+	padding: 20px;
+	margin-top: 10px;
+	margin-bottom: 30px;
+}
+.date input {
+	width: 120px!important;
+	margin-right: 5px;
+}
+.date select {
+	margin: 0 5px;
+}
+.shikaku .text {
+	width: 100%;
+	border: 1px solid #005699;
+	padding: 10px;
+	margin-bottom: 20px;
+}
+.shikaku .text p {
+	margin: 0;
+}
+.kakunin {
+	padding: 20px;
+}
+.kakunin .bg_white {
+	margin-top: 20px;
+}
+.checkbox::before {
+    background: #fff;
+}
+.kihon_joho {
+	margin-bottom: 30px;
+}
+.policy {
+	padding: 0 1.5em;
+}
+.policy .title {
+	margin-top: 30px;
+}
+.policy .bg_gray span {
+	font-weight: bold;
+	color: #005699;
+	font-size: 14px;
+}
+.policy .bg_gray {
+	margin-top: 20px;
+	padding: 20px;
+    height: 250px;
+    overflow: auto;
+}
+.doi {
+    margin-top: 20px;
+    font-size: 12px;
+}
+.cancel {
+	height: auto!important;
+}
+.ta_right {
+	display: block;
+	text-align: right;
+}
+.chui_jiko {
+	border-top: 1px solid #005699;
+	margin-bottom: 100px;
+}
+.spb_arrows li:nth-of-type(1),
+.spb_arrows li:nth-of-type(3),
+.spb_arrows li:nth-of-type(4),
+.spb_arrows li:nth-of-type(5) {
+    line-height: 3;
+}
+.spb_arrows li:nth-of-type(2) small {
+    font-size: 11px;
+}
+.job p {
+	margin-bottom: 10px;
+}
+
+@media screen and (max-width: 955px){
+	.sp_bl {
+		display: block!important;
+	}
+	.spb_arrows_6ver.sp_no {
+		display: none;
+	}
+		.spb_arrows ul:nth-of-type(2) li:nth-of-type(2) {
+		line-height: 3;
+	}
+	.spb_arrows ul:nth-of-type(2) li:nth-of-type(3) {
+		line-height: inherit;
+	}
+} 
+@media screen and (max-width: 768px){
+	.chui_jiko {
+		border: none;
+		margin-bottom: 50px;
+	}
+}
+@media screen and (max-width: 480px){
+	.date,
+	.kakunin {
+		padding: 10px;
+	}
+	.kakunin .bg_white {
+		margin-top: 10px;
+		padding: 10px;
+	}
+	.policy .bg_gray {
+		padding: 10px;
+	}
+	td {
+		padding: 0;
+	}
+	.shiken {
+		display: block;
+		padding: 15px;
+	}
+	.shiken p {
+		width: 100%;
+	}
+	.shiken span {
+		line-height: 23px;
+	}
+	.shiken p:first-child {
+		margin-bottom: 1em;
+	}
+	.date input {
+		width: 34%!important;
+	}
+	.date select {
+		width: 20%!important;
+	}
+	.policy {
+		padding: 0;
+	}
+	.sp_bl {
+		display: none!important;
+	}
+	.spb_arrows_6ver.sp_no {
+		display: block;
+		margin: 0;
+	}
+	.spb_arrows_6ver>ul.step-anchor>li.active>span,
+	.spb_arrows_6ver>ul.step-anchor>li>span {
+		height: auto;
+	}
+	.spb_arrows li:nth-of-type(1),
+	.spb_arrows li:nth-of-type(3),
+	.spb_arrows li:nth-of-type(4),
+	.spb_arrows li:nth-of-type(5) {
+		line-height: inherit;
+	}
+	.spb_arrows li:nth-of-type(2) small {
+		font-size: smaller;
+	}
+}
+
+@media all and (-ms-high-contrast: none) {
+	.shiken span {
+		line-height: 29px;
+		height: 30px;
+		display: inline-block;
+	}
+	
+}
+
+

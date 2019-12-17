@@ -1,0 +1,154 @@
+h3 span {
+	font-size: 13px;
+	margin-left: 2em;
+}
+.content {
+	margin-bottom: 50px;
+	padding: 20px;
+}
+.text {
+	margin-bottom: 20px!important;
+	margin: 0;
+	width: 100%;
+}
+.bg_blue {
+	padding: 25px;
+}
+.img_wrap {
+	display: flex;
+	justify-content: space-between;
+}
+.img_wrap img {
+	width: 32%;
+}
+.time {
+	font-size: 15px;
+	font-weight: bold;
+	line-height: 2;
+	margin-bottom: 20px;
+}
+.red {
+	color: red;
+	font-weight: normal;
+	font-size: 12px;
+}
+.price {
+	font-size: 15px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+table {
+	border: 1px solid #ddd;
+}
+tr {
+    display: table-row!important;
+	border: none;
+}
+th {
+	text-align: center;
+	padding: 1em;
+	background: #005699;
+	color: #fff;
+}
+td {
+    width: 30%;
+	text-align: center;
+	padding: 1em
+}
+td:first-child {
+	text-align: left;
+	background: #eee;
+}
+th,
+td {
+	border: 1px solid #ddd;
+}
+.precautions li {
+	margin-bottom: 15px;
+}
+.link {
+	color: #005699;
+}
+.link:hover {
+	text-decoration: underline;
+}
+.pdf:before {
+	font-family: 'Font Awesome 5 Free';
+    content: "\f1c1";
+    color: #CC0000;
+    display: inline-block;
+    width: 1.2em;
+    text-align: left;	
+}
+.kome:before {
+	content: "※";
+	text-indent: -1em;
+	display: inline-block;
+}
+li.red.kome {
+    text-indent: 0em;
+    padding-left: 1em;
+}
+
+@media screen and (max-width: 768px) {
+		.bg_blue {
+		padding: 15px;
+	}
+	table {
+		width: 100%;
+	}
+	thead {
+		display: none;
+	}
+	tr {
+		width: 100%;
+	}
+	td {
+		display: block;
+		text-align: right;
+		width: 100%!important;
+		height: auto;
+	}
+	td:first-child {
+		background: #005699;
+		color: #fff;
+		font-weight: bold;
+		text-align: center;
+		border: none;
+	}
+	td:before {
+		content: attr(data-label);
+		float: left;
+		font-weight: bold;
+		margin-right: 10px;
+	}
+}
+@media screen and (max-width: 480px) {
+
+	.img_wrap {
+		display: block;
+	}
+	.img_wrap img {
+		width: 100%;
+		margin-bottom: 20px;
+	}
+	.img_wrap img:last-child {
+		margin-bottom: 0;
+	}
+	h3 {
+		padding: 10px;
+		line-height: 1;
+	}
+	h3 span {
+		font-size: 11px;
+		margin-left: 1em;
+	}
+	.content {
+		padding: 10px 0;
+	}
+	.precautions li {
+		margin-bottom: 20px;
+	}
+	
+	
+}

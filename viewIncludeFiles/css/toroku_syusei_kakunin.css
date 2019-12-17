@@ -1,0 +1,17 @@
+.kaiin_sbt {
+	margin-top: 0;
+	border: 1px solid #005699;
+	margin: 0 0 40px 0;
+}
+.kaiin_sbt tr {
+	border: none;
+}
+.kaiin_sbt td p:first-child {
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+@media screen and (max-width: 768px){
+	.kaiin_sbt tr {
+		padding: 0 0 1em;
+	}
+}

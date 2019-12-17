@@ -1,0 +1,38 @@
+table {
+    border-top: 1px solid #005699;
+    margin-top: 2em;
+}
+.card_date td span {
+    padding: 1em;
+}
+.name div p {
+    width: 100%;
+}
+.name div {
+    width: 100%!important;
+}
+.content_wrap table {
+    margin-bottom: 110px;
+}
+.btn_b_2 {
+    width: 100%;
+}
+.btn_b_2 button {
+    margin: 0;
+}
+#code {
+    width: 4em!important;
+}
+@media screen and (max-width: 768px){
+	table {
+        border: none;
+    }
+}
+@media screen and (max-width: 480){
+	table input {
+        width: 100%!important;
+    }
+    .card_date input {
+        width: 70px!important;
+    }
+}

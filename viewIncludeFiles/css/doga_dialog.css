@@ -1,0 +1,19 @@
+.title {
+	font-size: 15px;
+	position: relative;
+	padding-left: 1em;
+	margin-bottom: 10px;
+}
+.title:before {
+	content: "";
+	display: inline-block;
+	border-left: 3px solid #005699;
+	height: 25px;
+	position: absolute;
+	left: 0px;
+}
+@media screen and (max-width:1000px) {
+	.movie img {
+		width: 100%;
+	}
+}

@@ -1,0 +1,22 @@
+.wrap {
+    padding-top: 20px;
+}
+.spb_arrows_3ver li:first-of-type,
+.spb_arrows_3ver li:nth-of-type(2) {
+    line-height: 44px;
+}
+section.btn_wrap {
+    margin-top: 20px;
+}
+@media screen and (max-width: 768px) {
+	.spb_arrows_3ver li span {
+		height: auto;
+	}
+	.spb_arrows_3ver li:first-of-type,
+	.spb_arrows_3ver li:nth-of-type(2) {
+		line-height: 22px;
+	}
+	section .btn_gray {
+		margin-bottom: 20px!important;
+	}
+}

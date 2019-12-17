@@ -1,0 +1,37 @@
+.wrap {
+    padding-top: 20px;
+}
+.mh_c {
+    min-height: calc(100vh - 182px);
+}
+li {
+    text-indent: -1em;
+    padding-left: 1em;
+}
+@media screen and (max-width:768px) {
+	.mh_c {
+		min-height: calc(100vh - 115px);
+	}
+	table {
+		margin-bottom: 80px;
+	}
+	
+	/*ファイヤ―フォックス*/
+	@-moz-document url-prefix() {
+		.mh_c {
+			min-height: calc(100vh - 116px)!important;
+		}
+	}
+	
+	/*IEのみ*/
+	_:-ms-lang(x)::-ms-backdrop, .mh_c {
+		min-height: calc(100vh - 115px)!important;
+	}
+	
+	/*edgeのみ*/
+	@supports (-ms-ime-align:auto) {
+		.mh_c {
+			min-height: calc(100vh - 115px)!important;
+		}
+	}
+}

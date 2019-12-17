@@ -1,0 +1,54 @@
+.text {
+	margin: 0;
+	width: 100%;
+}
+.content {
+	margin-top: 10px;
+}
+.dai:before {
+	content: "";
+	border: 3px solid #005699;
+	margin-right: 0.5em;
+}
+.dai {
+	font-size: 15px;
+}
+.kai {
+	padding: 20px 0 50px 2.5em;
+}
+.spb_arrows li:nth-of-type(1),
+.spb_arrows li:nth-of-type(2),
+.spb_arrows li:nth-of-type(3) {
+    line-height: 3;
+}
+
+@media screen and (max-width:768px) {
+	.sp_no {
+		display: block;
+	}
+}
+
+@media screen and (max-width:480px) {
+	.sp_no {
+		display: none;
+	}
+	.spb_arrows li:nth-of-type(1),
+	.spb_arrows li:nth-of-type(2),
+	.spb_arrows li:nth-of-type(3) {
+		line-height: inherit;
+	}
+}
+
+/*ファイヤ―フォックス*/
+@-moz-document url-prefix() {
+	.mh_c {
+		min-height: calc(100vh - 51px)!important;
+	}
+}
+
+/*edgeのみ*/
+@supports (-ms-ime-align:auto) {
+	.mh_c {
+		min-height: calc(100vh - 51px)!important;
+	}
+}

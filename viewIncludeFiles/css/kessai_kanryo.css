@@ -1,0 +1,14 @@
+
+/*ファイヤ―フォックスのみ*/
+@-moz-document url-prefix() {
+	.mh_c {
+		min-height: calc(100vh - 51px)!important;
+	}
+}
+
+/*edgeのみ*/
+@supports (-ms-ime-align:auto) {
+	.mh_c {
+		min-height: calc(100vh - 51px)!important;
+	}
+}
