@@ -24,7 +24,7 @@
                     shimei_mei: $("#name_mei").val(),
                     furigana_sei: $("#name_sei_kana").val(),
                     furigana_mei: $("#name_mei_kana").val(),
-                    seinengappi: $("#seireki_name").val().$("#month").val().$("#day").val(),
+                    seinengappi: $("#year").val().$("#month").val().$("#day").val(),
                     seibetsu_kbn: $("#wk_sel_gender").val(),
                     ken_no: $("#sel_math").val(),
                     kemmei: $("#kenmei").val(),

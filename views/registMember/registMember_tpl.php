@@ -19,13 +19,6 @@
 	<script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/js/registMember.js"></script>
-	<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
-	<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
-	<script>
-		$(function(){
-			$("select").wrap("<span class='select_wrap'></span>");
-		});
-	</script>
 </head>
 
 <body>
