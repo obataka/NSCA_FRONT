@@ -353,6 +353,7 @@ SQL;
         //         $wk_kaiin_no = $_SESSION['kaiin_no'];
         // }
         $wk_kaiin_no = 10251033;
+        //$wk_kaiin_no = 819121119;
         try {
             $db = Db::getInstance();
             $sth = $db->prepare("SELECT * FROM tb_kaiin_joho LEFT JOIN tb_kaiin_jotai ON tb_kaiin_joho.kaiin_no = tb_kaiin_jotai.kaiin_no

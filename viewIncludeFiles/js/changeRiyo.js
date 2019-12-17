@@ -51,7 +51,30 @@
                     $('#name_sei_kana').val(getTbkaiinJoho[10]);
                     $('#name_mei_kana').val(getTbkaiinJoho[11]);
                     $('#year').val(getTbkaiinJoho[13].slice(0,4));                 
-                    $('#month').val(getTbkaiinJoho[13].slice(6,7));
+                    $('#month').val(getTbkaiinJoho[13].slice(5,7));
+                    $('#day').val(getTbkaiinJoho[13].slice(8,10));
+                    $('input:radio[name="gender"]').val([getTbkaiinJoho[14]]);
+                    $('#address_yubin_nb_1').val(getTbkaiinJoho[15].slice(0,3));
+                    $('#yubin_nb_2').val(getTbkaiinJoho[15].slice(3,7));
+                    $('#address_todohuken').val(getTbkaiinJoho[16]);
+                    $('#address_shiku').val(getTbkaiinJoho[19]);
+                    $('#address_tatemono').val(getTbkaiinJoho[20]);
+                    console.log(getTbkaiinJoho[57]);
+                    if (getTbkaiinJoho[57] == "") {
+                        $('#nagareyama').val("1");
+                        $("#nagareyama").prop("checked", true);
+                        console.log($('#nagareyama').val());
+                    } else {
+                        $('#nagareyama').val("0");
+                        console.log(1234512345);
+                    }
+                    
+                    $('#address_yomi_shiku').val(getTbkaiinJoho[21]);
+                    $('#address_yomi_tatemono').val(getTbkaiinJoho[22]);
+                    $('#tel').val(getTbkaiinJoho[23]);
+                    $('#keitai_tel').val(getTbkaiinJoho[25]);
+                    $('#mail_address_1').val(getTbkaiinJoho[27]);  
+                    $('#mail_address_2').val(getTbkaiinJoho[28]);
                 }
             },
             fail: function(rtn) {

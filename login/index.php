@@ -1,6 +1,4 @@
 <?php
-
-// ƒwƒbƒ_[‚Ì“Ç‚Ýž‚Ý
 include_once '../ctrl/parts/loginHeader.php';
 
 $includeView = '../views/login/login_tpl.php';

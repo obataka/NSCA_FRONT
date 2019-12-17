@@ -134,8 +134,8 @@
 								<tr class="gender">
 									<th><span class="required">必須</span>性別</th>
 									<td>
-										<input id="gender_1" type="radio" name="gender"><label for="gender_1">男性</label>
-										<input id="gender_2" type="radio" name="gender"><label for="gender_2">女性</label>
+										<input id="gender_1" type="radio" name="gender" value="1"><label for="gender_1">男性</label>
+										<input id="gender_2" type="radio" name="gender" value="2"><label for="gender_2">女性</label>
 										<ul class="error_ul">
 											<li class="error" id="err_gender"></li>
 										</ul>
