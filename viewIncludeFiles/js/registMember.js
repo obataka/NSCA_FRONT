@@ -1,4 +1,5 @@
 (function ($) {
+
     $(document).ready(function () {
 
         /****************
@@ -15,9 +16,7 @@
                     getTodofukenList = JSON.parse(rtn);
                     $.each(getTodofukenList, function (i, value) {
                         $('#address_todohuken').append('<option name="' + value[2] + '" value="' + value[0] + '">' + value[1] + '</option>');
-
                         $('#office_todohuken').append('<option  name="' + value[2] + '" value="' + value[0] + '">' + value[1] + '</option>');
-
                     });
                     // 修正で入力画面に戻ってきた時、都道府県のセレクトボックスの初期表示処理
                     var test1 = $('#sel_math').val();
@@ -86,6 +85,7 @@
                 return false;
             }
         });
+
         /*********************************
         * //NSCA以外の認定資格取得
         *********************************/
@@ -98,42 +98,27 @@
                 } else {
                     //※正常に資格情報を取得できた時の処理を書く場所
                     getShikakuList = JSON.parse(rtn);
-                    //選択済みで戻ってきた場合、選択済みの項目をチェック済みにする。
-                    var wk_sel_shikaku = $('#wk_sel_shikaku').val();
-                    var arr_wk_shikaku = wk_sel_shikaku.split(",");
-                    console.log(arr_wk_shikaku);
                     $.each(getShikakuList, function (i, value) {
-                        //データを比較するため一時的に格納
-                        var wk_val0 = value[0];
-                        var wk_val1 = value[1];
                         if (i % 2 == 0) {
-                            $.each(arr_wk_shikaku, function () {
-                                if (wk_val0 == this) {
-                                    $('#nintei-shikaku-right').append('<input id="shikaku_' + wk_val0 + '" type="checkbox" name="shikaku" value="' + wk_val0 + '" checked><label class="checkbox" for="shikaku_' + wk_val0 + '">' + wk_val1 + '</label><br>');
-                                    return false;
-                                }
-                                if (this != " ") {
-                                    return true;  
-                                } else {
-                                    $('#nintei-shikaku-right').append('<input id="shikaku_' + wk_val0 + '" type="checkbox" name="shikaku" value="' + wk_val0 + '"><label class="checkbox" for="shikaku_' + wk_val0 + '">' + wk_val1 + '</label><br>');
-                                    return false;
-                                }
-                            });
+                            $('#nintei-shikaku-right').append('<input id="shikaku_' + value[0] + '" type="checkbox" name="shikaku" value="' + value[0] + '"><label class="checkbox" for="shikaku_' + value[0] + '">' + value[1] + '</label><br>');
                         } else {
-                            $.each(arr_wk_shikaku, function () {
-                                if (wk_val0 == this) {
-                                    $('#nintei-shikaku-left').append('<input id="shikaku_' + wk_val0 + '" type="checkbox" name="shikaku" value="' + wk_val0 + '" checked><label class="checkbox" for="shikaku_' + wk_val0 + '">' + wk_val1 + '</label><br>');
-                                    return false;
-                                }
-                                if (this != " ") {
-                                    return true;        
-                                } else {
-                                    $('#nintei-shikaku-left').append('<input id="shikaku_' + wk_val0 + '" type="checkbox" name="shikaku" value="' + wk_val0 + '"><label class="checkbox" for="shikaku_' + wk_val0 + '">' + wk_val1 + '</label><br>');
-                                    return false;
-                                }
-                            });
+                            $('#nintei-shikaku-left').append('<input id="shikaku_' + value[0] + '" type="checkbox" name="shikaku" value="' + value[0] + '"><label class="checkbox" for="shikaku_' + value[0] + '">' + value[1] + '</label><br>');
                         };
                     });
+
+                    // NSCA以外の認定資格：確認画面からの戻りなどで、すでに選択済みの値がある場合は選択状態にするための処理
+                    var wk_sel_shikaku_1 = $('#wk_sel_shikaku').val();
+                    if (wk_sel_shikaku_1 != "") {
+                        // 選択されたNSCAの以外の認定資格がある場合
+                        // 文字列に存在する半角スペースを除去してから
+                        // 「,」で分割し、配列に格納
+                        var arr_sel_shikaku = wk_sel_shikaku_1.split(',');
+                        $.each(arr_sel_shikaku, function() {
+                            var wk_sel_shikaku_2 = this.replace(" ", "");
+                            var wk_sel_shikaku_name = '#shikaku_' + wk_sel_shikaku_2;
+                            $(wk_sel_shikaku_name).prop("checked", true);
+                        });
+                    }
                 }
             },
             fail: function (rtn) {
@@ -156,33 +141,26 @@
                 } else {
                     //※正常に地域情報を取得できた時の処理を書く場所
                     getAreaList = JSON.parse(rtn);
-                    //選択済みで戻ってきた場合、選択済みの項目をチェック済みにする。
-                    var wk_sel_k_chiiki = $('#wk_sel_k_chiiki').val();
-                    var arr_wk_chiiki = wk_sel_k_chiiki.split(",");
                     $.each(getAreaList, function (i, value) {
-                        //データを比較するため一時的に格納
-                        var wk_val0 = value[0];
-                        var wk_val1 = value[1];
-                        $.each(arr_wk_chiiki, function () {
-                            if (wk_val0 == this) {
-                                $('#Area').append('<input id="chiiki_' + wk_val0 + '" type="checkbox" name="chiiki" value="' + wk_val0 + '" checked><label class="checkbox" for="chiiki_' + wk_val0 + '">' + wk_val1 + '</label>');
-                                if (value[1] == "甲信越") {
-                                    $('#Area').append('<br class="sp_no">');
-                                }
-                                return false;
-                            }
-                            if (this != " ") {
-                                return true;
-                            } else {
-                                $('#Area').append('<input id="chiiki_' + wk_val0 + '" type="checkbox" name="chiiki" value="' + wk_val0 + '"><label class="checkbox" for="chiiki_' + wk_val0 + '">' + wk_val1 + '</label>');
-                                if (value[1] == "甲信越") {
-                                    $('#Area').append('<br class="sp_no">');
-                                }
-                                return false;
-                            }
-                        });
-
+                        $('#Area').append('<input id="chiiki_' + value[0] + '" type="checkbox" name="chiiki" value="' + value[0] + '"><label class="checkbox" for="chiiki_' + value[0] + '">' + value[1] + '</label>');
+                        if (value[1] == "甲信越") {
+                            $('#Area').append('<br class="sp_no">');
+                        }
                     });
+
+                    // 興味のある地域：確認画面からの戻りなどで、すでに選択済みの値がある場合は選択状態にするための処理
+                    var wk_sel_k_chiiki_1 = $('#wk_sel_k_chiiki').val();
+                    if (wk_sel_k_chiiki_1 != "") {
+                        // 選択された興味のある地域がある場合
+                        // 文字列に存在する半角スペースを除去してから
+                        // 「,」で分割し、配列に格納
+                        var arr_sel_k_chiiki = wk_sel_k_chiiki_1.split(',');
+                        $.each(arr_sel_k_chiiki, function() {
+                            var wk_sel_k_chiiki_2 = this.replace(" ", "");
+                            var wk_sel_k_chiiki_name = '#chiiki_' + wk_sel_k_chiiki_2;
+                            $(wk_sel_k_chiiki_name).prop("checked", true);
+                        });
+                    }
                 }
             },
             fail: function (rtn) {
@@ -191,9 +169,7 @@
             error: function (rtn) {
                 return false;
             }
-
         });
-
 
         /*********************************
         * //興味のある分野取得
@@ -207,27 +183,23 @@
                 } else {
                     //※正常に分野情報を取得できた時の処理を書く場所
                     getBunyaList = JSON.parse(rtn);
-                    //選択済みで戻ってきた場合、選択済みの項目をチェック済みにする。
-                    var wk_sel_bunya = $('#wk_sel_bunya').val();
-                    var arr_wk_bunya = wk_sel_bunya.split(",");
                     $.each(getBunyaList, function (i, value) {
-                        //データを比較するため一時的に格納
-                        var wk_val0 = value[0];
-                        var wk_val1 = value[1];
-                        $.each(arr_wk_bunya, function () {
-                            if (wk_val0 == this) {
-                                $('#Bunya').append('<input id="bunya_' + wk_val0 + '" type="checkbox" name="bunya" value="' + wk_val0 + '"checked><label class="checkbox" for="bunya_' + wk_val0 + '">' + wk_val1 + '</label><br>');
-                                return false;
-                            }
-                            if (this != " ") {
-                                return true;
-                            } else {
-                                $('#Bunya').append('<input id="bunya_' + wk_val0 + '" type="checkbox" name="bunya" value="' + wk_val0 + '"><label class="checkbox" for="bunya_' + wk_val0 + '">' + wk_val1 + '</label><br>');
-                                return false;
-                            }
-                        });
-
+                        $('#Bunya').append('<input id="bunya_' + value[0] + '" type="checkbox" name="bunya" value="' + value[0] + '"><label class="checkbox" for="bunya_' + value[0] + '">' + value[1] + '</label><br>');
                     });
+
+                    //興味のある分野：確認画面からの戻りなどで、すでに選択済みの値がある場合は選択状態にするための処理
+                    var wk_sel_bunya_1 = $('#wk_sel_bunya').val();
+                    if (wk_sel_bunya_1 != "") {
+                        // 選択された興味のある分野がある場合
+                        // 文字列に存在する半角スペースを除去してから
+                        // 「,」で分割し、配列に格納
+                        var arr_sel_bunya = wk_sel_bunya_1.split(',');
+                        $.each(arr_sel_bunya, function() {
+                            var wk_sel_bunya_2 = this.replace(" ", "");
+                            var wk_sel_bunya_name = '#bunya_' + wk_sel_bunya_2;
+                            $(wk_sel_bunya_name).prop("checked", true);
+                        });
+                    }
                 }
             },
             fail: function (rtn) {
@@ -236,9 +208,7 @@
             error: function (rtn) {
                 return false;
             }
-
         });
-
 
         /***************************************************************
          * 選択済みのコンボ、ラジオ、チェックボックス初期表示処理
@@ -248,6 +218,7 @@
         if (wk_sel_option != "") {
             $('input[name="option"]').prop("checked", true);
         }
+
         //入会理由
         var sel_riyu = $('#sel_riyu').val();
         if (sel_riyu != "") {
@@ -262,15 +233,16 @@
                 var sonota = $('#sel_riyu_sonota').val();
                 if (sonota != "") {
                     $('#sel_riyu_sonota').val(sonota);
-                    console.log(1234);
                 }
             }
         }
+
         //NSCA認定資格の保持
         var wk_sel_hoji = $('#wk_sel_hoji').val();
         if (wk_sel_hoji != "") {
             $('input[name="nsca_hoji"]').prop("checked", true);
         }
+
         //月日セレクトボックス
         var sel_month = $('#sel_month').val();
         if (sel_month != "") {
@@ -280,21 +252,25 @@
         if (sel_day != "") {
             $('#day').val(sel_day);
         }
+
         //性別ラジオボタン
         var wk_sel_gender = $('#wk_sel_gender').val();
         if (wk_sel_gender != "") {
             $('input:radio[name="gender"]').val([wk_sel_gender]);
         }
+
         //流山市民のチェック
         var wk_sel_nagareyama = $('#wk_sel_nagareyama').val();
         if (wk_sel_nagareyama != "") {
             $('input[name="nagareyama"]').prop("checked", true);
         }
+
         //メール受信希望のメールアドレスボタン
         var wk_sel_mail = $('#wk_sel_mail').val();
         if (wk_sel_mail != "") {
             $('input:radio[name="mail"]').val([wk_sel_mail]);
         }
+
         //メルマガ受信希望ボタン
         var wk_sel_merumaga = $('#wk_sel_merumaga').val();
         if (wk_sel_merumaga != "") {
@@ -310,6 +286,7 @@
                 $('#hoho_2').prop("checked", true);
             }
         }
+
         //郵便配達先希望ボタン
         var sel_yubin = $('#sel_yubin').val();
         if (sel_yubin != "") {
@@ -319,6 +296,7 @@
                 $('#yubin_2').prop("checked", true);
             }
         }
+
         //ウェブサイト記載ボタン
         var sel_web = $('#sel_web').val();
         if (sel_web != "") {
@@ -328,6 +306,7 @@
                 $('#web_2').prop("checked", true);
             }
         }
+
         //アンケート協力ボタン
         var sel_qa = $('#sel_qa').val();
         if (sel_qa != "") {
@@ -337,6 +316,7 @@
                 $('#qa_2').prop("checked", true);
             }
         }
+
         /*************************************
          * //画面初期表示で次へボタンを無効にする
          *************************************/
@@ -351,7 +331,7 @@
         * 住所検索ボタン押下処理
         ********************************/
         $("#street_address_search").click(function () {
-            console.log(1);
+
             // エラーメッセージエリア初期化
             $("#err_address_yubin_nb_1").html("");
 
@@ -379,6 +359,7 @@
                     wk_focus_done = 1;
                 }
             }
+
             //郵便番号正規表現チェック
             var postcode = $("#yubin_nb_1").val() + '-' + $("#yubin_nb_2").val();
             var re = /^\d{3}-?\d{4}$/;
@@ -467,6 +448,7 @@
                     wk_focus_done = 1;
                 }
             }
+
             //郵便番号正規表現チェック
             var postcode = $("#office_yubin_nb_1").val() + '-' + $("#office_yubin_nb_2").val();
             var re = /^\d{3}-?\d{4}$/;
@@ -522,7 +504,6 @@
             });
         });
 
-
         /************************
          * 英文購読オプションチェンジイベント
          ************************/
@@ -531,88 +512,58 @@
                 //チェックありのhidden設定
                 var wa = 1;
                 $("#wk_sel_option").val(wa);
-                var ra = $("#wk_sel_option").val();
-                console.log(ra);
                 var test = '英文購読オプションあり';
-                console.log(test);
                 $('#sel_option').val(test);
-                var wawawa = $('#sel_option').val();
-                console.log(wawawa);
             } else {
                 //チェックなしのhidden設定
                 var wa = 0;
                 $("#wk_sel_option").val(wa);
-                var ra = $("#wk_sel_option").val();
-                console.log(ra);
                 var test = '英文購読オプションなし';
-                console.log(test);
                 $('#sel_option').val(test);
-                var wawawa = $('#sel_option').val();
-                console.log(wawawa);
             }
         });
+
         /************************
          * 入会理由チェンジイベント
          ************************/
         //ラジオボタンが切り替わったら発動
         $("input:radio[name='riyu']").change(function () {
-            console.log('aiueo');
             //ストレングス～のhidden設定
             if ($("input:radio[id='riyu_1']:checked").val()) {
                 var wa = $("input:radio[id='riyu_1']:checked").val();
                 $("#wk_sel_riyu").val(wa);
-                var ra = $("#wk_sel_riyu").val();
-                console.log(ra);
                 var test1 = $('[name="riyu"]:checked').attr('id');
                 var test2 = $('label[for="' + test1 + '"]').text();
-                console.log(test2);
                 $('#sel_riyu').val(test2);
-                var wawawa = $('#sel_riyu').val();
-                console.log(wawawa);
             } else if ($("input:radio[id='riyu_2']:checked").val()) {
                 //資格認定試験～のhidden設定
                 var wa = $("input:radio[id='riyu_2']:checked").val();
                 $("#wk_sel_riyu").val(wa);
-                var ra = $("#wk_sel_riyu").val();
-                console.log(ra);
                 var test1 = $('[name="riyu"]:checked').attr('id');
                 var test2 = $('label[for="' + test1 + '"]').text();
-                console.log(test2);
                 $('#sel_riyu').val(test2);
-                var wawawa = $('#sel_riyu').val();
-                console.log(wawawa);
             } else if ($("input:radio[id='riyu_3']:checked").val()) {
                 //ネットワーク・人脈づくり～のhidden設定
                 var wa = $("input:radio[id='riyu_3']:checked").val();
                 $("#wk_sel_riyu").val(wa);
-                var ra = $("#wk_sel_riyu").val();
-                console.log(ra);
                 var test1 = $('[name="riyu"]:checked').attr('id');
                 var test2 = $('label[for="' + test1 + '"]').text();
-                console.log(test2);
                 $('#sel_riyu').val(test2);
-                var wawawa = $('#sel_riyu').val();
-                console.log(wawawa);
             } else {
                 //その他(記述)のhidden設定
                 var wa = $("input:radio[id='riyu_4']:checked").val();
                 $("#wk_sel_riyu").val(wa);
-                var ra = $("#wk_sel_riyu").val();
-                console.log(ra);
                 var test1 = $('[name="riyu"]:checked').attr('id');
                 var test2 = $('label[for="' + test1 + '"]').text();
-                console.log(test2);
                 $('#sel_riyu').val(test2);
-                var wawawa = $('#sel_riyu').val();
-                console.log(wawawa);
             }
-
         });
+
         //その他の記述内容を格納する変数
         var riyu_sonota = "";
         var shikaku_sonota = "";
         var bunya_sonota = "";
-
+        
         /************************
          * NSCA認定資格保持チェンジイベント
          ************************/
@@ -621,24 +572,14 @@
                 //チェックありのhidden設定
                 var wa = 1;
                 $("#wk_sel_hoji").val(wa);
-                var ra = $("#wk_sel_hoji").val();
-                console.log(ra);
                 var test = 'CSCS,NSCA-CPTの資格をすでに保持している';
-                console.log(test);
                 $('#sel_hoji').val(test);
-                var wawawa = $('#sel_hoji').val();
-                console.log(wawawa);
             } else {
                 //チェックなしのhidden設定
                 var wa = 0;
                 $("#wk_sel_hoji").val(wa);
-                var ra = $("#wk_sel_hoji").val();
-                console.log(ra);
                 var test = 'CSCS,NSCA-CPTの資格を保持していない';
-                console.log(test);
                 $('#sel_hoji').val(test);
-                var wawawa = $('#sel_hoji').val();
-                console.log(wawawa);
             }
         });
 
@@ -646,33 +587,23 @@
         //  * 性別ボタンチェンジイベント
         //  ************************/
         $("input:radio[name='gender']").change(function () {
-            console.log(1342541513);
             //男性hidden設定
             if ($("input:radio[id='gender_1']:checked").val()) {
                 var wa = $("input:radio[id='gender_1']:checked").val();
                 $("#wk_sel_gender").val(wa);
-                var ra = $("#wk_sel_gender").val();
-                console.log(ra);
                 var test1 = $('[name="gender"]:checked').attr('id');
                 var test2 = $('label[for="' + test1 + '"]').text();
-                console.log(test2);
                 $('#sel_gender').val(test2);
-                var wawawa = $('#sel_gender').val();
-                console.log(wawawa);
             } else {
                 //女性hidden設定
                 var wa = $("input:radio[id='gender_2']:checked").val();
                 $("#wk_sel_gender").val(wa);
-                var ra = $("#wk_sel_gender").val();
-                console.log(ra);
                 var test1 = $('[name="gender"]:checked').attr('id');
                 var test2 = $('label[for="' + test1 + '"]').text();
-                console.log(test2);
                 $('#sel_gender').val(test2);
-                var wawawa = $('#sel_gender').val();
-                console.log(wawawa);
             }
         });
+
         /************************
          * 都道府県チェンジイベント
          ************************/
@@ -681,29 +612,20 @@
             var val = $('#address_todohuken option:selected').text();
             var val2 = $('#address_todohuken option:selected').val();
             var val3 = $('#address_todohuken option:selected').attr('name');
-            console.log(val);
-            console.log(val2);
-            console.log(val3);
             $('#kenmei').val(val);
             $('#sel_math').val(val2);
             $('#sel_chiiki').val(val3);
-            var we = $('#sel_math').val();
-            console.log(we);
         });
         //所属先都道府県の場合
         $('#office_todohuken').change(function () {
             var val = $('#office_todohuken option:selected').text();
             var val2 = $('#office_todohuken option:selected').val();
             var val3 = $('#office_todohuken option:selected').attr('name');
-            console.log(val);
-            console.log(val2);
-            console.log(val3);
             $('#office_kenmei').val(val);
             $('#sel_office_math').val(val2);
             $('#sel_office_chiiki').val(val3);
-            var we = $('#sel_office_math').val();
-            console.log(we);
         });
+
         /************************
          * 流山市民ボタンチェンジイベント
          ************************/
@@ -712,26 +634,18 @@
                 //チェックありのhidden設定
                 var wa = 1;
                 $("#wk_sel_nagareyama").val(wa);
-                var ra = $("#wk_sel_nagareyama").val();
-                console.log(ra);
                 var test = '流山市民です。';
-                console.log(test);
                 $('#sel_nagareyama').val(test);
-                var wawawa = $('#sel_nagareyama').val();
-                console.log(wawawa);
             } else {
                 //チェックなしのhidden設定
                 var wa = 0;
                 $("#wk_sel_nagareyama").val(wa);
-                var ra = $("#wk_sel_nagareyama").val();
-                console.log(ra);
                 var test = '流山市民ではありません。';
-                console.log(test);
                 $('#sel_nagareyama').val(test);
                 var wawawa = $('#sel_nagareyama').val();
-                console.log(wawawa);
             }
         });
+
         // /************************
         //  * メールアドレスボタンチェンジイベント
         //  ************************/
@@ -740,28 +654,19 @@
             if ($("input:radio[id='mail_1']:checked").val()) {
                 var wa = $("input:radio[id='mail_1']:checked").val();
                 $("#wk_sel_mail").val(wa);
-                var ra = $("#wk_sel_mail").val();
-                console.log(ra);
                 var test1 = $('[name="mail"]:checked').attr('id');
                 var test2 = $('label[for="' + test1 + '"]').text();
-                console.log(test2);
                 $('#sel_mail').val(test2);
-                var wawawa = $('#sel_mail').val();
-                console.log(wawawa);
             } else {
                 //アドレス2hidden設定
                 var wa = $("input:radio[id='mail_2']:checked").val();
                 $("#wk_sel_mail").val(wa);
-                var ra = $("#wk_sel_mail").val();
-                console.log(ra);
                 var test1 = $('[name="mail"]:checked').attr('id');
                 var test2 = $('label[for="' + test1 + '"]').text();
-                console.log(test2);
                 $('#sel_mail').val(test2);
-                var wawawa = $('#sel_mail').val();
-                console.log(wawawa);
             }
         });
+
         // /************************
         //  * メルマガ配信希望ラジオボタンチェンジイベント
         //  ************************/
@@ -770,25 +675,15 @@
             if ($("input:radio[id='merumaga_1']:checked").val()) {
                 var wa = $("input:radio[id='merumaga_1']:checked").val();
                 $("#wk_sel_merumaga").val(wa);
-                var ra = $("#wk_sel_merumaga").val();
-                console.log(ra);
                 var test1 = $('[name="merumaga"]:checked').attr('id');
                 var test2 = $('label[for="' + test1 + '"]').text();
-                console.log(test2);
                 $('#sel_merumaga').val(test2);
-                var wawawa = $('#sel_merumaga').val();
-                console.log(wawawa);
             } else {
                 var wa = $("input:radio[id='merumaga_2']:checked").val();
                 $("#wk_sel_merumaga").val(wa);
-                var ra = $("#wk_sel_merumaga").val();
-                console.log(ra);
                 var test1 = $('[name="merumaga"]:checked').attr('id');
                 var test2 = $('label[for="' + test1 + '"]').text();
-                console.log(test2);
                 $('#sel_merumaga').val(test2);
-                var wawawa = $('#sel_merumaga').val();
-                console.log(wawawa);
             }
         });
 
@@ -799,34 +694,22 @@
         $('#job_1').change(function () {
             var val = $('#job_1 option:selected').text();
             var val2 = $('#job_1 option:selected').val();
-            console.log(val);
-            console.log(val2);
             $('#shoku_1').val(val);
             $('#sel_shoku_1').val(val2);
-            var we = $('#sel_shoku_1').val();
-            console.log(we);
         });
 
         $('#job_2').change(function () {
             var val = $('#job_2 option:selected').text();
             var val2 = $('#job_2 option:selected').val();
-            console.log(val);
-            console.log(val2);
             $('#shoku_2').val(val);
             $('#sel_shoku_2').val(val2);
-            var we = $('#sel_shoku_2').val();
-            console.log(we);
         });
 
         $('#job_3').change(function () {
             var val = $('#job_3 option:selected').text();
             var val2 = $('#job_3 option:selected').val();
-            console.log(val);
-            console.log(val2);
             $('#shoku_3').val(val);
             $('#sel_shoku_3').val(val2);
-            var we = $('#sel_shoku_3').val();
-            console.log(we);
         });
 
         //配列と配列の内容を入れる変数の宣言
@@ -842,23 +725,19 @@
             arrShikakuVal = $("input[name='shikaku']:checked").map(function () {
                 return $(this).val();
             }).get();
-            console.log(arrShikakuVal);
             arrShikakuText = $("input[name='shikaku']:checked").map(function () {
                 var text = $(this).attr('id');
                 return $('label[for="' + text + '"]').text();
             }).get();
-            console.log(arrShikakuText);
         });
         $("#nintei-shikaku-right").on('change', "input[name='shikaku']", function () {
             arrShikakuVal = $("input[name='shikaku']:checked").map(function () {
                 return $(this).val();
             }).get();
-            console.log(arrShikakuVal);
             arrShikakuText = $("input[name='shikaku']:checked").map(function () {
                 var text = $(this).attr('id');
                 return $('label[for="' + text + '"]').text();
             }).get();
-            console.log(arrShikakuText);
         });
 
         /************************
@@ -869,25 +748,15 @@
             if ($("input:radio[id='hoho_1']:checked").val()) {
                 var wa = $("input:radio[id='hoho_1']:checked").val();
                 $("#wk_sel_hoho").val(wa);
-                var ra = $("#wk_sel_hoho").val();
-                console.log(ra);
                 var test1 = $('[name="hoho"]:checked').attr('id');
                 var test2 = $('label[for="' + test1 + '"]').text();
-                console.log(test2);
                 $('#sel_hoho').val(test2);
-                var wawawa = $('#sel_hoho').val();
-                console.log(wawawa);
             } else {
                 var wa = $("input:radio[id='hoho_2']:checked").val();
                 $("#wk_sel_hoho").val(wa);
-                var ra = $("#wk_sel_hoho").val();
-                console.log(ra);
                 var test1 = $('[name="hoho"]:checked').attr('id');
                 var test2 = $('label[for="' + test1 + '"]').text();
-                console.log(test2);
                 $('#sel_hoho').val(test2);
-                var wawawa = $('#sel_hoho').val();
-                console.log(wawawa);
             }
         });
 
@@ -899,25 +768,15 @@
             if ($("input:radio[id='yubin_1']:checked").val()) {
                 var wa = $("input:radio[id='yubin_1']:checked").val();
                 $("#wk_sel_yubin").val(wa);
-                var ra = $("#wk_sel_yubin").val();
-                console.log(ra);
                 var test1 = $('[name="yubin"]:checked').attr('id');
                 var test2 = $('label[for="' + test1 + '"]').text();
-                console.log(test2);
                 $('#sel_yubin').val(test2);
-                var wawawa = $('#sel_yubin').val();
-                console.log(wawawa);
             } else {
                 var wa = $("input:radio[id='yubin_2']:checked").val();
                 $("#wk_sel_yubin").val(wa);
-                var ra = $("#wk_sel_yubin").val();
-                console.log(ra);
                 var test1 = $('[name="yubin"]:checked').attr('id');
                 var test2 = $('label[for="' + test1 + '"]').text();
-                console.log(test2);
                 $('#sel_yubin').val(test2);
-                var wawawa = $('#sel_yubin').val();
-                console.log(wawawa);
             }
         });
         /************************
@@ -933,13 +792,11 @@
             arrChiikiVal = $("input[name='chiiki']:checked").map(function () {
                 return $(this).val();
             }).get();
-            console.log(arrChiikiVal);
 
             arrChiikiText = $("input[name='chiiki']:checked").map(function () {
                 var text = $(this).attr('id');
                 return $('label[for="' + text + '"]').text();
             }).get();
-            console.log(arrChiikiText);
         });
 
         /************************
@@ -950,25 +807,15 @@
             if ($("input:radio[id='web_1']:checked").val()) {
                 var wa = $("input:radio[id='web_1']:checked").val();
                 $("#wk_sel_web").val(wa);
-                var ra = $("#wk_sel_web").val();
-                console.log(ra);
                 var test1 = $('[name="web"]:checked').attr('id');
                 var test2 = $('label[for="' + test1 + '"]').text();
-                console.log(test2);
                 $('#sel_web').val(test2);
-                var wawawa = $('#sel_web').val();
-                console.log(wawawa);
             } else {
                 var wa = $("input:radio[id='web_2']:checked").val();
                 $("#wk_sel_web").val(wa);
-                var ra = $("#wk_sel_web").val();
-                console.log(ra);
                 var test1 = $('[name="web"]:checked').attr('id');
                 var test2 = $('label[for="' + test1 + '"]').text();
-                console.log(test2);
                 $('#sel_web').val(test2);
-                var wawawa = $('#sel_web').val();
-                console.log(wawawa);
             }
         });
         /************************
@@ -979,25 +826,15 @@
             if ($("input:radio[id='qa_1']:checked").val()) {
                 var wa = $("input:radio[id='qa_1']:checked").val();
                 $("#wk_sel_qa").val(wa);
-                var ra = $("#wk_sel_qa").val();
-                console.log(ra);
                 var test1 = $('[name="qa"]:checked').attr('id');
                 var test2 = $('label[for="' + test1 + '"]').text();
-                console.log(test2);
                 $('#sel_qa').val(test2);
-                var wawawa = $('#sel_qa').val();
-                console.log(wawawa);
             } else {
                 var wa = $("input:radio[id='qa_2']:checked").val();
                 $("#wk_sel_qa").val(wa);
-                var ra = $("#wk_sel_qa").val();
-                console.log(ra);
                 var test1 = $('[name="qa"]:checked').attr('id');
                 var test2 = $('label[for="' + test1 + '"]').text();
-                console.log(test2);
                 $('#sel_qa').val(test2);
-                var wawawa = $('#sel_qa').val();
-                console.log(wawawa);
             }
         });
 
@@ -1014,13 +851,11 @@
             arrBunyaVal = $("input[name='bunya']:checked").map(function () {
                 return $(this).val();
             }).get();
-            console.log(arrBunyaVal);
 
             arrBunyaText = $("input[name='bunya']:checked").map(function () {
                 var text = $(this).attr('id');
                 return $('label[for="' + text + '"]').text();
             }).get();
-            console.log(arrBunyaText);
         });
         /********************************
          * 次へボタン有効化処理
@@ -1326,12 +1161,7 @@
                         wk_focus_done = 1;
                     }
                 }
-            } else {
-                var test2 = $("#yubin_nb_1").val() + $("#yubin_nb_2").val();
-                console.log(test2);
-
-            }
-            //都道府県選択チェック
+            }            //都道府県選択チェック
             if ($("#address_todohuken").val() == 0) {
                 wk_err_msg == "";
                 wk_err_msg = "都道府県を選択してください。";
@@ -1664,26 +1494,44 @@
             $('#sel_bunya_sonota').val(bunya_sonota);
 
             //配列の内容を変数shikakuTextとshikakuValに代入する
-            $.each(arrShikakuText, function () {
+            var vals1_val = [];
+            var vals1_text = [];
+            $('input[name=shikaku]:checked').each(function(i){
+                vals1_val.push($(this).val());
+                vals1_text.push($('label[for="shikaku_' + $(this).val() + '"]').text());
+            });
+            $.each(vals1_text, function () {
                 shikakuText = shikakuText + this + ', ';
             });
-            $.each(arrShikakuVal, function () {
+            $.each(vals1_val, function () {
                 shikakuVal = shikakuVal + this + ', ';
             });
 
             //配列の内容を変数chiikiTextとchiikiValに代入する
-            $.each(arrChiikiText, function () {
+            var vals2_val = [];
+            var vals2_text = [];
+            $('input[name=chiiki]:checked').each(function(i){
+                vals2_val.push($(this).val());
+                vals2_text.push($('label[for="chiiki_' + $(this).val() + '"]').text());
+            });
+            $.each(vals2_text, function () {
                 chiikiText = chiikiText + this + ', ';
             });
-            $.each(arrChiikiVal, function () {
+            $.each(vals2_val, function () {
                 chiikiVal = chiikiVal + this + ', ';
             });
 
             //配列の内容を変数bunyaTextとbunyaValに代入する
-            $.each(arrBunyaText, function () {
+            var vals3_val = [];
+            var vals3_text = [];
+            $('input[name=bunya]:checked').each(function(i){
+                vals3_val.push($(this).val());
+                vals3_text.push($('label[for="bunya_' + $(this).val() + '"]').text());
+            });
+            $.each(vals3_text, function () {
                 bunyaText = bunyaText + this + ', ';
             });
-            $.each(arrBunyaVal, function () {
+            $.each(vals3_val, function () {
                 bunyaVal = bunyaVal + this + ', ';
             });
 
@@ -1694,7 +1542,7 @@
             $('#sel_bunya').val(bunyaText);
             $('#wk_sel_bunya').val(bunyaVal);
 
-            //エラーガない場合確認画面に画面遷移
+            //エラーがない場合確認画面に画面遷移
             url = '../confirmMember/';
             $('form').attr('action', url);
             $('form').submit();

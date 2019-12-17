@@ -17,6 +17,10 @@
         <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.1.1.min.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
+        <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
+		<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
+		
     </head>
     <body>
 	<header class="header_logo">
@@ -36,8 +40,7 @@
 			</section>
 		</div>
 	</div>
-	<footer>
-		<p><small>&copy; Copyright &copy; 2016 NSCA JAPAN. All Rights Reserved.</small></p>
+	<footer id="footer">
 	</footer>
 </body>
 </html>
