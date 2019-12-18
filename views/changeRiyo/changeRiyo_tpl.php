@@ -35,7 +35,21 @@
 							<li><span><small>完了</small></span></li>
 						</ul>
 					</div>
-					<form>			
+					<form action="../changeConfirmRiyo/changeConfirmRiyo_tpl.php" method="post">
+						<input type="hidden" name="kenmei" id="kenmei" value="<?php echo $kenmei; ?>">
+						<input type="hidden" name="sel_math" id="sel_math" value="<?php echo $sel_math; ?>">
+						<input type="hidden" name="sel_gender" id="sel_gender" value="<?php echo $gender; ?>">
+						<input type="hidden" name="wk_sel_gender" id="wk_sel_gender" value="<?php echo $wk_sel_gender; ?>">
+						<input type="hidden" name="sel_mail" id="sel_mail" value="<?php echo $sel_mail; ?>">
+						<input type="hidden" name="mail" id="mail" value="<?php echo $mail; ?>">
+						<input type="hidden" name="sel_merumaga" id="sel_merumaga" value="<?php echo $sel_merumaga; ?>">
+						<input type="hidden" name="merumaga" id="merumaga" value="<?php echo $merumaga; ?>">
+						<input type="hidden" name="sel_hoho" id="sel_hoho" value="<?php echo $sel_hoho; ?>">
+						<input type="hidden" name="hoho" id="hoho" value="<?php echo $hoho; ?>">
+						<input type="hidden" name="sel_month" id="sel_month" value="<?php echo $month; ?>">
+						<input type="hidden" name="sel_day" id="sel_day" value="<?php echo $day; ?>">
+						<input type="hidden" name="sel_nagareyama" id="sel_nagareyama" value="<?php echo $sel_nagareyama; ?>">
+						<input type="hidden" name="sel_chiiki" id="sel_chiiki" value="<?php echo $sel_chiiki; ?>">			
 						<div class="kihon_joho">
 							<h3>基本情報</h3>
 							<table>
@@ -43,13 +57,13 @@
 									<th><span class="required">必須</span>氏名</th>
 									<td class="clearfix">
 										<div>
-											<p>姓</p><input id="name_sei" type="text" name="name" value="">
+											<p>姓</p><input id="name_sei" type="text" name="name_sei" value="<?php echo $name_sei; ?>">
 											<ul class="error_ul">
 												<li class="error" id="err_name_sei"></li>
 											</ul>
 										</div>
 										<div>
-											<p>名</p><input id="name_mei" type="text" name="name" value="">
+											<p>名</p><input id="name_mei" type="text" name="name_mei" value="<?php echo $name_mei; ?>">
 												<ul class="error_ul">
 												<li class="error" id="err_name_mei"></li>
 											</ul>
@@ -60,13 +74,13 @@
 									<th><span class="required">必須</span>フリガナ</th>
 									<td class="clearfix">
 										<div>
-											<p>セイ</p><input id="name_sei_kana" type="text" name="name" value="">
+											<p>セイ</p><input id="name_sei_kana" type="text" name="sei_kana_name" value="<?php echo $sei_kana_name; ?>">
 											<ul class="error_ul">
 												<li class="error" id="err_name_sei_kana"></li>
 											</ul>
 										</div>
 										<div>
-											<p>メイ</p><input id="name_mei_kana" type="text" name="name" value="">
+											<p>メイ</p><input id="name_mei_kana" type="text" name="sei_mei_name" value="<?php echo $sei_mei_name; ?>">
 											<ul class="error_ul">
 												<li class="error" id="err_name_mei_kana"></li>
 											</ul>
@@ -76,7 +90,7 @@
 								<tr class="birthday">
 									<th><span class="required">必須</span>生年月日</th>
 									<td>
-										<p>西暦</p><input id="year" type="text" name="name" value="">年
+										<p>西暦</p><input id="year" type="text" name="seireki_name" value="<?php echo $seireki_name; ?>">年
 										<select id="month" name="month">
 											<option value="00"></option>
 											<option value="01">1</option>
@@ -144,7 +158,7 @@
 								<tr class="address">
 									<th><span class="required">必須</span>住所</th>
 									<td>
-										<p>郵便番号</p><input id="address_yubin_nb_1" class="yubin_1" type="text" name="" value="">-<input id="yubin_nb_2" class="yubin_2" type="text" name="" value="">
+										<p>郵便番号</p><input id="address_yubin_nb_1" class="yubin_1" type="text" name="address_yubin_nb_1" value="<?php echo $address_yubin_nb_1; ?>">-<input id="yubin_nb_2" class="yubin_2" type="text" name="yubin_nb_2" value="<?php echo $yubin_nb_2; ?>">
 										<button id="street_address_search" class="button" type="button">住所検索</button>
 										<ul class="error_ul">
 											<li class="error" id="err_address_yubin_nb_1"></li>
@@ -153,25 +167,25 @@
 										<ul class="error_ul">
 											<li class="error" id="err_address_todohuken"></li>
 										</ul>
-										<p class="mt_1">市区町村／番地</p><input id="address_shiku" class="w_80" type="text" name="" value="">
+										<p class="mt_1">市区町村／番地</p><input id="address_shiku" class="w_80" type="text" name="address_shiku" value="<?php echo $address_shiku; ?>">
 										<ul class="error_ul">
 											<li class="error" id="err_address_shiku"></li>
 										</ul>
-										<p class="mt_1">建物／部屋番号</p><input id="address_tatemono" class="w_80" type="text" name="" value=""><br>
+										<p class="mt_1">建物／部屋番号</p><input id="address_tatemono" class="w_80" type="text" name="address_tatemono" value="<?php echo $address_tatemono; ?>"><br>
 										<ul class="error_ul">
 											<li class="error" id="err_address_tatemono"></li>
 										</ul>
-										<input id="nagareyama" type="checkbox" name="" value=""><label class="checkbox" for="nagareyama">流山市民の方はチェックしてください</label>
+										<input id="nagareyama" type="checkbox" name="nagareyama" value=""><label class="checkbox" for="nagareyama">流山市民の方はチェックしてください</label>
 									</td>
 								</tr>
 								<tr>
 									<th><span class="required">必須</span>住所(ヨミ)</th>
 									<td>
-										<p>市区町村／番地</p><input id="address_yomi_shiku" class="w_80" type="text" name="" value="">
+										<p>市区町村／番地</p><input id="address_yomi_shiku" class="w_80" type="text" name="address_yomi_shiku" value="<?php echo $address_yomi_shiku; ?>">
 										<ul class="error_ul">
 											<li class="error" id="err_address_yomi_shiku"></li>
 										</ul>
-										<p class="mt_1">建物／部屋番号</p><input id="address_yomi_tatemono" class="w_80" type="text" name="" value="">
+										<p class="mt_1">建物／部屋番号</p><input id="address_yomi_tatemono" class="w_80" type="text" name="address_yomi_tatemono" value="<?php echo $address_yomi_tatemono; ?>">
 										<ul class="error_ul">
 											<li class="error" id="err_address_yomi_tatemono"></li>
 										</ul>
@@ -181,11 +195,11 @@
 									<th><span class="required">必須</span>電話番号</th>
 									<td>
 										<p>TELまたは携帯のどちらかをご入力ください</p>
-										<p class="mt_1">TEL</p><input id="tel" class="w_50" type="tel" name="" value="">
+										<p class="mt_1">TEL</p><input id="tel" class="w_50" type="tel" name="tel" value="<?php echo $tel; ?>">
 										<ul class="error_ul">
 											<li class="error" id="err_tel"></li>
 										</ul>
-										<p class="mt_1">携帯</p><input id="keitai_tel" class="w_50" type="tel" name="" value="">
+										<p class="mt_1">携帯</p><input id="keitai_tel" class="w_50" type="tel" name="keitai_tel" value="<?php echo $keitai_tel; ?>">
 										<ul class="error_ul">
 											<li class="error" id="err_keitai_tel"></li>
 										</ul>
@@ -194,11 +208,11 @@
 								<tr class="mail">
 									<th><span class="required">必須</span>メールアドレス</th>
 									<td>
-										<p>メールアドレス_1</p><input id="mail_address_1" class="w_80" type="email" name="" value="">
+										<p>メールアドレス_1</p><input id="mail_address_1" class="w_80" type="email" name="mail_address_1" value="<?php echo $mail_address_1; ?>">
 										<ul class="error_ul">
 											<li class="error" id="err_mail_address_1"></li>
 										</ul>
-										<p class="mt_1">メールアドレス_2</p><input id="mail_address_2" class="w_80" type="email" name="" value="">
+										<p class="mt_1">メールアドレス_2</p><input id="mail_address_2" class="w_80" type="email" name="mail_address_2" value="<?php echo $mail_address_2; ?>">
 										<ul class="error_ul">
 											<li class="error" id="err_mail_address_2"></li>
 										</ul>
@@ -233,8 +247,8 @@
 								<tr>
 									<th><span class="required">必須</span>連絡方法の希望</th>
 									<td>
-										<input id="hoho_1" type="radio" name="hoho" value=""><label for="hoho_1">メールでお知らせ</label>
-										<input id="hoho_2" type="radio" name="hoho" value=""><label for="hoho_2">郵便でお知らせ</label>
+										<input id="hoho_1" type="radio" name="hoho" value="1"><label for="hoho_1">メールでお知らせ</label>
+										<input id="hoho_2" type="radio" name="hoho" value="2"><label for="hoho_2">郵便でお知らせ</label>
 										<ul class="error_ul">
 											<li class="error" id="err_renraku_hoho"></li>
 										</ul>
@@ -245,7 +259,7 @@
 					</form>
 					<section class="btn_wrap">
 						<button class="button btn_gray" type="button" value="" onclick="location.href='#'">クリア</button>
-						<button class="button" type="submit" value="" onclick="location.href='toroku_syusei_kakunin_riyo.html'">次へ</button>
+						<button id="next_button" class="button" type="submit" value="" onclick="location.href='#'">次へ</button>
 					</section>
 					
 				</div>
