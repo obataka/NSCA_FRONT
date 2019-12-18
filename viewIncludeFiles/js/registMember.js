@@ -925,20 +925,6 @@
                         $("#err_file_front").html(wk_err_msg);
                         wk_err_msg = "";
                     }
-
-                });
-
-                //学生証(裏)チェック
-                $(function () {
-                    //inputフィールドの文字数を取得
-                    fileCheck = $('#file_back').val().length;
-
-                    if (fileCheck == 0) {
-                        wk_err_msg = "ファイルを選択してください。";
-                        $("#err_file_back").html(wk_err_msg);
-                        wk_err_msg = "";
-                    }
-
                 });
 
             }
