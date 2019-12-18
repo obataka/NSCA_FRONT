@@ -203,9 +203,9 @@
 											<li class="error" id="err_mail_address_2"></li>
 										</ul>
 										<p class="mt_1">メール受信希望のメールアドレス</p>
-										<input id="mail_1" type="radio" name="mail" value="">
+										<input id="mail_1" type="radio" name="mail" value="1">
 										<label for="mail_1">メールアドレス_1</label><br class="sp_bl">
-										<input id="mail_2" type="radio" name="mail" value="">
+										<input id="mail_2" type="radio" name="mail" value="2">
 										<label for="mail_2">メールアドレス_2</label>
 										<ul class="error_ul">
 											<li class="error" id="err_mail"></li>

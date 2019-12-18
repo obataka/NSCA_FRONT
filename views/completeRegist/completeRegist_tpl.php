@@ -37,8 +37,7 @@
 				</ul>
 			</div>
 			<p class="h2_text">テキストテキストテキストテキストテキストテキスト</p>
-
-				<a href="#"><button class="button btn_b btn_b_1" type="button" value="" onclick="location.href='#'">マイページ</button></a>
+			<button class="button btn_b btn_b_1" type="button" value="" onclick="location.href='#'"><span>マイページへ</span></button>
 		</div>
 	</div>
 	<footer id="footer">
