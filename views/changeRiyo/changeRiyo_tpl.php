@@ -215,9 +215,9 @@
 								<tr>
 									<th><span class="required">必須</span>メルマガ配信の希望</th>
 									<td>
-										<input id="merumaga_1" type="radio" name="merumaga" value="">
+										<input id="merumaga_1" type="radio" name="merumaga" value="1">
 										<label for="merumaga_1">希望する</label>
-										<input id="merumaga_2" type="radio" name="merumaga" value="">
+										<input id="merumaga_2" type="radio" name="merumaga" value="2">
 										<label for="merumaga_2">希望しない</label>
 										<ul class="error_ul">
 											<li class="error" id="err_merumaga"></li>

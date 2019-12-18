@@ -66,16 +66,25 @@
                     } else {
                         //$('#nagareyama').val("0");
                     }
-                    $('#address_yomi_shiku').val(getTbkaiinJoho[21]);
-                    $('#address_yomi_tatemono').val(getTbkaiinJoho[22]);
-                    $('#tel').val(getTbkaiinJoho[23]);
-                    $('#keitai_tel').val(getTbkaiinJoho[25]);
-                    $('#mail_address_1').val(getTbkaiinJoho[27]);  
-                    $('#mail_address_2').val(getTbkaiinJoho[28]);
-                    //メール受信希望のメールアドレスを判断
-                    if (getTbkaiinJoho[124] == "") {
-                        $('input:radio[name="mail"]').val(["1"]);
-                    }
+                        $('#address_yomi_shiku').val(getTbkaiinJoho[21]);
+                        $('#address_yomi_tatemono').val(getTbkaiinJoho[22]);
+                        $('#tel').val(getTbkaiinJoho[23]);
+                        $('#keitai_tel').val(getTbkaiinJoho[25]);
+                        $('#mail_address_1').val(getTbkaiinJoho[27]);  
+                        $('#mail_address_2').val(getTbkaiinJoho[28]);
+                        //メール受信希望のメールアドレスを判断
+                        if (getTbkaiinJoho[124] == "") {
+                            $('input:radio[name="mail"]').val(["1"]);
+                        }
+                        if (getTbkaiinJoho[126] == "") {
+                            $('input:radio[name="mail"]').val(["2"]);
+                        }
+                        //メルマガ配信希望のチェック
+                        if (getTbkaiinJoho[116] == "" || getTbkaiinJoho[117] == "") {
+                            $('input:radio[name="merumaga"]').val(["1"]);
+                        } else {
+                            $('input:radio[name="merumaga"]').val(["2"]);
+                        }
 
                 }
             },
