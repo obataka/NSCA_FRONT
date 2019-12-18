@@ -71,6 +71,7 @@
 						<input type="hidden" name="keitai_tel" id="keitai_tel" value="<?php echo $keitai_tel; ?>">
 						<input type="hidden" name="mail_address_1" id="mail_address_1" value="<?php echo $mail_address_1; ?>">
 						<input type="hidden" name="mail_address_2" id="mail_address_2" value="<?php echo $mail_address_2; ?>">
+						<input type="hidden" name="sel_mail" id="sel_mail" value="<?php echo $sel_mail; ?>">
 						<input type="hidden" name="mail" id="mail" value="<?php echo $mail; ?>">
 						<input type="hidden" name="sel_mail" id="sel_mail" value="<?php echo $sel_mail; ?>">
 						<input type="hidden" name="merumaga" id="merumaga" value="<?php echo $merumaga; ?>">
@@ -80,6 +81,8 @@
 						<input type="hidden" name="sel_hoho" id="sel_hoho" value="<?php echo $sel_hoho; ?>">
 						<input type="hidden" name="sel_nagareyama" id="sel_nagareyama" value="<?php echo $sel_nagareyama; ?>">
 						<input type="hidden" name="sel_chiiki" id="sel_chiiki" value="<?php echo $sel_chiiki; ?>">
+						<input type="hidden" name="kenmei" id="kenmei" value="<?php echo $kenmei; ?>">
+						<input type="hidden" name="pass" id="pass" value="<?php echo $pass; ?>">
 						<h3>基本情報</h3>
 						<table>
 							<tr class="name">
@@ -169,8 +172,8 @@
 					</table>
 				</div>
 				<section class="btn_wrap">
-					<button id="return_button" class="button btn_gray" type="button" value="" onclick="location.href='#'"><span>内容を修正する</span></button>
-					<button id="next_button" class="button" type="submit" value="" onclick="location.href='#'"><span>次へ</span></button>
+					<button id="return_button" class="button btn_gray" type="button" value="" onclick="location.href='#'">内容を修正する</button>
+					<button id="next_button" class="button" type="submit" value="" onclick="location.href='#'">次へ</button>
 				</section>
 			</div>
 		</div>
