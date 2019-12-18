@@ -119,6 +119,17 @@ sup {
 	}
 	.content {
     padding: 0 10px;
+	}
 }
+
+/*iPoneのみ*/
+.iPhone .kome:before {
+	text-indent: 0;
+}
+.iPhone .kome {
+	text-indent: -1em;
+}
+.iPhone h3 {
+	color: pink;
 }
 

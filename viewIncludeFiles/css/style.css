@@ -226,6 +226,7 @@ input[type="radio"]:checked + label::after {
     font-size: 18px;
 	transition: 0.8s;
 	font-family: inherit;
+	border-radius: 3px;
 }
 .button:hover {
     color: #005699;
@@ -1250,3 +1251,5 @@ button[type="submit"]:disabled:hover::after {
 .iPhone input[type="radio"]:checked + label:after {
 	top: 0;
 }
+
+

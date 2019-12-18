@@ -28,7 +28,7 @@
 	<header id="header">
 	</header>
 	
-	<div class="wrap mh_c">
+	<div class="wrap">
 		<div class="link">
 				<ul>
 					<li><a href="#">パスワード再発行</a></li>
@@ -47,10 +47,12 @@
                     <p>会員番号：<span>00000000正会員</span></p>
                     <p>会員有効期限：<span>0000/00/00</span></p>
                     <p>英文オプション：<span>なし</span></p>
-                    <p>健康調査票：<span>未回答</span></p>
-                    <button class="button btn_kaito" type="button" onclick="location.href='#'"><span>回答する</span></button>
-                    <button class="button btn_kaiin_sbt" type="button" onclick="location.href='#'"><span>会員種別の変更</span></button>
-                    <button class="button btn_hoken" type="button" onclick="location.href='#'"><span>保険に入る</span></button>
+                    <!--<p>健康調査票：<span>未回答</span></p>-->
+					<div class="btn_wrap">
+					   <!--<button class="button btn_kaito" type="button" onclick="location.href='#'"><span>回答する</span></button>-->
+						<button class="button btn_kaiin_sbt" type="button" onclick="location.href='#'"><span>会員種別の変更</span></button>
+						<button class="button btn_hoken" type="button" onclick="location.href='#'"><span>保険に入る</span></button>
+					</div>
                 </div>
                 <div class="shiken">
                     <div class="cscs">
@@ -107,20 +109,29 @@
 			<div class="event">
 				<p class="title">イベント</p>
 				<div class="content_ bg_gray">
-					<ul class="clearfix">
-						<li class="clearfix">
+					<div class="event_wrap">
+						<div class="sub">
+							<p class="sub_1">セミナー</p>
+							<p class="sub_2">残りわずか</p>
+						</div>
+						<div class="list">
+							<p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
 							<div class="sub">
-								<p class="sub_1">セミナー</p>
-								<p class="sub_2">残りわずか</p>
+								<button class="button mp_btn" type="button" onclick="location.href='#'"><span>お申込</span></button>
 							</div>
-							テキストテキストテキストテキストテキストテキストテキストテキスト<button class="button mp_btn" onclick="location.href='#'"><span>お申込</span></button></li>
-						<li class="clearfix">
+						</div>
+					</div>
+					<div class="event_wrap">
+						<div class="sub">
+							<p class="sub_1">トレ検</p>
+						</div>
+						<div class="list">
+							<p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
 							<div class="sub">
-								<p class="sub_1">トレ検</p>
+								<button class="button mp_btn" type="button" onclick="location.href='#'"><span>お申込</span></button>
 							</div>
-							テキストテキストテキストテキスト<button class="button mp_btn" type="button" onclick="location.href='#'"><span>お申込</span></button>
-						</li>
-					</ul>
+						</div>
+					</div>
 				</div>
 				<div class="page">
 					<p>もっと見る</p>
@@ -132,38 +143,63 @@
 				<section>
 					<div class="moshikomi bg_white">
 						<p class="title">申込状況</p>
-						<ul class="clearfix">
-							<li class="clearfix">テキストテキストテキストテキスト
-								<div class="sub">
-									<button class="button mp_btn mp_btn_2" type="button" onclick="location.href='#'"><span>支払</span></button>
-									<button class="button mp_btn" type="button" onclick="location.href='#'"><span>詳細</span></button>
-								</div>
-							</li>
-							<li class="clearfix">テキストテキストテキストテキスト
-								<div class="sub">
-									<button class="button mp_btn mp_btn_2" type="button" onclick="location.href='#'"><span>支払番号表示</span></button>
-									<button class="button mp_btn" type="button" onclick="location.href='#'"><span>詳細</span></button>
-								</div>
-							</li>
-							<li>テキストテキストテキスト<button class="button mp_btn" type="button" onclick="location.href='#'"><span>詳細</span></button></li>
-							<li>テキストテキストテキスト<button class="button mp_btn" type="button" onclick="location.href='#'"><span>詳細</span></button></li>
-						</ul>
-					</div>
+						<div class="list">
+							<p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+							<div class="sub btn_2">
+								<button class="button mp_btn" type="button" onclick="location.href='#'"><span>支払</span></button>
+								<button class="button mp_btn" type="button" onclick="location.href='#'"><span>詳細</span></button>
+							</div>
+						</div>
+						<div class="list">
+							<p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+							<div class="sub btn_2">
+								<button class="button mp_btn" type="button" onclick="location.href='#'"><span>詳細</span></button>
+								<button class="button mp_btn shiharai_nmb" type="button" onclick="location.href='#'"><span>支払番号表示</span></button>
+							</div>
+						</div>
+						<div class="list">
+							<p>テキストテキストテキストテキスト</p>
+							<div class="sub">
+								<button class="button mp_btn" type="button" onclick="location.href='#'"><span>詳細</span></button>
+							</div>
+						</div>
+						<div class="list">
+							<p>テキストテキストテキストテキスト</p>
+							<div class="sub">
+								<button class="button mp_btn" type="button" onclick="location.href='#'"><span>詳細</span></button>
+							</div>
+						</div>
+					</div><!--moshikomi bg_white ↑-->
 					<div class="shiharai bg_white">
 						<p class="title">支払情報</p>
-						<ul class="clearfix">
-							<li>テキストテキストテキスト<button class="button mp_btn" onclick="location.href='#'"><span>領収書</span></button></li>
-							<li>テキストテキストテキスト<button class="button mp_btn" onclick="location.href='#'"><span>領収書</span></button></li>
-							<li>テキストテキストテキスト<button class="button mp_btn" onclick="location.href='#'"><span>領収書</span></button></li>
-							<li>テキストテキストテキスト<button class="button mp_btn" onclick="location.href='#'"><span>領収書</span></button></li>
-						</ul>
+						<div class="list">
+							<p>テキストテキストテキストテキスト</p>
+							<div class="sub">
+								<button class="button mp_btn" type="button" onclick="location.href='#'"><span>領収書</span></button>
+							</div>
+						</div>
+						<div class="list">
+							<p>テキストテキストテキストテキスト</p>
+							<div class="sub">
+								<button class="button mp_btn" type="button" onclick="location.href='#'"><span>領収書</span></button>
+							</div>
+						</div>
+						<div class="list">
+							<p>テキストテキストテキストテキスト</p>
+							<div class="sub">
+								<button class="button mp_btn" type="button" onclick="location.href='#'"><span>領収書</span></button>
+							</div>
+						</div>
+						<div class="list">
+							<p>テキストテキストテキストテキスト</p>
+							<div class="sub">
+								<button class="button mp_btn" type="button" onclick="location.href='#'"><span>領収書</span></button>
+							</div>
+						</div>
 					</div>
 				</section>
+				
 				<p class="title">テキストテキスト</p>
-				
-				
-				
-<!-------------------------------------------------------後々必要↓---------------------------------------------------------------
 				<section class="content_5">
 					<div class="kaiin bg_white">
 						<p class="title">会員限定コンテンツ</p>
@@ -177,19 +213,7 @@
 						<p class="title">電子ブック</p>
 						<div class="flex_wrap">
 							<figure>
-								<img src="https://placehold.jp/130x150.png">
-								<figcaption>テキストテキストテキスト</figcaption>
-							</figure>
-							<figure>
-								<img src="https://placehold.jp/130x150.png">
-								<figcaption>テキストテキストテキスト</figcaption>
-							</figure>
-							<figure>
-								<img src="https://placehold.jp/130x150.png">
-								<figcaption>テキストテキストテキスト</figcaption>
-							</figure>
-							<figure>
-								<img src="https://placehold.jp/130x150.png">
+								<img src="https://placehold.jp/265x150.png">
 								<figcaption>テキストテキストテキスト</figcaption>
 							</figure>
 						</div>
@@ -199,61 +223,26 @@
 					<div class="buppan bg_white">
 						<p class="title">物販</p>
 						<div class="flex_wrap">
+							
+							<figure>
+								<img src="https://placehold.jp/265x150.png">
+								<figcaption>テキストテキストテキストテキスト<p class="price">00,000</p></figcaption>
+							</figure>
+							
+							<!--
 							<table>
 								<tr>
-									<th><img src="https://placehold.jp/130x130.png"></th>
+									<th><img src="https://placehold.jp/250x150.png"></th>
 									<td>テキストテキストテキストテキスト<p class="price">00,000</p></td>
 								</tr>
 							</table>
-							<table>
-								<tr>
-									<th><img src="https://placehold.jp/130x130.png"></th>
-									<td>テキストテキストテキストテキスト<p class="price">00,000</p></td>
-								</tr>
-							</table>
-							<table>
-								<tr>
-									<th><img src="https://placehold.jp/130x130.png"></th>
-									<td>テキストテキストテキストテキスト<p class="price">00,000</p></td>
-								</tr>
-							</table>
-							<table>
-								<tr>
-									<th><img src="https://placehold.jp/130x130.png"></th>
-									<td>テキストテキストテキストテキスト<p class="price">00,000</p></td>
-								</tr>
-							</table>
+
+-->
 						</div>
 						<button class="button mp_btn" onclick="location.href='#'"><span>もっと見る</span></button>
 					</div>
 				</section>
--------------------------------------------------------後々必要↑---------------------------------------------------------------->
-				
-				<section class="content_5">
-					<div class="kaiin bg_white">
-						<p class="title">会員限定コンテンツ</p>
-						<div class="kaiin_btn">
-							<button class="button mp_btn" onclick="location.href='#'"><span>パーソナルトレーナーサポートツール</span></button>
-							<button class="button mp_btn" onclick="location.href='#'"><span>S&amp;C資料集</span></button>
-							<button class="button mp_btn" onclick="location.href='#'"><span>HPC施設利用申込手続きへ</span></button>
-						</div>						
-					</div>
-					<div class="buppan bg_white">
-						<p class="title">物販</p>
-						<div class="flex_wrap">
-							<table>
-								<tr>
-									<th><img src="https://placehold.jp/130x130.png"></th>
-									<td>テキストテキストテキストテキスト<p class="price">00,000</p></td>
-								</tr>
-							</table>
-						</div>
-						<button class="button mp_btn" onclick="location.href='#'"><span>もっと見る</span></button>
-					</div>
-				</section>
-				
-				
-			</div>
+			</div><!--bg_blue-->
 			<div class="kyujin">
 				<p class="title">求人情報</p>
 				<div class="bg_gray">

@@ -15,9 +15,6 @@
 .link li a {
 	color: #005699;
 }
-.link li a:hover {
-	text-decoration: underline;
-}
 section{
 	display: flex;
     flex-wrap: wrap;
@@ -38,6 +35,9 @@ section{
     width: 24%;
     padding: 2em
 }
+.joho p:last-of-type {
+    margin-bottom: 81px;
+}
 .content_top p {
     font-size: 12px;
     margin-bottom: 1em;
@@ -54,11 +54,6 @@ span {
     height: 40px;
     line-height: 40px;
     margin: 0!important;
-}
-.btn_kaito {
-	width: 60px!important;
-    bottom: 39px;
-    left: 125px;
 }
 .btn_kaiin_sbt,
 .btn_hoken {
@@ -86,6 +81,7 @@ span {
     display: flex;
     margin-top: 40px;
 	flex-wrap: wrap;
+	margin-bottom: 0;
 }
 .shiken .btn_wrap button:first-child {
     margin-bottom: 10px!important;
@@ -112,11 +108,8 @@ span {
 	float: right;
 	width: 170px;
 }
-.content_top .btn_7{
-	margin-right: 1em!important;
-}
 .ceu .btn_wrap .button {
-	width: 180px;
+	width: 187px;
 }
 .ceu .btn_wrap {
 	justify-content: center;
@@ -168,19 +161,32 @@ span {
     margin-left: 1em;
 }
 .bg_gray {
-	padding: 1em 2em 2em 2em;
+	padding: 20px;
 }
 .event {
 	margin-top: 2em;
 }
-.event ul li {
-	border-bottom: 1px solid #005699;
-	padding: 1em 0.5em;
+.event .sub {
+    margin-bottom: 0;
+}
+.event .list {
+    border: none;
+    padding: 0 1em;
+}
+.event_wrap {
+    border-bottom: 1px solid #005699;
+    padding: 10px 0;
+}
+.event_wrap:last-of-type {
+    border: none;
 }
 .sub {
     display: flex;
     font-size: 10px;
     margin-bottom: 1em;
+}
+.sub:last-of-type {
+    margin-bottom: 0;
 }
 .sub_1 {
     margin-right: 1em;
@@ -221,11 +227,9 @@ span {
 	width: 49%;
 	float: left;
 }
- .moshikomi ul,
  .shiharai ul {
 	padding: 0 20px;
 }
- .moshikomi li,
  .shiharai li {
 	padding: 10px 5px;
 	border-bottom: 1px solid #005699;
@@ -233,25 +237,41 @@ span {
 }
  .moshikomi .mp_btn,
  .shiharai .mp_btn {
-	width: 60px!important;
+	width: 85px!important;
 	height: 25px!important;
 }
-.moshikomi .sub {
-    float: right;
-	margin-bottom: 0;
+.sub.btn_2 .mp_btn {
+    float: none;
+    margin-bottom: 0.5em!important;
 }
-.moshikomi .mp_btn_2 {
-    margin-right: 10px!important;
-    padding: 0 10px;
+.sub.btn_2 .mp_btn:last-of-type {
+    margin-bottom: 0!important;
+}
+.list:first-of-type {
+    padding-top: 0;
+	border-top : none;
+}
+.list {
+    border-top: 1px solid #005699;
+	padding: 15px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.list:last-of-type {
+	padding-bottom: 0;
+}
+.list p {
+    margin-right: 1em;
+}
+.btn_2 {
+	display: inline-block;
 }
  .shiharai {
 	margin-left: 17px;
 }
  .shiharai .mp_btn {
 	width: 60px
-}
-.content_5 figure {
-	border-bottom: 1px solid #005699;
 }
  .kaiin,
  .denshi,
@@ -264,15 +284,12 @@ span {
  .buppan .title {
 	color: #333!important;
 }
-.kaiin {
-    height: fit-content;
-}
  .kaiin .kaiin_btn {
 	margin: 50px 0;
 }
  .kaiin .button {
 	float: none;
-	margin-top: 15px!important;
+	margin-top: 28px!important;
 	width: 100%!important;
 	height: 50px
 }
@@ -287,22 +304,20 @@ span {
 }
  figcaption {
 	padding: 10px 0;
+	 text-align: left;
 }
  .denshi .button,
  .buppan .button {
-	margin: 20px auto 0 auto!important;
+	margin: 0 auto 0 auto!important;
     float: none;
 }
-tr {
-	padding: 20px 0;
-}
-th img {
-	margin-right: 10px;
+.denshi .button {
+	margin-top: 24px!important;
 }
 .price {
     font-size: 15px;
+	text-align: center;
     font-weight: bold;
-    margin-top: 50px;
 }
  .kyujin {
 	margin: 50px 0;
@@ -320,13 +335,21 @@ th img {
     border-bottom: 1px solid #005699;
     padding: 10px;
 }
+.kyujin .bg_gray li:last-of-type {
+    border: none;
+}
+
 @media screen and (max-width: 1000px){
-	.flex_wrap {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: space-between;
-		width: 80%;
-		margin: 0 auto;
+	.ceu .btn_wrap button:first-child {
+		margin: 0 auto!important;
+		margin-bottom: 1em!important;
+	}
+	.ceu .btn_wrap .button {
+		width: 40%!important;
+		margin: 0 auto!important;
+	}
+	figcaption {
+		text-align: center;
 	}
 	.price {
 		margin-left: 0;
@@ -366,12 +389,6 @@ th img {
 	.buppan {
 		margin-top: 20px;
 	}
-	table {
-		width: 45%;
-	}
-	table tr {
-		border: none;
-	}
 	.kaiin .button {
 		width: 80%!important;
 		margin: 15px auto!important;
@@ -381,7 +398,7 @@ th img {
 		margin-bottom: 10px;
 	}
 	.bg_gray {
-		padding:  5px;
+		padding: 5px 1em;
 	}
 	.bg_white li:last-child {
 		border: none;
@@ -408,34 +425,45 @@ th img {
 		clear: both;
 		background: #ddd;
 	}
-	.ceu .btn_wrap .button {
-		width: 80%!important;
+	.ceu .btn_wrap {
+		display: block;
 	}
-	.ceu .btn_wrap button:first-child {
-		margin-right: 0!important;
-		margin-bottom: 1em!important;
-	}
+
 
 }
 @media screen and (max-width: 768px){
-	.link ul {
-		justify-content: flex-start;
+	.ceu .btn_wrap .button {
+		width: 60%!important;
 	}
 	.mp_btn {
 		float: none;
-		margin-top: 10px!important;
+		margin: 0 auto 10px!important;
 	}
 	.moshikomi .sub {
 		float: none;
 	}
-	td {
-		width: 50%!important;
-		margin: 0 auto!important;
+	.list {
+		display: block;
 	}
-	th {
-		background: inherit!important;
-		height: auto!important;
-		margin-bottom: 0!important;
+	.event .list .sub {
+		justify-content: center;
+		margin-top: 10px;
+	}
+	.moshikomi .list .sub {
+		justify-content: center;
+	}
+	.btn_2 {
+		display: block;
+		justify-content: center;
+	}
+	.sub.btn_2 .mp_btn {
+		margin: 20px auto!important;
+	}
+	.moshikomi .mp_btn,
+	.shiharai .mp_btn {
+		width: 300px!important;
+		height: 45px!important;
+		margin-top: 10px!important;
 	}
 	.price {
 		margin-top: 5px;
@@ -515,77 +543,3 @@ th img {
 
 
 
-/****後々必要(消す)↓****/
-.joho p:nth-of-type(6),
-.link,
-.btn_kaito,
-.btn_ceu,
-.btn_hoken,
-.news_1 li:nth-child(1) button,
-.news_1 li:nth-child(3) button,
-.sub .sub_2,
-.shiharai .mp_btn,
-.moshikomi li:nth-child(2) .mp_btn_2 {
-	display: none!important;
-}
-.content_top .joho .btn_kaiin_sbt {
-	margin-top: 100px!important;
-}
-.content_5 .bg_white {
-	width: 49%;
-}
-.content_5 .bg_white tr {
-	border: none;
-}
-@media screen and (max-width: 1000px){
-	.denshi, .buppan {
-		margin-top: 0!important;
-	}
-	table {
-		width: 100%!important;
-	}
-}
-@media screen and (max-width: 768px) {
-	.content_5 .bg_white {
-		display: block;
-		width: 100%;
-	}
-	.mp_btn {
-		margin: 20px auto!important;
-	}
-	.moshikomi .mp_btn,
-	.shiharai .mp_btn {
-		width: 200px!important;
-		height: 40px!important;
-	}
-	.news .bg_white {
-		padding: 15px 10px;
-	}
-	.moshikomi ul,
-	.shiharai ul {
-		padding: 0;
-	}
-	.denshi, 
-	.buppan {
-		margin-top: 20px!important;
-	}
-	.buppan th {
-		text-align: center;
-	}
-	.news .bg_white li {
-		line-height: inherit!important;
-	}
-}
-@media screen and (max-width: 480px) {
-	.moshikomi .sub {
-		display: block;
-
-	}
-	.moshikomi .mp_btn_2 {
-     margin: 10px auto!important;
-}
-
-
-	
-}
-/****後々必要↑****/

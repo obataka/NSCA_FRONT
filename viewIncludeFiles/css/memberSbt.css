@@ -183,7 +183,15 @@ section ol li ul li:before {
 	}
 }
 
-
+/*iPhoneのみ*/
+.iPhone .table_text p:before,
+.iPhone section ol li ul li:before {
+	text-indent: 0;
+}
+.iPhone .table_text p,
+.iPhone section ol li ul li {
+	text-indent: -1em
+}
 
 
 
