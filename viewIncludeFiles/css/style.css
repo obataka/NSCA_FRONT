@@ -1251,5 +1251,13 @@ button[type="submit"]:disabled:hover::after {
 .iPhone input[type="radio"]:checked + label:after {
 	top: 0;
 }
-
+.iPhone section ol li ul li:before {
+	text-indent: 0;
+}
+.iPhone section ol li ul li {
+	text-indent: -1em
+}
+.iPhone h3 {
+	color: green
+}
 

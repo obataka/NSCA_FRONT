@@ -59,12 +59,12 @@ SQL;
      */
     public function insertRec ($param)
     {
-       
+        error_log(print_r("通過1", true). PHP_EOL, '3', 'tanihara_log.txt');
         $db = Db::getInstance();
         $db->beginTransaction();
-        
+        error_log(print_r("db通過", true). PHP_EOL, '3', 'tanihara_log.txt');
         try {
-        
+        error_log(print_r("try通過", true). PHP_EOL, '3', 'tanihara_log.txt');
             $sql = <<<SQL
             INSERT
             INTO tb_kaiin_joho(
@@ -243,9 +243,9 @@ SQL;
             );
            
 SQL;
-           
+            error_log(print_r("通過1.5", true). PHP_EOL, '3', 'tanihara_log.txt');
             $sth = $db->prepare($sql);
-            
+            error_log(print_r("通過2", true). PHP_EOL, '3', 'tanihara_log.txt');
             $sth->execute([
                 ':kaiin_no'                         => $param['kaiin_no'],
                 ':kyukaiin_no'                      => $param['kyukaiin_no'],
@@ -333,15 +333,15 @@ SQL;
                 ':koshin_nichiji'                   => $param['koshin_nichiji'],
                 ':kako_shikaku_umu_kbn'             => $param['kako_shikaku_umu_kbn'],
             ]);
-           
+            error_log(print_r("通過3", true). PHP_EOL, '3', 'tanihara_log.txt');
             $db->commit();
-            
+            error_log(print_r("通過4", true). PHP_EOL, '3', 'tanihara_log.txt');
         } catch (\Throwable $e) {
             error_log(print_r($e, true). PHP_EOL, '3', 'error_log.txt');
             $db->rollBack();
             return FALSE;
         }
-       
+        error_log(print_r("通過5", true). PHP_EOL, '3', 'tanihara_log.txt');
         return TRUE;
     }
 
@@ -386,7 +386,7 @@ SQL;
 //             $sth->execute([':kaiin_no' => $kaiin_no,]);
 //             $mstProduct = $sth->fetch();
 //         } catch (\PDOException $e) {
-
+//             error_log(print_r($e, true). PHP_EOL, '3', 'tanihara_log.txt');
 //             $mstProduct = [];
 //         }
 
