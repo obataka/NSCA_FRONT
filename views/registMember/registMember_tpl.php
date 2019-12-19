@@ -20,6 +20,7 @@
 	<script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/js/registMember.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
+	<script type="text/javascript" src="../../viewIncludeFiles/js/iPhone.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
 	<script>
 		$(function(){
@@ -188,7 +189,7 @@
 								<input id="riyu_3" type="radio" name="riyu" value="2">
 								<label class="radio" for="riyu_3">ネットワーク・人脈作りのため</label><br>
 								<input id="riyu_4" type="radio" name="riyu" value="99">
-								<label for="riyu_4">その他（記述）</label>
+								<label class="radio" for="riyu_4">その他（記述）</label>
 								<p><textarea id="riyu_sonota" name="riyu_sonota" placeholder="その他を選択した場合は必須入力となります。"><?php echo $riyu_sonota; ?></textarea></p>
 								<ul class="error_ul">
 									<li class="error" id="err_riyu"></li>

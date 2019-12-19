@@ -25,11 +25,10 @@ li {
 }
 a {
 	text-decoration: none;
-    color: #005699;
+    color: #333;
 }
 a:hover {
-	text-decoration: none;
-	border-bottom: 1px solid #005699;
+    color: #005699!important;
 }
 input {
 	font-family: inherit;
@@ -40,14 +39,15 @@ select {
 }
 header {
     width: 100%;
-    background: #005699;
-    height: 131.469px;
+    border-bottom: 2px solid #aaa;
+	opacity: 0.9;
+	background: #fff;
 }
 .header_logo {
-	padding: 20px;
+	padding: 15px;
 }
 .header_logo img {
-	width: 300px;
+	width: 150px;
 }
 .sp_bl {
     display: none;
@@ -62,14 +62,15 @@ header {
 }
 .wrap {
     padding: 145px 10px 60px 10px;
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 h2 {
-    border-bottom: 2px solid #005699;
-    font-weight: 900;
-    font-size: 20px;
-	line-height: 32px;
+    font-weight: bold;
+    font-size: 30px;
+    margin: 60px 0;
+    text-align: center;
+    color: #005699;
 }
 .h2_text {
     margin-top: 20px;
@@ -172,6 +173,9 @@ td label:last-child {
 /*radio*/
 input[type="radio"] {
     display: none;
+}
+td .radio {
+    line-height: 2;
 }
 input[type="radio"] + label {
     padding-left: 20px;
@@ -528,11 +532,9 @@ input[type="number"] {
     content: "※";
 }
 .up_text li {
-    text-indent: -1em;
+	text-indent: -1em;
     padding-left: 1em;
-    font-size: 0.7rem;
-    line-height: initial;
-    margin-bottom: 0.5em;
+    line-height: 25px;
 }
 .up_text li:last-of-type {
     margin-bottom: 0;
@@ -573,17 +575,19 @@ input[type="number"] {
 }
 
 .required {
-    margin-left: 0;
+	margin-left: 0;
     margin-right: 1em;
     border: 1px solid red;
     color: red;
-    padding: 2px 5px;
+    padding: 4px 7px;
+    font-size: 14px;
 }
 .error {
     color: #C80003;
     font-weight: bold;
 	margin-left: 10px;
     margin-top: 5px;
+	line-height: 15px;
 }
 .kihon_joho,
 .oshirase {
@@ -1251,13 +1255,7 @@ button[type="submit"]:disabled:hover::after {
 .iPhone input[type="radio"]:checked + label:after {
 	top: 0;
 }
-.iPhone section ol li ul li:before {
-	text-indent: 0;
-}
-.iPhone section ol li ul li {
-	text-indent: -1em
-}
-.iPhone h3 {
-	color: green
+.iPhone label {
+    line-height: 20px;
 }
 

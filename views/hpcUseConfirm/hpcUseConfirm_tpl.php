@@ -62,21 +62,6 @@
 						<dd>
 							<span class="any"></span>テキストテキストテキストテキスト
 						</dd>
-						<dt>お支払方法</dt>
-						<dd>
-							<span class="required">必須</span>テキストテキストテキストテキスト
-							<div>
-								<input id="credit" type="radio" name="method">
-								<label for="credit">クレジット</label>
-								<input id="conveni" type="radio" name="method">
-								<label for="conveni">コンビニ</label>
-							</div>
-
-							<ul class="error_ul">
-								<li class="error" id="err_payment"></li>
-							</ul>
-							<p class="text">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-						</dd>
 					</dl>
 				</form>
 				<div class="kiyaku">

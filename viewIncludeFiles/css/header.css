@@ -6,7 +6,7 @@ header a:hover {
 	border: none;
 }
 .logo_img {
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 .logo_img img {
@@ -29,41 +29,28 @@ header li {
 }
 header a,
 header .active {
-	color: #fff;
+	color: #333;
 	display: inline-block;
 	text-align: center;
 	padding: 10px 0;
+	font-weight: bold;
 }
 header .active:hover {
 	cursor: default;
 }
 header a:hover {
-	color: #fff;
+	color: #005699;
 	text-decoration: none;
 }
 .dropdown_list {
 	display: none;
-	background: #fff;
-	border-right: 1px solid #005699;
-	border-bottom: 1px solid #005699;
-	border-left: 1px solid #005699;
 }
 .dropdown_list li {
     line-height: normal;
 	width: 100%;
 }
-.dropdown_list li:after {
-    content: "";
-    display: block;
-    width: 85%;
-    margin: 0 auto;
-    border: 0.5px solid #005699;
-}
-.dropdown_list li a:hover {
-    color: #A2A2A2;
-}
 .dropdown_list a {
-	color: #005699;	
+	color: #333;	
 	display: block;
 }
 .dropdown_list li:last-child:after {
@@ -85,9 +72,8 @@ header a:hover {
 	width: 100%;
 }
 .user_name {
-	color: #fff;
+	color: #333333;
 }
-
 .pc_none {
 	display: none;
 }
@@ -261,6 +247,14 @@ header a:hover {
 	margin-top: 28px;
 }	
 .Android #nav-toggle {
+	width: 40px!important;
+}
+
+/*iPhoneのみ*/
+.iPhone #nav-toggle p {
+	text-align: center;
+}
+.iPhone #nav-toggle {
 	width: 40px!important;
 }
 	

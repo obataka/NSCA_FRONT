@@ -21,6 +21,7 @@
         <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.3.1.min.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/header.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
+		<script type="text/javascript" src="../../viewIncludeFiles/js/iPhone.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
 		
     </head>
@@ -38,7 +39,7 @@
 					<li><a href="#">ログアウト</a></li>
 				</ul>
 		</div>
-		<h2 class="mb_10">マイページ</h2>
+		<h2>マイページ</h2>
 		<div class="content_wrap">
             <div class="content_top">
                 <div class="joho">
@@ -88,7 +89,7 @@
                     </div>         
                 </div>
             </div>
-			<div class="news bg_blue">
+			<div class="news bg_gray">
 				<p class="title">お知らせ</p>
 				<div class="bg_white">
 					<ul class="news_1 clearfix">
@@ -108,7 +109,7 @@
 			</div>
 			<div class="event">
 				<p class="title">イベント</p>
-				<div class="content_ bg_gray">
+				<div class="">
 					<div class="event_wrap">
 						<div class="sub">
 							<p class="sub_1">セミナー</p>
@@ -116,7 +117,7 @@
 						</div>
 						<div class="list">
 							<p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-							<div class="sub">
+							<div>
 								<button class="button mp_btn" type="button" onclick="location.href='#'"><span>お申込</span></button>
 							</div>
 						</div>
@@ -127,7 +128,7 @@
 						</div>
 						<div class="list">
 							<p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-							<div class="sub">
+							<div>
 								<button class="button mp_btn" type="button" onclick="location.href='#'"><span>お申込</span></button>
 							</div>
 						</div>
