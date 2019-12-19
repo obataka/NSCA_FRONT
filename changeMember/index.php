@@ -1,10 +1,20 @@
 <?php
 include_once '../ctrl/parts/inputHeader.php';
 
-$includeView = '../views/confirmMember/confirmMember_tpl.php';
-
-$wk_kaiinType = (!empty($_POST['kaiinType'])) ? htmlentities($_POST['kaiinType'], ENT_QUOTES, "UTF-8") : "";
+$includeView = '../views/changeRiyo/changeRiyo_tpl.php';
 $wk_kaiinSbt = (!empty($_POST['kaiinSbt'])) ? htmlentities($_POST['kaiinSbt'], ENT_QUOTES, "UTF-8") : "";
+$wk_kaihi = (!empty($_POST['kaihi'])) ? htmlentities($_POST['kaihi'], ENT_QUOTES, "UTF-8") : "";
+
+$Wk_kaiinType = "";             //莨壼藤遞ｮ蛻･繧呈ｼ邏阪☆繧句､画焚
+
+if ($wk_kaiinSbt == 1) {
+    $wk_kaiinType = "NSCA豁｣莨壼藤";
+} elseif ($wk_kaiinSbt == 2) {
+    $wk_kaiinType = "蟄ｦ逕滉ｼ壼藤";
+} else {
+    $wk_kaiinType = "";
+}
+
 $option = (!empty($_POST['sel_option'])) ? htmlentities($_POST['sel_option'], ENT_QUOTES, "UTF-8") : "";
 $wk_sel_option = (!empty($_POST['wk_sel_option'])) ? htmlentities($_POST['wk_sel_option'], ENT_QUOTES, "UTF-8") : "";
 $riyu = (!empty($_POST['sel_riyu'])) ? htmlentities($_POST['sel_riyu'], ENT_QUOTES, "UTF-8") : "";
@@ -79,21 +89,5 @@ $qa = (!empty($_POST['sel_qa'])) ? htmlentities($_POST['sel_qa'], ENT_QUOTES, "U
 $wk_sel_qa = (!empty($_POST['wk_sel_qa'])) ? htmlentities($_POST['wk_sel_qa'], ENT_QUOTES, "UTF-8") : "";
 $sel_chiiki = (!empty($_POST['sel_chiiki'])) ? htmlentities($_POST['sel_chiiki'], ENT_QUOTES, "UTF-8") : "";
 $sel_office_chiiki = (!empty($_POST['sel_office_chiiki'])) ? htmlentities($_POST['sel_office_chiiki'], ENT_QUOTES, "UTF-8") : "";
-
-
-//存在を確認したいディレクトリ（ファイルでもOK）
-$directory_path = "../upload/" . date('Ymd_His');    //ディレクトリが存在するか確認
-//「$directory_path」で指定されたディレクトリが存在するか確認
-mkdir($directory_path, 0777);
-//$directory_path = "../upload";
-$filePath_front = $directory_path . "/" . basename($_FILES['file_front']['name']);
-
-move_uploaded_file($_FILES['file_front']['tmp_name'], $filePath_front);
-
-
-$filePath_back = $directory_path . "/" . basename($_FILES['file_back']['name']);
-
-move_uploaded_file($_FILES['file_back']['tmp_name'], $filePath_back);
-
 
 include_once $includeView;

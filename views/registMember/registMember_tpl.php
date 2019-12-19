@@ -20,7 +20,6 @@
 	<script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/js/registMember.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
-	<script type="text/javascript" src="../../viewIncludeFiles/js/iPhone.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
 	<script>
 		$(function(){
@@ -94,6 +93,7 @@
 				<input type="hidden" name="wk_sel_qa" id="wk_sel_qa" value="<?php echo $wk_sel_qa; ?>">
 				<input type="hidden" name="sel_month" id="sel_month" value="<?php echo $month; ?>">
 				<input type="hidden" name="sel_day" id="sel_day" value="<?php echo $day; ?>">
+				
 
 				<h3>新規登録</h3>
 				<div class="shinki_toroku">
@@ -108,49 +108,16 @@
 							</td>
 						</tr>
 						<?php if ($wk_kaiinType == "学生会員") {
-							// define("FILE_DIR", "../upload/");
-							// ファイルのアップロード
-							// if (is_uploaded_file($_FILES["file_front"]["tmp_name"])) {
-							// 	if(move_uploaded_file( $_FILES["file_front"]["tmp_name"], FILE_DIR.$_FILES["file_front"]["tmp_name"])) {
-							// 		chmod(FILE_DIR.$_FILES["file_front"]["name"], 0644);
-    						// 		echo $_FILES["file_front"]["name"] . "をアップロードしました。";
-  							// 	} else {
-    						// 		echo "ファイルをアップロードできません。";
-							// 	}
-							// } else {
-							// 	echo "ファイルが選択されていません。";
-							// }
-								
-							// if (is_uploaded_file($_FILES["file_back"]["tmp_name"])) {
-							// 	if(move_uploaded_file( $_FILES["file_back"]["tmp_name"], FILE_DIR.$_FILES["file_back"]["tmp_name"])) {
-							// 		chmod(FILE_DIR.$_FILES["file_back"]["name"], 0644);
-    						// 		echo $_FILES["file_back"]["name"] . "をアップロードしました。";
-  							// 	} else {
-    						// 		echo "ファイルをアップロードできません。";
-							// 	}
-							// } else {
-							// 	echo "ファイルが選択されていません。";
-							// }
-
-							$file_front = $_FILES['file_front'];
-							$filePath_front = '../upload/' . $file_front['name'];
-							move_uploaded_file($file_front['tmp_name'], $filePath_front);
-							
-							$file_back = $_FILES['file_back'];
-							$filePath_back = '../upload/' . $file_back['name'];
-							move_uploaded_file($file_back['tmp_name'], $filePath_back);
-
 							print '<tr>
 									<th><span class="required">必須</span>学生証</th>
 									<td class="file">
 										<label for="file_front">アップロード（表面）</label>
 										<input id="file_front" type="file" name="file_front" accept="image/*" style="display:block;">
 										<p>学生証（表）アップロード：';
-										if (move_uploaded_file($file_front['tmp_name'], $filePath_front)) {
+										if (move_uploaded_file($_FILES['file_front']['tmp_name'], $filePath_front)) {
 											chmod('../upload/' . $_FILES["file_front"]["name"], 0644);
-											print '<img src="' . $filePath_front. '">';
+											print '<img src="'. $filePath_front.'">';
 										}
-										error_log(print_r($file_front, true). PHP_EOL, '3', 'shibata_log.txt');
 										print '</p>
 										<ul class="error_ul">
 											<li class="error" id="err_file_front"></li>
@@ -158,7 +125,7 @@
 										<label for="file_back">アップロード（裏面）</label>
 										<input id="file_back" type="file" name="file_back" accept="image/*" style="display:block;">
 										<p>学生証（裏）アップロード：';
-										if (move_uploaded_file($file_back['tmp_name'], $filePath_back)) {
+										if (move_uploaded_file($_FILES['file_back']['tmp_name'], $filePath_back)) {
 											chmod('../upload/' . $_FILES["file_back"]["name"], 0644);
 											print '<img src="'. $filePath_back.'">';
 										}
@@ -189,7 +156,7 @@
 								<input id="riyu_3" type="radio" name="riyu" value="2">
 								<label class="radio" for="riyu_3">ネットワーク・人脈作りのため</label><br>
 								<input id="riyu_4" type="radio" name="riyu" value="99">
-								<label class="radio" for="riyu_4">その他（記述）</label>
+								<label for="riyu_4">その他（記述）</label>
 								<p><textarea id="riyu_sonota" name="riyu_sonota" placeholder="その他を選択した場合は必須入力となります。"><?php echo $riyu_sonota; ?></textarea></p>
 								<ul class="error_ul">
 									<li class="error" id="err_riyu"></li>

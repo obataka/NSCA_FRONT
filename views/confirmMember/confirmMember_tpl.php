@@ -134,15 +134,15 @@
 						<?php
 						if ($wk_kaiinType == "学生会員") {
 							echo '
-								<tr>
-									<th><span class="required">必須</span>学生証</th>
-									<td class="file">';
-									if ($file_front) {
-										echo '学生証（表）アップロード済み<br>';
-									}
-									if ($file_back) {
-										echo '学生証（裏）アップロード済み<br>';
-									}
+							<tr>
+							<th><span class="required">必須</span>学生証</th>
+							<td class="file">';
+							if ($filePath_front != "") {
+								echo '学生証（表）アップロード済み <img class="filePath_front" src="' .$filePath_front . '"><br>';
+							}
+							if ($filePath_back != "") {
+								echo '学生証（裏）アップロード済み <img class="filePath_back" src="' .$filePath_back . '"><br>';
+							}
 							echo '</td> 			
 							</tr>
 							';
