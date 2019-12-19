@@ -187,10 +187,8 @@
                         $("#address_todohuken option").filter(function(index){
                             return $(this).text() === wk_msYubinNo[7]; 
                         }).prop("selected", true);
-                        $("#address_shiku").val(wk_msYubinNo[8]);
-                        $("#address_tatemono").val(wk_msYubinNo[9]);
-                        $("#address_yomi_shiku").val(wk_msYubinNo[5]);
-                        $("#address_yomi_tatemono").val(wk_msYubinNo[6]);  
+                        $("#address_shiku").val(wk_msYubinNo[8] + wk_msYubinNo[9]);
+                        $("#address_yomi_shiku").val(wk_msYubinNo[5] + wk_msYubinNo[6]);
                     }
                 },
                 fail: function(rtn) {
