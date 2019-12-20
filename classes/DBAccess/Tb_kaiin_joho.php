@@ -27,7 +27,6 @@ SQL;
             $sth->execute([':email_1' => $loginId, ':my_page_password' => $loginPswd,]);
             $mstProduct = $sth->fetch();
         } catch (\PDOException $e) {
-            error_log(print_r($e, true). PHP_EOL, '3', 'error_log.txt');
             $mstProduct = [];
         }
 
@@ -46,7 +45,6 @@ SQL;
             $sth->execute([':kaiin_no' => $kaiin_no,]);
             $mstProduct = $sth->fetch();
         } catch (\PDOException $e) {
-            error_log(print_r($e, true). PHP_EOL, '3', 'error_log.txt');
             $mstProduct = [];
         }
         return $mstProduct;
@@ -59,12 +57,9 @@ SQL;
      */
     public function insertRec ($param)
     {
-        error_log(print_r("通過1", true). PHP_EOL, '3', 'tanihara_log.txt');
         $db = Db::getInstance();
         $db->beginTransaction();
-        error_log(print_r("db通過", true). PHP_EOL, '3', 'tanihara_log.txt');
         try {
-        error_log(print_r("try通過", true). PHP_EOL, '3', 'tanihara_log.txt');
             $sql = <<<SQL
             INSERT
             INTO tb_kaiin_joho(
@@ -243,9 +238,7 @@ SQL;
             );
            
 SQL;
-            error_log(print_r("通過1.5", true). PHP_EOL, '3', 'tanihara_log.txt');
             $sth = $db->prepare($sql);
-            error_log(print_r("通過2", true). PHP_EOL, '3', 'tanihara_log.txt');
             $sth->execute([
                 ':kaiin_no'                         => $param['kaiin_no'],
                 ':kyukaiin_no'                      => $param['kyukaiin_no'],
@@ -333,18 +326,13 @@ SQL;
                 ':koshin_nichiji'                   => $param['koshin_nichiji'],
                 ':kako_shikaku_umu_kbn'             => $param['kako_shikaku_umu_kbn'],
             ]);
-            error_log(print_r("通過3", true). PHP_EOL, '3', 'tanihara_log.txt');
             $db->commit();
-            error_log(print_r("通過4", true). PHP_EOL, '3', 'tanihara_log.txt');
         } catch (\Throwable $e) {
-            error_log(print_r($e, true). PHP_EOL, '3', 'error_log.txt');
             $db->rollBack();
             return FALSE;
         }
-        error_log(print_r("通過5", true). PHP_EOL, '3', 'tanihara_log.txt');
         return TRUE;
     }
-
 
     public function findBykaiinjoho()
     {
@@ -364,11 +352,83 @@ SQL;
             // $sth->execute([':kaiin_no' => $kaiin_no,]);
             $Tb_kaiin_joho = $sth->fetch();
         } catch (\PDOException $e) {
-            error_log(print_r($e, true). PHP_EOL, '3', 'error_log.txt');
             $Tb_kaiin_joho = [];
         }
         return $Tb_kaiin_joho;
     }
+
+
+//     public function updateRiyo($param)
+//     {
+//         // if (isset($_SESSION['kaiin_no'])) {
+//         //         $wk_kaiin_no = $_SESSION['kaiin_no'];
+//         // }
+//         $db = Db::getInstance();
+//         $db->beginTransaction();
+//         try {
+ 
+//                 $sql = <<<SQL
+//                 UPDATE tb_kaiin_joho
+//                 SET
+//                       shimei_sei            = :shimei_sei
+//                     , shimei_mei            = :shimei_mei
+//                     , furigana_sei          = :furigana_sei
+//                     , furigana_mei          = :furigana_mei
+//                     , seinengappi           = :seinengappi
+//                     , seibetsu_kbn          = :seibetsu_kbn
+//                     , yubin_no              = :yubin_no
+//                     , ken_no                = :ken_no
+//                     , jusho_1               = :jusho_1
+//                     , jusho_2               = :jusho_2
+//                     , kana_jusho_1          = :kana_jusho_1
+//                     , kana_jusho_2          = :kana_jusho_2
+//                     , tel                   = :tel
+//                     , keitai_no             = :keitai_no
+//                     , email_1               = :email_1
+//                     , email_2               = :email_2
+//                     , nagareyama_shimin     = :nagareyama_shimin
+//                     , koshin_user_id        = :koshin_user_id
+//                     , koshin_nichiji        = :koshin_nichiji
+//                 WHERE
+//                       kaiin_no     = 819121118
+//                 ;
+//  SQL;      
+//             $sth = $db->prepare($sql);
+
+//                 $sth->execute([
+//                     ':shimei_sei'              => $param['shimei_sei'],
+//                     ':shimei_mei'              => $param['shimei_mei'],
+//                     ':furigana_sei'            => $param['furigana_sei'],
+//                     ':furigana_mei'            => $param['furigana_mei'],
+//                     ':seinengappi'             => $param['seinengappi'],
+//                     ':seibetsu_kbn'            => $param['seibetsu_kbn'],
+//                     ':yubin_no'                => $param['yubin_no'],
+//                     ':ken_no'                  => $param['ken_no'],
+//                     ':jusho_1'                 => $param['jusho_1'],
+//                     ':jusho_2'                 => $param['jusho_2'],
+//                     ':kana_jusho_1'            => $param['kana_jusho_1'],
+//                     ':kana_jusho_2'            => $param['kana_jusho_2'],
+//                     ':nagareyama_shimin'       => $param['nagareyama_shimin'],
+//                     ':koshin_user_id'          => $param['koshin_user_id'],
+//                     ':koshin_nichiji'          => $param['koshin_nichiji'],
+//                 ]);
+            
+//             $db->commit();
+//         } catch (\Throwable $e) {
+//             error_log(print_r($e, true). PHP_EOL, '3', 'error_log.txt');
+//             $db->rollBack();
+//             return false;
+//         }
+//         return true;
+//     }
+
+
+
+
+
+
+
+           
 //     /**
 //      * @param varchar $kaiin_no
 //      * @return array|mixed
@@ -550,10 +610,10 @@ SQL;
 //        $db = Db::getInstance();
 //        $db->beginTransaction();
 //        try {
-//
+
 //            // 予約不可の場合
 //            if ($argument['RESERVE_PROP'] == Config::RESERVE_PROP_NO) {
-//
+
 //                $sql = <<<SQL
 //                UPDATE T_REMAIN_MNG_BY_DATE
 //                SET
@@ -564,11 +624,11 @@ SQL;
 //                      AREA_ID       = :AREA_ID
 //                AND   RESERVE_YMD   = :RESERVE_YMD
 //                ;
-//
-//SQL;
+
+// SQL;
 //            // 予約可の場合
 //            } else {
-//
+
 //                $sql = <<<SQL
 //                UPDATE T_REMAIN_MNG_BY_DATE
 //                SET
@@ -599,12 +659,12 @@ SQL;
 //                      AREA_ID     = :AREA_ID
 //                AND   RESERVE_YMD = :RESERVE_YMD
 //                ;
-//
-//SQL;
+
+// SQL;
 //            }
-//            
+           
 //            $sth = $db->prepare($sql);
-//
+
 //            // 予約不可の場合
 //            if ($argument['RESERVE_PROP'] == Config::RESERVE_PROP_NO) {
 //                $sth->execute([
@@ -613,7 +673,7 @@ SQL;
 //                    ':RESERVE_PROP'     => $argument['RESERVE_PROP'],
 //                    ':UPD_ADMIN_USR'    => $argument['UPD_ADMIN_USR'],
 //                ]);
-//
+
 //            // 予約可の場合
 //            } else {
 //                $sth->execute([
@@ -643,7 +703,7 @@ SQL;
 //                    ':UPD_ADMIN_USR'        => $argument['UPD_ADMIN_USR'],
 //                ]);
 //            }
-//
+
 //            $db->commit();
 //        } catch (\Throwable $e) {
 //            error_log(print_r($e, true). PHP_EOL, '3', 'error_log.txt');
@@ -652,7 +712,7 @@ SQL;
 //        }
 //        return true;
 //    }
-//
+
 //    /**
 //     * ユーザー用更新処理
 //     * @param array $argument

@@ -21,6 +21,7 @@
 		<script type="text/javascript" src="../../viewIncludeFiles/js/header.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
+		<script type="text/javascript" src="../../viewIncludeFiles/js/changeConfirmRiyo.js"></script>
     </head>
     <body>
 		<header id="header">
@@ -38,44 +39,44 @@
 					</div>				
 					<div class="kihon_joho">
 						<form action="?" method="post" autocomplete="off" id="confirmForm">
-						<input type="hidden" name="name_sei" id="name_sei" value="<?php echo $name_sei; ?>">
-						<input type="hidden" name="name_mei" id="name_mei" value="<?php echo $name_mei; ?>">
-						<input type="hidden" name="sei_kana_name" id="sei_kana_name" value="<?php echo $sei_kana_name; ?>">	
-						<input type="hidden" name="sei_mei_name" id="sei_mei_name" value="<?php echo $sei_mei_name; ?>">
-						<input type="hidden" name="sei_mei_name" id="sei_mei_name" value="<?php echo $sei_mei_name; ?>">
-						<input type="hidden" name="seireki_name" id="seireki_name" value="<?php echo $seireki_name; ?>">	
-						<input type="hidden" name="month" id="month" value="<?php echo $month; ?>">
-						<input type="hidden" name="day" id="day" value="<?php echo $day; ?>">
-						<input type="hidden" name="sel_gender" id="sel_gender" value="<?php echo $gender; ?>">
-						<input type="hidden" name="wk_sel_gender" id="wk_sel_gender" value="<?php echo $wk_sel_gender; ?>">
-						<input type="hidden" name="sel_math" id="sel_math" value="<?php echo $sel_math; ?>">
-						<input type="hidden" name="address_yubin_nb_1" id="address_yubin_nb_1" value="<?php echo $address_yubin_nb_1; ?>">
-						<input type="hidden" name="yubin_nb_2" id="yubin_nb_2" value="<?php echo $yubin_nb_2; ?>">
-						<input type="hidden" name="address_shiku" id="address_shiku" value="<?php echo $address_shiku; ?>">
-						<input type="hidden" name="address_tatemono" id="address_tatemono" value="<?php echo $address_tatemono; ?>">
-						<input type="hidden" name="address_yomi_shiku" id="address_yomi_shiku" value="<?php echo $address_yomi_shiku; ?>">
-						<input type="hidden" name="address_yomi_tatemono" id="address_yomi_tatemono" value="<?php echo $address_yomi_tatemono; ?>">
-						<input type="hidden" name="tel" id="tel" value="<?php echo $tel; ?>">
-						<input type="hidden" name="keitai_tel" id="keitai_tel" value="<?php echo $keitai_tel; ?>">
-						<input type="hidden" name="mail_address_1" id="mail_address_1" value="<?php echo $mail_address_1; ?>">
-						<input type="hidden" name="mail_address_2" id="mail_address_2" value="<?php echo $mail_address_2; ?>">
-						<input type="hidden" name="sel_mail" id="sel_mail" value="<?php echo $sel_mail; ?>">
-						<input type="hidden" name="mail" id="mail" value="<?php echo $mail; ?>">
-						<input type="hidden" name="sel_mail" id="sel_mail" value="<?php echo $sel_mail; ?>">
-						<input type="hidden" name="merumaga" id="merumaga" value="<?php echo $merumaga; ?>">
-						<input type="hidden" name="sel_merumaga" id="sel_merumaga" value="<?php echo $sel_merumaga; ?>">
-						<input type="hidden" name="hoho" id="hoho" value="<?php echo $hoho; ?>">
-						<input type="hidden" name="sel_hoho" id="sel_hoho" value="<?php echo $sel_hoho; ?>">
-						<input type="hidden" name="sel_nagareyama" id="sel_nagareyama" value="<?php echo $sel_nagareyama; ?>">
-						<input type="hidden" name="sel_chiiki" id="sel_chiiki" value="<?php echo $sel_chiiki; ?>">
-						<input type="hidden" name="kenmei" id="kenmei" value="<?php echo $kenmei; ?>">
+							<input type="hidden" name="name_sei" id="name_sei" value="<?php echo $name_sei; ?>">
+							<input type="hidden" name="name_mei" id="name_mei" value="<?php echo $name_mei; ?>">
+							<input type="hidden" name="sei_kana_name" id="sei_kana_name" value="<?php echo $sei_kana_name; ?>">	
+							<input type="hidden" name="sei_mei_name" id="sei_mei_name" value="<?php echo $sei_mei_name; ?>">
+							<input type="hidden" name="sei_mei_name" id="sei_mei_name" value="<?php echo $sei_mei_name; ?>">
+							<input type="hidden" name="seireki_name" id="seireki_name" value="<?php echo $seireki_name; ?>">	
+							<input type="hidden" name="month" id="month" value="<?php echo $month; ?>">
+							<input type="hidden" name="day" id="day" value="<?php echo $day; ?>">
+							<input type="hidden" name="sel_gender" id="sel_gender" value="<?php echo $gender; ?>">
+							<input type="hidden" name="wk_sel_gender" id="wk_sel_gender" value="<?php echo $wk_sel_gender; ?>">
+							<input type="hidden" name="sel_math" id="sel_math" value="<?php echo $sel_math; ?>">
+							<input type="hidden" name="address_yubin_nb_1" id="address_yubin_nb_1" value="<?php echo $address_yubin_nb_1; ?>">
+							<input type="hidden" name="yubin_nb_2" id="yubin_nb_2" value="<?php echo $yubin_nb_2; ?>">
+							<input type="hidden" name="address_shiku" id="address_shiku" value="<?php echo $address_shiku; ?>">
+							<input type="hidden" name="address_tatemono" id="address_tatemono" value="<?php echo $address_tatemono; ?>">
+							<input type="hidden" name="address_yomi_shiku" id="address_yomi_shiku" value="<?php echo $address_yomi_shiku; ?>">
+							<input type="hidden" name="address_yomi_tatemono" id="address_yomi_tatemono" value="<?php echo $address_yomi_tatemono; ?>">
+							<input type="hidden" name="tel" id="tel" value="<?php echo $tel; ?>">
+							<input type="hidden" name="keitai_tel" id="keitai_tel" value="<?php echo $keitai_tel; ?>">
+							<input type="hidden" name="mail_address_1" id="mail_address_1" value="<?php echo $mail_address_1; ?>">
+							<input type="hidden" name="mail_address_2" id="mail_address_2" value="<?php echo $mail_address_2; ?>">
+							<input type="hidden" name="sel_mail" id="sel_mail" value="<?php echo $sel_mail; ?>">
+							<input type="hidden" name="mail" id="mail" value="<?php echo $mail; ?>">
+							<input type="hidden" name="sel_mail" id="sel_mail" value="<?php echo $sel_mail; ?>">
+							<input type="hidden" name="merumaga" id="merumaga" value="<?php echo $merumaga; ?>">
+							<input type="hidden" name="sel_merumaga" id="sel_merumaga" value="<?php echo $sel_merumaga; ?>">
+							<input type="hidden" name="hoho" id="hoho" value="<?php echo $hoho; ?>">
+							<input type="hidden" name="sel_hoho" id="sel_hoho" value="<?php echo $sel_hoho; ?>">
+							<input type="hidden" name="sel_nagareyama" id="sel_nagareyama" value="<?php echo $sel_nagareyama; ?>">
+							<input type="hidden" name="sel_chiiki" id="sel_chiiki" value="<?php echo $sel_chiiki; ?>">
+							<input type="hidden" name="kenmei" id="kenmei" value="<?php echo $kenmei; ?>">
 							<h3>基本情報</h3>
 							<table>
 								<tr class="name">
 									<th><span class="required">必須</span>氏名</th>
 									<td class="clearfix">
 										<div>
-										<?php echo $name_sei; ?> <?php echo $name_mei; ?>
+											<?php echo $name_sei; ?> <?php echo $name_mei; ?>
 										</div>
 									</td>
 								</tr>
@@ -154,8 +155,8 @@
 						</form>
 					</div>
 					<section class="btn_wrap">
-						<button class="button back" type="button" value="" onclick="location.href='toroku_syusei_riyo.html'"><span>内容を修正する</span></button>
-						<button class="button" type="submit" value="" onclick="location.href='toroku_syusei_kanryo.html'"><span>次へ</span></button>
+						<button id="return_button" class="button back" type="button" value="" onclick="location.href='#'"><span>内容を修正する</span></button>
+						<button id="next_button" class="button" type="submit" value="" onclick="location.href='#'"><span>次へ</span></button>
 					</section>
 					
 				</div>
