@@ -20,6 +20,11 @@
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/header.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/changeRiyo.js"></script>
+		<script>
+			$(function(){
+				$("select").wrap("<span class='select_wrap'></span>");
+			});
+		</script>
     </head>
     <body>
 		<header id="header">

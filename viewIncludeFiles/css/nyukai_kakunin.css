@@ -1,3 +1,13 @@
+.file img {
+    width: 300px;
+	margin-bottom: 30px;
+}
+.file p {
+    margin: 0;
+}
+.file img:last-of-type {
+    margin-bottom: 0;
+}
 .wrap {
     padding-top: 20px;
 }

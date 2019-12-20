@@ -30,7 +30,7 @@
 
     </head>
     <body>
-	<!--<header id="header">-->
+
 	<header class="header_logo">
 		<img src="../../viewIncludeFiles/image/NSCA_Japan_rev.png" alt="ロゴ">
 	</header>
@@ -38,31 +38,31 @@
 		<h2>パスワード変更</h2>
 		<div class="content_wrap">
 			<p class="h2_text">テキストテキストテキストテキスト</p>
-			<form action="../changePasswordMail/changePasswordMail_tpl.php" method="post">
+			<form>
 				<table>
 					<tr>
 						<th><span class="required">必須</span>会員番号</th>
 						<td>
-							<input id="kaiin_no" class="w_50" type="email" name="kaiin_no" value="<?php echo $kaiin_no; ?>">
+							<input id="kaiin_nmb" class="w_50" type="email" name="mail" value="">
 							<ul class="error_ul">
-								<li class="error" id="err_kaiin_no"></li>
+								<li class="error"></li>
 							</ul>
 						</td>
 					</tr>
 					<tr>
 						<th><span class="required">必須</span>メールアドレス</th>
 						<td>
-							<input id="mail_address" class="w_80" type="email" name="mail_address" value="<?php echo $mail_address; ?>">
+							<input id="mail" class="w_80" type="email" name="mail" value="">
 							<ul class="error_ul">
-								<li class="error" id="err_mail_address"></li>
+								<li class="error"></li>
 							</ul>
 						</td>
 					</tr>
 				</table>
-			<section>
-				<button  id="send_button" class="button btn_b btn_b_1" type="submit" value="" onclick="location.href='#'"><span>送信</span></button>
-			</section>
 			</form>
+			<section>
+				<button class="button btn_b btn_b_1" type="submit" value="" onclick="location.href='#'"><span>送信</span></button>
+			</section>
 		</div>
 	</div>
 	<footer id="footer">

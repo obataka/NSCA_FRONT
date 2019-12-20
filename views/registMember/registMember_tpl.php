@@ -20,17 +20,43 @@
 	<script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/js/registMember.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
+	<script type="text/javascript" src="../../viewIncludeFiles/js/iPhone.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
 	<script>
 		$(function(){
 			$("select").wrap("<span class='select_wrap'></span>");
+			
+			$("#file_front").on('change',function(){
+				 var file = $(this).prop('files')[0];
+				
+				 if(!($(".filename_front").length)){
+					 $("#upload_front").append('<span class="filename_front"></span>');
+				 }
+				
+				 $("#input_label_front").addClass('changed');
+				 $(".filename_front").html(file.name);
+
+			   });
+			$("#file_back").on('change',function(){
+				 var file = $(this).prop('files')[0];
+				
+				 if(!($(".filename_back").length)){
+					 $("#upload_back").append('<span class="filename_back"></span>');
+				 }
+				
+				 $("#input_label_back").addClass('changed');
+				 $(".filename_back").html(file.name);
+			   });
+		
 		});
 	</script>
 </head>
 
 <body>
 	<header class="header_logo">
-		<img src="../../viewIncludeFiles/image/NSCA_Japan_rev.png" alt="ロゴ">
+		<div>
+			<img src="../../viewIncludeFiles/image/NSCA_Japan_rev.png" alt="ロゴ">
+		</div>
 	</header>
 	<div class="wrap">
 		<h2>入会申込</h2>
@@ -111,9 +137,13 @@
 							print '<tr>
 									<th><span class="required">必須</span>学生証</th>
 									<td class="file">
-										<label for="file_front">アップロード（表面）</label>
-										<input id="file_front" type="file" name="file_front" accept="image/*" style="display:block;">
-										<p>学生証（表）アップロード：';
+									
+									
+										<div id="upload_front">
+										  <label for="file_front" id="input_label_front" class="button">アップロード（表面）</label>
+										  <input type="file" id="file_front" name="file_front" accept="image/*">
+										</div>
+										<p>';
 										if (move_uploaded_file($_FILES['file_front']['tmp_name'], $filePath_front)) {
 											chmod('../upload/' . $_FILES["file_front"]["name"], 0644);
 											print '<img src="'. $filePath_front.'">';
@@ -122,9 +152,14 @@
 										<ul class="error_ul">
 											<li class="error" id="err_file_front"></li>
 										</ul>
-										<label for="file_back">アップロード（裏面）</label>
-										<input id="file_back" type="file" name="file_back" accept="image/*" style="display:block;">
-										<p>学生証（裏）アップロード：';
+										
+										<div id="upload_back">
+											<label for="file_back" id="input_label_back" class="button">アップロード（裏面）</label>
+											<input type="file" id="file_back" name="file_back"  accept="image/*">
+										</div>
+										
+										
+										<p>';
 										if (move_uploaded_file($_FILES['file_back']['tmp_name'], $filePath_back)) {
 											chmod('../upload/' . $_FILES["file_back"]["name"], 0644);
 											print '<img src="'. $filePath_back.'">';
@@ -156,7 +191,7 @@
 								<input id="riyu_3" type="radio" name="riyu" value="2">
 								<label class="radio" for="riyu_3">ネットワーク・人脈作りのため</label><br>
 								<input id="riyu_4" type="radio" name="riyu" value="99">
-								<label for="riyu_4">その他（記述）</label>
+								<label class="radio" for="riyu_4">その他（記述）</label>
 								<p><textarea id="riyu_sonota" name="riyu_sonota" placeholder="その他を選択した場合は必須入力となります。"><?php echo $riyu_sonota; ?></textarea></p>
 								<ul class="error_ul">
 									<li class="error" id="err_riyu"></li>

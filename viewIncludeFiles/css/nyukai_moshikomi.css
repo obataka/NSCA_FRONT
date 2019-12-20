@@ -1,18 +1,23 @@
 .wrap {
     padding-top: 20px;
 }
+h2:before {
+    width: 5em;
+}
 .riyu textarea {
 	margin-top: 5px;
+}
+#upload_back,
+#upload_front {
+    float: none;
 }
 td div {
     float: left;
 }
-.teikan_wrap {
-	margin-bottom: 30px;
-}
 .doi .checkbox {
     line-height: 21px;
 }
+
 @media all and (-ms-high-contrast: none){
 	.doi .checkbox {
 		line-height: 23px;
