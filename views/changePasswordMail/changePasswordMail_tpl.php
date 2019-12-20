@@ -17,11 +17,20 @@
         <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.1.1.min.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
-        <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.3.1.min.js"></script>
-		<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
+        <script type="text/javascript" src="../../viewIncludeFiles/js/changePasswordMail.js"></script>
+        <script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
+        <script type="text/javascript" src="../../viewIncludeFiles/js/iPhone.js"></script>
+	<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
+
+		<script>
+			$(function(){
+				$("select").wrap("<span class='select_wrap'></span>");
+			});
+		</script>
 
     </head>
     <body>
+	<!--<header id="header">-->
 	<header class="header_logo">
 		<img src="../../viewIncludeFiles/image/NSCA_Japan_rev.png" alt="ロゴ">
 	</header>
@@ -29,31 +38,31 @@
 		<h2>パスワード変更</h2>
 		<div class="content_wrap">
 			<p class="h2_text">テキストテキストテキストテキスト</p>
-			<form>
+			<form action="../changePasswordMail/changePasswordMail_tpl.php" method="post">
 				<table>
 					<tr>
 						<th><span class="required">必須</span>会員番号</th>
 						<td>
-							<input id="kaiin_nmb" class="w_50" type="email" name="mail" value="">
+							<input id="kaiin_no" class="w_50" type="email" name="kaiin_no" value="<?php echo $kaiin_no; ?>">
 							<ul class="error_ul">
-								<li class="error"></li>
+								<li class="error" id="err_kaiin_no"></li>
 							</ul>
 						</td>
 					</tr>
 					<tr>
 						<th><span class="required">必須</span>メールアドレス</th>
 						<td>
-							<input id="mail" class="w_80" type="email" name="mail" value="">
+							<input id="mail_address" class="w_80" type="email" name="mail_address" value="<?php echo $mail_address; ?>">
 							<ul class="error_ul">
-								<li class="error"></li>
+								<li class="error" id="err_mail_address"></li>
 							</ul>
 						</td>
 					</tr>
 				</table>
-			</form>
 			<section>
-				<button class="button btn_b btn_b_1" type="submit" value="" onclick="location.href='#'"><span>送信</span></button>
+				<button  id="send_button" class="button btn_b btn_b_1" type="submit" value="" onclick="location.href='#'"><span>送信</span></button>
 			</section>
+			</form>
 		</div>
 	</div>
 	<footer id="footer">
