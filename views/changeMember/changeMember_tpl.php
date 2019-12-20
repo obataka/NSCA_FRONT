@@ -19,15 +19,8 @@
 	<script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.1.1.min.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
-	<script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/js/header.js"></script>
-	<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
-	<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
-	<script>
-		$(function() {
-			$("select").wrap("<span class='select_wrap'></span>");
-		});
-	</script>
+	<script type="text/javascript" src="../../viewIncludeFiles/js/changeMember.js"></script>
 </head>
 
 <body>
@@ -44,17 +37,12 @@
 					<li><span><small>完了</small></span></li>
 				</ul>
 			</div>
-			<form>
+			<form action="../changeConfirmMember/changeConfirmMember_tpl.php" method="post">
 				<input type="hidden" name="kaiinType" id="kaiinType" value="<?php echo $wk_kaiinType ?>">
 				<input type="hidden" name="kaiinSbt" id="kaiinSbt" value="<?php echo $wk_kaiinSbt ?>">
 				<input type="hidden" name="kaihi" id="kaihi" value="<?php echo $wk_kaihi ?>">
 				<input type="hidden" name="sel_option" id="sel_option" value="<?php echo $option; ?>">
 				<input type="hidden" name="wk_sel_option" id="wk_sel_option" value="<?php echo $wk_sel_option; ?>">
-				<input type="hidden" name="sel_hoji" id="sel_hoji" value="<?php echo $nsca_hoji; ?>">
-				<input type="hidden" name="wk_sel_hoji" id="wk_sel_hoji" value="<?php echo $wk_sel_hoji; ?>">
-				<input type="hidden" name="sel_riyu" id="sel_riyu" value="<?php echo $riyu; ?>">
-				<input type="hidden" name="wk_sel_riyu" id="wk_sel_riyu" value="<?php echo $wk_sel_riyu; ?>">
-				<input type="hidden" name="sel_riyu_sonota" id="sel_riyu_sonota" value="<?php echo $riyu_sonota; ?>">
 				<input type="hidden" name="kenmei" id="kenmei" value="<?php echo $kenmei; ?>">
 				<input type="hidden" name="sel_math" id="sel_math" value="<?php echo $sel_math; ?>">
 				<input type="hidden" name="sel_chiiki" id="sel_chiiki" value="<?php echo $sel_chiiki; ?>">
@@ -102,7 +90,7 @@
 									<p><?php echo $wk_kaiinType ?></p>
 									<input id="option" type="checkbox" name="option">
 									<label class="checkbox" for="option">英文購読オプション</label>
-									<p class="ti">正会員と学生会員にオプションとしてつけることができます。詳しくは<a href="#" class="td_under">こちら</a>をご覧ください。</p>
+									<p class="ti">正会員と学生会員にオプションとしてつけることができます。詳しくは<a href="https://www.nsca-japan.or.jp/02_admis/category.html" target="_blank">こちら</a>をご覧ください。</p>
 								</td>
 							</tr>
 						</table>
@@ -472,7 +460,7 @@
 			</form>
 			<section class="btn_wrap">
 				<button class="button btn_gray" type="button" value="" onclick="location.href='#'"><span>クリア</span></button>
-				<button class="button" type="submit" value="" onclick="location.href='toroku_syusei_kakunin.html'"><span>次へ</span></button>
+				<button class="button" type="submit" value="" onclick="location.href='#'"><span>次へ</span></button>
 			</section>
 		</div>
 	</div>
