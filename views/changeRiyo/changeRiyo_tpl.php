@@ -69,7 +69,7 @@
 										</div>
 										<div>
 											<p>名</p><input id="name_mei" type="text" name="name_mei" value="<?php echo $name_mei; ?>">
-												<ul class="error_ul">
+											<ul class="error_ul">
 												<li class="error" id="err_name_mei"></li>
 											</ul>
 										</div>

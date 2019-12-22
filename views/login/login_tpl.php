@@ -38,8 +38,8 @@
                     <button class="button" type="submit" name="__send" id="__send" value=""><span>Login</span></button>
                     <div class="login_text">
                         <p>
-                            <a href="#">パスワードをお忘れですか？</a><br>
-                            <a href="#">入会案内</a><span>|</span>
+                            <a href="../changePasswordMail/">パスワードをお忘れですか？</a><br>
+                            <a href="../registInformation/" target="_blank">入会案内</a><span>|</span>
                             <a href="#">新規登録はこちら</a>
                         </p>
                     </div>

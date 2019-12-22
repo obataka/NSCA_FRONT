@@ -40,6 +40,9 @@ $my_page_password = (!empty($_POST['pass'])) ? htmlentities($_POST['pass'], ENT_
 //会員その他
 $mail = (!empty($_POST['mail'])) ? htmlentities($_POST['mail'], ENT_QUOTES, "UTF-8") : "";
 $merumaga = (!empty($_POST['merumaga'])) ? htmlentities($_POST['merumaga'], ENT_QUOTES, "UTF-8") : "";
+error_log(print_r($mail, true). PHP_EOL, '3', 'tanihara_log1.txt');
+error_log(print_r($merumaga, true). PHP_EOL, '3', 'tanihara_log1.txt');
+error_log(print_r($nagareyama_shimin, true). PHP_EOL, '3', 'tanihara_log1.txt');
 // 先頭8、西暦の下2桁、月（0埋め）、日（0埋め）、連番2桁0うめ
 //　　 8 . date('y') . date('m') . date('d')
 $wk_kaiin_no_joken =  "8" . date('y') . date('m') . date('d');
@@ -66,6 +69,7 @@ if ($merumaga == 1 && $mail == 1) {
 } else {
     $wk_mail1 = FALSE;
 }
+error_log(print_r($wk_mail1, true). PHP_EOL, '3', 'tanihara_log1.txt');
 //メルマガ配信を希望する　かつ　メール受信希望のメールアドレスがメール2の場合
 if ($merumaga == 1 && $mail == 2) {
     $wk_mail2 = TRUE;
@@ -177,16 +181,20 @@ $param = [
     'koshin_nichiji'                    => date("Y/m/d H:i:s"),
     'kako_shikaku_umu_kbn'              => NULL,
 ];
+error_log(print_r($param, true). PHP_EOL, '3', 'tanihara_log.txt');     //動作確認
 
 // 登録処理
 $result = (new Tb_kaiin_joho())->insertRec($param);
+error_log(print_r($result, true). PHP_EOL, '3', 'tanihara_log.txt');
 
 // 登録失敗の場合
 if ($result == false) {
     NULL;
+    error_log(print_r("登録失敗", true). PHP_EOL, '3', 'tanihara_log.txt');
 // 登録成功の場合
 } else {
     NULL;
+    error_log(print_r("登録成功", true). PHP_EOL, '3', 'tanihara_log.txt');
 }
 echo $result;
 // sonota登録用パラメーター設定
@@ -212,16 +220,20 @@ $param1 = [
     'sakusei_nichiji'                   => date("Y/m/d H:i:s"),
     'koshin_nichiji'                    => date("Y/m/d H:i:s"),
 ];
+error_log(print_r($param1, true). PHP_EOL, '3', 'tanihara_log1.txt');     //動作確認
 
 // 登録処理
 $result = (new Tb_kaiin_sonota())->insertRec($param1);
+error_log(print_r($result, true). PHP_EOL, '3', 'tanihara_log1.txt');
 
 // 登録失敗の場合
 if ($result == false) {
     NULL;
+    error_log(print_r("登録失敗", true). PHP_EOL, '3', 'tanihara_log1.txt');
 // 登録成功の場合
 } else {
     NULL; 
+    error_log(print_r("登録成功", true). PHP_EOL, '3', 'tanihara_log1.txt');
 }
 if ($mail == 1) {
     //メールアドレス取得
