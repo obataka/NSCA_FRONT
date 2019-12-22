@@ -3,6 +3,31 @@ include_once '../ctrl/parts/inputHeader.php';
 
 $includeView = '../views/changeRiyo/changeRiyo_tpl.php';
 
+// Sessionに設定されている会員番号を基に、会員情報を取得する
+$wk_kaiin_no = "";
+$wk_kaiin_no = 12345;   // ※ここは暫定的に自分のテスト用の会員の会員番号を設定する箇所です。ログイン処理が出来たら削除します。
+// ※以下はログイン処理がまだできてないので、一旦コメントアウトしておきます。
+//if (isset($_SESSION['kaiinNo'])) {
+//    
+//    // ログインしている
+//    $wk_kaiin_no = $_SESSION['kaiinNo'];
+//
+//} else {
+//
+//    // Sessionに会員番号がないので、未ログインとみなして、ログイン画面に遷移させる
+//    header('Location: https://www.demo-nls02.work/login/');
+//    exit();
+//}
+
+
+// ここに、会員情報を取得する処理を入れ、取得した会員情報を、画面表示用の変数に
+// 設定するようにしてください。
+// POSTから値を設定する処理は現時点では不要になります。
+
+
+
+
+
 $name_sei = (!empty($_POST['name_sei'])) ? htmlentities($_POST['name_sei'], ENT_QUOTES, "UTF-8") : "";
 error_log(print_r($name_sei, true). PHP_EOL, '3', 'tanihara_log1.txt');
 $name_mei = (!empty($_POST['name_mei'])) ? htmlentities($_POST['name_mei'], ENT_QUOTES, "UTF-8") : "";
