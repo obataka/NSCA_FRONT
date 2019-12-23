@@ -25,7 +25,7 @@
 	<header id="header">
 	</header>
 		<div class="wrap">
-			<h2>出願最終確認</h2>
+			<h1>出願最終確認</h1>
 			<div class="content_wrap">
 				<div class="spb_arrows spb_arrows_6ver sp_no">
 					<ul class="nav nav-tabs step-anchor">
@@ -56,7 +56,7 @@
 					<p><span>受験料</span>49,330円</p>
 				</div>
 				<article>
-					<h3>会員情報</h3>
+					<h2>会員情報</h2>
 					<table>
 						<tr>
 							<th>会員番号</th>
@@ -89,7 +89,7 @@
 					</table>
 				</article>
 				<article>
-					<h3>受験資格・職種・CPR/AED資格</h3>
+					<h2>受験資格・職種・CPR/AED資格</h2>
 					<table>
 						<tr>
 							<th>試験名</th>
@@ -117,7 +117,7 @@
 					</table>
 				</article>
 				<article>
-					<h3>取得学位・必要書類</h3>
+					<h2>取得学位・必要書類</h2>
 					<table>
 						<tr>
 							<th>取得学位</th>
@@ -141,7 +141,7 @@
 					</table>
 				</article>
 				<article>
-					<h3>取得学位・必要書類</h3>
+					<h2>取得学位・必要書類</h2>
 					<table>
 						<tr>
 							<th>出願書類への注意事項</th>

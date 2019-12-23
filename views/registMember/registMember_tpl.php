@@ -59,8 +59,8 @@
 		</div>
 	</header>
 	<div class="wrap">
-		<h2>入会申込</h2>
 		<div class="content_wrap">
+			<h1>入会申込 入力画面</h1>
 			<div class="spb_arrows">
 				<ul class="nav nav-tabs step-anchor">
 					<li><span><small>会員種別選択</small></span></li>
@@ -69,7 +69,7 @@
 					<li><span><small>完了</small></span></li>
 				</ul>
 			</div>
-			<p class="h2_text">テキストテキストテキストテキストテキストテキスト電話またはメールにて<a href="https://www.nsca-japan.or.jp/06_qanda/top.html#contact" target="_blank">お問い合わせ</a>ください。</p>
+			<p class="top_text">テキストテキストテキストテキストテキストテキスト電話またはメールにて<a href="https://www.nsca-japan.or.jp/06_qanda/top.html#contact" target="_blank">お問い合わせ</a>ください。</p>
 			<form action="../confirmMember/confirmMember_php" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="kaiinType" id="kaiinType" value="<?php echo $wk_kaiinType ?>">
 				<input type="hidden" name="kaiinSbt" id="kaiinSbt" value="<?php echo $wk_kaiinSbt ?>">
@@ -121,7 +121,7 @@
 				<input type="hidden" name="sel_day" id="sel_day" value="<?php echo $day; ?>">
 				
 
-				<h3>新規登録</h3>
+				<h2>新規登録</h2>
 				<div class="shinki_toroku">
 					<table>
 						<tr class="kaiin">
@@ -208,7 +208,7 @@
 				</div>
 
 				<div class="kihon_joho">
-					<h3>基本情報</h3>
+					<h2>基本情報</h2>
 					<table>
 						<tr class="name">
 							<th><span class="required">必須</span>氏名</th>
@@ -323,7 +323,7 @@
 							<th><span class="required">必須</span>性別</th>
 							<td>
 								<input id="gender_1" type="radio" name="gender" value="1">
-								<label for="gender_1">男性</label>
+								<label for="gender_1">男性</label><br>
 								<input id="gender_2" type="radio" name="gender" value="2">
 								<label for="gender_2">女性</label>
 								<ul class="error_ul">
@@ -402,7 +402,7 @@
 								</ul>
 								<p class="mt_1">メール受信希望のメールアドレス</p>
 								<input id="mail_1" type="radio" name="mail" value="1">
-								<label for="mail_1">メールアドレス_1</label><br class="sp_bl">
+								<label for="mail_1">メールアドレス_1</label><br class="sp_bl"><br>
 								<input id="mail_2" type="radio" name="mail" value="2">
 								<label for="mail_2">メールアドレス_2</label>
 								<ul class="error_ul">
@@ -414,7 +414,7 @@
 							<th><span class="required">必須</span>メルマガ配信の希望</th>
 							<td>
 								<input id="merumaga_1" type="radio" name="merumaga" value="1">
-								<label for="merumaga_1">希望する</label>
+								<label for="merumaga_1">希望する</label><br>
 								<input id="merumaga_2" type="radio" name="merumaga" value="2">
 								<label for="merumaga_2">希望しない</label>
 								<ul class="error_ul">
@@ -425,12 +425,12 @@
 						<tr class="pass">
 							<th><span class="required">必須</span>パスワード</th>
 							<td>
-								<input id="pass_1" class="w_50" type="password" name="pass_1" value="">
+								<input id="pass_1" class="w_80" type="password" name="pass_1" value="">
 								<ul class="error_ul">
 									<li class="error" id="err_pass_1"></li>
 								</ul>
 								<p class="mt_1">確認用</p>
-								<input id="pass_2" class="w_50" type="password" name="" value="">
+								<input id="pass_2" class="w_80" type="password" name="" value="">
 								<ul class="error_ul">
 									<li class="error" id="err_pass_2"></li>
 								</ul>
@@ -506,12 +506,12 @@
 				</div>
 
 				<div class="oshirase">
-					<h3>お知らせ／連絡方法／アンケート</h3>
+					<h2>お知らせ／連絡方法／アンケート</h2>
 					<table>
 						<tr>
 							<th><span class="required">必須</span>連絡方法の希望</th>
 							<td>
-								<input id="hoho_1" type="radio" name="hoho" value="1"><label for="hoho_1">メールでお知らせ</label>
+								<input id="hoho_1" type="radio" name="hoho" value="1"><label for="hoho_1">メールでお知らせ</label><br>
 								<input id="hoho_2" type="radio" name="hoho" value="2"><label for="hoho_2">郵便でお知らせ</label>
 								<ul class="error_ul">
 									<li class="error" id="err_renraku_hoho"></li>
@@ -521,7 +521,7 @@
 						<tr>
 							<th><span class="required">必須</span>郵便物配達先の希望</th>
 							<td>
-								<input id="yubin_1" type="radio" name="yubin" value="0"><label for="yubin_1">自宅</label>
+								<input id="yubin_1" type="radio" name="yubin" value="0"><label for="yubin_1">自宅</label><br>
 								<input id="yubin_2" type="radio" name="yubin" value="1"><label for="yubin_2">勤務先／所属先</label>
 								<ul class="error_ul">
 									<li class="error" id="err_yubin"></li>
@@ -540,7 +540,7 @@
 						<tr>
 							<th><span class="required">必須</span>ウェブサイト掲載</th>
 							<td>
-								<input id="web_1" type="radio" name="web" value="1"><label for="web_1">希望する</label>
+								<input id="web_1" type="radio" name="web" value="1"><label for="web_1">希望する</label><br>
 								<input id="web_2" type="radio" name="web" value="0"><label for="web_2">希望しない</label>
 								<ul class="error_ul">
 									<li class="error" id="err_web"></li>
@@ -550,7 +550,7 @@
 						<tr>
 							<th><span class="required">必須</span>アンケート協力</th>
 							<td>
-								<input id="qa_1" type="radio" name="qa" value="1"><label for="qa_1">協力する</label>
+								<input id="qa_1" type="radio" name="qa" value="1"><label for="qa_1">協力する</label><br>
 								<input id="qa_2" type="radio" name="qa" value="0"><label for="qa_2">協力しない</label>
 								<ul class="error_ul">
 									<li class="error" id="err_qa"></li>
@@ -572,7 +572,7 @@
 				</div>
 			</form>
 
-			<h3>定款・規約・規程</h3>
+			<h2>定款・規約・規程</h2>
 			<p class="teikan_text">以下の「定款」「会員規約」「会員倫理規程」「個人情報保護規程」に同意したうえでのご入会をお願い致します。</p>
 			<div class="teikan_wrap">
 				<div class="teikan">

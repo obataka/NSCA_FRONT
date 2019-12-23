@@ -1,12 +1,18 @@
+header {
+    display: none;
+}
 .content_wrap {
     position: relative;
 }
 .mh_c {
-	min-height: calc(100vh - 182px);
+	min-height: calc(100vh - 51px);
 }
 .login_img {
     text-align: center;
     margin-bottom: 40px;
+}
+img {
+    width: 300px;
 }
 input {
     display: block;
@@ -45,16 +51,14 @@ _:-ms-lang(x)::-ms-backdrop,
 input {
 	padding-top: 0.3em!important;
 }
-@media screen and (max-width: 768px) { 
-	.mh_c {
-		min-height: calc(100vh - 115px);
-	}
+@media screen and (max-width: 768px) { 	
 	/*ファイヤ―フォックのみ*/
 	@-moz-document url-prefix() {
 	  .mh_c {
 			min-height: calc(100vh - 116px)!important;
 		}
 	}
+
 	/*IEのみ*/
 	_:-ms-lang(x)::-ms-backdrop,
 	.mh_c {
@@ -64,6 +68,7 @@ input {
 	.content_wrap {
 		overflow: hidden;
 	}
+	
 	/*edgeのみ*/
 	@supports (-ms-ime-align:auto) {
 		.mh_c {

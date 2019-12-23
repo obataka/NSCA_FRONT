@@ -5,7 +5,7 @@
         <meta http-equiv="Content-Style-Type" content="text/css" />
         <meta name='format-detection' content='telephone=no' />
         <meta name='viewport' content='width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no' />
-        <title>入会申込｜</title>
+        <title>入会申込｜利用登録(無料)</title>
         <!-- favicon -->
         <link rel="icon" href="../../viewIncludeFiles/image/favicon.ico">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
@@ -22,7 +22,6 @@
         <script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/js/iPhone.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
-        <!--<script type="text/javascript" src="../../viewIncludeFiles/js/header.js"></script>-->
 		<script>
 			$(function(){
 				$("select").wrap("<span class='select_wrap'></span>");
@@ -31,12 +30,13 @@
 		
     </head>
     <body>
-	<!--<header id="header">-->
 	<header class="header_logo">
-		<img src="../../viewIncludeFiles/image/NSCA_Japan_rev.png" alt="ロゴ">
+		<div>
+			<img src="../../viewIncludeFiles/image/NSCA_Japan_rev.png" alt="ロゴ">
+		</div>
 	</header>
 		<div class="wrap">
-			<h2>入会申込</h2>
+			<h1>入会申込 入力画面</h1>
 			<div class="content_wrap">
 				<div class="spb_arrows">
 					<ul class="nav nav-tabs step-anchor">
@@ -46,8 +46,8 @@
 						<li><span><small>完了</small></span></li>
 					</ul>
 				</div>
-				<p class="h2_text">テキストテキストテキストテキストテキストテキスト電話またはメールにて<a href="#">お問い合わせ</a>ください。</p>
-				<h3>新規登録</h3>
+				<p class="top_text">テキストテキストテキストテキストテキストテキスト電話またはメールにて<a href="#">お問い合わせ</a>ください。</p>
+				<h2>新規登録</h2>
 				<div class="shinki_toroku">
 					<table>
 						<tr class="kaiin">
@@ -75,7 +75,7 @@
 					<input type="hidden" name="sel_chiiki" id="sel_chiiki" value="<?php echo $sel_chiiki; ?>">
 					<input type="hidden" name="pass" id="pass" value="<?php echo $pass; ?>">
 					<div class="kihon_joho">
-						<h3>基本情報</h3>
+						<h2>基本情報</h2>
 						<table>
 							<tr class="name">
 								<th><span class="required">必須</span>氏名</th>
@@ -172,7 +172,7 @@
 							<tr class="gender">
 								<th><span class="required">必須</span>性別</th>
 								<td>
-									<input id="gender_1" type="radio" name="gender" value="1"><label for="gender_1">男性</label>
+									<input id="gender_1" type="radio" name="gender" value="1"><label for="gender_1">男性</label><br>
 									<input id="gender_2" type="radio" name="gender" value="2"><label for="gender_2">女性</label>
 									<ul class="error_ul">
 										<li class="error" id="err_gender"></li>
@@ -243,7 +243,7 @@
 									</ul>
 									<p class="mt_1">メール受信希望のメールアドレス</p>
 									<input id="mail_1" type="radio" name="mail" value="1">
-									<label for="mail_1">メールアドレス_1</label><br class="sp_bl">
+									<label for="mail_1">メールアドレス_1</label><br class="sp_bl"><br>
 									<input id="mail_2" type="radio" name="mail" value="2">
 									<label for="mail_2">メールアドレス_2</label>
 									<ul class="error_ul">
@@ -255,7 +255,7 @@
 								<th><span class="required">必須</span>メルマガ配信の希望</th>
 								<td>
 									<input id="merumaga_1" type="radio" name="merumaga" value="1">
-									<label for="merumaga_1">希望する</label>
+									<label for="merumaga_1">希望する</label><br>
 									<input id="merumaga_2" type="radio" name="merumaga" value="2">
 									<label for="merumaga_2">希望しない</label>
 									<ul class="error_ul">
@@ -281,12 +281,12 @@
 					</div>
 
 					<div class="oshirase">
-						<h3>お知らせ／連絡方法／アンケート</h3>
+						<h2>お知らせ／連絡方法／アンケート</h2>
 						<table>
 							<tr>
 								<th><span class="required">必須</span>連絡方法の希望</th>
 								<td>
-									<input id="hoho_1" type="radio" name="hoho" value="1"><label for="hoho_1">メールでお知らせ</label>
+									<input id="hoho_1" type="radio" name="hoho" value="1"><label for="hoho_1">メールでお知らせ</label><br>
 									<input id="hoho_2" type="radio" name="hoho" value="2"><label for="hoho_2">郵便でお知らせ</label>
 									<ul class="error_ul">
 										<li class="error" id="err_renraku_hoho"></li>
@@ -297,7 +297,7 @@
 					</div>
 				</form>
 				
-				<h3>定款・規約・規程</h3>
+				<h2>定款・規約・規程</h2>
 				<p class="teikan_text">以下の「定款」「会員規約」「会員倫理規程」「個人情報保護規程」に同意したうえでのご入会をお願い致します。</p>
 				<div class="teikan_wrap">
 					<div class="teikan">

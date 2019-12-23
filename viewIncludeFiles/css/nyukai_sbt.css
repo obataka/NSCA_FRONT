@@ -1,8 +1,8 @@
-.mh_c {
-    min-height: calc(100vh - 182px);
-}
 .wrap {
-    padding-top: 20px;
+    padding-top: 40px;
+}
+.mh_c {
+    min-height: calc(100vh - 125px);
 }
 .button {
     margin: 20px auto;
@@ -30,8 +30,9 @@
 		margin: 30px auto 10px auto;
 	}
 	.riyo,
-	.NSCA {
-		margin-bottom: 30px;
+	.NSCA, 
+	.gakusei {
+		margin-bottom: 80px;
 	}
 }
 @media screen and (max-width: 480px){

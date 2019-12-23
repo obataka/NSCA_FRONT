@@ -27,7 +27,7 @@
             <div class="content_wrap mh_c">
                 <div class="content">
                     <div class="login_img">
-                        <img src="../../viewIncludeFiles/image/Logo-login.jpg">
+                        <img src="../../viewIncludeFiles/image/NSCA_Japan_rev.png">
                     </div>
                     
                     <input type="text" placeholder="ログインID" name="login_id" id="login_id" maxlength="256">

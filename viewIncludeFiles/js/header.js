@@ -1,7 +1,7 @@
 $(function(){
 
 	var header_html = '<div class="logo_img clearfix">'
-	+	'<h1><img src="../../viewIncludeFiles/image/NSCA_Japan_rev.png"></h1>'
+	+	'<p class="logo"><img src="../../viewIncludeFiles/image/NSCA_Japan_rev.png"></p>'
 	+	'<ul class="dropdown sp_none">'
 	+		'<li><a href="#" class="underline"><i class="fas fa-home"></i></a></li>'
 	+		'<li><span class="active">試験<i class="fas fa-angle-down fa-fw"></i></span>'

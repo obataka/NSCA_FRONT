@@ -27,11 +27,14 @@
     <body>
 <!--	<header id="header">-->
 	<header class="header_logo">
-		<img src="../../viewIncludeFiles/image/NSCA_Japan_rev.png" alt="ロゴ">
+		<div>
+			<img src="../../viewIncludeFiles/image/NSCA_Japan_rev.png" alt="ロゴ">
+		</div>
 	</header>
 		<div class="wrap mh_c">
-			<h2>入会申込</h2>
+			
 			<div class="content_wrap">
+				<h1>新規登録 会員種別選択</h1>
 				<div class="spb_arrows">
 					<ul class="nav nav-tabs step-anchor">
 						<li class="active"><span><small>会員種別選択</small></span></li>
@@ -40,11 +43,10 @@
 						<li><span><small>完了</small></span></li>
 					</ul>
 				</div>
-				<p class="h2_text">テキストテキストテキストテキストテキストテキスト電話またはメールにて<a href="https://www.nsca-japan.or.jp/06_qanda/top.html#contact" class="td_under" target="_blank">お問い合わせ</a>ください。</p>
-				<h3>新規登録　会員種別選択</h3>
-					<ul class="error_ul">
-						<li class="error" id="err_message"></li>
-					</ul>
+				<p class="top_text">テキストテキストテキストテキストテキストテキスト電話またはメールにて<a href="https://www.nsca-japan.or.jp/06_qanda/top.html#contact" class="td_under" target="_blank">お問い合わせ</a>ください。</p>
+				<ul class="error_ul">
+					<li class="error" id="err_message"></li>
+				</ul>
 				<div class="kaiin_sbt">
 					<form action="?" method="POST" autocomplete="off" id="registSbtSleForm" name="registSbtSleForm">
 						<div class="riyo">

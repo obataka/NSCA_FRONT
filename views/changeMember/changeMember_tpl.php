@@ -20,7 +20,13 @@
 	<script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/js/header.js"></script>
-	<script type="text/javascript" src="../../viewIncludeFiles/js/changeMember.js"></script>
+	<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
+	<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
+	<script>
+		$(function() {
+			$("select").wrap("<span class='select_wrap'></span>");
+		});
+	</script>
 </head>
 
 <body>
@@ -312,12 +318,12 @@
 						<tr class="pass">
 							<th><span class="required">必須</span>パスワード</th>
 							<td>
-								<input id="pass_1" class="w_50" type="password" name="pass_1" value="">
+								<input id="pass_1" class="w_80" type="password" name="pass_1" value="">
 								<ul class="error_ul">
 									<li class="error" id="err_pass_1"></li>
 								</ul>
 								<p class="mt_1">確認用</p>
-								<input id="pass_2" class="w_50" type="password" name="" value="">
+								<input id="pass_2" class="w_80" type="password" name="" value="">
 								<ul class="error_ul">
 									<li class="error" id="err_pass_2"></li>
 								</ul>

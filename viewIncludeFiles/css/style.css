@@ -26,10 +26,10 @@ li {
 }
 a {
 	text-decoration: none;
-    color: #333;
+    color: #005699;
 }
 a:hover {
-    color: #005699!important;
+    border-bottom: 1px solid #005699;
 }
 input {
 	font-family: inherit;
@@ -66,42 +66,42 @@ header {
 	min-height: calc(100vh - 51px);
 }
 .wrap {
-    padding: 145px 10px 60px 10px;
+    padding: 165px 10px 60px 10px;
     max-width: 1200px;
     margin: 0 auto;
 }
-h2 {
-    font-weight: bold;
-    font-size: 30px;
-    padding: 60px 0 20px;
-    text-align: center;
-    letter-spacing: 4px;
+h1 {
+    margin: 0;
+    font-size: 24px;
+    border-bottom: solid 3px #005699;
+    padding-bottom: 5px;
+    margin-bottom: 40px;
     position: relative;
-    z-index: 1;
+    font-weight: normal;
+    line-height: 20px;
+    padding-left: 2px;
 }
-h2:before {
-    border-bottom: 10px solid #005699;
-    display: inline-block;
+h1:before {
+    content: '';
+    width: 100%;
     height: 1px;
-    content: "";
+    background-color: #669fcc;
+    display: block;
     position: absolute;
-    top: 84px;
-    left: 50%;
-    transform: translate(-50%, 50%);
-    z-index: -1;
-    opacity: 0.5;
+    left: 0;
+    bottom: -6px;
 }
-.h2_text {
-    margin-top: 40px;
+.top_text {
+    margin: 35px 0 10px 0;
 }
-h3 {
+h2 {
     padding: 8px 15px;
     background: #005699;
     color: #fff;
     margin-bottom: 0;
-    margin-top: 20px;
     font-size: 17px;
     line-height: 27px;
+	border-radius: 3px;
 }
 .text_center {
 	text-align: center
@@ -184,9 +184,7 @@ input[type="checkbox"]:checked + .checkbox::after {
     border-bottom: 3px solid #005699;
     border-right: 3px solid #005699;
 }
-td label:last-child {
-    margin-right: 0;
-}
+
 
 /*radio*/
 input[type="radio"] {
@@ -198,7 +196,6 @@ td .radio {
 input[type="radio"] + label {
     padding-left: 20px;
     position:relative;
-    margin-right: 4em;
 }
 input[type="radio"] + label::before {
     content: "";
@@ -237,13 +234,13 @@ input[type="radio"]:checked + label::after {
 .button {
 	height: 50px;
     width: 300px;
-    border: 1px solid #ff7200;
+    border: 1px solid #CCC566;
     color: #fff;
     line-height: 50px;
     font-weight: bold;
     display: block;
     text-align: center;
-    background: #ff7200;
+    background: #CCC566;
     margin: 0 auto;
     font-size: 18px;
 	transition: 0.8s;
@@ -251,7 +248,7 @@ input[type="radio"]:checked + label::after {
 	border-radius: 3px;
 }
 .button:hover {
-    color: #ff7200;
+    color: #CCC566;
 	cursor: pointer;
 	background: #fff;
 }
@@ -280,23 +277,40 @@ input[type="radio"]:checked + label::after {
 
 /*table*/
 table {
-    width: 100%;
+	width: 100%;
     background: #fff;
     padding: 0 30px;
+    border-collapse: collapse;
+    border-width: 10px;
 }
-tr {
-    display: block;
-    border-bottom: 1px solid #005699;
-    margin: 0;
-    width: 100%;
-    padding: 40px 0;
+tr:first-of-type:after {
+  display: none;
+}
+form tr:after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    width: calc(1140px - 60px);
+    display: inline-block;
+    height: 1px;/*線の太さ*/
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);/*位置調整*/
+    background-color: #005699;/*線の色*/
+}
+tr:last-child {
+    border-bottom: none;
 }
 th {
-    width: 300px;
+	width: 35%;
     text-align: left;
+    padding-left: 30px;
 }
 td {
-    width: 60%;
+	width: 65%;
+    padding: 40px 30px 40px 0;
+}
+td label:last-child {
+    margin-right: 0;
 }
 textarea {
     width: 100%;
@@ -354,7 +368,7 @@ select {
 	background: #fff;
 	padding: 5px;
 	font-family: inherit;
-	width: 17%;
+	width: 20%;
     height: 35px;
     line-height: 23px;
 	position: relative;
@@ -443,7 +457,7 @@ input[type="file"] {
 }
 .name div {
     margin-right: 3em;
-    width: 46%!important;
+    width: 44%!important;
 }
 table div:last-child {
     margin-right: 0;
@@ -481,7 +495,7 @@ input[type="number"] {
 .teikan_wrap .title {
     font-size: 14px;
     text-align: center;
-    color: #005699;
+    color: #669FCC;
     font-weight: bold;
     margin-bottom: 10px;
 }
@@ -516,18 +530,19 @@ input[type="number"] {
     margin-bottom: 1em;
 }
 .sbt_bottom {
-    padding: 20px 15px;
+	padding: 20px 15px;
+    background: #fff;
+    border: 1px solid #005699;
+    border-top: none;
+    border-radius: 0 0 3px 3px;
 }
 .riyo,
 .NSCA,
 .gakusei {
-    border: 1px solid #005699;
     width: 30%;
-    margin-bottom: 20px;
 }
 .kaiin_sbt {
     width: 100%;
-    margin-top: 50px;
 }
 .kaiin_sbt form {
 	display: flex;
@@ -539,6 +554,7 @@ input[type="number"] {
     color: #fff;
     text-align: center;
     height: 145px;
+    border-radius: 3px 3px 0 0;
 }
 .kaihi {
     background: #fff;
@@ -546,6 +562,7 @@ input[type="number"] {
     padding: 15px;
     width: 88%;
     margin: 0 auto;
+	border-radius: 3px;
 }
 .sbt_top p:first-child {
     padding: 20px;
@@ -589,17 +606,9 @@ input[type="number"] {
 .oshirase {
     margin-bottom: 150px;
 }
-.shinki_toroku p {
-    margin-bottom: 1em;
-}
-tr:last-child {
-    border-bottom: none;
-}
-.shinki_toroku .any {
-    margin-left: 5em;
-}
+
 .any {
-    margin-left: 4em;
+    margin-left: 58px;
 }
 .content_wrap {
     padding: 0px 20px;
@@ -699,7 +708,7 @@ footer p {
     position: relative;
     display: block;
     float: left;
-    border-radius: 0;
+    border-radius: 3px;
     outline-style: none;
     background: #ddd;
     width:  25%;
@@ -737,13 +746,13 @@ footer p {
     padding-left: 4%;
 }
 .spb_arrows>ul.step-anchor>li.active>span {
-	border-color: #ff7200!important;
+	border-color: #669FCC!important;
 	color: #fff!important;
-	background: #ff7200!important;
+	background: #669FCC!important;
 	width: 25%;
 }
 .spb_arrows>ul.step-anchor>li.active>span:after {
-  border-left: 30px solid #ff7200!important
+  border-left: 30px solid #669FCC!important
 }
 .spb_arrows>ul.step-anchor>li.disabled>span {
   color: #ddd!important;
@@ -903,6 +912,12 @@ button[type="submit"]:disabled:hover::after {
     background: #b1b1b1;
 }
 
+@media screen and (max-width:1200px) {
+  form tr:after {
+    width: calc(100% - 120px);/*線の長さ*/
+  }
+}
+
 @media screen and (max-width: 851px){
 	.sp_mt_1 {
 		margin-top: 1em;
@@ -928,25 +943,17 @@ button[type="submit"]:disabled:hover::after {
 	.w_70 {
         width: 100%!important;
     }
-	.shinki_toroku {
-		margin-top: 16px;
-	}
-	h3 {
-		padding: 0;
-		background: inherit;
-		color: #333;
-		padding-left: 0;
-	}
-	h3:before {
-		content: "";
-		border: 3px solid #005699;
-		margin-right: 5px;
-	}
 	.back {
 		margin-bottom: 20px!important;
 	}
     .required{
-        background: #fff;
+		background: #fff;
+		margin-right: 0.5em;
+		padding: 3px 5px;
+		font-size: 11px;
+		display: inline-block;
+		height: 18px;
+		line-height: 10px;
     }
     .chiiki .checkbox {
         width: 7em;
@@ -955,6 +962,9 @@ button[type="submit"]:disabled:hover::after {
         display: block;
 		margin-top: 20px;
     }
+	.name input {
+    width: 252px!important;
+}
 	select {
 		width: 20%;
 	}
@@ -969,28 +979,35 @@ button[type="submit"]:disabled:hover::after {
         margin-bottom: 35px;
         width: 100%;
     }
-	table {
-		padding: 0 10px;
-}
+	form tr:after {
+		display: none;
+	}
+	tr {
+		padding: 0;
+		margin-bottom: 60px;
+		font-size: 16px;
+        border: none;
+	}
+	tr:last-child {
+		margin-bottom: 0;
+	}
     td {
         width: 100%;
         display: block;
-        padding: 0 1em;
+        padding: 0 30px;
         font-size: 12px;
 		line-height: 25px;
+		margin: 15px 0 50px;
     }
+	th:before {
+		content: "";
+		border: 3px solid #005699;
+		margin-right: 10px;
+	}
     th {
-        display: block;
-        width: 100%;
-        padding: 0.5em;
-        margin-bottom: 1em;
-        background: #005699;
-        color: #fff;
-        height: 40px;
-		line-height: 24px;
-    }
-    .kaiin label {
-        margin-top: 1em
+		display: block;
+		width: 100%;
+		padding: 30px 20px 0px 20px;
     }
     .kaiin th p {
         background: none;
@@ -1005,10 +1022,6 @@ button[type="submit"]:disabled:hover::after {
     .kihon_joho td div:first-child, 
     .oshirase td div:first-child {
         margin-top: 0!important;
-    }
-    tr {
-        font-size: 16px;
-        border: none;
     }
     .any {
         display: none;
@@ -1052,7 +1065,7 @@ button[type="submit"]:disabled:hover::after {
 	
 	/*ステッププログレス*/
     .spb_arrows>ul.step-anchor>li.active>span:after {
-        border-left: 20px solid #ff7200!important;
+        border-left: 20px solid #669FCC!important;
     }
     .spb_arrows>ul.step-anchor>li>span:after {
         border-left: 20px solid #ddd;
@@ -1092,7 +1105,6 @@ button[type="submit"]:disabled:hover::after {
 	}
 }
 @media screen and (max-width: 480px){
-
 	.w_50,
 	.w_80 {
         width: 100%!important;
@@ -1109,9 +1121,6 @@ button[type="submit"]:disabled:hover::after {
 		border: none;
 		width: 100%;
     }
-    input {
-		font-size: 16px;
-    }
     .wrap {
 		padding: 20px 10px 60px;
 		width: 100%;
@@ -1122,6 +1131,12 @@ button[type="submit"]:disabled:hover::after {
     table {
 		font-size: 10px!important;
     }
+	th {
+		padding-left: 10px;
+	}
+	td {
+		padding: 0 10px;
+	}
     table p {
 		font-size: 12px;
     }
@@ -1161,6 +1176,9 @@ button[type="submit"]:disabled:hover::after {
         margin-bottom: 0;
         font-size: 12px;
     }
+	.teikan_wrap {
+		padding: 10px;
+	}
     .teikan_text {
         font-size: 12px;
     }
@@ -1170,19 +1188,23 @@ button[type="submit"]:disabled:hover::after {
     .img_2 img:first-child {
         width: 100%;
     }
-	
-	.teikan, .kiyaku, .kitei {
-		margin: 30px 10px 40px;
-	}
 
 	/*ステッププログレス*/
+	.spb_arrows>ul.step-anchor {
+		border-radius: 3px;
+	}
 	.step-anchor li span {
         width: 100%!important;
         text-align: center;
     }
+
     .spb_arrows>ul.step-anchor>li>span:before {
         content: none;
     }
+	.spb_arrows>ul.step-anchor>li>span {
+		padding-left: 0!important;
+		border-radius: 0;
+	}
     .spb_arrows>ul.step-anchor>li>span:after {
 		left: 50%;
 		border-top: 15px solid transparent;
@@ -1192,7 +1214,7 @@ button[type="submit"]:disabled:hover::after {
 		transform: translateX(-50%) translateY(-50%) rotateZ(90deg);
     }
     .spb_arrows>ul.step-anchor>li.active>span:after {
-            border-left: 15px solid #ff7200!important;
+            border-left: 15px solid #669FCC!important;
 			top: 225%;
 			transform: translateX(-50%) translateY(-50%) rotateZ(90deg);
     }
@@ -1202,9 +1224,7 @@ button[type="submit"]:disabled:hover::after {
 	.spb_arrows.height_62>ul.step-anchor>li>span {
 		height: auto;
 	}
-	.spb_arrows>ul.step-anchor>li>span {
-		padding-left: 0!important;
-	}
+	
 	
 	/*カレンダー*/
 	.ui-datepicker-inline {

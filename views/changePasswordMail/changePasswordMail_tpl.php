@@ -30,7 +30,7 @@
 
     </head>
     <body>
-	<!--<header id="header">-->
+
 	<header class="header_logo">
 		<img src="../../viewIncludeFiles/image/NSCA_Japan_rev.png" alt="ロゴ">
 	</header>
