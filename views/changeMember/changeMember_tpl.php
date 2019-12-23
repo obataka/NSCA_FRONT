@@ -14,19 +14,13 @@
 	<link rel="stylesheet" href="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.css">
 	<link rel="stylesheet" href="../../viewIncludeFiles/css/style.css" />
 	<link rel="stylesheet" href="../../viewIncludeFiles/css/toroku_syusei.css">
-	<link rel="stylesheet" href="../../viewIncludeFiles/css/header.css">
 
 	<script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.1.1.min.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
-	<script type="text/javascript" src="../../viewIncludeFiles/js/header.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
-	<script>
-		$(function() {
-			$("select").wrap("<span class='select_wrap'></span>");
-		});
-	</script>
+	<script type="text/javascript" src="../../viewIncludeFiles/js/changeMember.js"></script>
 </head>
 
 <body>
@@ -45,7 +39,7 @@
 			</div>
 			<form action="../changeConfirmMember/changeConfirmMember_tpl.php" method="post">
 				<input type="hidden" name="kaiinType" id="kaiinType" value="<?php echo $wk_kaiinType ?>">
-				<input type="hidden" name="kaiinSbt" id="kaiinSbt" value="<?php echo $wk_kaiinSbt ?>">
+				<input type="hidden" name="kaiinSbt" id="kaiinSbt" value="<?php echo $kaiinSbt ?>">
 				<input type="hidden" name="kaihi" id="kaihi" value="<?php echo $wk_kaihi ?>">
 				<input type="hidden" name="sel_option" id="sel_option" value="<?php echo $option; ?>">
 				<input type="hidden" name="wk_sel_option" id="wk_sel_option" value="<?php echo $wk_sel_option; ?>">
@@ -252,7 +246,7 @@
 							</td>
 						</tr>
 						<tr>
-							<th><span class="required">必須</span>住所(ヨミ)</th>
+							<th>住所(ヨミ)</th>
 							<td>
 								<p>市区町村／番地</p><input id="address_yomi_shiku" class="w_80" type="text" name="address_yomi_shiku" value="<?php echo $address_yomi_shiku; ?>">
 								<ul class="error_ul">
@@ -318,12 +312,12 @@
 						<tr class="pass">
 							<th><span class="required">必須</span>パスワード</th>
 							<td>
-								<input id="pass_1" class="w_80" type="password" name="pass_1" value="">
+								<input id="pass_1" class="w_50" type="password" name="pass_1" value="">
 								<ul class="error_ul">
 									<li class="error" id="err_pass_1"></li>
 								</ul>
 								<p class="mt_1">確認用</p>
-								<input id="pass_2" class="w_80" type="password" name="" value="">
+								<input id="pass_2" class="w_50" type="password" name="" value="">
 								<ul class="error_ul">
 									<li class="error" id="err_pass_2"></li>
 								</ul>

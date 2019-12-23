@@ -890,8 +890,6 @@
             $("#err_address_todohuken").html("");
             $("#err_address_shiku").html("");
             $("#err_address_tatemono").html("");
-            $("#err_address_yomi_shiku").html("");
-            $("#err_address_yomi_tatemono").html("");
             $("#err_tel").html("");
             $("#err_keitai_tel").html("");
             $("#err_fax").html("");
@@ -1180,28 +1178,16 @@
             } else {
                 $('input[name="nagareyama"]').val = 0;
             }
-            //市区町村/番地(ヨミ)未入力チェック
-            if ($("#address_yomi_shiku").val() == "") {
-                if (wk_err_msg2 == "") {
-                    wk_err_msg2 == "";
-                    wk_err_msg2 = "市区町村/番地(ヨミ)を入力してください。";
-                    $("#err_address_yomi_shiku").html(wk_err_msg2);
-                    //エラー箇所にフォーカスを当てる
-                    if (wk_focus_done == 0) {
-                        $("#address_yomi_shiku").focus();
-                        wk_focus_done = 1;
-                    }
-                }
-            }
-            //市区町村/番地(ヨミ)全角カナチェック
+    
+            //市区町村/番地(ヨミ)カナチェック
             if ($("#address_yomi_shiku").val() !== "") {
                 if (wk_err_msg2 == "") {
                     var sei = $("#address_yomi_shiku").val();
-                    var re = /^[ァ-ンヴー]*$/;
+                    var re = /^[ァ-ンヴー|ｧ-ﾝﾞﾟ\-|0-9]*$/;
                     var sei = sei.match(re);
                     if (!sei) {
                         wk_err_msg2 == "";
-                        wk_err_msg2 = "市区町村/番地(ヨミ)は全角カナで入力してください。";
+                        wk_err_msg2 = "市区町村/番地(ヨミ)はカナで入力してください。";
                         $("#err_address_yomi_shiku").html(wk_err_msg2);
                         //エラー箇所にフォーカスを当てる
                         if (wk_focus_done == 0) {
@@ -1211,28 +1197,16 @@
                     }
                 }
             }
-            //建物/部屋番号(ヨミ)未入力チェック
-            if ($("#address_yomi_tatemono").val() == "") {
-                if (wk_err_msg3 == "") {
-                    wk_err_msg3 == "";
-                    wk_err_msg3 = "建物/部屋番号(ヨミ)を入力してください。";
-                    $("#err_address_yomi_tatemono").html(wk_err_msg3);
-                    //エラー箇所にフォーカスを当てる
-                    if (wk_focus_done == 0) {
-                        $("#address_yomi_tatemono").focus();
-                        wk_focus_done = 1;
-                    }
-                }
-            }
-            //建物/部屋番号(ヨミ)全角カナチェック
+            
+            //建物/部屋番号(ヨミ)カナチェック
             if ($("#address_yomi_tatemono").val() !== "") {
                 if (wk_err_msg3 == "") {
                     var sei = $("#address_yomi_tatemono").val();
-                    var re = /^[ァ-ンヴー]*$/;
+                    var re = /^[ァ-ンヴー|ｧ-ﾝﾞﾟ\-|0-9]*$/;
                     var sei = sei.match(re);
                     if (!sei) {
                         wk_err_msg3 == "";
-                        wk_err_msg3 = "建物/部屋番号(ヨミ)は全角カナで入力してください。";
+                        wk_err_msg3 = "建物/部屋番号(ヨミ)はカナで入力してください。";
                         $("#err_address_yomi_tatemono").html(wk_err_msg3);
                         //エラー箇所にフォーカスを当てる
                         if (wk_focus_done == 0) {

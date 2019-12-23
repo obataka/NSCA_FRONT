@@ -1,6 +1,64 @@
 (function ($) {
     $(document).ready(function () {
         /****************
+       * //セレクトボックスの初期表示処理の準備
+       ****************/
+        //値を入れる変数の宣言
+        var getTbkaiinJoho = [];
+        var getTbkaiinSentaku_shikaku = [];
+        var getTbkaiinSentaku_chiiki = [];
+        var getTbkaiinSentaku_bunya = [];
+
+        //NSCA以外の認定資格
+        jQuery.ajax({
+            url: '../../classes/getTbkaiinSentaku_shikaku.php',
+            type: "POST",
+            data: { "kaiin_shikaku": getTbkaiinSentaku_shikaku},
+            success: function (rtn) {
+                getTbkaiinSentaku_shikaku = JSON.parse(rtn);
+                console.log(getTbkaiinSentaku_shikaku);
+            },
+            fail: function (rtn) {
+                return false;
+            },
+            error: function (rtn) {
+                return false;
+            }
+        });
+        //興味のある地域
+        jQuery.ajax({
+            url: '../../classes/getTbkaiinSentaku_chiiki.php',
+            type: "POST",
+            data: { "kaiin_chiiki": getTbkaiinSentaku_chiiki},
+            success: function (rtn) {
+                getTbkaiinSentaku_chiiki = JSON.parse(rtn);
+                console.log(getTbkaiinSentaku_chiiki);
+            },
+            fail: function (rtn) {
+                return false;
+            },
+            error: function (rtn) {
+                return false;
+            }
+        });
+        //興味のある分野
+        jQuery.ajax({
+            url: '../../classes/getTbkaiinSentaku_bunya.php',
+            type: "POST",
+            data: { "kaiin_bunya": getTbkaiinSentaku_bunya},
+            success: function (rtn) {
+                getTbkaiinSentaku_bunya = JSON.parse(rtn);
+                console.log(getTbkaiinSentaku_bunya);
+            },
+            fail: function (rtn) {
+                return false;
+
+            },
+            error: function (rtn) {
+                return false;
+            }
+        });
+        /****************
         * //都道府県取得
         ****************/
         jQuery.ajax({
@@ -14,22 +72,8 @@
                     getTodofukenList = JSON.parse(rtn);
                     $.each(getTodofukenList, function (i, value) {
                         $('#address_todohuken').append('<option name="' + value[2] + '" value="' + value[0] + '">' + value[1] + '</option>');
-                        $('#office_todohuken').append('<option  name="' + value[2] + '" value="' + value[0] + '">' + value[1] + '</option>');
+                        $('#office_todohuken').append('<option name="' + value[2] + '" value="' + value[0] + '">' + value[1] + '</option>');
                     });
-
-                    // 修正で入力画面に戻ってきた時、都道府県のセレクトボックスの初期表示処理
-                    var test1 = $('#sel_math').val();
-                    // 選択済みの都道府県がある場合
-                    if (test1 != "") {
-                        $('#address_todohuken').val(test1);
-                    }
-
-                    // 修正で入力画面に戻ってきた時、所属先都道府県のセレクトボックスの初期表示処理
-                    var test2 = $('#sel_office_math').val();
-                    // 選択済みの都道府県がある場合
-                    if (test2 != "") {
-                        $('#office_todohuken').val(test2);
-                    }
                 }
             },
             fail: function (rtn) {
@@ -56,25 +100,6 @@
                         $('#job_2').append('<option value="' + value[0] + '">' + value[1] + '</option>');
                         $('#job_3').append('<option value="' + value[0] + '">' + value[1] + '</option>');
                     });
-
-                    // 修正で入力画面に戻ってきた時、職業のセレクトボックスの初期表示処理
-                    var test1 = $('#sel_shoku_1').val();
-                    // 選択済みの職業がある場合
-                    if (test1 != "") {
-                        $('#job_1').val(test1);
-                    }
-
-                    var test2 = $('#sel_shoku_2').val();
-                    // 選択済みの職業がある場合
-                    if (test2 != "") {
-                        $('#job_2').val(test2);
-                    }
-
-                    var test3 = $('#sel_shoku_3').val();
-                    // 選択済みの職業がある場合
-                    if (test3 != "") {
-                        $('#job_3').val(test3);
-                    }
                 }
             },
             fail: function (rtn) {
@@ -107,7 +132,7 @@
 
                     // NSCA以外の認定資格：確認画面からの戻りなどで、すでに選択済みの値がある場合は選択状態にするための処理
                     var wk_sel_shikaku_1 = $('#wk_sel_shikaku').val();
-                    if (wk_sel_shikaku_1 != "") {
+                    if (getTbkaiinSentaku_shikaku != "") {
                         // 選択されたNSCAの以外の認定資格がある場合
                         // 文字列に存在する半角スペースを除去してから
                         // 「,」で分割し、配列に格納
@@ -208,21 +233,33 @@
                 return false;
             }
         });
+        (function () {
 
+        });
         /****************
         * //会員情報データ取得
         ****************/
         jQuery.ajax({
             url: '../../classes/getTbkaiinJoho.php',
+            type: "POST",
+            data: { "kaiin_Joho": getTbkaiinJoho },
             success: function (rtn) {
                 // rtn = 0 の場合は、該当なし
                 if (rtn == 0) {
                     return false;
                 } else {
-                    
                     //※正常に情報を取得できた時入力フォームに表示する
                     getTbkaiinJoho = JSON.parse(rtn);
-                    $('#kaiinType').val(getTbkaiinJoho[4]);
+                    console.log(getTbkaiinJoho);
+                    // $('#rtn_arr').val() = getTbkaiinJoho;
+                    // $('#kaiinSbt').val(getTbkaiinJoho[4]);
+                    // if ($('#kaiinSbt').val() == 1) {
+                    //     $('#kaiinType').val() = "NSCA正会員";
+                    // } else if ($('#kaiinSbt').val() == 2) {
+                    //     $('#kaiinType').val() = "学生会員";
+                    // } else {
+                    //     $('#kaiinType').val() = "";
+                    // }
 
                     //英文オプションのチェック
                     if (getTbkaiinJoho[134] == "") {
@@ -327,8 +364,10 @@
                     $('#job_2').val(getTbkaiinJoho[32]);
                     $('#job_3').val(getTbkaiinJoho[33]);
                     $('#office').val(getTbkaiinJoho[34]);
-                    $('#office_yubin_nb_1').val(getTbkaiinJoho[36].slice(0, 3));
-                    $('#office_yubin_nb_2').val(getTbkaiinJoho[36].slice(3, 7));
+                    if (getTbkaiinJoho[36] != null) {
+                        $('#office_yubin_nb_1').val(getTbkaiinJoho[36].slice(0, 3));
+                        $('#office_yubin_nb_2').val(getTbkaiinJoho[36].slice(3, 7));
+                    };
                     $('#office_todohuken').val(getTbkaiinJoho[38]);
                     $('#office_shiku').val(getTbkaiinJoho[39]);
                     $('#office_tatemono').val(getTbkaiinJoho[40]);
@@ -402,6 +441,7 @@
                     } else {
                         $('input:radio[name="qa"]').val(["0"]);
                     }
+                    //希望するが選ばれていたらvalueに1を設定
                     if ($("input:radio[id='qa_1']:checked").val()) {
                         var wa = $("input:radio[id='qa_1']:checked").val();
                         $("#wk_sel_qa").val(wa);
@@ -416,7 +456,6 @@
                         $('#sel_qa').val(test2);
                     }
                 }
-
             },
             fail: function (rtn) {
                 return false;
@@ -426,39 +465,6 @@
             }
         });
 
-
-        // /***************************************************************
-        //  * 選択済みのコンボ、ラジオ、チェックボックス初期表示処理
-        //  ***************************************************************/
-        // //月日セレクトボックス
-        // var sel_month = $('#sel_month').val();
-        // if (sel_month != "") {
-        //     $('#month').val(sel_month);
-        // }
-        // var sel_day = $('#sel_day').val();
-        // if (sel_day != "") {
-        //     $('#day').val(sel_day);
-        // }
-        // // 性別ラジオボタン
-        // var wk_sel_gender = $('#wk_sel_gender').val();
-        // if (wk_sel_gender != "") {
-        //     $('input:radio[name="gender"]').val([wk_sel_gender]);
-        // }
-        // //メール受信希望のメールアドレスボタン
-        // var wk_sel_mail = $('#mail').val();
-        // if (wk_sel_mail != "") {
-        //     $('input:radio[name="mail"]').val([wk_sel_mail]);
-        // }
-        // //メルマガ受信希望ボタン
-        // var wk_sel_merumaga = $('#merumaga').val();
-        // if (wk_sel_merumaga != "") {
-        //     $('input:radio[name="merumaga"]').val([wk_sel_merumaga]);
-        // }
-        // //連絡方法希望ボタン
-        // var wk_sel_hoho = $('#hoho').val();
-        // if (wk_sel_hoho != "") {
-        //     $('input:radio[name="hoho"]').val([wk_sel_hoho]);
-        // }
         /********************************
          * 住所検索ボタン押下処理
          ********************************/
@@ -1541,28 +1547,16 @@
             } else {
                 $('input[name="nagareyama"]').val = 0;
             }
-            //市区町村/番地(ヨミ)未入力チェック
-            if ($("#address_yomi_shiku").val() == "") {
-                if (wk_err_msg2 == "") {
-                    wk_err_msg2 == "";
-                    wk_err_msg2 = "市区町村/番地(ヨミ)を入力してください。";
-                    $("#err_address_yomi_shiku").html(wk_err_msg2);
-                    //エラー箇所にフォーカスを当てる
-                    if (wk_focus_done == 0) {
-                        $("#address_yomi_shiku").focus();
-                        wk_focus_done = 1;
-                    }
-                }
-            }
-            //市区町村/番地(ヨミ)全角カナチェック
+
+            //市区町村/番地(ヨミ)カナチェック
             if ($("#address_yomi_shiku").val() !== "") {
                 if (wk_err_msg2 == "") {
                     var sei = $("#address_yomi_shiku").val();
-                    var re = /^[ァ-ンヴー]*$/;
+                    var re = /^[ァ-ンヴー|ｧ-ﾝﾞﾟ\-|0-9]*$/;
                     var sei = sei.match(re);
                     if (!sei) {
                         wk_err_msg2 == "";
-                        wk_err_msg2 = "市区町村/番地(ヨミ)は全角カナで入力してください。";
+                        wk_err_msg2 = "市区町村/番地(ヨミ)はカナで入力してください。";
                         $("#err_address_yomi_shiku").html(wk_err_msg2);
                         //エラー箇所にフォーカスを当てる
                         if (wk_focus_done == 0) {
@@ -1572,28 +1566,16 @@
                     }
                 }
             }
-            //建物/部屋番号(ヨミ)未入力チェック
-            if ($("#address_yomi_tatemono").val() == "") {
-                if (wk_err_msg3 == "") {
-                    wk_err_msg3 == "";
-                    wk_err_msg3 = "建物/部屋番号(ヨミ)を入力してください。";
-                    $("#err_address_yomi_tatemono").html(wk_err_msg3);
-                    //エラー箇所にフォーカスを当てる
-                    if (wk_focus_done == 0) {
-                        $("#address_yomi_tatemono").focus();
-                        wk_focus_done = 1;
-                    }
-                }
-            }
-            //建物/部屋番号(ヨミ)全角カナチェック
+
+            //建物/部屋番号(ヨミ)カナチェック
             if ($("#address_yomi_tatemono").val() !== "") {
                 if (wk_err_msg3 == "") {
                     var sei = $("#address_yomi_tatemono").val();
-                    var re = /^[ァ-ンヴー]*$/;
+                    var re = /^[ァ-ンヴー|ｧ-ﾝﾞﾟ\-|0-9]*$/;
                     var sei = sei.match(re);
                     if (!sei) {
                         wk_err_msg3 == "";
-                        wk_err_msg3 = "建物/部屋番号(ヨミ)は全角カナで入力してください。";
+                        wk_err_msg3 = "建物/部屋番号(ヨミ)はカナで入力してください。";
                         $("#err_address_yomi_tatemono").html(wk_err_msg3);
                         //エラー箇所にフォーカスを当てる
                         if (wk_focus_done == 0) {
