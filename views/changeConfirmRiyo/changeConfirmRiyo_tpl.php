@@ -37,8 +37,8 @@
 							<li><span><small>完了</small></span></li>
 						</ul>
 					</div>				
-					<div class="kihon_joho">
-						<form action="?" method="post" autocomplete="off" id="confirmForm">
+                                        <form action="?" method="post" autocomplete="off" id="confirmForm">
+                                            <div class="kihon_joho">
 							<input type="hidden" name="name_sei" id="name_sei" value="<?php echo $name_sei; ?>">
 							<input type="hidden" name="name_mei" id="name_mei" value="<?php echo $name_mei; ?>">
 							<input type="hidden" name="sei_kana_name" id="sei_kana_name" value="<?php echo $sei_kana_name; ?>">	
@@ -137,13 +137,9 @@
 									</td>
 								</tr>
 							</table>
-						</form>
-					</div>
-					
-					
+                                            </div>
 					<div class="oshirase">
 						<h3>お知らせ／連絡方法／アンケート</h3>
-						<form>
 							<table>
 								<tr>
 									<th><span class="required">必須</span>連絡方法の希望</th>
@@ -152,13 +148,12 @@
 									</td>
 								</tr>
 							</table>
-						</form>
 					</div>
 					<section class="btn_wrap">
-						<button id="return_button" class="button back" type="button" value="" onclick="location.href='#'"><span>内容を修正する</span></button>
-						<button id="next_button" class="button" type="submit" value="" onclick="location.href='#'"><span>次へ</span></button>
+						<button id="return_button" class="button back" type="button" value=""><span>内容を修正する</span></button>
+						<button id="next_button" class="button" type="submit" value=""><span>次へ</span></button>
 					</section>
-					
+                                    </form>
 				</div>
 			</div>
 		<footer id="footer">

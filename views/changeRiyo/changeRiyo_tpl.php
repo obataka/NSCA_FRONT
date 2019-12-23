@@ -263,8 +263,8 @@
 						</div>
 					</form>
 					<section class="btn_wrap">
-						<button class="button btn_gray" type="button" value="" onclick="location.href='#'">クリア</button>
-						<button id="next_button" class="button" type="submit" value="" onclick="location.href='#'">次へ</button>
+						<button class="button btn_gray" type="button" value="">クリア</button>
+						<button id="next_button" class="button" type="submit" value="">次へ</button>
 					</section>
 					
 				</div>

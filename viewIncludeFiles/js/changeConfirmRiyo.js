@@ -12,6 +12,8 @@
     * 次へボタン押下時にDBに修正入力した値をUPDATEする
     *******************************************/
      $("#next_button").click(function() {
+        console.log(130);
+        
         //UPDATE処理
         jQuery.ajax({
             url:  '../../classes/changeRiyoPost.php',
@@ -46,11 +48,13 @@
             success: function(rtn) {
                 // rtn = 0 の場合は、該当なし
                 if (rtn == 0) {
+                    console.log(02020202);
                     return false;
                 } else {
                     //登録成功の場合、登録完了メールを送信する 
                     // if ($("#mail").val() == 1) {
                          console.log(12345678);
+                        
                     //     jQuery.ajax({
                     //     url:  '../../classes/registCompleteMail.php',
                     //     type: 'POST',

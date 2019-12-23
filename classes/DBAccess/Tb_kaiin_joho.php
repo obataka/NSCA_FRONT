@@ -72,7 +72,6 @@ SQL;
         }
         return $row["resultCount"];
     }
-
     /**
      * 登録
      * @param array $param
@@ -351,6 +350,7 @@ SQL;
             ]);
             $db->commit();
         } catch (\Throwable $e) {
+            error_log(print_r($e, true). PHP_EOL, '3', 'error_log.txt');
             $db->rollBack();
             return FALSE;
         }
@@ -381,70 +381,80 @@ SQL;
     }
 
 
-//     public function updateRiyo($param)
-//     {
-//         // if (isset($_SESSION['kaiin_no'])) {
-//         //         $wk_kaiin_no = $_SESSION['kaiin_no'];
-//         // }
-//         $db = Db::getInstance();
-//         $db->beginTransaction();
-//         try {
- 
-//                 $sql = <<<SQL
-//                 UPDATE tb_kaiin_joho
-//                 SET
-//                       shimei_sei            = :shimei_sei
-//                     , shimei_mei            = :shimei_mei
-//                     , furigana_sei          = :furigana_sei
-//                     , furigana_mei          = :furigana_mei
-//                     , seinengappi           = :seinengappi
-//                     , seibetsu_kbn          = :seibetsu_kbn
-//                     , yubin_no              = :yubin_no
-//                     , ken_no                = :ken_no
-//                     , jusho_1               = :jusho_1
-//                     , jusho_2               = :jusho_2
-//                     , kana_jusho_1          = :kana_jusho_1
-//                     , kana_jusho_2          = :kana_jusho_2
-//                     , tel                   = :tel
-//                     , keitai_no             = :keitai_no
-//                     , email_1               = :email_1
-//                     , email_2               = :email_2
-//                     , nagareyama_shimin     = :nagareyama_shimin
-//                     , koshin_user_id        = :koshin_user_id
-//                     , koshin_nichiji        = :koshin_nichiji
-//                 WHERE
-//                       kaiin_no     = 819121118
-//                 ;
-//  SQL;      
-//             $sth = $db->prepare($sql);
-
-//                 $sth->execute([
-//                     ':shimei_sei'              => $param['shimei_sei'],
-//                     ':shimei_mei'              => $param['shimei_mei'],
-//                     ':furigana_sei'            => $param['furigana_sei'],
-//                     ':furigana_mei'            => $param['furigana_mei'],
-//                     ':seinengappi'             => $param['seinengappi'],
-//                     ':seibetsu_kbn'            => $param['seibetsu_kbn'],
-//                     ':yubin_no'                => $param['yubin_no'],
-//                     ':ken_no'                  => $param['ken_no'],
-//                     ':jusho_1'                 => $param['jusho_1'],
-//                     ':jusho_2'                 => $param['jusho_2'],
-//                     ':kana_jusho_1'            => $param['kana_jusho_1'],
-//                     ':kana_jusho_2'            => $param['kana_jusho_2'],
-//                     ':nagareyama_shimin'       => $param['nagareyama_shimin'],
-//                     ':koshin_user_id'          => $param['koshin_user_id'],
-//                     ':koshin_nichiji'          => $param['koshin_nichiji'],
-//                 ]);
-            
-//             $db->commit();
-//         } catch (\Throwable $e) {
-//             error_log(print_r($e, true). PHP_EOL, '3', 'error_log.txt');
-//             $db->rollBack();
-//             return false;
-//         }
-//         return true;
-//     }
-
+    /**
+    * 更新処理
+    * @param array $param
+    * @return boolean
+    */
+    public function updateRiyo($param)
+    {
+         // if (isset($_SESSION['kaiin_no'])) {
+         //         $wk_kaiin_no = $_SESSION['kaiin_no'];
+         // }
+         //$wk_kaiin_no = 819121118;
+         $db = Db::getInstance();
+         $db->beginTransaction();
+         try {
+                $sql = <<<SQL
+                UPDATE tb_kaiin_joho
+                SET
+                      shimei_sei            = :shimei_sei
+                    , shimei_mei            = :shimei_mei
+                    , furigana_sei          = :furigana_sei
+                    , furigana_mei          = :furigana_mei
+                    , seinengappi           = :seinengappi
+                    , seibetsu_kbn          = :seibetsu_kbn
+                    , yubin_no              = :yubin_no
+                    , ken_no                = :ken_no
+                    , chiiki_id             = :chiiki_id
+                    , kemmei                = :kemmei
+                    , jusho_1               = :jusho_1
+                    , jusho_2               = :jusho_2
+                    , kana_jusho_1          = :kana_jusho_1
+                    , kana_jusho_2          = :kana_jusho_2
+                    , tel                   = :tel
+                    , keitai_no             = :keitai_no
+                    , email_1               = :email_1
+                    , email_2               = :email_2
+                    , nagareyama_shimin     = :nagareyama_shimin
+                    , koshin_user_id        = :koshin_user_id
+                    , koshin_nichiji        = :koshin_nichiji
+                WHERE
+                      kaiin_no = 819121118;
+SQL;
+                $sth = $db->prepare($sql);
+                $sth->execute([
+                    ':shimei_sei'              => $param['shimei_sei'],
+                    ':shimei_mei'              => $param['shimei_mei'],
+                    ':furigana_sei'            => $param['furigana_sei'],
+                    ':furigana_mei'            => $param['furigana_mei'],
+                    ':seinengappi'             => $param['seinengappi'],
+                    ':seibetsu_kbn'            => $param['seibetsu_kbn'],
+                    ':yubin_no'                => $param['yubin_no'],
+                    ':ken_no'                  => $param['ken_no'],
+                    ':chiiki_id'               => $param['chiiki_id'],
+                    ':kemmei'                  => $param['kemmei'],
+                    ':jusho_1'                 => $param['jusho_1'],
+                    ':jusho_2'                 => $param['jusho_2'],
+                    ':kana_jusho_1'            => $param['kana_jusho_1'],
+                    ':kana_jusho_2'            => $param['kana_jusho_2'],
+                    ':tel'                     => $param['tel'],
+                    ':keitai_no'               => $param['keitai_no'],
+                    ':email_1'                 => $param['email_1'],
+                    ':email_2'                 => $param['email_2'],
+                    ':nagareyama_shimin'       => $param['nagareyama_shimin'],
+                    ':koshin_user_id'          => $param['koshin_user_id'],
+                    ':koshin_nichiji'          => $param['koshin_nichiji'],
+                ]);
+                error_log(print_r($param, true). PHP_EOL, '3', 'tanihara_log1.txt');
+            $db->commit();
+        } catch (\Throwable $e) {
+            error_log(print_r($e, true). PHP_EOL, '3', 'error_log.txt');
+            $db->rollBack();
+            return FALSE;
+        }
+        return TRUE;
+    }
 
 
 
