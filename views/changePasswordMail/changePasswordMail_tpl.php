@@ -43,7 +43,7 @@
 					<tr>
 						<th><span class="required">必須</span>会員番号</th>
 						<td>
-							<input id="kaiin_no" class="w_50" type="email" name="kaiin_no" value="<?php echo $kaiin_no; ?>">
+							<input id="kaiin_no" class="w_50" type="text" name="kaiin_no" value="<?php echo $kaiin_no; ?>">
 							<ul class="error_ul">
 								<li class="error" id="err_kaiin_no"></li>
 							</ul>
@@ -60,7 +60,7 @@
 					</tr>
 				</table>
 			<section>
-				<button  id="send_button" class="button btn_b btn_b_1" type="submit" value="" onclick="location.href='#'"><span>送信</span></button>
+				<button  id="send_button" class="button btn_b btn_b_1" type="submit" value=""><span>送信</span></button>
 			</section>
 			</form>
 		</div>

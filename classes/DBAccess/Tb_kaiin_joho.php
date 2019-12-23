@@ -51,6 +51,29 @@ SQL;
     }
 
     /**
+     * 存在チェック（パスワード変更用）
+     * @param varchar $kaiinNo
+     * @param varchar $mailAddress
+     * @return resultCount(0:該当なし、1:該当あり、9:エラー)
+     */
+    public function findByKaiinNoAndEmail($kaiinNo, $mailAddress)
+    {
+        try {
+            $db = Db::getInstance();
+            $sth = $db->prepare("SELECT COUNT(*) AS resultCount
+                      FROM tb_kaiin_joho
+                     WHERE kaiin_no = :kaiin_no
+                       AND (email_1 = :mailAddress OR email_2 = :mailAddress);
+            ");
+            $sth->execute([':mailAddress' => $mailAddress, ':kaiin_no' => $kaiinNo]);
+            $row  = $sth->fetch();
+        } catch (\PDOException $e) {
+            return 9;
+        }
+        return $row["resultCount"];
+    }
+
+    /**
      * 登録
      * @param array $param
      * @return boolean
