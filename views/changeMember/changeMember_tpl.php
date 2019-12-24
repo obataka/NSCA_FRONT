@@ -14,13 +14,19 @@
 	<link rel="stylesheet" href="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.css">
 	<link rel="stylesheet" href="../../viewIncludeFiles/css/style.css" />
 	<link rel="stylesheet" href="../../viewIncludeFiles/css/toroku_syusei.css">
+	<link rel="stylesheet" href="../../viewIncludeFiles/css/header.css">
 
 	<script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.1.1.min.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
+	<script type="text/javascript" src="../../viewIncludeFiles/js/header.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
-	<script type="text/javascript" src="../../viewIncludeFiles/js/changeMember.js"></script>
+	<script>
+		$(function() {
+			$("select").wrap("<span class='select_wrap'></span>");
+		});
+	</script>
 </head>
 
 <body>

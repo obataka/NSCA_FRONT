@@ -13,28 +13,24 @@
         <link rel="stylesheet" href="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.css">
         <link rel="stylesheet" href="../../viewIncludeFiles/css/style.css" />
         <link rel="stylesheet" href="../../viewIncludeFiles/css/nyukai_sbt.css">
-<!--	    <link rel="stylesheet" href="../../viewIncludeFiles/css/header.css">-->
 
         <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.1.1.min.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
-<!--	<script type="text/javascript" src="../../viewIncludeFiles/js/header.js"></script>-->
 		<script type="text/javascript" src="../../viewIncludeFiles/js/registSbtSelect.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
 		
     </head>
     <body>
-<!--	<header id="header">-->
 	<header class="header_logo">
 		<div>
 			<img src="../../viewIncludeFiles/image/NSCA_Japan_rev.png" alt="ロゴ">
 		</div>
 	</header>
 		<div class="wrap mh_c">
-			
+			<h1>新規登録 会員種別選択</h1>
 			<div class="content_wrap">
-				<h1>新規登録 会員種別選択</h1>
 				<div class="spb_arrows">
 					<ul class="nav nav-tabs step-anchor">
 						<li class="active"><span><small>会員種別選択</small></span></li>

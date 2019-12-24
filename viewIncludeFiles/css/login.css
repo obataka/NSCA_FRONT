@@ -19,7 +19,6 @@ input {
     width: 300px;
     height: 35px;
 	margin: 15px auto;
-    border: 1px solid #333;
     padding: 0 10px!important;
     -webkit-appearance: none;
 }
@@ -42,27 +41,31 @@ button {
 input[type="password"] {
 	width: 300px;
 }
+.error_ul {
+	margin: 0 0 15px;
+}
 .error {
-	margin: 0 auto 10px auto;
 	width: 300px;
 }
+
 /*IEのみ*/
 _:-ms-lang(x)::-ms-backdrop,
 input {
 	padding-top: 0.3em!important;
 }
-@media screen and (max-width: 768px) { 	
-	/*ファイヤ―フォックのみ*/
-	@-moz-document url-prefix() {
-	  .mh_c {
-			min-height: calc(100vh - 116px)!important;
-		}
-	}
 
+/*edgeのみ*/
+@supports (-ms-ime-align:auto) {
+	.mh_c {
+		min-height: calc(100vh - 50px)!important;
+	}
+}
+
+@media screen and (max-width: 768px) { 	
 	/*IEのみ*/
 	_:-ms-lang(x)::-ms-backdrop,
 	.mh_c {
-		min-height: calc(100vh - 115px)!important;
+		min-height: calc(100vh - 50px)!important;
 	}
 	_:-ms-lang(x)::-ms-backdrop,
 	.content_wrap {
@@ -71,9 +74,6 @@ input {
 	
 	/*edgeのみ*/
 	@supports (-ms-ime-align:auto) {
-		.mh_c {
-			min-height: calc(100vh - 115px)!important;
-		}
 		.content_wrap {
 			overflow: hidden;
 		}

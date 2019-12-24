@@ -92,16 +92,17 @@ h1:before {
     bottom: -6px;
 }
 .top_text {
-    margin: 35px 0 10px 0;
+    margin: 35px 0;
 }
 h2 {
-    padding: 8px 15px;
-    background: #005699;
-    color: #fff;
-    margin-bottom: 0;
-    font-size: 17px;
-    line-height: 27px;
-	border-radius: 3px;
+	vertical-align: middle;
+    position: relative;
+    line-height: 28px;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    font-weight: normal;
+    font-size: 27px;
+    padding-left: 5px;
 }
 .text_center {
 	text-align: center
@@ -141,7 +142,7 @@ h2 {
 /*background-color*/
 .bg_white {
     background: #fff;
-    padding: 2em 1em;
+    padding: 0 40px;
 }
 .bg_blue {
     background: #005699;
@@ -160,6 +161,10 @@ input[type="checkbox"] {
     margin-right: 20px;
     display: inline-block;
     margin-bottom: 0.5em;
+	cursor: pointer;
+}
+.checkbox:hover:before {
+	border-color: #005699;
 }
 .checkbox::before {
     content: "";
@@ -172,7 +177,7 @@ input[type="checkbox"] {
     border: 1px solid #999;
 	background: #fff;
 }
-input[type="checkbox"]:checked + .checkbox::after {
+input[type="checkbox"]:checked + .checkbox:after {
     content: "";
     display: block;
     position: absolute;
@@ -234,13 +239,13 @@ input[type="radio"]:checked + label::after {
 .button {
 	height: 50px;
     width: 300px;
-    border: 1px solid #CCC566;
+    border: 1px solid #005699;
     color: #fff;
     line-height: 50px;
     font-weight: bold;
     display: block;
     text-align: center;
-    background: #CCC566;
+    background: #005699;
     margin: 0 auto;
     font-size: 18px;
 	transition: 0.8s;
@@ -248,9 +253,9 @@ input[type="radio"]:checked + label::after {
 	border-radius: 3px;
 }
 .button:hover {
-    color: #CCC566;
+    color: #005699;
 	cursor: pointer;
-	background: #fff;
+	background: #F9F9F9;
 }
 .btn_gray,
 .back {
@@ -278,40 +283,23 @@ input[type="radio"]:checked + label::after {
 /*table*/
 table {
 	width: 100%;
-    background: #fff;
-    padding: 0 30px;
     border-collapse: collapse;
-    border-width: 10px;
 }
-tr:first-of-type:after {
-  display: none;
+tr {
+    border-bottom: 1px solid #d2d2d2;
 }
-form tr:after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    width: calc(1140px - 60px);
-    display: inline-block;
-    height: 1px;/*線の太さ*/
-    -webkit-transform: translateX(-50%);
-    transform: translateX(-50%);/*位置調整*/
-    background-color: #005699;/*線の色*/
-}
-tr:last-child {
-    border-bottom: none;
+table tr:last-of-type {
+	border: none;
 }
 th {
 	width: 35%;
     text-align: left;
-    padding-left: 30px;
 }
 td {
 	width: 65%;
-    padding: 40px 30px 40px 0;
+    padding: 40px 0;
 }
-td label:last-child {
-    margin-right: 0;
-}
+
 textarea {
     width: 100%;
     height: 100px;
@@ -476,7 +464,6 @@ input[type="number"] {
 }
 .teikan_wrap {
 	font-size: 11px;
-	background: #fff;
 	padding: 40px;
 	margin-bottom: 60px;
 }
@@ -604,7 +591,7 @@ input[type="number"] {
 .shinki_toroku,
 .kihon_joho,
 .oshirase {
-    margin-bottom: 150px;
+    margin-bottom: 100px;
 }
 
 .any {
@@ -618,12 +605,14 @@ input[type="number"] {
 }
 
 .required {
-	margin-left: 0;
+    margin-left: 0;
     margin-right: 1em;
     border: 1px solid red;
     color: red;
-    padding: 4px 7px;
-    font-size: 14px;
+    padding: 1px 5px;
+    font-size: 11px;
+    display: inline-block;
+    vertical-align: middle;
 }
 .error {
     color: #C80003;
@@ -655,7 +644,7 @@ input[type="number"] {
 footer {
     width: 100%;
     height: 50px;
-    background: #005699;
+    background: #848484;
 }
 footer p {
     color: #fff;
@@ -912,12 +901,6 @@ button[type="submit"]:disabled:hover::after {
     background: #b1b1b1;
 }
 
-@media screen and (max-width:1200px) {
-  form tr:after {
-    width: calc(100% - 120px);/*線の長さ*/
-  }
-}
-
 @media screen and (max-width: 851px){
 	.sp_mt_1 {
 		margin-top: 1em;
@@ -961,10 +944,11 @@ button[type="submit"]:disabled:hover::after {
     .kaiin_sbt {
         display: block;
 		margin-top: 20px;
+		padding: 0 7%;
     }
 	.name input {
-    width: 252px!important;
-}
+		width: 252px!important;
+	}
 	select {
 		width: 20%;
 	}
@@ -978,9 +962,9 @@ button[type="submit"]:disabled:hover::after {
         margin-right: 0;
         margin-bottom: 35px;
         width: 100%;
-    }
-	form tr:after {
-		display: none;
+	}
+	.kaihi {
+		width: 300px;
 	}
 	tr {
 		padding: 0;
@@ -1188,6 +1172,9 @@ button[type="submit"]:disabled:hover::after {
     .img_2 img:first-child {
         width: 100%;
     }
+	.kaiin_sbt {
+		padding: 0;
+	}
 
 	/*ステッププログレス*/
 	.spb_arrows>ul.step-anchor {
@@ -1214,9 +1201,9 @@ button[type="submit"]:disabled:hover::after {
 		transform: translateX(-50%) translateY(-50%) rotateZ(90deg);
     }
     .spb_arrows>ul.step-anchor>li.active>span:after {
-            border-left: 15px solid #669FCC!important;
-			top: 225%;
-			transform: translateX(-50%) translateY(-50%) rotateZ(90deg);
+		border-left: 15px solid #669FCC!important;
+		top: 225%;
+		transform: translateX(-50%) translateY(-50%) rotateZ(90deg);
     }
 	.spb_arrows.height_62>ul.step-anchor>li.active>span {
 		height: auto;
@@ -1244,9 +1231,6 @@ button[type="submit"]:disabled:hover::after {
 
 /*ファイヤ―フォックスのみ*/
 @-moz-document url-prefix() {
-  	.mh_c {
-		min-height: calc(100vh - 182px)!important;
-	}
 	#job_address_search,
 	#street_address_search {
 		line-height: 17px;
@@ -1274,9 +1258,7 @@ button[type="submit"]:disabled:hover::after {
 
 /*edgeのみ*/
 @supports (-ms-ime-align:auto) {
-	.mh_c {
-		min-height: calc(100vh - 182px)!important;
-	}
+
 }
 
 /*Androidのみ*/

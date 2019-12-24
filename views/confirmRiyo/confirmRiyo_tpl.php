@@ -5,7 +5,7 @@
         <meta http-equiv="Content-Style-Type" content="text/css" />
         <meta name='format-detection' content='telephone=no' />
         <meta name='viewport' content='width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no' />
-        <title>入会申込｜</title>
+        <title>入会申込｜登録情報確認</title>
         <!-- favicon -->
         <link rel="icon" href="../../viewIncludeFiles/image/favicon.ico">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
@@ -26,7 +26,7 @@
 		<img src="../../viewIncludeFiles/image/NSCA_Japan_rev.png" alt="ロゴ">
 	</header>
 		<div class="wrap">
-			<h2>入会申込　登録情報確認</h2>
+			<h1>入会申込　登録情報確認</h1>
 			<div class="content_wrap">
 				<div class="spb_arrows">
 					<ul class="nav nav-tabs step-anchor">
@@ -36,10 +36,10 @@
 						<li><span><small>完了</small></span></li>
 					</ul>
 				</div>
-				<p class="h2_text">テキストテキストテキストテキストテキストテキスト電話またはメールにて<a href="#">お問い合わせ</a>ください。</p>
-				<h3>新規登録</h3>
+				<p class="top_text">テキストテキストテキストテキストテキストテキスト電話またはメールにて<a href="#">お問い合わせ</a>ください。</p>
+				<h2>新規登録</h2>
 				<div class="shinki_toroku">
-					<table>
+					<table class="bg_white">
 						<tr class="kaiin">
 							<th><span class="any"></span>会員種別</th>
 							<td>
@@ -83,8 +83,8 @@
 						<input type="hidden" name="sel_chiiki" id="sel_chiiki" value="<?php echo $sel_chiiki; ?>">
 						<input type="hidden" name="kenmei" id="kenmei" value="<?php echo $kenmei; ?>">
 						<input type="hidden" name="pass" id="pass" value="<?php echo $pass; ?>">
-						<h3>基本情報</h3>
-						<table>
+						<h2>基本情報</h2>
+						<table class="bg_white">
 							<tr class="name">
 								<th><span class="required">必須</span>氏名</th>
 								<td class="clearfix">
@@ -120,19 +120,22 @@
 								<td>
 									<?php echo $kenmei; ?> <?php echo $address_yubin_nb_1; ?>-<?php echo $yubin_nb_2; ?>
 									<br>
-									<?php echo $address_shiku; ?><?php echo $address_tatemono; ?>
+									<?php echo $address_shiku; ?><br>
+									<?php echo $address_tatemono; ?>
 								</td>
 							</tr>
 							<tr>
 								<th><span class="required">必須</span>住所(ヨミ)</th>
 								<td>
-									<?php echo $address_yomi_shiku; ?> <?php echo $address_yomi_tatemono; ?>
+									<?php echo $address_yomi_shiku; ?><br>
+									<?php echo $address_yomi_tatemono; ?>
 								</td>
 							</tr>
 							<tr>
 								<th><span class="required">必須</span>電話番号</th>
 								<td>
-									<?php echo $tel; ?><?php echo $keitai_tel; ?>
+									<p>TEL：<?php echo $tel; ?></p>
+									<p>携帯：<?php echo $keitai_tel; ?></p>
 								</td>
 							</tr>
 							<tr class="mail">
@@ -161,8 +164,8 @@
 				
 				
 				<div class="oshirase">
-					<h3>お知らせ／連絡方法／アンケート</h3>
-					<table>
+					<h2>お知らせ／連絡方法／アンケート</h2>
+					<table class="bg_white">
 						<tr>
 							<th><span class="required">必須</span>連絡方法の希望</th>
 								<td>

@@ -59,8 +59,8 @@
 		</div>
 	</header>
 	<div class="wrap">
+
 		<div class="content_wrap">
-			<h1>入会申込 入力画面</h1>
 			<div class="spb_arrows">
 				<ul class="nav nav-tabs step-anchor">
 					<li><span><small>会員種別選択</small></span></li>

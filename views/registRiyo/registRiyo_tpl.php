@@ -36,7 +36,7 @@
 		</div>
 	</header>
 		<div class="wrap">
-			<h1>入会申込 入力画面</h1>
+			<h1>入会申込 登録情報入力</h1>
 			<div class="content_wrap">
 				<div class="spb_arrows">
 					<ul class="nav nav-tabs step-anchor">
@@ -49,7 +49,7 @@
 				<p class="top_text">テキストテキストテキストテキストテキストテキスト電話またはメールにて<a href="#">お問い合わせ</a>ください。</p>
 				<h2>新規登録</h2>
 				<div class="shinki_toroku">
-					<table>
+					<table class="bg_white">
 						<tr class="kaiin">
 							<th><span class="any"></span>会員種別</th>
 							<td>
@@ -76,7 +76,7 @@
 					<input type="hidden" name="pass" id="pass" value="<?php echo $pass; ?>">
 					<div class="kihon_joho">
 						<h2>基本情報</h2>
-						<table>
+						<table class="bg_white">
 							<tr class="name">
 								<th><span class="required">必須</span>氏名</th>
 								<td class="clearfix">
@@ -243,7 +243,7 @@
 									</ul>
 									<p class="mt_1">メール受信希望のメールアドレス</p>
 									<input id="mail_1" type="radio" name="mail" value="1">
-									<label for="mail_1">メールアドレス_1</label><br class="sp_bl"><br>
+									<label for="mail_1">メールアドレス_1</label><br>
 									<input id="mail_2" type="radio" name="mail" value="2">
 									<label for="mail_2">メールアドレス_2</label>
 									<ul class="error_ul">
@@ -266,12 +266,12 @@
 							<tr class="pass">
 								<th><span class="required">必須</span>パスワード</th>
 								<td>
-									<input id="pass_1" class="w_50" type="password" name="pass_1" value="<?php echo $pass; ?>">
+									<input id="pass_1" class="w_80" type="password" name="pass_1" value="<?php echo $pass; ?>">
 									<ul class="error_ul">
 										<li class="error" id="err_pass_1"></li>
 									</ul>
 									<p class="mt_1">確認用</p>
-									<input id="pass_2" class="w_50" type="password" name="" value="">
+									<input id="pass_2" class="w_80" type="password" name="" value="">
 									<ul class="error_ul">
 										<li class="error" id="err_pass_2"></li>
 									</ul>
@@ -282,7 +282,7 @@
 
 					<div class="oshirase">
 						<h2>お知らせ／連絡方法／アンケート</h2>
-						<table>
+						<table class="bg_white">
 							<tr>
 								<th><span class="required">必須</span>連絡方法の希望</th>
 								<td>
@@ -299,7 +299,7 @@
 				
 				<h2>定款・規約・規程</h2>
 				<p class="teikan_text">以下の「定款」「会員規約」「会員倫理規程」「個人情報保護規程」に同意したうえでのご入会をお願い致します。</p>
-				<div class="teikan_wrap">
+				<div class="teikan_wrap bg_white">
 					<div class="teikan">
 						<p class="title">特定非営利活動法人NSCAジャパン<br>定款</p>
 						<p class="chapter">第１章 総則</p>
