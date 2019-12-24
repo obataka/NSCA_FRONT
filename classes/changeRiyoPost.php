@@ -6,7 +6,7 @@ session_start();
 require './Config/Config.php';
 require './DBAccess/Db.php';
 require './DBAccess/Tb_kaiin_joho.php';
-//require './DBAccess/Tb_kaiin_sonota.php';   
+require './DBAccess/Tb_kaiin_sonota.php';   
 $ret = '';
 $wk_no = 0;
 $wk_kaiin_no = '';
@@ -37,7 +37,6 @@ $chiiki_id = (!empty($_POST['chiiki_id'])) ? htmlentities($_POST['chiiki_id'], E
 $mail = (!empty($_POST['mail'])) ? htmlentities($_POST['mail'], ENT_QUOTES, "UTF-8") : "";
 $merumaga = (!empty($_POST['merumaga'])) ? htmlentities($_POST['merumaga'], ENT_QUOTES, "UTF-8") : "";
 
-error_log(print_r('通過1', true). PHP_EOL, '3', 'tanihara_log1.txt');
 //メルマガ配信を希望する　かつ　メール受信希望のメールアドレスがメール1の場合
 if ($merumaga == 1 && $mail == 1) {
     $wk_mail1 = TRUE;
@@ -62,8 +61,9 @@ if ($mail == 2) {
 } else {
     $receive_mail2 = FALSE;
 }      
-
-// 登録用パラメーター設定
+/**********************
+* 登録用パラメーター設定
+***********************/
 $param = [
     'shimei_sei'                        => $shimei_sei,
     'shimei_mei'                        => $shimei_mei,
@@ -87,45 +87,39 @@ $param = [
     'koshin_user_id'                    => NULL,
     'koshin_nichiji'                    => date("Y/m/d H:i:s"),
 ];
-error_log(print_r('登録パラメータ', true). PHP_EOL, '3', 'tanihara_log1.txt');
-error_log(print_r($param, true). PHP_EOL, '3', 'tanihara_log1.txt');
 // 登録処理
 $result = (new Tb_kaiin_joho())->updateRiyo($param);
-error_log(print_r("リザルト", true). PHP_EOL, '3', 'tanihara_log1.txt');
-error_log(print_r($result, true). PHP_EOL, '3', 'tanihara_log1.txt');
 // 更新失敗の場合
 if ($result == false) {
-    error_log(print_r('更新失敗', true). PHP_EOL, '3', 'tanihara_log1.txt');
     NULL;
 // 更新成功の場合
 } else {
-    error_log(print_r('更新成功', true). PHP_EOL, '3', 'tanihara_log1.txt');
     NULL;
 }
 echo $result;
-// // sonota登録用パラメーター設定
-// $param1 = [
-//     'kaiin_no'                          => $wk_kaiin_no,
-//     'renraku_hoho_yuso'                 => FALSE,
-//     'renraku_hoho_denshi_email'         => TRUE,
-//     'email_1_merumaga_haishin'          => $wk_mail1,
-//     'email_2_merumaga_haishin'          => $wk_mail2,
-//     'email_1_oshirase_uketori'          => $receive_mail1,
-//     'email_2_oshirase_uketori'          => $receive_mail2,
-//     'koshin_user_id'                    => NULL,
-//     'koshin_nichiji'                    => date("Y/m/d H:i:s"),
-// ];
+/****************************
+* sonota登録用パラメーター設定
+*****************************/
+$param1 = [
+    'renraku_hoho_yuso'                 => FALSE,
+    'renraku_hoho_denshi_email'         => TRUE,
+    'email_1_merumaga_haishin'          => $wk_mail1,
+    'email_2_merumaga_haishin'          => $wk_mail2,
+    'email_1_oshirase_uketori'          => $receive_mail1,
+    'email_2_oshirase_uketori'          => $receive_mail2,
+    'koshin_user_id'                    => NULL,
+    'koshin_nichiji'                    => date("Y/m/d H:i:s"),
+];
+// 登録処理
+$result = (new Tb_kaiin_sonota())->updateRiyoSonota($param1);
 
-// // 登録処理
-// $result = (new Tb_kaiin_sonota())->insertRec($param1);
-
-// // 登録失敗の場合
-// if ($result == false) {
-//     NULL;
-// // 登録成功の場合
-// } else {
-//     NULL; 
-// }
+// 登録失敗の場合
+if ($result == false) {
+    NULL;
+// 登録成功の場合
+} else {
+    NULL; 
+}
 // if ($mail == 1) {
 //     //メールアドレス取得
 //     $message="無料会員登録が完了しました。";
@@ -142,10 +136,10 @@ echo $result;
  
 //             mb_send_mail($mailto, $subject, $message, $header);
 //         }
-//  } //else {
+//  } else {
 //     $wk_mail2 = FALSE;
 // }
-//echo $result;
+echo $result;
 die();
 
 

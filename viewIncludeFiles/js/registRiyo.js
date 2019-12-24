@@ -16,7 +16,6 @@
                     $.each(getTodofukenList, function(i, value) {
                         $('#address_todohuken').append('<option name="' + value[2] + '" value="' + value[0] + '">' + value[1] + '</option>');
                     });                    
-
                     // 修正で入力画面に戻ってきた時、都道府県のセレクトボックスの初期表示処理
                     var test = $('#sel_math').val();
                     // 選択済みの都道府県がある場合
@@ -189,6 +188,12 @@
                         }).prop("selected", true);
                         $("#address_shiku").val(wk_msYubinNo[8] + wk_msYubinNo[9]);
                         $("#address_yomi_shiku").val(wk_msYubinNo[5] + wk_msYubinNo[6]);
+                        var val = $('#address_todohuken option:selected').text();
+                        var val2 = $('#address_todohuken option:selected').val();
+                        var val3 = $('#address_todohuken option:selected').attr('name');
+                        $('#kenmei').val(val);
+                        $('#sel_math').val(val2);
+                        $('#sel_chiiki').val(val3);   
                     }
                 },
                 fail: function(rtn) {

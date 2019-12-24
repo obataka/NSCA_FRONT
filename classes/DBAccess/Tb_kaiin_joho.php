@@ -49,6 +49,7 @@ SQL;
         }
         return $mstProduct;
     }
+    
 
     /**
      * 存在チェック（パスワード変更用）
@@ -446,7 +447,6 @@ SQL;
                     ':koshin_user_id'          => $param['koshin_user_id'],
                     ':koshin_nichiji'          => $param['koshin_nichiji'],
                 ]);
-                error_log(print_r($param, true). PHP_EOL, '3', 'tanihara_log1.txt');
             $db->commit();
         } catch (\Throwable $e) {
             error_log(print_r($e, true). PHP_EOL, '3', 'error_log.txt');
@@ -456,10 +456,26 @@ SQL;
         return TRUE;
     }
 
-
-
-
-
+    public function findBykaiinjoho2()
+    {
+        $wk_kaiin_no = "";
+        // if (isset($_SESSION['kaiin_no'])) {
+        //         $wk_kaiin_no = $_SESSION['kaiin_no'];
+        // }
+        //$wk_kaiin_no = 10251033;
+        $wk_kaiin_no = 819121118;
+        try {
+            $db = Db::getInstance();
+            $sth = $db->prepare("SELECT * FROM tb_kaiin_joho LEFT JOIN tb_kaiin_sonota ON tb_kaiin_joho.kaiin_no = tb_kaiin_sonota.kaiin_no
+                                 WHERE tb_kaiin_joho.kaiin_no = :kaiin_no AND tb_kaiin_joho.sakujo_flg = 0");
+            $sth->execute([':kaiin_no' => $wk_kaiin_no,]);
+            // $sth->execute([':kaiin_no' => $kaiin_no,]);
+            $Tb_kaiin_joho = $sth->fetch();
+        } catch (\PDOException $e) {
+            $Tb_kaiin_joho = [];
+        }
+        return $Tb_kaiin_joho;
+    }
 
            
 //     /**

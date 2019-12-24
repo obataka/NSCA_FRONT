@@ -82,15 +82,26 @@
                         $('#address_yubin_nb_1').val(getTbkaiinJoho[15].slice(0,3));
                         $('#yubin_nb_2').val(getTbkaiinJoho[15].slice(3,7));
                         $('#address_todohuken').val(getTbkaiinJoho[16]);
-                        //都道府県名をkenmeiにセット
+                        //都道府県セット
                         var val = $('#address_todohuken option:selected').text();
+                        var val2 = $('#address_todohuken option:selected').val();
+                        var val3 = $('#address_todohuken option:selected').attr('name');
                         $('#kenmei').val(val);
+                        $('#sel_math').val(val2);
+                        $('#sel_chiiki').val(val3);
                         $('#address_shiku').val(getTbkaiinJoho[19]);
                         $('#address_tatemono').val(getTbkaiinJoho[20]);
                         //流山市民かどうかのチェック
                         if (getTbkaiinJoho[57] == "") {
-                            $("#nagareyama").prop("checked", true);
-                            $('#nagareyama').val("1");
+                            $("input:checkbox[id='nagareyama']:checked").val(1);
+                            var qa = $("input:checkbox[id='nagareyama']:checked").val();
+                            $("#sel_nagareyama").val(qa);
+                        }
+                        else {
+                            // チェックが入っていない場合の処理
+                            $("input:checkbox[id='nagareyama']").val(0);
+                            var ww = $("input:checkbox[id='nagareyama']").val();
+                            $("#sel_nagareyama").val(ww);
                         }
                             $('#address_yomi_shiku').val(getTbkaiinJoho[21]);
                             $('#address_yomi_tatemono').val(getTbkaiinJoho[22]);
@@ -133,12 +144,10 @@
                             //メルマガに値セット
                             if ($("input:radio[id='merumaga_1']:checked").val()) {
                                 var wa = $("input:radio[id='merumaga_1']:checked").val();
-                                $("#merumaga").val(wa);
-                                var ra = $("#merumaga").val();         
+                                $("#merumaga").val(wa);      
                                 var test1 = $('[name="merumaga"]:checked').attr('id');
                                 var test2 = $('label[for="' + test1 + '"]').text();
-                                $('#sel_merumaga').val(test2);
-                                var wawawa = $('#sel_merumaga').val();  
+                                $('#sel_merumaga').val(test2); 
                             } else {
                                 var wa = $("input:radio[id='merumaga_2']:checked").val();
                                 $("#merumaga").val(wa);
@@ -146,7 +155,6 @@
                                 var test1 = $('[name="merumaga"]:checked').attr('id');
                                 var test2 = $('label[for="' + test1 + '"]').text();
                                 $('#sel_merumaga').val(test2);
-                                var wawawa = $('#sel_merumaga').val();  
                             }
                             //連絡方法の希望のチェック
                             if (getTbkaiinJoho[114] == "") {
@@ -315,7 +323,6 @@
             $('#kenmei').val(val);
             $('#sel_math').val(val2);
             $('#sel_chiiki').val(val3);
-            var we = $('#sel_math').val();
         });
         // /************************
         //  * 性別ボタンチェンジイベント
@@ -421,14 +428,12 @@
                 $("input:checkbox[id='nagareyama']:checked").val(1);
                 var qa = $("input:checkbox[id='nagareyama']:checked").val();
                 $("#sel_nagareyama").val(qa);
-                var ha = $("#sel_nagareyama").val();
             }
             else {
                 // チェックが入っていない場合の処理
                 $("input:checkbox[id='nagareyama']").val(0);
                 var ww = $("input:checkbox[id='nagareyama']").val();
                 $("#sel_nagareyama").val(ww);
-                var hu = $("#sel_nagareyama").val();
             }
         });
         /********************************

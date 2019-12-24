@@ -1,5 +1,45 @@
 (function($){
-    $(document).ready(function(){       
+    $(document).ready(function(){ 
+    //旧区分更新
+    jQuery.ajax({
+        url:  '../../classes/updateTbkaiinJoho.php',
+        success: function(rtn) {
+            // rtn = 0 の場合は、該当なし
+            if (rtn == 0) {
+                return false;
+            } else {
+                //※正常に情報を取得できた時入力フォームに表示する
+                getTbkaiinJoho = JSON.parse(rtn);
+                $kaiin_no = getTbkaiinJoho[0];
+                $shimei = getTbkaiinJoho[7] + getTbkaiinJoho[8];
+                $furigana = getTbkaiinJoho[10] + getTbkaiinJoho[11];           
+                $seinengappi = getTbkaiinJoho[13];
+                $seibetsu_kbn = getTbkaiinJoho[14];
+                $yubin_no = getTbkaiinJoho[15];
+                $ken_no = getTbkaiinJoho[16];
+                $chiiki_id = getTbkaiinJoho[17];
+                $kemmei = getTbkaiinJoho[18];
+                $jusho_1 = getTbkaiinJoho[19];
+                $jusho_2 = getTbkaiinJoho[20];
+                $kana_jusho_1 = getTbkaiinJoho[21];
+                $kana_jusho_2 = getTbkaiinJoho[22];
+                $tel = getTbkaiinJoho[23];
+                $keitai_denwa = getTbkaiinJoho[24];
+                $email = getTbkaiinJoho[27];
+                $keitai_email = getTbkaiinJoho[28];
+                $merumaga_haishin_pc_email = getTbkaiinJoho[87];
+                $merumaga_haishin_keitai_email = getTbkaiinJoho[88];
+                $renraku_hoho_yuso = getTbkaiinJoho[86];
+                $renraku_hoho_denshi_email = getTbkaiinJoho[87];
+            }
+        },
+        fail: function(rtn) {
+            return false;
+        },
+        error: function(rtn) {
+            return false;
+        }
+    });      
     /*************************************************
     * 内容を修正するボタン押下時に値を保持して画面遷移する
     **************************************************/   
@@ -12,8 +52,96 @@
     * 次へボタン押下時にDBに修正入力した値をUPDATEする
     *******************************************/
      $("#next_button").click(function() {
-        console.log(130);
-        
+        //旧区分更新処理
+        jQuery.ajax({
+            url:  '../../classes/updateMyPage.php',
+            type: 'POST',
+            data:
+            {
+                kaiin_no: $kaiin_no,
+                shimei: $shimei,
+                furigana: $furigana,
+                seinengappi: $seinengappi,
+                seibetsu_kbn: $seibetsu_kbn,
+                yubin_no: $yubin_no,
+                ken_no: $ken_no,
+                chiiki_id: $chiiki_id,
+                kemmei: $kemmei,
+                jusho_1: $jusho_1,
+                jusho_2: $jusho_2,
+                kana_jusho_1: $kana_jusho_1,
+                kana_jusho_2: $kana_jusho_2,
+                tel: $tel,
+                keitai_denwa: $keitai_denwa,
+                email: $email,
+                keitai_email: $keitai_email,
+                merumaga_haishin_pc_email: $merumaga_haishin_pc_email,
+                merumaga_haishin_keitai_email: $merumaga_haishin_keitai_email,
+                renraku_hoho_yuso: $renraku_hoho_yuso,
+                renraku_hoho_denshi_email: $renraku_hoho_denshi_email,
+            },
+            success: function(rtn) {
+                // rtn = 0 の場合は、該当なし
+                
+                if (rtn == 0) {
+                    return false;
+                } else {
+                    //登録成功の場合、登録完了メールを送信する 
+                    // if ($("#mail").val() == 1) {
+                       
+                    //     jQuery.ajax({
+                    //     url:  '../../classes/registCompleteMail.php',
+                    //     type: 'POST',
+                    //     data:
+                    //     {
+                    //         //メールアドレス
+                    //         email_1: $("#mail_address_1").val(),
+                    //     },
+                    //     success: function(rtn) {
+                    //         location.href = '../completeRegist/';       
+                            
+                    //     },
+                    //     fail: function(rtn) {
+                    //         return false;
+                    //     },
+                    //     error: function(rtn) {
+                    //         return false;
+                    //     }
+                    //     });
+                    // } else if ($("#mail").val() == 2) {              
+                    //         jQuery.ajax({
+                    //         url:  '../../classes/registCompleteMail.php',
+                    //         type: 'POST',
+                    //         data:
+                    //         {
+                    //             //メールアドレス
+                    //             email_2: $("#mail_address_2").val(),
+                    //         },
+                    //         success: function(rtn) {
+                    //             location.href = '../changeComplete/';       
+                    //         },
+                    //         fail: function(rtn) {
+                    //             return false;
+                    //         },
+                    //         error: function(rtn) {
+                    //             return false;
+                    //         }
+                    //         });
+                    // }       
+                }
+            },
+            fail: function(rtn) {
+                console.log(1313131313);
+                
+                return false;
+            },
+            error: function(rtn) {
+                console.log(090909090909);
+                
+                return false;
+            }
+            
+        });
         //UPDATE処理
         jQuery.ajax({
             url:  '../../classes/changeRiyoPost.php',
@@ -48,13 +176,11 @@
             success: function(rtn) {
                 // rtn = 0 の場合は、該当なし
                 if (rtn == 0) {
-                    console.log(02020202);
                     return false;
                 } else {
                     //登録成功の場合、登録完了メールを送信する 
                     // if ($("#mail").val() == 1) {
-                         console.log(12345678);
-                        
+                       
                     //     jQuery.ajax({
                     //     url:  '../../classes/registCompleteMail.php',
                     //     type: 'POST',
@@ -74,8 +200,7 @@
                     //         return false;
                     //     }
                     //     });
-                    // } else if ($("#mail").val() == 2) {
-                    //         console.log(1234567890000);                 
+                    // } else if ($("#mail").val() == 2) {              
                     //         jQuery.ajax({
                     //         url:  '../../classes/registCompleteMail.php',
                     //         type: 'POST',
@@ -98,11 +223,9 @@
                 }
             },
             fail: function(rtn) {
-                console.log(123456789);
                 return false;
             },
             error: function(rtn) {
-                console.log(1234567890);
                 return false;
             }
             
