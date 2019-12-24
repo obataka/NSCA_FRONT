@@ -1,7 +1,7 @@
 <?php
 namespace Was;
 
-class token_front
+class Tb_kaiin_token_front
 {
     public function __construct()
     {
@@ -9,6 +9,7 @@ class token_front
 
     /**
      * 登録
+     * (既存データがある場合はUPDATE)
      * @param array $argument
      * @return boolean
      */
@@ -32,7 +33,12 @@ class token_front
                   , :yukokigen_nichiji
                   , now()
                   , now()
-            );
+            )
+			ON DUPLICATE KEY UPDATE
+				one_time_token    = :one_time_token,
+				yukokigen_nichiji = :yukokigen_nichiji,
+				koshin_nichiji    = now()
+;
 
 SQL;
 

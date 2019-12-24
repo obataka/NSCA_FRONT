@@ -48,46 +48,46 @@
 	                kaiin_no: $("#kaiin_no").val(),
 	                mail_address: $("#mail_address").val()
 	            },
-            
             success: function(rtn) {
                 // 会員情報、該当なし
-                if (rtn == 0) {
-		            $("#err_kaiin_no").html("会員番号かメールアドレスのどちらかまたは両方が一致しません。会員番号とメールアドレスをご確認下さい。");
-		            $("#err_mail_address").html("会員番号かメールアドレスのどちらかまたは両方が一致しません。会員番号とメールアドレスをご確認下さい。");
-                    $("#kaiin_no").focus();
-                    return false;
-                } else {
+	                if (rtn == 0) {
+			            $("#err_kaiin_no").html("会員番号かメールアドレスのどちらかまたは両方が一致しません。会員番号とメールアドレスをご確認下さい。");
+			            $("#err_mail_address").html("会員番号かメールアドレスのどちらかまたは両方が一致しません。会員番号とメールアドレスをご確認下さい。");
+	                    $("#kaiin_no").focus();
+	                    return false;
+					}else{
+
+
             /************************************************************
             *トークンと有効期限をDBに登録し、メールを送信する 
             *************************************************************/
 
-		             jQuery.ajax({
-		                url:  '../../classes/sendChangePasswordMail.php',
-		                type: 'POST',
-		                data:
-		                {
-		                    kaiin_no: $("#kaiin_no").val(),
-		                    mail_address: $("#mail_address").val()
-		                },
-		                success: function(rtn) {
-		                    // rtn = 0 の場合は、該当なし
-		                    if (rtn == 0) {
-		                        return false;
-		                    } else {
-		                        //エラーがない場合送信完了画面に画面遷移
-		                        location.href = '../changePasswordMailComplete/';       
-		                    }
-		                },
-		                fail: function(rtn) {
-		                    return false;
-		                },
-		                error: function(rtn) {
-		                    return false;
-		                }
-		            });
+			             jQuery.ajax({
+			                url:  '../../classes/sendChangePasswordMail.php',
+			                type: 'POST',
+			                data:
+			                {
+			                    kaiin_no: $("#kaiin_no").val(),
+			                    mail_address: $("#mail_address").val()
+			                },
+			                success: function(rtn) {
+			                    // rtn = 0 の場合は、該当なし
+			                    if (rtn == 0) {
+			                        return false;
+			                    } else {
+			                        //エラーがない場合送信完了画面に画面遷移
+			                        location.href = '../changePasswordMailComplete/';       
+			                    }
+			                },
+			                fail: function(rtn) {
+			                    return false;
+			                },
+			                error: function(rtn) {
+			                    return false;
+			                }
+			            });
 
-
-				}
+					}
 
                 },
                 fail: function(rtn) {
@@ -97,6 +97,8 @@
                     return false;
                 }
             });
+
+
 
        return false;
 
