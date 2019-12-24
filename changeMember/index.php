@@ -2,8 +2,6 @@
 include_once '../ctrl/parts/inputHeader.php';
 
 $includeView = '../views/changeMember/changeMember_tpl.php';
-
-
 $wk_kaiin_no = "";
 //if (isset($_SESSION['kaiinNo'])) {
 //    
@@ -18,14 +16,19 @@ $wk_kaiin_no = "";
 //}
 $wk_kaiin_no = 12345;
 
-$rtn_arr = [
-    [$_POST['kaiin_Joho']],
-    [$_POST['kaiin_shikaku']],
-    [$_POST['kaiin_chiiki']],
-    [$_POST['kaiin_bunya']]
-];
-
+// POSTからパラメータを取得する
 $wk_kaiinSbt = (!empty($_POST['kaiinSbt'])) ? htmlentities($_POST['kaiinSbt'], ENT_QUOTES, "UTF-8") : "";
+
+$Wk_kaiinType = "";             //会員種別を格納する変数
+
+if ($wk_kaiinSbt == 1) {
+    $wk_kaiinType = "NSCA正会員";
+} elseif ($wk_kaiinSbt == 2) {
+    $wk_kaiinType = "学生会員";
+} else {
+    $wk_kaiinType = "";
+}
+
 $Wk_kaiinType = (!empty($_POST['kaiinType'])) ? htmlentities($_POST['kaiinType'], ENT_QUOTES, "UTF-8") : "";
 $option = (!empty($_POST['sel_option'])) ? htmlentities($_POST['sel_option'], ENT_QUOTES, "UTF-8") : "";
 $wk_sel_option = (!empty($_POST['wk_sel_option'])) ? htmlentities($_POST['wk_sel_option'], ENT_QUOTES, "UTF-8") : "";

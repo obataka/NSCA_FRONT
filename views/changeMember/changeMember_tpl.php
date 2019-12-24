@@ -38,7 +38,6 @@
 				</ul>
 			</div>
 			<form action="../changeConfirmMember/changeConfirmMember_tpl.php" method="post">
-				<input type="hidden" name="kaiinType" id="kaiinType" value="<?php echo $wk_kaiinType ?>">
 				<input type="hidden" name="kaiinSbt" id="kaiinSbt" value="<?php echo $kaiinSbt ?>">
 				<input type="hidden" name="kaihi" id="kaihi" value="<?php echo $wk_kaihi ?>">
 				<input type="hidden" name="sel_option" id="sel_option" value="<?php echo $option; ?>">
@@ -87,7 +86,7 @@
 							<tr>
 								<th><span class="any"></span>会員種別</th>
 								<td>
-									<p><?php echo $wk_kaiinType ?></p>
+									<p id="kaiinType" name="kaiinType"><?php echo $wk_kaiinType ?></p>
 									<input id="option" type="checkbox" name="option">
 									<label class="checkbox" for="option">英文購読オプション</label>
 									<p class="ti">正会員と学生会員にオプションとしてつけることができます。詳しくは<a href="https://www.nsca-japan.or.jp/02_admis/category.html" target="_blank">こちら</a>をご覧ください。</p>

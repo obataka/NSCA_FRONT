@@ -1,460 +1,450 @@
 (function ($) {
     $(document).ready(function () {
-        /****************
-       * //セレクトボックスの初期表示処理の準備
-       ****************/
-        //値を入れる変数の宣言
-        var getTbkaiinJoho = [];
-        var getTbkaiinSentaku_shikaku = [];
-        var getTbkaiinSentaku_chiiki = [];
-        var getTbkaiinSentaku_bunya = [];
+        //DBから取得した値を格納する配列の宣言
+        var getTbkaiinSentaku = [];
 
-        //NSCA以外の認定資格
-        jQuery.ajax({
-            url: '../../classes/getTbkaiinSentaku_shikaku.php',
-            type: "POST",
-            data: { "kaiin_shikaku": getTbkaiinSentaku_shikaku},
-            success: function (rtn) {
-                getTbkaiinSentaku_shikaku = JSON.parse(rtn);
-                console.log(getTbkaiinSentaku_shikaku);
-            },
-            fail: function (rtn) {
-                return false;
-            },
-            error: function (rtn) {
-                return false;
-            }
-        });
-        //興味のある地域
-        jQuery.ajax({
-            url: '../../classes/getTbkaiinSentaku_chiiki.php',
-            type: "POST",
-            data: { "kaiin_chiiki": getTbkaiinSentaku_chiiki},
-            success: function (rtn) {
-                getTbkaiinSentaku_chiiki = JSON.parse(rtn);
-                console.log(getTbkaiinSentaku_chiiki);
-            },
-            fail: function (rtn) {
-                return false;
-            },
-            error: function (rtn) {
-                return false;
-            }
-        });
-        //興味のある分野
-        jQuery.ajax({
-            url: '../../classes/getTbkaiinSentaku_bunya.php',
-            type: "POST",
-            data: { "kaiin_bunya": getTbkaiinSentaku_bunya},
-            success: function (rtn) {
-                getTbkaiinSentaku_bunya = JSON.parse(rtn);
-                console.log(getTbkaiinSentaku_bunya);
-            },
-            fail: function (rtn) {
-                return false;
+        //その他(記述)がチェック済みの場合テキストボックスを活性させる
+        // チェックが入っていたら有効化
+        $('#shikaku_sonota').prop('disabled', true);
+        $('#bunya_sonota').prop('disabled', true);
 
-            },
-            error: function (rtn) {
-                return false;
-            }
-        });
-        /****************
-        * //都道府県取得
-        ****************/
-        jQuery.ajax({
-            url: '../../classes/getTodofukenList.php',
-            success: function (rtn) {
-                // rtn = 0 の場合は、該当なし
-                if (rtn == 0) {
-                    return false;
-                } else {
-                    //※正常に住所情報を取得できた時の処理を書く場所
-                    getTodofukenList = JSON.parse(rtn);
-                    $.each(getTodofukenList, function (i, value) {
-                        $('#address_todohuken').append('<option name="' + value[2] + '" value="' + value[0] + '">' + value[1] + '</option>');
-                        $('#office_todohuken').append('<option name="' + value[2] + '" value="' + value[0] + '">' + value[1] + '</option>');
-                    });
-                }
-            },
-            fail: function (rtn) {
-                return false;
-            },
-            error: function (rtn) {
-                return false;
-            }
-        });
-        /*********************************
-         * //職業取得
-         *********************************/
-        jQuery.ajax({
-            url: '../../classes/getMeishoList.php',
-            success: function (rtn) {
-                // rtn = 0 の場合は、該当なし
-                if (rtn == 0) {
-                    return false;
-                } else {
-                    //※正常に職業情報を取得できた時の処理を書く場所
-                    getMeishoList = JSON.parse(rtn);
-                    $.each(getMeishoList, function (i, value) {
-                        $('#job_1').append('<option value="' + value[0] + '">' + value[1] + '</option>');
-                        $('#job_2').append('<option value="' + value[0] + '">' + value[1] + '</option>');
-                        $('#job_3').append('<option value="' + value[0] + '">' + value[1] + '</option>');
-                    });
-                }
-            },
-            fail: function (rtn) {
-                return false;
-            },
-            error: function (rtn) {
-                return false;
+        $(document).on('change', '#shikaku_99', function () {
+            if ($('#shikaku_99').is(':checked')) {
+                // ボタンを有効化
+                $('#shikaku_sonota').prop('disabled', false);
+            } else {
+                // ボタンを無効化
+                $('#shikaku_sonota').prop('disabled', true);
             }
         });
 
-        /*********************************
-        * //NSCA以外の認定資格取得
-        *********************************/
-        jQuery.ajax({
-            url: '../../classes/getShikakuList.php',
-            success: function (rtn) {
-                // rtn = 0 の場合は、該当なし
-                if (rtn == 0) {
-                    return false;
-                } else {
-                    //※正常に資格情報を取得できた時の処理を書く場所
-                    getShikakuList = JSON.parse(rtn);
-                    $.each(getShikakuList, function (i, value) {
-                        if (i % 2 == 0) {
-                            $('#nintei-shikaku-right').append('<input id="shikaku_' + value[0] + '" type="checkbox" name="shikaku" value="' + value[0] + '"><label class="checkbox" for="shikaku_' + value[0] + '">' + value[1] + '</label><br>');
-                        } else {
-                            $('#nintei-shikaku-left').append('<input id="shikaku_' + value[0] + '" type="checkbox" name="shikaku" value="' + value[0] + '"><label class="checkbox" for="shikaku_' + value[0] + '">' + value[1] + '</label><br>');
-                        };
-                    });
-
-                    // NSCA以外の認定資格：確認画面からの戻りなどで、すでに選択済みの値がある場合は選択状態にするための処理
-                    var wk_sel_shikaku_1 = $('#wk_sel_shikaku').val();
-                    if (getTbkaiinSentaku_shikaku != "") {
-                        // 選択されたNSCAの以外の認定資格がある場合
-                        // 文字列に存在する半角スペースを除去してから
-                        // 「,」で分割し、配列に格納
-                        var arr_sel_shikaku = wk_sel_shikaku_1.split(',');
-                        $.each(arr_sel_shikaku, function () {
-                            var wk_sel_shikaku_2 = this.replace(" ", "");
-                            var wk_sel_shikaku_name = '#shikaku_' + wk_sel_shikaku_2;
-                            $(wk_sel_shikaku_name).prop("checked", true);
-                        });
-                    }
-                }
-            },
-            fail: function (rtn) {
-                return false;
-            },
-            error: function (rtn) {
-                return false;
+        $(document).on('change', '#bunya_99', function () {
+            if ($('#bunya_99').is(':checked')) {
+                // ボタンを有効化
+                $('#bunya_sonota').prop('disabled', false);
+            } else {
+                // ボタンを無効化
+                $('#bunya_sonota').prop('disabled', true);
             }
         });
 
-        /*********************************
-        * //興味のある地域取得
-        *********************************/
-        jQuery.ajax({
-            url: '../../classes/getAreaList.php',
-            success: function (rtn) {
-                // rtn = 0 の場合は、該当なし
-                if (rtn == 0) {
-                    return false;
-                } else {
-                    //※正常に地域情報を取得できた時の処理を書く場所
-                    getAreaList = JSON.parse(rtn);
-                    $.each(getAreaList, function (i, value) {
-                        $('#Area').append('<input id="chiiki_' + value[0] + '" type="checkbox" name="chiiki" value="' + value[0] + '"><label class="checkbox" for="chiiki_' + value[0] + '">' + value[1] + '</label>');
-                        if (value[1] == "甲信越") {
-                            $('#Area').append('<br class="sp_no">');
-                        }
-                    });
-
-                    // 興味のある地域：確認画面からの戻りなどで、すでに選択済みの値がある場合は選択状態にするための処理
-                    var wk_sel_k_chiiki_1 = $('#wk_sel_k_chiiki').val();
-                    if (wk_sel_k_chiiki_1 != "") {
-                        // 選択された興味のある地域がある場合
-                        // 文字列に存在する半角スペースを除去してから
-                        // 「,」で分割し、配列に格納
-                        var arr_sel_k_chiiki = wk_sel_k_chiiki_1.split(',');
-                        $.each(arr_sel_k_chiiki, function () {
-                            var wk_sel_k_chiiki_2 = this.replace(" ", "");
-                            var wk_sel_k_chiiki_name = '#chiiki_' + wk_sel_k_chiiki_2;
-                            $(wk_sel_k_chiiki_name).prop("checked", true);
-                        });
-                    }
-                }
-            },
-            fail: function (rtn) {
-                return false;
-            },
-            error: function (rtn) {
-                return false;
-            }
-        });
-
-        /*********************************
-        * //興味のある分野取得
-        *********************************/
-        jQuery.ajax({
-            url: '../../classes/getBunyaList.php',
-            success: function (rtn) {
-                // rtn = 0 の場合は、該当なし
-                if (rtn == 0) {
-                    return false;
-                } else {
-                    //※正常に分野情報を取得できた時の処理を書く場所
-                    getBunyaList = JSON.parse(rtn);
-                    $.each(getBunyaList, function (i, value) {
-                        $('#Bunya').append('<input id="bunya_' + value[0] + '" type="checkbox" name="bunya" value="' + value[0] + '"><label class="checkbox" for="bunya_' + value[0] + '">' + value[1] + '</label><br>');
-                    });
-
-                    //興味のある分野：確認画面からの戻りなどで、すでに選択済みの値がある場合は選択状態にするための処理
-                    var wk_sel_bunya_1 = $('#wk_sel_bunya').val();
-                    if (wk_sel_bunya_1 != "") {
-                        // 選択された興味のある分野がある場合
-                        // 文字列に存在する半角スペースを除去してから
-                        // 「,」で分割し、配列に格納
-                        var arr_sel_bunya = wk_sel_bunya_1.split(',');
-                        $.each(arr_sel_bunya, function () {
-                            var wk_sel_bunya_2 = this.replace(" ", "");
-                            var wk_sel_bunya_name = '#bunya_' + wk_sel_bunya_2;
-                            $(wk_sel_bunya_name).prop("checked", true);
-                        });
-                    }
-                }
-            },
-            fail: function (rtn) {
-                return false;
-            },
-            error: function (rtn) {
-                return false;
-            }
-        });
-        (function () {
-
-        });
         /****************
         * //会員情報データ取得
         ****************/
         jQuery.ajax({
             url: '../../classes/getTbkaiinJoho.php',
-            type: "POST",
-            data: { "kaiin_Joho": getTbkaiinJoho },
             success: function (rtn) {
-                // rtn = 0 の場合は、該当なし
-                if (rtn == 0) {
+                getTbkaiinJoho = JSON.parse(rtn);
+                console.log(getTbkaiinJoho);
+            },
+            fail: function (rtn) {
+                return false;
+            },
+            error: function (rtn) {
+                return false;
+            }
+        });
+
+        /****************
+        * //都道府県取得
+        ****************/
+            jQuery.ajax({
+                url: '../../classes/getTodofukenList.php',
+                success: function (rtn) {
+                    // rtn = 0 の場合は、該当なし
+                    if (rtn == 0) {
+                        return false;
+                    } else {
+                        //※正常に住所情報を取得できた時の処理を書く場所
+                        getTodofukenList = JSON.parse(rtn);
+                        $.each(getTodofukenList, function (i, value) {
+                            $('#address_todohuken').append('<option name="' + value[2] + '" value="' + value[0] + '">' + value[1] + '</option>');
+                            $('#office_todohuken').append('<option name="' + value[2] + '" value="' + value[0] + '">' + value[1] + '</option>');
+                        });
+
+                        // 都道府県のセレクトボックスの初期表示処理
+                        $('#address_todohuken').val(getTbkaiinJoho[16]);
+                        $('#office_todohuken').val(getTbkaiinJoho[38]);
+
+                    }
+                },
+                fail: function (rtn) {
                     return false;
+                },
+                error: function (rtn) {
+                    return false;
+                }
+            });
+        
+
+        /*********************************
+         * //職業取得
+         *********************************/
+            jQuery.ajax({
+                url: '../../classes/getMeishoList.php',
+                success: function (rtn) {
+                    // rtn = 0 の場合は、該当なし
+                    if (rtn == 0) {
+                        return false;
+                    } else {
+                        //※正常に職業情報を取得できた時の処理を書く場所
+                        getMeishoList = JSON.parse(rtn);
+                        $.each(getMeishoList, function (i, value) {
+                            $('#job_1').append('<option value="' + value[0] + '">' + value[1] + '</option>');
+                            $('#job_2').append('<option value="' + value[0] + '">' + value[1] + '</option>');
+                            $('#job_3').append('<option value="' + value[0] + '">' + value[1] + '</option>');
+                        });
+
+                        $('#job_1').val(getTbkaiinJoho[31]);
+                        $('#job_2').val(getTbkaiinJoho[32])
+                        $('#job_3').val(getTbkaiinJoho[33]);
+
+                    }
+                },
+                fail: function (rtn) {
+                    return false;
+                },
+                error: function (rtn) {
+                    return false;
+                }
+            });
+
+        /*********************************
+        * //NSCA以外の認定資格取得とチェックボックスの初期表示
+        *********************************/
+        function checkShikaku() {
+            jQuery.ajax({
+                url: '../../classes/getShikakuList.php',
+                success: function (rtn) {
+                    // rtn = 0 の場合は、該当なし
+                    if (rtn == 0) {
+                        return false;
+                    } else {
+                        //※正常に資格情報を取得できた時の処理を書く場所
+                        getShikakuList = JSON.parse(rtn);
+                        $.each(getShikakuList, function (i, value) {
+                            if (i % 2 == 0) {
+                                $('#nintei-shikaku-right').append('<input id="shikaku_' + value[0] + '" type="checkbox" name="shikaku" value="' + value[0] + '"><label class="checkbox" for="shikaku_' + value[0] + '">' + value[1] + '</label><br>');
+                            } else {
+                                $('#nintei-shikaku-left').append('<input id="shikaku_' + value[0] + '" type="checkbox" name="shikaku" value="' + value[0] + '"><label class="checkbox" for="shikaku_' + value[0] + '">' + value[1] + '</label><br>');
+                            };
+                        });
+
+                        if (getTbkaiinSentaku != "") {
+                            $.each(getTbkaiinSentaku, function (index, value) {
+                                if (value[0] == 22) {
+                                    //NSCA以外の認定資格のチェックボックスを選択状態にする。
+                                    var wk_sel_shikaku_name = '#shikaku_' + value[1];
+                                    $(wk_sel_shikaku_name).prop("checked", true);
+                                }
+                            });
+                        }
+                    }
+                },
+                fail: function (rtn) {
+                    return false;
+                },
+                error: function (rtn) {
+                    return false;
+                }
+            });
+        }
+
+        /*********************************
+        * //興味のある地域取得とチェックボックスの初期表示
+        *********************************/
+        function checkChiiki() {
+            jQuery.ajax({
+                url: '../../classes/getAreaList.php',
+                success: function (rtn) {
+                    // rtn = 0 の場合は、該当なし
+                    if (rtn == 0) {
+                        return false;
+                    } else {
+                        //※正常に地域情報を取得できた時の処理を書く場所
+                        getAreaList = JSON.parse(rtn);
+                        $.each(getAreaList, function (i, value) {
+                            $('#Area').append('<input id="chiiki_' + value[0] + '" type="checkbox" name="chiiki" value="' + value[0] + '"><label class="checkbox" for="chiiki_' + value[0] + '">' + value[1] + '</label>');
+                            if (value[1] == "甲信越") {
+                                $('#Area').append('<br class="sp_no">');
+                            }
+                        });
+
+                        if (getTbkaiinSentaku != "") {
+                            $.each(getTbkaiinSentaku, function (index, value) {
+                                if (value[0] == 32) {
+                                    //興味のある地域のチェックボックスを選択状態にする。
+                                    var wk_sel_k_chiiki_name = '#chiiki_' + value[1];
+                                    $(wk_sel_k_chiiki_name).prop("checked", true);
+                                }
+                            });
+                        }
+                    }
+                },
+                fail: function (rtn) {
+                    return false;
+                },
+                error: function (rtn) {
+                    return false;
+                }
+            });
+        }
+
+        /*********************************
+        * //興味のある分野取得とチェックボックスの初期表示
+        *********************************/
+        function checkBunya() {
+            jQuery.ajax({
+                url: '../../classes/getBunyaList.php',
+                success: function (rtn) {
+                    // rtn = 0 の場合は、該当なし
+                    if (rtn == 0) {
+                        return false;
+                    } else {
+                        //※正常に分野情報を取得できた時の処理を書く場所
+                        getBunyaList = JSON.parse(rtn);
+                        $.each(getBunyaList, function (i, value) {
+                            $('#Bunya').append('<input id="bunya_' + value[0] + '" type="checkbox" name="bunya" value="' + value[0] + '"><label class="checkbox" for="bunya_' + value[0] + '">' + value[1] + '</label><br>');
+                        });
+
+                        if (getTbkaiinSentaku != "") {
+                            $.each(getTbkaiinSentaku, function (index, value) {
+                                if (value[0] == 24) {
+                                    //興味のある分野のチェックボックスを選択状態にする。
+                                    var wk_sel_bunya_name = '#bunya_' + value[1];
+                                    $(wk_sel_bunya_name).prop("checked", true);
+                                }
+                            });
+                            //その他記述の内容を表示する。
+                            if (getTbkaiinSentaku[0][2] != "") {
+                                $('#bunya_sonota').val(getTbkaiinSentaku[0][2]);
+                            }
+                        }
+
+                    }
+                },
+                fail: function (rtn) {
+                    return false;
+                },
+                error: function (rtn) {
+                    return false;
+                }
+            });
+        }
+
+        /****************
+        * //会員情報データ取得
+        ****************/
+
+        jQuery.ajax({
+            url: '../../classes/getTbkaiinSentaku.php',
+            success: function (rtn) {
+                getTbkaiinSentaku = JSON.parse(rtn);
+                console.log(getTbkaiinSentaku);
+                //※正常に情報を取得できた時入力フォームに表示する            
+                $('#kaiinSbt').val(getTbkaiinJoho[4]);
+                if (getTbkaiinJoho[4] == 1) {
+                    $('#kaiinType').text('NSCA正会員');
+                } else if (getTbkaiinJoho[4] == 2) {
+                    $('#kaiinType').text('学生会員');
                 } else {
-                    //※正常に情報を取得できた時入力フォームに表示する
-                    getTbkaiinJoho = JSON.parse(rtn);
-                    console.log(getTbkaiinJoho);
-                    // $('#rtn_arr').val() = getTbkaiinJoho;
-                    // $('#kaiinSbt').val(getTbkaiinJoho[4]);
-                    // if ($('#kaiinSbt').val() == 1) {
-                    //     $('#kaiinType').val() = "NSCA正会員";
-                    // } else if ($('#kaiinSbt').val() == 2) {
-                    //     $('#kaiinType').val() = "学生会員";
-                    // } else {
-                    //     $('#kaiinType').val() = "";
-                    // }
+                    $('#kaiinType').text('Test');
+                }
 
-                    //英文オプションのチェック
-                    if (getTbkaiinJoho[134] == "") {
-                        $("#option").prop("checked", true);
-                        $('#option').val("1");
-                    }
-                    $('#name_sei').val(getTbkaiinJoho[7]);
-                    $('#name_mei').val(getTbkaiinJoho[8]);
-                    $('#name_sei_kana').val(getTbkaiinJoho[10]);
-                    $('#name_mei_kana').val(getTbkaiinJoho[11]);
-                    $('#name_last').val(getTbkaiinJoho[43]);
-                    $('#name_first').val(getTbkaiinJoho[44]);
-                    $('#year').val(getTbkaiinJoho[13].slice(0, 4));
-                    $('#month').val(getTbkaiinJoho[13].slice(5, 7));
-                    $('#day').val(getTbkaiinJoho[13].slice(8, 10));
-                    $('input:radio[name="gender"]').val([getTbkaiinJoho[14]]);
-                    //性別の値セット処理
-                    if ($("input:radio[id='gender_1']:checked").val()) {
-                        var wa = $("input:radio[id='gender_1']:checked").val();
-                        $("#wk_sel_gender").val(wa);
-                        var ra = $("#wk_sel_gender").val();
-                        var test1 = $('[name="gender"]:checked').attr('id');
-                        var test2 = $('label[for="' + test1 + '"]').text();
-                        $('#sel_gender').val(test2);
-                        var wawawa = $('#sel_gender').val();
-                    } else {
-                        //女性hidden設定
-                        var wa = $("input:radio[id='gender_2']:checked").val();
-                        $("#wk_sel_gender").val(wa);
-                        var ra = $("#wk_sel_gender").val();
-                        var test1 = $('[name="gender"]:checked').attr('id');
-                        var test2 = $('label[for="' + test1 + '"]').text();
-                        $('#sel_gender').val(test2);
-                        var wawawa = $('#sel_gender').val();
-                    }
-                    $('#yubin_nb_1').val(getTbkaiinJoho[15].slice(0, 3));
-                    $('#yubin_nb_2').val(getTbkaiinJoho[15].slice(3, 7));
-                    $('#address_todohuken').val(getTbkaiinJoho[16]);
-                    $('#address_shiku').val(getTbkaiinJoho[19]);
-                    $('#address_tatemono').val(getTbkaiinJoho[20]);
-                    //流山市民かどうかのチェック
-                    if (getTbkaiinJoho[57] == "") {
-                        $("#nagareyama").prop("checked", true);
-                        $('#nagareyama').val("1");
-                    }
-                    $('#address_yomi_shiku').val(getTbkaiinJoho[21]);
-                    $('#address_yomi_tatemono').val(getTbkaiinJoho[22]);
-                    $('#tel').val(getTbkaiinJoho[23]);
-                    $('#fax').val(getTbkaiinJoho[24]);
-                    $('#keitai_tel').val(getTbkaiinJoho[25]);
-                    $('#mail_address_1').val(getTbkaiinJoho[27]);
-                    $('#mail_address_2').val(getTbkaiinJoho[28]);
-                    //メール受信希望のメールアドレスを判断
-                    if (getTbkaiinJoho[124] == "") {
-                        $('input:radio[name="mail"]').val(["1"]);
-                    }
-                    if (getTbkaiinJoho[126] == "") {
-                        $('input:radio[name="mail"]').val(["2"]);
-                    }
+                //英文オプションのチェック
+                if (getTbkaiinJoho[134] == "") {
+                    $("#option").prop("checked", true);
+                    $('#option').val("1");
+                }
+                $('#name_sei').val(getTbkaiinJoho[7]);
+                $('#name_mei').val(getTbkaiinJoho[8]);
+                $('#name_sei_kana').val(getTbkaiinJoho[10]);
+                $('#name_mei_kana').val(getTbkaiinJoho[11]);
+                $('#name_last').val(getTbkaiinJoho[43]);
+                $('#name_first').val(getTbkaiinJoho[44]);
+                $('#year').val(getTbkaiinJoho[13].slice(0, 4));
+                $('#month').val(getTbkaiinJoho[13].slice(5, 7));
+                $('#day').val(getTbkaiinJoho[13].slice(8, 10));
+                $('input:radio[name="gender"]').val([getTbkaiinJoho[14]]);
+                //性別の値セット処理
+                if ($("input:radio[id='gender_1']:checked").val()) {
+                    var wa = $("input:radio[id='gender_1']:checked").val();
+                    $("#wk_sel_gender").val(wa);
+                    var ra = $("#wk_sel_gender").val();
+                    var test1 = $('[name="gender"]:checked').attr('id');
+                    var test2 = $('label[for="' + test1 + '"]').text();
+                    $('#sel_gender').val(test2);
+                    var wawawa = $('#sel_gender').val();
+                } else {
+                    //女性hidden設定
+                    var wa = $("input:radio[id='gender_2']:checked").val();
+                    $("#wk_sel_gender").val(wa);
+                    var ra = $("#wk_sel_gender").val();
+                    var test1 = $('[name="gender"]:checked').attr('id');
+                    var test2 = $('label[for="' + test1 + '"]').text();
+                    $('#sel_gender').val(test2);
+                    var wawawa = $('#sel_gender').val();
+                }
+                $('#yubin_nb_1').val(getTbkaiinJoho[15].slice(0, 3));
+                $('#yubin_nb_2').val(getTbkaiinJoho[15].slice(3, 7));
+                // $('#address_todohuken').val(getTbkaiinJoho[16]);
+                $('#address_shiku').val(getTbkaiinJoho[19]);
+                $('#address_tatemono').val(getTbkaiinJoho[20]);
+                //流山市民かどうかのチェック
+                if (getTbkaiinJoho[57] == "") {
+                    $("#nagareyama").prop("checked", true);
+                    $('#nagareyama').val("1");
+                }
+                $('#address_yomi_shiku').val(getTbkaiinJoho[21]);
+                $('#address_yomi_tatemono').val(getTbkaiinJoho[22]);
+                $('#tel').val(getTbkaiinJoho[23]);
+                $('#fax').val(getTbkaiinJoho[24]);
+                $('#keitai_tel').val(getTbkaiinJoho[25]);
+                $('#mail_address_1').val(getTbkaiinJoho[27]);
+                $('#mail_address_2').val(getTbkaiinJoho[28]);
+                //メール受信希望のメールアドレスを判断
+                if (getTbkaiinJoho[124] == "") {
+                    $('input:radio[name="mail"]').val(["1"]);
+                }
+                if (getTbkaiinJoho[126] == "") {
+                    $('input:radio[name="mail"]').val(["2"]);
+                }
+                //メールアドレス値セット
+                if ($("input:radio[id='mail_1']:checked").val()) {
+                    var wa = $("input:radio[id='mail_1']:checked").val();
+                    $("#mail").val(wa);
+                    var ra = $("#mail").val();
+                    var test1 = $('[name="mail"]:checked').attr('id');
+                    var test2 = $('label[for="' + test1 + '"]').text();
+                    $('#sel_mail').val(test2);
+                    var wawawa = $('#sel_mail').val();
+                } else {
                     //メールアドレス値セット
-                    if ($("input:radio[id='mail_1']:checked").val()) {
-                        var wa = $("input:radio[id='mail_1']:checked").val();
-                        $("#mail").val(wa);
-                        var ra = $("#mail").val();
-                        var test1 = $('[name="mail"]:checked').attr('id');
-                        var test2 = $('label[for="' + test1 + '"]').text();
-                        $('#sel_mail').val(test2);
-                        var wawawa = $('#sel_mail').val();
-                    } else {
-                        //メールアドレス値セット
-                        var wa = $("input:radio[id='mail_2']:checked").val();
-                        $("#mail").val(wa);
-                        var ra = $("#mail").val();
-                        var test1 = $('[name="mail"]:checked').attr('id');
-                        var test2 = $('label[for="' + test1 + '"]').text();
-                        $('#sel_mail').val(test2);
-                        var wawawa = $('#sel_mail').val();
-                    }
-                    //メルマガ配信希望のチェック
-                    if (getTbkaiinJoho[116] == "" || getTbkaiinJoho[117] == "") {
-                        $('input:radio[name="merumaga"]').val(["1"]);
-                    } else {
-                        $('input:radio[name="merumaga"]').val(["2"]);
-                    }
-                    //メルマガに値セット
-                    if ($("input:radio[id='merumaga_1']:checked").val()) {
-                        var wa = $("input:radio[id='merumaga_1']:checked").val();
-                        $("#merumaga").val(wa);
-                        var ra = $("#merumaga").val();
-                        var test1 = $('[name="merumaga"]:checked').attr('id');
-                        var test2 = $('label[for="' + test1 + '"]').text();
-                        $('#sel_merumaga').val(test2);
-                    } else {
-                        var wa = $("input:radio[id='merumaga_2']:checked").val();
-                        $("#merumaga").val(wa);
-                        var ra = $("#merumaga").val();
-                        var test1 = $('[name="merumaga"]:checked').attr('id');
-                        var test2 = $('label[for="' + test1 + '"]').text();
-                        $('#sel_merumaga').val(test2);
-                    }
-                    $('#job_1').val(getTbkaiinJoho[31]);
-                    $('#job_2').val(getTbkaiinJoho[32]);
-                    $('#job_3').val(getTbkaiinJoho[33]);
-                    $('#office').val(getTbkaiinJoho[34]);
-                    if (getTbkaiinJoho[36] != null) {
-                        $('#office_yubin_nb_1').val(getTbkaiinJoho[36].slice(0, 3));
-                        $('#office_yubin_nb_2').val(getTbkaiinJoho[36].slice(3, 7));
-                    };
-                    $('#office_todohuken').val(getTbkaiinJoho[38]);
-                    $('#office_shiku').val(getTbkaiinJoho[39]);
-                    $('#office_tatemono').val(getTbkaiinJoho[40]);
-                    //連絡方法の希望のチェック
-                    if (getTbkaiinJoho[114] == "") {
-                        $('input:radio[name="hoho"]').val(["2"]);
-                    }
-                    if (getTbkaiinJoho[115] == "") {
-                        $('input:radio[name="hoho"]').val(["1"]);
-                    }
-                    //メールでお知らせが選ばれていたらvalueに1を設定
-                    if ($("input:radio[id='hoho_1']:checked").val()) {
-                        var wa = $("input:radio[id='hoho_1']:checked").val();
-                        $("#wk_sel_hoho").val(wa);
-                        var test1 = $('[name="hoho"]:checked').attr('id');
-                        var test2 = $('label[for="' + test1 + '"]').text();
-                        $('#sel_hoho').val(test2);
-                    } else {
-                        var wa = $("input:radio[id='hoho_2']:checked").val();
-                        $("#wk_sel_hoho").val(wa);
-                        var test1 = $('[name="hoho"]:checked').attr('id');
-                        var test2 = $('label[for="' + test1 + '"]').text();
-                        $('#sel_hoho').val(test2);
-                    }
+                    var wa = $("input:radio[id='mail_2']:checked").val();
+                    $("#mail").val(wa);
+                    var ra = $("#mail").val();
+                    var test1 = $('[name="mail"]:checked').attr('id');
+                    var test2 = $('label[for="' + test1 + '"]').text();
+                    $('#sel_mail').val(test2);
+                    var wawawa = $('#sel_mail').val();
+                }
+                //メルマガ配信希望のチェック
+                if (getTbkaiinJoho[116] == "" || getTbkaiinJoho[117] == "") {
+                    $('input:radio[name="merumaga"]').val(["1"]);
+                } else {
+                    $('input:radio[name="merumaga"]').val(["2"]);
+                }
+                //メルマガに値セット
+                if ($("input:radio[id='merumaga_1']:checked").val()) {
+                    var wa = $("input:radio[id='merumaga_1']:checked").val();
+                    $("#merumaga").val(wa);
+                    var ra = $("#merumaga").val();
+                    var test1 = $('[name="merumaga"]:checked').attr('id');
+                    var test2 = $('label[for="' + test1 + '"]').text();
+                    $('#sel_merumaga').val(test2);
+                } else {
+                    var wa = $("input:radio[id='merumaga_2']:checked").val();
+                    $("#merumaga").val(wa);
+                    var ra = $("#merumaga").val();
+                    var test1 = $('[name="merumaga"]:checked').attr('id');
+                    var test2 = $('label[for="' + test1 + '"]').text();
+                    $('#sel_merumaga').val(test2);
+                }
+                // $('#job_1').val(getTbkaiinJoho[31]);
+                // $('#job_2').val(getTbkaiinJoho[32]);
+                // $('#job_3').val(getTbkaiinJoho[33]);
+                $('#office').val(getTbkaiinJoho[34]);
+                if (getTbkaiinJoho[36] != null) {
+                    $('#office_yubin_nb_1').val(getTbkaiinJoho[36].slice(0, 3));
+                    $('#office_yubin_nb_2').val(getTbkaiinJoho[36].slice(3, 7));
+                };
+                // $('#office_todohuken').val(getTbkaiinJoho[38]);
+                $('#office_shiku').val(getTbkaiinJoho[39]);
+                $('#office_tatemono').val(getTbkaiinJoho[40]);
+                $('#shikaku_sonota').val(getTbkaiinJoho[51]);
+                //連絡方法の希望のチェック
+                if (getTbkaiinJoho[114] == "") {
+                    $('input:radio[name="hoho"]').val(["2"]);
+                }
+                if (getTbkaiinJoho[115] == "") {
+                    $('input:radio[name="hoho"]').val(["1"]);
+                }
+                //メールでお知らせが選ばれていたらvalueに1を設定
+                if ($("input:radio[id='hoho_1']:checked").val()) {
+                    var wa = $("input:radio[id='hoho_1']:checked").val();
+                    $("#wk_sel_hoho").val(wa);
+                    var test1 = $('[name="hoho"]:checked').attr('id');
+                    var test2 = $('label[for="' + test1 + '"]').text();
+                    $('#sel_hoho').val(test2);
+                } else {
+                    var wa = $("input:radio[id='hoho_2']:checked").val();
+                    $("#wk_sel_hoho").val(wa);
+                    var test1 = $('[name="hoho"]:checked').attr('id');
+                    var test2 = $('label[for="' + test1 + '"]').text();
+                    $('#sel_hoho').val(test2);
+                }
 
-                    //郵便物配達先の希望のチェック
-                    if (getTbkaiinJoho[119] == "") {
-                        $('input:radio[name="yubin"]').val(["1"]);
-                    } else {
-                        $('input:radio[name="yubin"]').val(["0"]);
-                    }
-                    //自宅が選ばれていたらvalueに0を設定
-                    if ($("input:radio[id='yubin_1']:checked").val()) {
-                        var wa = $("input:radio[id='yubin_1']:checked").val();
-                        $("#wk_sel_yubin").val(wa);
-                        var test1 = $('[name="yubin"]:checked').attr('id');
-                        var test2 = $('label[for="' + test1 + '"]').text();
-                        $('#sel_yubin').val(test2);
-                    } else {
-                        var wa = $("input:radio[id='yubin_2']:checked").val();
-                        $("#wk_sel_yubin").val(wa);
-                        var test1 = $('[name="yubin"]:checked').attr('id');
-                        var test2 = $('label[for="' + test1 + '"]').text();
-                        $('#sel_yubin').val(test2);
-                    }
+                //郵便物配達先の希望のチェック
+                if (getTbkaiinJoho[119] == "") {
+                    $('input:radio[name="yubin"]').val(["1"]);
+                } else {
+                    $('input:radio[name="yubin"]').val(["0"]);
+                }
+                //自宅が選ばれていたらvalueに0を設定
+                if ($("input:radio[id='yubin_1']:checked").val()) {
+                    var wa = $("input:radio[id='yubin_1']:checked").val();
+                    $("#wk_sel_yubin").val(wa);
+                    var test1 = $('[name="yubin"]:checked').attr('id');
+                    var test2 = $('label[for="' + test1 + '"]').text();
+                    $('#sel_yubin').val(test2);
+                } else {
+                    var wa = $("input:radio[id='yubin_2']:checked").val();
+                    $("#wk_sel_yubin").val(wa);
+                    var test1 = $('[name="yubin"]:checked').attr('id');
+                    var test2 = $('label[for="' + test1 + '"]').text();
+                    $('#sel_yubin').val(test2);
+                }
 
-                    //ウェブサイト掲載のチェック
-                    if (getTbkaiinJoho[122] == "") {
-                        $('input:radio[name="web"]').val(["1"]);
-                    } else {
-                        $('input:radio[name="web"]').val(["0"]);
-                    }
-                    //希望するが選ばれていたらvalueに1を設定
-                    if ($("input:radio[id='web_1']:checked").val()) {
-                        var wa = $("input:radio[id='web_1']:checked").val();
-                        $("#wk_sel_web").val(wa);
-                        var test1 = $('[name="web"]:checked').attr('id');
-                        var test2 = $('label[for="' + test1 + '"]').text();
-                        $('#sel_web').val(test2);
-                    } else {
-                        var wa = $("input:radio[id='web_2']:checked").val();
-                        $("#wk_sel_web").val(wa);
-                        var test1 = $('[name="web"]:checked').attr('id');
-                        var test2 = $('label[for="' + test1 + '"]').text();
-                        $('#sel_web').val(test2);
-                    }
+                //ウェブサイト掲載のチェック
+                if (getTbkaiinJoho[122] == "") {
+                    $('input:radio[name="web"]').val(["1"]);
+                } else {
+                    $('input:radio[name="web"]').val(["0"]);
+                }
+                //希望するが選ばれていたらvalueに1を設定
+                if ($("input:radio[id='web_1']:checked").val()) {
+                    var wa = $("input:radio[id='web_1']:checked").val();
+                    $("#wk_sel_web").val(wa);
+                    var test1 = $('[name="web"]:checked').attr('id');
+                    var test2 = $('label[for="' + test1 + '"]').text();
+                    $('#sel_web').val(test2);
+                } else {
+                    var wa = $("input:radio[id='web_2']:checked").val();
+                    $("#wk_sel_web").val(wa);
+                    var test1 = $('[name="web"]:checked').attr('id');
+                    var test2 = $('label[for="' + test1 + '"]').text();
+                    $('#sel_web').val(test2);
+                }
 
-                    //アンケート協力のチェック
-                    if (getTbkaiinJoho[120] == "") {
-                        $('input:radio[name="qa"]').val(["1"]);
-                    } else {
-                        $('input:radio[name="qa"]').val(["0"]);
-                    }
-                    //希望するが選ばれていたらvalueに1を設定
-                    if ($("input:radio[id='qa_1']:checked").val()) {
-                        var wa = $("input:radio[id='qa_1']:checked").val();
-                        $("#wk_sel_qa").val(wa);
-                        var test1 = $('[name="qa"]:checked').attr('id');
-                        var test2 = $('label[for="' + test1 + '"]').text();
-                        $('#sel_qa').val(test2);
-                    } else {
-                        var wa = $("input:radio[id='qa_2']:checked").val();
-                        $("#wk_sel_qa").val(wa);
-                        var test1 = $('[name="qa"]:checked').attr('id');
-                        var test2 = $('label[for="' + test1 + '"]').text();
-                        $('#sel_qa').val(test2);
-                    }
+                //アンケート協力のチェック
+                if (getTbkaiinJoho[120] == "") {
+                    $('input:radio[name="qa"]').val(["1"]);
+                } else {
+                    $('input:radio[name="qa"]').val(["0"]);
+                }
+                //希望するが選ばれていたらvalueに1を設定
+                if ($("input:radio[id='qa_1']:checked").val()) {
+                    var wa = $("input:radio[id='qa_1']:checked").val();
+                    $("#wk_sel_qa").val(wa);
+                    var test1 = $('[name="qa"]:checked').attr('id');
+                    var test2 = $('label[for="' + test1 + '"]').text();
+                    $('#sel_qa').val(test2);
+                } else {
+                    var wa = $("input:radio[id='qa_2']:checked").val();
+                    $("#wk_sel_qa").val(wa);
+                    var test1 = $('[name="qa"]:checked').attr('id');
+                    var test2 = $('label[for="' + test1 + '"]').text();
+                    $('#sel_qa').val(test2);
                 }
             },
             fail: function (rtn) {
@@ -464,6 +454,10 @@
                 return false;
             }
         });
+
+        checkShikaku();
+        checkChiiki();
+        checkBunya();
 
         /********************************
          * 住所検索ボタン押下処理
@@ -523,7 +517,7 @@
                 type: 'POST',
                 data:
                 {
-                    postNo1: $("#address_yubin_nb_1").val(),
+                    postNo1: $("#yubin_nb_1").val(),
                     postNo2: $("#yubin_nb_2").val()
                 },
                 success: function (rtn) {
@@ -1026,207 +1020,214 @@
         ********************************/
         $(".btn_gray").click(function () {
             jQuery.ajax({
-                url: '../../classes/getTbkaiinJoho.php',
+                url: '../../classes/getTbkaiinSentaku.php',
                 success: function (rtn) {
-                    // rtn = 0 の場合は、該当なし
-                    if (rtn == 0) {
-                        return false;
+                    getTbkaiinSentaku = JSON.parse(rtn);
+                    console.log(getTbkaiinSentaku);
+                    //※正常に情報を取得できた時入力フォームに表示する            
+                    $('#kaiinSbt').val(getTbkaiinJoho[4]);
+                    if (getTbkaiinJoho[4] == 1) {
+                        $('#kaiinType').text('NSCA正会員');
+                    } else if (getTbkaiinJoho[4] == 2) {
+                        $('#kaiinType').text('学生会員');
                     } else {
-                        //※正常に情報を取得できた時入力フォームに表示する
-                        getTbkaiinJoho = JSON.parse(rtn);
-                        $('#kaiinType').val(getTbkaiinJoho[4]);
+                        $('#kaiinType').text('');
+                    }
 
-                        //英文オプションのチェック
-                        if (getTbkaiinJoho[134] == "") {
-                            $("#option").prop("checked", true);
-                            $('#option').val("1");
-                        }
-                        $('#name_sei').val(getTbkaiinJoho[7]);
-                        $('#name_mei').val(getTbkaiinJoho[8]);
-                        $('#name_sei_kana').val(getTbkaiinJoho[10]);
-                        $('#name_mei_kana').val(getTbkaiinJoho[11]);
-                        $('#name_last').val(getTbkaiinJoho[43]);
-                        $('#name_first').val(getTbkaiinJoho[44]);
-                        $('#year').val(getTbkaiinJoho[13].slice(0, 4));
-                        $('#month').val(getTbkaiinJoho[13].slice(5, 7));
-                        $('#day').val(getTbkaiinJoho[13].slice(8, 10));
-                        $('input:radio[name="gender"]').val([getTbkaiinJoho[14]]);
-                        //性別の値セット処理
-                        if ($("input:radio[id='gender_1']:checked").val()) {
-                            var wa = $("input:radio[id='gender_1']:checked").val();
-                            $("#wk_sel_gender").val(wa);
-                            var ra = $("#wk_sel_gender").val();
-                            var test1 = $('[name="gender"]:checked').attr('id');
-                            var test2 = $('label[for="' + test1 + '"]').text();
-                            $('#sel_gender').val(test2);
-                            var wawawa = $('#sel_gender').val();
-                        } else {
-                            //女性hidden設定
-                            var wa = $("input:radio[id='gender_2']:checked").val();
-                            $("#wk_sel_gender").val(wa);
-                            var ra = $("#wk_sel_gender").val();
-                            var test1 = $('[name="gender"]:checked').attr('id');
-                            var test2 = $('label[for="' + test1 + '"]').text();
-                            $('#sel_gender').val(test2);
-                            var wawawa = $('#sel_gender').val();
-                        }
-                        $('#yubin_nb_1').val(getTbkaiinJoho[15].slice(0, 3));
-                        $('#yubin_nb_2').val(getTbkaiinJoho[15].slice(3, 7));
-                        $('#address_todohuken').val(getTbkaiinJoho[16]);
-                        $('#address_shiku').val(getTbkaiinJoho[19]);
-                        $('#address_tatemono').val(getTbkaiinJoho[20]);
-                        //流山市民かどうかのチェック
-                        if (getTbkaiinJoho[57] == "") {
-                            $("#nagareyama").prop("checked", true);
-                            $('#nagareyama').val("1");
-                        }
-                        $('#address_yomi_shiku').val(getTbkaiinJoho[21]);
-                        $('#address_yomi_tatemono').val(getTbkaiinJoho[22]);
-                        $('#tel').val(getTbkaiinJoho[23]);
-                        $('#fax').val(getTbkaiinJoho[24]);
-                        $('#keitai_tel').val(getTbkaiinJoho[25]);
-                        $('#mail_address_1').val(getTbkaiinJoho[27]);
-                        $('#mail_address_2').val(getTbkaiinJoho[28]);
-                        //メール受信希望のメールアドレスを判断
-                        if (getTbkaiinJoho[124] == "") {
-                            $('input:radio[name="mail"]').val(["1"]);
-                        }
-                        if (getTbkaiinJoho[126] == "") {
-                            $('input:radio[name="mail"]').val(["2"]);
-                        }
+                    //英文オプションのチェック
+                    if (getTbkaiinJoho[134] == "") {
+                        $("#option").prop("checked", true);
+                        $('#option').val("1");
+                    }
+                    $('#name_sei').val(getTbkaiinJoho[7]);
+                    $('#name_mei').val(getTbkaiinJoho[8]);
+                    $('#name_sei_kana').val(getTbkaiinJoho[10]);
+                    $('#name_mei_kana').val(getTbkaiinJoho[11]);
+                    $('#name_last').val(getTbkaiinJoho[43]);
+                    $('#name_first').val(getTbkaiinJoho[44]);
+                    $('#year').val(getTbkaiinJoho[13].slice(0, 4));
+                    $('#month').val(getTbkaiinJoho[13].slice(5, 7));
+                    $('#day').val(getTbkaiinJoho[13].slice(8, 10));
+                    $('input:radio[name="gender"]').val([getTbkaiinJoho[14]]);
+                    //性別の値セット処理
+                    if ($("input:radio[id='gender_1']:checked").val()) {
+                        var wa = $("input:radio[id='gender_1']:checked").val();
+                        $("#wk_sel_gender").val(wa);
+                        var ra = $("#wk_sel_gender").val();
+                        var test1 = $('[name="gender"]:checked').attr('id');
+                        var test2 = $('label[for="' + test1 + '"]').text();
+                        $('#sel_gender').val(test2);
+                        var wawawa = $('#sel_gender').val();
+                    } else {
+                        //女性hidden設定
+                        var wa = $("input:radio[id='gender_2']:checked").val();
+                        $("#wk_sel_gender").val(wa);
+                        var ra = $("#wk_sel_gender").val();
+                        var test1 = $('[name="gender"]:checked').attr('id');
+                        var test2 = $('label[for="' + test1 + '"]').text();
+                        $('#sel_gender').val(test2);
+                        var wawawa = $('#sel_gender').val();
+                    }
+                    $('#yubin_nb_1').val(getTbkaiinJoho[15].slice(0, 3));
+                    $('#yubin_nb_2').val(getTbkaiinJoho[15].slice(3, 7));
+                    // $('#address_todohuken').val(getTbkaiinJoho[16]);
+                    $('#address_shiku').val(getTbkaiinJoho[19]);
+                    $('#address_tatemono').val(getTbkaiinJoho[20]);
+                    //流山市民かどうかのチェック
+                    if (getTbkaiinJoho[57] == "") {
+                        $("#nagareyama").prop("checked", true);
+                        $('#nagareyama').val("1");
+                    }
+                    $('#address_yomi_shiku').val(getTbkaiinJoho[21]);
+                    $('#address_yomi_tatemono').val(getTbkaiinJoho[22]);
+                    $('#tel').val(getTbkaiinJoho[23]);
+                    $('#fax').val(getTbkaiinJoho[24]);
+                    $('#keitai_tel').val(getTbkaiinJoho[25]);
+                    $('#mail_address_1').val(getTbkaiinJoho[27]);
+                    $('#mail_address_2').val(getTbkaiinJoho[28]);
+                    //メール受信希望のメールアドレスを判断
+                    if (getTbkaiinJoho[124] == "") {
+                        $('input:radio[name="mail"]').val(["1"]);
+                    }
+                    if (getTbkaiinJoho[126] == "") {
+                        $('input:radio[name="mail"]').val(["2"]);
+                    }
+                    //メールアドレス値セット
+                    if ($("input:radio[id='mail_1']:checked").val()) {
+                        var wa = $("input:radio[id='mail_1']:checked").val();
+                        $("#mail").val(wa);
+                        var ra = $("#mail").val();
+                        var test1 = $('[name="mail"]:checked').attr('id');
+                        var test2 = $('label[for="' + test1 + '"]').text();
+                        $('#sel_mail').val(test2);
+                        var wawawa = $('#sel_mail').val();
+                    } else {
                         //メールアドレス値セット
-                        if ($("input:radio[id='mail_1']:checked").val()) {
-                            var wa = $("input:radio[id='mail_1']:checked").val();
-                            $("#mail").val(wa);
-                            var ra = $("#mail").val();
-                            var test1 = $('[name="mail"]:checked').attr('id');
-                            var test2 = $('label[for="' + test1 + '"]').text();
-                            $('#sel_mail').val(test2);
-                            var wawawa = $('#sel_mail').val();
-                        } else {
-                            //メールアドレス値セット
-                            var wa = $("input:radio[id='mail_2']:checked").val();
-                            $("#mail").val(wa);
-                            var ra = $("#mail").val();
-                            var test1 = $('[name="mail"]:checked').attr('id');
-                            var test2 = $('label[for="' + test1 + '"]').text();
-                            $('#sel_mail').val(test2);
-                            var wawawa = $('#sel_mail').val();
-                        }
-                        //メルマガ配信希望のチェック
-                        if (getTbkaiinJoho[116] == "" || getTbkaiinJoho[117] == "") {
-                            $('input:radio[name="merumaga"]').val(["1"]);
-                        } else {
-                            $('input:radio[name="merumaga"]').val(["2"]);
-                        }
-                        //メルマガに値セット
-                        if ($("input:radio[id='merumaga_1']:checked").val()) {
-                            var wa = $("input:radio[id='merumaga_1']:checked").val();
-                            $("#merumaga").val(wa);
-                            var ra = $("#merumaga").val();
-                            var test1 = $('[name="merumaga"]:checked').attr('id');
-                            var test2 = $('label[for="' + test1 + '"]').text();
-                            $('#sel_merumaga').val(test2);
-                        } else {
-                            var wa = $("input:radio[id='merumaga_2']:checked").val();
-                            $("#merumaga").val(wa);
-                            var ra = $("#merumaga").val();
-                            var test1 = $('[name="merumaga"]:checked').attr('id');
-                            var test2 = $('label[for="' + test1 + '"]').text();
-                            $('#sel_merumaga').val(test2);
-                        }
-                        $('#job_1').val(getTbkaiinJoho[31]);
-                        $('#job_2').val(getTbkaiinJoho[32]);
-                        $('#job_3').val(getTbkaiinJoho[33]);
-                        $('#office').val(getTbkaiinJoho[34]);
+                        var wa = $("input:radio[id='mail_2']:checked").val();
+                        $("#mail").val(wa);
+                        var ra = $("#mail").val();
+                        var test1 = $('[name="mail"]:checked').attr('id');
+                        var test2 = $('label[for="' + test1 + '"]').text();
+                        $('#sel_mail').val(test2);
+                        var wawawa = $('#sel_mail').val();
+                    }
+                    //メルマガ配信希望のチェック
+                    if (getTbkaiinJoho[116] == "" || getTbkaiinJoho[117] == "") {
+                        $('input:radio[name="merumaga"]').val(["1"]);
+                    } else {
+                        $('input:radio[name="merumaga"]').val(["2"]);
+                    }
+                    //メルマガに値セット
+                    if ($("input:radio[id='merumaga_1']:checked").val()) {
+                        var wa = $("input:radio[id='merumaga_1']:checked").val();
+                        $("#merumaga").val(wa);
+                        var ra = $("#merumaga").val();
+                        var test1 = $('[name="merumaga"]:checked').attr('id');
+                        var test2 = $('label[for="' + test1 + '"]').text();
+                        $('#sel_merumaga').val(test2);
+                    } else {
+                        var wa = $("input:radio[id='merumaga_2']:checked").val();
+                        $("#merumaga").val(wa);
+                        var ra = $("#merumaga").val();
+                        var test1 = $('[name="merumaga"]:checked').attr('id');
+                        var test2 = $('label[for="' + test1 + '"]').text();
+                        $('#sel_merumaga').val(test2);
+                    }
+                    // $('#job_1').val(getTbkaiinJoho[31]);
+                    // $('#job_2').val(getTbkaiinJoho[32]);
+                    // $('#job_3').val(getTbkaiinJoho[33]);
+                    $('#office').val(getTbkaiinJoho[34]);
+                    if (getTbkaiinJoho[36] != null) {
                         $('#office_yubin_nb_1').val(getTbkaiinJoho[36].slice(0, 3));
                         $('#office_yubin_nb_2').val(getTbkaiinJoho[36].slice(3, 7));
-                        $('#office_todohuken').val(getTbkaiinJoho[38]);
-                        $('#office_shiku').val(getTbkaiinJoho[39]);
-                        $('#office_tatemono').val(getTbkaiinJoho[40]);
-                        //連絡方法の希望のチェック
-                        if (getTbkaiinJoho[114] == "") {
-                            $('input:radio[name="hoho"]').val(["2"]);
-                        }
-                        if (getTbkaiinJoho[115] == "") {
-                            $('input:radio[name="hoho"]').val(["1"]);
-                        }
-                        //メールでお知らせが選ばれていたらvalueに1を設定
-                        if ($("input:radio[id='hoho_1']:checked").val()) {
-                            var wa = $("input:radio[id='hoho_1']:checked").val();
-                            $("#wk_sel_hoho").val(wa);
-                            var test1 = $('[name="hoho"]:checked').attr('id');
-                            var test2 = $('label[for="' + test1 + '"]').text();
-                            $('#sel_hoho').val(test2);
-                        } else {
-                            var wa = $("input:radio[id='hoho_2']:checked").val();
-                            $("#wk_sel_hoho").val(wa);
-                            var test1 = $('[name="hoho"]:checked').attr('id');
-                            var test2 = $('label[for="' + test1 + '"]').text();
-                            $('#sel_hoho').val(test2);
-                        }
+                    };
+                    // $('#office_todohuken').val(getTbkaiinJoho[38]);
+                    $('#office_shiku').val(getTbkaiinJoho[39]);
+                    $('#office_tatemono').val(getTbkaiinJoho[40]);
+                    $('#shikaku_sonota').val(getTbkaiinJoho[51]);
+                    //連絡方法の希望のチェック
+                    if (getTbkaiinJoho[114] == "") {
+                        $('input:radio[name="hoho"]').val(["2"]);
+                    }
+                    if (getTbkaiinJoho[115] == "") {
+                        $('input:radio[name="hoho"]').val(["1"]);
+                    }
+                    //メールでお知らせが選ばれていたらvalueに1を設定
+                    if ($("input:radio[id='hoho_1']:checked").val()) {
+                        var wa = $("input:radio[id='hoho_1']:checked").val();
+                        $("#wk_sel_hoho").val(wa);
+                        var test1 = $('[name="hoho"]:checked').attr('id');
+                        var test2 = $('label[for="' + test1 + '"]').text();
+                        $('#sel_hoho').val(test2);
+                    } else {
+                        var wa = $("input:radio[id='hoho_2']:checked").val();
+                        $("#wk_sel_hoho").val(wa);
+                        var test1 = $('[name="hoho"]:checked').attr('id');
+                        var test2 = $('label[for="' + test1 + '"]').text();
+                        $('#sel_hoho').val(test2);
+                    }
 
-                        //郵便物配達先の希望のチェック
-                        if (getTbkaiinJoho[119] == "") {
-                            $('input:radio[name="yubin"]').val(["1"]);
-                        } else {
-                            $('input:radio[name="yubin"]').val(["0"]);
-                        }
-                        //自宅が選ばれていたらvalueに0を設定
-                        if ($("input:radio[id='yubin_1']:checked").val()) {
-                            var wa = $("input:radio[id='yubin_1']:checked").val();
-                            $("#wk_sel_yubin").val(wa);
-                            var test1 = $('[name="yubin"]:checked').attr('id');
-                            var test2 = $('label[for="' + test1 + '"]').text();
-                            $('#sel_yubin').val(test2);
-                        } else {
-                            var wa = $("input:radio[id='yubin_2']:checked").val();
-                            $("#wk_sel_yubin").val(wa);
-                            var test1 = $('[name="yubin"]:checked').attr('id');
-                            var test2 = $('label[for="' + test1 + '"]').text();
-                            $('#sel_yubin').val(test2);
-                        }
+                    //郵便物配達先の希望のチェック
+                    if (getTbkaiinJoho[119] == "") {
+                        $('input:radio[name="yubin"]').val(["1"]);
+                    } else {
+                        $('input:radio[name="yubin"]').val(["0"]);
+                    }
+                    //自宅が選ばれていたらvalueに0を設定
+                    if ($("input:radio[id='yubin_1']:checked").val()) {
+                        var wa = $("input:radio[id='yubin_1']:checked").val();
+                        $("#wk_sel_yubin").val(wa);
+                        var test1 = $('[name="yubin"]:checked').attr('id');
+                        var test2 = $('label[for="' + test1 + '"]').text();
+                        $('#sel_yubin').val(test2);
+                    } else {
+                        var wa = $("input:radio[id='yubin_2']:checked").val();
+                        $("#wk_sel_yubin").val(wa);
+                        var test1 = $('[name="yubin"]:checked').attr('id');
+                        var test2 = $('label[for="' + test1 + '"]').text();
+                        $('#sel_yubin').val(test2);
+                    }
 
-                        //ウェブサイト掲載のチェック
-                        if (getTbkaiinJoho[122] == "") {
-                            $('input:radio[name="web"]').val(["1"]);
-                        } else {
-                            $('input:radio[name="web"]').val(["0"]);
-                        }
-                        //希望するが選ばれていたらvalueに1を設定
-                        if ($("input:radio[id='web_1']:checked").val()) {
-                            var wa = $("input:radio[id='web_1']:checked").val();
-                            $("#wk_sel_web").val(wa);
-                            var test1 = $('[name="web"]:checked').attr('id');
-                            var test2 = $('label[for="' + test1 + '"]').text();
-                            $('#sel_web').val(test2);
-                        } else {
-                            var wa = $("input:radio[id='web_2']:checked").val();
-                            $("#wk_sel_web").val(wa);
-                            var test1 = $('[name="web"]:checked').attr('id');
-                            var test2 = $('label[for="' + test1 + '"]').text();
-                            $('#sel_web').val(test2);
-                        }
+                    //ウェブサイト掲載のチェック
+                    if (getTbkaiinJoho[122] == "") {
+                        $('input:radio[name="web"]').val(["1"]);
+                    } else {
+                        $('input:radio[name="web"]').val(["0"]);
+                    }
+                    //希望するが選ばれていたらvalueに1を設定
+                    if ($("input:radio[id='web_1']:checked").val()) {
+                        var wa = $("input:radio[id='web_1']:checked").val();
+                        $("#wk_sel_web").val(wa);
+                        var test1 = $('[name="web"]:checked').attr('id');
+                        var test2 = $('label[for="' + test1 + '"]').text();
+                        $('#sel_web').val(test2);
+                    } else {
+                        var wa = $("input:radio[id='web_2']:checked").val();
+                        $("#wk_sel_web").val(wa);
+                        var test1 = $('[name="web"]:checked').attr('id');
+                        var test2 = $('label[for="' + test1 + '"]').text();
+                        $('#sel_web').val(test2);
+                    }
 
-                        //アンケート協力のチェック
-                        if (getTbkaiinJoho[120] == "") {
-                            $('input:radio[name="qa"]').val(["1"]);
-                        } else {
-                            $('input:radio[name="qa"]').val(["0"]);
-                        }
-                        if ($("input:radio[id='qa_1']:checked").val()) {
-                            var wa = $("input:radio[id='qa_1']:checked").val();
-                            $("#wk_sel_qa").val(wa);
-                            var test1 = $('[name="qa"]:checked').attr('id');
-                            var test2 = $('label[for="' + test1 + '"]').text();
-                            $('#sel_qa').val(test2);
-                        } else {
-                            var wa = $("input:radio[id='qa_2']:checked").val();
-                            $("#wk_sel_qa").val(wa);
-                            var test1 = $('[name="qa"]:checked').attr('id');
-                            var test2 = $('label[for="' + test1 + '"]').text();
-                            $('#sel_qa').val(test2);
-                        }
+                    //アンケート協力のチェック
+                    if (getTbkaiinJoho[120] == "") {
+                        $('input:radio[name="qa"]').val(["1"]);
+                    } else {
+                        $('input:radio[name="qa"]').val(["0"]);
+                    }
+                    //希望するが選ばれていたらvalueに1を設定
+                    if ($("input:radio[id='qa_1']:checked").val()) {
+                        var wa = $("input:radio[id='qa_1']:checked").val();
+                        $("#wk_sel_qa").val(wa);
+                        var test1 = $('[name="qa"]:checked').attr('id');
+                        var test2 = $('label[for="' + test1 + '"]').text();
+                        $('#sel_qa').val(test2);
+                    } else {
+                        var wa = $("input:radio[id='qa_2']:checked").val();
+                        $("#wk_sel_qa").val(wa);
+                        var test1 = $('[name="qa"]:checked').attr('id');
+                        var test2 = $('label[for="' + test1 + '"]').text();
+                        $('#sel_qa').val(test2);
                     }
                 },
                 fail: function (rtn) {
