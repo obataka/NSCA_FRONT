@@ -58,4 +58,27 @@ SQL;
     }
 
 
+    /**
+     * トークンから有効な会員番号を取得する
+     * @param varchar $token
+     * @return array|mixed
+     */
+    public function findBytoken($token)
+    {
+        try {
+            $db = Db::getInstance();
+            $sth = $db->prepare("SELECT *
+                      FROM tb_kaiin_token_front
+                     WHERE one_time_token = :token
+                       AND yukokigen_nichiji > now() ;
+            ");
+            $sth->execute([':token' => $token]);
+            $row  = $sth->fetch();
+        } catch (\PDOException $e) {
+            $row = [];
+        }
+        return $row;
+    }
+
+
 }
