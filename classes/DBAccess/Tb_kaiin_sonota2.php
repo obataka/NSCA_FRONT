@@ -1,151 +1,62 @@
 <?php
 namespace Was;
 
-class Tb_kaiin_my_page_koshin_rireki
+class Tb_kaiin_sonota2
 {
     public function __construct()
     {
-    }
-
-   /* 該当日の会員番号の最大値を取得する
-    * @param varchar $koshin_rireki_id
-    * @return array|mixed
-    */
-   public function findMemberNo($koshin_rireki_id)
-    {
-        try {
-            $db = Db::getInstance();
-            $sth = $db->prepare("SELECT RIGHT(MAX(koshin_rireki_id), 2) AS max_no FROM Tb_kaiin_my_page_koshin_rireki WHERE koshin_rireki_id LIKE :koshin_rireki_id;");
-            $sth->execute([':koshin_rireki_id' => $koshin_rireki_id,]);
-            $mstProduct = $sth->fetch();
-        } catch (\PDOException $e) {
-            $mstProduct = [];
-        }
-        return $mstProduct;
     }
     /**
      * 登録
      * @param array $param
      * @return boolean
      */
-    public function insertRec ($param)
+    public function insertRec ($param1)
     {
         $db = Db::getInstance();
         $db->beginTransaction();
         try {
             $sql = <<<SQL
             INSERT
-            INTO tb_kaiin_my_page_koshin_rireki (      
-                  henkobi
-                , shinkyu_kbn
-                , kojin_no
-                , kaiin_no
-                , shimei
-                , furigana
-                , first
-                , last
-                , seinengappi
-                , seibetsu_kbn
-                , yubin_no
-                , ken_no
-                , chiiki_id
-                , kemmei
-                , jusho_1
-                , jusho_2
-                , kana_jusho_1
-                , kana_jusho_2
-                , tel
-                , fax
-                , keitai_denwa
-                , keitai_denwa_shurui
-                , email
-                , keitai_email
-                , url
-                , shokugyo_kbn_1
-                , shokugyo_kbn_2
-                , shokugyo_kbn_3
-                , kimmusakimei
-                , kimmusaki_yubin_no
-                , kimmusaki_ken_no
-                , kimmusaki_kemmei
-                , kimmusaki_jusho_1
-                , kimmusaki_jusho_2
-                , kimmusaki_tel
-                , kimmusaki_fax
-                , gakuseisho_filemei
-                , gakuseisho_filemei_2
-                , yoyaku_kaiin_sbt
-                , merumaga_haishin_pc_email
-                , merumaga_haishin_keitai_email
-                , merumaga_hashin_smartphone
+            INTO tb_kaiin_sonota(
+                  kaiin_no
                 , renraku_hoho_yuso
                 , renraku_hoho_denshi_email
+                , email_1_merumaga_haishin
+                , email_2_merumaga_haishin
+                , marumaga_haishin_smartphone
                 , yubin_haitatsusaki_kbn
-                , website_keisai_kbn
                 , daisansha_questionnaire_kbn
-                , sonota_shikaku
-                , sonota_shikaku_kijutsu
-                , kyominoaru_bunya
-                , kyominoaru_bunya_kijutsu
-                , kyominoaru_chiiki
+                , taikaigono_oshirase_kbn
+                , website_keisai_kbn
+                , card_toroku
+                , email_1_oshirase_uketori
+                , email_1_login
+                , email_2_oshirase_uketori
+                , email_2_login
+                , sakujo_flg
                 , sakusei_user_id
                 , koshin_user_id
                 , sakusei_nichiji
                 , koshin_nichiji
             )
             VALUES (
-                  :henkobi
-                , :shinkyu_kbn
-                , :kojin_no
-                , :kaiin_no
-                , :shimei
-                , :furigana
-                , :first
-                , :last
-                , :seinengappi
-                , :seibetsu_kbn
-                , :yubin_no
-                , :ken_no
-                , :chiiki_id
-                , :kemmei
-                , :jusho_1
-                , :jusho_2
-                , :kana_jusho_1
-                , :kana_jusho_2
-                , :tel
-                , :fax
-                , :keitai_denwa
-                , :keitai_denwa_shurui
-                , :email
-                , :keitai_email
-                , :url
-                , :shokugyo_kbn_1
-                , :shokugyo_kbn_2
-                , :shokugyo_kbn_3
-                , :kimmusakimei
-                , :kimmusaki_yubin_no
-                , :kimmusaki_ken_no
-                , :kimmusaki_kemmei
-                , :kimmusaki_jusho_1
-                , :kimmusaki_jusho_2
-                , :kimmusaki_tel
-                , :kimmusaki_fax
-                , :gakuseisho_filemei
-                , :gakuseisho_filemei_2
-                , :yoyaku_kaiin_sbt
-                , :merumaga_haishin_pc_email
-                , :merumaga_haishin_keitai_email
-                , :merumaga_hashin_smartphone
+                  :kaiin_no
                 , :renraku_hoho_yuso
                 , :renraku_hoho_denshi_email
+                , :email_1_merumaga_haishin
+                , :email_2_merumaga_haishin
+                , :marumaga_haishin_smartphone
                 , :yubin_haitatsusaki_kbn
-                , :website_keisai_kbn
                 , :daisansha_questionnaire_kbn
-                , :sonota_shikaku
-                , :sonota_shikaku_kijutsu
-                , :kyominoaru_bunya
-                , :kyominoaru_bunya_kijutsu
-                , :kyominoaru_chiiki
+                , :taikaigono_oshirase_kbn
+                , :website_keisai_kbn
+                , :card_toroku
+                , :email_1_oshirase_uketori
+                , :email_1_login
+                , :email_2_oshirase_uketori
+                , :email_2_login
+                , :sakujo_flg
                 , :sakusei_user_id
                 , :koshin_user_id
                 , :sakusei_nichiji
@@ -155,64 +66,76 @@ class Tb_kaiin_my_page_koshin_rireki
 SQL;
             $sth = $db->prepare($sql);
             $sth->execute([
-                ':henkobi'                                   => $param['henkobi'],
-                ':shinkyu_kbn'                               => $param['shinkyu_kbn'],
-                ':kojin_no'                                  => $param['kojin_no'],
-                ':kaiin_no'                                  => $param['kaiin_no'],
-                ':shimei'                                    => $param['shimei'],
-                ':furigana'                                  => $param['furigana'],
-                ':first'                                     => $param['first'],
-                ':last'                                      => $param['last'],
-                ':seinengappi'                               => $param['seinengappi'],
-                ':seibetsu_kbn'                              => $param['seibetsu_kbn'],
-                ':yubin_no'                                  => $param['yubin_no'],
-                ':ken_no'                                    => $param['ken_no'],
-                ':chiiki_id'                                 => $param['chiiki_id'],
-                ':kemmei'                                    => $param['kemmei'],
-                ':jusho_1'                                   => $param['jusho_1'],
-                ':jusho_2'                                   => $param['jusho_2'],
-                ':kana_jusho_1'                              => $param['kana_jusho_1'],
-                ':kana_jusho_2'                              => $param['kana_jusho_2'],
-                ':tel'                                       => $param['tel'],
-                ':fax'                                       => $param['fax'],
-                ':keitai_denwa'                              => $param['keitai_denwa'],
-                ':keitai_denwa_shurui'                       => $param['keitai_denwa_shurui'],
-                ':email'                                     => $param['email'],
-                ':keitai_email'                              => $param['keitai_email'],
-                ':url'                                       => $param['url'],
-                ':shokugyo_kbn_1'                            => $param['shokugyo_kbn_1'],
-                ':shokugyo_kbn_2'                            => $param['shokugyo_kbn_2'],
-                ':shokugyo_kbn_3'                            => $param['shokugyo_kbn_3'],
-                ':kimmusakimei'                              => $param['kimmusakimei'],
-                ':kimmusaki_yubin_no'                        => $param['kimmusaki_yubin_no'],
-                ':kimmusaki_ken_no'                          => $param['kimmusaki_ken_no'],
-                ':kimmusaki_kemmei'                          => $param['kimmusaki_kemmei'],
-                ':kimmusaki_jusho_1'                         => $param['kimmusaki_jusho_1'],
-                ':kimmusaki_jusho_2'                         => $param['kimmusaki_jusho_2'],
-                ':kimmusaki_tel'                             => $param['kimmusaki_tel'],
-                ':kimmusaki_fax'                             => $param['kimmusaki_fax'],
-                ':gakuseisho_filemei'                        => $param['gakuseisho_filemei'],
-                ':gakuseisho_filemei_2'                      => $param['gakuseisho_filemei_2'],
-                ':yoyaku_kaiin_sbt'                          => $param['yoyaku_kaiin_sbt'],
-                ':merumaga_haishin_pc_email'                 => $param['merumaga_haishin_pc_email'],
-                ':merumaga_haishin_keitai_email'             => $param['merumaga_haishin_keitai_email'],
-                ':merumaga_hashin_smartphone'                => $param['merumaga_hashin_smartphone'],
-                ':renraku_hoho_yuso'                         => $param['renraku_hoho_yuso'],
-                ':renraku_hoho_denshi_email'                 => $param['renraku_hoho_denshi_email'],
-                ':yubin_haitatsusaki_kbn'                    => $param['yubin_haitatsusaki_kbn'],
-                ':website_keisai_kbn'                        => $param['website_keisai_kbn'],
-                ':daisansha_questionnaire_kbn'               => $param['daisansha_questionnaire_kbn'],
-                ':sonota_shikaku'                            => $param['sonota_shikaku'],
-                ':sonota_shikaku_kijutsu'                    => $param['sonota_shikaku_kijutsu'],
-                ':kyominoaru_bunya'                          => $param['kyominoaru_bunya'],
-                ':kyominoaru_bunya_kijutsu'                  => $param['kyominoaru_bunya_kijutsu'],
-                ':kyominoaru_chiiki'                         => $param['kyominoaru_chiiki'],
-                ':sakusei_user_id'                           => $param['sakusei_user_id'],
-                ':koshin_user_id'                            => $param['koshin_user_id'],
-                ':sakusei_nichiji'                           => $param['sakusei_nichiji'],
-                ':koshin_nichiji'                            => $param['koshin_nichiji'],
+                ':kaiin_no'                         => $param1['kaiin_no'],
+                ':renraku_hoho_yuso'                => $param1['renraku_hoho_yuso'],
+                ':renraku_hoho_denshi_email'        => $param1['renraku_hoho_denshi_email'],
+                ':email_1_merumaga_haishin'         => $param1['email_1_merumaga_haishin'],
+                ':email_2_merumaga_haishin'         => $param1['email_2_merumaga_haishin'],
+                ':marumaga_haishin_smartphone'      => $param1['marumaga_haishin_smartphone'],
+                ':yubin_haitatsusaki_kbn'           => $param1['yubin_haitatsusaki_kbn'],
+                ':daisansha_questionnaire_kbn'      => $param1['daisansha_questionnaire_kbn'],
+                ':taikaigono_oshirase_kbn'          => $param1['taikaigono_oshirase_kbn'],
+                ':website_keisai_kbn'               => $param1['website_keisai_kbn'],
+                ':card_toroku'                      => $param1['card_toroku'],
+                ':email_1_oshirase_uketori'         => $param1['email_1_oshirase_uketori'],
+                ':email_1_login'                    => $param1['email_1_login'],
+                ':email_2_oshirase_uketori'         => $param1['email_2_oshirase_uketori'],
+                ':email_2_login'                    => $param1['email_2_login'],
+                ':sakujo_flg'                       => $param1['sakujo_flg'],
+                ':sakusei_user_id'                  => $param1['sakusei_user_id'],
+                ':koshin_user_id'                   => $param1['koshin_user_id'],
+                ':sakusei_nichiji'                  => $param1['sakusei_nichiji'],
+                ':koshin_nichiji'                   => $param1['koshin_nichiji'],
             ]);
-            
+            $db->commit();
+
+        } catch (\Throwable $e) {
+            error_log(print_r($e, true). PHP_EOL, '3', 'error_log.txt');
+            $db->rollBack();
+            return FALSE;
+        }
+        return TRUE;
+    }
+
+/**
+    * 更新処理
+    * @param array $param1
+    * @return boolean
+    */
+    public function updateRiyoSonota($param1)
+    {
+         // if (isset($_SESSION['kaiin_no'])) {
+         //         $wk_kaiin_no = $_SESSION['kaiin_no'];
+         // }
+         //$wk_kaiin_no = 819121118;
+         $db = Db::getInstance();
+         $db->beginTransaction();
+         try {
+                $sql = <<<SQL
+                UPDATE tb_kaiin_sonota
+                SET
+                      renraku_hoho_yuso             = :renraku_hoho_yuso
+                    , renraku_hoho_denshi_email     = :renraku_hoho_denshi_email
+                    , email_1_merumaga_haishin      = :email_1_merumaga_haishin
+                    , email_2_merumaga_haishin      = :email_2_merumaga_haishin
+                    , email_1_oshirase_uketori      = :email_1_oshirase_uketori
+                    , email_2_oshirase_uketori      = :email_2_oshirase_uketori
+                    , koshin_user_id                = :koshin_user_id
+                    , koshin_nichiji                = :koshin_nichiji
+                WHERE
+                      kaiin_no = 819121119;
+SQL;
+                $sth = $db->prepare($sql);
+                $sth->execute([
+                    ':renraku_hoho_yuso'                    => $param1['renraku_hoho_yuso'],
+                    ':renraku_hoho_denshi_email'            => $param1['renraku_hoho_denshi_email'],
+                    ':email_1_merumaga_haishin'             => $param1['email_1_merumaga_haishin'],
+                    ':email_2_merumaga_haishin'             => $param1['email_2_merumaga_haishin'],
+                    ':email_1_oshirase_uketori'             => $param1['email_1_oshirase_uketori'],
+                    ':email_2_oshirase_uketori'             => $param1['email_2_oshirase_uketori'],
+                    ':koshin_user_id'                       => $param1['koshin_user_id'],
+                    ':koshin_nichiji'                       => $param1['koshin_nichiji'],
+                ]);
             $db->commit();
         } catch (\Throwable $e) {
             error_log(print_r($e, true). PHP_EOL, '3', 'error_log.txt');
@@ -222,9 +145,14 @@ SQL;
         return TRUE;
     }
 
-    
 
-           
+
+
+
+
+
+
+
 //     /**
 //      * @param varchar $kaiin_no
 //      * @return array|mixed
@@ -406,10 +334,10 @@ SQL;
 //        $db = Db::getInstance();
 //        $db->beginTransaction();
 //        try {
-
+//
 //            // 予約不可の場合
 //            if ($argument['RESERVE_PROP'] == Config::RESERVE_PROP_NO) {
-
+//
 //                $sql = <<<SQL
 //                UPDATE T_REMAIN_MNG_BY_DATE
 //                SET
@@ -420,11 +348,11 @@ SQL;
 //                      AREA_ID       = :AREA_ID
 //                AND   RESERVE_YMD   = :RESERVE_YMD
 //                ;
-
-// SQL;
+//
+//SQL;
 //            // 予約可の場合
 //            } else {
-
+//
 //                $sql = <<<SQL
 //                UPDATE T_REMAIN_MNG_BY_DATE
 //                SET
@@ -455,12 +383,12 @@ SQL;
 //                      AREA_ID     = :AREA_ID
 //                AND   RESERVE_YMD = :RESERVE_YMD
 //                ;
-
-// SQL;
+//
+//SQL;
 //            }
-           
+//            
 //            $sth = $db->prepare($sql);
-
+//
 //            // 予約不可の場合
 //            if ($argument['RESERVE_PROP'] == Config::RESERVE_PROP_NO) {
 //                $sth->execute([
@@ -469,7 +397,7 @@ SQL;
 //                    ':RESERVE_PROP'     => $argument['RESERVE_PROP'],
 //                    ':UPD_ADMIN_USR'    => $argument['UPD_ADMIN_USR'],
 //                ]);
-
+//
 //            // 予約可の場合
 //            } else {
 //                $sth->execute([
@@ -499,7 +427,7 @@ SQL;
 //                    ':UPD_ADMIN_USR'        => $argument['UPD_ADMIN_USR'],
 //                ]);
 //            }
-
+//
 //            $db->commit();
 //        } catch (\Throwable $e) {
 //            error_log(print_r($e, true). PHP_EOL, '3', 'error_log.txt');
@@ -508,7 +436,7 @@ SQL;
 //        }
 //        return true;
 //    }
-
+//
 //    /**
 //     * ユーザー用更新処理
 //     * @param array $argument

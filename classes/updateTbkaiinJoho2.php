@@ -8,10 +8,10 @@ session_start();
  // }
 require './Config/Config.php';
 require './DBAccess/Db.php';
-require './DBAccess/Tb_kaiin_joho.php';
+require './DBAccess/Tb_kaiin_joho2.php';
 
 // データ取得処理
-$result = (new Tb_kaiin_joho())->findBykaiinjoho2();
+$result = (new Tb_kaiin_joho2())->findBykaiinjoho2();
 
 // 該当データなしの場合
 if ($result == '') {

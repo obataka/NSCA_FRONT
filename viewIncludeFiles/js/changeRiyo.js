@@ -44,7 +44,7 @@
         var rExp = new RegExp( sStr, "i" );
         if (!ref.match(rExp)) {
             jQuery.ajax({
-                url:  '../../classes/getTbkaiinJoho.php',
+                url:  '../../classes/getTbkaiinJoho2.php',
                 success: function(rtn) {
                     // rtn = 0 の場合は、該当なし
                     if (rtn == 0) {
@@ -52,6 +52,7 @@
                     } else {
                         //※正常に情報を取得できた時入力フォームに表示する
                         getTbkaiinJoho = JSON.parse(rtn);
+                        console.log(getTbkaiinJoho);
                         $('#name_sei').val(getTbkaiinJoho[7]);
                         $('#name_mei').val(getTbkaiinJoho[8]);
                         $('#name_sei_kana').val(getTbkaiinJoho[10]);
@@ -441,7 +442,7 @@
         ********************************/
         $(".btn_gray").click(function() {
             jQuery.ajax({
-                url:  '../../classes/getTbkaiinJoho.php',
+                url:  '../../classes/getTbkaiinJoho2.php',
                 success: function(rtn) {
                     // rtn = 0 の場合は、該当なし
                     if (rtn == 0) {
