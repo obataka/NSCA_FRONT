@@ -22,6 +22,8 @@
 	<script type="text/javascript" src="../../viewIncludeFiles/js/header.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
+	<script type="text/javascript" src="../../viewIncludeFiles/js/changeMember.js"></script>
+	
 	<script>
 		$(function() {
 			$("select").wrap("<span class='select_wrap'></span>");
@@ -465,7 +467,7 @@
 			</form>
 			<section class="btn_wrap">
 				<button class="button btn_gray" type="button" value="" onclick="location.href='#'"><span>クリア</span></button>
-				<button class="button" type="submit" value="" onclick="location.href='#'"><span>次へ</span></button>
+				<button class="button" type="submit" id="next_button" value="" onclick="location.href='#'"><span>次へ</span></button>
 			</section>
 		</div>
 	</div>

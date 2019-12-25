@@ -1,22 +1,8 @@
 <?php
 include_once '../ctrl/parts/inputHeader.php';
 
-$includeView = '../views/changeMember/changeMember_tpl.php';
-$wk_kaiin_no = "";
-//if (isset($_SESSION['kaiinNo'])) {
-//    
-//    // ログインしている
-//    $wk_kaiin_no = $_SESSION['kaiinNo'];
-//
-//} else {
-//
-//    // Sessionに会員番号がないので、未ログインとみなして、ログイン画面に遷移させる
-//    header('Location: https://www.demo-nls02.work/login/');
-//    exit();
-//}
-$wk_kaiin_no = 12345;
+$includeView = '../views/changeConfirmMember/changeConfirmMember_tpl.php';
 
-// POSTからパラメータを取得する
 $wk_kaiinType = "";
 $wk_kaiinSbt = (!empty($_POST['kaiinSbt'])) ? htmlentities($_POST['kaiinSbt'], ENT_QUOTES, "UTF-8") : "";
 

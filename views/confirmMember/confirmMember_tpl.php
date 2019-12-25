@@ -184,7 +184,6 @@
 			</div>
 			<div class="kihon_joho">
 				<h3>基本情報</h3>
-					<input type="hidden" name="name_sei" id="name_sei" value="<?php echo $name_sei; ?>">
 					<table>
 						<tr class="name">
 							<th><span class="required">必須</span>氏名</th>
