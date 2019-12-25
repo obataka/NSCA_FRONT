@@ -41,7 +41,7 @@ $result = (new Tb_kaiin_token_front())->insertRec($param);
 	*************************************************************/
 
     $message = "以下のアドレスを開いて新しいパスワードを登録してください。\n180分以内にアクセスが無かった場合は無効となります。\n";
-    $message .= "https://www.demo-nls02.work/reissuePassword/".$one_time_token;
+    $message .= "https://www.demo-nls02.work/reissuePassword?token=".$one_time_token;
 	$title = "NACAジャパン　パスワード再設定のご案内";
 
     my_send_mail($mail_address,$title,$message);
