@@ -72,13 +72,11 @@ header {
 }
 h1 {
     margin: 0;
-    font-size: 24px;
+    font-size: 30px;
     border-bottom: solid 3px #005699;
-    padding-bottom: 5px;
     margin-bottom: 40px;
     position: relative;
     font-weight: normal;
-    line-height: 20px;
     padding-left: 2px;
 }
 h1:before {
@@ -98,7 +96,7 @@ h2 {
 	vertical-align: middle;
     position: relative;
     line-height: 28px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     letter-spacing: 1px;
     font-weight: normal;
     font-size: 27px;
@@ -111,6 +109,7 @@ h2 {
 	display: flex;
 	flex-wrap: wrap;
 	margin-bottom: 30px;
+	justify-content: center;
 }
 .mb_10 {
     margin-bottom: 10px;
@@ -143,6 +142,7 @@ h2 {
 .bg_white {
     background: #fff;
     padding: 0 40px;
+	border-radius: 3px;
 }
 .bg_blue {
     background: #005699;
@@ -195,9 +195,11 @@ input[type="checkbox"]:checked + .checkbox:after {
 input[type="radio"] {
     display: none;
 }
+/*
 td .radio {
     line-height: 2;
 }
+*/
 input[type="radio"] + label {
     padding-left: 20px;
     position:relative;
@@ -225,6 +227,7 @@ input[type="radio"]:checked + label::after {
     background: #005699;
     border-radius: 50%;
 }
+/*
 #tel_1 {
     margin-right: 0.5em;
 }
@@ -234,8 +237,12 @@ input[type="radio"]:checked + label::after {
 #tel_3 {
     margin-left: 0.5em;
 }
+*/
 
 /*button*/
+.btn_wrap button:first-of-type {
+    margin-right: 50px;
+}
 .button {
 	height: 50px;
     width: 300px;
@@ -246,7 +253,6 @@ input[type="radio"]:checked + label::after {
     display: block;
     text-align: center;
     background: #005699;
-    margin: 0 auto;
     font-size: 18px;
 	transition: 0.8s;
 	font-family: inherit;
@@ -434,7 +440,6 @@ input[type="file"] {
 }
 .mail p:nth-child(2) {
     text-indent: 0;
-    margin-top: 1em;
     font-size: 100%;
 }
 #toroku_syusei_kakunin_riyo .mail p:nth-child(2),
@@ -470,8 +475,8 @@ input[type="number"] {
 .teikan,
 .kiyaku,
 .kitei {
-	margin-bottom: 70px;
-    background-color: #e4e4e4;
+	margin-bottom: 40px;
+    background-color: #e8e8e8;
     height: 450px;
     overflow: auto;
     padding: 25px;
@@ -597,9 +602,6 @@ input[type="number"] {
 .any {
     margin-left: 58px;
 }
-.content_wrap {
-    padding: 0px 20px;
-}
 .spb_arrows {
     margin: 20px 0;
 }
@@ -613,11 +615,11 @@ input[type="number"] {
     font-size: 11px;
     display: inline-block;
     vertical-align: middle;
+	font-weight: bold;
 }
 .error {
     color: #C80003;
     font-weight: bold;
-	margin-left: 10px;
     margin-top: 5px;
 	line-height: 15px;
 }
@@ -644,7 +646,7 @@ input[type="number"] {
 footer {
     width: 100%;
     height: 50px;
-    background: #848484;
+    background: #777;
 }
 footer p {
     color: #fff;
@@ -901,12 +903,6 @@ button[type="submit"]:disabled:hover::after {
     background: #b1b1b1;
 }
 
-@media screen and (max-width: 851px){
-	.sp_mt_1 {
-		margin-top: 1em;
-	}
-}
-
 @media screen and (max-width: 768px){
 	.sp_no {
 		display: none;
@@ -923,6 +919,10 @@ button[type="submit"]:disabled:hover::after {
     .header_logo img {
        width: 160px;
     }
+	.bg_white {
+		padding: 0;
+		border-radius: 0;
+	}
 	.w_70 {
         width: 100%!important;
     }
@@ -946,9 +946,6 @@ button[type="submit"]:disabled:hover::after {
 		margin-top: 20px;
 		padding: 0 7%;
     }
-	.name input {
-		width: 252px!important;
-	}
 	select {
 		width: 20%;
 	}
@@ -972,36 +969,26 @@ button[type="submit"]:disabled:hover::after {
 		font-size: 16px;
         border: none;
 	}
-	tr:last-child {
-		margin-bottom: 0;
-	}
     td {
-        width: 100%;
-        display: block;
-        padding: 0 30px;
-        font-size: 12px;
+		width: 100%;
+		display: block;
+		padding: 0 30px;
+		font-size: 12px;
 		line-height: 25px;
-		margin: 15px 0 50px;
+		margin: 15px 0 30px;
     }
-	th:before {
-		content: "";
-		border: 3px solid #005699;
-		margin-right: 10px;
-	}
     th {
 		display: block;
 		width: 100%;
-		padding: 30px 20px 0px 20px;
+		background: #eaeaea;
+		height: 50px;
+		line-height: 50px;
+		padding-left: 10px;
+		font-weight: normal;
     }
     .kaiin th p {
         background: none;
         color: #333;
-    }
-    .kihon_joho td div, 
-    .oshirase td div {
-        float: none;
-        width: 100%!important;
-        margin-right: 0;
     }
     .kihon_joho td div:first-child, 
     .oshirase td div:first-child {
@@ -1018,6 +1005,9 @@ button[type="submit"]:disabled:hover::after {
 	.kitei {
         padding: 1em;
     }
+	.teikan_wrap {
+		padding: 20px;
+	}
 	.teikan th {
 		color: #333;
 		background: none;
@@ -1026,6 +1016,10 @@ button[type="submit"]:disabled:hover::after {
 		display: inline-table;
 		height: auto;
 		margin-bottom: 0;
+	}
+/*button*/
+	.btn_wrap {
+		justify-content: space-evenly;
 	}
 	.button:hover {
 		color: #fff;
@@ -1042,6 +1036,9 @@ button[type="submit"]:disabled:hover::after {
 	}
 	.btn_b button {
 		margin: 0 auto;
+	}
+	.checkbox:hover:before {
+		border-color: #999;
 	}
     footer p {
         font-size: 10px;
@@ -1074,20 +1071,19 @@ button[type="submit"]:disabled:hover::after {
 		display: table-cell;
 	}
 }
-@media screen and (max-width: 640px){
-	a:hover {
-		border-bottom: none!important;
-	}
+
+@media screen and (max-width: 670px){
 	.btn_wrap {
 		display: block;
 	}
-	.btn_b_2 button:first-of-type {
-		margin-bottom: 20px!important;
+	.btn_wrap button:nth-of-type(2) {
+		margin: 0 auto;
 	}
-	.btn_b_2 button {
-		margin: 0 auto!important;
+	.btn_wrap button:first-of-type {
+		margin: 0 auto 20px auto;
 	}
 }
+
 @media screen and (max-width: 480px){
 	.w_50,
 	.w_80 {
@@ -1109,6 +1105,12 @@ button[type="submit"]:disabled:hover::after {
 		padding: 20px 10px 60px;
 		width: 100%;
     }
+	h1 {
+		font-size: 28px;
+	}
+	h2 {
+		font-size: 25px;
+	}
     .ti {
         margin-left: 0;
     }
@@ -1124,6 +1126,10 @@ button[type="submit"]:disabled:hover::after {
     table p {
 		font-size: 12px;
     }
+	.name div {
+		margin-right: 1.5em;
+		width: 46%!important;
+	}
     .file label {
 		width: 100%;
 		text-align: center;
@@ -1150,7 +1156,7 @@ button[type="submit"]:disabled:hover::after {
         margin-right: 0!important;
     }
     .mail p:nth-child(2) {
-        text-indent: 0;
+        margin-top: 0;
     }
     label {
         font-size: 12px;
@@ -1177,6 +1183,12 @@ button[type="submit"]:disabled:hover::after {
 	}
 
 	/*ステッププログレス*/
+	.spb_arrows>ul.step-anchor>li.active>span:before {
+		content: none;
+	}
+	.spb_border {
+		border-bottom: 1px solid #cdc2c3;
+	}
 	.spb_arrows>ul.step-anchor {
 		border-radius: 3px;
 	}
@@ -1184,34 +1196,61 @@ button[type="submit"]:disabled:hover::after {
         width: 100%!important;
         text-align: center;
     }
-
-    .spb_arrows>ul.step-anchor>li>span:before {
-        content: none;
-    }
+	.spb_arrows>ul.step-anchor>li>span.spb_border:before {
+		content: " ";
+		left: 50%;
+		border-top: 15px solid transparent;
+		border-bottom: 15px solid transparent;
+		border-left: 15px solid #dddddd;
+		top: 225%;
+		transform: translateX(-50%) translateY(-50%) rotateZ(90deg);
+		z-index: 2;
+	}
+	.spb_arrows>ul.step-anchor>li>span:before {
+		left: 50%;
+		border-top: 15px solid transparent;
+		border-bottom: 15px solid transparent;
+		border-left: 15px solid #dddddd!important;
+		top: 225%;
+		transform: translateX(-50%) translateY(-50%) rotateZ(90deg);
+	}
 	.spb_arrows>ul.step-anchor>li>span {
 		padding-left: 0!important;
 		border-radius: 0;
 	}
-    .spb_arrows>ul.step-anchor>li>span:after {
+	.spb_arrows>ul.step-anchor>li>span.spb_border:after {
 		left: 50%;
-		border-top: 15px solid transparent;
-		border-bottom: 15px solid transparent;
-		border-left: 15px solid #ddd;
-		top: 225%;
+		border-top: 11px solid transparent;
+		border-bottom: 11px solid transparent;
+		border-left: 11px solid #bbb;
+		top: 234%;
 		transform: translateX(-50%) translateY(-50%) rotateZ(90deg);
-    }
+		z-index: 1;
+	}
     .spb_arrows>ul.step-anchor>li.active>span:after {
 		border-left: 15px solid #669FCC!important;
 		top: 225%;
+		border-top: 15px solid transparent;
+		border-bottom: 15px solid transparent;
 		transform: translateX(-50%) translateY(-50%) rotateZ(90deg);
+		left: 50%;
     }
+	.spb_arrows>ul.step-anchor>li>span:after {
+		border-left: 11px solid #ddd;
+    content: "";
+    left: 50%;
+    border-top: 11px solid transparent;
+    border-bottom: 11px solid transparent;
+    top: 234%;
+    transform: translateX(-50%) translateY(-50%) rotateZ(90deg);
+    z-index: 1;
+	}
 	.spb_arrows.height_62>ul.step-anchor>li.active>span {
 		height: auto;
 	}
 	.spb_arrows.height_62>ul.step-anchor>li>span {
 		height: auto;
-	}
-	
+	}	
 	
 	/*カレンダー*/
 	.ui-datepicker-inline {
@@ -1267,9 +1306,6 @@ button[type="submit"]:disabled:hover::after {
 }
 .Android input[type="radio"]:checked + label:after {
 	top: 0;
-}
-.Android th {
-	line-height: 25px;
 }
 .Android label {
     line-height: 20px;

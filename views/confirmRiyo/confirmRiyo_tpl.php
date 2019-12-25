@@ -23,14 +23,16 @@
     </head>
     <body>
 	<header class="header_logo">
-		<img src="../../viewIncludeFiles/image/NSCA_Japan_rev.png" alt="ロゴ">
+		<div>
+			<img src="../../viewIncludeFiles/image/NSCA_Japan_rev.png" alt="ロゴ">
+		</div>
 	</header>
 		<div class="wrap">
-			<h1>入会申込　登録情報確認</h1>
+			<h1>入会申込 登録情報確認</h1>
 			<div class="content_wrap">
 				<div class="spb_arrows">
 					<ul class="nav nav-tabs step-anchor">
-						<li><span><small>会員種別選択</small></span></li>
+						<li><span class="spb_border"><small>会員種別選択</small></span></li>
 						<li><span><small>入力</small></span></li>
 						<li class="active"><span><small>確認</small></span></li>
 						<li><span><small>完了</small></span></li>
@@ -38,8 +40,8 @@
 				</div>
 				<p class="top_text">テキストテキストテキストテキストテキストテキスト電話またはメールにて<a href="#">お問い合わせ</a>ください。</p>
 				<h2>新規登録</h2>
-				<div class="shinki_toroku">
-					<table class="bg_white">
+				<div class="shinki_toroku bg_white">
+					<table>
 						<tr class="kaiin">
 							<th><span class="any"></span>会員種別</th>
 							<td>
@@ -84,7 +86,8 @@
 						<input type="hidden" name="kenmei" id="kenmei" value="<?php echo $kenmei; ?>">
 						<input type="hidden" name="pass" id="pass" value="<?php echo $pass; ?>">
 						<h2>基本情報</h2>
-						<table class="bg_white">
+						<div class="bg_white">
+							<table>
 							<tr class="name">
 								<th><span class="required">必須</span>氏名</th>
 								<td class="clearfix">
@@ -159,20 +162,25 @@
 									</td>
 								</tr>
 						</table>
+						</div>
+						
 					</form>
 				</div>
 				
 				
 				<div class="oshirase">
 					<h2>お知らせ／連絡方法／アンケート</h2>
-					<table class="bg_white">
-						<tr>
-							<th><span class="required">必須</span>連絡方法の希望</th>
-								<td>
-									<?php echo $sel_hoho; ?>
-								</td>
-							</tr>
-					</table>
+					<div class="bg_white">
+						<table>
+							<tr>
+								<th><span class="required">必須</span>連絡方法の希望</th>
+									<td>
+										<?php echo $sel_hoho; ?>
+									</td>
+								</tr>
+						</table>
+					</div>
+					
 				</div>
 				<section class="btn_wrap">
 					<button id="return_button" class="button btn_gray" type="button" value="" onclick="location.href='#'">内容を修正する</button>

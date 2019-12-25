@@ -1,6 +1,9 @@
 .wrap {
-    padding-top: 40px;
+    padding-top: 60px;
 }
-.btn_gray {
-	margin-bottom: 20px;
+
+@media screen and (max-width: 768px){
+	td {
+		margin: 15px 0 20px;
+	}
 }
