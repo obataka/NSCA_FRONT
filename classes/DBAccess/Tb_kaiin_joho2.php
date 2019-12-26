@@ -477,6 +477,144 @@ SQL;
         return $Tb_kaiin_joho;
     }
 
+    //登録済みのメールアドレス2かどうかチェック
+    public function searchAddress1($param)
+    {
+        try {
+            $db = Db::getInstance();
+            $sth = $db->prepare("SELECT count(*) FROM tb_kaiin_joho WHERE email_1 = :mail");
+            $sth->execute([':mail' => $param['mail']]);
+            $Tb_kaiin_joho = $sth->fetch();
+        } catch (\PDOException $e) {
+            $Tb_kaiin_joho = [];
+        }
+        return $Tb_kaiin_joho;
+    }
+
+    //登録済みのメールアドレス2かどうかチェック
+    public function searchAddress2($param)
+    {
+        try {
+            $db = Db::getInstance();
+            $sth = $db->prepare("SELECT count(*) FROM tb_kaiin_joho WHERE email_2 = :mail");
+            $sth->execute([':mail' => $param['mail']]);
+            $Tb_kaiin_joho = $sth->fetch();
+        } catch (\PDOException $e) {
+            $Tb_kaiin_joho = [];
+        }
+        return $Tb_kaiin_joho;
+    }
+
+    /**
+    * 更新処理
+    * @param array $param
+    * @return boolean
+    */
+    public function reissueMailAddress1($param)
+    {
+         // if (isset($_SESSION['kaiin_no'])) {
+         //         $wk_kaiin_no = $_SESSION['kaiin_no'];
+         // }
+         //$wk_kaiin_no = 819121118;
+         $db = Db::getInstance();
+         $db->beginTransaction();
+         try {
+                $sql = <<<SQL
+                UPDATE tb_kaiin_joho
+                SET  
+                    email_1               = :email_1
+                WHERE
+                      kaiin_no = 819121119;
+SQL;
+                $sth = $db->prepare($sql);
+                $sth->execute([
+                    ':email_1'                 => $param['mail'],
+                ]);
+            $db->commit();
+        } catch (\Throwable $e) {
+            error_log(print_r($e, true). PHP_EOL, '3', 'error_log.txt');
+            $db->rollBack();
+            return FALSE;
+        }
+        return TRUE;
+    }
+
+    /**
+    * 更新処理
+    * @param array $param
+    * @return boolean
+    */
+    public function reissueMailAddress2($param)
+    {
+         // if (isset($_SESSION['kaiin_no'])) {
+         //         $wk_kaiin_no = $_SESSION['kaiin_no'];
+         // }
+         //$wk_kaiin_no = 819121118;
+         $db = Db::getInstance();
+         $db->beginTransaction();
+         try {
+                $sql = <<<SQL
+                UPDATE tb_kaiin_joho
+                SET  
+                    email_2               = :email_2
+                WHERE
+                      kaiin_no = 819121119;
+SQL;
+                $sth = $db->prepare($sql);
+                $sth->execute([
+                    ':email_2'                 => $param['mail'],
+                ]);
+            $db->commit();
+        } catch (\Throwable $e) {
+            error_log(print_r($e, true). PHP_EOL, '3', 'error_log.txt');
+            $db->rollBack();
+            return FALSE;
+        }
+        return TRUE;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
            
 //     /**
 //      * @param varchar $kaiin_no

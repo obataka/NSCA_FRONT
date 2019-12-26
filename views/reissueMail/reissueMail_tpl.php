@@ -17,9 +17,8 @@
         <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.1.1.min.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
-        <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.3.1.min.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
-		
+		<script type="text/javascript" src="../../viewIncludeFiles/js/reissueMail.js"></script>
     </head>
     <body>
 	<header class="header_logo">
@@ -32,7 +31,7 @@
 				<table>
 					<tr>
 						<th><span class="any"></span>登録されたメールアドレス</th>
-						<td></td>
+						<td><p id="mail_address" value=""></p></td>
 					</tr>
 					<tr>
 						<th><span class="required">必須</span>新しいメールアドレス</th>

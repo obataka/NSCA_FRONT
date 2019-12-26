@@ -17,7 +17,7 @@
         <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.1.1.min.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
-        <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="../../viewIncludeFiles/js/registMail.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
 
