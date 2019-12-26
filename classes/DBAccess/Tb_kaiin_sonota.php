@@ -102,7 +102,7 @@ SQL;
     * @param array $param1
     * @return boolean
     */
-    public function updateRiyoSonota($param1)
+    public function updateMemberSonota($param1)
     {
          // if (isset($_SESSION['kaiin_no'])) {
          //         $wk_kaiin_no = $_SESSION['kaiin_no'];
@@ -120,6 +120,9 @@ SQL;
                     , email_2_merumaga_haishin      = :email_2_merumaga_haishin
                     , email_1_oshirase_uketori      = :email_1_oshirase_uketori
                     , email_2_oshirase_uketori      = :email_2_oshirase_uketori
+                    , yubin_haitatsusaki_kbn        = :yubin_haitatsusaki_kbn
+                    , website_keisai_kbn            = :website_keisai_kbn
+                    , daisansha_questionnaire_kbn   = :daisansha_questionnaire_kbn
                     , koshin_user_id                = :koshin_user_id
                     , koshin_nichiji                = :koshin_nichiji
                 WHERE
@@ -133,6 +136,9 @@ SQL;
                     ':email_2_merumaga_haishin'             => $param1['email_2_merumaga_haishin'],
                     ':email_1_oshirase_uketori'             => $param1['email_1_oshirase_uketori'],
                     ':email_2_oshirase_uketori'             => $param1['email_2_oshirase_uketori'],
+                    ':yubin_haitatsusaki_kbn'               => $param1['yubin_haitatsusaki_kbn'],
+                    ':website_keisai_kbn'                   => $param1['website_keisai_kbn'],
+                    ':daisansha_questionnaire_kbn'          => $param1['daisansha_questionnaire_kbn'],
                     ':koshin_user_id'                       => $param1['koshin_user_id'],
                     ':koshin_nichiji'                       => $param1['koshin_nichiji'],
                 ]);

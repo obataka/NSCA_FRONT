@@ -488,8 +488,7 @@
                         $("#office_todohuken option").filter(function (index) {
                             return $(this).text() === wk_msYubinNo[7];
                         }).prop("selected", true).change();
-                        $("#office_shiku").val(wk_msYubinNo[8]);
-                        $("#office_tatemono").val(wk_msYubinNo[9]);
+                        $("#office_shiku").val(wk_msYubinNo[8] + wk_msYubinNo[9]);
                     }
                 },
                 fail: function (rtn) {

@@ -225,27 +225,13 @@
 							</td>
 						</tr>
 						<tr class="yubin_nb">
-							<th><span class="required">必須</span>住所_郵便番号</th>
+							<th><span class="required">必須</span>住所</th>
 							<td>
-								<?php echo $yubin_nb_1; ?>-<?php echo $yubin_nb_2; ?>
-							</td>
-						</tr>
-						<tr class="todofuken">
-							<th><span class="required">必須</span>住所_都道府県</th>
-							<td>
-								<?php echo $kenmei; ?>
-							</td>
-						</tr>
-						<tr class="address">
-							<th><span class="required">必須</span>住所_市区町村／番地</th>
-							<td>
-								<?php echo $address_shiku; ?>
-							</td>
-						</tr>
-						<tr class="address">
-							<th><span class="required">必須</span>住所_建物／部屋番号</th>
-							<td>
-								<?php echo $address_tatemono; ?>
+								<?php echo $yubin_nb_1; ?>-<?php echo $yubin_nb_2."<br>"; ?>
+								<?php echo $kenmei."<br>"; ?>
+								<?php echo $address_shiku."<br>"; ?>
+								<?php echo $address_tatemono."<br>"; ?>
+
 							</td>
 						</tr>
 						<tr class="nagareyama">
@@ -255,33 +241,18 @@
 							</td>
 						</tr>
 						<tr>
-							<th><span class="required">必須</span>住所(ヨミ)_市区町村／番地</th>
+							<th><span class="required">必須</span>住所(ヨミ)</th>
 							<td>
-								<?php echo $address_yomi_shiku; ?>
-							</td>
-						</tr>
-						<tr>
-							<th><span class="required">必須</span>住所(ヨミ)_建物／部屋番号</th>
-							<td>
+								<?php echo $address_yomi_shiku."<br>"; ?>
 								<?php echo $address_yomi_tatemono; ?>
 							</td>
 						</tr>
 						<tr>
-							<th><span class="required">必須</span>TEL</th>
+							<th><span class="required">必須</span>電話番号</th>
 							<td>
-								<?php echo $tel; ?>
-							</td>
-						</tr>
-						<tr>
-							<th><span class="required">必須</span>携帯</th>
-							<td>
-								<?php echo $keitai_tel; ?>
-							</td>
-						</tr>
-						<tr>
-							<th><span class="any"></span>FAX番号</th>
-							<td>
-								<?php echo $fax; ?>
+								TEL:<?php echo $tel."<br>"; ?>
+								携帯電話:<?php echo $keitai_tel."<br>"; ?>
+								FAX:<?php echo $fax."<br>"; ?>
 							</td>
 						</tr>
 						<tr class="mail">
@@ -327,19 +298,9 @@
 						<tr class="job">
 							<th><span class="any"></span>職業1</th>
 							<td>
-								<?php echo $shoku_1; ?>
-							</td>
-						</tr>
-						<tr class="job">
-							<th><span class="any"></span>職業2</th>
-							<td>
-								<?php echo $shoku_2; ?>
-							</td>
-						</tr>
-						<tr class="job">
-							<th><span class="any"></span>職業3</th>
-							<td>
-								<?php echo $shoku_3; ?>
+								<?php echo $shoku_1."<br>"; ?>
+								<?php echo $shoku_2."<br>"; ?>
+								<?php echo $shoku_3."<br>"; ?>
 							</td>
 						</tr>
 						<tr>
@@ -349,27 +310,12 @@
 							</td>
 						</tr>
 						<tr class="address">
-							<th><span class="any"></span>所属先住所_郵便番号</th>
+							<th><span class="any"></span>所属先住所</th>
 							<td>
-								<?php echo $office_yubin_nb_1; ?>-<?php echo $office_yubin_nb_2; ?>
-							</td>
-						</tr>
-						<tr class="address">
-							<th><span class="any"></span>所属先住所_都道府県</th>
-							<td>
-								<?php echo $office_kenmei; ?>
-							</td>
-						</tr>
-						<tr class="address">
-							<th><span class="any"></span>所属先住所_市区町村／番地</th>
-							<td>
-								<?php echo $office_shiku; ?>
-							</td>
-						</tr>
-						<tr class="address">
-							<th><span class="any"></span>所属先住所_建物／部屋番号</th>
-							<td>
-								<?php echo $office_tatemono; ?>
+								<?php echo $office_yubin_nb_1; ?>-<?php echo $office_yubin_nb_2."<br>"; ?>
+								<?php echo $office_kenmei."<br>"; ?>
+								<?php echo $office_shiku."<br>"; ?>
+								<?php echo $office_tatemono."<br>"; ?>
 							</td>
 						</tr>
 						<tr>

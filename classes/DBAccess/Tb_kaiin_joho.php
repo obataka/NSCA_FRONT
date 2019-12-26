@@ -387,7 +387,7 @@ SQL;
     * @param array $param
     * @return boolean
     */
-    public function updateRiyo($param)
+    public function updateMember($param)
     {
          // if (isset($_SESSION['kaiin_no'])) {
          //         $wk_kaiin_no = $_SESSION['kaiin_no'];
@@ -415,8 +415,23 @@ SQL;
                     , kana_jusho_2          = :kana_jusho_2
                     , tel                   = :tel
                     , keitai_no             = :keitai_no
+                    , fax                   = :fax
                     , email_1               = :email_1
                     , email_2               = :email_2
+                    , url                   = :url
+                    , shokugyo_kbn_1        = :shokugyo_kbn_1  
+                    , shokugyo_kbn_2        = :shokugyo_kbn_2  
+                    , shokugyo_kbn_3        = :shokugyo_kbn_3  
+                    , kimmusakimei          = :kimmusakimei
+                    , kimmusaki_yubin_no    = :kimmusaki_yubin_no
+                    , kimmusaki_ken_no      = :kimmusaki_ken_no 
+                    , kimmusaki_kemmei      = :kimmusaki_kemmei
+                    , kimmusaki_jusho_1     = :kimmusaki_jusho_1
+                    , kimmusaki_jusho_2     = :kimmusaki_jusho_2
+                    , kimmusaki_tel         = :kimmusaki_tel
+                    , kimmusaki_fax         = :kimmusaki_fax
+                    , last                  = :last
+                    , first                 = :first
                     , nagareyama_shimin     = :nagareyama_shimin
                     , koshin_user_id        = :koshin_user_id
                     , koshin_nichiji        = :koshin_nichiji
@@ -425,27 +440,42 @@ SQL;
 SQL;
                 $sth = $db->prepare($sql);
                 $sth->execute([
-                    ':shimei_sei'              => $param['shimei_sei'],
-                    ':shimei_mei'              => $param['shimei_mei'],
-                    ':furigana_sei'            => $param['furigana_sei'],
-                    ':furigana_mei'            => $param['furigana_mei'],
-                    ':seinengappi'             => $param['seinengappi'],
-                    ':seibetsu_kbn'            => $param['seibetsu_kbn'],
-                    ':yubin_no'                => $param['yubin_no'],
-                    ':ken_no'                  => $param['ken_no'],
-                    ':chiiki_id'               => $param['chiiki_id'],
-                    ':kemmei'                  => $param['kemmei'],
-                    ':jusho_1'                 => $param['jusho_1'],
-                    ':jusho_2'                 => $param['jusho_2'],
-                    ':kana_jusho_1'            => $param['kana_jusho_1'],
-                    ':kana_jusho_2'            => $param['kana_jusho_2'],
-                    ':tel'                     => $param['tel'],
-                    ':keitai_no'               => $param['keitai_no'],
-                    ':email_1'                 => $param['email_1'],
-                    ':email_2'                 => $param['email_2'],
-                    ':nagareyama_shimin'       => $param['nagareyama_shimin'],
-                    ':koshin_user_id'          => $param['koshin_user_id'],
-                    ':koshin_nichiji'          => $param['koshin_nichiji'],
+                ':shimei_sei'                       => $param['shimei_sei'],
+                ':shimei_mei'                       => $param['shimei_mei'],
+                ':furigana_sei'                     => $param['furigana_sei'],
+                ':furigana_mei'                     => $param['furigana_mei'],
+                ':seinengappi'                      => $param['seinengappi'],
+                ':seibetsu_kbn'                     => $param['seibetsu_kbn'],
+                ':yubin_no'                         => $param['yubin_no'],
+                ':ken_no'                           => $param['ken_no'],
+                ':chiiki_id'                        => $param['chiiki_id'],
+                ':kemmei'                           => $param['kemmei'],
+                ':jusho_1'                          => $param['jusho_1'],
+                ':jusho_2'                          => $param['jusho_2'],
+                ':kana_jusho_1'                     => $param['kana_jusho_1'],
+                ':kana_jusho_2'                     => $param['kana_jusho_2'],
+                ':tel'                              => $param['tel'],
+                ':fax'                              => $param['fax'],
+                ':keitai_no'                        => $param['keitai_no'],
+                ':email_1'                          => $param['email_1'],
+                ':email_2'                          => $param['email_2'],
+                ':url_1'                            => $param['url_1'],
+                ':shokugyo_kbn_1'                   => $param['shokugyo_kbn_1'],
+                ':shokugyo_kbn_2'                   => $param['shokugyo_kbn_2'],
+                ':shokugyo_kbn_3'                   => $param['shokugyo_kbn_3'],
+                ':kimmusakimei'                     => $param['kimmusakimei'],
+                ':kimmusaki_yubin_no'               => $param['kimmusaki_yubin_no'],
+                ':kimmusaki_ken_no'                 => $param['kimmusaki_ken_no'],
+                ':kimmusaki_kemmei'                 => $param['kimmusaki_kemmei'],
+                ':kimmusaki_jusho_1'                => $param['kimmusaki_jusho_1'],
+                ':kimmusaki_jusho_2'                => $param['kimmusaki_jusho_2'],
+                ':kimmusaki_tel'                    => $param['kimmusaki_tel'],
+                ':kimmusaki_fax'                    => $param['kimmusaki_fax'],
+                ':first'                            => $param['first'],
+                ':last'                             => $param['last'],
+                ':nagareyama_shimin'                => $param['nagareyama_shimin'],
+                ':koshin_user_id'                   => $param['koshin_user_id'],
+                ':koshin_nichiji'                   => $param['koshin_nichiji'],
                 ]);
             $db->commit();
         } catch (\Throwable $e) {
