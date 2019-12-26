@@ -23,21 +23,23 @@
 
 <body>
 	<header class="header_logo">
-		<img src="../../viewIncludeFiles/image/NSCA_Japan_rev.png" alt="ロゴ">
+		<div>
+			<img src="../../viewIncludeFiles/image/NSCA_Japan_rev.png" alt="ロゴ">
+		</div>
 	</header>
 	<div class="wrap">
-		<h2>入会申込</h2>
+		<h1>入会申込 登録情報確認</h1>
 		<div class="content_wrap">
 			<div class="spb_arrows">
 				<ul class="nav nav-tabs step-anchor">
-					<li><span><small>会員種別選択</small></span></li>
+					<li><span class="spb_border"><small>会員種別選択</small></span></li>
 					<li><span><small>入力</small></span></li>
 					<li class="active"><span><small>確認</small></span></li>
 					<li><span><small>完了</small></span></li>
 				</ul>
 			</div>
-			<p class="h2_text">テキストテキストテキストテキストテキストテキスト電話またはメールにて<a href="https://www.nsca-japan.or.jp/06_qanda/top.html#contact" target="_blank">お問い合わせ</a>ください。</p>
-			<h3>新規登録</h3>
+			<p class="top_text">テキストテキストテキストテキストテキストテキスト電話またはメールにて<a href="https://www.nsca-japan.or.jp/06_qanda/top.html#contact" target="_blank">お問い合わせ</a>ください。</p>
+			
 			<div class="shinki_toroku">
 				<form action="?" method="post" autocomplete="off" id="confirmForm" enctype="multipart/form-data">
 					<input type="hidden" name="kaiinType" id="kaiinType" value="<?php echo $wk_kaiinType ?>">
@@ -117,73 +119,75 @@
 					<input type="hidden" name="sel_office_chiiki" id="sel_office_chiiki" value="<?php echo $sel_office_chiiki; ?>">
 					<input type="hidden" name="kenmei" id="kenmei" value="<?php echo $kenmei; ?>">
 					<input type="hidden" name="office_kenmei" id="office_kenmei" value="<?php echo $office_kenmei; ?>">
-
-					<table>
-						<tr class="kaiin">
-							<th><span class="any"></span>会員種別</th>
-							<td>
-								<?php echo $wk_kaiinType; ?>
-							</td>
-						</tr>
-						<tr>
-							<th><span class="any"></span>英文購読オプション</th>
-							<td>
-								<?php echo $option; ?>
-							</td>
-						</tr>
-						<?php
-						if ($wk_kaiinType == "学生会員") {
-							echo '
-							<tr>
-							<th><span class="required">必須</span>学生証</th>
-							<td class="file">';
-							if ($filePath_front != "") {
-								echo '<p>学生証（表）アップロード済み</p><img class="filePath_front" src="' .$filePath_front . '"><br>';
-							}
-							if ($filePath_back != "") {
-								echo '<p>学生証（裏）アップロード済み</p><img class="filePath_back" src="' .$filePath_back . '"><br>';
-							}
-							echo '</td> 			
+					<h2>新規登録</h2>
+					<div class="bg_white">
+						<table>
+							<tr class="kaiin">
+								<th><span class="any"></span>会員種別</th>
+								<td>
+									<?php echo $wk_kaiinType; ?>
+									<p>会費：
+										<?php
+											if ($sel_option != "") {
+												if ($wk_kaiinType == "NSCA正会員") {
+													echo '25,920円(英文購読オプション含む 12,960円)';
+												} elseif ($wk_kaiinType == "学生会員") {
+													echo '23,760円(英文購読オプション含む 10,800円)';
+												}
+											} else {
+												if ($wk_kaiinType == "NSCA正会員") {
+													echo '12,960円';
+												} elseif ($wk_kaiinType == "学生会員") {
+													echo '10,800円';
+												}
+											}
+										?>
+									</p>
+								</td>
 							</tr>
-							';
-						}
-						?>
-						<tr>
-							<th><span class="required">必須</span>入会理由</th>
-							<td>
-								<?php echo $riyu."<br>".$riyu_sonota; ?>
-							</td>
-						</tr>
-						<tr class="nsca_hoji">
-							<th><span class="any"></span>NSCA認定資格の保持</th>
-							<td>
-								<?php echo $nsca_hoji; ?>
-							</td>
-						</tr>
-						<tr class="shinki_toroku_kaihi">
-							<th><span>会費</span>
-								<?php
-								if ($sel_option != "") {
-									if ($wk_kaiinType == "NSCA正会員") {
-										echo '25,920円　(英文購読オプション含む 12,960円)';
-									} elseif ($wk_kaiinType == "学生会員") {
-										echo '23,760円　(英文購読オプション含む 10,800円)';
-									}
-								} else {
-									if ($wk_kaiinType == "NSCA正会員") {
-										echo '12,960円';
-									} elseif ($wk_kaiinType == "学生会員") {
-										echo '10,800円';
-									}
+							<tr>
+								<th><span class="any"></span>英文購読オプション</th>
+								<td>
+									<?php echo $option; ?>
+								</td>
+							</tr>
+							<?php
+							if ($wk_kaiinType == "学生会員") {
+								echo '
+								<tr>
+								<th><span class="required">必須</span>学生証</th>
+								<td class="file">';
+								if ($filePath_front != "") {
+									echo '<p>学生証（表）アップロード済み</p><img class="filePath_front" src="' .$filePath_front . '"><br>';
 								}
-								?>
-							</th>
-						</tr>
-					</table>
+								if ($filePath_back != "") {
+									echo '<p>学生証（裏）アップロード済み</p><img class="filePath_back" src="' .$filePath_back . '"><br>';
+								}
+								echo '</td> 			
+								</tr>
+								';
+							}
+							?>
+							<tr>
+								<th><span class="required">必須</span>入会理由</th>
+								<td>
+									<?php echo $riyu."<br>".$riyu_sonota; ?>
+								</td>
+							</tr>
+							<tr class="nsca_hoji">
+								<th><span class="any"></span>NSCA認定資格の保持</th>
+								<td>
+									<?php echo $nsca_hoji; ?>
+								</td>
+							</tr>
+						</table>
+					</div>
 				</form>
 			</div>
+			
 			<div class="kihon_joho">
-				<h3>基本情報</h3>
+				<h2>基本情報</h2>
+				<div class="bg_white">
 					<input type="hidden" name="name_sei" id="name_sei" value="<?php echo $name_sei; ?>">
 					<table>
 						<tr class="name">
@@ -227,32 +231,29 @@
 						<tr class="yubin_nb">
 							<th><span class="required">必須</span>住所</th>
 							<td>
-								<?php echo $yubin_nb_1; ?>-<?php echo $yubin_nb_2."<br>"; ?>
-								<?php echo $kenmei."<br>"; ?>
-								<?php echo $address_shiku."<br>"; ?>
-								<?php echo $address_tatemono."<br>"; ?>
-
-							</td>
-						</tr>
-						<tr class="nagareyama">
-							<th><span class="any"></span>流山市民のチェック</th>
-							<td>
-								<?php echo $nagareyama; ?>
+								<?php echo $yubin_nb_1; ?>-<?php echo $yubin_nb_2; ?><br>
+								<?php echo $kenmei; ?><?php echo $address_shiku; ?><br>
+								<?php echo $address_tatemono; ?>
 							</td>
 						</tr>
 						<tr>
 							<th><span class="required">必須</span>住所(ヨミ)</th>
 							<td>
-								<?php echo $address_yomi_shiku."<br>"; ?>
+								<?php echo $address_yomi_shiku; ?><br>
 								<?php echo $address_yomi_tatemono; ?>
 							</td>
 						</tr>
 						<tr>
 							<th><span class="required">必須</span>電話番号</th>
 							<td>
-								TEL:<?php echo $tel."<br>"; ?>
-								携帯電話:<?php echo $keitai_tel."<br>"; ?>
-								FAX:<?php echo $fax."<br>"; ?>
+								<p>TEL：<?php echo $tel; ?></p>
+								<p>携帯：<?php echo $keitai_tel; ?></p>
+							</td>
+						</tr>
+						<tr>
+							<th><span class="any"></span>FAX番号</th>
+							<td>
+								<?php echo $fax; ?>
 							</td>
 						</tr>
 						<tr class="mail">
@@ -296,11 +297,11 @@
 							</td>
 						</tr>
 						<tr class="job">
-							<th><span class="any"></span>職業1</th>
+							<th><span class="any"></span>職業</th>
 							<td>
-								<?php echo $shoku_1."<br>"; ?>
-								<?php echo $shoku_2."<br>"; ?>
-								<?php echo $shoku_3."<br>"; ?>
+								<?php echo $shoku_1; ?><br>
+								<?php echo $shoku_2; ?><br>
+								<?php echo $shoku_3; ?>
 							</td>
 						</tr>
 						<tr>
@@ -312,10 +313,9 @@
 						<tr class="address">
 							<th><span class="any"></span>所属先住所</th>
 							<td>
-								<?php echo $office_yubin_nb_1; ?>-<?php echo $office_yubin_nb_2."<br>"; ?>
-								<?php echo $office_kenmei."<br>"; ?>
-								<?php echo $office_shiku."<br>"; ?>
-								<?php echo $office_tatemono."<br>"; ?>
+								<?php echo $office_yubin_nb_1; ?>-<?php echo $office_yubin_nb_2; ?><br>
+								<?php echo $office_kenmei; ?><?php echo $office_shiku; ?><br>
+								<?php echo $office_tatemono; ?>
 							</td>
 						</tr>
 						<tr>
@@ -342,11 +342,12 @@
 							</td>
 						</tr>
 					</table>
-				
+				</div>
 			</div>
 
 			<div class="oshirase">
-				<h3>お知らせ／連絡方法／アンケート</h3>
+				<h2>お知らせ／連絡方法／アンケート</h2>
+				<div class="bg_white">
 					<table>
 						<tr>
 							<th><span class="required">必須</span>連絡方法の希望</th>
@@ -393,7 +394,8 @@
 							</td>
 						</tr>
 					</table>
-			
+				</div>
+					
 			</div>
 			<section class="btn_wrap">
 				<button class="button btn_gray" id="return_button" type="button" value="" onclick="location.href='#'">内容を修正する</button>

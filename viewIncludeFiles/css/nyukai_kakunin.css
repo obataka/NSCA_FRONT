@@ -1,3 +1,7 @@
+.wrap {
+    padding-top: 60px;
+}
+/*äwê∂èÿ*/
 .file img {
     width: 300px;
 	margin-bottom: 30px;
@@ -8,55 +12,13 @@
 .file img:last-of-type {
     margin-bottom: 0;
 }
-.wrap {
-    padding-top: 20px;
+
+.shinki_toroku .bg_white {
+    padding-bottom: 40px;
 }
-.shinki_toroku_kaihi span:before {
-    border-left: 4px solid #005699;
-    content: "";
-    height: 20px;
-    position: absolute;
-    right: 35px;
-}
-.shinki_toroku_kaihi span {
-    position:relative;
-}
-.shinki_toroku_kaihi {
-    border-right: 1px solid #005699;
-    padding: 2em 5em!important;
-    margin-bottom: 3em!important;
-    border-left: 1px solid #005699;
-    border-bottom: 1px solid #005699!important;
-}
-.shinki_toroku_kaihi th {
-    width: 100%;
-}
-.shinki_toroku_kaihi p {
-    margin-bottom: 0;
-    padding-left: 1em;
-}
+
+
 @media screen and (max-width: 768px){
-	.shinki_toroku_kaihi th{
-		background: #fff;
-		color: #333333;
-	}
-	.shinki_toroku_kaihi {
-		padding: 20px!important;
-		padding-bottom: 50px!important;
-		border-top: 1px solid #005699;
-	}
-	.shinki_toroku_kaihi p{
-		font-size: 13px;
-	}
-	.btn_gray {
-		margin-bottom: 20px;
-	}
+
 }
-@media screen and (max-width: 480px){
-	.shinki_toroku_kaihi {
-		padding: 1em 10px 2.5em !important;
-	}
-	.shinki_toroku_kaihi p {
-		padding-left: 0;
-	}
-}
+

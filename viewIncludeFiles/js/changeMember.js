@@ -59,6 +59,7 @@
                         $('#address_todohuken').append('<option name="' + value[2] + '" value="' + value[0] + '">' + value[1] + '</option>');
                         $('#office_todohuken').append('<option name="' + value[2] + '" value="' + value[0] + '">' + value[1] + '</option>');
                     });
+
                 }
             },
             fail: function (rtn) {

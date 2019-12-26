@@ -23,22 +23,22 @@
     </head>
     <body>
 	<header class="header_logo">
-		<img src="../../viewIncludeFiles/image/NSCA_Japan_rev.png" alt="ロゴ">
+		<div>
+			<img src="../../viewIncludeFiles/image/NSCA_Japan_rev.png" alt="ロゴ">
+		</div>
 	</header>
 	<div class="wrap mh_c btn_b_wrap">
-		<h2>入会申込　登録完了</h2>
-		<div class="content_wrap">
-			<div class="spb_arrows">
-				<ul class="nav nav-tabs step-anchor">
-					<li><span><small>会員種別選択</small></span></li>
-					<li><span><small>入力</small></span></li>
-					<li><span><small>確認</small></span></li>
-					<li class="active"><span><small>完了</small></span></li>
-				</ul>
-			</div>
-			<p class="h2_text">テキストテキストテキストテキストテキストテキスト</p>
-			<button class="button btn_b btn_b_1" type="button" value="" onclick="location.href='#'"><span>マイページへ</span></button>
+		<h1>入会申込　登録完了</h1>
+		<div class="spb_arrows">
+			<ul class="nav nav-tabs step-anchor">
+				<li><span class="spb_border"><small>会員種別選択</small></span></li>
+				<li><span class="spb_border"><small>入力</small></span></li>
+				<li><span><small>確認</small></span></li>
+				<li class="active"><span><small>完了</small></span></li>
+			</ul>
 		</div>
+		<p class="top_text">テキストテキストテキストテキストテキストテキスト</p>
+		<button class="button btn_b btn_b_1 btn_1" type="button" value="" onclick="location.href='#'"><span>マイページへ</span></button>
 	</div>
 	<footer id="footer">
 	</footer>

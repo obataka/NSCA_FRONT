@@ -2,7 +2,10 @@ header {
     display: none;
 }
 .content_wrap {
-    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
 }
 .mh_c {
 	min-height: calc(100vh - 51px);
@@ -24,12 +27,6 @@ input {
 }
 button {
 	margin-bottom: 10px!important;
-}
-.content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
 }
 .login_text p {
     text-align: center;

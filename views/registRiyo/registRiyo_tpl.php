@@ -921,7 +921,7 @@
 					<li class="error" id=""></li>
 				</ul>
 			</div>
-			<button id="next_button" class="button" type="submit" value="" onclick="location.href='#'"><span>次へ</span></button>
+			<button id="next_button" class="button btn_1" type="submit" value="" onclick="location.href='#'"><span>次へ</span></button>
 		</div>
 	<footer id="footer">
 	</footer>

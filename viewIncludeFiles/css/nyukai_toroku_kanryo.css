@@ -1,8 +1,8 @@
 .wrap {
-    padding-top: 20px;
+    padding-top: 60px;
 }
 .mh_c {
-    min-height: calc(100vh - 182px);
+    min-height: calc(100vh - 125px);
 }
 @media screen and (max-width:768px) {
 	.mh_c {

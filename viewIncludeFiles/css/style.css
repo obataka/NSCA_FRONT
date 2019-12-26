@@ -160,7 +160,7 @@ input[type="checkbox"] {
     position:relative;
     margin-right: 20px;
     display: inline-block;
-    margin-bottom: 0.5em;
+    margin-bottom: 3px;
 	cursor: pointer;
 }
 .checkbox:hover:before {
@@ -195,11 +195,6 @@ input[type="checkbox"]:checked + .checkbox:after {
 input[type="radio"] {
     display: none;
 }
-/*
-td .radio {
-    line-height: 2;
-}
-*/
 input[type="radio"] + label {
     padding-left: 20px;
     position:relative;
@@ -227,17 +222,6 @@ input[type="radio"]:checked + label::after {
     background: #005699;
     border-radius: 50%;
 }
-/*
-#tel_1 {
-    margin-right: 0.5em;
-}
-#tel_2 {
-    margin: 0.5em;
-}
-#tel_3 {
-    margin-left: 0.5em;
-}
-*/
 
 /*button*/
 .btn_wrap button:first-of-type {
@@ -262,6 +246,9 @@ input[type="radio"]:checked + label::after {
     color: #005699;
 	cursor: pointer;
 	background: #F9F9F9;
+}
+.btn_1 {
+    margin: 0 auto;
 }
 .btn_gray,
 .back {
@@ -312,6 +299,11 @@ textarea {
     resize: none;
     padding: 0.5em;
     vertical-align: bottom;
+	font-family: inherit;
+}
+
+.kaiin p:first-of-type {
+    margin-bottom: 10px;
 }
 
 /*フォーム*/
@@ -431,8 +423,10 @@ input[type="file"] {
    font-size: 12px;
 }
 .ti {
-    margin-left: 2em;
+	margin-left: 25px;
     margin-top: 0;
+    line-height: 1.4;
+    font-size: 0.9em;
 }
 .gender p
 .mail p {
@@ -521,45 +515,28 @@ input[type="number"] {
 .teikan_wrap dd {
     margin-bottom: 1em;
 }
-.sbt_bottom {
-	padding: 20px 15px;
-    background: #fff;
-    border: 1px solid #005699;
-    border-top: none;
-    border-radius: 0 0 3px 3px;
-}
-.riyo,
-.NSCA,
-.gakusei {
-    width: 30%;
-}
-.kaiin_sbt {
-    width: 100%;
-}
 .kaiin_sbt form {
 	display: flex;
     flex-wrap: wrap;
 	justify-content: space-between;
 }
-.sbt_top {
-    background: #005699;
-    color: #fff;
-    text-align: center;
-    height: 145px;
-    border-radius: 3px 3px 0 0;
+
+.kaiin_sbt section div {
+    border-bottom: 1px solid #d2d2d2;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
 }
-.kaihi {
-    background: #fff;
-    color: #333;
-    padding: 15px;
-    width: 88%;
-    margin: 0 auto;
-	border-radius: 3px;
+.kaiin_sbt section {
+	background: #fff;
+	width: 30%;
+	padding: 30px;
 }
-.sbt_top p:first-child {
-    padding: 20px;
-    font-weight: bold;
+.sbt_title {
+	font-weight: bold;
+	font-size: 16px;
 }
+
+
 .currnt,
 .chenge {
     float: left;
@@ -600,7 +577,7 @@ input[type="number"] {
 }
 
 .any {
-    margin-left: 58px;
+    margin-left: 45px;
 }
 .spb_arrows {
     margin: 20px 0;
@@ -926,6 +903,9 @@ button[type="submit"]:disabled:hover::after {
 	.w_70 {
         width: 100%!important;
     }
+	.ti {
+        margin-left: 0;
+    }
 	.back {
 		margin-bottom: 20px!important;
 	}
@@ -941,27 +921,13 @@ button[type="submit"]:disabled:hover::after {
     .chiiki .checkbox {
         width: 7em;
     }
-    .kaiin_sbt {
-        display: block;
-		margin-top: 20px;
-		padding: 0 7%;
-    }
+
 	select {
 		width: 20%;
 	}
 	input,
 	select {
 		font-size: 16px;
-	}
-    .riyo, 
-	.NSCA, 
-	.gakusei {
-        margin-right: 0;
-        margin-bottom: 35px;
-        width: 100%;
-	}
-	.kaihi {
-		width: 300px;
 	}
 	tr {
 		padding: 0;
@@ -997,9 +963,6 @@ button[type="submit"]:disabled:hover::after {
     .any {
         display: none;
     }
-    .content_wrap {
-        padding: 0;
-    }
     .teikan,
 	.kiyaku,
 	.kitei {
@@ -1017,6 +980,23 @@ button[type="submit"]:disabled:hover::after {
 		height: auto;
 		margin-bottom: 0;
 	}
+	
+/*会員種別*/
+	.kaiin_sbt form {
+		display: block;
+	}
+	.kaiin_sbt {
+		padding: 0 7%;
+    }
+	.kaiin_sbt section {
+		width: 100%;
+		margin-bottom: 50px;
+	}
+	.kaiin_sbt section:last-of-type {
+		margin-bottom: 0;
+	}
+	
+	
 /*button*/
 	.btn_wrap {
 		justify-content: space-evenly;
@@ -1111,9 +1091,6 @@ button[type="submit"]:disabled:hover::after {
 	h2 {
 		font-size: 25px;
 	}
-    .ti {
-        margin-left: 0;
-    }
     table {
 		font-size: 10px!important;
     }
@@ -1260,10 +1237,32 @@ button[type="submit"]:disabled:hover::after {
 		margin-top: 0;
 	}
 	
+	/*ファイヤ―フォックスのみ*/
+	@-moz-document url-prefix() {
+		.spb_arrows>ul.step-anchor>li>span.spb_border:before {
+			top: 223%;
+		}
+		.spb_arrows > ul.step-anchor > li > span.spb_border::after,
+		.spb_arrows > ul.step-anchor > li > span::after {
+			top: 230%;
+		}
+	}
+	
 	/*IEのみ*/
 	_:-ms-lang(x)::-ms-backdrop,
 	.spb_arrows_6ver li span {
 		line-height: inherit!important;
+	}
+	
+	/*edgeのみ*/
+	@supports (-ms-ime-align:auto) {
+		.spb_arrows>ul.step-anchor>li>span.spb_border:before {
+			top: 223%;
+		}
+		.spb_arrows > ul.step-anchor > li > span.spb_border::after,
+		.spb_arrows > ul.step-anchor > li > span::after {
+			top: 230%;
+		}
 	}
 }
 
@@ -1277,6 +1276,11 @@ button[type="submit"]:disabled:hover::after {
 	.button {
 		line-height: 48px;
 	}
+}
+
+/*edgeのみ*/
+@supports (-ms-ime-align:auto) {
+
 }
 
 /*IEのみ*/

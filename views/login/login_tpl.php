@@ -35,7 +35,7 @@
 					<ul class="error_ul">
 						<li class="error"></li>
 					</ul>
-                    <button class="button" type="submit" name="__send" id="__send" value=""><span>Login</span></button>
+                    <button class="button btn_1" type="submit" name="__send" id="__send" value=""><span>Login</span></button>
                     <div class="login_text">
                         <p>
                             <a href="../changePasswordMail/">パスワードをお忘れですか？</a><br>
