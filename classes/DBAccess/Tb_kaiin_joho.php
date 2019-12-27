@@ -418,7 +418,7 @@ SQL;
                     , fax                   = :fax
                     , email_1               = :email_1
                     , email_2               = :email_2
-                    , url                   = :url
+                    , url_1                 = :url_1
                     , shokugyo_kbn_1        = :shokugyo_kbn_1  
                     , shokugyo_kbn_2        = :shokugyo_kbn_2  
                     , shokugyo_kbn_3        = :shokugyo_kbn_3  
@@ -507,38 +507,6 @@ SQL;
         return $Tb_kaiin_joho;
     }
 
-    /**
-    * パスワード更新処理
-    * @param array $param
-    * @return boolean
-    */
-    public function updatePassword($param)
-    {
-         $db = Db::getInstance();
-         $db->beginTransaction();
-         try {
-                $sql = <<<SQL
-                UPDATE tb_kaiin_joho
-                SET
-                      my_page_password      = :my_page_password
-                    , koshin_user_id        = :kaiin_no
-                    , koshin_nichiji        = now()
-                WHERE
-                      kaiin_no = :kaiin_no;
-SQL;
-                $sth = $db->prepare($sql);
-                $sth->execute([
-                ':kaiin_no'                       => $param['kaiin_no'],
-                ':my_page_password'               => $param['my_page_password'],
-                ]);
-            $db->commit();
-        } catch (\Throwable $e) {
-            error_log(print_r($e, true). PHP_EOL, '3', 'error_log.txt');
-            $db->rollBack();
-            return FALSE;
-        }
-        return TRUE;
-    }
            
 //     /**
 //      * @param varchar $kaiin_no

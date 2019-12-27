@@ -6,7 +6,7 @@
 	<meta http-equiv="Content-Style-Type" content="text/css" />
 	<meta name='format-detection' content='telephone=no' />
 	<meta name='viewport' content='width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no' />
-	<title>入会申込｜正会員 or 学生会員登録</title>
+	<title></title>
 	<!-- favicon -->
 	<link rel="icon" href="../../viewIncludeFiles/image/favicon.ico">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/notosansjapanese.css">

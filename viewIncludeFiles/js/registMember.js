@@ -2,6 +2,12 @@
 
     $(document).ready(function () {
 
+        if ($('#kaiinType').val() == "学生会員") {
+            $('title').html('入会申込｜学生会員');
+        } else if ($('#kaiinType').val() == "NSCA正会員") {
+            $('title').html('入会申込｜NSCA正会員');
+        }
+
         /****************
          * //都道府県取得
          ****************/
@@ -100,9 +106,9 @@
                     getShikakuList = JSON.parse(rtn);
                     $.each(getShikakuList, function (i, value) {
                         if (i % 2 == 0) {
-                            $('#nintei-shikaku-right').append('<input id="shikaku_' + value[0] + '" type="checkbox" name="shikaku" value="' + value[0] + '"><label class="checkbox" for="shikaku_' + value[0] + '">' + value[1] + '</label><br>');
-                        } else {
                             $('#nintei-shikaku-left').append('<input id="shikaku_' + value[0] + '" type="checkbox" name="shikaku" value="' + value[0] + '"><label class="checkbox" for="shikaku_' + value[0] + '">' + value[1] + '</label><br>');
+                        } else {
+                            $('#nintei-shikaku-right').append('<input id="shikaku_' + value[0] + '" type="checkbox" name="shikaku" value="' + value[0] + '"><label class="checkbox" for="shikaku_' + value[0] + '">' + value[1] + '</label><br>');
                         };
                     });
 

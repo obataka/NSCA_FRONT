@@ -70,7 +70,7 @@
                     
                     //会員選択テーブルの項目
                     meisho_cd_shikaku: $("#wk_sel_shikaku").val(),
-                    meisho_cd_chiiki: $("#wk_sel_chiiki").val(),
+                    meisho_cd_chiiki: $("#wk_sel_k_chiiki").val(),
                     meisho_cd_bunya: $("#wk_sel_bunya").val(),
                     biko_bunya: $("#sel_bunya_sonota").val(),
                     biko_shikaku: $("#sel_shikaku_sonota").val(),
