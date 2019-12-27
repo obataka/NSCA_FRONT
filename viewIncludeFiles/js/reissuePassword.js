@@ -72,7 +72,6 @@ $("#token").val(param);
             success: function(rtn) {
 
 
-alert(rtn);
                 // 会員情報、該当なし
 	                if (rtn == 0) {
 			            $("#err_pass_1").html("有効期限が過ぎています。パスワード変更依頼メール画面からもう一度やり直してください。");
@@ -88,6 +87,30 @@ alert(rtn);
 
 		 //エラーがない場合送信完了画面に画面遷移
 
+			             jQuery.ajax({
+			                url:  '../../classes/registReissuePassword.php',
+			                type: 'POST',
+			                data:
+			                {
+			                    kaiin_no: rtn,
+			                    pass: $("#pass_1").val()
+			                },
+			                success: function(rtn) {
+			                    // rtn = 0 の場合は、該当なし
+			                    if (rtn == 0) {
+			                        return false;
+			                    } else {
+			                        //エラーがない場合送信完了画面に画面遷移
+			                        location.href = '../reissuePasswordComplete/';       
+			                    }
+			                },
+			                fail: function(rtn) {
+			                    return false;
+			                },
+			                error: function(rtn) {
+			                    return false;
+			                }
+			            });
 
 					}
 
