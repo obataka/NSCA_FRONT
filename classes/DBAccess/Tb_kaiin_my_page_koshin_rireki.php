@@ -212,7 +212,6 @@ SQL;
                 ':sakusei_nichiji'                           => $param['sakusei_nichiji'],
                 ':koshin_nichiji'                            => $param['koshin_nichiji'],
             ]);
-            
             $db->commit();
         } catch (\Throwable $e) {
             error_log(print_r($e, true). PHP_EOL, '3', 'error_log.txt');

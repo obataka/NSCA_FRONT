@@ -11,6 +11,9 @@
 }
 
 @media screen and (max-width: 768px) {
+	.shinki_toroku tr{
+        padding: 1em 0;
+    }
     .shinki_toroku .required {
         margin-left: 0;
     }
