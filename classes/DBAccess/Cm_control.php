@@ -7,7 +7,7 @@ class Cm_control
     {
     }
 
-    /**
+    /*
      * ID検索
      * @param varchar $id
      * @return array|mixed
@@ -368,7 +368,7 @@ class Cm_control
 //
 //SQL;
 //            }
-//            
+//
 //            $sth = $db->prepare($sql);
 //
 //            // 予約不可の場合
@@ -501,7 +501,7 @@ class Cm_control
 //
 //SQL;
 //            }
-//            
+//
 //            $sth = $db->prepare($sql);
 //            $sth->execute([
 //                ':AREA_ID'      => $argument['AREA_ID'],

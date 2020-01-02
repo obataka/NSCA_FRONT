@@ -62,7 +62,7 @@ class Tb_kaiin_sonota
                 , :sakusei_nichiji
                 , :koshin_nichiji
             );
-           
+
 SQL;
             $sth = $db->prepare($sql);
             $sth->execute([
@@ -89,7 +89,7 @@ SQL;
             ]);
             $db->commit();
 
-        } catch (\Throwable $e) {
+        } catch (\PDOException $e) {
             error_log(print_r($e, true). PHP_EOL, '3', 'error_log.txt');
             $db->rollBack();
             return FALSE;
@@ -143,7 +143,7 @@ SQL;
                     ':koshin_nichiji'                       => $param1['koshin_nichiji'],
                 ]);
             $db->commit();
-        } catch (\Throwable $e) {
+        } catch (\PDOException $e) {
             error_log(print_r($e, true). PHP_EOL, '3', 'error_log.txt');
             $db->rollBack();
             return FALSE;
@@ -392,7 +392,7 @@ SQL;
 //
 //SQL;
 //            }
-//            
+//
 //            $sth = $db->prepare($sql);
 //
 //            // 予約不可の場合
@@ -525,7 +525,7 @@ SQL;
 //
 //SQL;
 //            }
-//            
+//
 //            $sth = $db->prepare($sql);
 //            $sth->execute([
 //                ':AREA_ID'      => $argument['AREA_ID'],

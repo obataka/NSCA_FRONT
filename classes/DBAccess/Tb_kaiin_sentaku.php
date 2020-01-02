@@ -44,7 +44,7 @@ class Tb_kaiin_sentaku
                     DELETE
                     FROM tb_kaiin_sentaku
                     WHERE kaiin_no = :kaiin_no;
-           
+
 SQL;
             $sth = $db->prepare($sql);
             $sth->execute([
@@ -76,11 +76,11 @@ SQL;
                     $sql = <<<SQL
                     INSERT
                     INTO tb_kaiin_sentaku(
-                        kaiin_no 
+                        kaiin_no
                         , meisho_kbn
                         , meisho_cd
                         , biko
-                        , sakujo_flg 
+                        , sakujo_flg
                         , sakusei_user_id
                         , koshin_user_id
                         , sakusei_nichiji
@@ -97,7 +97,7 @@ SQL;
                         , :sakusei_nichiji
                         , :koshin_nichiji
                     );
-           
+
 SQL;
                     $sth = $db->prepare($sql);
                     $sth->execute([
@@ -114,7 +114,7 @@ SQL;
                     $db->commit();
                 }
             }
-        } catch (\Throwable $e) {
+        } catch (\PDOException $e) {
             error_log(print_r($e, true) . PHP_EOL, '3', 'error_log.txt');
             $db->rollBack();
             return FALSE;
@@ -133,11 +133,11 @@ SQL;
                     $sql = <<<SQL
                     INSERT
                     INTO tb_kaiin_sentaku(
-                        kaiin_no 
+                        kaiin_no
                         , meisho_kbn
                         , meisho_cd
                         , biko
-                        , sakujo_flg 
+                        , sakujo_flg
                         , sakusei_user_id
                         , koshin_user_id
                         , sakusei_nichiji
@@ -154,7 +154,7 @@ SQL;
                         , :sakusei_nichiji
                         , :koshin_nichiji
                     );
-           
+
 SQL;
                     $sth = $db->prepare($sql);
                     $sth->execute([
@@ -171,7 +171,7 @@ SQL;
                     $db->commit();
                 }
             }
-        } catch (\Throwable $e) {
+        } catch (\PDOException $e) {
             error_log(print_r($e, true) . PHP_EOL, '3', 'error_log.txt');
             $db->rollBack();
             return FALSE;
@@ -196,11 +196,11 @@ SQL;
                     $sql = <<<SQL
                     INSERT
                     INTO tb_kaiin_sentaku(
-                        kaiin_no 
+                        kaiin_no
                         , meisho_kbn
                         , meisho_cd
                         , biko
-                        , sakujo_flg 
+                        , sakujo_flg
                         , sakusei_user_id
                         , koshin_user_id
                         , sakusei_nichiji
@@ -217,7 +217,7 @@ SQL;
                         , :sakusei_nichiji
                         , :koshin_nichiji
                     );
-           
+
 SQL;
                     $sth = $db->prepare($sql);
                     $sth->execute([
@@ -234,7 +234,7 @@ SQL;
                     $db->commit();
                 }
             }
-        } catch (\Throwable $e) {
+        } catch (\PDOException $e) {
             error_log(print_r($e, true) . PHP_EOL, '3', 'error_log.txt');
             $db->rollBack();
             return FALSE;

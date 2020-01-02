@@ -7,7 +7,38 @@ class Tb_kaiin_joho
     {
     }
 
-    /**
+    /*
+     * ログイン判定（パスワード未設定）
+     * @param varchar $loginId
+     * @return array|mixed
+     */
+    public function findByEmail($loginId)
+    {
+        try {
+            $db = Db::getInstance();
+            $sql = <<<SQL
+                    SELECT joho.*
+                      FROM tb_kaiin_joho joho
+                     INNER JOIN tb_kaiin_sonota sonota
+                        ON joho.kaiin_no = sonota.kaiin_no
+                     WHERE (joho.toroku_jokyo_kbn = 1)
+                       AND (joho.sakujo_flg = 0)
+                       AND (sonota.sakujo_flg = 0)
+                       AND (((sonota.email_1_login = 1) AND (joho.email_1 = :email_1)) OR
+                            ((sonota.email_2_login = 1) AND (joho.email_2 = :email_1)));
+SQL;
+            $sth = $db->prepare($sql);
+            $sth->execute([':email_1' => $loginId,]);
+            $kaiinJoho = $sth->fetch();
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/sugai_log.txt');
+            $kaiinJoho = [];
+        }
+
+        return $kaiinJoho;
+    }
+
+    /*
      * ログイン判定
      * @param varchar $loginId
      * @param varchar $loginPswd
@@ -18,19 +49,26 @@ class Tb_kaiin_joho
         try {
             $db = Db::getInstance();
             $sql = <<<SQL
-                    SELECT *
-                      FROM tb_kaiin_joho
-                     WHERE (email_1 = :email_1 OR email_2 = :email_1 OR kaiin_no = :email_1)
-                       AND my_page_password = :my_page_password;
+                    SELECT joho.*
+                      FROM tb_kaiin_joho joho
+                     INNER JOIN tb_kaiin_sonota sonota
+                        ON joho.kaiin_no = sonota.kaiin_no
+                     WHERE (joho.toroku_jokyo_kbn = 1)
+                       AND (joho.sakujo_flg = 0)
+                       AND (sonota.sakujo_flg = 0)
+                       AND (joho.my_page_password = :my_page_password)
+                       AND (((sonota.email_1_login = 1) AND (joho.email_1 = :email_1)) OR
+                            ((sonota.email_2_login = 1) AND (joho.email_2 = :email_1)));
 SQL;
             $sth = $db->prepare($sql);
             $sth->execute([':email_1' => $loginId, ':my_page_password' => $loginPswd,]);
-            $mstProduct = $sth->fetch();
+            $kaiinJoho = $sth->fetch();
         } catch (\PDOException $e) {
-            $mstProduct = [];
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/sugai_log.txt');
+            $kaiinJoho = [];
         }
 
-        return $mstProduct;
+        return $kaiinJoho;
     }
 
    /* 該当日の会員番号の最大値を取得する
@@ -49,9 +87,9 @@ SQL;
         }
         return $mstProduct;
     }
-    
 
-    /**
+
+    /*
      * 存在チェック（パスワード変更用）
      * @param varchar $kaiinNo
      * @param varchar $mailAddress
@@ -73,7 +111,7 @@ SQL;
         }
         return $row["resultCount"];
     }
-    /**
+    /*
      * 登録
      * @param array $param
      * @return boolean
@@ -259,7 +297,7 @@ SQL;
                 , :koshin_nichiji
                 , :kako_shikaku_umu_kbn
             );
-           
+
 SQL;
             $sth = $db->prepare($sql);
             $sth->execute([
@@ -350,7 +388,7 @@ SQL;
                 ':kako_shikaku_umu_kbn'             => $param['kako_shikaku_umu_kbn'],
             ]);
             $db->commit();
-        } catch (\Throwable $e) {
+        } catch (\PDOException $e) {
             error_log(print_r($e, true). PHP_EOL, '3', 'error_log.txt');
             $db->rollBack();
             return FALSE;
@@ -382,7 +420,7 @@ SQL;
     }
 
 
-    /**
+    /*
     * 更新処理
     * @param array $param
     * @return boolean
@@ -419,12 +457,12 @@ SQL;
                     , email_1               = :email_1
                     , email_2               = :email_2
                     , url_1                 = :url_1
-                    , shokugyo_kbn_1        = :shokugyo_kbn_1  
-                    , shokugyo_kbn_2        = :shokugyo_kbn_2  
-                    , shokugyo_kbn_3        = :shokugyo_kbn_3  
+                    , shokugyo_kbn_1        = :shokugyo_kbn_1
+                    , shokugyo_kbn_2        = :shokugyo_kbn_2
+                    , shokugyo_kbn_3        = :shokugyo_kbn_3
                     , kimmusakimei          = :kimmusakimei
                     , kimmusaki_yubin_no    = :kimmusaki_yubin_no
-                    , kimmusaki_ken_no      = :kimmusaki_ken_no 
+                    , kimmusaki_ken_no      = :kimmusaki_ken_no
                     , kimmusaki_kemmei      = :kimmusaki_kemmei
                     , kimmusaki_jusho_1     = :kimmusaki_jusho_1
                     , kimmusaki_jusho_2     = :kimmusaki_jusho_2
@@ -478,7 +516,7 @@ SQL;
                 ':koshin_nichiji'                   => $param['koshin_nichiji'],
                 ]);
             $db->commit();
-        } catch (\Throwable $e) {
+        } catch (\PDOException $e) {
             error_log(print_r($e, true). PHP_EOL, '3', 'error_log.txt');
             $db->rollBack();
             return FALSE;
@@ -506,389 +544,4 @@ SQL;
         }
         return $Tb_kaiin_joho;
     }
-
-           
-//     /**
-//      * @param varchar $kaiin_no
-//      * @return array|mixed
-//      */
-//     public function findByEmailAndPassword($kaiin_no)
-//     {
-//         try {
-//             $db = Db::getInstance();
-//             $sql = <<<SQL
-//                     SELECT RIGHT(MAX(kaiin_no), 2)
-//                     FROM tb_kaiin_joho
-//                     WHERE kaiin_no LIKE $wk_kaiin_no'%';
-// SQL;
-//             $sth = $db->prepare($sql);
-//             $sth->execute([':kaiin_no' => $kaiin_no,]);
-//             $mstProduct = $sth->fetch();
-//         } catch (\PDOException $e) {
-//             error_log(print_r($e, true). PHP_EOL, '3', 'tanihara_log.txt');
-//             $mstProduct = [];
-//         }
-
-//         return $mstProduct;
-//     }
-
-//
-//    /**
-//     * エリア日付検索
-//     * @param integer $area
-//     * @param integer $ymd
-//     * @return array|mixed
-//     */
-//    public function findByAreaAndYmd($area, $ymd)
-//    {
-//        try {
-//            $db = Db::getInstance();
-//            $sth = $db->prepare("SELECT * FROM T_REMAIN_MNG_BY_DATE WHERE AREA_ID = :AREA_ID AND RESERVE_YMD = :RESERVE_YMD;");
-//            $sth->execute([':AREA_ID' => $area,':RESERVE_YMD' => $ymd,]);
-//            $mstProduct = $sth->fetch();
-//        } catch (\PDOException $e) {
-//            error_log(print_r($e, true). PHP_EOL, '3', 'error_log.txt');
-//            $mstProduct = [];
-//        }
-//
-//        return $mstProduct;
-//    }
-//
-//    /**
-//     * 日付期間検索
-//     * @param integer $fromYmd
-//     * @param integer $toYmd
-//     * @return array|mixed
-//     */
-//    public function findBetweenYmd($fromYmd, $toYmd, $selArea)
-//    {
-//        try {
-//            $db = Db::getInstance();
-//            $sth = $db->prepare("SELECT * FROM T_REMAIN_MNG_BY_DATE WHERE RESERVE_YMD BETWEEN :FROM_RESERVE_YMD AND :TO_RESERVE_YMD AND AREA_ID = :AREA_ID ORDER BY RESERVE_YMD;");
-//            $sth->execute([':FROM_RESERVE_YMD' => $fromYmd, ':TO_RESERVE_YMD' => $toYmd, ':AREA_ID' => $selArea,]);
-//            $mstProduct = $sth->fetchAll();
-//        } catch (\PDOException $e) {
-//            error_log(print_r($e, true). PHP_EOL, '3', 'error_log.txt');
-//            $mstProduct = [];
-//        }
-//
-//        return $mstProduct;
-//    }
-//
-//    /**
-//     * 全件取得
-//     * @return array
-//     */
-//    public function findAll()
-//    {
-//        try {
-//            $db = Db::getInstance();
-//            $sth = $db->prepare("SELECT * FROM T_REMAIN_MNG_BY_DATE ORDER BY RESERVE_YMD;");
-//            $sth->execute();
-//            $mstProduct = $sth->fetchAll();
-//        } catch (\PDOException $e) {
-//            error_log(print_r($e, true). PHP_EOL, '3', 'error_log.txt');
-//            $mstProduct = [];
-//        }
-//
-//        return $mstProduct;
-//    }
-//
-//    /**
-//     * 最大日付取得　※カスタマイズ済み
-//     * @return array|mixed
-//     */
-//    public function getMaxYmd($argument)
-//    {
-//        try {
-//            $db = Db::getInstance();
-//            $sth = $db->prepare("SELECT MAX(RESERVE_YMD) AS MAX_YMD FROM T_REMAIN_MNG_BY_DATE WHERE AREA_ID = :AREA_ID;");
-//            $sth->execute([':AREA_ID' => $argument,]);
-//            $maxYmd = $sth->fetch();
-//        } catch (\PDOException $e) {
-//            error_log(print_r($e, true). PHP_EOL, '3', 'error_log.txt');
-//            $maxYmd = '';
-//        }
-//
-//        return $maxYmd;
-//    }
-//
-//    /**
-//     * 日次バッチ用削除処理
-//     * @param integer $ymd
-//     * @return boolean
-//     */
-//    public function deleteDailyBatch($ymd)
-//    {
-//        $db = Db::getInstance();
-//        $db->beginTransaction();
-//        try {
-//            $sql = <<<SQL
-//            DELETE
-//            FROM
-//                T_REMAIN_MNG_BY_DATE
-//            WHERE
-//                RESERVE_YMD <= :RESERVE_YMD
-//                ;
-//
-//SQL;
-//            $sth = $db->prepare($sql);
-//            $sth->execute([':RESERVE_YMD' => $ymd,]);
-//
-//            $db->commit();
-//        } catch (\Throwable $e) {
-//            error_log(print_r($e, true). PHP_EOL, '3', 'error_log.txt');
-//            $db->rollBack();
-//            return FALSE;
-//        }
-//        return TRUE;
-//    }
-//
-//    /**
-//     * 日次バッチ用更新処理
-//     * @param array $ymd
-//     * @return boolean
-//     */
-//    public function updateDailyBatch($ymd)
-//    {
-//        $db = Db::getInstance();
-//        $db->beginTransaction();
-//        try {
-//            $sql = <<<SQL
-//            UPDATE T_REMAIN_MNG_BY_DATE
-//            SET
-//                  RESERVE_PROP  = 0
-//                , UPD_ADMIN_DTS = now()
-//                , UPD_ADMIN_USR = 'DailyBatchUpd'
-//                , UPD_USER_DTS  = now()
-//                , UPD_USER_USR  = 'DailyBatchUpd'
-//            WHERE
-//                  RESERVE_YMD   = :RESERVE_YMD
-//            ;
-//
-//SQL;
-//            $sth = $db->prepare($sql);
-//            $sth->execute([':RESERVE_YMD' => $ymd,]);
-//
-//            $db->commit();
-//        } catch (\Throwable $e) {
-//            error_log(print_r($e, true). PHP_EOL, '3', 'error_log.txt');
-//            $db->rollBack();
-//            return false;
-//        }
-//        return true;
-//    }
-//
-//    /**
-//     * 管理用更新処理
-//     * @param array $argument
-//     * @return boolean
-//     */
-//    public function updateAdmin($argument)
-//    {
-//        $db = Db::getInstance();
-//        $db->beginTransaction();
-//        try {
-
-//            // 予約不可の場合
-//            if ($argument['RESERVE_PROP'] == Config::RESERVE_PROP_NO) {
-
-//                $sql = <<<SQL
-//                UPDATE T_REMAIN_MNG_BY_DATE
-//                SET
-//                      RESERVE_PROP    = :RESERVE_PROP
-//                    , UPD_ADMIN_DTS   = now()
-//                    , UPD_ADMIN_USR   = :UPD_ADMIN_USR
-//                WHERE
-//                      AREA_ID       = :AREA_ID
-//                AND   RESERVE_YMD   = :RESERVE_YMD
-//                ;
-
-// SQL;
-//            // 予約可の場合
-//            } else {
-
-//                $sql = <<<SQL
-//                UPDATE T_REMAIN_MNG_BY_DATE
-//                SET
-//                      RESERVE_PROP          = :RESERVE_PROP
-//                    , RESERVE_TIME_FROM_1   = :RESERVE_TIME_FROM_1
-//                    , RESERVE_TIME_FROM_2   = :RESERVE_TIME_FROM_2
-//                    , RESERVE_TIME_FROM_3   = :RESERVE_TIME_FROM_3
-//                    , RESERVE_TIME_FROM_4   = :RESERVE_TIME_FROM_4
-//                    , RESERVE_TIME_FROM_5   = :RESERVE_TIME_FROM_5
-//                    , RESERVE_TIME_TO_1     = :RESERVE_TIME_TO_1
-//                    , RESERVE_TIME_TO_2     = :RESERVE_TIME_TO_2
-//                    , RESERVE_TIME_TO_3     = :RESERVE_TIME_TO_3
-//                    , RESERVE_TIME_TO_4     = :RESERVE_TIME_TO_4
-//                    , RESERVE_TIME_TO_5     = :RESERVE_TIME_TO_5
-//                    , RESERVE_LIMIT_1       = :RESERVE_LIMIT_1
-//                    , RESERVE_LIMIT_2       = :RESERVE_LIMIT_2
-//                    , RESERVE_LIMIT_3       = :RESERVE_LIMIT_3
-//                    , RESERVE_LIMIT_4       = :RESERVE_LIMIT_4
-//                    , RESERVE_LIMIT_5       = :RESERVE_LIMIT_5
-//                    , RESERVE_CNT_1         = :RESERVE_CNT_1
-//                    , RESERVE_CNT_2         = :RESERVE_CNT_2
-//                    , RESERVE_CNT_3         = :RESERVE_CNT_3
-//                    , RESERVE_CNT_4         = :RESERVE_CNT_4
-//                    , RESERVE_CNT_5         = :RESERVE_CNT_5
-//                    , UPD_ADMIN_DTS         = now()
-//                    , UPD_ADMIN_USR         = :UPD_ADMIN_USR
-//                WHERE
-//                      AREA_ID     = :AREA_ID
-//                AND   RESERVE_YMD = :RESERVE_YMD
-//                ;
-
-// SQL;
-//            }
-           
-//            $sth = $db->prepare($sql);
-
-//            // 予約不可の場合
-//            if ($argument['RESERVE_PROP'] == Config::RESERVE_PROP_NO) {
-//                $sth->execute([
-//                    ':AREA_ID'          => $argument['AREA_ID'],
-//                    ':RESERVE_YMD'      => $argument['RESERVE_YMD'],
-//                    ':RESERVE_PROP'     => $argument['RESERVE_PROP'],
-//                    ':UPD_ADMIN_USR'    => $argument['UPD_ADMIN_USR'],
-//                ]);
-
-//            // 予約可の場合
-//            } else {
-//                $sth->execute([
-//                    ':AREA_ID'              => $argument['AREA_ID'],
-//                    ':RESERVE_YMD'          => $argument['RESERVE_YMD'],
-//                    ':RESERVE_PROP'         => $argument['RESERVE_PROP'],
-//                    ':RESERVE_TIME_FROM_1'  => $argument['RESERVE_TIME_FROM_1'],
-//                    ':RESERVE_TIME_FROM_2'  => $argument['RESERVE_TIME_FROM_2'],
-//                    ':RESERVE_TIME_FROM_3'  => $argument['RESERVE_TIME_FROM_3'],
-//                    ':RESERVE_TIME_FROM_4'  => $argument['RESERVE_TIME_FROM_4'],
-//                    ':RESERVE_TIME_FROM_5'  => $argument['RESERVE_TIME_FROM_5'],
-//                    ':RESERVE_TIME_TO_1'    => $argument['RESERVE_TIME_TO_1'],
-//                    ':RESERVE_TIME_TO_2'    => $argument['RESERVE_TIME_TO_2'],
-//                    ':RESERVE_TIME_TO_3'    => $argument['RESERVE_TIME_TO_3'],
-//                    ':RESERVE_TIME_TO_4'    => $argument['RESERVE_TIME_TO_4'],
-//                    ':RESERVE_TIME_TO_5'    => $argument['RESERVE_TIME_TO_5'],
-//                    ':RESERVE_LIMIT_1'      => $argument['RESERVE_LIMIT_1'],
-//                    ':RESERVE_LIMIT_2'      => $argument['RESERVE_LIMIT_2'],
-//                    ':RESERVE_LIMIT_3'      => $argument['RESERVE_LIMIT_3'],
-//                    ':RESERVE_LIMIT_4'      => $argument['RESERVE_LIMIT_4'],
-//                    ':RESERVE_LIMIT_5'      => $argument['RESERVE_LIMIT_5'],
-//                    ':RESERVE_CNT_1'        => $argument['RESERVE_CNT_1'],
-//                    ':RESERVE_CNT_2'        => $argument['RESERVE_CNT_2'],
-//                    ':RESERVE_CNT_3'        => $argument['RESERVE_CNT_3'],
-//                    ':RESERVE_CNT_4'        => $argument['RESERVE_CNT_4'],
-//                    ':RESERVE_CNT_5'        => $argument['RESERVE_CNT_5'],
-//                    ':UPD_ADMIN_USR'        => $argument['UPD_ADMIN_USR'],
-//                ]);
-//            }
-
-//            $db->commit();
-//        } catch (\Throwable $e) {
-//            error_log(print_r($e, true). PHP_EOL, '3', 'error_log.txt');
-//            $db->rollBack();
-//            return false;
-//        }
-//        return true;
-//    }
-
-//    /**
-//     * ユーザー用更新処理
-//     * @param array $argument
-//     * @return boolean
-//     */
-//    public function updateUser($argument)
-//    {
-//        $db = Db::getInstance();
-//        $db->beginTransaction();
-//        try {
-//
-//            // 枠１の場合
-//            if ($argument['WAKU'] == 1) {
-//                $sql = <<<SQL
-//                UPDATE T_REMAIN_MNG_BY_DATE
-//                SET
-//                      RESERVE_CNT_1 = :RESERVE_CNT
-//                    , UPD_USER_DTS  = now()
-//                    , UPD_USER_USR  = :UPD_USER_USR
-//                WHERE
-//                      AREA_ID       = :AREA_ID
-//                AND   RESERVE_YMD   = :RESERVE_YMD
-//                ;
-//
-//SQL;
-//            // 枠２の場合
-//            } elseif ($argument['WAKU'] == 2) {
-//                $sql = <<<SQL
-//                UPDATE T_REMAIN_MNG_BY_DATE
-//                SET
-//                      RESERVE_CNT_2 = :RESERVE_CNT
-//                    , UPD_USER_DTS  = now()
-//                    , UPD_USER_USR  = :UPD_USER_USR
-//                WHERE
-//                      AREA_ID       = :AREA_ID
-//                AND   RESERVE_YMD   = :RESERVE_YMD
-//                ;
-//
-//SQL;
-//            // 枠３の場合
-//            } elseif ($argument['WAKU'] == 3) {
-//                $sql = <<<SQL
-//                UPDATE T_REMAIN_MNG_BY_DATE
-//                SET
-//                      RESERVE_CNT_3 = :RESERVE_CNT
-//                    , UPD_USER_DTS  = now()
-//                    , UPD_USER_USR  = :UPD_USER_USR
-//                WHERE
-//                      AREA_ID       = :AREA_ID
-//                AND   RESERVE_YMD   = :RESERVE_YMD
-//                ;
-//
-//SQL;
-//            // 枠４の場合
-//            } elseif ($argument['WAKU'] == 4) {
-//                $sql = <<<SQL
-//                UPDATE T_REMAIN_MNG_BY_DATE
-//                SET
-//                      RESERVE_CNT_4 = :RESERVE_CNT
-//                    , UPD_USER_DTS  = now()
-//                    , UPD_USER_USR  = :UPD_USER_USR
-//                WHERE
-//                      AREA_ID       = :AREA_ID
-//                AND   RESERVE_YMD   = :RESERVE_YMD
-//                ;
-//
-//SQL;
-//            // 枠５の場合
-//            } else {
-//                $sql = <<<SQL
-//                UPDATE T_REMAIN_MNG_BY_DATE
-//                SET
-//                      RESERVE_CNT_5 = :RESERVE_CNT
-//                    , UPD_USER_DTS  = now()
-//                    , UPD_USER_USR  = :UPD_USER_USR
-//                WHERE
-//                      AREA_ID       = :AREA_ID
-//                AND   RESERVE_YMD   = :RESERVE_YMD
-//                ;
-//
-//SQL;
-//            }
-//            
-//            $sth = $db->prepare($sql);
-//            $sth->execute([
-//                ':AREA_ID'      => $argument['AREA_ID'],
-//                ':RESERVE_YMD'  => $argument['RESERVE_YMD'],
-//                ':RESERVE_CNT'  => $argument['RESERVE_CNT'],
-//                ':UPD_USER_USR' => $argument['UPD_USER_USR'],
-//            ]);
-//
-//            $db->commit();
-//        } catch (\Throwable $e) {
-//            error_log(print_r($e, true). PHP_EOL, '3', 'error_log.txt');
-//            $db->rollBack();
-//            return false;
-//        }
-//        return true;
-//    }
 }

@@ -49,7 +49,7 @@ SQL;
                 ':yukokigen_nichiji'     => $argument['yukokigen_nichiji']
             ]);
             $db->commit();
-        } catch (\Throwable $e) {
+        } catch (\PDOException $e) {
             error_log(print_r($e, true). PHP_EOL, '3', 'error_log.txt');
             $db->rollBack();
             return FALSE;
@@ -58,7 +58,7 @@ SQL;
     }
 
 
-    /**
+    /*
      * トークンから有効な会員番号を取得する
      * @param varchar $token
      * @return array|mixed

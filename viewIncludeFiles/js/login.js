@@ -1,4 +1,5 @@
 (function($){
+
     $(document).ready(function(){
 
         /********************************
@@ -25,31 +26,17 @@
                 }
             }
 
-            // パスワード未入力チェック
-            if ($("#password").val() == "") {
-                if (wk_err_msg == "") {
-                    wk_err_msg = "パスワードが未入力です。";
-                } else {
-                    wk_err_msg = wk_err_msg + "<br>" + "パスワードが未入力です。";
-                }
-                if (wk_focus_done == 0) {
-                    $("#password").focus();
-                    wk_focus_done = 1;
-                }
-            }
-
+            // エラーがあった場合はメッセージを設定し処理終了
             if (wk_err_msg != "") {
                 $(".error").html(wk_err_msg);
                 return false;
             }
 
-            var wk_sts = 0;
-
             // ログイン処理
             jQuery.ajax({
                 url:  '../../classes/loginCtrl.php',
-                type: 'POST',
                 async:false,
+                type: 'POST',
                 data:
                 {
                     loginId: $("#login_id").val(),
@@ -58,26 +45,26 @@
                 success: function(rtn) {
                     // rtn = 0 の場合は、該当者なし
                     if (rtn == 0) {
-                        $(".error").text("ログイン情報が無効です");
-                        wk_sts = 1;
+                        $(".error").text("ログイン情報が無効です。");
                         return false;
+                    // rtn = 1 の場合は、パスワード未入力エラー
+                    } else if (rtn == 1) {
+                        $(".error").text("パスワードが未入力です。");
+                        return false;
+                    // rtn = 2 の場合は、パスワードをお忘れですか？の画面に遷移する
+                    } else if (rtn == 2) {
+                        location.href = '../changePasswordMail/';
                     }
                 },
                 fail: function(rtn) {
-                    $(".error").text("ログイン情報が無効です");
-                    wk_sts = 1;
+                    $(".error").text("ログイン情報が無効です。");
                     return false;
                 },
                 error: function(rtn) {
-                    $(".error").text("ログイン情報が無効です");
-                    wk_sts = 1;
+                    $(".error").text("ログイン情報が無効です。");
                     return false;
                 }
             });
-
-            if (wk_sts == 1) {
-                return false;
-            }
         });
     });
 })(jQuery);

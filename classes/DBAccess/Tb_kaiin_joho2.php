@@ -7,7 +7,7 @@ class Tb_kaiin_joho2
     {
     }
 
-    /**
+    /*
      * ログイン判定
      * @param varchar $loginId
      * @param varchar $loginPswd
@@ -49,9 +49,9 @@ SQL;
         }
         return $mstProduct;
     }
-    
 
-    /**
+
+    /*
      * 存在チェック（パスワード変更用）
      * @param varchar $kaiinNo
      * @param varchar $mailAddress
@@ -259,7 +259,7 @@ SQL;
                 , :koshin_nichiji
                 , :kako_shikaku_umu_kbn
             );
-           
+
 SQL;
             $sth = $db->prepare($sql);
             $sth->execute([
@@ -350,7 +350,7 @@ SQL;
                 ':kako_shikaku_umu_kbn'             => $param['kako_shikaku_umu_kbn'],
             ]);
             $db->commit();
-        } catch (\Throwable $e) {
+        } catch (\PDOException $e) {
             error_log(print_r($e, true). PHP_EOL, '3', 'error_log.txt');
             $db->rollBack();
             return FALSE;
@@ -448,7 +448,7 @@ SQL;
                     ':koshin_nichiji'          => $param['koshin_nichiji'],
                 ]);
             $db->commit();
-        } catch (\Throwable $e) {
+        } catch (\PDOException $e) {
             error_log(print_r($e, true). PHP_EOL, '3', 'error_log.txt');
             $db->rollBack();
             return FALSE;
@@ -521,7 +521,7 @@ SQL;
          try {
                 $sql = <<<SQL
                 UPDATE tb_kaiin_joho
-                SET  
+                SET
                     email_1               = :email_1
                 WHERE
                       kaiin_no = 819121119;
@@ -531,7 +531,7 @@ SQL;
                     ':email_1'                 => $param['mail'],
                 ]);
             $db->commit();
-        } catch (\Throwable $e) {
+        } catch (\PDOException $e) {
             error_log(print_r($e, true). PHP_EOL, '3', 'error_log.txt');
             $db->rollBack();
             return FALSE;
@@ -555,7 +555,7 @@ SQL;
          try {
                 $sql = <<<SQL
                 UPDATE tb_kaiin_joho
-                SET  
+                SET
                     email_2               = :email_2
                 WHERE
                       kaiin_no = 819121119;
@@ -565,7 +565,7 @@ SQL;
                     ':email_2'                 => $param['mail'],
                 ]);
             $db->commit();
-        } catch (\Throwable $e) {
+        } catch (\PDOException $e) {
             error_log(print_r($e, true). PHP_EOL, '3', 'error_log.txt');
             $db->rollBack();
             return FALSE;
@@ -615,7 +615,7 @@ SQL;
 
 
 
-           
+
 //     /**
 //      * @param varchar $kaiin_no
 //      * @return array|mixed
@@ -849,7 +849,7 @@ SQL;
 
 // SQL;
 //            }
-           
+
 //            $sth = $db->prepare($sql);
 
 //            // 予約不可の場合
@@ -982,7 +982,7 @@ SQL;
 //
 //SQL;
 //            }
-//            
+//
 //            $sth = $db->prepare($sql);
 //            $sth->execute([
 //                ':AREA_ID'      => $argument['AREA_ID'],

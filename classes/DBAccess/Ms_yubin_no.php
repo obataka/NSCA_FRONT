@@ -7,7 +7,7 @@ class Ms_yubin_no
     {
     }
 
-    /**
+    /*
      * 郵便番号で検索
      * @param varchar $yubin_no
      * @return array|mixed
@@ -368,7 +368,7 @@ class Ms_yubin_no
 //
 //SQL;
 //            }
-//            
+//
 //            $sth = $db->prepare($sql);
 //
 //            // 予約不可の場合
@@ -501,7 +501,7 @@ class Ms_yubin_no
 //
 //SQL;
 //            }
-//            
+//
 //            $sth = $db->prepare($sql);
 //            $sth->execute([
 //                ':AREA_ID'      => $argument['AREA_ID'],
