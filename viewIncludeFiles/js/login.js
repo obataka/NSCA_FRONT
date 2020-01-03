@@ -35,7 +35,7 @@
             // ログイン処理
             jQuery.ajax({
                 url:  '../../classes/loginCtrl.php',
-                async:false,
+//                async:false,
                 type: 'POST',
                 data:
                 {
@@ -54,7 +54,19 @@
                     // rtn = 2 の場合は、パスワードをお忘れですか？の画面に遷移する
                     } else if (rtn == 2) {
                         location.href = '../changePasswordMail/';
-                    }
+                    // rtn = 3 の場合は、ログイン用のメールアドレス未設定エラー
+                    } else if (rtn == 3) {
+                        $(".error").text("メールアドレスの登録が必要です。事務局へお問い合わせください。");
+                        return false;
+                    // rtn = 4 の場合は、ログイン失敗
+	                } else if (rtn == 4) {
+	                    $(".error").text("ログインに失敗しました。");
+	                    return false;
+                    // rtn = 99 の場合は、ログイン成功で、セキュリティコード画面に画面遷移する
+	                } else if (rtn == 99) {
+	                    $(".error").text("ログインに成功しました。");
+	                    return false;
+	                }
                 },
                 fail: function(rtn) {
                     $(".error").text("ログイン情報が無効です。");

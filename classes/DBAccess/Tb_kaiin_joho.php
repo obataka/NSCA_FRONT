@@ -8,7 +8,7 @@ class Tb_kaiin_joho
     }
 
     /*
-     * ログイン判定（パスワード未設定）
+     * ログイン判定
      * @param varchar $loginId
      * @return array|mixed
      */
@@ -17,54 +17,20 @@ class Tb_kaiin_joho
         try {
             $db = Db::getInstance();
             $sql = <<<SQL
-                    SELECT joho.*
+                    SELECT joho.*, hex(sonota.email_1_login) AS login1, hex(sonota.email_2_login) AS login2
                       FROM tb_kaiin_joho joho
                      INNER JOIN tb_kaiin_sonota sonota
                         ON joho.kaiin_no = sonota.kaiin_no
                      WHERE (joho.toroku_jokyo_kbn = 1)
                        AND (joho.sakujo_flg = 0)
                        AND (sonota.sakujo_flg = 0)
-                       AND (((sonota.email_1_login = 1) AND (joho.email_1 = :email_1)) OR
-                            ((sonota.email_2_login = 1) AND (joho.email_2 = :email_1)));
+                       AND ((joho.email_1 = :loginId) OR (joho.email_2 = :loginId) OR (joho.kaiin_no = :loginId));
 SQL;
             $sth = $db->prepare($sql);
-            $sth->execute([':email_1' => $loginId,]);
+            $sth->execute([':loginId' => $loginId,]);
             $kaiinJoho = $sth->fetch();
         } catch (\PDOException $e) {
-            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/sugai_log.txt');
-            $kaiinJoho = [];
-        }
-
-        return $kaiinJoho;
-    }
-
-    /*
-     * ログイン判定
-     * @param varchar $loginId
-     * @param varchar $loginPswd
-     * @return array|mixed
-     */
-    public function findByEmailAndPassword($loginId, $loginPswd)
-    {
-        try {
-            $db = Db::getInstance();
-            $sql = <<<SQL
-                    SELECT joho.*
-                      FROM tb_kaiin_joho joho
-                     INNER JOIN tb_kaiin_sonota sonota
-                        ON joho.kaiin_no = sonota.kaiin_no
-                     WHERE (joho.toroku_jokyo_kbn = 1)
-                       AND (joho.sakujo_flg = 0)
-                       AND (sonota.sakujo_flg = 0)
-                       AND (joho.my_page_password = :my_page_password)
-                       AND (((sonota.email_1_login = 1) AND (joho.email_1 = :email_1)) OR
-                            ((sonota.email_2_login = 1) AND (joho.email_2 = :email_1)));
-SQL;
-            $sth = $db->prepare($sql);
-            $sth->execute([':email_1' => $loginId, ':my_page_password' => $loginPswd,]);
-            $kaiinJoho = $sth->fetch();
-        } catch (\PDOException $e) {
-            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/sugai_log.txt');
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
             $kaiinJoho = [];
         }
 
@@ -111,6 +77,7 @@ SQL;
         }
         return $row["resultCount"];
     }
+
     /*
      * 登録
      * @param array $param

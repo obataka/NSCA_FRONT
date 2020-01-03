@@ -15,7 +15,7 @@ require '../classes/DBAccess/Db.php';
 // // セッション有効時間取得
 // $sessionTimeout = Was\Config::SESSION_TIME_OUT;
 
-// if (isset($_SESSION['loginid']) && $_SESSION['time'] + $sessionTimeout > time()) {
+// if (isset($_SESSION['kaiinNo']) && $_SESSION['time'] + $sessionTimeout > time()) {
 
 //     // ログインしている
 //     $_SESSION['time'] = time();

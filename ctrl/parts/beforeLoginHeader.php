@@ -8,7 +8,3 @@ header("Expires:-1");
 header("X-FRAME-OPTIONS: DENY");
 header("X-Content-Type-Options: nosniff");
 header('X-XSS-Protection:1; mode=block');
-
-// セッションクリア
-unset($_SESSION['kaiinNo']);
-unset($_SESSION['time']);
