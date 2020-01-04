@@ -15,7 +15,7 @@
                     getTodofukenList = JSON.parse(rtn);
                     $.each(getTodofukenList, function(i, value) {
                         $('#address_todohuken').append('<option name="' + value[2] + '" value="' + value[0] + '">' + value[1] + '</option>');
-                    });                    
+                    });
                     // 修正で入力画面に戻ってきた時、都道府県のセレクトボックスの初期表示処理
                     var test = $('#sel_math').val();
                     // 選択済みの都道府県がある場合
@@ -184,7 +184,7 @@
                         //※正常に住所情報を取得できた時の処理を書く場所
                         wk_msYubinNo = JSON.parse(rtn);
                         $("#address_todohuken option").filter(function(index){
-                            return $(this).text() === wk_msYubinNo[7]; 
+                            return $(this).text() === wk_msYubinNo[7];
                         }).prop("selected", true);
                         $("#address_shiku").val(wk_msYubinNo[8] + wk_msYubinNo[9]);
                         $("#address_yomi_shiku").val(wk_msYubinNo[5] + wk_msYubinNo[6]);
@@ -193,7 +193,7 @@
                         var val3 = $('#address_todohuken option:selected').attr('name');
                         $('#kenmei').val(val);
                         $('#sel_math').val(val2);
-                        $('#sel_chiiki').val(val3);   
+                        $('#sel_chiiki').val(val3);
                     }
                 },
                 fail: function(rtn) {
@@ -234,7 +234,7 @@
                 var wa = $("input:radio[id='gender_1']:checked").val();
                 $("#wk_sel_gender").val(wa);
                 var ra = $("#wk_sel_gender").val();
-                console.log(ra);           
+                console.log(ra);
                 var test1 = $('[name="gender"]:checked').attr('id');
                 var test2 = $('label[for="' + test1 + '"]').text();
                 console.log(test2);
@@ -246,7 +246,7 @@
                 var wa = $("input:radio[id='gender_2']:checked").val();
                 $("#wk_sel_gender").val(wa);
                 var ra = $("#wk_sel_gender").val();
-                console.log(ra);           
+                console.log(ra);
                 var test1 = $('[name="gender"]:checked').attr('id');
                 var test2 = $('label[for="' + test1 + '"]').text();
                 console.log(test2);
@@ -264,7 +264,7 @@
                 var wa = $("input:radio[id='mail_1']:checked").val();
                 $("#mail").val(wa);
                 var ra = $("#mail").val();
-                console.log(ra);           
+                console.log(ra);
                 var test1 = $('[name="mail"]:checked').attr('id');
                 var test2 = $('label[for="' + test1 + '"]').text();
                 console.log(test2);
@@ -276,7 +276,7 @@
                 var wa = $("input:radio[id='mail_2']:checked").val();
                 $("#mail").val(wa);
                 var ra = $("#mail").val();
-                console.log(ra);           
+                console.log(ra);
                 var test1 = $('[name="mail"]:checked').attr('id');
                 var test2 = $('label[for="' + test1 + '"]').text();
                 console.log(test2);
@@ -294,24 +294,24 @@
                 var wa = $("input:radio[id='merumaga_1']:checked").val();
                 $("#merumaga").val(wa);
                 var ra = $("#merumaga").val();
-                console.log(ra);           
+                console.log(ra);
                 var test1 = $('[name="merumaga"]:checked').attr('id');
                 var test2 = $('label[for="' + test1 + '"]').text();
                 console.log(test2);
                 $('#sel_merumaga').val(test2);
                 var wawawa = $('#sel_merumaga').val();
-                console.log(wawawa);    
+                console.log(wawawa);
             } else {
                 var wa = $("input:radio[id='merumaga_2']:checked").val();
                 $("#merumaga").val(wa);
                 var ra = $("#merumaga").val();
-                console.log(ra);           
+                console.log(ra);
                 var test1 = $('[name="merumaga"]:checked').attr('id');
                 var test2 = $('label[for="' + test1 + '"]').text();
                 console.log(test2);
                 $('#sel_merumaga').val(test2);
                 var wawawa = $('#sel_merumaga').val();
-                console.log(wawawa);    
+                console.log(wawawa);
             }
         });
         /************************
@@ -323,24 +323,24 @@
                 var wa = $("input:radio[id='hoho_1']:checked").val();
                 $("#hoho").val(wa);
                 var ra = $("#hoho").val();
-                console.log(ra);           
+                console.log(ra);
                 var test1 = $('[name="hoho"]:checked').attr('id');
                 var test2 = $('label[for="' + test1 + '"]').text();
                 console.log(test2);
                 $('#sel_hoho').val(test2);
                 var wawawa = $('#sel_hoho').val();
-                console.log(wawawa);    
+                console.log(wawawa);
             } else {
                 var wa = $("input:radio[id='hoho_2']:checked").val();
                 $("#hoho").val(wa);
                 var ra = $("#hoho").val();
-                console.log(ra);           
+                console.log(ra);
                 var test1 = $('[name="hoho"]:checked').attr('id');
                 var test2 = $('label[for="' + test1 + '"]').text();
                 console.log(test2);
                 $('#sel_hoho').val(test2);
                 var wawawa = $('#sel_hoho').val();
-                console.log(wawawa);    
+                console.log(wawawa);
             }
             // //郵便でお知らせが選ばれていたらvalueに1を設定
             // if ($("input:radio[id='hoho_2']:checked")) {
@@ -349,9 +349,9 @@
             //         $("input:radio[id='hoho_2']:checked").val(2);
             //         $("input:radio[id='hoho_1']").val("");
             //         var ew = $("#hoho_2").val();
-            //         console.log(ew);   
-            //     }  
-            // } 
+            //         console.log(ew);
+            //     }
+            // }
         });
         /************************
          * 流山市民ボタンチェンジイベント
@@ -365,7 +365,7 @@
                 console.log(qa);
                 $("#sel_nagareyama").val(qa);
                 var ha = $("#sel_nagareyama").val();
-                console.log(ha);  
+                console.log(ha);
             }
             else {
                 // チェックが入っていない場合の処理
@@ -379,14 +379,14 @@
         /********************************
          * 次へボタン有効化処理
          ********************************/
-        $("#doi").change(function() {     
+        $("#doi").change(function() {
             // チェックが入っていたら有効化
-            if ( $(this).is(':checked') ){ 
+            if ( $(this).is(':checked') ){
                 // ボタンを有効化
                 $('button[type="submit"]').prop('disabled', false);
-            } else { 
+            } else {
                 // ボタンを無効化
-                $('button[type="submit"]').prop('disabled', true); 
+                $('button[type="submit"]').prop('disabled', true);
             }
         });
 
@@ -394,7 +394,7 @@
          * 次へボタン押下時のエラーチェック
          ********************************/
         $("#next_button").click(function() {
-            
+
             //エラーメッセージエリア初期化
             $("#err_name_sei").html("");
             $("#err_name_mei").html("");
@@ -417,7 +417,7 @@
             $("#err_pass_1").html("");
             $("#err_pass_2").html("");
             $("#err_renraku_hoho").html("");
-            
+
             var wk_focus_done = 0;
             var wk_err_msg = "";
             var wk_err_msg1 = "";
@@ -428,7 +428,7 @@
 
             //氏名(姓)未入力チェック
             if ($("#name_sei").val() == "") {
-                wk_err_msg = "氏名(姓)を入力してください。";    
+                wk_err_msg = "氏名(姓)を入力してください。";
                 $("#err_name_sei").html(wk_err_msg);
                 wk_err_msg = "";
                 //エラー箇所にフォーカスを当てる
@@ -507,7 +507,7 @@
                 if (wk_err_msg5 == "") {
                 wk_err_msg5 = "生年月日の西暦を入力してください。";
                 } else {
-                    wk_err_msg5 = wk_err_msg5 + "<br>" +"生年月日の西暦を入力してください。";  
+                    wk_err_msg5 = wk_err_msg5 + "<br>" +"生年月日の西暦を入力してください。";
                 }
                 $("#err_birthday").html(wk_err_msg5);
                 //エラー箇所にフォーカスを当てる
@@ -515,7 +515,7 @@
                     $("#year").focus();
                     wk_focus_done = 1;
                 }
-            }    
+            }
             //生年月日西暦正規表現チェック
             if ($("#year").val() !== "") {
                 var year = $("#year").val();
@@ -550,11 +550,11 @@
                             $("#year").focus();
                             wk_focus_done = 1;
                         }
-                    } 
+                    }
                 }
             }
             //月日選択チェック
-            if($("#month").val()　== 0 || $("#day").val()　== 0) {
+            if($("#month").val() == 0 || $("#day").val() == 0) {
                 if (wk_err_msg5 == "") {
                 wk_err_msg5 = "月日を選択してください";
                 } else {
@@ -608,14 +608,14 @@
                         $("#address_yubin_nb_1").focus();
                         wk_focus_done = 1;
                     }
-                } 
+                }
             } else {
                 var test2 = $("#address_yubin_nb_1").val() + $("#yubin_nb_2").val();
                 console.log(test2);
-                
-            }     
+
+            }
             //都道府県選択チェック
-            if($("#address_todohuken").val()　== 0) {
+            if($("#address_todohuken").val() == 0) {
                 wk_err_msg == "";
                 wk_err_msg = "都道府県を選択してください。";
                 $("#err_address_todohuken").html(wk_err_msg);
@@ -677,7 +677,7 @@
                             wk_focus_done = 1;
                         }
                     }
-                }    
+                }
             }
             //建物/部屋番号(ヨミ)未入力チェック
             if ($("#address_yomi_tatemono").val() == "") {
@@ -708,7 +708,7 @@
                             wk_focus_done = 1;
                         }
                     }
-                }    
+                }
             }
             //TEL・携帯未入力チェック
             if ($("#tel").val() == "" && $("#keitai_tel").val() == "") {
@@ -743,8 +743,8 @@
             //携帯桁数チェック
             if ($("#keitai_tel").val() !== "") {
                 if (wk_err_msg4 == "") {
-                    var keitaitel = document.getElementById('keitai_tel').value.replace(/[━.*‐.*―.*－.*\-.*ー.*\-]/gi,'');     
-                    if (!keitaitel.match(/^[0-9]{11}$/)) { 
+                    var keitaitel = document.getElementById('keitai_tel').value.replace(/[━.*‐.*―.*－.*\-.*ー.*\-]/gi,'');
+                    if (!keitaitel.match(/^[0-9]{11}$/)) {
                         wk_err_msg4 == "";
                         wk_err_msg4 = "携帯は11桁の半角数字で入力してください。";
                         $("#err_keitai_tel").html(wk_err_msg4);
@@ -770,29 +770,29 @@
             }
             //メール受信希望未選択チェック
             if (!$("input:radio[name='mail']:checked").val()) {
-            //if (!$('input[name="mail"]').prop('checked')) {     
+            //if (!$('input[name="mail"]').prop('checked')) {
                 //チェックされていない場合
                 wk_err_msg == "";
                 wk_err_msg = "メール受信希望のメールアドレスを選択してください。";
                 $("#err_mail").html(wk_err_msg);
             }
             //メール受信希望1選択時チェック
-            if ($('input[id="mail_1"]').prop('checked')) {   
+            if ($('input[id="mail_1"]').prop('checked')) {
                 if ($("#mail_address_1").val() == "") {
                     $("#err_mail_address_2").html("");
                     wk_err_msg == "";
                     wk_err_msg = "メールアドレス_1を入力してください。";
                     $("#err_mail_address_1").html(wk_err_msg);
-                } 
+                }
             }
             //メール受信希望2選択時チェック
-            if ($('input[id="mail_2"]').prop('checked')) {   
+            if ($('input[id="mail_2"]').prop('checked')) {
                 if ($("#mail_address_2").val() == "") {
                     $("#err_mail_address_1").html("");
                     wk_err_msg == "";
                     wk_err_msg = "メールアドレス_2を入力してください。";
                     $("#err_mail_address_2").html(wk_err_msg);
-                } 
+                }
             }
             //メルマガ受信希望選択チェック
             if (!$("input:radio[name='merumaga']:checked").val()) {
@@ -842,7 +842,7 @@
                         $("#pass_1").focus();
                         wk_focus_done = 1;
                     }
-                }  
+                }
             }
             //確認用パスワード未入力チェック
             if ($("#pass_2").val() == "") {
@@ -870,7 +870,7 @@
                 }
             }
 
-            
+
 
             //連絡方法の未選択チェック
             if (!$("input:radio[name='hoho']:checked").val()) {
@@ -882,7 +882,7 @@
                }
 
             // //連絡方法の希望未選択チェック
-            // if ((document.getElementById("hoho_1").checked == false) && (document.getElementById("hoho_2").checked == false)) {   
+            // if ((document.getElementById("hoho_1").checked == false) && (document.getElementById("hoho_2").checked == false)) {
             //     wk_err_msg == "";
             //     wk_err_msg = "NSCAからのお知らせの受信可否を選択してください。";
             //     $("#err_renraku_hoho").html(wk_err_msg);
@@ -898,7 +898,7 @@
 
             // エラーがある場合は、メッセージを表示し、処理を終了する
             if (wk_err_msg != "" || wk_err_msg1 != "" || wk_err_msg2 != "" || wk_err_msg3 != "" || wk_err_msg4 != "" || wk_err_msg5 != "") {
-                console.log(111); 
+                console.log(111);
                 return false;
              }
              //エラーがない場合確認画面に画面遷移
@@ -931,7 +931,7 @@
         //         }
         //     }
 
-             
+
 
 
 
@@ -954,12 +954,12 @@
             //             //※正常に住所情報を取得できた時の処理を書く場所
             //             wk_msYubinNo = JSON.parse(rtn);
             //             $("#address_todohuken option").filter(function(index){
-            //                 return $(this).text() === wk_msYubinNo[7]; 
+            //                 return $(this).text() === wk_msYubinNo[7];
             //             }).prop("selected", true);
             //             $("#address_shiku").val(wk_msYubinNo[8]);
             //             $("#address_tatemono").val(wk_msYubinNo[9]);
             //             $("#address_yomi_shiku").val(wk_msYubinNo[5]);
-            //             $("#address_yomi_tatemono").val(wk_msYubinNo[6]);  
+            //             $("#address_yomi_tatemono").val(wk_msYubinNo[6]);
             //         }
             //     },
             //     fail: function(rtn) {

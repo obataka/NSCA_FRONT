@@ -1,6 +1,8 @@
 <?php
 namespace Was;
 
+use ErrorException;
+
 session_start();
 
 require './Config/Config.php';
@@ -151,7 +153,6 @@ function loginCtrlPre($kaiinNo, $sendMailAddr) {
 
     // 8桁のセキュリティコードを生成する
     $securityCd = create_passwd(8);
-    error_log(print_r($securityCd, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/sugai_log.txt');
 
     // TB会員ログイン情報の検索
     $kaiinLogin = (new Tb_kaiin_login())->findByKaiinNo($kaiinNo);
@@ -161,15 +162,6 @@ function loginCtrlPre($kaiinNo, $sendMailAddr) {
         'kaiin_no'      => $kaiinNo,
         'security_cd'   => $securityCd,
     ];
-
-    // 本文
-    $message  = "追加認証に必要な情報をご案内いたします。\n\n\n";
-    $message .= "セキュリティコード：". $securityCd. "\n";
-    $message .= "有効期限：10分\n\n\n";
-    $message .= "上記を入力して認証手続きをお願いいたします。\n";
-
-    // 件名
-    $subject = "セキュリティコードご案内";
 
     // 該当データなしの場合
     if ($kaiinLogin == "") {
@@ -181,7 +173,7 @@ function loginCtrlPre($kaiinNo, $sendMailAddr) {
         if ($insRet) {
 
             // 送信先メールアドレス、件名、本文をセット → メール送信
-            $mailSendRet = my_send_mail($sendMailAddr, $subject, $message);
+            $mailSendRet = my_send_mail($sendMailAddr, $securityCd);
 
             return $mailSendRet;
 
@@ -200,7 +192,7 @@ function loginCtrlPre($kaiinNo, $sendMailAddr) {
         if ($updRet) {
 
             // 送信先メールアドレス、件名、本文をセット → メール送信
-            $mailSendRet = my_send_mail($sendMailAddr, $subject, $message);
+            $mailSendRet = my_send_mail($sendMailAddr, $securityCd);
 
             return $mailSendRet;
 
@@ -223,13 +215,12 @@ function create_passwd($length) {
         "sletter" => range('a', 'z'),
         "cletter" => range('A', 'Z'),
         "number"  => range('0', '9'),
-        "symbol"  => array_merge(range('!', '/'), range(':', '?'), range('{', '~')),
     );
 
     //logic
     while (count($pwd) < $length) {
-        // 4種類必ず入れる
-        if (count($pwd) < 4) {
+        // 3種類必ず入れる
+        if (count($pwd) < 3) {
             $key = key($pwd_strings);
             next($pwd_strings);
         } else {
@@ -251,22 +242,34 @@ function create_passwd($length) {
  * @params $subject
  * @params $message
  */
-function my_send_mail($mailto, $subject, $message) {
+function my_send_mail($mailto, $securityCd) {
 
     $charset = "iso-2022-JP";
     mb_language("ja");
     mb_internal_encoding("utf-8");
 
+    // 本文
+    $message  = "追加認証に必要な情報をご案内いたします。\n\n\n";
+    $message .= "セキュリティコード：". $securityCd. "\n";
+    $message .= "有効期限：10分\n\n\n";
+    $message .= "上記を入力して認証手続きをお願いいたします。\n";
+    $body = mb_convert_encoding($message, $charset, "AUTO");
+
+    // 件名
+    $subject = "セキュリティコードご案内";
+
+    $from = array("name" => "NSCAジャパン", "mail" => "info@example.com");
+
     $headers  = "Mime-Version: 1.0\n";
     $headers .= "Content-Transfer-Encoding: 7bit\n";
     $headers .= "Content-Type: text/plain;charset={$charset}\n";
-    $headers .= "From: NSCAジャパン <info@example.com>\n";
+    $headers .= "From: ".mb_encode_mimeheader($from["name"])." <".$from["mail"].">";
 
-    $is_success = mb_send_mail($mailto, $subject, $message, $headers);
-
-    if ($is_success) {
+    try {
+        mb_send_mail($mailto, $subject, $body, $headers);
         return 0;
-    } else {
+    } catch (ErrorException $e) {
+        error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/sugai_log'. date("Ymd"). '.txt');
         return -1;
     }
 }

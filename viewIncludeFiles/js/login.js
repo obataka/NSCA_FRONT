@@ -64,8 +64,7 @@
 	                    return false;
                     // rtn = 99 の場合は、ログイン成功で、セキュリティコード画面に画面遷移する
 	                } else if (rtn == 99) {
-	                    $(".error").text("ログインに成功しました。");
-	                    return false;
+                        location.href = '../securityCode/';
 	                }
                 },
                 fail: function(rtn) {

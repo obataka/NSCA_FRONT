@@ -26,7 +26,10 @@ button {
 	margin: 0 auto 10px auto;
 	width: 300px;
 }
-@media screen and (max-width: 768px) { 
+.to_login {
+	margin: 0 0 15px;
+}
+@media screen and (max-width: 768px) {
 	.mh_c {
 		min-height: calc(100vh - 115px);
 	}
@@ -41,7 +44,7 @@ button {
 	table {
 		margin-bottom: 60px;
 	}
-	
+
 	/*ファイヤ―フォックのみ*/
 	@-moz-document url-prefix() {
 	  .mh_c {
@@ -70,7 +73,7 @@ button {
 }
 
 
-@media screen and (max-width: 480px) { 
+@media screen and (max-width: 480px) {
 	.content_wrap {
 		padding: 10px;
 	}

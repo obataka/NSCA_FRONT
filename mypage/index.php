@@ -1,5 +1,5 @@
 <?php
-include_once '../ctrl/parts/adminHeader.php';
+include_once '../ctrl/parts/inputHeader.php';
 
 $includeView = '../views/mypage/mypage_tpl.php';
 

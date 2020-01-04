@@ -13,11 +13,11 @@
                 } else {
                     //※正常に住所情報を取得できた時の処理を書く場所
                     getTodofukenList = JSON.parse(rtn);
-                    
-                    
+
+
                     $.each(getTodofukenList, function(i, value) {
                         $('#address_todohuken').append('<option name="' + value[2] + '" value="' + value[0] + '">' + value[1] + '</option>');
-                    });                    
+                    });
 
                     // 修正で入力画面に戻ってきた時、都道府県のセレクトボックスの初期表示処理
                     var test = $('#sel_math').val();
@@ -57,7 +57,7 @@
                         $('#name_mei').val(getTbkaiinJoho[8]);
                         $('#name_sei_kana').val(getTbkaiinJoho[10]);
                         $('#name_mei_kana').val(getTbkaiinJoho[11]);
-                        $('#year').val(getTbkaiinJoho[13].slice(0,4));                 
+                        $('#year').val(getTbkaiinJoho[13].slice(0,4));
                         $('#month').val(getTbkaiinJoho[13].slice(5,7));
                         $('#day').val(getTbkaiinJoho[13].slice(8,10));
                         $('input:radio[name="gender"]').val([getTbkaiinJoho[14]]);
@@ -65,7 +65,7 @@
                         if ($("input:radio[id='gender_1']:checked").val()) {
                             var wa = $("input:radio[id='gender_1']:checked").val();
                             $("#wk_sel_gender").val(wa);
-                            var ra = $("#wk_sel_gender").val();         
+                            var ra = $("#wk_sel_gender").val();
                             var test1 = $('[name="gender"]:checked').attr('id');
                             var test2 = $('label[for="' + test1 + '"]').text();
                             $('#sel_gender').val(test2);
@@ -74,7 +74,7 @@
                         //女性hidden設定
                             var wa = $("input:radio[id='gender_2']:checked").val();
                             $("#wk_sel_gender").val(wa);
-                            var ra = $("#wk_sel_gender").val();           
+                            var ra = $("#wk_sel_gender").val();
                             var test1 = $('[name="gender"]:checked').attr('id');
                             var test2 = $('label[for="' + test1 + '"]').text();
                             $('#sel_gender').val(test2);
@@ -108,7 +108,7 @@
                             $('#address_yomi_tatemono').val(getTbkaiinJoho[22]);
                             $('#tel').val(getTbkaiinJoho[23]);
                             $('#keitai_tel').val(getTbkaiinJoho[25]);
-                            $('#mail_address_1').val(getTbkaiinJoho[27]);  
+                            $('#mail_address_1').val(getTbkaiinJoho[27]);
                             $('#mail_address_2').val(getTbkaiinJoho[28]);
                             //メール受信希望のメールアドレスを判断
                             if (getTbkaiinJoho[124] == "") {
@@ -121,7 +121,7 @@
                             if ($("input:radio[id='mail_1']:checked").val()) {
                                 var wa = $("input:radio[id='mail_1']:checked").val();
                                 $("#mail").val(wa);
-                                var ra = $("#mail").val();         
+                                var ra = $("#mail").val();
                                 var test1 = $('[name="mail"]:checked').attr('id');
                                 var test2 = $('label[for="' + test1 + '"]').text();
                                 $('#sel_mail').val(test2);
@@ -130,7 +130,7 @@
                                 //メールアドレス値セット
                                 var wa = $("input:radio[id='mail_2']:checked").val();
                                 $("#mail").val(wa);
-                                var ra = $("#mail").val();          
+                                var ra = $("#mail").val();
                                 var test1 = $('[name="mail"]:checked').attr('id');
                                 var test2 = $('label[for="' + test1 + '"]').text();
                                 $('#sel_mail').val(test2);
@@ -145,14 +145,14 @@
                             //メルマガに値セット
                             if ($("input:radio[id='merumaga_1']:checked").val()) {
                                 var wa = $("input:radio[id='merumaga_1']:checked").val();
-                                $("#merumaga").val(wa);      
+                                $("#merumaga").val(wa);
                                 var test1 = $('[name="merumaga"]:checked').attr('id');
                                 var test2 = $('label[for="' + test1 + '"]').text();
-                                $('#sel_merumaga').val(test2); 
+                                $('#sel_merumaga').val(test2);
                             } else {
                                 var wa = $("input:radio[id='merumaga_2']:checked").val();
                                 $("#merumaga").val(wa);
-                                var ra = $("#merumaga").val();         
+                                var ra = $("#merumaga").val();
                                 var test1 = $('[name="merumaga"]:checked').attr('id');
                                 var test2 = $('label[for="' + test1 + '"]').text();
                                 $('#sel_merumaga').val(test2);
@@ -168,7 +168,7 @@
                             if ($("input:radio[id='hoho_1']:checked").val()) {
                                 var wa = $("input:radio[id='hoho_1']:checked").val();
                                 $("#hoho").val(wa);
-                                var ra = $("#hoho").val();         
+                                var ra = $("#hoho").val();
                                 var test1 = $('[name="hoho"]:checked').attr('id');
                                 var test2 = $('label[for="' + test1 + '"]').text();
                                 $('#sel_hoho').val(test2);
@@ -176,11 +176,11 @@
                             } else {
                                 var wa = $("input:radio[id='hoho_2']:checked").val();
                                 $("#hoho").val(wa);
-                                var ra = $("#hoho").val();         
+                                var ra = $("#hoho").val();
                                 var test1 = $('[name="hoho"]:checked').attr('id');
                                 var test2 = $('label[for="' + test1 + '"]').text();
                                 $('#sel_hoho').val(test2);
-                                var wawawa = $('#sel_hoho').val();   
+                                var wawawa = $('#sel_hoho').val();
                             }
                     }
                 },
@@ -294,13 +294,13 @@
                         //※正常に住所情報を取得できた時の処理を書く場所
                         wk_msYubinNo = JSON.parse(rtn);
                         $("#address_todohuken option").filter(function(index){
-                            return $(this).text() === wk_msYubinNo[7]; 
+                            return $(this).text() === wk_msYubinNo[7];
                         }).prop("selected", true);
                         $("#address_shiku").val(wk_msYubinNo[8] + wk_msYubinNo[9]);
                         $("#address_yomi_shiku").val(wk_msYubinNo[5] + wk_msYubinNo[6]);
                         //都道府県名をkenmeiにセット
                         var val = $('#address_todohuken option:selected').text();
-                        $('#kenmei').val(val);                        
+                        $('#kenmei').val(val);
                     }
                 },
                 fail: function(rtn) {
@@ -333,7 +333,7 @@
             if ($("input:radio[id='gender_1']:checked").val()) {
                 var wa = $("input:radio[id='gender_1']:checked").val();
                 $("#wk_sel_gender").val(wa);
-                var ra = $("#wk_sel_gender").val();         
+                var ra = $("#wk_sel_gender").val();
                 var test1 = $('[name="gender"]:checked').attr('id');
                 var test2 = $('label[for="' + test1 + '"]').text();
                 $('#sel_gender').val(test2);
@@ -342,7 +342,7 @@
             //女性hidden設定
                 var wa = $("input:radio[id='gender_2']:checked").val();
                 $("#wk_sel_gender").val(wa);
-                var ra = $("#wk_sel_gender").val();           
+                var ra = $("#wk_sel_gender").val();
                 var test1 = $('[name="gender"]:checked').attr('id');
                 var test2 = $('label[for="' + test1 + '"]').text();
                 $('#sel_gender').val(test2);
@@ -357,7 +357,7 @@
             if ($("input:radio[id='mail_1']:checked").val()) {
                 var wa = $("input:radio[id='mail_1']:checked").val();
                 $("#mail").val(wa);
-                var ra = $("#mail").val();         
+                var ra = $("#mail").val();
                 var test1 = $('[name="mail"]:checked').attr('id');
                 var test2 = $('label[for="' + test1 + '"]').text();
                 $('#sel_mail').val(test2);
@@ -366,7 +366,7 @@
                 //メールアドレス値セット
                 var wa = $("input:radio[id='mail_2']:checked").val();
                 $("#mail").val(wa);
-                var ra = $("#mail").val();          
+                var ra = $("#mail").val();
                 var test1 = $('[name="mail"]:checked').attr('id');
                 var test2 = $('label[for="' + test1 + '"]').text();
                 $('#sel_mail').val(test2);
@@ -381,19 +381,19 @@
             if ($("input:radio[id='merumaga_1']:checked").val()) {
                 var wa = $("input:radio[id='merumaga_1']:checked").val();
                 $("#merumaga").val(wa);
-                var ra = $("#merumaga").val();         
+                var ra = $("#merumaga").val();
                 var test1 = $('[name="merumaga"]:checked').attr('id');
                 var test2 = $('label[for="' + test1 + '"]').text();
                 $('#sel_merumaga').val(test2);
-                var wawawa = $('#sel_merumaga').val();  
+                var wawawa = $('#sel_merumaga').val();
             } else {
                 var wa = $("input:radio[id='merumaga_2']:checked").val();
                 $("#merumaga").val(wa);
-                var ra = $("#merumaga").val();         
+                var ra = $("#merumaga").val();
                 var test1 = $('[name="merumaga"]:checked').attr('id');
                 var test2 = $('label[for="' + test1 + '"]').text();
                 $('#sel_merumaga').val(test2);
-                var wawawa = $('#sel_merumaga').val();  
+                var wawawa = $('#sel_merumaga').val();
             }
         });
         /************************
@@ -404,7 +404,7 @@
             if ($("input:radio[id='hoho_1']:checked").val()) {
                 var wa = $("input:radio[id='hoho_1']:checked").val();
                 $("#hoho").val(wa);
-                var ra = $("#hoho").val();         
+                var ra = $("#hoho").val();
                 var test1 = $('[name="hoho"]:checked').attr('id');
                 var test2 = $('label[for="' + test1 + '"]').text();
                 $('#sel_hoho').val(test2);
@@ -412,11 +412,11 @@
             } else {
                 var wa = $("input:radio[id='hoho_2']:checked").val();
                 $("#hoho").val(wa);
-                var ra = $("#hoho").val();         
+                var ra = $("#hoho").val();
                 var test1 = $('[name="hoho"]:checked').attr('id');
                 var test2 = $('label[for="' + test1 + '"]').text();
                 $('#sel_hoho').val(test2);
-                var wawawa = $('#sel_hoho').val();   
+                var wawawa = $('#sel_hoho').val();
             }
         });
         /************************
@@ -454,7 +454,7 @@
                         $('#name_mei').val(getTbkaiinJoho[8]);
                         $('#name_sei_kana').val(getTbkaiinJoho[10]);
                         $('#name_mei_kana').val(getTbkaiinJoho[11]);
-                        $('#year').val(getTbkaiinJoho[13].slice(0,4));                 
+                        $('#year').val(getTbkaiinJoho[13].slice(0,4));
                         $('#month').val(getTbkaiinJoho[13].slice(5,7));
                         $('#day').val(getTbkaiinJoho[13].slice(8,10));
                         $('input:radio[name="gender"]').val([getTbkaiinJoho[14]]);
@@ -462,7 +462,7 @@
                         if ($("input:radio[id='gender_1']:checked").val()) {
                             var wa = $("input:radio[id='gender_1']:checked").val();
                             $("#wk_sel_gender").val(wa);
-                            var ra = $("#wk_sel_gender").val();         
+                            var ra = $("#wk_sel_gender").val();
                             var test1 = $('[name="gender"]:checked').attr('id');
                             var test2 = $('label[for="' + test1 + '"]').text();
                             $('#sel_gender').val(test2);
@@ -471,7 +471,7 @@
                         //女性hidden設定
                             var wa = $("input:radio[id='gender_2']:checked").val();
                             $("#wk_sel_gender").val(wa);
-                            var ra = $("#wk_sel_gender").val();           
+                            var ra = $("#wk_sel_gender").val();
                             var test1 = $('[name="gender"]:checked').attr('id');
                             var test2 = $('label[for="' + test1 + '"]').text();
                             $('#sel_gender').val(test2);
@@ -494,7 +494,7 @@
                             $('#address_yomi_tatemono').val(getTbkaiinJoho[22]);
                             $('#tel').val(getTbkaiinJoho[23]);
                             $('#keitai_tel').val(getTbkaiinJoho[25]);
-                            $('#mail_address_1').val(getTbkaiinJoho[27]);  
+                            $('#mail_address_1').val(getTbkaiinJoho[27]);
                             $('#mail_address_2').val(getTbkaiinJoho[28]);
                             //メール受信希望のメールアドレスを判断
                             if (getTbkaiinJoho[124] == "") {
@@ -507,7 +507,7 @@
                             if ($("input:radio[id='mail_1']:checked").val()) {
                                 var wa = $("input:radio[id='mail_1']:checked").val();
                                 $("#mail").val(wa);
-                                var ra = $("#mail").val();         
+                                var ra = $("#mail").val();
                                 var test1 = $('[name="mail"]:checked').attr('id');
                                 var test2 = $('label[for="' + test1 + '"]').text();
                                 $('#sel_mail').val(test2);
@@ -516,7 +516,7 @@
                                 //メールアドレス値セット
                                 var wa = $("input:radio[id='mail_2']:checked").val();
                                 $("#mail").val(wa);
-                                var ra = $("#mail").val();          
+                                var ra = $("#mail").val();
                                 var test1 = $('[name="mail"]:checked').attr('id');
                                 var test2 = $('label[for="' + test1 + '"]').text();
                                 $('#sel_mail').val(test2);
@@ -532,19 +532,19 @@
                             if ($("input:radio[id='merumaga_1']:checked").val()) {
                                 var wa = $("input:radio[id='merumaga_1']:checked").val();
                                 $("#merumaga").val(wa);
-                                var ra = $("#merumaga").val();         
+                                var ra = $("#merumaga").val();
                                 var test1 = $('[name="merumaga"]:checked').attr('id');
                                 var test2 = $('label[for="' + test1 + '"]').text();
                                 $('#sel_merumaga').val(test2);
-                                var wawawa = $('#sel_merumaga').val();  
+                                var wawawa = $('#sel_merumaga').val();
                             } else {
                                 var wa = $("input:radio[id='merumaga_2']:checked").val();
                                 $("#merumaga").val(wa);
-                                var ra = $("#merumaga").val();         
+                                var ra = $("#merumaga").val();
                                 var test1 = $('[name="merumaga"]:checked').attr('id');
                                 var test2 = $('label[for="' + test1 + '"]').text();
                                 $('#sel_merumaga').val(test2);
-                                var wawawa = $('#sel_merumaga').val();  
+                                var wawawa = $('#sel_merumaga').val();
                             }
                             //連絡方法の希望のチェック
                             if (getTbkaiinJoho[114] == "") {
@@ -557,7 +557,7 @@
                             if ($("input:radio[id='hoho_1']:checked").val()) {
                                 var wa = $("input:radio[id='hoho_1']:checked").val();
                                 $("#hoho").val(wa);
-                                var ra = $("#hoho").val();         
+                                var ra = $("#hoho").val();
                                 var test1 = $('[name="hoho"]:checked').attr('id');
                                 var test2 = $('label[for="' + test1 + '"]').text();
                                 $('#sel_hoho').val(test2);
@@ -565,11 +565,11 @@
                             } else {
                                 var wa = $("input:radio[id='hoho_2']:checked").val();
                                 $("#hoho").val(wa);
-                                var ra = $("#hoho").val();         
+                                var ra = $("#hoho").val();
                                 var test1 = $('[name="hoho"]:checked').attr('id');
                                 var test2 = $('label[for="' + test1 + '"]').text();
                                 $('#sel_hoho').val(test2);
-                                var wawawa = $('#sel_hoho').val();   
+                                var wawawa = $('#sel_hoho').val();
                             }
                     }
                 },
@@ -607,7 +607,7 @@
             $("#err_pass_1").html("");
             $("#err_pass_2").html("");
             $("#err_renraku_hoho").html("");
-            
+
             var wk_focus_done = 0;
             var wk_err_msg = "";
             var wk_err_msg1 = "";
@@ -618,7 +618,7 @@
 
             //氏名(姓)未入力チェック
             if ($("#name_sei").val() == "") {
-                wk_err_msg = "氏名(姓)を入力してください。";    
+                wk_err_msg = "氏名(姓)を入力してください。";
                 $("#err_name_sei").html(wk_err_msg);
                 //エラー箇所にフォーカスを当てる
                 if (wk_focus_done == 0) {
@@ -696,7 +696,7 @@
                 if (wk_err_msg5 == "") {
                 wk_err_msg5 = "生年月日の西暦を入力してください。";
                 } else {
-                    wk_err_msg5 = wk_err_msg5 + "<br>" +"生年月日の西暦を入力してください。";  
+                    wk_err_msg5 = wk_err_msg5 + "<br>" +"生年月日の西暦を入力してください。";
                 }
                 $("#err_birthday").html(wk_err_msg5);
                 //エラー箇所にフォーカスを当てる
@@ -704,7 +704,7 @@
                     $("#year").focus();
                     wk_focus_done = 1;
                 }
-            }    
+            }
             //生年月日西暦正規表現チェック
             if ($("#year").val() !== "") {
                 var year = $("#year").val();
@@ -739,11 +739,11 @@
                             $("#year").focus();
                             wk_focus_done = 1;
                         }
-                    } 
+                    }
                 }
             }
             //月日選択チェック
-            if($("#month").val()　== 0 || $("#day").val()　== 0) {
+            if($("#month").val() == 0 || $("#day").val() == 0) {
                 if (wk_err_msg5 == "") {
                 wk_err_msg5 = "月日を選択してください";
                 } else {
@@ -797,12 +797,12 @@
                         $("#address_yubin_nb_1").focus();
                         wk_focus_done = 1;
                     }
-                } 
+                }
             } else {
-                var test2 = $("#address_yubin_nb_1").val() + $("#yubin_nb_2").val();  
-            }     
+                var test2 = $("#address_yubin_nb_1").val() + $("#yubin_nb_2").val();
+            }
             //都道府県選択チェック
-            if($("#address_todohuken").val()　== 0) {
+            if($("#address_todohuken").val() == 0) {
                 wk_err_msg == "";
                 wk_err_msg = "都道府県を選択してください。";
                 $("#err_address_todohuken").html(wk_err_msg);
@@ -853,7 +853,7 @@
                             wk_focus_done = 1;
                         }
                     }
-                }    
+                }
             }
             //建物/部屋番号(ヨミ)全角カナチェック
             if ($("#address_yomi_tatemono").val() !== "") {
@@ -871,7 +871,7 @@
                             wk_focus_done = 1;
                         }
                     }
-                }    
+                }
             }
             //TEL・携帯未入力チェック
             if ($("#tel").val() == "" && $("#keitai_tel").val() == "") {
@@ -906,8 +906,8 @@
             //携帯桁数チェック
             if ($("#keitai_tel").val() !== "") {
                 if (wk_err_msg4 == "") {
-                    var keitaitel = document.getElementById('keitai_tel').value.replace(/[━.*‐.*―.*－.*\-.*ー.*\-]/gi,'');     
-                    if (!keitaitel.match(/^[0-9]{11}$/)) { 
+                    var keitaitel = document.getElementById('keitai_tel').value.replace(/[━.*‐.*―.*－.*\-.*ー.*\-]/gi,'');
+                    if (!keitaitel.match(/^[0-9]{11}$/)) {
                         wk_err_msg4 == "";
                         wk_err_msg4 = "携帯は11桁の半角数字で入力してください。";
                         $("#err_keitai_tel").html(wk_err_msg4);
@@ -933,29 +933,29 @@
             }
             //メール受信希望未選択チェック
             if (!$("input:radio[name='mail']:checked").val()) {
-            //if (!$('input[name="mail"]').prop('checked')) {     
+            //if (!$('input[name="mail"]').prop('checked')) {
                 //チェックされていない場合
                 wk_err_msg == "";
                 wk_err_msg = "メール受信希望のメールアドレスを選択してください。";
                 $("#err_mail").html(wk_err_msg);
             }
             //メール受信希望1選択時チェック
-            if ($('input[id="mail_1"]').prop('checked')) {   
+            if ($('input[id="mail_1"]').prop('checked')) {
                 if ($("#mail_address_1").val() == "") {
                     $("#err_mail_address_2").html("");
                     wk_err_msg == "";
                     wk_err_msg = "メールアドレス_1を入力してください。";
                     $("#err_mail_address_1").html(wk_err_msg);
-                } 
+                }
             }
             //メール受信希望2選択時チェック
-            if ($('input[id="mail_2"]').prop('checked')) {   
+            if ($('input[id="mail_2"]').prop('checked')) {
                 if ($("#mail_address_2").val() == "") {
                     $("#err_mail_address_1").html("");
                     wk_err_msg == "";
                     wk_err_msg = "メールアドレス_2を入力してください。";
                     $("#err_mail_address_2").html(wk_err_msg);
-                } 
+                }
             }
             //メルマガ受信希望選択チェック
             if (!$("input:radio[name='merumaga']:checked").val()) {
@@ -976,7 +976,7 @@
             // エラーがある場合は、メッセージを表示し、処理を終了する
             if (wk_err_msg != "" || wk_err_msg1 != "" || wk_err_msg2 != "" || wk_err_msg3 != "" || wk_err_msg4 != "" || wk_err_msg5 != "") {
                 return false;
-                
+
              }
              //エラーがない場合確認画面に画面遷移
              url = '../changeConfirmRiyo/';
