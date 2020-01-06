@@ -388,7 +388,7 @@
 			</div>
 			<section class="btn_wrap">
 				<button class="button back" type="button" id="return_button" value="" onclick="location.href='#'"><span>内容を修正する</span></button>
-				<button class="button" type="submit" id="next_button" value="" onclick="location.href='#'"><span>次へ</span></button>
+				<button class="button" type="button" id="next_button" value="" onclick="location.href='#'"><span>次へ</span></button>
 			</section>
 		</div>
 	</div>

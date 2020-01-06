@@ -28,7 +28,7 @@ class Tb_kaiin_sentaku
             $sth->execute([':kaiin_no' => $wk_kaiin_no,]);
             $Tb_kaiin_sentaku = $sth->fetchAll();
         } catch (\PDOException $e) {
-            error_log(print_r($e, true) . PHP_EOL, '3', 'error_log.txt');
+            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/sugai_log.txt');
             $Tb_kaiin_sentaku = [];
         }
 
@@ -52,7 +52,7 @@ SQL;
             ]);
             $db->commit();
         } catch (\PDOException $e) {
-            error_log(print_r($e, true) . PHP_EOL, '3', 'error_log.txt');
+            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/sugai_log.txt');
             $db->rollBack();
             return FALSE;
         }
@@ -70,6 +70,7 @@ SQL;
             if ($wk_arr_shikaku != "") {
                 foreach ($wk_arr_shikaku as $value) {
                     $biko_val = "";
+                    $meisho_cd = str_replace(" ", "", $value);
                     if ($value == 99) {
                         $biko_val = $param4['biko_shikaku'];
                     }
@@ -103,7 +104,7 @@ SQL;
                     $sth->execute([
                         ':kaiin_no'                         => $param4['kaiin_no'],
                         ':meisho_kbn'                       => 22,
-                        ':meisho_cd'                        => $value,
+                        ':meisho_cd'                        => $meisho_cd,
                         ':biko'                             => $biko_val,
                         ':sakujo_flg'                       => $param4['sakujo_flg'],
                         ':sakusei_user_id'                  => $param4['sakusei_user_id'],
@@ -111,11 +112,11 @@ SQL;
                         ':sakusei_nichiji'                  => $param4['sakusei_nichiji'],
                         ':koshin_nichiji'                   => $param4['koshin_nichiji'],
                     ]);
-                    $db->commit();
                 }
+                $db->commit();
             }
         } catch (\PDOException $e) {
-            error_log(print_r($e, true) . PHP_EOL, '3', 'error_log.txt');
+            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/sugai_log.txt');
             $db->rollBack();
             return FALSE;
         }
@@ -130,6 +131,7 @@ SQL;
         try {
             if ($wk_arr_chiiki != "") {
                 foreach ($wk_arr_chiiki as $value) {
+                    $meisho_cd = str_replace(" ", "", $value);
                     $sql = <<<SQL
                     INSERT
                     INTO tb_kaiin_sentaku(
@@ -160,7 +162,7 @@ SQL;
                     $sth->execute([
                         ':kaiin_no'                         => $param5['kaiin_no'],
                         ':meisho_kbn'                       => 32,
-                        ':meisho_cd'                        => $value,
+                        ':meisho_cd'                        => $meisho_cd,
                         ':biko'                             => "",
                         ':sakujo_flg'                       => $param5['sakujo_flg'],
                         ':sakusei_user_id'                  => $param5['sakusei_user_id'],
@@ -168,11 +170,11 @@ SQL;
                         ':sakusei_nichiji'                  => $param5['sakusei_nichiji'],
                         ':koshin_nichiji'                   => $param5['koshin_nichiji'],
                     ]);
-                    $db->commit();
                 }
+                $db->commit();
             }
         } catch (\PDOException $e) {
-            error_log(print_r($e, true) . PHP_EOL, '3', 'error_log.txt');
+            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/sugai_log.txt');
             $db->rollBack();
             return FALSE;
         }
@@ -188,6 +190,7 @@ SQL;
 
             if ($wk_arr_bunya != "") {
                 foreach ($wk_arr_bunya as $value) {
+                    $meisho_cd = str_replace(" ", "", $value);
                     $biko_val = "";
                     if ($value == 99) {
                         $biko_val = $param6['biko_shikaku'];
@@ -223,7 +226,7 @@ SQL;
                     $sth->execute([
                         ':kaiin_no'                         => $param6['kaiin_no'],
                         ':meisho_kbn'                       => 24,
-                        ':meisho_cd'                        => $value,
+                        ':meisho_cd'                        => $meisho_cd,
                         ':biko'                             => $biko_val,
                         ':sakujo_flg'                       => $param6['sakujo_flg'],
                         ':sakusei_user_id'                  => $param6['sakusei_user_id'],
@@ -231,11 +234,11 @@ SQL;
                         ':sakusei_nichiji'                  => $param6['sakusei_nichiji'],
                         ':koshin_nichiji'                   => $param6['koshin_nichiji'],
                     ]);
-                    $db->commit();
                 }
+                $db->commit();
             }
         } catch (\PDOException $e) {
-            error_log(print_r($e, true) . PHP_EOL, '3', 'error_log.txt');
+            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/sugai_log.txt');
             $db->rollBack();
             return FALSE;
         }
