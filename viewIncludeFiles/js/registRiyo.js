@@ -756,17 +756,109 @@
                     }
                 }
             }
+            //メールアドレス1重複チェック 2019/01/06
+            if ($('#mail_address_1').val() !== "") {    
+                jQuery.ajax({
+                    url:  '../../classes/searchMailAddress1.php',
+                    type: 'POST',
+                    data:
+                    {
+                        //メールアドレスセット
+                        mail: $("#mail_address_1").val(),
+                    },
+                    success: function(rtn) {
+                        if (rtn == 0) {
+                            console.log(rtn);
+                            
+                            return false;
+                        } else {
+                            //登録済みの場合エラーメッセージを表示
+                            wk_err_msg == "";
+                            wk_err_msg = "すでにご登録頂いているメールアドレス1です。";
+                            $("#err_mail").html(wk_err_msg);
+                            //エラー箇所にフォーカスを当てる
+                            if (wk_focus_done == 0) {
+                                $("#mail_address_1").focus();
+                                wk_focus_done = 1;
+                            }
+                        }
+                    },
+                    fail: function(rtn) {
+                        return false;
+                    },
+                    error: function(rtn) {
+                        return false;
+                    }
+                });
+            }
+            //メールアドレス2重複チェック 2019/01/06
+            if ($('#mail_address_2').val() !== "") {    
+                jQuery.ajax({
+                    url:  '../../classes/searchMailAddress1.php',
+                    type: 'POST',
+                    data:
+                    {
+                        //メールアドレスセット
+                        mail: $("#mail_address_2").val(),
+                    },
+                    success: function(rtn) {
+                        if (rtn == 0) {
+                            console.log(rtn);
+                            
+                            return false;
+                        } else {
+                            //登録済みの場合エラーメッセージを表示
+                            wk_err_msg == "";
+                            wk_err_msg = "すでにご登録頂いているメールアドレス2です。";
+                            $("#err_mail").html(wk_err_msg);
+                            //エラー箇所にフォーカスを当てる
+                            if (wk_focus_done == 0) {
+                                $("#mail_address_2").focus();
+                                wk_focus_done = 1;
+                            }
+                        }
+                    },
+                    fail: function(rtn) {
+                        return false;
+                    },
+                    error: function(rtn) {
+                        return false;
+                    }
+                });
+            }
             //メールアドレス1・メールアドレス2未入力チェック
             if ($("#mail_address_1").val() == "" && $("#mail_address_2").val() == "") {
                     wk_err_msg == "";
                     wk_err_msg = "メールアドレス1またはメールアドレス2のいずれかを入力してください。";
                     $("#err_mail_address_1").html(wk_err_msg);
-                    $("#err_mail_address_2").html(wk_err_msg);
                     //エラー箇所にフォーカスを当てる
                     if (wk_focus_done == 0) {
                         $("#mail_address_1").focus();
                         wk_focus_done = 1;
                     }
+            }
+            //ログインするアドレスのチェックボックスが未選択の時 2019/01/06
+            if (!$("input:radio[name='mail_login']:checked").val()) {
+                //チェックされていない場合
+                wk_err_msg == "";
+                wk_err_msg = "ログインする時のメールアドレスを選択してください。";
+                $("#err_mail_address_2").html(wk_err_msg);
+            }
+            //ログインするメールアドレスが1の時、メールアドレス1の未入力チェック 2019/01/06
+            if ($("input:radio[id='mail_login_1']:checked").val()) {
+                if (!$('#mail_address_1').val()) {
+                    wk_err_msg == "";
+                    wk_err_msg = "ログイン時のメールアドレスを入力してください。";
+                    $("#err_mail_address_2").html(wk_err_msg);
+                }
+            }
+            //ログインするメールアドレスが2の時、メールアドレス2の未入力チェック 2019/01/06
+            if ($("input:radio[id='mail_login_2']:checked").val()) {
+                if (!$('#mail_address_2').val()) {
+                    wk_err_msg == "";
+                    wk_err_msg = "ログイン時のメールアドレスを入力してください。";
+                    $("#err_mail_address_2").html(wk_err_msg);
+                }
             }
             //メール受信希望未選択チェック
             if (!$("input:radio[name='mail']:checked").val()) {
@@ -781,7 +873,7 @@
                 if ($("#mail_address_1").val() == "") {
                     $("#err_mail_address_2").html("");
                     wk_err_msg == "";
-                    wk_err_msg = "メールアドレス_1を入力してください。";
+                    wk_err_msg = "メールアドレス1を入力してください。";
                     $("#err_mail_address_1").html(wk_err_msg);
                 }
             }
@@ -790,7 +882,7 @@
                 if ($("#mail_address_2").val() == "") {
                     $("#err_mail_address_1").html("");
                     wk_err_msg == "";
-                    wk_err_msg = "メールアドレス_2を入力してください。";
+                    wk_err_msg = "メールアドレス2を入力してください。";
                     $("#err_mail_address_2").html(wk_err_msg);
                 }
             }

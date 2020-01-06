@@ -6,7 +6,7 @@
          * トップへボタン押下時の処理
          **************************/
         $(".button").click(function() {
-             location.href = "https://www.nsca-japan.or.jp/";
+             location.href = "https://www.demo-nls02.work/mypage/";
         });
     });
 })(jQuery);

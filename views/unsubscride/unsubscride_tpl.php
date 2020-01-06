@@ -18,7 +18,7 @@
         <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.1.1.min.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
-        <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="../../viewIncludeFiles/js/unsubscride.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/header.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
@@ -43,35 +43,35 @@
 					<tr>
 						<th><span class="required">必須</span>退会理由</th>
 						<td>
-							<input id="riyu_1" type="radio" name="riyu" value="">
+							<input id="riyu_1" type="radio" name="riyu" value="1">
 							<label class="radio" for="riyu_1">年会費関係</label>
-							<input id="riyu_2" type="radio" name="riyu" value="">
+							<input id="riyu_2" type="radio" name="riyu" value="2">
 							<label class="radio" for="riyu_2">資格関係</label>
-							<input id="riyu_3" type="radio" name="riyu" value="">
+							<input id="riyu_3" type="radio" name="riyu" value="3">
 							<label class="radio" for="riyu_3">認定試験関係</label><br>
-							<input id="riyu_4" type="radio" name="riyu" value="">
+							<input id="riyu_4" type="radio" name="riyu" value="4">
 							<label class="radio" for="riyu_4">会員サービス関係</label>
-							<input id="riyu_5" type="radio" name="riyu" value="">
+							<input id="riyu_5" type="radio" name="riyu" value="99">
 							<label class="radio" for="riyu_5">その他</label>
 							<ul class="error_ul">
-								<li class="error"></li>
+								<li id="error1" class="error"></li>
 							</ul>
 							<p class="text">具体的にご記入ください</p>
-							<textarea></textarea>
+							<textarea id="taikai_riyu"></textarea>
 							<ul class="error_ul">
-								<li class="error"></li>
+								<li id="error2" class="error"></li>
 							</ul>
 						</td>
 					</tr>
 					<tr>
 						<th><span class="required">必須</span>ご案内希望欄</th>
 						<td><p>今後、NSCA認定資格に関する情報や、セミナー等のご案内を<br class="sp_no">お送りすることがあれば、受け取りを希望されますか？</p>
-							<input id="annai_1" type="radio" name="annai" value="">
+							<input id="annai_1" type="radio" name="annai" value="1">
 							<label class="radio" for="annai_1">希望する</label>
-							<input id="annai_2" type="radio" name="annai" value="">
+							<input id="annai_2" type="radio" name="annai" value="0">
 							<label class="radio" for="annai_2">希望しない</label>
 							<ul class="error_ul">
-								<li class="error"></li>
+								<li id="error3" class="error"></li>
 							</ul>
 						</td>
 					</tr>
