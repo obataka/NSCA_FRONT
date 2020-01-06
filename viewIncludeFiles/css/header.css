@@ -85,6 +85,9 @@ header a:hover {
 	.pc_none {
 		display: block;
 	}
+	.logo_img img {
+		padding: 0;
+	}
 	.inner {
 		width: 980px;
 		margin: 0 auto;
@@ -116,7 +119,7 @@ header a:hover {
 		position: absolute;
 		height: 4px;
 		width: 100%;
-		background: #fff;
+		background: #777;
 		left: 0;
 		-webkit-transition: .35s ease-in-out;
 		-moz-transition: .35s ease-in-out;
@@ -135,7 +138,7 @@ header a:hover {
 		padding-top: 80px;
 	}
 	header {
-		height: 65.47px;
+		height: 77px;
 	}
 	header ul {
 		display: block;
@@ -164,7 +167,7 @@ header a:hover {
 	#nav-toggle {
 		position: absolute;
 		right: 12px;
-		top: 14px;
+		top: 18px;
 		width: 37px;
 		height: 36px;
 		cursor: pointer;
@@ -172,7 +175,7 @@ header a:hover {
         display: block;
 	}
 	#nav-toggle p {
-		color: #fff;
+		color: #777;
 		margin-top: 25px;
 	}
    #global-nav {

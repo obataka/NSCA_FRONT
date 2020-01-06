@@ -239,20 +239,21 @@
 							<tr class="mail">
 								<th><span class="required">必須</span>メールアドレス</th>
 								<td>
-									<p>メールアドレス_1</p><input id="mail_address_1" class="w_80" type="email" name="mail_address_1" value="<?php echo $mail_address_1; ?>">
+									<p>メールアドレス1</p><input id="mail_address_1" class="w_80" type="email" name="mail_address_1" value="<?php echo $mail_address_1; ?>"><br>
+									<input id="mail_login_1" type="radio" name="mail_login" value="1">
+									<label for="mail_login_1">このメールアドレスでログインする</label><br>
+									<input id="mail_1" type="radio" name="mail" value="1">
+									<label for="mail_1">このメールアドレスでメールを受信する</label>
+									<p class="mt_1">メールアドレス2</p><input id="mail_address_2" class="w_80" type="email" name="mail_address_2" value="<?php echo $mail_address_2; ?>"><br>
+									<input id="mail_login_2" type="radio" name="mail_login" value="2">
+									<label for="mail_login_2">このメールアドレスでログインする</label><br>
+									<input id="mail_2" type="radio" name="mail" value="2">
+									<label for="mail_2">このメールアドレスでメールを受信する</label>
+									
 									<ul class="error_ul">
 										<li class="error" id="err_mail_address_1"></li>
-									</ul>
-									<p class="mt_1">メールアドレス_2</p><input id="mail_address_2" class="w_80" type="email" name="mail_address_2" value="<?php echo $mail_address_2; ?>">
-									<ul class="error_ul">
+										<li class="error" id="err_mail"></li>
 										<li class="error" id="err_mail_address_2"></li>
-									</ul>
-									<p class="mt_1">メール受信希望のメールアドレス</p>
-									<input id="mail_1" type="radio" name="mail" value="1">
-									<label for="mail_1">メールアドレス_1</label><br>
-									<input id="mail_2" type="radio" name="mail" value="2">
-									<label for="mail_2">メールアドレス_2</label>
-									<ul class="error_ul">
 										<li class="error" id="err_mail"></li>
 									</ul>
 								</td>
@@ -272,6 +273,7 @@
 							<tr class="pass">
 								<th><span class="required">必須</span>パスワード</th>
 								<td>
+									<p class="pass_text">大文字と小文字のアルファベットおよび数字を1文字以上含む、8桁以上のパスワードをご入力ください</p>
 									<input id="pass_1" class="w_80" type="password" name="pass_1" value="<?php echo $pass; ?>">
 									<ul class="error_ul">
 										<li class="error" id="err_pass_1"></li>

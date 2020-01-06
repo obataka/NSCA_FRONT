@@ -259,8 +259,8 @@
 						<tr class="mail">
 							<th><span class="required">必須</span>メールアドレス</th>
 							<td>
-								<p>メールアドレス_1：<?php echo $mail_address_1; ?></p>
-								<p>メールアドレス_2：<?php echo $mail_address_2; ?></p>
+								<p>メールアドレス1：<?php echo $mail_address_1; ?></p>
+								<p>メールアドレス2：<?php echo $mail_address_2; ?></p>
 								<p>メール受信希望のメールアドレス：
 									<?php
 									if ($mail == 1) {
