@@ -541,7 +541,7 @@ SQL;
                 ':my_page_password'               => $param['my_page_password'],
                 ]);
             $db->commit();
-        } catch (\Throwable $e) {
+        } catch (\PDOException $e) {
             $db->rollBack();
             return FALSE;
         }
