@@ -30,7 +30,7 @@
 		<div class="content_wrap">
 			<p class="h2_text">テキストテキストテキストテキスト</p>
 			<section>
-				<button class="button btn_b btn_b_1" type="button" value="" onclick="location.href='#'"><span>ログインページへ</span></button>
+				<button class="button btn_b btn_b_1" type="button" value="" onclick="location.href='../login/'"><span>ログインページへ</span></button>
 			</section>
 		</div>
 	</div>

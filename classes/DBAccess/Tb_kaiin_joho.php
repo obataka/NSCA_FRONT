@@ -358,7 +358,7 @@ SQL;
             ]);
             $db->commit();
         } catch (\PDOException $e) {
-            error_log(print_r($e, true). PHP_EOL, '3', 'error_log.txt');
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/sugai_log.txt');
             $db->rollBack();
             return FALSE;
         }
@@ -486,7 +486,7 @@ SQL;
                 ]);
             $db->commit();
         } catch (\PDOException $e) {
-            error_log(print_r($e, true). PHP_EOL, '3', 'error_log.txt');
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/sugai_log.txt');
             $db->rollBack();
             return FALSE;
         }
@@ -528,7 +528,7 @@ SQL;
                 UPDATE tb_kaiin_joho
                 SET
                       my_page_password      = :my_page_password
-                    , koshin_user_id        = :kaiin_no
+                    , koshin_user_id        = 'ResetPassword'
                     , koshin_nichiji        = now()
                 WHERE
                       kaiin_no = :kaiin_no

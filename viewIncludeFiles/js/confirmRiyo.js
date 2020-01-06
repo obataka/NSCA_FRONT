@@ -1,8 +1,8 @@
 (function($){
-    $(document).ready(function(){       
+    $(document).ready(function(){
     /*************************************************
     * 内容を修正するボタン押下時に値を保持して画面遷移する
-    **************************************************/   
+    **************************************************/
         $("#return_button").click(function() {
             url = '../registRiyo/';
             $('form').attr('action', url);
@@ -38,18 +38,18 @@
                 email_2: $("#mail_address_2").val(),
                 nagareyama_shimin: $("#sel_nagareyama").val(),
                 chiiki_id: $("#sel_chiiki").val(),
-                my_page_password: $("#pass").val(),
+                my_page_password: $("#pass_1").val(),
                 //会員その他テーブルの項目
                 mail: $("#mail").val(),
                 merumaga: $("#merumaga").val(),
             },
-            
+
             success: function(rtn) {
                 // rtn = 0 の場合は、該当なし
                 if (rtn == 0) {
                     return false;
                 } else {
-                    //登録成功の場合、登録完了メールを送信する 
+                    //登録成功の場合、登録完了メールを送信する
                     if ($("#mail").val() == 1) {
                         console.log(12345678);
                         jQuery.ajax({
@@ -61,8 +61,8 @@
                             email_1: $("#mail_address_1").val(),
                         },
                         success: function(rtn) {
-                            location.href = '../completeRegist/';       
-                            
+                            location.href = '../completeRegist/';
+
                         },
                         fail: function(rtn) {
                             return false;
@@ -72,7 +72,7 @@
                         }
                         });
                     } else if ($("#mail").val() == 2) {
-                            console.log(1234567890000);                 
+                            console.log(1234567890000);
                             jQuery.ajax({
                             url:  '../../classes/registCompleteMail.php',
                             type: 'POST',
@@ -82,7 +82,7 @@
                                 email_2: $("#mail_address_2").val(),
                             },
                             success: function(rtn) {
-                                location.href = '../completeRegist/';       
+                                location.href = '../completeRegist/';
                             },
                             fail: function(rtn) {
                                 return false;
@@ -91,7 +91,7 @@
                                 return false;
                             }
                             });
-                    }       
+                    }
                 }
             },
             fail: function(rtn) {
@@ -100,14 +100,14 @@
             error: function(rtn) {
                 return false;
             }
-            
+
         });
     });
     //登録完了メール送信処理
 
-    
-    
-    
+
+
+
     //     //エラーがない場合確認画面に画面遷移
     //     url = '../completeRegist/';
     //     $('form').attr('action', url);
@@ -138,7 +138,7 @@
         //         }
         //     }
 
-             
+
 
 
 
@@ -161,12 +161,12 @@
             //             //※正常に住所情報を取得できた時の処理を書く場所
             //             wk_msYubinNo = JSON.parse(rtn);
             //             $("#address_todohuken option").filter(function(index){
-            //                 return $(this).text() === wk_msYubinNo[7]; 
+            //                 return $(this).text() === wk_msYubinNo[7];
             //             }).prop("selected", true);
             //             $("#address_shiku").val(wk_msYubinNo[8]);
             //             $("#address_tatemono").val(wk_msYubinNo[9]);
             //             $("#address_yomi_shiku").val(wk_msYubinNo[5]);
-            //             $("#address_yomi_tatemono").val(wk_msYubinNo[6]);  
+            //             $("#address_yomi_tatemono").val(wk_msYubinNo[6]);
             //         }
             //     },
             //     fail: function(rtn) {

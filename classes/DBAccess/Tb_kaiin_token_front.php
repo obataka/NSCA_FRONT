@@ -81,4 +81,32 @@ SQL;
     }
 
 
+    /*
+     * 削除
+     * @param  varchar $kaiin_no
+     * @return boolean
+     */
+
+    public function deleteRec($kaiin_no)
+    {
+        $db = Db::getInstance();
+        $db->beginTransaction();
+        try {
+            $sql = <<<SQL
+                    DELETE
+                    FROM tb_kaiin_token_front
+                    WHERE kaiin_no = :kaiin_no;
+
+SQL;
+            $sth = $db->prepare($sql);
+            $sth->execute([':kaiin_no' => $kaiin_no]);
+            $db->commit();
+        } catch (\PDOException $e) {
+            $db->rollBack();
+            return FALSE;
+        }
+
+        return TRUE;
+    }
+
 }

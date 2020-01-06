@@ -6,9 +6,8 @@ session_start();
 require './Config/Config.php';
 require './DBAccess/Db.php';
 require './DBAccess/Tb_kaiin_joho.php';
-require './DBAccess/Tb_kaiin_sonota.php';   
+require './DBAccess/Tb_kaiin_sonota.php';
 
-$ret = '';
 $wk_no = 0;
 $wk_kaiin_no = '';
 
@@ -34,12 +33,12 @@ $email_1 = (!empty($_POST['email_1'])) ? htmlentities($_POST['email_1'], ENT_QUO
 $email_2 = (!empty($_POST['email_2'])) ? htmlentities($_POST['email_2'], ENT_QUOTES, "UTF-8") : "";
 $nagareyama_shimin = (!empty($_POST['nagareyama_shimin'])) ? htmlentities($_POST['nagareyama_shimin'], ENT_QUOTES, "UTF-8") : "";
 $chiiki_id = (!empty($_POST['chiiki_id'])) ? htmlentities($_POST['chiiki_id'], ENT_QUOTES, "UTF-8") : "";
-$my_page_password = (!empty($_POST['pass'])) ? htmlentities($_POST['pass'], ENT_QUOTES, "UTF-8") : "";
-//error_log(print_r($nagareyama_shimin, true). PHP_EOL, '3', 'tanihara_log.txt'); //18番目 流山市民チェック
-//error_log(print_r($chiiki_id, true). PHP_EOL, '3', 'tanihara_log.txt');         //19番目 地域ID
+$password = (!empty($_POST['my_page_password'])) ? htmlentities($_POST['my_page_password'], ENT_QUOTES, "UTF-8") : "";
+
 //会員その他
 $mail = (!empty($_POST['mail'])) ? htmlentities($_POST['mail'], ENT_QUOTES, "UTF-8") : "";
 $merumaga = (!empty($_POST['merumaga'])) ? htmlentities($_POST['merumaga'], ENT_QUOTES, "UTF-8") : "";
+
 // 先頭8、西暦の下2桁、月（0埋め）、日（0埋め）、連番2桁0うめ
 //　　 8 . date('y') . date('m') . date('d')
 $wk_kaiin_no_joken =  "8" . date('y') . date('m') . date('d');
@@ -58,7 +57,7 @@ if ($wk_kaiin_no_max['max_no'] == '') {
 $wk_kaiin_no = $wk_kaiin_no_joken . sprintf('%02d', $wk_no);
 
 // ハッシュを作る
-$my_page_password = password_hash($_REQUEST[$my_page_password], PASSWORD_BCRYPT);
+$my_page_password = password_hash($password, PASSWORD_BCRYPT);
 
 //メルマガ配信を希望する　かつ　メール受信希望のメールアドレスがメール1の場合
 if ($merumaga == 1 && $mail == 1) {
@@ -84,10 +83,6 @@ if ($mail == 2) {
 } else {
     $receive_mail2 = FALSE;
 }
-// error_log(print_r($wk_mail1, true). PHP_EOL, '3', 'tanihara_log1.txt'); 
-// error_log(print_r($wk_mail2, true). PHP_EOL, '3', 'tanihara_log1.txt');         
-// error_log(print_r($receive_mail1, true). PHP_EOL, '3', 'tanihara_log1.txt'); 
-// error_log(print_r($receive_mai2, true). PHP_EOL, '3', 'tanihara_log1.txt');         
 
 // 登録用パラメーター設定
 $param = [
@@ -221,22 +216,22 @@ if ($result == false) {
     NULL;
 // 登録成功の場合
 } else {
-    NULL; 
+    NULL;
 }
 if ($mail == 1) {
     //メールアドレス取得
     $message="無料会員登録が完了しました。";
     my_send_mail($email_1,'会員登録完了お知らせ',$message);
-    
+
 
     function my_send_mail($mailto, $subject, $message)
         {
- 
+
             $message = mb_convert_encoding($message, "JIS", "UTF-8");
             $subject = mb_convert_encoding($subject, "JIS", "UTF-8");
- 
+
             $header ="From: NSCAジャパン <info@example.com>\n";
- 
+
             mb_send_mail($mailto, $subject, $message, $header);
         }
  } //else {
