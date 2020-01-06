@@ -68,7 +68,9 @@ SQL;
             $sth = $db->prepare("SELECT COUNT(*) AS resultCount
                       FROM tb_kaiin_joho
                      WHERE kaiin_no = :kaiin_no
-                       AND (email_1 = :mailAddress OR email_2 = :mailAddress);
+                       AND (email_1 = :mailAddress OR email_2 = :mailAddress)
+                       AND toroku_jokyo_kbn = 1
+                       AND sakujo_flg = 0;
             ");
             $sth->execute([':mailAddress' => $mailAddress, ':kaiin_no' => $kaiinNo]);
             $row  = $sth->fetch();
@@ -529,7 +531,9 @@ SQL;
                     , koshin_user_id        = :kaiin_no
                     , koshin_nichiji        = now()
                 WHERE
-                      kaiin_no = :kaiin_no;
+                      kaiin_no = :kaiin_no
+                  AND toroku_jokyo_kbn = 1
+                  AND sakujo_flg = 0;
 SQL;
                 $sth = $db->prepare($sql);
                 $sth->execute([
@@ -538,7 +542,6 @@ SQL;
                 ]);
             $db->commit();
         } catch (\Throwable $e) {
-            error_log(print_r($e, true). PHP_EOL, '3', 'error_log.txt');
             $db->rollBack();
             return FALSE;
         }

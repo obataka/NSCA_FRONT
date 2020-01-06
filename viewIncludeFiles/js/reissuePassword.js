@@ -5,6 +5,36 @@
 var param = location.search.substr(7)
 $("#token").val(param);
 
+    /********************************
+     * トークンが有効かチェック(初期表示)
+     ********************************/
+    jQuery.ajax({
+        url:  '../../classes/checkReissuePassword.php',
+        type: 'POST',
+        data:
+            {
+                token: $("#token").val()
+            },
+        success: function(rtn) {
+
+
+            // 会員情報、該当なし
+                if (rtn == 0) {
+		            $("#err_pass_1").html("有効期限が過ぎています。パスワード変更依頼メール画面からもう一度やり直してください。");
+                    $("#pass_1").prop("disabled", true);
+                    $("#pass_2").prop("disabled", true);
+			        $('button[type="submit"]').prop("disabled", true);
+                    return false;
+				}
+            },
+            fail: function(rtn) {
+                return false;
+            },
+            error: function(rtn) {
+                return false;
+            }
+    });
+
 
         /********************************
          * 次へボタン押下時のエラーチェック
@@ -75,7 +105,9 @@ $("#token").val(param);
                 // 会員情報、該当なし
 	                if (rtn == 0) {
 			            $("#err_pass_1").html("有効期限が過ぎています。パスワード変更依頼メール画面からもう一度やり直してください。");
-	                    $("#pass_1").focus();
+	                    $("#pass_1").prop("disabled", true);
+	                    $("#pass_2").prop("disabled", true);
+				        $('button[type="submit"]').prop("disabled", true);
 	                    return false;
 					}else{
 

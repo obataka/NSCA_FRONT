@@ -8,8 +8,6 @@ require './DBAccess/Db.php';
 require './DBAccess/Tb_kaiin_joho.php';
 
 
-error_log('チェック', '3', 'tanaka_log.txt');
-
 // POSTデータを取得
 $kaiin_no = htmlentities($_POST['kaiin_no'], ENT_QUOTES, "UTF-8");
 $mail_address = htmlentities($_POST['mail_address'], ENT_QUOTES, "UTF-8");
