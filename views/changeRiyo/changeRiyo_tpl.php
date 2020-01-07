@@ -20,6 +20,9 @@
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/header.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/changeRiyo.js"></script>
+		<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
+		<script type="text/javascript" src="../../viewIncludeFiles/js/iPhone.js"></script>
+		<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
 		<script>
 			$(function(){
 				$("select").wrap("<span class='select_wrap'></span>");
@@ -29,34 +32,35 @@
     <body>
 		<header id="header">
 		</header>
-			<div class="wrap">
-				<h2>登録情報修正</h2>
-				<div class="content_wrap">
-					<div class="spb_arrows">
-						<ul class="nav nav-tabs step-anchor">
-							<li><span><small>会員種別選択</small></span></li>
-							<li class="active"><span><small>修正</small></span></li>
-							<li><span><small>確認</small></span></li>
-							<li><span><small>完了</small></span></li>
-						</ul>
-					</div>
-					<form action="../changeConfirmRiyo/changeConfirmRiyo_tpl.php" method="post">
-						<input type="hidden" name="kenmei" id="kenmei" value="<?php echo $kenmei; ?>">
-						<input type="hidden" name="sel_math" id="sel_math" value="<?php echo $sel_math; ?>">
-						<input type="hidden" name="sel_gender" id="sel_gender" value="<?php echo $gender; ?>">
-						<input type="hidden" name="wk_sel_gender" id="wk_sel_gender" value="<?php echo $wk_sel_gender; ?>">
-						<input type="hidden" name="sel_mail" id="sel_mail" value="<?php echo $sel_mail; ?>">
-						<input type="hidden" name="mail" id="mail" value="<?php echo $mail; ?>">
-						<input type="hidden" name="sel_merumaga" id="sel_merumaga" value="<?php echo $sel_merumaga; ?>">
-						<input type="hidden" name="merumaga" id="merumaga" value="<?php echo $merumaga; ?>">
-						<input type="hidden" name="sel_hoho" id="sel_hoho" value="<?php echo $sel_hoho; ?>">
-						<input type="hidden" name="hoho" id="hoho" value="<?php echo $hoho; ?>">
-						<input type="hidden" name="sel_month" id="sel_month" value="<?php echo $month; ?>">
-						<input type="hidden" name="sel_day" id="sel_day" value="<?php echo $day; ?>">
-						<input type="hidden" name="sel_nagareyama" id="sel_nagareyama" value="<?php echo $sel_nagareyama; ?>">
-						<input type="hidden" name="sel_chiiki" id="sel_chiiki" value="<?php echo $sel_chiiki; ?>">			
-						<div class="kihon_joho">
-							<h3>基本情報</h3>
+		<div class="wrap">
+			<h1>登録情報修正 登録情報入力</h1>
+			<div class="content_wrap">
+				<div class="spb_arrows">
+					<ul class="nav nav-tabs step-anchor">
+						<li><span><small>会員種別選択</small></span></li>
+						<li class="active"><span><small>修正</small></span></li>
+						<li><span class="spb_border"><small>確認</small></span></li>
+						<li><span><small>完了</small></span></li>
+					</ul>
+				</div>
+				<form action="../changeConfirmRiyo/changeConfirmRiyo_tpl.php" method="post">
+					<input type="hidden" name="kenmei" id="kenmei" value="<?php echo $kenmei; ?>">
+					<input type="hidden" name="sel_math" id="sel_math" value="<?php echo $sel_math; ?>">
+					<input type="hidden" name="sel_gender" id="sel_gender" value="<?php echo $gender; ?>">
+					<input type="hidden" name="wk_sel_gender" id="wk_sel_gender" value="<?php echo $wk_sel_gender; ?>">
+					<input type="hidden" name="sel_mail" id="sel_mail" value="<?php echo $sel_mail; ?>">
+					<input type="hidden" name="mail" id="mail" value="<?php echo $mail; ?>">
+					<input type="hidden" name="sel_merumaga" id="sel_merumaga" value="<?php echo $sel_merumaga; ?>">
+					<input type="hidden" name="merumaga" id="merumaga" value="<?php echo $merumaga; ?>">
+					<input type="hidden" name="sel_hoho" id="sel_hoho" value="<?php echo $sel_hoho; ?>">
+					<input type="hidden" name="hoho" id="hoho" value="<?php echo $hoho; ?>">
+					<input type="hidden" name="sel_month" id="sel_month" value="<?php echo $month; ?>">
+					<input type="hidden" name="sel_day" id="sel_day" value="<?php echo $day; ?>">
+					<input type="hidden" name="sel_nagareyama" id="sel_nagareyama" value="<?php echo $sel_nagareyama; ?>">
+					<input type="hidden" name="sel_chiiki" id="sel_chiiki" value="<?php echo $sel_chiiki; ?>">			
+					<div class="kihon_joho">
+						<h2>基本情報</h2>
+						<div class="bg_white">
 							<table>
 								<tr class="name">
 									<th><span class="required">必須</span>氏名</th>
@@ -153,7 +157,7 @@
 								<tr class="gender">
 									<th><span class="required">必須</span>性別</th>
 									<td>
-										<input id="gender_1" type="radio" name="gender" value="1"><label for="gender_1">男性</label>
+										<input id="gender_1" type="radio" name="gender" value="1"><label for="gender_1">男性</label><br>
 										<input id="gender_2" type="radio" name="gender" value="2"><label for="gender_2">女性</label>
 										<ul class="error_ul">
 											<li class="error" id="err_gender"></li>
@@ -210,32 +214,33 @@
 										</ul>
 									</td>
 								</tr>
-								<tr class="mail">
+								<!--<tr class="mail">
 									<th><span class="required">必須</span>メールアドレス</th>
 									<td>
-										<p>メールアドレス_1</p><input id="mail_address_1" class="w_80" type="email" name="mail_address_1" value="<?php echo $mail_address_1; ?>">
-										<ul class="error_ul">
-											<li class="error" id="err_mail_address_1"></li>
-										</ul>
-										<p class="mt_1">メールアドレス_2</p><input id="mail_address_2" class="w_80" type="email" name="mail_address_2" value="<?php echo $mail_address_2; ?>">
-										<ul class="error_ul">
-											<li class="error" id="err_mail_address_2"></li>
-										</ul>
-										<p class="mt_1">メール受信希望のメールアドレス</p>
+										<p>メールアドレス1</p><input id="mail_address_1" class="w_80" type="email" name="mail_address_1" value=""><br>
+										<input id="mail_login_1" type="radio" name="mail_login" value="1">
+										<label for="mail_login_1">このメールアドレスでログインする</label><br>
 										<input id="mail_1" type="radio" name="mail" value="1">
-										<label for="mail_1">メールアドレス_1</label><br class="sp_bl">
+										<label for="mail_1">このメールアドレスでメールを受信する</label>
+										<p class="mt_1">メールアドレス2</p><input id="mail_address_2" class="w_80" type="email" name="mail_address_2" value=""><br>
+										<input id="mail_login_2" type="radio" name="mail_login" value="2">
+										<label for="mail_login_2">このメールアドレスでログインする</label><br>
 										<input id="mail_2" type="radio" name="mail" value="2">
-										<label for="mail_2">メールアドレス_2</label>
+										<label for="mail_2">このメールアドレスでメールを受信する</label>
+
 										<ul class="error_ul">
-											<li class="error" id="err_mail"></li>
+											<li class="error" id=""></li>
+											<li class="error" id=""></li>
+											<li class="error" id=""></li>
+											<li class="error" id=""></li>
 										</ul>
 									</td>
-								</tr>
+								</tr>-->
 								<tr>
 									<th><span class="required">必須</span>メルマガ配信の希望</th>
 									<td>
 										<input id="merumaga_1" type="radio" name="merumaga" value="1">
-										<label for="merumaga_1">希望する</label>
+										<label for="merumaga_1">希望する</label><br>
 										<input id="merumaga_2" type="radio" name="merumaga" value="2">
 										<label for="merumaga_2">希望しない</label>
 										<ul class="error_ul">
@@ -245,14 +250,16 @@
 								</tr>
 							</table>
 						</div>
+					</div>
 
-						<div class="oshirase">
-						<h3>お知らせ／連絡方法／アンケート</h3>
+					<div class="oshirase">
+					<h2>お知らせ／連絡方法／アンケート</h2>
+						<div class="bg_white">
 							<table>
 								<tr>
 									<th><span class="required">必須</span>連絡方法の希望</th>
 									<td>
-										<input id="hoho_1" type="radio" name="hoho" value="1"><label for="hoho_1">メールでお知らせ</label>
+										<input id="hoho_1" type="radio" name="hoho" value="1"><label for="hoho_1">メールでお知らせ</label><br>
 										<input id="hoho_2" type="radio" name="hoho" value="2"><label for="hoho_2">郵便でお知らせ</label>
 										<ul class="error_ul">
 											<li class="error" id="err_renraku_hoho"></li>
@@ -261,16 +268,15 @@
 								</tr>
 							</table>
 						</div>
-					</form>
-					<section class="btn_wrap">
-						<button class="button btn_gray" type="button" value="">クリア</button>
-						<button id="next_button" class="button" type="submit" value="">次へ</button>
-					</section>
-					
-				</div>
+					</div>
+				</form>
+				<section class="btn_wrap">
+					<button class="button btn_gray" type="button" value="">クリア</button>
+					<button id="next_button" class="button" type="submit" value="">次へ</button>
+				</section>
 			</div>
-		<footer>
-			<p><small>&copy; Copyright &copy; 2016 NSCA JAPAN. All Rights Reserved.</small></p>
+		</div>
+		<footer id="footer">
 		</footer>
 	</body>
 </html>

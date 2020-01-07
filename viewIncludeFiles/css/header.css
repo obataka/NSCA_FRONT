@@ -135,7 +135,7 @@ header a:hover {
 		top: 22px;
 	}
 	.wrap {
-		padding-top: 80px;
+		padding-top: 137px;
 	}
 	header {
 		height: 77px;
@@ -212,11 +212,15 @@ header a:hover {
 		padding: 0;
 		display: block;
 	}
+	.user_name {
+		color: #fff;
+	}
 	.sp_nav {
 		text-align: center;
 	}
 	.sp_nav a {
 		padding: 0;
+		color: #fff;
 	}
 	.sp_nav p {
 		line-height: 40px;

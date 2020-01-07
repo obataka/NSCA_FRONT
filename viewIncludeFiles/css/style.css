@@ -198,6 +198,7 @@ input[type="radio"] {
 input[type="radio"] + label {
     padding-left: 20px;
     position:relative;
+	cursor: pointer;
 }
 input[type="radio"] + label::before {
     content: "";
@@ -222,6 +223,9 @@ input[type="radio"]:checked + label::after {
     background: #005699;
     border-radius: 50%;
 }
+input[type="radio"] + label:hover:before {
+    border: 1px solid #005699;
+ }
 
 /*button*/
 .btn_wrap button:first-of-type {
@@ -1170,7 +1174,7 @@ button[type="submit"]:disabled:hover::after {
 		content: none;
 	}
 	.spb_border {
-		border-bottom: 1px solid #cdc2c3;
+		border-bottom: 1px solid #bbb;
 	}
 	.spb_arrows>ul.step-anchor {
 		border-radius: 3px;
@@ -1185,7 +1189,7 @@ button[type="submit"]:disabled:hover::after {
 		border-top: 15px solid transparent;
 		border-bottom: 15px solid transparent;
 		border-left: 15px solid #dddddd;
-		top: 225%;
+		top: 229%;
 		transform: translateX(-50%) translateY(-50%) rotateZ(90deg);
 		z-index: 2;
 	}
@@ -1203,10 +1207,10 @@ button[type="submit"]:disabled:hover::after {
 	}
 	.spb_arrows>ul.step-anchor>li>span.spb_border:after {
 		left: 50%;
-		border-top: 11px solid transparent;
-		border-bottom: 11px solid transparent;
-		border-left: 11px solid #bbb;
-		top: 234%;
+		border-top: 12px solid transparent;
+		border-bottom: 12px solid transparent;
+		border-left: 12px solid #bbb;
+		top: 236%;
 		transform: translateX(-50%) translateY(-50%) rotateZ(90deg);
 		z-index: 1;
 	}
@@ -1219,14 +1223,14 @@ button[type="submit"]:disabled:hover::after {
 		left: 50%;
     }
 	.spb_arrows>ul.step-anchor>li>span:after {
-		border-left: 11px solid #ddd;
-    content: "";
-    left: 50%;
-    border-top: 11px solid transparent;
-    border-bottom: 11px solid transparent;
-    top: 234%;
-    transform: translateX(-50%) translateY(-50%) rotateZ(90deg);
-    z-index: 1;
+		border-left: 12px solid #ddd;
+		content: "";
+		left: 50%;
+		border-top: 12px solid transparent;
+		border-bottom: 12px solid transparent;
+		top: 230%;
+		transform: translateX(-50%) translateY(-50%) rotateZ(90deg);
+		z-index: 1;
 	}
 	.spb_arrows.height_62>ul.step-anchor>li.active>span {
 		height: auto;
@@ -1319,6 +1323,10 @@ button[type="submit"]:disabled:hover::after {
 }
 .Android label {
     line-height: 20px;
+}
+.Android .spb_arrows li span {
+	height: 42px;
+    line-height: 22px;
 }
 @media screen and (max-width: 480px) {
 

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
-
+    <head>
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="Content-Style-Type" content="text/css" />
@@ -46,48 +46,53 @@
 						<p><span>現在の会員種別</span></p>
 						<p>利用会員(無料)</p>
 					</div>
+					<p class="h2_text">テキストテキストテキストテキストテキストテキスト電話またはメールにて<a href="#">お問い合わせ</a>ください。</p>
+					
+					<h3>会員種別変更</h3>
+					<div class="current_sbt">
+						<div>
+							<p><span>現在の会員種別</span></p>
+							<p>利用会員(無料)</p>
+						</div>
+					</div>
+					<div class="kaiin_sbt">
+						<div class="riyo">
+							<div class="sbt_top">
+								<p>利用登録(無料)</p>
+								<p class="kaihi">会費：無料</p>
+							</div>
+							<div class="sbt_bottom">
+								<p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+								<button class="button sbt_btn" onclick="location.href='#'"><span>利用登録(無料)への変更</span></button>
+							</div>
+						</div>
+
+						<div class="NSCA">
+							<div class="sbt_top">
+								<p>NSCA正会員</p>
+								<p class="kaihi">会費：00,000円</p>
+							</div>
+							<div class="sbt_bottom">
+								<p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+								<button class="button sbt_btn" onclick="location.href='#'"><span>NSCA正会員への変更</span></button>
+							</div>
+						</div>
+
+						<div class="gakusei">
+							<div class="sbt_top">
+								<p>学生会員</p>
+								<p class="kaihi">会費：00,000円</p>
+							</div>				
+							<div class="sbt_bottom">
+								<p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+								<button class="button sbt_btn" onclick="location.href='#'"><span>学生会員への変更</span></button>
+							</div>
+						</div>
+					</div>
 				</div>
-				<div class="kaiin_sbt">
-					<div class="riyo">
-						<div class="sbt_top">
-							<p>利用登録(無料)</p>
-							<p class="kaihi">会費：無料</p>
-						</div>
-						<div class="sbt_bottom">
-							<p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-							<button class="button sbt_btn" id="__changeRiyo"><span>利用登録(無料)への変更</span></button>
-						</div>
-					</div>
-
-					<div class="NSCA">
-						<div class="sbt_top">
-							<p>NSCA正会員</p>
-							<p class="kaihi">会費：<span id="seikaiin-kaihi"></span>円</p>
-						</div>
-						<div class="sbt_bottom">
-							<p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-							<button class="button sbt_btn" id="__changeMember"><span>NSCA正会員への変更</span></button>
-						</div>
-					</div>
-
-					<div class="gakusei">
-						<div class="sbt_top">
-							<p>学生会員</p>
-							<p class="kaihi">会費：<span id="gakusei-kaihi"></span>円</p>
-						</div>
-						<div class="sbt_bottom">
-							<p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-							<button class="button sbt_btn" id="__changeGakusei"><span>学生会員への変更</span></button>
-						</div>
-					</div>
-				</div>
-				<input type="hidden" name="kaiinSbt" id="kaiinSbt" value="" />
-				<input type="hidden" name="kaihi" id="kaihi" value="" />
-			</form>
-		</div>
-	</div>
-	<footer id="footer">
-	</footer>
-</body>
-
+				
+			</div>
+		<footer id="footer">
+		</footer>
+	</body>
 </html>

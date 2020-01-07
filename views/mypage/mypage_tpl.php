@@ -23,272 +23,319 @@
 		<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/iPhone.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
+		<script>
+			$(function(){
+				$('a[href^="#"]').click(function(){
+					var speed = 500;
+					var href= $(this).attr("href");
+					var target = $(href == "#" || href == "" ? 'html' : href);
+					var position = target.offset().top;
+					$("html, body").animate({scrollTop:position}, speed, "swing");
+					return false;
+				});
+			});
+		</script>
 		
     </head>
     <body>
 	<header id="header">
 	</header>
-	
 	<div class="wrap">
 		<div class="link">
 			<ul>
-				<li><a href="#">パスワード再発行</a></li>
-				<li><a href="#">登録情報修正</a></li>
-				<li><a href="#">メールアドレスの変更</a></li>
 				<li><a href="#">お問い合わせ</a></li>
 				<li><a href="#">ログアウト</a></li>
 			</ul>
 		</div>
 		<h1>マイページ</h1>
-		<div class="joho">
-			<div class="kaiin_joho bg_gray">
+		<ul class="page_link">
+			<li><a href="#kaiin_joho">会員情報</a></li>
+			<li><a href="#shiken">試験</a></li>
+			<li><a href="#ceu">CEU</a></li>
+			<li><a href="#news">お知らせ</a></li>
+			<li><a href="#event">イベント</a></li>
+			<li><a href="#moshikomi">申込状況</a></li>
+			<li><a href="#shiharai">支払状況</a></li>
+			<li><a href="#kaiin_contents">会員コンテンツ</a></li>
+			<li><a href="#denshi_book">電子ブック</a></li>
+			<li><a href="#buppan">物販</a></li>
+			<li><a href="#kyujin_joho">求人情報</a></li>
+		</ul>
+		<div class="content_wrap">
+			<div id="kaiin_joho">
 				<h2>会員情報</h2>
-				<div>
-					<p class="title"><span>○○　○○様</span></p>
-					<p>会員番号：<span>00000000正会員</span></p>
-					<p>会員有効期限：<span>0000/00/00</span></p>
-					<p>英文オプション：<span>なし</span></p>
-					<!--<p>健康調査票：<span>未回答</span></p>-->
-				</div>
-				<div class="btn_wrap">
-					<!--<button class="button btn_kaito" type="button" onclick="location.href='#'"><span>回答する</span></button>-->
-					<button class="button btn_kaiin_sbt" type="button" onclick="location.href='#'"><span>会員種別の変更</span></button>
-					<button class="button btn_hoken" type="button" onclick="location.href='#'"><span>保険に入る</span></button>
-				</div>
-			</div>
-			<div class="shiken_ceu ">
-				<div class="shiken bg_white">
-					<h2>試験</h2>
-					<div>
-						<p class="title">CSCS</p>
-						<p>認定番号：<span>00000000</span></p>
-						<p>認定日：<span>0000/00/00</span></p>
-						<p>資格有効期限：<span>0000/00/00</span></p>
-					</div>
-					<div>
-						<p class="title">NSCA-CAP</p>
-						<p>認定番号：<span>00000000</span></p>
-						<p>認定日：<span>0000/00/00</span></p>
-						<p>資格有効期限：<span>0000/00/00</span></p>
-					</div>
-					<div class="btn_wrap">
-						<button class="button" type="button" onclick="location.href='#'"><span>試験申込</span></button>
-						<button class="button" type="button" onclick="location.href='#'"><span>試験申込内容状況</span></button>
-					</div>
-				</div>
-				<div class="ceu bg_white">
-					<h2>CEU</h2>
-					<p class="right">CEU報告は<a href="#">こちら</a>から</p>
-					<section>
-						<p class="title">CSCS</p>
-						<img src="https://placehold.jp/280x30.png">
-						<p>「CEU報告」の手続きを行って資格を更新してください</p>
-					</section>
-					<section>
-						<p class="title">NSCA-CAP</p>
-						<img src="https://placehold.jp/280x30.png">
-					</section>
-					<div class="btn_wrap">
-						<button class="button" type="button" onclick="location.href='#'"><span>CEUクイズ</span></button>
-						<button class="button" type="button" onclick="location.href='#'"><span>内訳詳細を見る</span></button>
-					</div>   
-				</div>
-			</div>
-		</div><!--joho-->
-		<section>
-			<h2>お知らせ</h2>
-			<div class="bg_white news">
-				<div class="content">
-					<p>体力トレーニング検定&reg;(トレ検&reg;)随時、検定を実施しております。</p>
-					<div>
-						<button class="button" type="button" onclick="location.href='#'"><span>お申込</span></button>
-					</div>
-				</div>
-				<div class="content">
-					<p>郵便物が戻ってきています。ご住所の確認をお願いいたします。</p>
-					<div>
-						<button class="button" type="button" onclick="location.href='#'"><span>登録情報</span></button>
-					</div>
-					
-				</div>
-				<div class="content">
-					<p>テキストテキストテキストテキストテキストテキストテキストテキスト</p>
-					<div>
-						<button class="button" type="button" onclick="location.href='#'"><span>継続手続き</span></button>
-					</div>
-				</div>
-			</div>
-			<div class="page">
-				<ol>
-					<li class="page_1">1</li>
-					<li class="page_2">2</li>
-					<li class="page_3">3</li>
-				</ol>
-				<span class="page_icon"><i class="fas fa-chevron-right"></i></span>
-			</div>
-		</section>
-		<section>
-			<h2>イベント</h2>
-			<div class="bg_white event">
-				<div class="event_wrap">
-					<div class="sub">
-						<p class="sub_1">セミナー</p>
-						<p class="sub_2">残りわずか</p>
-					</div>
-					<div class="content">
-						<p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-						<div>
-							<button class="button" type="button" onclick="location.href='#'"><span>お申込</span></button>
-						</div>
-					</div>
-				</div>
-				<div class="event_wrap">
-					<div class="sub">
-						<p class="sub_1">トレ検</p>
-					</div>
-					<div class="content">
-						<p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-						<div>
-							<button class="button" type="button" onclick="location.href='#'"><span>お申込</span></button>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="page">
-				<p>もっと見る</p>
-				<span class="page_icon"><i class="fas fa-chevron-right"></i></span>
-			</div>
-		</section>
-		
-		<section class="clearfix">
-			<div class="moshikomi">
-				<h2>申込状況</h2>
 				<div class="bg_white">
-					<div class="content">
-						<p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-						<div class="btn_2">
-							<button class="button" type="button" onclick="location.href='#'"><span>支払</span></button>
-							<button class="button" type="button" onclick="location.href='#'"><span>詳細</span></button>
-						</div>
-					</div>
-					<div class="content">
-						<p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-						<div class="btn_2">
-							<button class="button" type="button" onclick="location.href='#'"><span>詳細</span></button>
-							<button class="button shiharai_nmb" type="button" onclick="location.href='#'"><span>支払番号表示</span></button>
-						</div>
-					</div>
-					<div class="content">
-						<p>テキストテキストテキストテキスト</p>
-						<div>
-							<button class="button" type="button" onclick="location.href='#'"><span>詳細</span></button>
-						</div>
-						
-					</div>
-					<div class="content">
-						<p>テキストテキストテキストテキスト</p>
-						<div>
-							<button class="button" type="button" onclick="location.href='#'"><span>詳細</span></button>
-						</div>
-					
-					</div>
+					<p class="user_name">○○　○○様</p>
+					<table>
+						<tr>
+							<th>会員番号</th>
+							<td>00000000</td>
+						</tr>
+						<tr>
+							<th>会員種別</th>
+							<td>
+								正会員<br>
+								<p class="sbt_change"><a>会員種別の変更</a></p>
+							</td>
+						</tr>
+						<tr>
+							<th>会員有効期限</th>
+							<td>0000/00/00</td>
+						</tr>
+						<tr>
+							<th>英文オプション</th>
+							<td>なし</td>
+						</tr>
+						<!--<tr>
+							<th>健康調査票</th>
+							<td>
+								未回答<br>
+								<p><a>回答する</a></p>
+							</td>
+						</tr>-->
+					</table>
+					<button class="button" type="button" onclick="location.href='#'"><span>パスワード再発行</span></button>
+					<button class="button" type="button" onclick="location.href='#'"><span>登録情報修正</span></button>
+					<button class="button" type="button" onclick="location.href='#'"><span>メールアドレスの変更</span></button>
+					<button class="button" type="button" onclick="location.href='#'"><span>保険に入る</span></button>
 				</div>
 			</div>
-		
-			<div class="shiharai">
-				<h2>支払状況</h2>
+			
+			
+            <div class="content_top">
+                <div class="joho">
+                    <p class="title">会員情報</p>
+                    <p></p>
+                    <p>会員番号：<span></span></p>
+                    <p>会員有効期限：<span>0000/00/00</span></p>
+                    <p>英文オプション：<span>なし</span></p>
+                    <!--<p>健康調査票：<span>未回答</span></p>-->
+					<div class="btn_wrap">
+					   <!--<button class="button btn_kaito" type="button" onclick="location.href='#'"><span>回答する</span></button>-->
+						<button class="button btn_kaiin_sbt" type="button" onclick="location.href='#'"><span>会員種別の変更</span></button>
+						<button class="button btn_hoken" type="button" onclick="location.href='#'"><span>保険に入る</span></button>
+					</div>
+                </div>
+                <div class="shiken">
+                    <div class="cscs">
+                        <p class="title">CSCS</p>
+                        <p>認定番号：<span>00000000</span></p>
+                        <p>認定日：<span>0000/00/00</span></p>
+                        <p>資格有効期限：<span>0000/00/00</span></p>
+                    </div>
+                    <div class="nsca">
+                        <p class="title">NSCA-CAP</p>
+                        <p>認定番号：<span>00000000</span></p>
+                        <p>認定日：<span>0000/00/00</span></p>
+                        <p>資格有効期限：<span>0000/00/00</span></p>
+                    </div>
+                    <div class="btn_wrap">
+                        <button class="button" type="button" onclick="location.href='#'"><span>試験申込</span></button>
+                        <button class="button" type="button" onclick="location.href='#'"><span>試験申込内容状況</span></button>
+                    </div>
+                </div>
+                <div class="ceu clearfix">
+                    <p class="title">CEU</p>
+					<div class="clearfix">
+						<button class="button btn_ceu" type="button" onclick="location.href='#'"><span>CEU報告はこちらから</span></button>
+					</div>
+					<p class="cscs">CSCS</p>
+					<img src="https://placehold.jp/280x30.png">
+					<p>「CEU報告」の手続きを行って資格を更新してください</p>
+					<p class="nsca">NSCA-CAP</p>
+					<img src="https://placehold.jp/280x30.png">
+                    <div class="btn_wrap">
+                        <button class="button" type="button" onclick="location.href='#'"><span>CEUクイズ</span></button>
+                    	<button class="button" type="button" onclick="location.href='#'"><span>内訳詳細を見る</span></button>
+                    </div>         
+                </div>
+            </div>
+			<div class="news bg_gray">
+				<p class="title">お知らせ</p>
 				<div class="bg_white">
-					<div class="content">
-						<p>テキストテキストテキストテキスト</p>
-						<div>
-							<button class="button" type="button" onclick="location.href='#'"><span>領収書</span></button>
+					<ul class="news_1 clearfix">
+						<li class="clearfix">体力トレーニング検定&reg;(トレ検&reg;)随時、検定を実施しております。<button class="button mp_btn" type="button" onclick="location.href='#'"><span>お申込</span></button></li>
+						<li class="clearfix">郵便物が戻って生きています。ご住所の確認をお願いいたします。<button class="button mp_btn" type="button" onclick="location.href='#'"><span>登録情報</span></button></li>
+						<li class="clearfix">テキストテキストテキストテキストテキストテキストテキストテキスト<button class="button mp_btn" type="button" onclick="location.href='#'"><span>継続手続き</span></button></li>
+					</ul>
+				</div>
+				<div class="page">
+					<ol>
+						<li class="page_1">1</li>
+						<li class="page_2">2</li>
+						<li class="page_3">3</li>
+					</ol>
+					<span class="page_icon"><i class="fas fa-chevron-right"></i></span>
+				</div>
+			</div>
+			<div class="event">
+				<p class="title">イベント</p>
+				<div class="">
+					<div class="event_wrap">
+						<div class="sub">
+							<p class="sub_1">セミナー</p>
+							<p class="sub_2">残りわずか</p>
+						</div>
+						<div class="list">
+							<p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+							<div>
+								<button class="button mp_btn" type="button" onclick="location.href='#'"><span>お申込</span></button>
+							</div>
+						</div>
+					</div>
+					<div class="event_wrap">
+						<div class="sub">
+							<p class="sub_1">トレ検</p>
+						</div>
+						<div class="list">
+							<p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+							<div>
+								<button class="button mp_btn" type="button" onclick="location.href='#'"><span>お申込</span></button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="page">
+					<p>もっと見る</p>
+					<span class="page_icon"><i class="fas fa-chevron-right"></i></span>
+				</div>
+			</div>
+			<div class="bg_blue">
+				<p class="title">テキストテキスト</p>
+				<section>
+					<div class="moshikomi bg_white">
+						<p class="title">申込状況</p>
+						<div class="list">
+							<p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+							<div class="sub btn_2">
+								<button class="button mp_btn" type="button" onclick="location.href='#'"><span>支払</span></button>
+								<button class="button mp_btn" type="button" onclick="location.href='#'"><span>詳細</span></button>
+							</div>
+						</div>
+						<div class="list">
+							<p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+							<div class="sub btn_2">
+								<button class="button mp_btn" type="button" onclick="location.href='#'"><span>詳細</span></button>
+								<button class="button mp_btn shiharai_nmb" type="button" onclick="location.href='#'"><span>支払番号表示</span></button>
+							</div>
+						</div>
+						<div class="list">
+							<p>テキストテキストテキストテキスト</p>
+							<div class="sub">
+								<button class="button mp_btn" type="button" onclick="location.href='#'"><span>詳細</span></button>
+							</div>
+						</div>
+						<div class="list">
+							<p>テキストテキストテキストテキスト</p>
+							<div class="sub">
+								<button class="button mp_btn" type="button" onclick="location.href='#'"><span>詳細</span></button>
+							</div>
+						</div>
+					</div><!--moshikomi bg_white ↑-->
+					<div class="shiharai bg_white">
+						<p class="title">支払情報</p>
+						<div class="list">
+							<p>テキストテキストテキストテキスト</p>
+							<div class="sub">
+								<button class="button mp_btn" type="button" onclick="location.href='#'"><span>領収書</span></button>
+							</div>
+						</div>
+						<div class="list">
+							<p>テキストテキストテキストテキスト</p>
+							<div class="sub">
+								<button class="button mp_btn" type="button" onclick="location.href='#'"><span>領収書</span></button>
+							</div>
+						</div>
+						<div class="list">
+							<p>テキストテキストテキストテキスト</p>
+							<div class="sub">
+								<button class="button mp_btn" type="button" onclick="location.href='#'"><span>領収書</span></button>
+							</div>
+						</div>
+						<div class="list">
+							<p>テキストテキストテキストテキスト</p>
+							<div class="sub">
+								<button class="button mp_btn" type="button" onclick="location.href='#'"><span>領収書</span></button>
+							</div>
+						</div>
+					</div>
+				</section>
+				
+				<p class="title">テキストテキスト</p>
+				<section class="content_5">
+					<div class="kaiin bg_white">
+						<p class="title">会員限定コンテンツ</p>
+						<div class="kaiin_btn">
+							<button class="button mp_btn" onclick="location.href='#'"><span>パーソナルトレーナーサポートツール</span></button>
+							<button class="button mp_btn" onclick="location.href='#'"><span>S&amp;C資料集</span></button>
+							<button class="button mp_btn" onclick="location.href='#'"><span>HPC施設利用申込手続きへ</span></button>
 						</div>						
 					</div>
-					<div class="content">
-						<p>テキストテキストテキストテキスト</p>
-						<div>
-							<button class="button" type="button" onclick="location.href='#'"><span>領収書</span></button>
+					<div class="denshi bg_white">
+						<p class="title">電子ブック</p>
+						<div class="flex_wrap">
+							<figure>
+								<img src="https://placehold.jp/265x150.png">
+								<figcaption>テキストテキストテキスト</figcaption>
+							</figure>
 						</div>
+						
+						<button class="button mp_btn" onclick="location.href='#'"><span>もっと見る</span></button>
 					</div>
-					<div class="content">
-						<p>テキストテキストテキストテキスト</p>
-						<div>
-							<button class="button" type="button" onclick="location.href='#'"><span>領収書</span></button>
+					<div class="buppan bg_white">
+						<p class="title">物販</p>
+						<div class="flex_wrap">
+							
+							<figure>
+								<img src="https://placehold.jp/265x150.png">
+								<figcaption>テキストテキストテキストテキスト<p class="price">00,000</p></figcaption>
+							</figure>
+							
+							<!--
+							<table>
+								<tr>
+									<th><img src="https://placehold.jp/250x150.png"></th>
+									<td>テキストテキストテキストテキスト<p class="price">00,000</p></td>
+								</tr>
+							</table>
+
+-->
 						</div>
+						<button class="button mp_btn" onclick="location.href='#'"><span>もっと見る</span></button>
 					</div>
-					<div class="content">
-						<p>テキストテキストテキストテキスト</p>
-						<div>
-							<button class="button" type="button" onclick="location.href='#'"><span>領収書</span></button>
-						</div>
-					</div>
+				</section>
+			</div><!--bg_blue-->
+			<div class="kyujin">
+				<p class="title">求人情報</p>
+				<div class="bg_gray">
+					<ul>
+						<li>
+							<div class="sub">
+								<p class="sub_1">テキスト</p>
+							</div>
+							テキストテキストテキストテキストテキストテキストテキストテキスト
+						</li>
+						<li class="clearfix">
+							<div class="sub">
+								<p class="sub_1">テキスト</p>
+							</div>
+							テキストテキストテキストテキスト
+						</li>
+					</ul>
 				</div>
-			</div>
-		</section>
-		
-		<section class="clearfix">
-			<div class="kaiin_contents">
-				<h2>会員コンテンツ</h2>
-				<div class="bg_white">
-					<button class="button" onclick="location.href='#'"><span>パーソナルトレーナーサポートツール</span></button>
-					<button class="button" onclick="location.href='#'"><span>S&amp;C資料集</span></button>
-					<button class="button" onclick="location.href='#'"><span>HPC施設利用申込手続きへ</span></button>
+				<div class="page">
+					<ol>
+						<li class="page_1">1</li>
+						<li class="page_2">2</li>
+						<li class="page_3">3</li>
+					</ol>
+					<span class="page_icon"><i class="fas fa-chevron-right"></i></span>
 				</div>
 			</div>
 			
-			<div class="denshi_book">
-				<h2>電子ブック</h2>
-				<div class="bg_white">
-					<figure>
-						<img src="https://placehold.jp/265x150.png">
-						<figcaption>テキストテキストテキスト</figcaption>
-					</figure>
-					<div>
-						<button class="button" onclick="location.href='#'"><span>もっと見る</span></button>
-					</div>
-					
-				</div>
-				
-			</div>
 			
-			<div class="buppan">
-				<h2>物販</h2>
-				<div class="bg_white">
-					<figure>
-						<img src="https://placehold.jp/265x150.png">
-						<figcaption>テキストテキストテキストテキスト<p class="price">￥00,000</p></figcaption>
-					</figure>
-					<div>
-						<button class="button" onclick="location.href='#'"><span>もっと見る</span></button>
-					</div>
-				</div>				
-			</div>
-		</section>
-		
-		<h2>求人情報</h2>
-		<div class="bg_white kyujin">
-			<div class="content">
-				<div class="sub">
-					<p class="sub_1">テキスト</p>
-				</div>
-				<p>テキストテキストテキストテキストテキストテキストテキストテキスト</p>
-			</div>
-			<div class="content">
-				<div class="sub">
-					<p class="sub_1">テキスト</p>
-				</div>
-				<p>テキストテキストテキストテキスト</p>
-			</div>
 		</div>
-		<div class="page">
-				<ol>
-					<li class="page_1">1</li>
-					<li class="page_2">2</li>
-					<li class="page_3">3</li>
-				</ol>
-				<span class="page_icon"><i class="fas fa-chevron-right"></i></span>
-			</div>
-	</div><!--wrap↑-->
+	</div>
 	<footer id="footer">
 	</footer>
 </body>
