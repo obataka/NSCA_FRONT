@@ -117,9 +117,9 @@
                         }
                         $.each(getShikakuList, function (i, value) {
                             if (i % 2 == 0) {
-                                $('#nintei-shikaku-right').append('<input id="shikaku_' + value[0] + '" type="checkbox" name="shikaku" value="' + value[0] + '"><label class="checkbox" for="shikaku_' + value[0] + '">' + value[1] + '</label><br>');
-                            } else {
                                 $('#nintei-shikaku-left').append('<input id="shikaku_' + value[0] + '" type="checkbox" name="shikaku" value="' + value[0] + '"><label class="checkbox" for="shikaku_' + value[0] + '">' + value[1] + '</label><br>');
+                            } else {
+                                $('#nintei-shikaku-right').append('<input id="shikaku_' + value[0] + '" type="checkbox" name="shikaku" value="' + value[0] + '"><label class="checkbox" for="shikaku_' + value[0] + '">' + value[1] + '</label><br>');
                             };
                         });
 
@@ -1426,7 +1426,6 @@
                     $('#office_tatemono').val(getTbkaiinJoho[40]);
                     $('#office_tel').val(getTbkaiinJoho[41]);
                     $('#office_fax').val(getTbkaiinJoho[42]);
-                    $('#shikaku_sonota').val(getTbkaiinJoho[51]);
 
                     //連絡方法の希望のチェック
                     if (getTbkaiinJoho[114] == "") {
@@ -1532,7 +1531,6 @@
             //エラーメッセージエリア初期化
             $("#err_file_front").empty();
             $("#err_file_back").empty();
-            $("#err_riyu").empty();
             $("#err_name_sei").empty();
             $("#err_name_mei").empty();
             $("#err_name_sei_kana").empty();
@@ -1569,7 +1567,6 @@
             //エラーメッセージエリア初期化
             $("#err_file_front").html("");
             $("#err_file_back").html("");
-            $("#err_riyu").html("");
             $("#err_name_sei").html("");
             $("#err_name_mei").html("");
             $("#err_name_sei_kana").html("");
@@ -1618,20 +1615,6 @@
                     }
                 });
 
-            }
-
-            //入会理由未入力チェック
-            if (!$('input:radio[name="riyu"]:checked').val()) {
-                wk_err_msg = "入会理由を選択してください。";
-                $("#err_riyu").html(wk_err_msg);
-                wk_err_msg = "";
-            }
-
-            //その他記述未入力チェック(入会理由)
-            if ($('#riyu_sonota').val() == "" && $('input[name=riyu]:checked').val() == 99) {
-                wk_err_msg = "入会理由を記述してください。";
-                $("#err_riyu").html(wk_err_msg);
-                wk_err_msg = "";
             }
 
             //氏名(姓)未入力チェック
@@ -2123,13 +2106,10 @@
                 return false;
             }
             //その他(記述)の記述部分のhidden設定
-            riyu_sonota = $('textarea[name="riyu_sonota"]').val();
-            $('#sel_riyu_sonota').val(riyu_sonota);
-
             shikaku_sonota = $('textarea[name="shikaku_sonota"]').val();
             $('#sel_shikaku_sonota').val(shikaku_sonota);
 
-            bunya_sonota = $('textarea[name="shikaku_sonota"]').val();
+            bunya_sonota = $('textarea[name="bunya_sonota"]').val();
             $('#sel_bunya_sonota').val(bunya_sonota);
 
             //配列の内容を変数shikakuTextとshikakuValに代入する

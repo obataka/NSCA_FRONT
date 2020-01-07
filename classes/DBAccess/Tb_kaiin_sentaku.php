@@ -193,7 +193,7 @@ SQL;
                     $meisho_cd = str_replace(" ", "", $value);
                     $biko_val = "";
                     if ($value == 99) {
-                        $biko_val = $param6['biko_shikaku'];
+                        $biko_val = $param6['biko_bunya'];
                     }
 
                     $sql = <<<SQL

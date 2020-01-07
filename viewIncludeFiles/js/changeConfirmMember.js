@@ -79,28 +79,24 @@
                 //※正常に情報を取得できた時、変数に入れる
                 if (getTbkaiinSentaku != "") {
                     $.each(getTbkaiinSentaku, function (index, value) {
-                        switch (value[0]) {
+                        if (value[0] == 22) {
                             //NSCA以外の認定資格
-                            case 22:
-                                $meisho_cd_shikaku = $meisho_cd_shikaku + value[1]; + ", ";
-                                if (value[1] == 99) {
-                                    $shikaku_sonota = value[2];
-                                }
-                                break;
+                            $meisho_cd_shikaku = $meisho_cd_shikaku + value[1] + ", ";
+                            if (value[1] == 99) {
+                                $shikaku_sonota = value[2];
+                            }
+
+                        } else if (value[0] == 32) {
                             //興味のある地域
-                            case 32:
-                                $meisho_cd_chiiki = $meisho_cd_chiiki + value[1]; + ", ";
-                                break;
+                            $meisho_cd_chiiki = $meisho_cd_chiiki + value[1] + ", ";
+
+                        } else if (value[0] == 24) {
                             //興味のある分野   
-                            case 24:
-                                $meisho_cd_bunya = $meisho_cd_bunya + value[1]; + ", ";
-                                if (value[1] == 99) {
-                                    $bunya_sonota = value[2];
-                                }
-                                break;
-                            default:
-                                break;
-                        }
+                            $meisho_cd_bunya = $meisho_cd_bunya + value[1] + ", ";
+                            if (value[1] == 99) {
+                                $bunya_sonota = value[2];
+                            }
+                        } 
                     });
                 }
             },
@@ -342,9 +338,9 @@
                 }
             });
 
-             //修正後の会員情報を登録
+            //修正後の会員情報を登録
             jQuery.ajax({
-                url:  '../../classes/updateTb_kaiin_my_page_koshin_rirekiNew2.php',
+                url: '../../classes/updateTb_kaiin_my_page_koshin_rirekiNew2.php',
                 type: 'POST',
                 data:
                 {
@@ -366,8 +362,8 @@
                     keitai_denwa: $("#keitai_tel").val(),
                     email: $("#mail_address_1").val(),
                     keitai_email: $("#mail_address_2").val(),
-                    merumaga : $("#merumaga").val(),
-                    hoho : $("#hoho").val(),
+                    merumaga: $("#merumaga").val(),
+                    hoho: $("#hoho").val(),
                     mail: $("#mail").val(),
                     url_1: $("#url").val(),
                     shokugyo_kbn_1: $("#sel_shoku_1").val(),
@@ -386,7 +382,7 @@
                     last: $("#name_last").val(),
                     chiiki_id: $("#sel_chiiki").val(),
                     sel_office_chiiki: $("#sel_office_chiiki").val(),
-                    
+
                     //会員その他テーブルの項目
                     mail: $("#wk_sel_mail").val(),
                     merumaga: $("#wk_sel_merumaga").val(),
@@ -405,7 +401,7 @@
                     biko_bunya: $("#sel_bunya_sonota").val(),
                     biko_shikaku: $("#sel_shikaku_sonota").val(),
                 },
-                success: function(rtn) {
+                success: function (rtn) {
                     // rtn = 0 の場合は、該当なし
                     console.log(50);
                     if (rtn == 0) {
@@ -414,23 +410,27 @@
                     } else {
                         console.log(1111111111111111111111111);
                         //エラーがない場合完了画面に画面遷移
-                        location.href = '../changeComplete/'; // 通常の遷移
+                        if ($("#wk_sel_option").val() == "") {
+                            location.href = '../changeComplete/';
+                        } else {
+                            location.href = '../paymentSelect/';
+                        }
                     }
                 },
-                fail: function(rtn) {
+                fail: function (rtn) {
                     console.log(1313131313);
-                    
+
                     return false;
                 },
-                error: function(rtn) {
+                error: function (rtn) {
                     console.log(090909090909);
-                    
+
                     return false;
                 }
-                
+
             });
         });
 
     });
 
-}) (jQuery);
+})(jQuery);

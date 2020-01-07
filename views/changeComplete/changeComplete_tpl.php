@@ -38,7 +38,7 @@
 				</div>
 				<p class="h2_text">テキストテキストテキストテキストテキストテキスト</p>
 
-					<button class="button btn_b btn_b_1" type="button" value="" onclick="location.href='#'"><span>トップへ</span></button>
+					<button class="button btn_b btn_b_1" type="button" value="" onclick="location.href='../mypage/'"><span>トップへ</span></button>
 			</div>
 		</div>
 		<footer id="footer">

@@ -482,7 +482,7 @@ SQL;
     {
         try {
             $db = Db::getInstance();
-            $sth = $db->prepare("SELECT count(*) FROM tb_kaiin_joho WHERE email_1 = :mail");
+            $sth = $db->prepare("SELECT count(*) FROM tb_kaiin_joho WHERE email_1 = :mail OR email_2 = :mail");
             $sth->execute([':mail' => $param['mail']]);
             $Tb_kaiin_joho = $sth->fetch();
         } catch (\PDOException $e) {
@@ -496,7 +496,7 @@ SQL;
     {
         try {
             $db = Db::getInstance();
-            $sth = $db->prepare("SELECT count(*) FROM tb_kaiin_joho WHERE email_2 = :mail");
+            $sth = $db->prepare("SELECT count(*) FROM tb_kaiin_joho WHERE email_2 = :mail OR email_1 = :mail");
             $sth->execute([':mail' => $param['mail']]);
             $Tb_kaiin_joho = $sth->fetch();
         } catch (\PDOException $e) {
