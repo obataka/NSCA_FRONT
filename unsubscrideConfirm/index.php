@@ -1,7 +1,7 @@
 <?php
 include_once '../ctrl/parts/inputHeader.php';
 
-$includeView = '../views/unsubscride/unsubscride_tpl.php';
+$includeView = '../views/unsubscrideConfirm/unsubscrideConfirm_tpl.php';
 
 
 $sel_riyu = (!empty($_POST['sel_riyu'])) ? htmlentities($_POST['sel_riyu'], ENT_QUOTES, "UTF-8") : "";

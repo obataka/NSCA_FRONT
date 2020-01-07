@@ -51,7 +51,6 @@
                 } else {
                     //登録成功の場合、登録完了メールを送信する
                     if ($("#mail").val() == 1) {
-                        console.log(12345678);
                         jQuery.ajax({
                         url:  '../../classes/registCompleteMail.php',
                         type: 'POST',
@@ -72,7 +71,6 @@
                         }
                         });
                     } else if ($("#mail").val() == 2) {
-                            console.log(1234567890000);
                             jQuery.ajax({
                             url:  '../../classes/registCompleteMail.php',
                             type: 'POST',

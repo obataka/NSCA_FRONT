@@ -38,7 +38,12 @@
 				</ul>
 			</div>	
 			<h3>退会申請入力</h3>
-			<form>
+			<form action="../unsubscride/unsubscride_tpl.php" method="post">
+				<input type="hidden" name="sel_riyu" id="sel_riyu" value="<?php echo $sel_riyu; ?>">
+				<input type="hidden" name="sel_riyu_txt" id="sel_riyu_txt" value="<?php echo $sel_riyu_txt; ?>">
+				<input type="hidden" name="sel_annai" id="sel_annai" value="<?php echo $sel_annai; ?>">
+				<input type="hidden" name="sel_annai_txt" id="sel_annai_txt" value="<?php echo $sel_annai_txt; ?>">
+				<input type="hidden" name="textarea" id="textarea" value="<?php echo $textarea; ?>">
 				<table>
 					<tr>
 						<th><span class="required">必須</span>退会理由</th>
@@ -57,7 +62,9 @@
 								<li id="error1" class="error"></li>
 							</ul>
 							<p class="text">具体的にご記入ください</p>
-							<textarea id="taikai_riyu"></textarea>
+							<textarea id="taikai_riyu">
+								<?php echo $textarea; ?>
+							</textarea>
 							<ul class="error_ul">
 								<li id="error2" class="error"></li>
 							</ul>

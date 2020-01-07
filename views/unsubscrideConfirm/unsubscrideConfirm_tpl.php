@@ -18,7 +18,7 @@
         <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.1.1.min.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
-        <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="../../viewIncludeFiles/js/unsubscrideConfirm.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/header.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
@@ -42,11 +42,14 @@
 				<tr>
 					<th><span class="required">必須</span>退会理由</th>
 					<td>
+						<?php echo $sel_riyu_txt; ?> <br>
+						<?php echo $textarea; ?>
 					</td>
 				</tr>
 				<tr>
 					<th><span class="required">必須</span>ご案内希望欄</th>
 					<td>
+						<?php echo $sel_annai_txt; ?>
 					</td>
 				</tr>
 			</table>
