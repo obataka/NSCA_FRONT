@@ -18,6 +18,7 @@
         <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.1.1.min.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
+		<script type="text/javascript" src="../../viewIncludeFiles/js/changeComplete.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/header.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
@@ -38,7 +39,7 @@
 				</div>
 				<p class="h2_text">テキストテキストテキストテキストテキストテキスト</p>
 
-					<button class="button btn_b btn_b_1" type="button" value="" onclick="location.href='../mypage/'"><span>トップへ</span></button>
+					<button class="button btn_b btn_b_1" type="button" value="" onclick="location.href='#'"><span>トップへ</span></button>
 			</div>
 		</div>
 		<footer id="footer">

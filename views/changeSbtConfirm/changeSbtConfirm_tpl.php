@@ -18,7 +18,8 @@
         <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.1.1.min.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
-        <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="../../viewIncludeFiles/js/changeSbtConfirm.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/header.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
@@ -39,18 +40,18 @@
 			<div class="current_sbt clearfix">
 				<div class="currnt">
 					<p><span>現在の会員種別</span></p>
-					<p>利用会員(無料)<br>
-					会費：無料</p>
+					<p><span id="kaiin_sbt_currnt"></span><br>
+					会費：<span id="kaihi_currnt"></span></p>
 				</div>
 				<div class="chenge">
 					<p><span>変更後の会員種別</span></p>
-					<p>学生会員<br>
-					会費：00,000円</p>
+					<p><?php echo $wk_kaiinType;?><br>
+					会費：<?php echo $wk_kaihi;?></p>
 				</div>
 			</div>
 			<section class="btn_wrap btn_b_2 btn_b">
-				<button class="button back" type="button" value="" onclick="location.href='sbt_henko.html'"><span>会員種別選択変更</span></button>
-				<button class="button" type="submit" value="" onclick="location.href='sbt_henko_kanryo.html'"><span>変更</span></button>
+				<button class="button back" type="button" value="" onclick="location.href='#'"><span>会員種別選択変更</span></button>
+				<button class="button" type="submit" value="" onclick="location.href='#'"><span>変更</span></button>
 			</section>
 		</div>
 		

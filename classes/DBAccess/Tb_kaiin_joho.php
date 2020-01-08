@@ -365,6 +365,289 @@ SQL;
         return TRUE;
     }
 
+    /*
+     * 登録（接続及びトランザクションは外側実施）
+     * @param object $db
+     * @param array $param
+     * @return boolean
+     */
+    public function insertRec_noTran($db, $param) {
+
+        try {
+            $sql = <<<SQL
+            INSERT
+            INTO tb_kaiin_joho(
+                  kaiin_no
+                , kyukaiin_no
+                , toroku_jokyo_kbn
+                , kaiin_jokyo_kbn
+                , kaiin_sbt_kbn
+                , beikoku_kaiin_no
+                , beikoku_kaiin_shikaku_kbn
+                , shimei_sei
+                , shimei_mei
+                , keisho_kbn
+                , furigana_sei
+                , furigana_mei
+                , kyusei
+                , seinengappi
+                , seibetsu_kbn
+                , yubin_no
+                , ken_no
+                , chiiki_id
+                , kemmei
+                , jusho_1
+                , jusho_2
+                , kana_jusho_1
+                , kana_jusho_2
+                , tel
+                , fax
+                , keitai_no
+                , keitai_denwa_shurui
+                , email_1
+                , email_2
+                , url_1
+                , url_2
+                , shokugyo_kbn_1
+                , shokugyo_kbn_2
+                , shokugyo_kbn_3
+                , kimmusakimei
+                , kimmusaki_bushomei
+                , kimmusaki_yubin_no
+                , kimmusaki_ken_no
+                , kimmusaki_kemmei
+                , kimmusaki_jusho_1
+                , kimmusaki_jusho_2
+                , kimmusaki_tel
+                , kimmusaki_fax
+                , first
+                , last
+                , honor_kbn
+                , address
+                , city
+                , prefecture
+                , country
+                , postal_code
+                , biko
+                , my_page_password
+                , gakuseisho_filemei
+                , gakuseisho_filemei_2
+                , web_nyukai_kbn
+                , torokukeiro
+                , nagareyama_shimin
+                , sotsugyo_shomeisho_kakunin_kbn
+                , sotsugyo_shomeisho_teishutsubi
+                , sotsugyo_shomeisho_kakunimbi
+                , gakureki_shosho_kakunimbi
+                , gakui_kbn
+                , sotsugyo_yoteibi
+                , shutoku_gakui_bunya_kbn
+                , shutoku_gakka
+                , cpraed_kakunin_kbn
+                , cpraed_kakunimbi
+                , cpraed_senseibi
+                , cpraed_hoji_kbn
+                , cpraed_ninteibi
+                , cpraed_yuko_kigembi
+                , jiko_shokai_keisai
+                , shashin_file_path
+                , jiko_shokai
+                , jiko_shokai_email
+                , jiko_shokai_tel
+                , jiko_shokai_sns1
+                , jiko_shokai_sns2
+                , sakujo_flg
+                , sakusei_user_id
+                , koshin_user_id
+                , sakusei_nichiji
+                , koshin_nichiji
+                , kako_shikaku_umu_kbn
+            )
+            VALUES (
+                  :kaiin_no
+                , :kyukaiin_no
+                , :toroku_jokyo_kbn
+                , :kaiin_jokyo_kbn
+                , :kaiin_sbt_kbn
+                , :beikoku_kaiin_no
+                , :beikoku_kaiin_shikaku_kbn
+                , :shimei_sei
+                , :shimei_mei
+                , :keisho_kbn
+                , :furigana_sei
+                , :furigana_mei
+                , :kyusei
+                , :seinengappi
+                , :seibetsu_kbn
+                , :yubin_no
+                , :ken_no
+                , :chiiki_id
+                , :kemmei
+                , :jusho_1
+                , :jusho_2
+                , :kana_jusho_1
+                , :kana_jusho_2
+                , :tel
+                , :fax
+                , :keitai_no
+                , :keitai_denwa_shurui
+                , :email_1
+                , :email_2
+                , :url_1
+                , :url_2
+                , :shokugyo_kbn_1
+                , :shokugyo_kbn_2
+                , :shokugyo_kbn_3
+                , :kimmusakimei
+                , :kimmusaki_bushomei
+                , :kimmusaki_yubin_no
+                , :kimmusaki_ken_no
+                , :kimmusaki_kemmei
+                , :kimmusaki_jusho_1
+                , :kimmusaki_jusho_2
+                , :kimmusaki_tel
+                , :kimmusaki_fax
+                , :first
+                , :last
+                , :honor_kbn
+                , :address
+                , :city
+                , :prefecture
+                , :country
+                , :postal_code
+                , :biko
+                , :my_page_password
+                , :gakuseisho_filemei
+                , :gakuseisho_filemei_2
+                , :web_nyukai_kbn
+                , :torokukeiro
+                , :nagareyama_shimin
+                , :sotsugyo_shomeisho_kakunin_kbn
+                , :sotsugyo_shomeisho_teishutsubi
+                , :sotsugyo_shomeisho_kakunimbi
+                , :gakureki_shosho_kakunimbi
+                , :gakui_kbn
+                , :sotsugyo_yoteibi
+                , :shutoku_gakui_bunya_kbn
+                , :shutoku_gakka
+                , :cpraed_kakunin_kbn
+                , :cpraed_kakunimbi
+                , :cpraed_senseibi
+                , :cpraed_hoji_kbn
+                , :cpraed_ninteibi
+                , :cpraed_yuko_kigembi
+                , :jiko_shokai_keisai
+                , :shashin_file_path
+                , :jiko_shokai
+                , :jiko_shokai_email
+                , :jiko_shokai_tel
+                , :jiko_shokai_sns1
+                , :jiko_shokai_sns2
+                , :sakujo_flg
+                , :sakusei_user_id
+                , :koshin_user_id
+                , :sakusei_nichiji
+                , :koshin_nichiji
+                , :kako_shikaku_umu_kbn
+            );
+
+SQL;
+
+            $sth = $db->prepare($sql);
+            $sth->execute([
+                ':kaiin_no'                         => $param['kaiin_no'],
+                ':kyukaiin_no'                      => $param['kyukaiin_no'],
+                ':toroku_jokyo_kbn'                 => $param['toroku_jokyo_kbn'],
+                ':kaiin_jokyo_kbn'                  => $param['kaiin_jokyo_kbn'],
+                ':kaiin_sbt_kbn'                    => $param['kaiin_sbt_kbn'],
+                ':beikoku_kaiin_no'                 => $param['beikoku_kaiin_no'],
+                ':beikoku_kaiin_shikaku_kbn'        => $param['beikoku_kaiin_shikaku_kbn'],
+                ':shimei_sei'                       => $param['shimei_sei'],
+                ':shimei_mei'                       => $param['shimei_mei'],
+                ':keisho_kbn'                       => $param['keisho_kbn'],
+                ':furigana_sei'                     => $param['furigana_sei'],
+                ':furigana_mei'                     => $param['furigana_mei'],
+                ':kyusei'                           => $param['kyusei'],
+                ':seinengappi'                      => $param['seinengappi'],
+                ':seibetsu_kbn'                     => $param['seibetsu_kbn'],
+                ':yubin_no'                         => $param['yubin_no'],
+                ':ken_no'                           => $param['ken_no'],
+                ':chiiki_id'                        => $param['chiiki_id'],
+                ':kemmei'                           => $param['kemmei'],
+                ':jusho_1'                          => $param['jusho_1'],
+                ':jusho_2'                          => $param['jusho_2'],
+                ':kana_jusho_1'                     => $param['kana_jusho_1'],
+                ':kana_jusho_2'                     => $param['kana_jusho_2'],
+                ':tel'                              => $param['tel'],
+                ':fax'                              => $param['fax'],
+                ':keitai_no'                        => $param['keitai_no'],
+                ':keitai_denwa_shurui'              => $param['keitai_denwa_shurui'],
+                ':email_1'                          => $param['email_1'],
+                ':email_2'                          => $param['email_2'],
+                ':url_1'                            => $param['url_1'],
+                ':url_2'                            => $param['url_2'],
+                ':shokugyo_kbn_1'                   => $param['shokugyo_kbn_1'],
+                ':shokugyo_kbn_2'                   => $param['shokugyo_kbn_2'],
+                ':shokugyo_kbn_3'                   => $param['shokugyo_kbn_3'],
+                ':kimmusakimei'                     => $param['kimmusakimei'],
+                ':kimmusaki_bushomei'               => $param['kimmusaki_bushomei'],
+                ':kimmusaki_yubin_no'               => $param['kimmusaki_yubin_no'],
+                ':kimmusaki_ken_no'                 => $param['kimmusaki_ken_no'],
+                ':kimmusaki_kemmei'                 => $param['kimmusaki_kemmei'],
+                ':kimmusaki_jusho_1'                => $param['kimmusaki_jusho_1'],
+                ':kimmusaki_jusho_2'                => $param['kimmusaki_jusho_2'],
+                ':kimmusaki_tel'                    => $param['kimmusaki_tel'],
+                ':kimmusaki_fax'                    => $param['kimmusaki_fax'],
+                ':first'                            => $param['first'],
+                ':last'                             => $param['last'],
+                ':honor_kbn'                        => $param['honor_kbn'],
+                ':address'                          => $param['address'],
+                ':city'                             => $param['city'],
+                ':prefecture'                       => $param['prefecture'],
+                ':country'                          => $param['country'],
+                ':postal_code'                      => $param['postal_code'],
+                ':biko'                             => $param['biko'],
+                ':my_page_password'                 => $param['my_page_password'],
+                ':gakuseisho_filemei'               => $param['gakuseisho_filemei'],
+                ':gakuseisho_filemei_2'             => $param['gakuseisho_filemei_2'],
+                ':web_nyukai_kbn'                   => $param['web_nyukai_kbn'],
+                ':torokukeiro'                      => $param['torokukeiro'],
+                ':nagareyama_shimin'                => $param['nagareyama_shimin'],
+                ':sotsugyo_shomeisho_kakunin_kbn'   => $param['sotsugyo_shomeisho_kakunin_kbn'],
+                ':sotsugyo_shomeisho_teishutsubi'   => $param['sotsugyo_shomeisho_teishutsubi'],
+                ':sotsugyo_shomeisho_kakunimbi'     => $param['sotsugyo_shomeisho_kakunimbi'],
+                ':gakureki_shosho_kakunimbi'        => $param['gakureki_shosho_kakunimbi'],
+                ':gakui_kbn'                        => $param['gakui_kbn'],
+                ':sotsugyo_yoteibi'                 => $param['sotsugyo_yoteibi'],
+                ':shutoku_gakui_bunya_kbn'          => $param['shutoku_gakui_bunya_kbn'],
+                ':shutoku_gakka'                    => $param['shutoku_gakka'],
+                ':cpraed_kakunin_kbn'               => $param['cpraed_kakunin_kbn'],
+                ':cpraed_kakunimbi'                 => $param['cpraed_kakunimbi'],
+                ':cpraed_senseibi'                  => $param['cpraed_senseibi'],
+                ':cpraed_hoji_kbn'                  => $param['cpraed_hoji_kbn'],
+                ':cpraed_ninteibi'                  => $param['cpraed_ninteibi'],
+                ':cpraed_yuko_kigembi'              => $param['cpraed_yuko_kigembi'],
+                ':jiko_shokai_keisai'               => $param['jiko_shokai_keisai'],
+                ':shashin_file_path'                => $param['shashin_file_path'],
+                ':jiko_shokai'                      => $param['jiko_shokai'],
+                ':jiko_shokai_email'                => $param['jiko_shokai_email'],
+                ':jiko_shokai_tel'                  => $param['jiko_shokai_tel'],
+                ':jiko_shokai_sns1'                 => $param['jiko_shokai_sns1'],
+                ':jiko_shokai_sns2'                 => $param['jiko_shokai_sns2'],
+                ':sakujo_flg'                       => $param['sakujo_flg'],
+                ':sakusei_user_id'                  => $param['sakusei_user_id'],
+                ':koshin_user_id'                   => $param['koshin_user_id'],
+                ':sakusei_nichiji'                  => $param['sakusei_nichiji'],
+                ':koshin_nichiji'                   => $param['koshin_nichiji'],
+                ':kako_shikaku_umu_kbn'             => $param['kako_shikaku_umu_kbn'],
+            ]);
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
+            return FALSE;
+        }
+        return TRUE;
+    }
+
     public function findBykaiinjoho()
     {
         $wk_kaiin_no = "";
@@ -594,6 +877,54 @@ WHERE joho.kaiin_no = :kaiin_no
             $kaiinJoho = [];
         }
         return $kaiinJoho;
+    }
+    //登録済みのメールアドレス1かどうかチェック
+    public function searchAddress1($param)
+    {
+        try {
+            $db = Db::getInstance();
+            $sth = $db->prepare("SELECT count(*) FROM tb_kaiin_joho WHERE email_1 = :mail OR email_2 = :mail");
+            $sth->execute([':mail' => $param['mail']]);
+            $Tb_kaiin_joho = $sth->fetch();
+        } catch (\PDOException $e) {
+            $Tb_kaiin_joho = [];
+        }
+        return $Tb_kaiin_joho;
+    }
+
+    //登録済みのメールアドレス2かどうかチェック
+    public function searchAddress2($param)
+    {
+        try {
+            $db = Db::getInstance();
+            $sth = $db->prepare("SELECT count(*) FROM tb_kaiin_joho WHERE email_1 = :mail OR email_2 = :mail");
+            $sth->execute([':mail' => $param['mail']]);
+            $Tb_kaiin_joho = $sth->fetch();
+        } catch (\PDOException $e) {
+            $Tb_kaiin_joho = [];
+        }
+        return $Tb_kaiin_joho;
+    }
+
+    //会員種別を取得する
+    public function findBykaiinSbt()
+    {
+        $wk_kaiin_no = "";
+        // if (isset($_SESSION['kaiin_no'])) {
+        //         $wk_kaiin_no = $_SESSION['kaiin_no'];
+        // }
+        //$wk_kaiin_no = 10251033;
+        $wk_kaiin_no = 819121118;
+        try {
+            $db = Db::getInstance();
+            $sth = $db->prepare("SELECT kaiin_sbt_kbn FROM tb_kaiin_joho WHERE kaiin_no = :kaiin_no");
+            $sth->execute([':kaiin_no' => $wk_kaiin_no,]);
+            // $sth->execute([':kaiin_no' => $kaiin_no,]);
+            $Tb_kaiin_joho = $sth->fetch();
+        } catch (\PDOException $e) {
+            $Tb_kaiin_joho = [];
+        }
+        return $Tb_kaiin_joho;
     }
 
 }
