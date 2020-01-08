@@ -4,6 +4,7 @@
         * 送信ボタン押下時のエラーチェック
         ********************************/
         $(".button").click(function() {
+            console.log(11111);
             //エラーメッセージエリア初期化
             $("#err_mail").html("");
             var wk_focus_done = 0;
@@ -21,6 +22,7 @@
             }
             // エラーがある場合は、メッセージを表示し、処理を終了する
             if (wk_err_msg != "") {
+                console.log(111); 
                 return false;
              }
             /************************************************************
@@ -37,8 +39,10 @@
                 success: function(rtn) {
                     // rtn = 0 の場合は、該当なし
                     if (rtn == 0) {
+                        console.log(774);
                         return false;
                     } else {
+                        console.log(777);
                         //エラーがない場合送信完了画面に画面遷移
                         location.href = '../registMailComplete/';       
                     }

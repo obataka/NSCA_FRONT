@@ -5,7 +5,7 @@ session_start();
 
 require './Config/Config.php';
 require './DBAccess/Db.php';
-require './DBAccess/Tb_kaiin_joho.php';
+require './DBAccess/Tb_kaiin_joho9.php';
 
 $ret = 0;
 
@@ -25,7 +25,7 @@ $kaiin_no = "819122001";
 *************************************************************/
 
 // 会員情報　パスワード更新処理
-$result = (new Tb_kaiin_joho())->findByKaiinNo($kaiin_no);
+$result = (new Tb_kaiin_joho9())->findByKaiinNo($kaiin_no);
 
 // 該当データなしの場合
 if ($result == "") {

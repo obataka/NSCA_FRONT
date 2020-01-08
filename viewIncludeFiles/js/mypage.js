@@ -16,8 +16,8 @@
 //                    return false;
 				}else{
 
+
                         tbKaiinJoho = JSON.parse(rtn);
-// tbKaiinJoho["kaiin_sbt_kbn"]
                         $('#kaiin_no').html(tbKaiinJoho["kaiin_no"]);
                         $('#kaiin_name').html(tbKaiinJoho["kaiin_name"]);
                         $('#kaiin_sbt').html(tbKaiinJoho["kaiin_sbt"]);
@@ -36,7 +36,7 @@
 //alert(rtn);
 
 //            $("#kaiin_no").html("99999999");
-            $("#joho_kaiin_no").html(tbKaiinJoho["kaiin_no"]);
+            $("#joho_kaiin_no").html("99999999");
 
 
 
