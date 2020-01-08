@@ -252,9 +252,9 @@
 
 								<ul class="error_ul">
 									<li class="error" id="err_mail_address_1"></li>
-									<li class="error" id="err_mail"></li>
 									<li class="error" id="err_mail_address_2"></li>
 									<li class="error" id="err_mail"></li>
+									<li class="error" id="err_mail_login"></li>
 								</ul>
 							</td>
 						</tr>

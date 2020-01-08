@@ -28,6 +28,12 @@
 	<header id="header">
 	</header>
 	<div class="wrap mh_c btn_b_wrap">  
+	<form action="?" method="post" autocomplete="off" id="unsubscrideConfirmForm">
+	<input type="hidden" name="sel_riyu" id="sel_riyu" value="<?php echo $sel_riyu; ?>">
+	<input type="hidden" name="sel_riyu_txt" id="sel_riyu_txt" value="<?php echo $sel_riyu_txt; ?>">
+	<input type="hidden" name="sel_annai" id="sel_annai" value="<?php echo $sel_annai; ?>">
+	<input type="hidden" name="sel_annai_txt" id="sel_annai_txt" value="<?php echo $sel_annai_txt; ?>">
+	<input type="hidden" name="textarea" id="textarea" value="<?php echo $textarea; ?>">
 		<h2>退会申請　確認</h2>
 		<div class="content_wrap">
 			<div class="spb_arrows spb_arrows_3ver">
@@ -58,6 +64,7 @@
 				<button class="button" type="button" value="" onclick="location.href='#'"><span>退会</span></button>
 			</section>
 		</div>
+	</form>
 	</div>
 	<footer id="footer">
 	</footer>

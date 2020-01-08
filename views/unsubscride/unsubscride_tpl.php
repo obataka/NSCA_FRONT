@@ -38,7 +38,7 @@
 				</ul>
 			</div>	
 			<h3>退会申請入力</h3>
-			<form action="../unsubscride/unsubscride_tpl.php" method="post">
+			<form action="../unsubscrideConfirm/unsubscrideConfirm_tpl.php" method="post">
 				<input type="hidden" name="sel_riyu" id="sel_riyu" value="<?php echo $sel_riyu; ?>">
 				<input type="hidden" name="sel_riyu_txt" id="sel_riyu_txt" value="<?php echo $sel_riyu_txt; ?>">
 				<input type="hidden" name="sel_annai" id="sel_annai" value="<?php echo $sel_annai; ?>">
@@ -62,9 +62,7 @@
 								<li id="error1" class="error"></li>
 							</ul>
 							<p class="text">具体的にご記入ください</p>
-							<textarea id="taikai_riyu">
-								<?php echo $textarea; ?>
-							</textarea>
+							<textarea id="taikai_riyu"><?php echo $textarea; ?></textarea>
 							<ul class="error_ul">
 								<li id="error2" class="error"></li>
 							</ul>
@@ -75,7 +73,7 @@
 						<td><p>今後、NSCA認定資格に関する情報や、セミナー等のご案内を<br class="sp_no">お送りすることがあれば、受け取りを希望されますか？</p>
 							<input id="annai_1" type="radio" name="annai" value="1">
 							<label class="radio" for="annai_1">希望する</label>
-							<input id="annai_2" type="radio" name="annai" value="0">
+							<input id="annai_2" type="radio" name="annai" value="2">
 							<label class="radio" for="annai_2">希望しない</label>
 							<ul class="error_ul">
 								<li id="error3" class="error"></li>
@@ -86,7 +84,7 @@
 			</form>
 			<section class="btn_wrap btn_b btn_b_2">
 				<button class="button btn_gray" type="button" value="" onclick="location.href='#'"><span>クリア</span></button>
-				<button class="button" type="submit" value="" onclick="location.href='#'"><span>次へ</span></button>
+				<button id="next_button" class="button" type="submit" value="" onclick="location.href='#'"><span>次へ</span></button>
 			</section>
 		</div>
 	</div>

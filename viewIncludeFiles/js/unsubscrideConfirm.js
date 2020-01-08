@@ -1,5 +1,39 @@
 (function($){
     $(document).ready(function(){
+        
+        
+        
+        
+        
+        
+        
+        $(".btn_gray").click(function() {
+            url = '../unsubscride/';
+            $('form').attr('action', url);
+            $('form').submit();
+        });
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         // /********************************
         // * 次へボタン押下時のエラーチェック
         // ********************************/

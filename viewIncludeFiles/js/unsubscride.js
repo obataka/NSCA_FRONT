@@ -1,9 +1,23 @@
 (function($){
     $(document).ready(function(){
+
+        /***********************************************
+        * 選択済みのラジオボタン、テキストエリア初期表示処理
+        ************************************************/
+        //退会理由ラジオボタン
+        var sel_riyu = $('#sel_riyu').val();
+        if (sel_riyu != "") {
+            $('input:radio[name="riyu"]').val([sel_riyu]);
+        }
+        //ご案内希望ラジオボタン
+        var sel_annai = $('#sel_annai').val();
+        if (sel_annai != "") {
+            $('input:radio[name="annai"]').val([sel_annai]);
+        }
         /********************************
         * 次へボタン押下時のエラーチェック
         ********************************/
-        $(".button").click(function() {  
+        $("#next_button").click(function() {  
             $("#error1").html("");
             $("#error2").html("");
             $("#error3").html("");
@@ -66,6 +80,9 @@
         $(".btn_gray").bind("click", function(){
             $('textarea').val("");
             $('input:radio').prop("checked", false);
+            $("#error1").html("");
+            $("#error2").html("");
+            $("#error3").html("");
         });
 
     });
