@@ -42,9 +42,9 @@ $result = (new Tb_kaiin_token_front())->insertRec($param);
 
     $message = "以下のアドレスを開いて新しいパスワードを登録してください。\n180分以内にアクセスが無かった場合は無効となります。\n";
     $message .= "https://www.demo-nls02.work/reissuePassword?token=".$one_time_token;
-	$title = "NACAジャパン　パスワード再設定のご案内";
+	$subject = "NACAジャパン　パスワード再設定のご案内";
 
-    my_send_mail($mail_address,$title,$message);
+    my_send_mail($mail_address,$subject,$message);
 
 }
 
@@ -52,13 +52,28 @@ $result = (new Tb_kaiin_token_front())->insertRec($param);
  
  function my_send_mail($mailto, $subject, $message)
 {
+
+    $charset = "iso-2022-JP";
+    mb_language("ja");
+    mb_internal_encoding("utf-8");
+
+    $body = mb_convert_encoding($message, $charset, "AUTO");
+    $from = array("name" => "NSCAジャパン", "mail" => "info@example.com");
+
+    $headers  = "Mime-Version: 1.0\n";
+    $headers .= "Content-Transfer-Encoding: 7bit\n";
+    $headers .= "Content-Type: text/plain;charset={$charset}\n";
+    $headers .= "From: ".mb_encode_mimeheader($from["name"])." <".$from["mail"].">";
+
+    try {
+        mb_send_mail($mailto, $subject, $body, $headers);
+        return 0;
+    } catch (ErrorException $e) {
+        error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka_log'. date("Ymd"). '.txt');
+        return -1;
+    }
+
      
-    $message = mb_convert_encoding($message, "JIS", "UTF-8");
-    $subject = mb_convert_encoding($subject, "JIS", "UTF-8");
-     
-    $header ="From: NSCAジャパン <info@example.com>\n";
-     
-    mb_send_mail($mailto, $subject, $message, $header);
 }
 
 
