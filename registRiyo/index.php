@@ -1,10 +1,9 @@
 <?php
-include_once '../ctrl/parts/inputHeader.php';
+include_once '../ctrl/parts/beforeLoginHeader.php';
 
 $includeView = '../views/registRiyo/registRiyo_tpl.php';
 
 $name_sei = (!empty($_POST['name_sei'])) ? htmlentities($_POST['name_sei'], ENT_QUOTES, "UTF-8") : "";
-error_log(print_r($name_sei, true). PHP_EOL, '3', 'tanihara_log1.txt');
 $name_mei = (!empty($_POST['name_mei'])) ? htmlentities($_POST['name_mei'], ENT_QUOTES, "UTF-8") : "";
 $sei_kana_name = (!empty($_POST['sei_kana_name'])) ? htmlentities($_POST['sei_kana_name'], ENT_QUOTES, "UTF-8") : "";
 $sei_mei_name = (!empty($_POST['sei_mei_name'])) ? htmlentities($_POST['sei_mei_name'], ENT_QUOTES, "UTF-8") : "";
@@ -35,4 +34,5 @@ $sel_hoho = (!empty($_POST['sel_hoho'])) ? htmlentities($_POST['sel_hoho'], ENT_
 $sel_nagareyama = (!empty($_POST['sel_nagareyama'])) ? htmlentities($_POST['sel_nagareyama'], ENT_QUOTES, "UTF-8") : "";
 $sel_chiiki = (!empty($_POST['sel_chiiki'])) ? htmlentities($_POST['sel_chiiki'], ENT_QUOTES, "UTF-8") : "";
 $pass = (!empty($_POST['pass'])) ? htmlentities($_POST['pass'], ENT_QUOTES, "UTF-8") : "";
+
 include_once $includeView;

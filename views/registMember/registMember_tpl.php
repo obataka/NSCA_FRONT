@@ -25,29 +25,29 @@
 	<script>
 		$(function(){
 			$("select").wrap("<span class='select_wrap'></span>");
-			
+
 			$("#file_front").on('change',function(){
 				 var file = $(this).prop('files')[0];
-				
+
 				 if(!($(".filename_front").length)){
 					 $("#upload_front").append('<span class="filename_front"></span>');
 				 }
-				
+
 				 $("#input_label_front").addClass('changed');
 				 $(".filename_front").html(file.name);
 
 			   });
 			$("#file_back").on('change',function(){
 				 var file = $(this).prop('files')[0];
-				
+
 				 if(!($(".filename_back").length)){
 					 $("#upload_back").append('<span class="filename_back"></span>');
 				 }
-				
+
 				 $("#input_label_back").addClass('changed');
 				 $(".filename_back").html(file.name);
 			   });
-		
+
 		});
 	</script>
 </head>
@@ -68,7 +68,7 @@
 				<li><span><small>完了</small></span></li>
 			</ul>
 		</div>
-		<p class="top_text">テキストテキストテキストテキストテキストテキスト電話またはメールにて<a href="https://www.nsca-japan.or.jp/06_qanda/top.html#contact" target="_blank">お問い合わせ</a>ください。</p>
+		<p class="top_text">※18歳未満の方は、入会申込フォームからお申込みいただくことはできません。電話またはメールにて<a href="https://www.nsca-japan.or.jp/06_qanda/top.html#contact" target="_blank">お問い合わせ</a>ください。</p>
 		<form action="../confirmMember/confirmMember_php" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="kaiinType" id="kaiinType" value="<?php echo $wk_kaiinType ?>">
 			<input type="hidden" name="kaiinSbt" id="kaiinSbt" value="<?php echo $wk_kaiinSbt ?>">
@@ -410,7 +410,7 @@
 								<label for="mail_login_2">このメールアドレスでログインする</label><br>
 								<input id="mail_2" type="radio" name="mail" value="2">
 								<label for="mail_2">このメールアドレスでメールを受信する</label>
-								
+
 								<ul class="error_ul">
 									<li class="error" id="err_mail_address_1"></li>
 									<li class="error" id="err_mail_address_2"></li>

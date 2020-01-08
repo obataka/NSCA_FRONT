@@ -1,10 +1,12 @@
 <?php
 namespace Was;
 
+use ErrorException;
+
 session_start();
 
 require './Config/Config.php';
-require './DBAccess/Db.php'; 
+require './DBAccess/Db.php';
 require './DBAccess/Tb_kaiin_token_front.php';
 
 //メールアドレス取得
@@ -12,7 +14,7 @@ $kaiin_no = htmlentities($_POST['kaiin_no'], ENT_QUOTES, "UTF-8");
 $mail_address = htmlentities($_POST['mail_address'], ENT_QUOTES, "UTF-8");
 
 /************************************************************
-*トークンと有効期限をDBに登録する 
+*トークンと有効期限をDBに登録する
 *************************************************************/
 
 //トークンを作成し、アドレスとトークンと有効期限をDBに登録する。
@@ -37,7 +39,7 @@ $result = (new Tb_kaiin_token_front())->insertRec($param);
 
  if ($result) {
 	/************************************************************
-	*メール送信する 
+	*メール送信する
 	*************************************************************/
 
     $message = "以下のアドレスを開いて新しいパスワードを登録してください。\n180分以内にアクセスが無かった場合は無効となります。\n";
@@ -49,7 +51,7 @@ $result = (new Tb_kaiin_token_front())->insertRec($param);
 }
 
 
- 
+
  function my_send_mail($mailto, $subject, $message)
 {
 
@@ -73,7 +75,7 @@ $result = (new Tb_kaiin_token_front())->insertRec($param);
         return -1;
     }
 
-     
+
 }
 
 

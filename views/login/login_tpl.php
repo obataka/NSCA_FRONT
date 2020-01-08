@@ -32,15 +32,15 @@
 
                     <input type="text" placeholder="ログインID" name="login_id" id="login_id" maxlength="256">
                     <input type="password" placeholder="パスワード" name="password" id="password" maxlength="25">
-					<ul class="error_ul">
-						<li class="error"></li>
-					</ul>
+                    <ul class="error_ul">
+                        <li class="error"></li>
+                    </ul>
                     <button class="button btn_1" type="button" name="__send" id="__send" value=""><span>Login</span></button>
                     <div class="login_text">
                         <p>
                             <a href="../changePasswordMail/">パスワードをお忘れですか？</a><br>
                             <a href="../registInformation/" target="_blank">入会案内</a><span>|</span>
-                            <a href="#">新規登録はこちら</a>
+                            <a href="../registSbtSelect/">新規登録はこちら</a>
                         </p>
                     </div>
                 </div>

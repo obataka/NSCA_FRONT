@@ -10,6 +10,7 @@ require './DBAccess/Tb_kaiin_sonota.php';
 
 $wk_no = 0;
 $wk_kaiin_no = '';
+$result = 0;
 
 // POSTデータを取得
 // confirmRiyo.jsでセットしたPOSTデータを取得する
@@ -65,24 +66,36 @@ if ($merumaga == 1 && $mail == 1) {
 } else {
     $wk_mail1 = FALSE;
 }
+
 //メルマガ配信を希望する　かつ　メール受信希望のメールアドレスがメール2の場合
 if ($merumaga == 1 && $mail == 2) {
     $wk_mail2 = TRUE;
 } else {
     $wk_mail2 = FALSE;
 }
+
 //メール受信希望のメールアドレスが1の場合
 if ($mail == 1) {
     $receive_mail1 = TRUE;
 } else {
     $receive_mail1 = FALSE;
 }
+
 //メール受信希望のメールアドレスが2の場合
 if ($mail == 2) {
     $receive_mail2 = TRUE;
 } else {
     $receive_mail2 = FALSE;
 }
+
+/******************************************
+* DB登録処理
+******************************************/
+// DB接続
+$db = Db::getInstance();
+
+// トランザクション開始
+$db->beginTransaction();
 
 // 登録用パラメーター設定
 $param = [
@@ -144,7 +157,7 @@ $param = [
     'web_nyukai_kbn'                    => "1",
     'torokukeiro'                       => NULL,
     'nagareyama_shimin'                 => $nagareyama_shimin,
-    'sotsugyo_shomeisho_kakunin_kbn'   => NULL,
+    'sotsugyo_shomeisho_kakunin_kbn'    => NULL,
     'sotsugyo_shomeisho_teishutsubi'    => NULL,
     'sotsugyo_shomeisho_kakunimbi'      => NULL,
     'gakureki_shosho_kakunimbi'         => NULL,
@@ -173,71 +186,67 @@ $param = [
     'kako_shikaku_umu_kbn'              => NULL,
 ];
 
-// 登録処理
-$result = (new Tb_kaiin_joho())->insertRec($param);
+// TB会員情報登録処理
+$result_joho = (new Tb_kaiin_joho())->insertRec_noTran($db, $param);
+
+// 登録成功の場合
+if ($result_joho == TRUE) {
+
+    // TB会員その他登録用パラメーター設定
+    $param1 = [
+        'kaiin_no'                          => $wk_kaiin_no,
+        'renraku_hoho_yuso'                 => FALSE,
+        'renraku_hoho_denshi_email'         => TRUE,
+        'email_1_merumaga_haishin'          => $wk_mail1,
+        'email_2_merumaga_haishin'          => $wk_mail2,
+        'marumaga_haishin_smartphone'       => NULL,
+        'yubin_haitatsusaki_kbn'            => NULL,
+        'daisansha_questionnaire_kbn'       => NULL,
+        'taikaigono_oshirase_kbn'           => NULL,
+        'website_keisai_kbn'                => NULL,
+        'card_toroku'                       => NULL,
+        'email_1_oshirase_uketori'          => $receive_mail1,
+        'email_1_login'                     => TRUE,
+        'email_2_oshirase_uketori'          => $receive_mail2,
+        'email_2_login'                     => FALSE,
+        'sakujo_flg'                        => "0",
+        'sakusei_user_id'                   => NULL,
+        'koshin_user_id'                    => NULL,
+        'sakusei_nichiji'                   => date("Y/m/d H:i:s"),
+        'koshin_nichiji'                    => date("Y/m/d H:i:s"),
+    ];
+
+    // TB会員その他登録処理
+    $result_sonota = (new Tb_kaiin_sonota())->insertRec_noTran($db, $param1);
+
+    // 登録成功の場合
+    if ($result_sonota == TRUE) {
+
+        // commit
+        $db->commit();
+
+        // 戻り値に1設定
+        $result = 1;
+
+    // 登録失敗の場合
+    } else {
+
+        // ロールバック
+        $db->rollBack();
+
+        // 戻り値に0設定
+        $result = 0;
+    }
 
 // 登録失敗の場合
-if ($result == false) {
-    NULL;
-// 登録成功の場合
 } else {
-    NULL;
+
+    // ロールバック
+    $db->rollBack();
+
+    // 戻り値に0設定
+    $result = 0;
 }
-echo $result;
-// sonota登録用パラメーター設定
-$param1 = [
-    'kaiin_no'                          => $wk_kaiin_no,
-    'renraku_hoho_yuso'                 => FALSE,
-    'renraku_hoho_denshi_email'         => TRUE,
-    'email_1_merumaga_haishin'          => $wk_mail1,
-    'email_2_merumaga_haishin'          => $wk_mail2,
-    'marumaga_haishin_smartphone'       => NULL,
-    'yubin_haitatsusaki_kbn'            => NULL,
-    'daisansha_questionnaire_kbn'       => NULL,
-    'taikaigono_oshirase_kbn'           => NULL,
-    'website_keisai_kbn'                => NULL,
-    'card_toroku'                       => NULL,
-    'email_1_oshirase_uketori'          => $receive_mail1,
-    'email_1_login'                     => TRUE,
-    'email_2_oshirase_uketori'          => $receive_mail2,
-    'email_2_login'                     => FALSE,
-    'sakujo_flg'                        => "0",
-    'sakusei_user_id'                   => NULL,
-    'koshin_user_id'                    => NULL,
-    'sakusei_nichiji'                   => date("Y/m/d H:i:s"),
-    'koshin_nichiji'                    => date("Y/m/d H:i:s"),
-];
 
-// 登録処理
-$result = (new Tb_kaiin_sonota())->insertRec($param1);
-
-// 登録失敗の場合
-if ($result == false) {
-    NULL;
-// 登録成功の場合
-} else {
-    NULL;
-}
-if ($mail == 1) {
-    //メールアドレス取得
-    $message="無料会員登録が完了しました。";
-    my_send_mail($email_1,'会員登録完了お知らせ',$message);
-
-
-    function my_send_mail($mailto, $subject, $message)
-        {
-
-            $message = mb_convert_encoding($message, "JIS", "UTF-8");
-            $subject = mb_convert_encoding($subject, "JIS", "UTF-8");
-
-            $header ="From: NSCAジャパン <info@example.com>\n";
-
-            mb_send_mail($mailto, $subject, $message, $header);
-        }
- } //else {
-//     $wk_mail2 = FALSE;
-// }
 echo $result;
 die();
-
-
