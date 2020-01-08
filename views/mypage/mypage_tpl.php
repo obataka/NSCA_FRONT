@@ -23,6 +23,7 @@
 		<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/iPhone.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
+        <script type="text/javascript" src="../../viewIncludeFiles/js/mypage.js"></script>
 		<script>
 			$(function(){
 				$('a[href^="#"]').click(function(){
@@ -65,26 +66,26 @@
 			<div id="kaiin_joho">
 				<h2>会員情報</h2>
 				<div class="bg_white">
-					<p class="user_name">○○　○○様</p>
+					<p class="user_name"><span id="kaiin_name"></span>様</p>
 					<table>
 						<tr>
 							<th>会員番号</th>
-							<td>00000000</td>
+							<td><span id="kaiin_no"></span></td>
 						</tr>
 						<tr>
 							<th>会員種別</th>
 							<td>
-								正会員<br>
+								<span id="kaiin_sbt"></span><br>
 								<p class="sbt_change"><a>会員種別の変更</a></p>
 							</td>
 						</tr>
 						<tr>
 							<th>会員有効期限</th>
-							<td>0000/00/00</td>
+							<td><span id="yuko_hizuke"></span></td>
 						</tr>
 						<tr>
 							<th>英文オプション</th>
-							<td>なし</td>
+							<td><span id="eibun_option"></span></td>
 						</tr>
 						<!--<tr>
 							<th>健康調査票</th>
