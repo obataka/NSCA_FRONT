@@ -27,6 +27,7 @@ li {
 a {
 	text-decoration: none;
     color: #005699;
+	cursor: pointer;
 }
 a:hover {
     border-bottom: 1px solid #005699;
@@ -143,9 +144,6 @@ h2 {
     background: #fff;
     padding: 0 40px;
 	border-radius: 3px;
-}
-.bg_blue {
-    background: #005699;
 }
 .bg_gray {
 	background: #ddd;
@@ -459,9 +457,15 @@ input[type="file"] {
 table div:last-child {
     margin-right: 0;
 }
-
 form td div {
 	float: left;
+}
+#nintei-shikaku-wrap {
+	display: flex;
+    flex-wrap: wrap;
+}
+#nintei-shikaku-wrap div {
+    width: 50%;
 }
 input[type="number"] {
 	padding-left: 5px;
@@ -1167,6 +1171,9 @@ button[type="submit"]:disabled:hover::after {
     }
 	.kaiin_sbt {
 		padding: 0;
+	}
+	#nintei-shikaku-wrap div {
+		width: 100%;
 	}
 
 	/*ステッププログレス*/

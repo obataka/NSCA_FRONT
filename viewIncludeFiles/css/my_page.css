@@ -17,30 +17,25 @@
 	flex-wrap: wrap;
 }
 .page_link:after{
-  content:"";
-  display: block;
-  width: 16%;
+	content:"";
+	display: block;
+	width: 16%;
 }
-.page_link li {
-	border: 1px solid #005699;
-}
-
 .page_link li {
 	height: 40px;
-    width: 16%;
-    border: 1px solid #669FCC;
-    background: #669FCC;
-    text-align: center;
-    font-size: 15px;
-    transition: 0.8s;
-    font-family: inherit;
-    border-radius: 3px;
-    display: table;
+	width: 16%;
+	border: 1px solid #669FCC;
+	background: #669FCC;
+	text-align: center;
+	font-size: 13px;
+	transition: 0.8s;
+	font-family: inherit;
+	border-radius: 3px;
+	display: table;
 	margin: 5px 0;
 }
 .page_link li:hover {
 	color: #005699;
-    cursor: pointer;
     background: #F9F9F9;
 }
 .page_link li a {
@@ -77,6 +72,15 @@
     font-size: 13px;
     font-weight: bold;
 }
+#kaiin_joho,#shiken,
+#ceu,#news,#event,
+#moshikomi,#shiharai,
+#kaiin_contents,
+#denshi_book,#buppan,
+#kyujin_joho {
+	padding-top: 140px;
+    margin-top: -70px;
+}
 #kaiin_joho .user_name {
     border-bottom: 1px solid #757575;
     font-size: 15px;
@@ -91,402 +95,258 @@ th {
     font-weight: normal;
 }
 td {
-    padding: 25px 0;
+    padding: 35px 0;
 }
-
-
-
-
-/*****
-.joho {
-    display: flex;
-    margin: 76px 0;
+#kaiin_joho .btn_wrap button {
+    margin-right: 20px;
 }
-.joho h2 {
-    padding: 0;
-}
-.kaiin_joho {
-    padding: 30px;
-}
-.kaiin_joho {
-    width: 25%;
-}
-.kaiin_joho div {
-    padding: 0 10px;
-    margin-bottom: 153px;
-}
-.title {
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-.shiken {
-    padding-right: 30px;
-}
-.shiken {
-    width: 35%;
-	border-right: 1px solid #ddd;
+#kaiin_joho .btn_wrap button:last-child {
+	margin-right: 0;
 }
 .btn_wrap {
-    padding: 0!important;
-    margin: 0!important;
+    justify-content: inherit;
+    margin-bottom: 0;
+    margin-top: 40px;
 }
-button {
-	font-size: 13px!important;
-	font-weight: normal!important;
-}
-.joho button {
-    margin: 0!important;
+#kaiin_joho .btn_wrap button,
+#shiken .btn_wrap button,
+#ceu .btn_wrap button {
+    width: 200px;
+    font-weight: normal;
     height: 40px;
     line-height: 40px;
-    width: 220px;
+    font-size: 13px;
 }
-.joho button:first-of-type {
-    margin-bottom: 10px!important;
+.title {
+	font-weight: bold;
+	text-indent: -1em;
 }
-.shiken_ceu {
-	display: flex;
+#shiken .cscs,
+#shiken .nsca {
+    padding-left: 1em;
 }
-.shiken,
-.ceu {
-	padding: 30px;
-}
-.shiken div {
-    margin-bottom: 30px;
-    padding: 0 10px;
-}
-.ceu {
-    padding-left: 30px;
-	width: 70%;
-}
-.ceu .right {
-    float: right;
-}
-.ceu h2 {
-    float: left;
-}
-.ceu section{
-    clear: both;
-	margin-bottom: 30px;
-}
-.ceu section:last-of-type {
-    margin-bottom: 0;
-}
-.ceu .btn_wrap {
-    margin-top: 105px!important;
-}
-.ceu button:first-of-type {
-    margin-right: 20px!important;
+.cscs {
+    margin-bottom: 1em;
 }
 section {
-	margin-bottom: 76px;
-}
-.news {
-	padding: 20px 30px;
-}
-.content {
     display: flex;
-    align-items: center;
+}
+#shiken,
+#ceu,
+#moshikomi,
+#shiharai {
+    width: 49%;
+}
+#shiken,
+#moshikomi,
+#kaiin_contents,
+#denshi_book  {
+    margin-right: 23px;
+}
+.right {
+    float: right;
+}
+#ceu .bg_white {
+    padding-top: 20px;
+}
+#shiken .btn_wrap,
+#ceu .btn_wrap {
     justify-content: space-between;
+}
+.list:first-child {
+	padding-top: 0;
+}
+.list {
 	border-bottom: 1px solid #d2d2d2;
 	padding: 10px 0;
 }
-.content:last-child {
-	border: none;
+.list:last-child {
+	padding-bottom: 0;
+	border-bottom: none;
 }
-.news button,
-.event button,
-.moshikomi button,
-.shiharai button,
-.denshi_book button,
-.buppan button {
-    width: 150px;
+.list_text {
+    display: inline-block;
+    width: calc(100% - 165px);
+    vertical-align: middle;
+    margin-right: 1.5em;
+}
+#news button,
+#event button,
+#moshikomi button,
+#shiharai button,
+#denshi_book button,
+#buppan button,
+#kyujin_joho button {
+    width: 140px;
+    font-weight: normal;
     height: 35px;
-	line-height: 35px;
+    line-height: 35px;
+    font-size: 13px;
+	display: inline-block;
 }
 .page {
-    display: flex;
+    display: flex!important;
     justify-content: flex-end;
-    margin-top: 5px;
+	margin-top: 5px;
+	font-size: 13px;
 }
-.page p {
-	margin-right: 1em;
+.page button {
+    width: auto!important;
+    height: auto!important;
+    line-height: inherit!important;
+    border: none;
+    background: none;
+    color: #333;
+	margin-right: 15px;
 }
-ol {
-    display: flex;
-}
-ol li {
-    margin-right: 1em;
+.page button:last-child {
+	margin-right: 0;
 }
 .sub {
     display: flex;
 }
-.sub_1 {
-    color: #005699;
-    border: 1px solid #005699;
-    margin-right: 1em;
-}
-.sub_2 {
-    color: #fff;
-    border: 1px solid #a7a7a7;
-    background: #a7a7a7;
-}
 .sub_1,
 .sub_2 {
-    font-size: 12px;
-    padding: 2px 0;
-    width: 7em;
+    width: 80px;
     text-align: center;
+    border-radius: 3px;
+    font-size: 12px;
+    height: 25px;
+    line-height: 25px;
 }
-.content:last-of-type {
-    border: none;
-}
-.event_wrap {
-	border-bottom: 1px solid #d2d2d2;
-    margin-bottom: 15px;
-    padding-bottom: 15px;
-}
-.event_wrap:last-of-type {
-    border: none;
-}
-.event {
-    padding: 40px;
-}
-.event .content {
-    padding: 0;
-}
-.event_wrap:last-of-type {
-    margin: 0;
-    padding: 0;
-}
-.content p {
+.sub_1 {
+    border: 1px solid #005699;
+    color: #005699;
     margin-right: 1em;
 }
-.kyujin .content p {
-	margin-right: 0;
+.sub_2 {
+    border: 1px solid #8a8a8a;
+    color: #fff;
+    background: #8a8a8a;
 }
-.moshikomi,
-.shiharai {
-    width: 49%;
-}
-.moshikomi {
-    float: left;
-}
-.shiharai {
-    float: right;
-}
-.btn_2 button:first-of-type {
-    margin-bottom: 10px;
-}
-.moshikomi .bg_white,
-.shiharai .bg_white {
-	padding: 20px;
-}
-.kaiin_contents,
-.denshi_book,
-.buppan {
-    width: 32%;
-    float: left;
-    margin-right: 21px;
-}
-.kaiin_contents .bg_white {
-    padding: 100px 0px;
-}
-.denshi_book .bg_white,
-.buppan .bg_white {
+#moshikomi .bg_white,
+#shiharai .bg_white {
     padding: 20px;
 }
-.kaiin_contents .bg_white,
-.denshi_book .bg_white,
-.buppan .bg_white{
-	height: 400px;
+#kaiin_contents,
+#denshi_book,
+#buppan {
+    width: 33%;
 }
-.buppan {
-    margin: 0;
+#kaiin_contents .bg_white,
+#denshi_book .bg_white,
+#buppan .bg_white {
+	padding: 20px;	
 }
-.kaiin_contents button {
-    margin: 0 auto;
+#kaiin_contents button {
+    width: 100%;
+    font-weight: normal;
+    height: 35px;
+    line-height: 35px;
+    font-size: 13px;
+}
+#kaiin_contents button {
     margin-bottom: 25px;
 }
-.kaiin_contents button:last-of-type {
+
+#kaiin_contents button:last-of-type {
     margin-bottom: 0;
 }
-.denshi_book button,
-.buppan button {
-    margin: 0 auto;
-}
-.denshi_book img,
-.buppan img {
+#kaiin_contents .bg_white {
+	display: table;
     width: 100%;
-    margin-bottom: 10px;
+	padding: 20px 40px;
 }
-.price {
-    margin-bottom: 10px;
+.kaiin_btn {
+	display: table-cell;
+    vertical-align: middle;
 }
-.denshi_book button {
-    margin-top: 100px;
+#denshi_book .bg_white,
+#buppan .bg_white {
+    position: relative;
 }
-.buppan button {
-    margin-top: 80px;
+#denshi_book button,
+#buppan button {
+    position: absolute;
+    bottom: 045px;
+    left: 50%;
+    right: 50%;
+    transform: translateY(50%) translateX(-50%);
 }
-.kyujin .content {
-    display: block;
-}
-.kyujin {
-    padding: 30px 40px;
-}
-.kyujin .sub {
-    margin-bottom: 10px;
+figure img {
+    width: 100%;
+	margin-bottom: 10px;
 }
 
-@media screen and (max-width: 1100px){
-	.kaiin_joho {
-		width: 49.5%;
-		float: left;
-		margin-bottom: 20px;
+
+@media screen and (max-width: 1000px){
+	#kaiin_contents .bg_white {
+		padding: 20px 3%;
 	}
-	.joho {
+	.btn_wrap button:first-of-type {
+		margin-right: 48px;
+	}
+	
+}
+
+
+@media screen and (max-width:800px) {
+	section {
 		display: block;
 	}
-	.shiken_ceu {
-		display: block;
+	.bg_white {
+		padding: 20px;
 	}
-	.shiken {
-		float: right;
-		border: none;
-		width: 49.5%;
-	}
-	.ceu.bg_white {
-		clear: both;
+	#shiken,#ceu,#moshikomi,
+	#shiharai,#kaiin_contents, 
+	#denshi_book, #buppan {
 		width: 100%;
+	}
+	#kaiin_joho .bg_white {
+		padding: 0;
+	}
+	#kaiin_joho .user_name {
+		color: #333;
+		padding: 10px;
+		border: none;
+	}
+	th {
+		padding-left: 10px;
+	}
+	td {
+		padding: 0 30px;
+	}
+	table tr:last-of-type {
+		border: none;
 	}
 	.btn_wrap {
-		display: flex!important;
-		justify-content: center!important;
+		padding-bottom: 30px;
 	}
-	.ceu .btn_wrap {
-		margin-top: 20px!important;
+	#kaiin_joho .btn_wrap {
+		display: flex;
+		justify-content: center;
 	}
-	.kaiin_joho button:first-of-type,
-	.shiken button:first-of-type {
-		margin-bottom: 10px!important;
+	#kaiin_joho .btn_wrap button {
+		margin: 0;
 	}
-	.moshikomi {
-		margin-bottom: 76px;
-	}
-	.moshikomi,
-	.shiharai {
-		float: none;
-		width: 100%;
-	}
-	.kaiin_contents {
-		float: none;
-		margin-bottom: 76px;
-		width: 100%;
-	}
-	.kaiin_contents .bg_white {
-		padding: 30px 0;
-		height: auto;
-	}
-	.buppan {
-		float: right;
-	}
-	.denshi_book,
-	.buppan {
-		width: 48%;
-	}
-	.denshi_book .bg_white,
-	 .buppan .bg_white {
-		height: auto;
-	}
-}
-
-
-@media screen and (max-width:610px) {
-	.kaiin_joho button:first-of-type, 
-	.shiken button:first-of-type {
-		margin-right: 20px!important;
-	}
-	.kaiin_joho div,
-	.shiken div {
+	#kaiin_joho .btn_wrap button:first-child {
 		margin-bottom: 20px;
 	}
-	.ceu .btn_wrap {
-		margin-top: 20px;
-	}
-	.kaiin_joho {
-		width: 100%;
-		float: none;
-	}
-	.shiken {
-		float: none;
-		width: 100%;
-		margin-bottom: 20px;
-	}
-	.news,
-	.event,
-	.moshikomi .bg_white,
-	.shiharai .bg_white,
-	.kyujin {
-		padding: 10px;
-	}
-	.content {
-		display: block;
-	}
-	.content button {
-		margin: 0 auto;
-		margin-top: 10px;
-	}
-	.content p {
-		margin-right: 0;
-	}
-	.sub {
-		margin-bottom: 10px;
-	}
-	.kaiin_joho, 
-	.shiken,
-	.ceu {
-		padding: 20px 10px;
-	}
-	.denshi_book {
-		margin-bottom: 76px;
-	}
-	.denshi_book,
-	.buppan {
+	#kaiin_joho .btn_wrap button:nth-child(odd) {
+		margin-right: 20px;
+    }
+	.list_text {
 		width: 100%;
 	}
-	.denshi_book img, 
-	.buppan img {
-		width: 265px;
-	}
-	figure {
-		margin: 0 auto;
-		text-align: center;
-	}
-	.kaiin_contents,
-	.denshi_book, 
-	.buppan {
-		margin-right: 0;
+	#kaiin_contents .bg_white {
+		padding: 70px;
 	}
 }
 
-@media screen and (max-width:530px){
-    .kaiin_joho .btn_wrap,
-    .shiken .btn_wrap,
-    .ceu .btn_wrap {
-        display: block!important;
-    }
-    .kaiin_joho button:first-of-type,
-    .shiken button:first-of-type,
-    .ceu button:first-of-type {
-        margin: 0 auto 10px auto!important;
-    }
-    .kaiin_joho button,
-    .shiken button,
-    .ceu button {
-        margin: 0 auto!important;
-    }
+@media screen and (max-width:480px){
+	#kaiin_contents .bg_white {
+    padding: 20px;
 }
-
-******/
+}
 
 
