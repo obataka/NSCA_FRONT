@@ -501,10 +501,8 @@
 						</tr>
 						<tr>
 							<th><span class="any"></span>NSCA以外の認定資格</th>
-							<td class="clearfix">
-								<div id="nintei-shikaku-left">
-								</div>
-								<div id="nintei-shikaku-right">
+							<td>
+								<div id="nintei-shikaku-wrap" class="clearfix">
 								</div>
 								<textarea id="shikaku_sonota" name="shikaku_sonota" placeholder="その他を選択した場合は必須入力となります"><?php echo $shikaku_sonota; ?></textarea>
 								<ul class="error_ul">

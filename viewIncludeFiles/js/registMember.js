@@ -105,11 +105,9 @@
                     //※正常に資格情報を取得できた時の処理を書く場所
                     getShikakuList = JSON.parse(rtn);
                     $.each(getShikakuList, function (i, value) {
-                        if (i % 2 == 0) {
-                            $('#nintei-shikaku-left').append('<input id="shikaku_' + value[0] + '" type="checkbox" name="shikaku" value="' + value[0] + '"><label class="checkbox" for="shikaku_' + value[0] + '">' + value[1] + '</label><br>');
-                        } else {
-                            $('#nintei-shikaku-right').append('<input id="shikaku_' + value[0] + '" type="checkbox" name="shikaku" value="' + value[0] + '"><label class="checkbox" for="shikaku_' + value[0] + '">' + value[1] + '</label><br>');
-                        };
+
+                        $('#nintei-shikaku-wrap').append('<div><input id="shikaku_' + value[0] + '" type="checkbox" name="shikaku" value="' + value[0] + '"><label class="checkbox" for="shikaku_' + value[0] + '">' + value[1] + '</label></div>');
+
                     });
 
                     // NSCA以外の認定資格：確認画面からの戻りなどで、すでに選択済みの値がある場合は選択状態にするための処理
@@ -1461,11 +1459,11 @@
             // }
 
             //メールアドレス1形式チェック 
-            var mail_regex1 = new RegExp( '(?:[-!#-\'*+/-9=?A-Z^-~]+\.?(?:\.[-!#-\'*+/-9=?A-Z^-~]+)*|"(?:[!#-\[\]-~]|\\\\[\x09 -~])*")@[-!#-\'*+/-9=?A-Z^-~]+(?:\.[-!#-\'*+/-9=?A-Z^-~]+)*' );
-            var mail_regex2 = new RegExp( '^[^\@]+\@[^\@]+$' );
-            if ($("#mail_address_1").val().match(mail_regex1) && $("#mail_address_1").val().match( mail_regex2)) {
+            var mail_regex1 = new RegExp('(?:[-!#-\'*+/-9=?A-Z^-~]+\.?(?:\.[-!#-\'*+/-9=?A-Z^-~]+)*|"(?:[!#-\[\]-~]|\\\\[\x09 -~])*")@[-!#-\'*+/-9=?A-Z^-~]+(?:\.[-!#-\'*+/-9=?A-Z^-~]+)*');
+            var mail_regex2 = new RegExp('^[^\@]+\@[^\@]+$');
+            if ($("#mail_address_1").val().match(mail_regex1) && $("#mail_address_1").val().match(mail_regex2)) {
                 // 全角チェック
-                if ( $("#mail_address_1").val().match( /[^a-zA-Z0-9\!\"\#\$\%\&\'\(\)\=\~\|\-\^\\\@\[\;\:\]\,\.\/\\\<\>\?\_\`\{\+\*\} ]/ ) ) { 
+                if ($("#mail_address_1").val().match(/[^a-zA-Z0-9\!\"\#\$\%\&\'\(\)\=\~\|\-\^\\\@\[\;\:\]\,\.\/\\\<\>\?\_\`\{\+\*\} ]/)) {
                     wk_err_msg == "";
                     wk_err_msg = "メールアドレスに使用する文字を正しく入力してください。";
                     $("#err_mail_address_1").html(wk_err_msg);
@@ -1474,10 +1472,10 @@
                         $("#mail_address_1").focus();
                         wk_focus_done = 1;
                     }
-                    return false; 
+                    return false;
                 }
                 // 末尾TLDチェック（〜.co,jpなどの末尾ミスチェック用）
-                if ( !$("#mail_address_1").val().match( /\.[a-z]+$/ ) ) { 
+                if (!$("#mail_address_1").val().match(/\.[a-z]+$/)) {
                     //TDLエラー
                     wk_err_msg == "";
                     wk_err_msg = "メールアドレスの形式が不正です。";
@@ -1487,15 +1485,15 @@
                         $("#mail_address_1").focus();
                         wk_focus_done = 1;
                     }
-                    return false; 
+                    return false;
                 }
             }
             //メールアドレス2形式チェック　
-            var mail_regex1 = new RegExp( '(?:[-!#-\'*+/-9=?A-Z^-~]+\.?(?:\.[-!#-\'*+/-9=?A-Z^-~]+)*|"(?:[!#-\[\]-~]|\\\\[\x09 -~])*")@[-!#-\'*+/-9=?A-Z^-~]+(?:\.[-!#-\'*+/-9=?A-Z^-~]+)*' );
-            var mail_regex2 = new RegExp( '^[^\@]+\@[^\@]+$' );
-            if ($("#mail_address_2").val().match(mail_regex1) && $("#mail_address_2").val().match( mail_regex2)) {
+            var mail_regex1 = new RegExp('(?:[-!#-\'*+/-9=?A-Z^-~]+\.?(?:\.[-!#-\'*+/-9=?A-Z^-~]+)*|"(?:[!#-\[\]-~]|\\\\[\x09 -~])*")@[-!#-\'*+/-9=?A-Z^-~]+(?:\.[-!#-\'*+/-9=?A-Z^-~]+)*');
+            var mail_regex2 = new RegExp('^[^\@]+\@[^\@]+$');
+            if ($("#mail_address_2").val().match(mail_regex1) && $("#mail_address_2").val().match(mail_regex2)) {
                 // 全角チェック
-                if ( $("#mail_address_2").val().match( /[^a-zA-Z0-9\!\"\#\$\%\&\'\(\)\=\~\|\-\^\\\@\[\;\:\]\,\.\/\\\<\>\?\_\`\{\+\*\} ]/ ) ) { 
+                if ($("#mail_address_2").val().match(/[^a-zA-Z0-9\!\"\#\$\%\&\'\(\)\=\~\|\-\^\\\@\[\;\:\]\,\.\/\\\<\>\?\_\`\{\+\*\} ]/)) {
                     wk_err_msg == "";
                     wk_err_msg = "メールアドレスに使用する文字を正しく入力してください。";
                     $("#err_mail_address_1").html(wk_err_msg);
@@ -1504,10 +1502,10 @@
                         $("#mail_address_2").focus();
                         wk_focus_done = 1;
                     }
-                    return false; 
+                    return false;
                 }
                 // 末尾TLDチェック（〜.co,jpなどの末尾ミスチェック用）
-                if ( !$("#mail_address_2").val().match( /\.[a-z]+$/ ) ) { 
+                if (!$("#mail_address_2").val().match(/\.[a-z]+$/)) {
                     //TDLエラー
                     wk_err_msg == "";
                     wk_err_msg = "メールアドレスの形式が不正です。";
@@ -1517,7 +1515,7 @@
                         $("#mail_address_2").focus();
                         wk_focus_done = 1;
                     }
-                    return false; 
+                    return false;
                 }
             }
 

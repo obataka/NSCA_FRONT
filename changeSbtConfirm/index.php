@@ -19,7 +19,7 @@ if ($wk_kaiinSbt == 1) {
 } elseif ($wk_kaiinSbt == 2) {
     $wk_kaiinType = "学生会員";
 } else {
-    $wk_kaiinType = "";
+    $wk_kaiinType = "利用会員(無料)";
 }
 
 include_once $includeView;
