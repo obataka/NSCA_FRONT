@@ -61,7 +61,7 @@
 			</table>
 			<section class="btn_wrap btn_b btn_b_2">
 				<button class="button btn_gray" type="button" value="" onclick="location.href='#'"><span>入力内容を修正する</span></button>
-				<button class="button" type="button" value="" onclick="location.href='#'"><span>退会</span></button>
+				<button id="leave_button" class="button" type="button" value="" onclick="location.href='#'"><span>退会</span></button>
 			</section>
 		</div>
 	</form>

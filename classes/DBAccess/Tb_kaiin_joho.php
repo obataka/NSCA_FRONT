@@ -927,4 +927,55 @@ WHERE joho.kaiin_no = :kaiin_no
         return $Tb_kaiin_joho;
     }
 
+    /*
+    * 更新（接続及びトランザクションは外側実施）
+    * @param object $db
+    * @param array $param1
+    * @return boolean
+    */
+    public function torokuJohoKbn($db, $param2)
+    {
+         // if (isset($_SESSION['kaiin_no'])) {
+         //         $wk_kaiin_no = $_SESSION['kaiin_no'];
+         // }
+         //$wk_kaiin_no = 819121118;
+         try {
+                $sql = <<<SQL
+                UPDATE tb_kaiin_joho
+                SET
+                      toroku_jokyo_kbn              = :toroku_jokyo_kbn
+                    , koshin_user_id                = :koshin_user_id
+                WHERE
+                      kaiin_no = 819121119;
+SQL;
+                $sth = $db->prepare($sql);
+                $sth->execute([
+                    ':toroku_jokyo_kbn'         => $param2['toroku_jokyo_kbn'],
+                    ':koshin_user_id'           => $param2['koshin_user_id'],
+                ]);
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
+            $db->rollBack();
+            return FALSE;
+        }
+        return TRUE;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
