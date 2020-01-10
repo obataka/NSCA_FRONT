@@ -11,7 +11,12 @@ require './DBAccess/Tb_kaiin_joho.php';
 $ret = '';
 $wk_no = 0;
 $wk_kaiin_no = '';
-
+//セッションから会員番号を取得
+if (isset($_SESSION['kaiinNo'])) {
+   
+    // ログインしている
+    $wk_kaiin_no = $_SESSION['kaiinNo'];
+}
 // POSTデータを取得
 // unsubscrideConfirm.jsでセットしたPOSTデータを取得する
 $taikai_riyu_kbn = (!empty($_POST['taikai_riyu_kbn'])) ? htmlentities($_POST['taikai_riyu_kbn'], ENT_QUOTES, "UTF-8") : "";
@@ -37,6 +42,7 @@ $param = [
     'taikai_riyu_kbn'       => $taikai_riyu_kbn,
     'taikai_riyu_biko'      => $taikai_riyu_biko,
     'koshin_user_id'        => "Web",
+    'kaiin_no'              => $wk_kaiin_no,
 ];
 
 // 更新処理
@@ -50,6 +56,7 @@ if ($result_jotai == TRUE) {
     $param1 = [
         'taikaigono_oshirase_kbn'   => $taikaigono_oshirase_kbn,
         'koshin_user_id'            => "Web",
+        'kaiin_no'                  => $wk_kaiin_no,
     ];
     // 更新処理
     $result_sonota = (new Tb_kaiin_sonota())->LeaveUpdateSonota($db, $param1);
@@ -68,6 +75,7 @@ if ($result_jotai == TRUE) {
             $param2 = [
                 'toroku_jokyo_kbn'          => "4",
                 'koshin_user_id'            => "Web",
+                'kaiin_no'                  => $wk_kaiin_no,
             ];
             // 更新処理
             $result_joho = (new Tb_kaiin_joho())->torokuJohoKbn($db, $param2);
@@ -76,6 +84,7 @@ if ($result_jotai == TRUE) {
                 $param3 = [
                     'taikai_hizuke'   => date("Y/m/d H:i:s"),
                     'koshin_user_id'            => "Web",
+                    'kaiin_no'                  => $wk_kaiin_no,
                 ];
                 // 更新処理
                 $result_jotai2 = (new Tb_kaiin_jotai())->Taikaihizuke($db, $param3);
@@ -104,6 +113,7 @@ if ($result_jotai == TRUE) {
             $param4 = [
                 'taikai_shorui_juribi'   => date("Y/m/d H:i:s"),
                 'koshin_user_id'            => "Web",
+                'kaiin_no'                  => $wk_kaiin_no,
             ];
             // 更新処理
             $result_jotai3 = (new Tb_kaiin_jotai())->TaikaiYoyaku($db, $param4);

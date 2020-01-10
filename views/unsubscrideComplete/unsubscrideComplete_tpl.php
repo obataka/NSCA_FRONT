@@ -18,9 +18,10 @@
         <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.1.1.min.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
-			<script type="text/javascript" src="../../viewIncludeFiles/js/header.js"></script>
-			<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
-			<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
+		<script type="text/javascript" src="../../viewIncludeFiles/js/unsubscrideComplete.js"></script>
+		<script type="text/javascript" src="../../viewIncludeFiles/js/header.js"></script>
+		<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
+		<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
     </head>
     <body>
 	<header id="header">
@@ -37,7 +38,7 @@
 			</div>	
 			<p class="h2_text">テキストテキストテキストテキストテキストテキスト</p>
 			<section>
-				<button class="button btn_b btn_b_1" type="submit" value="" onclick="location.href='#'"><span>NSCA TOPページへ</span></button>
+				<button class="button btn_b btn_b_1" type="submit" value="" onclick="location.href=''"><span>NSCA TOPページへ</span></button>
 			</section>
 		</div>
 	</div>

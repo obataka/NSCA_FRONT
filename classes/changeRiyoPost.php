@@ -9,8 +9,13 @@ require './DBAccess/Tb_kaiin_joho2.php';
 require './DBAccess/Tb_kaiin_sonota2.php';   
 $ret = '';
 $wk_no = 0;
+//セッションから会員番号を取得
 $wk_kaiin_no = '';
-
+if (isset($_SESSION['kaiinNo'])) {
+   
+    // ログインしている
+    $wk_kaiin_no = $_SESSION['kaiinNo'];
+}
 // POSTデータを取得
 // changeConfirmRiyo.jsでセットしたPOSTデータを取得する
 // 会員情報
@@ -75,6 +80,12 @@ if ($hoho == 2) {
 /**********************
 * 更新用パラメーター設定
 ***********************/
+// DB接続
+$db = Db::getInstance();
+
+// トランザクション開始
+$db->beginTransaction();
+
 $param = [
     'shimei_sei'                        => $shimei_sei,
     'shimei_mei'                        => $shimei_mei,
@@ -97,59 +108,56 @@ $param = [
     'nagareyama_shimin'                 => $nagareyama_shimin,
     'koshin_user_id'                    => NULL,
     'koshin_nichiji'                    => date("Y/m/d H:i:s"),
+    'kaiin_no'                          => $wk_kaiin_no,
 ];
 // 登録処理
-$result = (new Tb_kaiin_joho2())->updateRiyo($param);
+$result_joho = (new Tb_kaiin_joho2())->updateRiyo($db, $param);
+
+// 更新成功の場合
+if ($result_joho == TRUE) {
+    
+    //sonota更新用パラメーター設定
+    $param1 = [
+        'renraku_hoho_yuso'                 => $wk_hoho2,
+        'renraku_hoho_denshi_email'         => $wk_hoho1,
+        'email_1_merumaga_haishin'          => $wk_mail1,
+        'email_2_merumaga_haishin'          => $wk_mail2,
+        'email_1_oshirase_uketori'          => $receive_mail1,
+        'email_2_oshirase_uketori'          => $receive_mail2,
+        'koshin_user_id'                    => "Web",
+        'koshin_nichiji'                    => date("Y/m/d H:i:s"),
+        'kaiin_no'                          => $wk_kaiin_no,
+    ];
+
+    // 更新処理
+    $result_sonota = (new Tb_kaiin_sonota2())->updateRiyoSonota($db, $param1);
+
+    // 更新成功の場合
+if ($result_sonota == TRUE) {
+    // commit
+    $db->commit();
+
+    // 戻り値に1設定
+    $result = 1;
+
 // 更新失敗の場合
-if ($result == false) {
-    NULL;
+} else {
+    // ロールバック
+    $db->rollBack();
+
+    // 戻り値に0設定
+    $result = 0;
+}
+
 // 更新成功の場合
 } else {
-    NULL;
-}
-echo $result;
-/****************************
-* sonota更新用パラメーター設定
-*****************************/
-$param1 = [
-    'renraku_hoho_yuso'                 => $wk_hoho2,
-    'renraku_hoho_denshi_email'         => $wk_hoho1,
-    'email_1_merumaga_haishin'          => $wk_mail1,
-    'email_2_merumaga_haishin'          => $wk_mail2,
-    'email_1_oshirase_uketori'          => $receive_mail1,
-    'email_2_oshirase_uketori'          => $receive_mail2,
-    'koshin_user_id'                    => "Web",
-    'koshin_nichiji'                    => date("Y/m/d H:i:s"),
-];
-// 登録処理
-$result = (new Tb_kaiin_sonota2())->updateRiyoSonota($param1);
+    // ロールバック
+    $db->rollBack();
 
-// 登録失敗の場合
-if ($result == false) {
-    NULL;
-// 登録成功の場合
-} else {
-    NULL; 
+    // 戻り値に0設定
+    $result = 0;
 }
-// if ($mail == 1) {
-//     //メールアドレス取得
-//     $message="無料会員登録が完了しました。";
-//     my_send_mail($email_1,'会員登録完了お知らせ',$message);
-    
 
-//     function my_send_mail($mailto, $subject, $message)
-//         {
- 
-//             $message = mb_convert_encoding($message, "JIS", "UTF-8");
-//             $subject = mb_convert_encoding($subject, "JIS", "UTF-8");
- 
-//             $header ="From: NSCAジャパン <info@example.com>\n";
- 
-//             mb_send_mail($mailto, $subject, $message, $header);
-//         }
-//  } else {
-//     $wk_mail2 = FALSE;
-// }
 echo $result;
 die();
 

@@ -251,10 +251,6 @@ SQL;
     */
     public function LeaveUpdateSonota($db, $param1)
     {
-         // if (isset($_SESSION['kaiin_no'])) {
-         //         $wk_kaiin_no = $_SESSION['kaiin_no'];
-         // }
-         //$wk_kaiin_no = 819121118;
          try {
                 $sql = <<<SQL
                 UPDATE tb_kaiin_sonota
@@ -262,12 +258,13 @@ SQL;
                       taikaigono_oshirase_kbn       = :taikaigono_oshirase_kbn
                     , koshin_user_id                = :koshin_user_id
                 WHERE
-                      kaiin_no = 819121119;
+                      kaiin_no = :kaiin_no;
 SQL;
                 $sth = $db->prepare($sql);
                 $sth->execute([
-                    ':taikaigono_oshirase_kbn'   => $param1['taikaigono_oshirase_kbn'],
-                    ':koshin_user_id'            => $param1['koshin_user_id'],
+                    ':taikaigono_oshirase_kbn'  => $param1['taikaigono_oshirase_kbn'],
+                    ':koshin_user_id'           => $param1['koshin_user_id'],
+                    ':kaiin_no'                 => $param1['kaiin_no'],
                 ]);
         } catch (\PDOException $e) {
             error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');

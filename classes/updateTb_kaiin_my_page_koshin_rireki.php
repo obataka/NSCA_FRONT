@@ -96,7 +96,8 @@ $param = [
     'sakusei_nichiji'                           => date("Y/m/d H:i:s"),
     'koshin_nichiji'                            => date("Y/m/d H:i:s"),
 ];
-error_log(print_r($param, true). PHP_EOL, '3', 'tanihara_log1.txt');
+error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error.txt');
+
 // 更新処理
 $result = (new Tb_kaiin_my_page_koshin_rireki())->insertRec($param);
 // 更新失敗の場合

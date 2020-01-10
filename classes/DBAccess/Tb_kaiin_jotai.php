@@ -13,18 +13,12 @@ class Tb_kaiin_jotai
     * @param varchar $loginPswd
     * @return array|mixed
     */
-    public function findByYukohizuke()
+    public function findByYukohizuke($param)
     {
-        $wk_kaiin_no = "";
-        // if (isset($_SESSION['kaiin_no'])) {
-        //         $wk_kaiin_no = $_SESSION['kaiin_no'];
-        // }
-         $wk_kaiin_no = 819121119;
-        //$wk_kaiin_no = 819122001;
         try {
             $db = Db::getInstance();
             $sth = $db->prepare("SELECT yuko_hizuke FROM tb_kaiin_jotai WHERE tb_kaiin_jotai.kaiin_no = :kaiin_no");
-            $sth->execute([':kaiin_no' => $wk_kaiin_no,]);
+            $sth->execute([':kaiin_no' => $param['kaiin_no']]);
             // $sth->execute([':kaiin_no' => $kaiin_no,]);
             $Tb_kaiin_jotai = $sth->fetch();
         } catch (\PDOException $e) {
@@ -41,10 +35,6 @@ class Tb_kaiin_jotai
     */
     public function updateKaiinJotai($db, $param)
     {
-         // if (isset($_SESSION['kaiin_no'])) {
-         //         $wk_kaiin_no = $_SESSION['kaiin_no'];
-         // }
-         //$wk_kaiin_no = 819121118;
          try {
                 $sql = <<<SQL
                 UPDATE tb_kaiin_jotai
@@ -54,14 +44,15 @@ class Tb_kaiin_jotai
                     , taikai_riyu_biko        = :taikai_riyu_biko
                     , koshin_user_id          = :koshin_user_id
                 WHERE
-                      kaiin_no = 819121119;
+                      kaiin_no = :kaiin_no;
 SQL;
                 $sth = $db->prepare($sql);
                 $sth->execute([
-                    ':taikai_shorui_juribi'      => $param['taikai_shorui_juribi'],
-                    ':taikai_riyu_kbn'           => $param['taikai_riyu_kbn'],
-                    ':taikai_riyu_biko'          => $param['taikai_riyu_biko'],
-                    ':koshin_user_id'            => $param['koshin_user_id'],
+                    ':taikai_shorui_juribi'     => $param['taikai_shorui_juribi'],
+                    ':taikai_riyu_kbn'          => $param['taikai_riyu_kbn'],
+                    ':taikai_riyu_biko'         => $param['taikai_riyu_biko'],
+                    ':koshin_user_id'           => $param['koshin_user_id'],
+                    ':kaiin_no'                 => $param['kaiin_no'],
                 ]);
         } catch (\PDOException $e) {
             error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/eroor_log.txt');
@@ -79,10 +70,6 @@ SQL;
     */
     public function Taikaihizuke($db, $param3)
     {
-         // if (isset($_SESSION['kaiin_no'])) {
-         //         $wk_kaiin_no = $_SESSION['kaiin_no'];
-         // }
-         //$wk_kaiin_no = 819121118;
          try {
                 $sql = <<<SQL
                 UPDATE tb_kaiin_jotai
@@ -90,12 +77,13 @@ SQL;
                       taikai_hizuke          = :taikai_hizuke
                     , koshin_user_id         = :koshin_user_id
                 WHERE
-                      kaiin_no = 819121119;
+                      kaiin_no = :kaiin_no;
 SQL;
                 $sth = $db->prepare($sql);
                 $sth->execute([
                     ':taikai_hizuke'            => $param3['taikai_hizuke'],
                     ':koshin_user_id'           => $param3['koshin_user_id'],
+                    ':kaiin_no'                 => $param3['kaiin_no'],
                 ]);
         } catch (\PDOException $e) {
             error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/eroor_log.txt');
@@ -116,10 +104,6 @@ SQL;
     */
     public function TaikaiYoyaku($db, $param4)
     {
-         // if (isset($_SESSION['kaiin_no'])) {
-         //         $wk_kaiin_no = $_SESSION['kaiin_no'];
-         // }
-         //$wk_kaiin_no = 819121118;
          try {
                 $sql = <<<SQL
                 UPDATE tb_kaiin_jotai
@@ -127,12 +111,13 @@ SQL;
                       taikai_shorui_juribi    = :taikai_shorui_juribi
                     , koshin_user_id         = :koshin_user_id
                 WHERE
-                      kaiin_no = 819121119;
+                      kaiin_no = :kaiin_no;
 SQL;
                 $sth = $db->prepare($sql);
                 $sth->execute([
                     ':taikai_shorui_juribi'             => $param4['taikai_shorui_juribi'],
                     ':koshin_user_id'                   => $param4['koshin_user_id'],
+                    ':kaiin_no'                         => $param4['kaiin_no'],
                 ]);
         } catch (\PDOException $e) {
             error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/eroor_log.txt');
