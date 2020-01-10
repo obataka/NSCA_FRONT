@@ -27,18 +27,18 @@
 		<header id="header">
 		</header>
 			<div class="wrap">
-				<h2>登録情報　修正内容確認</h2>
+				<h1>登録情報修正 確認</h1>
 				<div class="content_wrap">
 					<div class="spb_arrows">
 						<ul class="nav nav-tabs step-anchor">
-							<li><span><small>会員種別選択</small></span></li>
+							<li><span class="spb_border"><small>会員種別選択</small></span></li>
 							<li><span><small>修正</small></span></li>
 							<li class="active"><span><small>確認</small></span></li>
 							<li><span><small>完了</small></span></li>
 						</ul>
 					</div>				
-                                        <form action="?" method="post" autocomplete="off" id="confirmForm">
-                                            <div class="kihon_joho">
+					<form action="?" method="post" autocomplete="off" id="confirmForm">
+						<div class="kihon_joho">
 							<input type="hidden" name="name_sei" id="name_sei" value="<?php echo $name_sei; ?>">
 							<input type="hidden" name="name_mei" id="name_mei" value="<?php echo $name_mei; ?>">
 							<input type="hidden" name="sei_kana_name" id="sei_kana_name" value="<?php echo $sei_kana_name; ?>">	
@@ -70,84 +70,81 @@
 							<input type="hidden" name="sel_nagareyama" id="sel_nagareyama" value="<?php echo $sel_nagareyama; ?>">
 							<input type="hidden" name="sel_chiiki" id="sel_chiiki" value="<?php echo $sel_chiiki; ?>">
 							<input type="hidden" name="kenmei" id="kenmei" value="<?php echo $kenmei; ?>">
-							<h3>基本情報</h3>
-							<table>
-								<tr class="name">
-									<th><span class="required">必須</span>氏名</th>
-									<td class="clearfix">
-										<div>
-											<?php echo $name_sei; ?> <?php echo $name_mei; ?>
-										</div>
-									</td>
-								</tr>
-								<tr class="name">
-									<th><span class="required">必須</span>フリガナ</th>
-									<td class="clearfix">
-										<div>
-											<?php echo $sei_kana_name; ?> <?php echo $sei_mei_name; ?>
-										</div>
-									</td>
-								</tr>
-								<tr class="birthday">
-									<th><span class="required">必須</span>生年月日</th>
-									<td>
-										<?php echo $seireki_name; ?>年
-										<?php echo $month; ?>月
-										<?php echo $day; ?>日
-									</td>
-								</tr>
-								<tr class="gender">
-									<th><span class="required">必須</span>性別</th>
-									<td>
-										<?php echo $gender; ?>
-									</td>
-								</tr>
-								<tr class="address">
-									<th><span class="required">必須</span>住所</th>
-									<td>
-										<?php echo $kenmei; ?> <?php echo $address_yubin_nb_1; ?>-<?php echo $yubin_nb_2; ?>
-										<br>
-										<?php echo $address_shiku; ?><?php echo $address_tatemono; ?>
-									</td>
-								</tr>
-								<tr>
-									<th><span class="required">必須</span>住所(ヨミ)</th>
-									<td>
-										<?php echo $address_yomi_shiku; ?> <?php echo $address_yomi_tatemono; ?>
-									</td>
-								</tr>
-								<tr>
-									<th><span class="required">必須</span>電話番号</th>
-									<td>
-										<?php echo $tel; ?><?php echo $keitai_tel; ?>
-									</td>
-								</tr>
-								<tr class="mail">
-									<th><span class="required">必須</span>メールアドレス</th>
-									<td>
-										<p>メールアドレス_1：<?php echo $mail_address_1; ?></p>
-										<p>メールアドレス_2：<?php echo $mail_address_2; ?></p>
-										<p>メール受信希望のメールアドレス：<?php echo $sel_mail; ?></p>
-									</td>
-								</tr>
-								<tr>
-									<th><span class="required">必須</span>メルマガ配信の希望</th>
-									<td>
-										<?php echo $sel_merumaga; ?>
-									</td>
-								</tr>
-							</table>
-                                            </div>
+							<h2>基本情報</h2>
+							<div class="bg_white">
+								<table>
+									<tr class="name">
+										<th><span class="required">必須</span>氏名</th>
+										<td class="clearfix">
+											<div>
+												<?php echo $name_sei; ?> <?php echo $name_mei; ?>
+											</div>
+										</td>
+									</tr>
+									<tr class="name">
+										<th><span class="required">必須</span>フリガナ</th>
+										<td class="clearfix">
+											<div>
+												<?php echo $sei_kana_name; ?> <?php echo $sei_mei_name; ?>
+											</div>
+										</td>
+									</tr>
+									<tr class="birthday">
+										<th><span class="required">必須</span>生年月日</th>
+										<td>
+											<?php echo $seireki_name; ?>年
+											<?php echo $month; ?>月
+											<?php echo $day; ?>日
+										</td>
+									</tr>
+									<tr class="gender">
+										<th><span class="required">必須</span>性別</th>
+										<td>
+											<?php echo $gender; ?>
+										</td>
+									</tr>
+									<tr class="address">
+										<th><span class="required">必須</span>住所</th>
+										<td>
+											<?php echo $address_yubin_nb_1; ?>-<?php echo $yubin_nb_2; ?><br>
+											<?php echo $kenmei; ?><?php echo $address_shiku; ?><?php echo $address_tatemono; ?>
+										</td>
+									</tr>
+									<tr>
+										<th><span class="required">必須</span>住所(ヨミ)</th>
+										<td>
+											<?php echo $address_yomi_shiku; ?><br>
+											<?php echo $address_yomi_tatemono; ?>
+										</td>
+									</tr>
+									<tr>
+										<th><span class="required">必須</span>電話番号</th>
+										<td>
+											<?php echo $tel; ?><?php echo $keitai_tel; ?>
+										</td>
+									</tr>
+									<tr>
+										<th><span class="required">必須</span>メルマガ配信の希望</th>
+										<td>
+											<?php echo $sel_merumaga; ?>
+										</td>
+									</tr>
+								</table>
+							</div>
+							
+						</div>
 					<div class="oshirase">
-						<h3>お知らせ／連絡方法／アンケート</h3>
+						<h2>お知らせ／連絡方法／アンケート</h2>
+						<div class="bg_white">
 							<table>
-								<tr>
-									<th><span class="required">必須</span>連絡方法の希望</th>
-									<td>
-										<?php echo $sel_hoho; ?>
-									</td>
-								</tr>
-							</table>
+									<tr>
+										<th><span class="required">必須</span>連絡方法の希望</th>
+										<td>
+											<?php echo $sel_hoho; ?>
+										</td>
+									</tr>
+								</table>
+						</div>
 					</div>
 					<section class="btn_wrap">
 						<button id="return_button" class="button back" type="button" value=""><span>内容を修正する</span></button>

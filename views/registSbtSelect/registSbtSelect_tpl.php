@@ -28,51 +28,51 @@
 			<img src="../../viewIncludeFiles/image/NSCA_Japan_rev.png" alt="ロゴ">
 		</div>
 	</header>
-		<div class="wrap mh_c">
-			<h1>新規登録 会員種別選択</h1>
-			<div class="spb_arrows">
-				<ul class="nav nav-tabs step-anchor">
-					<li class="active"><span><small>会員種別選択</small></span></li>
-					<li><span class="spb_border"><small>入力</small></span></li>
-					<li><span class="spb_border"><small>確認</small></span></li>
-					<li><span><small>完了</small></span></li>
-				</ul>
-			</div>
-			<p class="top_text">テキストテキストテキストテキストテキストテキスト電話またはメールにて<a href="https://www.nsca-japan.or.jp/06_qanda/top.html#contact" class="td_under" target="_blank">お問い合わせ</a>ください。</p>
-			<ul class="error_ul">
-				<li class="error" id="err_message"></li>
+	<div class="wrap mh_c">
+		<h1>新規登録 会員種別選択</h1>
+		<div class="spb_arrows">
+			<ul class="nav nav-tabs step-anchor">
+				<li class="active"><span><small>会員種別選択</small></span></li>
+				<li><span class="spb_border"><small>入力</small></span></li>
+				<li><span class="spb_border"><small>確認</small></span></li>
+				<li><span><small>完了</small></span></li>
 			</ul>
-			<div class="kaiin_sbt">
-				<form action="?" method="POST" autocomplete="off" id="registSbtSleForm" name="registSbtSleForm">
-					<section>
-						<div>
-							<p class="sbt_title">利用登録(無料)</p>
-							<p class="kaihi">会費：無料</p>
-						</div>		
-						<p class="text">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-						<button class="button" id="__registRiyo"><span>利用登録(無料)の<br>登録はこちら</span></button>
-					</section>
-					<section>
-						<div>
-							<p class="sbt_title">NSCA正会員</p>
-							<p class="kaihi">会費：<span id="seikaiin-kaihi"></span>円</p>
-						</div>		
-						<p class="text">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-						<button class="button" id="__registMember"><span>NSCA正会員の<br>登録はこちら</span></button>
-					</section>
-					<section>
-						<div>
-							<p class="sbt_title">学生会員</p>
-							<p class="kaihi">会費：<span id="gakusei-kaihi"></span>円</p>
-						</div>		
-						<p class="text">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-						<button class="button" id="__registGakusei"><span>学生会員の<br>登録はこちら</span></button>
-					</section>
-					<input type="hidden" name="kaiinSbt" id="kaiinSbt" value="" />
-					<input type="hidden" name="kaihi" id="kaihi" value="" />
-				</form>
-			</div>
 		</div>
+		<p class="top_text">テキストテキストテキストテキストテキストテキスト電話またはメールにて<a href="https://www.nsca-japan.or.jp/06_qanda/top.html#contact" class="td_under" target="_blank">お問い合わせ</a>ください。</p>
+		<ul class="error_ul">
+			<li class="error" id="err_message"></li>
+		</ul>
+		<div class="kaiin_sbt">
+			<form action="?" method="POST" autocomplete="off" id="registSbtSleForm" name="registSbtSleForm">
+				<section>
+					<div>
+						<p class="sbt_title">利用登録(無料)</p>
+						<p class="kaihi">会費：無料</p>
+					</div>		
+					<p class="text">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+					<button class="button" id="__registRiyo"><span>利用登録(無料)の<br>登録はこちら</span></button>
+				</section>
+				<section>
+					<div>
+						<p class="sbt_title">NSCA正会員</p>
+						<p class="kaihi">会費：<span id="seikaiin-kaihi"></span>円</p>
+					</div>		
+					<p class="text">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+					<button class="button" id="__registMember"><span>NSCA正会員の<br>登録はこちら</span></button>
+				</section>
+				<section>
+					<div>
+						<p class="sbt_title">学生会員</p>
+						<p class="kaihi">会費：<span id="gakusei-kaihi"></span>円</p>
+					</div>		
+					<p class="text">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+					<button class="button" id="__registGakusei"><span>学生会員の<br>登録はこちら</span></button>
+				</section>
+				<input type="hidden" name="kaiinSbt" id="kaiinSbt" value="" />
+				<input type="hidden" name="kaihi" id="kaihi" value="" />
+			</form>
+		</div>
+	</div>
 	<footer id="footer">
 	</footer>
 </body>

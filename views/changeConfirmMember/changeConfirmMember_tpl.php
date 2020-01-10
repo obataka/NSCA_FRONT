@@ -30,11 +30,11 @@
 	<header id="header">
 	</header>
 	<div class="wrap">
-		<h2>登録情報　修正内容確認</h2>
+		<h1>登録情報修正 確認</h1>
 		<div class="content_wrap">
 			<div class="spb_arrows">
 				<ul class="nav nav-tabs step-anchor">
-					<li><span><small>会員種別選択</small></span></li>
+					<li><span class="spb_border"><small>会員種別選択</small></span></li>
 					<li><span><small>修正</small></span></li>
 					<li class="active"><span><small>確認</small></span></li>
 					<li><span><small>完了</small></span></li>
@@ -112,279 +112,193 @@
 					<input type="hidden" name="sel_office_chiiki" id="sel_office_chiiki" value="<?php echo $sel_office_chiiki; ?>">
 					<input type="hidden" name="kenmei" id="kenmei" value="<?php echo $kenmei; ?>">
 					<input type="hidden" name="office_kenmei" id="office_kenmei" value="<?php echo $office_kenmei; ?>">
+					<div class="bg_white">
+						<table>
+							<tr>
+								<th><span class="any"></span>会員種別</th>
+								<td>
+									<p><?php echo $wk_kaiinType; ?></p>
+									<p>英文オプション　<span><?php echo $option;?></span></p>
+								</td>
+							</tr>
+						</table>
+					</div>
+					
+				</form>
+				<h2>基本情報</h2>
+				<div class="bg_white">
 					<table>
-						<tr>
-							<th><span class="any"></span>会員種別</th>
+						<tr class="name">
+							<th><span class="required">必須</span>氏名</th>
+							<td class="clearfix">
+								<div>
+									<?php echo $name_sei; ?> <?php echo $name_mei; ?>
+								</div>
+							</td>
+						</tr>
+						<tr class="name">
+							<th><span class="required">必須</span>フリガナ</th>
+							<td class="clearfix">
+								<div>
+									<?php echo $name_sei_kana; ?> <?php echo $name_mei_kana; ?>
+								</div>
+							</td>
+						</tr>
+						<tr class="name">
+							<th><span class="required">必須</span>ローマ字表記</th>
+							<td class="clearfix">
+								<div>
+									<?php echo $name_last; ?> <?php echo $name_first; ?>
+								</div>
+							</td>
+						</tr>
+						<tr class="birthday">
+							<th><span class="required">必須</span>生年月日</th>
 							<td>
-								<p><?php echo $wk_kaiinType; ?></p>
-								<p>英文オプション　<span><?php echo $option;?></span></p>
+								<?php echo $year; ?>年
+								<?php echo $month; ?>月
+								<?php echo $day; ?>日
+							</td>
+						</tr>
+						<tr class="gender">
+							<th><span class="required">必須</span>性別</th>
+							<td>
+								<?php echo $gender; ?>
+							</td>
+						</tr>
+						<tr class="address">
+							<th><span class="required">必須</span>住所</th>
+							<td>
+								<?php echo $yubin_nb_1; ?>-<?php echo $yubin_nb_2; ?><br>
+								<?php echo $kenmei; ?><?php echo $address_shiku; ?><?php echo $address_tatemono; ?>
+							</td>
+						</tr>
+
+						<tr>
+							<th><span class="required">必須</span>住所(ヨミ)</th>
+							<td>
+								<?php echo $address_yomi_shiku; ?><br>
+								<?php echo $address_yomi_tatemono; ?>
+							</td>
+						</tr>
+						<tr>
+							<th><span class="required">必須</span>電話番号</th>
+							<td>
+								TEL：<?php echo $tel; ?><br>
+								携帯：<?php echo $keitai_tel; ?><br>
+								FAX：<?php echo $fax; ?>
+							</td>
+						</tr>
+						<tr>
+							<th><span class="required">必須</span>メルマガ配信の希望</th>
+							<td>
+								<?php echo $merumaga; ?>
+							</td>
+						</tr>
+						<tr>
+							<th><span class="any"></span>URL</th>
+							<td>
+								<?php echo $url; ?>
+							</td>
+						</tr>
+						<tr class="job">
+							<th><span class="any"></span>職業</th>
+							<td>
+								<?php echo $shoku_1; ?><br>
+								<?php echo $shoku_2; ?><br>
+								<?php echo $shoku_3; ?>
+							</td>
+						</tr>
+						<tr>
+							<th><span class="any"></span>勤務先／所属先名</th>
+							<td>
+								<?php echo $office_name; ?>
+							</td>
+						</tr>
+						<tr class="address">
+							<th><span class="any"></span>所属先住所</th>
+							<td>
+								<?php echo $office_yubin_nb_1; ?>-<?php echo $office_yubin_nb_2; ?><br>
+								<?php echo $office_kenmei; ?><?php echo $office_shiku; ?><?php echo $office_tatemono; ?>
+							</td>
+						</tr>
+						<tr>
+							<th><span class="any"></span>所属先電話番号</th>
+							<td>
+								<?php echo $office_tel; ?>
+							</td>
+						</tr>
+						<tr>
+							<th><span class="any"></span>所属先FAX番号</th>
+							<td>
+								<?php echo $office_fax; ?>
+							</td>
+						</tr>
+						<tr>
+							<th><span class="any"></span>NSCA以外の認定資格</th>
+							<td class="clearfix">
+								<div>
+									<?php
+									$shikaku = str_replace(",", "<br>", $shikaku);
+									echo $shikaku . "<br>" . $shikaku_sonota;
+									?>
+								</div>
 							</td>
 						</tr>
 					</table>
-				</form>
-				<h3>基本情報</h3>
-				<table>
-					<tr class="name">
-						<th><span class="required">必須</span>氏名</th>
-						<td class="clearfix">
-							<div>
-								<?php echo $name_sei; ?> <?php echo $name_mei; ?>
-							</div>
-						</td>
-					</tr>
-					<tr class="name">
-						<th><span class="required">必須</span>フリガナ</th>
-						<td class="clearfix">
-							<div>
-								<?php echo $name_sei_kana; ?> <?php echo $name_mei_kana; ?>
-							</div>
-						</td>
-					</tr>
-					<tr class="name">
-						<th><span class="required">必須</span>ローマ字表記</th>
-						<td class="clearfix">
-							<div>
-								<?php echo $name_last; ?> <?php echo $name_first; ?>
-							</div>
-						</td>
-					</tr>
-					<tr class="birthday">
-						<th><span class="required">必須</span>生年月日</th>
-						<td>
-							<?php echo $year; ?>年
-							<?php echo $month; ?>月
-							<?php echo $day; ?>日
-						</td>
-					</tr>
-					<tr class="gender">
-						<th><span class="required">必須</span>性別</th>
-						<td>
-							<?php echo $gender; ?>
-						</td>
-					</tr>
-					<tr class="yubin_nb">
-						<th><span class="required">必須</span>住所_郵便番号</th>
-						<td>
-							<?php echo $yubin_nb_1; ?>-<?php echo $yubin_nb_2; ?>
-						</td>
-					</tr>
-					<tr class="todofuken">
-						<th><span class="required">必須</span>住所_都道府県</th>
-						<td>
-							<?php echo $kenmei; ?>
-						</td>
-					</tr>
-					<tr class="address">
-						<th><span class="required">必須</span>住所_市区町村／番地</th>
-						<td>
-							<?php echo $address_shiku; ?>
-						</td>
-					</tr>
-					<tr class="address">
-						<th><span class="required">必須</span>住所_建物／部屋番号</th>
-						<td>
-							<?php echo $address_tatemono; ?>
-						</td>
-					</tr>
-					<tr class="nagareyama">
-						<th><span class="any"></span>流山市民のチェック</th>
-						<td>
-							<?php echo $nagareyama; ?>
-						</td>
-					</tr>
-					<tr>
-						<th><span class="required">必須</span>住所(ヨミ)_市区町村／番地</th>
-						<td>
-							<?php echo $address_yomi_shiku; ?>
-						</td>
-					</tr>
-					<tr>
-						<th><span class="required">必須</span>住所(ヨミ)_建物／部屋番号</th>
-						<td>
-							<?php echo $address_yomi_tatemono; ?>
-						</td>
-					</tr>
-					<tr>
-						<th><span class="required">必須</span>TEL</th>
-						<td>
-							<?php echo $tel; ?>
-						</td>
-					</tr>
-					<tr>
-						<th><span class="required">必須</span>携帯</th>
-						<td>
-							<?php echo $keitai_tel; ?>
-						</td>
-					</tr>
-					<tr>
-						<th><span class="any"></span>FAX番号</th>
-						<td>
-							<?php echo $fax; ?>
-						</td>
-					</tr>
-					<tr class="mail">
-						<th><span class="required">必須</span>メールアドレス</th>
-						<td>
-							<p>メールアドレス_1：<?php echo $mail_address_1; ?></p>
-							<p>メールアドレス_2：<?php echo $mail_address_2; ?></p>
-							<p>メール受信希望のメールアドレス：
-								<?php
-								if ($mail == 1) {
-									echo $mail_address_1;
-								} elseif ($mail == 2) {
-									echo $mail_address_2;
-								}
-								?>
-							</p>
-						</td>
-					</tr>
-					<tr>
-						<th><span class="required">必須</span>メルマガ配信の希望</th>
-						<td>
-							<?php echo $merumaga; ?>
-						</td>
-					</tr>
-					<tr class="pass">
-						<th><span class="required">必須</span>パスワード</th>
-						<td>
-							<p>
-								<?php
-								for ($i = 1; $i <= strlen($pass_1); $i++) {
-									echo '●';
-								}
-								?>
-							</p>
-						</td>
-					</tr>
-					<tr>
-						<th><span class="any"></span>URL</th>
-						<td>
-							<?php echo $url; ?>
-						</td>
-					</tr>
-					<tr class="job">
-						<th><span class="any"></span>職業1</th>
-						<td>
-							<?php echo $shoku_1; ?>
-						</td>
-					</tr>
-					<tr class="job">
-						<th><span class="any"></span>職業2</th>
-						<td>
-							<?php echo $shoku_2; ?>
-						</td>
-					</tr>
-					<tr class="job">
-						<th><span class="any"></span>職業3</th>
-						<td>
-							<?php echo $shoku_3; ?>
-						</td>
-					</tr>
-					<tr>
-						<th><span class="any"></span>勤務先／所属先名</th>
-						<td>
-							<?php echo $office_name; ?>
-						</td>
-					</tr>
-					<tr class="address">
-						<th><span class="any"></span>所属先住所_郵便番号</th>
-						<td>
-							<?php echo $office_yubin_nb_1; ?>-<?php echo $office_yubin_nb_2; ?>
-						</td>
-					</tr>
-					<tr class="address">
-						<th><span class="any"></span>所属先住所_都道府県</th>
-						<td>
-							<?php echo $office_kenmei; ?>
-						</td>
-					</tr>
-					<tr class="address">
-						<th><span class="any"></span>所属先住所_市区町村／番地</th>
-						<td>
-							<?php echo $office_shiku; ?>
-						</td>
-					</tr>
-					<tr class="address">
-						<th><span class="any"></span>所属先住所_建物／部屋番号</th>
-						<td>
-							<?php echo $office_tatemono; ?>
-						</td>
-					</tr>
-					<tr>
-						<th><span class="any"></span>所属先電話番号</th>
-						<td>
-							<?php echo $office_tel; ?>
-						</td>
-					</tr>
-					<tr>
-						<th><span class="any"></span>所属先FAX番号</th>
-						<td>
-							<?php echo $office_fax; ?>
-						</td>
-					</tr>
-					<tr>
-						<th><span class="any"></span>NSCA以外の認定資格</th>
-						<td class="clearfix">
-							<div>
-								<?php
-								$shikaku = str_replace(",", "<br>", $shikaku);
-								echo $shikaku . "<br>" . $shikaku_sonota;
-								?>
-							</div>
-						</td>
-					</tr>
-				</table>
-
+				</div>
 			</div>
 
 			<div class="oshirase">
-				<h3>お知らせ／連絡方法／アンケート</h3>
-				<table>
-					<tr>
-						<th><span class="required">必須</span>連絡方法の希望</th>
-						<td>
-							<?php echo $hoho; ?>
-						</td>
-					</tr>
-					<tr>
-						<th><span class="required">必須</span>郵便物配達先の希望</th>
-						<td>
-							<?php echo $yubin; ?>
-						</td>
-					</tr>
-					<tr class="chiiki">
-						<th><span class="any"></span>興味のある地域</th>
-						<td>
-							<?php
-							$k_chiiki = str_replace(",", "<br>", $k_chiiki);
-							echo $k_chiiki;
-							?>
-						</td>
-					</tr>
-					<tr>
-						<th><span class="required">必須</span>ウェブサイト掲載</th>
-						<td>
-							<?php echo $web; ?>
-						</td>
-					</tr>
-					<tr>
-						<th><span class="required">必須</span>アンケート協力</th>
-						<td>
-							<?php echo $qa; ?>
-						</td>
-					</tr>
-					<tr>
-						<th><span class="any"></span>興味のある分野</th>
-						<td class="clearfix">
-							<div>
+				<h2>お知らせ／連絡方法／アンケート</h2>
+				<div class="bg_white">
+					<table>
+						<tr>
+							<th><span class="required">必須</span>連絡方法の希望</th>
+							<td>
+								<?php echo $hoho; ?>
+							</td>
+						</tr>
+						<tr>
+							<th><span class="required">必須</span>郵便物配達先の希望</th>
+							<td>
+								<?php echo $yubin; ?>
+							</td>
+						</tr>
+						<tr class="chiiki">
+							<th><span class="any"></span>興味のある地域</th>
+							<td>
 								<?php
-								$bunya = str_replace(",", "<br>", $bunya);
-								echo $bunya . "<br>" . $bunya_sonota;
+								$k_chiiki = str_replace(",", "<br>", $k_chiiki);
+								echo $k_chiiki;
 								?>
-							</div>
-						</td>
-					</tr>
-				</table>
+							</td>
+						</tr>
+						<tr>
+							<th><span class="required">必須</span>ウェブサイト掲載</th>
+							<td>
+								<?php echo $web; ?>
+							</td>
+						</tr>
+						<tr>
+							<th><span class="required">必須</span>アンケート協力</th>
+							<td>
+								<?php echo $qa; ?>
+							</td>
+						</tr>
+						<tr>
+							<th><span class="any"></span>興味のある分野</th>
+							<td class="clearfix">
+								<div>
+									<?php
+									$bunya = str_replace(",", "<br>", $bunya);
+									echo $bunya . "<br>" . $bunya_sonota;
+									?>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
 			</div>
 			<section class="btn_wrap">
 				<button class="button back" type="button" id="return_button" value="" onclick="location.href='#'"><span>内容を修正する</span></button>

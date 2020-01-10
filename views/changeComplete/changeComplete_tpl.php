@@ -21,25 +21,25 @@
 		<script type="text/javascript" src="../../viewIncludeFiles/js/changeComplete.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/header.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
+		<script type="text/javascript" src="../../viewIncludeFiles/js/iPhone.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
     </head>
     <body>
 		<header id="header">
 		</header>
 		<div class="wrap mh_c btn_b_wrap">
-			<h2>登録情報　修正完了</h2>
+			<h1>登録情報修正 完了</h1>
 			<div class="content_wrap">
 				<div class="spb_arrows">
 					<ul class="nav nav-tabs step-anchor">
-						<li><span><small>会員種別選択</small></span></li>
-						<li><span><small>修正</small></span></li>
+						<li><span class="spb_border"><small>会員種別選択</small></span></li>
+						<li><span class="spb_border"><small>修正</small></span></li>
 						<li><span><small>確認</small></span></li>
 						<li class="active"><span><small>完了</small></span></li>
 					</ul>
 				</div>
 				<p class="h2_text">テキストテキストテキストテキストテキストテキスト</p>
-
-					<button class="button btn_b btn_b_1" type="button" value="" onclick="location.href='#'"><span>トップへ</span></button>
+				<button class="button btn_b btn_b_1 btn_1" type="button" value="" onclick="location.href='#'"><span>トップへ</span></button>
 			</div>
 		</div>
 		<footer id="footer">

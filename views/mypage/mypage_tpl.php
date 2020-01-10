@@ -36,8 +36,6 @@
 					return false;
 				});
 				
-				
-				
 				$(window).on('resize load', function(){
 					var winW = $(window).width();
 					if (winW > 800) {
@@ -182,7 +180,7 @@
 					<button class="button" type="button" onclick="location.href='#'"><span>1</span></button>
 					<button class="button" type="button" onclick="location.href='#'"><span>2</span></button>
 					<button class="button" type="button" onclick="location.href='#'"><span>3</span></button>
-					<button class="button" type="button" onclick="location.href='#'"><span>></span></button>
+					<button class="button" type="button" onclick="location.href='#'"><span><i class="fas fa-angle-right"></i></span></button>
 				</div>
 			</div>
 			<div id="event">
@@ -206,7 +204,7 @@
 					</ul>
 				</div>
 				<div class="page">
-					<p><a>もっと見る＞</a></p>
+					<p><a>もっと見る</a></p>
 				</div>
 			</div>
 			<section>
@@ -300,7 +298,7 @@
 					<button class="button" type="button" onclick="location.href='#'"><span>1</span></button>
 					<button class="button" type="button" onclick="location.href='#'"><span>2</span></button>
 					<button class="button" type="button" onclick="location.href='#'"><span>3</span></button>
-					<button class="button" type="button" onclick="location.href='#'"><span>></span></button>
+					<button class="button" type="button" onclick="location.href='#'"><span><i class="fas fa-angle-right"></i></span></button>
 				</div>
 			</div>
 		</div>

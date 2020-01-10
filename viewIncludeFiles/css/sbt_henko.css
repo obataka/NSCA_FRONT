@@ -1,3 +1,11 @@
+.kaiin_sbt form {
+	display: block;
+}
+article {
+	display: flex;
+	flex-wrap: wrap;
+    justify-content: space-between;
+}
 .button {
     border: 1px solid #005699;
     margin: 20px auto;
@@ -12,12 +20,20 @@
 	flex-wrap: wrap;
     justify-content: space-between;
 }
-.sbt_bottom button span {
-	line-height: 62px;
+.bg_white {
+    padding: 30px;
+    margin-bottom: 70px;
+}
+.sbt {
+    font-weight: bold;
+	margin-bottom: 5px;
+	padding: 0.25em 0.5em;
+	border-left: solid 5px #005699;
+}
+#kaiin_sbt {
+    text-indent: 1em;
 }
 
 @media screen and (max-width: 768px) {
-	.current_sbt {
-		margin-top: 1em;
-	}
+
 }

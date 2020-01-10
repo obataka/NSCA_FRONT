@@ -33,7 +33,7 @@
 		<header id="header">
 		</header>
 		<div class="wrap">
-			<h1>登録情報修正 登録情報入力</h1>
+			<h1>登録情報修正 入力</h1>
 			<div class="content_wrap">
 				<div class="spb_arrows">
 					<ul class="nav nav-tabs step-anchor">
