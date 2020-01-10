@@ -116,11 +116,7 @@
                             $("#nintei-shikaku-left").empty();
                         }
                         $.each(getShikakuList, function (i, value) {
-                            if (i % 2 == 0) {
-                                $('#nintei-shikaku-left').append('<input id="shikaku_' + value[0] + '" type="checkbox" name="shikaku" value="' + value[0] + '"><label class="checkbox" for="shikaku_' + value[0] + '">' + value[1] + '</label><br>');
-                            } else {
-                                $('#nintei-shikaku-right').append('<input id="shikaku_' + value[0] + '" type="checkbox" name="shikaku" value="' + value[0] + '"><label class="checkbox" for="shikaku_' + value[0] + '">' + value[1] + '</label><br>');
-                            };
+                            $('#nintei-shikaku-wrap').append('<div><input id="shikaku_' + value[0] + '" type="checkbox" name="shikaku" value="' + value[0] + '"><label class="checkbox" for="shikaku_' + value[0] + '">' + value[1] + '</label></div>');
                         });
 
                         if (getTbkaiinSentaku != "") {

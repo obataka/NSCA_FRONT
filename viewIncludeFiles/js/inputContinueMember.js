@@ -1,13 +1,6 @@
 (function ($) {
 
     $(document).ready(function () {
-
-        if ($('#kaiinType').val() == "学生会員") {
-            $('title').html('入会申込｜学生会員');
-        } else if ($('#kaiinType').val() == "NSCA正会員") {
-            $('title').html('入会申込｜NSCA正会員');
-        }
-
         /****************
          * //都道府県取得
          ****************/
@@ -105,9 +98,7 @@
                     //※正常に資格情報を取得できた時の処理を書く場所
                     getShikakuList = JSON.parse(rtn);
                     $.each(getShikakuList, function (i, value) {
-
                         $('#nintei-shikaku-wrap').append('<div><input id="shikaku_' + value[0] + '" type="checkbox" name="shikaku" value="' + value[0] + '"><label class="checkbox" for="shikaku_' + value[0] + '">' + value[1] + '</label></div>');
-
                     });
 
                     // NSCA以外の認定資格：確認画面からの戻りなどで、すでに選択済みの値がある場合は選択状態にするための処理
@@ -223,30 +214,6 @@
             $('input[name="option"]').prop("checked", true);
         }
 
-        //入会理由
-        var sel_riyu = $('#sel_riyu').val();
-        if (sel_riyu != "") {
-            if (sel_riyu == "ストレングス＆コンディショニングの知識・指導技術向上のため") {
-                $('#riyu_1').prop("checked", true);
-            } else if (sel_riyu == "資格認定試験受験および認定保持のため") {
-                $('#riyu_2').prop("checked", true);
-            } else if (sel_riyu == "ネットワーク・人脈作りのため") {
-                $('#riyu_3').prop("checked", true);
-            } else if (sel_riyu == "その他（記述）") {
-                $('#riyu_4').prop("checked", true);
-                var sonota = $('#sel_riyu_sonota').val();
-                if (sonota != "") {
-                    $('#sel_riyu_sonota').val(sonota);
-                }
-            }
-        }
-
-        //NSCA認定資格の保持
-        var wk_sel_hoji = $('#wk_sel_hoji').val();
-        if (wk_sel_hoji != "") {
-            $('input[name="nsca_hoji"]').prop("checked", true);
-        }
-
         //月日セレクトボックス
         var sel_month = $('#sel_month').val();
         if (sel_month != "") {
@@ -320,11 +287,6 @@
                 $('#qa_2').prop("checked", true);
             }
         }
-
-        /*************************************
-         * //画面初期表示で次へボタンを無効にする
-         *************************************/
-        $('button[type="submit"]').prop("disabled", true);
 
         /*************************************
          * //画面初期表示で流山市民のvalueを0にする
@@ -507,6 +469,34 @@
         });
 
         /************************
+         * 会員種別ラジオボタンチェンジイベント
+         ************************/
+        $("input:radio[name='kaiin_select']").change(function () {
+            if ($("input:radio[id='kaiin_select_0']:checked").val()) {
+                //利用会員(無料)hidden設定
+                var sbt = $("input:radio[id='kaiin_select_0']:checked").val();
+                $("#kaiinSbt").val(sbt);
+                var test1 = $('[name="kaiin_select"]:checked').attr('id');
+                var test2 = $('label[for="' + test1 + '"]').text();
+                $('#kaiinType').val(test2);
+            } else if ($("input:radio[id='kaiin_select_1']:checked").val()) {
+                //NSCA正会員hidden設定
+                var sbt = $("input:radio[id='kaiin_select_1']:checked").val();
+                $("#kaiinSbt").val(sbt);
+                var test1 = $('[name="kaiin_select"]:checked').attr('id');
+                var test2 = $('label[for="' + test1 + '"]').text();
+                $('#kaiinType').val(test2);
+            } else {
+                //学生会員hidden設定
+                var sbt = $("input:radio[id='kaiin_select_2']:checked").val();
+                $("#kaiinSbt").val(sbt);
+                var test1 = $('[name="kaiin_select"]:checked').attr('id');
+                var test2 = $('label[for="' + test1 + '"]').text();
+                $('#kaiinType').val(test2);
+            }
+        });
+
+        /************************
          * 英文購読オプションチェンジイベント
          ************************/
         $("#option").change(function () {
@@ -522,66 +512,6 @@
                 $("#wk_sel_option").val(wa);
                 var test = '英文購読オプションなし';
                 $('#sel_option').val(test);
-            }
-        });
-
-        /************************
-         * 入会理由チェンジイベント
-         ************************/
-        //ラジオボタンが切り替わったら発動
-        $("input:radio[name='riyu']").change(function () {
-            //ストレングス～のhidden設定
-            if ($("input:radio[id='riyu_1']:checked").val()) {
-                var wa = $("input:radio[id='riyu_1']:checked").val();
-                $("#wk_sel_riyu").val(wa);
-                var test1 = $('[name="riyu"]:checked').attr('id');
-                var test2 = $('label[for="' + test1 + '"]').text();
-                $('#sel_riyu').val(test2);
-            } else if ($("input:radio[id='riyu_2']:checked").val()) {
-                //資格認定試験～のhidden設定
-                var wa = $("input:radio[id='riyu_2']:checked").val();
-                $("#wk_sel_riyu").val(wa);
-                var test1 = $('[name="riyu"]:checked').attr('id');
-                var test2 = $('label[for="' + test1 + '"]').text();
-                $('#sel_riyu').val(test2);
-            } else if ($("input:radio[id='riyu_3']:checked").val()) {
-                //ネットワーク・人脈づくり～のhidden設定
-                var wa = $("input:radio[id='riyu_3']:checked").val();
-                $("#wk_sel_riyu").val(wa);
-                var test1 = $('[name="riyu"]:checked').attr('id');
-                var test2 = $('label[for="' + test1 + '"]').text();
-                $('#sel_riyu').val(test2);
-            } else {
-                //その他(記述)のhidden設定
-                var wa = $("input:radio[id='riyu_4']:checked").val();
-                $("#wk_sel_riyu").val(wa);
-                var test1 = $('[name="riyu"]:checked').attr('id');
-                var test2 = $('label[for="' + test1 + '"]').text();
-                $('#sel_riyu').val(test2);
-            }
-        });
-
-        //その他の記述内容を格納する変数
-        var riyu_sonota = "";
-        var shikaku_sonota = "";
-        var bunya_sonota = "";
-
-        /************************
-         * NSCA認定資格保持チェンジイベント
-         ************************/
-        $("#nsca_hoji").change(function () {
-            if ($("input[name='nsca_hoji']").prop('checked')) {
-                //チェックありのhidden設定
-                var wa = 1;
-                $("#wk_sel_hoji").val(wa);
-                var test = 'CSCS,NSCA-CPTの資格をすでに保持している';
-                $('#sel_hoji').val(test);
-            } else {
-                //チェックなしのhidden設定
-                var wa = 0;
-                $("#wk_sel_hoji").val(wa);
-                var test = 'CSCS,NSCA-CPTの資格を保持していない';
-                $('#sel_hoji').val(test);
             }
         });
 
@@ -717,8 +647,6 @@
         //配列と配列の内容を入れる変数の宣言
         var shikakuVal = "";
         var shikakuText = "";
-        var arrShikakuText = [];
-        var arrShikakuVal = [];
         /************************
          * NSCA以外の認定資格チェンジイベント
          ************************/
@@ -778,8 +706,6 @@
         //配列と配列の内容を入れる変数の宣言
         var chiikiVal = "";
         var chiikiText = "";
-        var arrChiikiText = [];
-        var arrChiikiVal = [];
         //配列にチェックされた値とテキストを代入する
         $("#Area").on('change', "input[name='chiiki']", function () {
             arrChiikiVal = $("input[name='chiiki']:checked").map(function () {
@@ -837,8 +763,6 @@
         //配列と配列の内容を入れる変数の宣言
         var bunyaVal = "";
         var bunyaText = "";
-        var arrBunyaText = [];
-        var arrBunyaVal = [];
         //配列にチェックされた値とテキストを代入する
         $("#Bunya").on('change', "input[name='bunya']", function () {
             arrBunyaVal = $("input[name='bunya']:checked").map(function () {
@@ -850,25 +774,27 @@
                 return $('label[for="' + text + '"]').text();
             }).get();
         });
+
         /********************************
-         * 次へボタン有効化処理
-         ********************************/
-        $("#doi").change(function () {
-            // チェックが入っていたら有効化
-            if ($(this).is(':checked')) {
-                // ボタンを有効化
-                $('button[type="submit"]').prop('disabled', false);
-            } else {
-                // ボタンを無効化
-                $('button[type="submit"]').prop('disabled', true);
-            }
+          * クリアボタン押下時の処理
+          ********************************/
+        $("#clear").click(function () {
+            document.continueConfirmMemberForm.reset();
+        });
+
+        /********************************
+          * 退会をご希望の方はこちらボタン押下時の処理
+          ********************************/
+        $("#unsubscribe").click(function () {
+            location.href = "../../unsubscride/";
         });
 
         /********************************
           * 次へボタン押下時のエラーチェック
           ********************************/
-        $("#next_button").click(function () {
+        $("#next").click(function () {
             //エラーメッセージエリア初期化
+            $("#err_kaiin_select").html("");
             $("#err_file_front").html("");
             $("#err_file_back").html("");
             $("#err_riyu").html("");
@@ -907,32 +833,26 @@
             var wk_err_msg4 = "";
             var wk_err_msg5 = "";
 
+            //会員種別ラジオボタン選択チェック
+            if (!$('input:radio[name="kaiin_select"]:checked').val()) {
+                //チェックされていない場合
+                wk_err_msg == "";
+                wk_err_msg = "会員種別を選択してください。";
+                $("#err_kaiin_select").html(wk_err_msg);
+            }
+
             if ($('#kaiinType').val() == "学生会員") {
                 //学生証(表)チェック 学生会員のみ
                 $(function () {
                     //inputフィールドの文字数を取得
                     fileCheck = $('#file_front').val().length;
                     if (fileCheck == 0) {
-                        wk_err_msg = "ファイルを選択してください。";
+                        wk_err_msg = "学生証がアップロードされていません。学生会員は学生証をアップロードしてください。";
                         $("#err_file_front").html(wk_err_msg);
                         wk_err_msg = "";
                     }
                 });
 
-            }
-
-            //入会理由未入力チェック
-            if (!$('input:radio[name="riyu"]:checked').val()) {
-                wk_err_msg = "入会理由を選択してください。";
-                $("#err_riyu").html(wk_err_msg);
-                wk_err_msg = "";
-            }
-
-            //その他記述未入力チェック(入会理由)
-            if ($('#riyu_sonota').val() == "" && $('input[name=riyu]:checked').val() == 99) {
-                wk_err_msg = "入会理由を記述してください。";
-                $("#err_riyu").html(wk_err_msg);
-                wk_err_msg = "";
             }
 
             //氏名(姓)未入力チェック
@@ -1671,7 +1591,7 @@
             $('#wk_sel_bunya').val(bunyaVal);
 
             //エラーがない場合確認画面に画面遷移
-            url = '../confirmMember/';
+            url = '../continueConfirmMember/';
             $('form').attr('action', url);
             $('form').submit();
 

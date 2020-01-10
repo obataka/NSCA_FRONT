@@ -69,7 +69,7 @@
 			</ul>
 		</div>
 		<p class="top_text">※18歳未満の方は、入会申込フォームからお申込みいただくことはできません。電話またはメールにて<a href="https://www.nsca-japan.or.jp/06_qanda/top.html#contact" target="_blank">お問い合わせ</a>ください。</p>
-		<form action="../confirmMember/confirmMember_php" method="post" enctype="multipart/form-data">
+		<form action="../confirmMember/confirmMember_tpl.php" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="kaiinType" id="kaiinType" value="<?php echo $wk_kaiinType ?>">
 			<input type="hidden" name="kaiinSbt" id="kaiinSbt" value="<?php echo $wk_kaiinSbt ?>">
 			<input type="hidden" name="kaihi" id="kaihi" value="<?php echo $wk_kaihi ?>">
