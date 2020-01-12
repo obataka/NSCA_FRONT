@@ -20,7 +20,7 @@
 		<script type="text/javascript" src="../../viewIncludeFiles/js/registSbtSelect.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
-		
+
     </head>
     <body>
 	<header class="header_logo">
@@ -38,7 +38,7 @@
 				<li><span><small>完了</small></span></li>
 			</ul>
 		</div>
-		<p class="top_text">テキストテキストテキストテキストテキストテキスト電話またはメールにて<a href="https://www.nsca-japan.or.jp/06_qanda/top.html#contact" class="td_under" target="_blank">お問い合わせ</a>ください。</p>
+<!-- 		<p class="top_text">テキストテキストテキストテキストテキストテキスト電話またはメールにて<a href="https://www.nsca-japan.or.jp/06_qanda/top.html#contact" class="td_under" target="_blank">お問い合わせ</a>ください。</p> -->
 		<ul class="error_ul">
 			<li class="error" id="err_message"></li>
 		</ul>
@@ -48,7 +48,7 @@
 					<div>
 						<p class="sbt_title">利用登録(無料)</p>
 						<p class="kaihi">会費：無料</p>
-					</div>		
+					</div>
 					<p class="text">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
 					<button class="button" id="__registRiyo"><span>利用登録(無料)の<br>登録はこちら</span></button>
 				</section>
@@ -56,7 +56,7 @@
 					<div>
 						<p class="sbt_title">NSCA正会員</p>
 						<p class="kaihi">会費：<span id="seikaiin-kaihi"></span>円</p>
-					</div>		
+					</div>
 					<p class="text">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
 					<button class="button" id="__registMember"><span>NSCA正会員の<br>登録はこちら</span></button>
 				</section>
@@ -64,7 +64,7 @@
 					<div>
 						<p class="sbt_title">学生会員</p>
 						<p class="kaihi">会費：<span id="gakusei-kaihi"></span>円</p>
-					</div>		
+					</div>
 					<p class="text">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
 					<button class="button" id="__registGakusei"><span>学生会員の<br>登録はこちら</span></button>
 				</section>

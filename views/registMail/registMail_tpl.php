@@ -26,7 +26,7 @@
 	<header class="header_logo">
 		<img src="../../viewIncludeFiles/image/NSCA_Japan_rev.png" alt="ロゴ">
 	</header>
-	<div class="wrap mh_c btn_b_wrap">  
+	<div class="wrap mh_c btn_b_wrap">
 		<h2>入会申込</h2>
 		<div class="content_wrap">
 			<p class="h2_text">【登録の流れ】</p>
@@ -41,7 +41,8 @@
 					<tr>
 						<th><span class="required">必須</span>メールアドレス</th>
 						<td>
-							<input id="mail" class="w_80" type="email" name="mail" value="">					<ul class="error_ul">
+							<input id="mail" class="w_80" type="email" name="mail" value="">
+							<ul class="error_ul">
 								<li class="error"></li>
 							</ul>
 						</td>

@@ -11,6 +11,13 @@
     font-size: 12px;
     line-height: 1.4;
 }
+.kaiin_sbt {
+    padding-top: 20px;
+}
+.to_next_page {
+	padding-top: 30px;
+    text-align: center;
+}
 
 /*IEのみ*/
 @media all and (-ms-high-contrast: none){
@@ -18,14 +25,14 @@
 		padding: 15px 0;
 	}
 }
-	
+
 @media screen and (max-width:768px) {
 	.button {
-		width: 300px;
+		width: 235px;
 		margin: 30px auto 10px auto;
 	}
 	.riyo,
-	.NSCA, 
+	.NSCA,
 	.gakusei {
 		margin-bottom: 80px;
 	}
