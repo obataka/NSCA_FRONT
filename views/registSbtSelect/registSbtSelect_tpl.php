@@ -38,7 +38,6 @@
 				<li><span><small>完了</small></span></li>
 			</ul>
 		</div>
-<!-- 		<p class="top_text">テキストテキストテキストテキストテキストテキスト電話またはメールにて<a href="https://www.nsca-japan.or.jp/06_qanda/top.html#contact" class="td_under" target="_blank">お問い合わせ</a>ください。</p> -->
 		<ul class="error_ul">
 			<li class="error" id="err_message"></li>
 		</ul>
@@ -70,6 +69,7 @@
 				</section>
 				<input type="hidden" name="kaiinSbt" id="kaiinSbt" value="" />
 				<input type="hidden" name="kaihi" id="kaihi" value="" />
+				<input type="hidden" name="mailAdress" id="mailAdress" value="<?php echo $wk_mail_address;?>" />
 			</form>
 		</div>
 	</div>
