@@ -1,3 +1,16 @@
+.wrap {
+    padding-top: 40px;
+}
+.mh_c {
+    min-height: calc(100vh - 125px);
+}
+.button {
+    margin: 20px auto 0 auto;
+    width: 100%;
+    height: 60px;
+    font-size: 12px;
+    line-height: 1.4;
+}
 .text_content_2 {
     padding: 0 2em;
     margin-top: 20px;
@@ -9,9 +22,7 @@
 }
 .seikyu {
     margin-top: 30px;
-    border-bottom: 1px solid #005699;
-    padding-bottom: 8px;
-	margin: 30px 10px 0 10px;	
+	margin: 30px 10px 0 10px;
     font-size: 16px;
     font-weight: bold;
 }
@@ -57,14 +68,11 @@ td {
 }
 td {
 	padding: 10px;
+	width: auto;
 }
 .bg_gray {
     padding: 1em 1.5em;
-    margin-top: 30px;
-    margin-bottom: 70px;
-}
-.bg_gray p {
-	margin-top: 1em;
+    margin: 15px 0 0;
 }
 .kakunin_jiko li,
 .text_content_2 li,
@@ -113,7 +121,7 @@ td {
 	}
 	th:first-of-type {
 		display: block;
-		
+
 	}
 	td {
 		border-bottom: none;

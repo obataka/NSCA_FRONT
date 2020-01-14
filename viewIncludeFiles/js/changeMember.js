@@ -1110,6 +1110,8 @@
         //配列と配列の内容を入れる変数の宣言
         var shikakuVal = "";
         var shikakuText = "";
+        var arrShikakuText = [];
+        var arrShikakuVal = [];
         /************************
          * NSCA以外の認定資格チェンジイベント
          ************************/
@@ -1237,6 +1239,8 @@
         //配列と配列の内容を入れる変数の宣言
         var bunyaVal = "";
         var bunyaText = "";
+        var arrBunyaText = [];
+        var arrBunyaVal = [];
         //配列にチェックされた値とテキストを代入する
         $("#Bunya").on('change', "input[name='bunya']", function () {
             arrBunyaVal = $("input[name='bunya']:checked").map(function () {

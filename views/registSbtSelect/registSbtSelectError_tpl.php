@@ -20,7 +20,6 @@
 		<script type="text/javascript" src="../../viewIncludeFiles/js/registSbtSelectError.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
-
     </head>
     <body>
 	<header class="header_logo">

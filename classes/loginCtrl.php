@@ -9,6 +9,7 @@ require './Config/Config.php';
 require './DBAccess/Db.php';
 require './DBAccess/Tb_kaiin_joho.php';
 require './DBAccess/Tb_kaiin_login.php';
+require './Common/Util.php';
 
 $result = "";
 $ret = "";
@@ -172,10 +173,22 @@ function loginCtrlPre($kaiinNo, $sendMailAddr) {
         // 登録成功
         if ($insRet) {
 
-            // 送信先メールアドレス、件名、本文をセット → メール送信
-            $mailSendRet = my_send_mail($sendMailAddr, $securityCd);
+            // 本文
+            $message  = "追加認証に必要な情報をご案内いたします。\n\n\n";
+            $message .= "セキュリティコード：". $securityCd. "\n";
+            $message .= "有効期限：10分\n\n\n";
+            $message .= "上記を入力して認証手続きをお願いいたします。\n";
 
-            return $mailSendRet;
+            // 件名
+            $subject = "セキュリティコードご案内";
+
+            $mail_send_ret = (new Util())->my_send_mail($sendMailAddr, $subject, $message);
+
+            if (!$mail_send_ret) {
+                return -1;
+            } else {
+                return 0;
+            }
 
         // 登録失敗
         } else {
@@ -191,10 +204,22 @@ function loginCtrlPre($kaiinNo, $sendMailAddr) {
         // 更新成功
         if ($updRet) {
 
-            // 送信先メールアドレス、件名、本文をセット → メール送信
-            $mailSendRet = my_send_mail($sendMailAddr, $securityCd);
+            // 本文
+            $message  = "追加認証に必要な情報をご案内いたします。\n\n\n";
+            $message .= "セキュリティコード：". $securityCd. "\n";
+            $message .= "有効期限：10分\n\n\n";
+            $message .= "上記を入力して認証手続きをお願いいたします。\n";
 
-            return $mailSendRet;
+            // 件名
+            $subject = "セキュリティコードご案内";
+
+            $mail_send_ret = (new Util())->my_send_mail($sendMailAddr, $subject, $message);
+
+            if (!$mail_send_ret) {
+                return -1;
+            } else {
+                return 0;
+            }
 
         // 登録失敗
         } else {
@@ -234,44 +259,6 @@ function create_passwd($length) {
     shuffle($pwd);
 
     return implode($pwd);
-}
-
-/*
- * メール送信処理
- * @params $mailto
- * @params $subject
- * @params $message
- */
-function my_send_mail($mailto, $securityCd) {
-
-    $charset = "iso-2022-JP";
-    mb_language("ja");
-    mb_internal_encoding("utf-8");
-
-    // 本文
-    $message  = "追加認証に必要な情報をご案内いたします。\n\n\n";
-    $message .= "セキュリティコード：". $securityCd. "\n";
-    $message .= "有効期限：10分\n\n\n";
-    $message .= "上記を入力して認証手続きをお願いいたします。\n";
-    $body = mb_convert_encoding($message, $charset, "AUTO");
-
-    // 件名
-    $subject = "セキュリティコードご案内";
-
-    $from = array("name" => "NSCAジャパン", "mail" => "info@example.com");
-
-    $headers  = "Mime-Version: 1.0\n";
-    $headers .= "Content-Transfer-Encoding: 7bit\n";
-    $headers .= "Content-Type: text/plain;charset={$charset}\n";
-    $headers .= "From: ".mb_encode_mimeheader($from["name"])." <".$from["mail"].">";
-
-    try {
-        mb_send_mail($mailto, $subject, $body, $headers);
-        return 0;
-    } catch (ErrorException $e) {
-        error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/sugai_log'. date("Ymd"). '.txt');
-        return -1;
-    }
 }
 
 echo $ret;
