@@ -3,7 +3,7 @@
 
 
 	/************************************************************
-	*会員情報取得 
+	*会員情報取得
 	*************************************************************/
     jQuery.ajax({
         url:  '../../classes/mypage.php',
@@ -45,7 +45,7 @@
     });
 
 	/************************************************************
-	*イベント情報取得 
+	*イベント情報取得
 	*************************************************************/
 
     jQuery.ajax({
@@ -56,14 +56,14 @@
             // イベント情報、該当なし
                 if (rtn == 0) {
 //		            $("#err_pass_1").html("現在イベント情報がございません");
-				}else{
+				} else {
 
                         tbEventJoho = JSON.parse(rtn);
 
-for(tbEventJoho i = 0; i < tbEventJoho.length; i++) {
+//for(tbEventJoho i = 0; i < tbEventJoho.length; i++) {
 //  tbEventJoho[i]["ceu_id"]
 //  tbEventJoho[i]["shutoku_naiyo"]
-}
+//}
 //                        $('#kaiin_no').html(tbKaiinJoho["kaiin_no"]);
 //alert("---");
 //alert(tbEventJoho[0]["shutoku_naiyo"]);

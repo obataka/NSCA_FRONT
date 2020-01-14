@@ -28,7 +28,7 @@ class Tb_ceu_quiz_joho
                                 ) a
                                 WHERE a.ROWNUM = 1
                                 ORDER BY tb_ceu_quiz_joho.keisai_kaishi_kikan DESC, tb_ceu_quiz_joho.ceu_id DESC
-                                ")                   
+                                ");
             $sth->execute([':kaiin_no' => $param['kaiin_no'],]);
             $Tb_ceu_quiz_joho = $sth->fetch();
         } catch (\PDOException $e) {
