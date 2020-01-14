@@ -107,4 +107,25 @@ SQL;
         }
         return TRUE;
     }
+
+    /* 該当日の会員番号の最大値を取得する
+    * @param varchar $kaiin_no
+    * @return array|mixed
+    */
+   public function findMaxId($id)
+   {
+       try {
+           $db = Db::getInstance();
+           $sth = $db->prepare("SELECT RIGHT(MAX(id), 2) AS max_no FROM tb_new_token WHERE id LIKE :id;");
+           $sth->execute([':id' => $id,]);
+           $mstProduct = $sth->fetch();
+       } catch (\PDOException $e) {
+           $mstProduct = [];
+       }
+       return $mstProduct;
+   }
+
+
+
+
 }
