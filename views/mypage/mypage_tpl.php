@@ -120,15 +120,15 @@
 					<div class="bg_white match_height_1">
 						<div class="cscs">
 							<p class="title">CSCS</p>
-							<p>認定番号：<span>00000000</span></p>
-							<p>認定日：<span>0000/00/00</span></p>
-							<p>資格有効期限：<span>0000/00/00</span></p>
+							<p>認定番号：<span id="nintei_no_c">00000000</span></p>
+							<p>認定日：<span id="ninteibi_c">0000/00/00</span></p>
+							<p>資格有効期限：<span id="yuko_kigen_c">0000/00/00</span></p>
 						</div>
 						<div class="nsca">
 							<p class="title">NSCA-CAP</p>
-							<p>認定番号：<span>00000000</span></p>
-							<p>認定日：<span>0000/00/00</span></p>
-							<p>資格有効期限：<span>0000/00/00</span></p>
+							<p>認定番号：<span id="nintei_no_n">00000000</span></p>
+							<p>認定日：<span id="ninteibi_n">0000/00/00</span></p>
+							<p>資格有効期限：<span id="yuko_kigen_n">0000/00/00</span></p>
 						</div>
 						<div class="btn_wrap">
 							<button class="button" type="button" onclick="location.href='#'"><span>試験申込</span></button>

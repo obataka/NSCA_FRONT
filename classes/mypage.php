@@ -8,6 +8,7 @@ require './DBAccess/Db.php';
 require './DBAccess/Tb_kaiin_joho.php';
 require './DBAccess/Tb_nintei_meisai.php';
 require './DBAccess/Tb_kaiin_ceu.php';
+require './DBAccess/Tb_ceu_joho.php';
 
 $ret = 0;
 
@@ -95,9 +96,6 @@ if ($result_nsca != "") {
 	}
 
 }
-
-
-//$result = array_merge($result_kaiin, $result_cscs);
 
 
 
