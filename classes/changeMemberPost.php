@@ -1,4 +1,5 @@
 <?php
+
 namespace Was;
 
 session_start();
@@ -7,11 +8,19 @@ require './Config/Config.php';
 require './DBAccess/Db.php';
 require './DBAccess/Tb_kaiin_joho.php';
 require './DBAccess/Tb_kaiin_sonota.php';
-require './DBAccess/Tb_kaiin_journal.php';   
+require './DBAccess/Tb_kaiin_journal.php';
 require './DBAccess/Tb_kaiin_sentaku.php';
 $ret = '';
 $wk_no = 0;
 $wk_kaiin_no = '';
+
+//セッションから会員番号を取得
+$wk_kaiin_no = '';
+if (isset($_SESSION['kaiinNo'])) {
+
+    // ログインしている
+    $wk_kaiin_no = $_SESSION['kaiinNo'];
+}
 
 // POSTデータを取得
 // changeConfirmMember.jsでセットしたPOSTデータを取得する
@@ -83,7 +92,7 @@ if ($mail == 2) {
     $receive_mail2 = TRUE;
 } else {
     $receive_mail2 = FALSE;
-}      
+}
 //連絡方法
 if ($hoho == 1) {
     $wk_hoho1 = TRUE;
@@ -131,9 +140,16 @@ $biko_bunya = (!empty($_POST['biko_bunya'])) ? htmlentities($_POST['biko_bunya']
 $biko_shikaku = (!empty($_POST['biko_shikaku'])) ? htmlentities($_POST['biko_shikaku'], ENT_QUOTES, "UTF-8") : "";
 
 /**********************
-* 更新用パラメーター設定
-***********************/
+ * 更新用パラメーター設定
+ ***********************/
+// DB接続
+$db = Db::getInstance();
+
+// トランザクション開始
+$db->beginTransaction();
+
 $param = [
+    'kaiin_no'                          => $wk_kaiin_no,
     'shimei_sei'                        => $shimei_sei,
     'shimei_mei'                        => $shimei_mei,
     'furigana_sei'                      => $furigana_sei,
@@ -171,172 +187,178 @@ $param = [
     'koshin_user_id'                    => NULL,
     'koshin_nichiji'                    => date("Y/m/d H:i:s"),
 ];
-// 登録処理
-$result = (new Tb_kaiin_joho())->updateMember($param);
-// 更新失敗の場合
-if ($result == false) {
-    NULL;
+
+// 更新処理
+$result_joho = (new Tb_kaiin_joho())->updateMember($db, $param);
 // 更新成功の場合
+if ($result_joho == TRUE) {
+    /****************************
+     * sonota更新用パラメーター設定
+     *****************************/
+    $param2 = [
+        'kaiin_no'                          => $wk_kaiin_no,
+        'renraku_hoho_yuso'                 => $wk_hoho2,
+        'renraku_hoho_denshi_email'         => $wk_hoho1,
+        'email_1_merumaga_haishin'          => $wk_mail1,
+        'email_2_merumaga_haishin'          => $wk_mail2,
+        'email_1_oshirase_uketori'          => $receive_mail1,
+        'email_2_oshirase_uketori'          => $receive_mail2,
+        'yubin_haitatsusaki_kbn'            => $wk_yubin,
+        'website_keisai_kbn'                => $wk_web,
+        'daisansha_questionnaire_kbn'       => $wk_qa,
+        'koshin_user_id'                    => "Web",
+        'koshin_nichiji'                    => date("Y/m/d H:i:s"),
+    ];
+    // 更新処理
+    $result_sonota = (new Tb_kaiin_sonota())->updateMemberSonota($db, $param2);
+
+    // 更新成功の場合
+    if ($result_sonota == TRUE) {
+        /****************************
+         * journal更新用パラメーター設定
+         *****************************/
+        $param3 = [
+            'kaiin_no'                          => $wk_kaiin_no,
+            'eibun_option_kbn'                  => $eibun_option_kbn,
+            'koshin_user_id'                    => "Web",
+            'koshin_nichiji'                    => date("Y/m/d H:i:s"),
+        ];
+        // 登録処理
+        $result_journal = (new Tb_kaiin_journal())->updateMemberJournal($db, $param3);
+
+        // 登録成功の場合
+        if ($result_journal == TRUE) {
+            //NSCA以外の認定資格、興味のある地域、興味のある分野の
+            //いずれかが1つ以上選択されている場合は登録処理を行ってからコミットする
+            //いずれも選択されていない場合、何もせずコミットして終わる
+            if ($meisho_cd_bunya != "" || $meisho_cd_chiiki != "" || $meisho_cd_shikaku != "") {
+                /****************************
+                 * 会員選択のレコード削除処理
+                 *****************************/
+                // 削除処理
+                $param4 = [
+                    'kaiin_no'                          => $wk_kaiin_no,
+                ];
+                $result_deleteRec = (new Tb_kaiin_sentaku())->deleteRec($db, $param4);
+
+                // 削除成功の場合
+                if ($result_deleteRec == TRUE) {
+                    /****************************
+                     * 会員選択作成用パラメーター設定
+                     *****************************/
+                    if ($meisho_cd_shikaku != "") {
+                        $param5 = [
+                            'kaiin_no'                          => $wk_kaiin_no,
+                            'meisho_cd_shikaku'                 => $meisho_cd_shikaku,
+                            'biko_shikaku'                      => $biko_shikaku,
+                            'sakujo_flg'                        => 0,
+                            'sakusei_user_id'                   => "Web",
+                            'koshin_user_id'                    => "Web",
+                            'sakusei_nichiji'                   => date("Y/m/d H:i:s"),
+                            'koshin_nichiji'                    => date("Y/m/d H:i:s"),
+                        ];
+                        // 登録処理
+                        $result_shikaku = (new Tb_kaiin_sentaku())->insertShikaku($db, $param5);
+
+                        // 登録失敗の場合
+                        if ($result_shikaku == FALSE) {
+                            // ロールバック
+                            $db->rollBack();
+
+                            // 戻り値に0設定
+                            $result = 0;
+                        }
+                    }
+                    if ($meisho_cd_chiiki != "") {
+                        $param6 = [
+                            'kaiin_no'                          => $wk_kaiin_no,
+                            'meisho_cd_chiiki'                  => $meisho_cd_chiiki,
+                            'sakujo_flg'                        => 0,
+                            'sakusei_user_id'                   => "Web",
+                            'koshin_user_id'                    => "Web",
+                            'sakusei_nichiji'                   => date("Y/m/d H:i:s"),
+                            'koshin_nichiji'                    => date("Y/m/d H:i:s"),
+                        ];
+                        // 登録処理
+                        $result_chiiki = (new Tb_kaiin_sentaku())->insertChiiki($db, $param6);
+
+                        // 登録失敗の場合
+                        if ($result_chiiki == FALSE) {
+                            // ロールバック
+                            $db->rollBack();
+
+                            // 戻り値に0設定
+                            $result = 0;
+                        }
+                    }
+                    if ($meisho_cd_bunya != "") {
+                        $param7 = [
+                            'kaiin_no'                          => $wk_kaiin_no,
+                            'meisho_cd_bunya'                   => $meisho_cd_bunya,
+                            'biko_bunya'                        => $biko_bunya,
+                            'sakujo_flg'                        => 0,
+                            'sakusei_user_id'                   => "Web",
+                            'koshin_user_id'                    => "Web",
+                            'sakusei_nichiji'                   => date("Y/m/d H:i:s"),
+                            'koshin_nichiji'                    => date("Y/m/d H:i:s"),
+                        ];
+                        // 登録処理
+                        $result_bunya = (new Tb_kaiin_sentaku())->insertBunya($db, $param7);
+
+                        // 登録失敗の場合
+                        if ($result_bunya == FALSE) {
+                            // ロールバック
+                            $db->rollBack();
+
+                            // 戻り値に0設定
+                            $result = 0;
+                        }
+                    }
+                    // commit
+                    $db->commit();
+
+                    // 戻り値に1設定
+                    $result = 1;
+                } else {
+                    // 削除失敗の場合
+                    // ロールバック
+                    $db->rollBack();
+
+                    // 戻り値に0設定
+                    $result = 0;
+                }
+            } else {
+                // commit
+                $db->commit();
+
+                // 戻り値に1設定
+                $result = 1;
+            }
+        } else {
+            // 更新失敗の場合
+            // ロールバック
+            $db->rollBack();
+
+            // 戻り値に0設定
+            $result = 0;
+        }
+    } else {
+        // 更新失敗の場合
+        // ロールバック
+        $db->rollBack();
+
+        // 戻り値に0設定
+        $result = 0;
+    }
 } else {
-    NULL;
-}
-echo $result;
-/****************************
-* sonota更新用パラメーター設定
-*****************************/
-$param1 = [
-    'renraku_hoho_yuso'                 => $wk_hoho2,
-    'renraku_hoho_denshi_email'         => $wk_hoho1,
-    'email_1_merumaga_haishin'          => $wk_mail1,
-    'email_2_merumaga_haishin'          => $wk_mail2,
-    'email_1_oshirase_uketori'          => $receive_mail1,
-    'email_2_oshirase_uketori'          => $receive_mail2,
-    'yubin_haitatsusaki_kbn'            => $wk_yubin,
-    'website_keisai_kbn'                => $wk_web,
-    'daisansha_questionnaire_kbn'       => $wk_qa,
-    'koshin_user_id'                    => "Web",
-    'koshin_nichiji'                    => date("Y/m/d H:i:s"),
-];
-// 登録処理
-$result = (new Tb_kaiin_sonota())->updateMemberSonota($param1);
+    // 更新失敗の場合
+    // ロールバック
+    $db->rollBack();
 
-// 登録失敗の場合
-if ($result == false) {
-    NULL;
-// 登録成功の場合
-} else {
-    NULL; 
-}
-echo $result;
-// if ($mail == 1) {
-//     //メールアドレス取得
-//     $message="無料会員登録が完了しました。";
-//     my_send_mail($email_1,'会員登録完了お知らせ',$message);
-    
-
-//     function my_send_mail($mailto, $subject, $message)
-//         {
- 
-//             $message = mb_convert_encoding($message, "JIS", "UTF-8");
-//             $subject = mb_convert_encoding($subject, "JIS", "UTF-8");
- 
-//             $header ="From: NSCAジャパン <info@example.com>\n";
- 
-//             mb_send_mail($mailto, $subject, $message, $header);
-//         }
-//  } else {
-//     $wk_mail2 = FALSE;
-// }
-
-/****************************
-* journal更新用パラメーター設定
-*****************************/
-$param2 = [
-    'eibun_option_kbn'                  => $eibun_option_kbn,
-    'koshin_user_id'                    => "Web",
-    'koshin_nichiji'                    => date("Y/m/d H:i:s"),
-];
-// 登録処理
-$result = (new Tb_kaiin_journal())->updateMemberJournal($param2);
-
-// 登録失敗の場合
-if ($result == false) {
-    NULL;
-// 登録成功の場合
-} else {
-    NULL; 
-}
-echo $result;
-
-/****************************
-* 会員選択のレコード削除処理
-*****************************/
-// 削除処理
-$param3 = [
-    'kaiin_no'                          => 10251033,
-];
-$result = (new Tb_kaiin_sentaku())->deleteRec($param3);
-
-// 削除失敗の場合
-if ($result == false) {
-    NULL;
-// 削除成功の場合
-} else {
-    NULL; 
-}
-echo $result;
-
-/****************************
-* 会員選択作成用パラメーター設定
-*****************************/
-$param4 = [
-    'kaiin_no'                          => 10251033,
-    'meisho_cd_shikaku'                 => $meisho_cd_shikaku,
-    'biko_shikaku'                      => $biko_shikaku,
-    'sakujo_flg'                        => 0,
-    'sakusei_user_id'                   => "Web",
-    'koshin_user_id'                    => "Web",
-    'sakusei_nichiji'                   => date("Y/m/d H:i:s"),
-    'koshin_nichiji'                    => date("Y/m/d H:i:s"),
-];
-// 登録処理
-$result = (new Tb_kaiin_sentaku())->insertShikaku($param4);
-
-// 登録失敗の場合
-if ($result == false) {
-    NULL;
-// 登録成功の場合
-} else {
-    NULL; 
-}
-
-echo $result;
-
-$param5 = [
-    'kaiin_no'                          => 10251033,
-    'meisho_cd_chiiki'                  => $meisho_cd_chiiki,
-    'sakujo_flg'                        => 0,
-    'sakusei_user_id'                   => "Web",
-    'koshin_user_id'                    => "Web",
-    'sakusei_nichiji'                   => date("Y/m/d H:i:s"),
-    'koshin_nichiji'                    => date("Y/m/d H:i:s"),
-];
-// 登録処理
-$result = (new Tb_kaiin_sentaku())->insertChiiki($param5);
-
-// 登録失敗の場合
-if ($result == false) {
-    NULL;
-// 登録成功の場合
-} else {
-    NULL; 
-}
-
-echo $result;
-
-$param6 = [
-    'kaiin_no'                          => 10251033,
-    'meisho_cd_bunya'                   => $meisho_cd_bunya,
-    'biko_bunya'                        => $biko_bunya,
-    'sakujo_flg'                        => 0,
-    'sakusei_user_id'                   => "Web",
-    'koshin_user_id'                    => "Web",
-    'sakusei_nichiji'                   => date("Y/m/d H:i:s"),
-    'koshin_nichiji'                    => date("Y/m/d H:i:s"),
-];
-// 登録処理
-$result = (new Tb_kaiin_sentaku())->insertBunya($param6);
-
-// 登録失敗の場合
-if ($result == false) {
-    NULL;
-// 登録成功の場合
-} else {
-    NULL; 
+    // 戻り値に0設定
+    $result = 0;
 }
 
 echo $result;
 
 die();
-
-

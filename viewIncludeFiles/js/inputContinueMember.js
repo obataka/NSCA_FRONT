@@ -1,6 +1,29 @@
 (function ($) {
-
     $(document).ready(function () {
+        //その他記述欄の初期処理
+        //その他が選択されていない場合、非活性にする
+        $('#shikaku_sonota').prop('disabled', true);
+        $('#bunya_sonota').prop('disabled', true);
+
+        $(document).on('change', '#shikaku_99', function () {
+            if ($('#shikaku_99').is(':checked')) {
+                // ボタンを有効化
+                $('#shikaku_sonota').prop('disabled', false);
+            } else {
+                // ボタンを無効化
+                $('#shikaku_sonota').prop('disabled', true);
+            }
+        });
+
+        $(document).on('change', '#bunya_99', function () {
+            if ($('#bunya_99').is(':checked')) {
+                // ボタンを有効化
+                $('#bunya_sonota').prop('disabled', false);
+            } else {
+                // ボタンを無効化
+                $('#bunya_sonota').prop('disabled', true);
+            }
+        });
         /****************
          * //都道府県取得
          ****************/
@@ -15,7 +38,7 @@
                     getTodofukenList = JSON.parse(rtn);
                     $.each(getTodofukenList, function (i, value) {
                         $('#address_todohuken').append('<option name="' + value[2] + '" value="' + value[0] + '">' + value[1] + '</option>');
-                        $('#office_todohuken').append('<option  name="' + value[2] + '" value="' + value[0] + '">' + value[1] + '</option>');
+                        $('#office_todohuken').append('<option name="' + value[2] + '" value="' + value[0] + '">' + value[1] + '</option>');
                     });
                     // 修正で入力画面に戻ってきた時、都道府県のセレクトボックスの初期表示処理
                     var test1 = $('#sel_math').val();
@@ -208,6 +231,45 @@
         /***************************************************************
          * 選択済みのコンボ、ラジオ、チェックボックス初期表示処理
          ***************************************************************/
+        //会員種別ラジオボタン
+        var wk_kaiinType = $('#kaiinType').val();
+        var data = "";
+        data = `<th><span class="required">必須</span>学生証</th>
+                <td class="file">
+                    <label for="file_front" id="input_label_front" class="button">アップロード（表面）</label>
+                    <input type="file" id="file_front" name="file_front" accept="image/*">
+                    <ul class="error_ul">
+                        <li class="error" id="err_file_front"></li>
+                    </ul>
+                    <label for="file_back" id="input_label_back" class="button">アップロード（裏面）</label>
+                    <input type="file" id="file_back" name="file_back"  accept="image/*">
+                    <ul class="error_ul">
+						<li class="error" id="err_file_back"></li>
+					</ul>
+					<ul class="up_text">
+						<li>アップロードできるファイル形式は、JPG(jpg/jpeg)、PNG(png)、GIF(gif)となります。</li>
+						<li>学生会員の方は必ずアップロードしてください。</li>
+						<li>不鮮明なデータをお送り頂いた場合は、無効になります。</li>
+						<li>有効期限、顔写真が明瞭で、学生証と認識できるかを事前にご確認ください。</li>
+						<li>学生証の裏面に有効期限等がある場合は、裏面もアップロードしてください。</li>
+						<li>NSCAジャパンにて学生証を確認するまでは、お手続きは完了いたしません。<br>
+							学生証の確認には1週間程度かかる場合があります。</li>
+					</ul>
+				</td>
+                `;
+        if (wk_kaiinType != "") {
+            if (wk_kaiinType == "利用会員(無料)") {
+                $('#kaiin_select_0').prop("checked", true);
+                $('#gakuseisho').empty();
+            } else if (wk_kaiinType == "NSCA正会員") {
+                $('#kaiin_select_1').prop("checked", true);
+                $('#gakuseisho').empty();
+            } else if (wk_kaiinType == "学生会員") {
+                $('#kaiin_select_2').prop("checked", true);
+                $('#gakuseisho').append(data);
+            }
+        }
+
         //英文購読オプション
         var wk_sel_option = $('#wk_sel_option').val();
         if (wk_sel_option != "") {
@@ -473,6 +535,8 @@
          ************************/
         $("input:radio[name='kaiin_select']").change(function () {
             if ($("input:radio[id='kaiin_select_0']:checked").val()) {
+                $("#kaiin").text("利用会員(無料)");
+                $('#gakuseisho').empty();
                 //利用会員(無料)hidden設定
                 var sbt = $("input:radio[id='kaiin_select_0']:checked").val();
                 $("#kaiinSbt").val(sbt);
@@ -480,13 +544,17 @@
                 var test2 = $('label[for="' + test1 + '"]').text();
                 $('#kaiinType').val(test2);
             } else if ($("input:radio[id='kaiin_select_1']:checked").val()) {
+                $("#kaiin").text("NSCA正会員");
                 //NSCA正会員hidden設定
+                $('#gakuseisho').empty();
                 var sbt = $("input:radio[id='kaiin_select_1']:checked").val();
                 $("#kaiinSbt").val(sbt);
                 var test1 = $('[name="kaiin_select"]:checked').attr('id');
                 var test2 = $('label[for="' + test1 + '"]').text();
                 $('#kaiinType').val(test2);
             } else {
+                $("#kaiin").text("学生会員");
+                $('#gakuseisho').append(data);
                 //学生会員hidden設定
                 var sbt = $("input:radio[id='kaiin_select_2']:checked").val();
                 $("#kaiinSbt").val(sbt);

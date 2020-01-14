@@ -1110,8 +1110,6 @@
         //配列と配列の内容を入れる変数の宣言
         var shikakuVal = "";
         var shikakuText = "";
-        var arrShikakuText = [];
-        var arrShikakuVal = [];
         /************************
          * NSCA以外の認定資格チェンジイベント
          ************************/
@@ -1239,8 +1237,6 @@
         //配列と配列の内容を入れる変数の宣言
         var bunyaVal = "";
         var bunyaText = "";
-        var arrBunyaText = [];
-        var arrBunyaVal = [];
         //配列にチェックされた値とテキストを代入する
         $("#Bunya").on('change', "input[name='bunya']", function () {
             arrBunyaVal = $("input[name='bunya']:checked").map(function () {
@@ -1548,8 +1544,6 @@
             $("#err_mail_address_2").empty();
             $("#err_mail").empty();
             $("#err_merumaga").empty();
-            $("#err_pass_1").empty();
-            $("#err_pass_2").empty();
             $("#err_renraku_hoho").empty();
             $("#err_yubin").empty();
             $("#err_web").empty();
@@ -1584,8 +1578,6 @@
             $("#err_mail_address_2").html("");
             $("#err_mail").html("");
             $("#err_merumaga").html("");
-            $("#err_pass_1").html("");
-            $("#err_pass_2").html("");
             $("#err_renraku_hoho").html("");
             $("#err_yubin").html("");
             $("#err_web").html("");
@@ -1998,59 +1990,6 @@
                 wk_err_msg == "";
                 wk_err_msg = "メルマガ配信の希望を選択してください。";
                 $("#err_merumaga").html(wk_err_msg);
-            }
-
-            //パスワード未入力チェック
-            if ($("#pass_1").val() == "") {
-                wk_err_msg == "";
-                wk_err_msg = "パスワードを入力してください。";
-                $("#err_pass_1").html(wk_err_msg);
-                //エラー箇所にフォーカスを当てる
-                if (wk_focus_done == 0) {
-                    $("#pass_1").focus();
-                    wk_focus_done = 1;
-                }
-            }
-            //正しいパスワードチェック
-            if ($("#pass_1").val() !== "") {
-                var pass = $("#pass_1").val();
-                var re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d$@$!%*?&]{8,}/;
-                var pass = pass.match(re);
-                if (!pass) {
-                    wk_err_msg == "";
-                    wk_err_msg = "大文字と小文字のアルファベットおよび数字を1文字以上含む、" + "<br>" + "8桁以上のパスワードを入力してください。";
-                    $("#err_pass_1").html(wk_err_msg);
-                    //エラー箇所にフォーカスを当てる
-                    if (wk_focus_done == 0) {
-                        $("#pass_1").focus();
-                        wk_focus_done = 1;
-                    }
-                }
-            }
-            //確認用パスワード未入力チェック
-            if ($("#pass_2").val() == "") {
-                wk_err_msg == "";
-                wk_err_msg = "確認用パスワードを入力してください。";
-                $("#err_pass_2").html(wk_err_msg);
-                //エラー箇所にフォーカスを当てる
-                if (wk_focus_done == 0) {
-                    $("#pass_2").focus();
-                    wk_focus_done = 1;
-                }
-            }
-            //パスワード一致チェック
-            if ($("#pass_1").val() !== "" && $("#pass_2").val() !== "") {
-                if ($("#pass_1").val() !== $("#pass_2").val()) {
-                    wk_err_msg == "";
-                    wk_err_msg = "パスワードと確認用パスワードが一致していません。";
-                    $("#err_pass_1").html(wk_err_msg);
-                    $("#err_pass_2").html(wk_err_msg);
-                    //エラー箇所にフォーカスを当てる
-                    if (wk_focus_done == 0) {
-                        $("#pass_2").focus();
-                        wk_focus_done = 1;
-                    }
-                }
             }
 
             //その他記述未入力チェック(NSCA以外の認定資格)

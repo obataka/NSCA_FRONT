@@ -1,4 +1,5 @@
 <?php
+
 namespace Was;
 
 class Tb_kaiin_joho
@@ -30,18 +31,18 @@ SQL;
             $sth->execute([':loginId' => $loginId,]);
             $kaiinJoho = $sth->fetch();
         } catch (\PDOException $e) {
-            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
+            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
             $kaiinJoho = [];
         }
 
         return $kaiinJoho;
     }
 
-   /* 該当日の会員番号の最大値を取得する
+    /* 該当日の会員番号の最大値を取得する
     * @param varchar $kaiin_no
     * @return array|mixed
     */
-   public function findMemberNo($kaiin_no)
+    public function findMemberNo($kaiin_no)
     {
         try {
             $db = Db::getInstance();
@@ -85,7 +86,7 @@ SQL;
      * @param array $param
      * @return boolean
      */
-    public function insertRec ($param)
+    public function insertRec($param)
     {
         $db = Db::getInstance();
         $db->beginTransaction();
@@ -358,7 +359,7 @@ SQL;
             ]);
             $db->commit();
         } catch (\PDOException $e) {
-            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/sugai_log.txt');
+            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/sugai_log.txt');
             $db->rollBack();
             return FALSE;
         }
@@ -371,7 +372,8 @@ SQL;
      * @param array $param
      * @return boolean
      */
-    public function insertRec_noTran($db, $param) {
+    public function insertRec_noTran($db, $param)
+    {
 
         try {
             $sql = <<<SQL
@@ -642,27 +644,21 @@ SQL;
                 ':kako_shikaku_umu_kbn'             => $param['kako_shikaku_umu_kbn'],
             ]);
         } catch (\PDOException $e) {
-            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
+            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
             return FALSE;
         }
         return TRUE;
     }
 
-    public function findBykaiinjoho()
+    public function findBykaiinjoho($param)
     {
-        $wk_kaiin_no = "";
-        // if (isset($_SESSION['kaiin_no'])) {
-        //         $wk_kaiin_no = $_SESSION['kaiin_no'];
-        // }
-        //$wk_kaiin_no = 10251033;
-        $wk_kaiin_no = 819121118;
         try {
             $db = Db::getInstance();
             $sth = $db->prepare("SELECT * FROM tb_kaiin_joho LEFT JOIN tb_kaiin_jotai ON tb_kaiin_joho.kaiin_no = tb_kaiin_jotai.kaiin_no
                                  AND tb_kaiin_jotai.sakujo_flg = 0 LEFT JOIN tb_kaiin_sonota ON tb_kaiin_joho.kaiin_no = tb_kaiin_sonota.kaiin_no
                                  AND tb_kaiin_sonota.sakujo_flg = 0 LEFT JOIN tb_kaiin_journal ON tb_kaiin_joho.kaiin_no = tb_kaiin_journal.kaiin_no
                                  AND tb_kaiin_journal.sakujo_flg = 0 WHERE tb_kaiin_joho.kaiin_no = :kaiin_no AND tb_kaiin_joho.sakujo_flg = 0");
-            $sth->execute([':kaiin_no' => $wk_kaiin_no,]);
+            $sth->execute([':kaiin_no' => $param['kaiin_no'],]);
             // $sth->execute([':kaiin_no' => $kaiin_no,]);
             $Tb_kaiin_joho = $sth->fetch();
         } catch (\PDOException $e) {
@@ -677,16 +673,10 @@ SQL;
     * @param array $param
     * @return boolean
     */
-    public function updateMember($param)
+    public function updateMember($db, $param)
     {
-         // if (isset($_SESSION['kaiin_no'])) {
-         //         $wk_kaiin_no = $_SESSION['kaiin_no'];
-         // }
-         //$wk_kaiin_no = 819121118;
-         $db = Db::getInstance();
-         $db->beginTransaction();
-         try {
-                $sql = <<<SQL
+        try {
+            $sql = <<<SQL
                 UPDATE tb_kaiin_joho
                 SET
                       shimei_sei            = :shimei_sei
@@ -726,10 +716,11 @@ SQL;
                     , koshin_user_id        = :koshin_user_id
                     , koshin_nichiji        = :koshin_nichiji
                 WHERE
-                      kaiin_no = 819121118;
+                      kaiin_no = :kaiin_no;
 SQL;
-                $sth = $db->prepare($sql);
-                $sth->execute([
+            $sth = $db->prepare($sql);
+            $sth->execute([
+                ':kaiin_no'                         => $param['kaiin_no'],
                 ':shimei_sei'                       => $param['shimei_sei'],
                 ':shimei_mei'                       => $param['shimei_mei'],
                 ':furigana_sei'                     => $param['furigana_sei'],
@@ -766,10 +757,9 @@ SQL;
                 ':nagareyama_shimin'                => $param['nagareyama_shimin'],
                 ':koshin_user_id'                   => $param['koshin_user_id'],
                 ':koshin_nichiji'                   => $param['koshin_nichiji'],
-                ]);
-            $db->commit();
+            ]);
         } catch (\PDOException $e) {
-            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/sugai_log.txt');
+            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/sugai_log.txt');
             $db->rollBack();
             return FALSE;
         }
@@ -798,16 +788,16 @@ SQL;
     }
 
     /**
-    * パスワード更新処理
-    * @param array $param
-    * @return boolean
-    */
+     * パスワード更新処理
+     * @param array $param
+     * @return boolean
+     */
     public function updatePassword($param)
     {
-         $db = Db::getInstance();
-         $db->beginTransaction();
-         try {
-                $sql = <<<SQL
+        $db = Db::getInstance();
+        $db->beginTransaction();
+        try {
+            $sql = <<<SQL
                 UPDATE tb_kaiin_joho
                 SET
                       my_page_password      = :my_page_password
@@ -818,11 +808,11 @@ SQL;
                   AND toroku_jokyo_kbn = 1
                   AND sakujo_flg = 0;
 SQL;
-                $sth = $db->prepare($sql);
-                $sth->execute([
+            $sth = $db->prepare($sql);
+            $sth->execute([
                 ':kaiin_no'                       => $param['kaiin_no'],
                 ':my_page_password'               => $param['my_page_password'],
-                ]);
+            ]);
             $db->commit();
         } catch (\PDOException $e) {
             $db->rollBack();
@@ -873,7 +863,7 @@ WHERE joho.kaiin_no = :kaiin_no
             $sth->execute([':kaiin_no' => $kaiinNo]);
             $kaiinJoho  = $sth->fetch();
         } catch (\PDOException $e) {
-            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
+            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
             $kaiinJoho = [];
         }
         return $kaiinJoho;
@@ -935,8 +925,8 @@ WHERE joho.kaiin_no = :kaiin_no
     */
     public function torokuJohoKbn($db, $param2)
     {
-         try {
-                $sql = <<<SQL
+        try {
+            $sql = <<<SQL
                 UPDATE tb_kaiin_joho
                 SET
                       toroku_jokyo_kbn              = :toroku_jokyo_kbn
@@ -944,35 +934,17 @@ WHERE joho.kaiin_no = :kaiin_no
                 WHERE
                       kaiin_no = :kaiin_no;
 SQL;
-                $sth = $db->prepare($sql);
-                $sth->execute([
-                    ':toroku_jokyo_kbn'         => $param2['toroku_jokyo_kbn'],
-                    ':koshin_user_id'           => $param2['koshin_user_id'],
-                    ':kaiin_no'                 => $param2['kaiin_no'],
-                ]);
+            $sth = $db->prepare($sql);
+            $sth->execute([
+                ':toroku_jokyo_kbn'         => $param2['toroku_jokyo_kbn'],
+                ':koshin_user_id'           => $param2['koshin_user_id'],
+                ':kaiin_no'                 => $param2['kaiin_no'],
+            ]);
         } catch (\PDOException $e) {
-            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
+            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
             $db->rollBack();
             return FALSE;
         }
         return TRUE;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

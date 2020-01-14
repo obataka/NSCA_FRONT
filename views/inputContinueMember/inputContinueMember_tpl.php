@@ -94,7 +94,7 @@
 						<tr class="kaiin">
 							<th><span class="any"></span>会員種別</th>
 							<td>
-								<p><?php echo $wk_kaiinType; ?></p>
+								<p><span id="kaiin"><?php echo $wk_kaiinType; ?></span></p>
 
 								<input id="kaiin_select_0" type="radio" name="kaiin_select" value="0">
 								<label for="kaiin_select_0">利用会員(無料)</label>
@@ -110,39 +110,17 @@
 								<p class="ti">正会員と学生会員にオプションとしてつけることができます。詳しくは<a href="#" class="td_under">こちら</a>をご覧ください。</p>
 							</td>
 						</tr>
+						<tr id="gakuseisho">
+						</tr>
 						<?php if ($wk_kaiinType == "学生会員") {
-							print '<tr>
-								<th><span class="required">必須</span>学生証</th>
-								<td class="file">
-									<label for="file_front" id="input_label_front" class="button">アップロード（表面）</label>
-									<input type="file" id="file_front" name="file_front" accept="image/*">';
 							if (move_uploaded_file($_FILES['file_front']['tmp_name'], $filePath_front)) {
 								chmod('../upload/' . $_FILES["file_front"]["name"], 0644);
-								print '<img src="' . $filePath_front . '">';
+								echo '<img src="' . $filePath_front . '">';
 							}
-							print '<ul class="error_ul">
-										<li class="error" id="err_file_front"></li>
-									</ul>
-										<label for="file_back" id="input_label_back" class="button">アップロード（裏面）</label>
-										<input type="file" id="file_back" name="file_back"  accept="image/*">';
 							if (move_uploaded_file($_FILES['file_back']['tmp_name'], $filePath_back)) {
 								chmod('../upload/' . $_FILES["file_back"]["name"], 0644);
-								print '<img src="' . $filePath_back . '">';
+								echo '<img src="' . $filePath_back . '">';
 							}
-							print '<ul class="error_ul">
-										<li class="error" id="err_file_back"></li>
-									</ul>
-									<ul class="up_text">
-										<li>アップロードできるファイル形式は、JPG(jpg/jpeg)、PNG(png)、GIF(gif)となります。</li>
-										<li>学生会員の方は必ずアップロードしてください。</li>
-										<li>不鮮明なデータをお送り頂いた場合は、無効になります。</li>
-										<li>有効期限、顔写真が明瞭で、学生証と認識できるかを事前にご確認ください。</li>
-										<li>学生証の裏面に有効期限等がある場合は、裏面もアップロードしてください。</li>
-										<li>NSCAジャパンにて学生証を確認するまでは、お手続きは完了いたしません。<br>
-											学生証の確認には1週間程度かかる場合があります。</li>
-									</ul>
-								</td>
-							</tr>';
 						} ?>
 					</table>
 				</div>
