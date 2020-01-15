@@ -12,25 +12,41 @@ class Tb_ceu_quiz_joho
         try {
             // DB接続
             $db = Db::getInstance();
-            $sth = $db->prepare("SELECT * FROM (SELECT DISTINCT tb_ceu_quiz_joho.kanren_kiji_url, tb_ceu_quiz_joho.shutoku_naiyo,
-                                tb_ceu_quiz_joho.ceu_id, tb_ceu_quiz_joho_meisai.kaiin_no, ISNULL(tb_ceu_quiz_joho_meisai.gohi_kbn,2),
-                                tb_ceu_quiz_joho_meisai.nonyubi, tb_ceu_quiz_joho.keisai_kaishi_kikan, tb_ceu_quiz_joho.keisai_shuryo_kikan,
-                                tb_ceu_quiz_joho.sankaryo, ROW_NUMBER() OVER(PARTITION BY tb_ceu_quiz_joho.ceu_id ORDER BY tb_ceu_quiz_joho_meisai.gohi_kbn) ROWNUM
-                                FROM tb_ceu_quiz_joho
-                                LEFT JOIN tb_ceu_quiz_joho_meisai
-                                ON tb_ceu_quiz_joho.ceu_id = tb_ceu_quiz_joho_meisai.ceu_id
-                                AND tb_ceu_quiz_joho_meisai.kaiin_no = :kaiin_no
-                                AND tb_ceu_quiz_joho_meisai.sakujo_flg = 0
-                                AND ((tb_ceu_quiz_joho_meisai.nonyu_hoho_kbn IS NOT NULL)
-                                OR (tb_ceu_quiz_joho.sankaryo = 0.00))
-                                WHERE tb_ceu_quiz_joho.keisai_kaishi_kikan < now()
-                                AND tb_ceu_quiz_joho.keisai_shuryo_kikan > now()
-                                ) a
-                                WHERE a.ROWNUM = 1
-                                ORDER BY tb_ceu_quiz_joho.keisai_kaishi_kikan DESC, tb_ceu_quiz_joho.ceu_id DESC
-                                ");
+            $sth = $db->prepare("SELECT *
+        FROM
+            (
+                SELECT DISTINCT
+                    tb_ceu_quiz_joho.kanren_kiji_url,
+                    tb_ceu_quiz_joho.shutoku_naiyo,
+                    tb_ceu_quiz_joho.ceu_id,
+                    tb_ceu_quiz_joho_meisai.kaiin_no,
+                    CASE
+                        WHEN tb_ceu_quiz_joho_meisai.gohi_kbn IS NULL THEN 2
+                        ELSE tb_ceu_quiz_joho_meisai.gohi_kbn
+                    END gohi_kbn,
+                    tb_ceu_quiz_joho_meisai.nonyubi,
+                    tb_ceu_quiz_joho.keisai_kaishi_kikan,
+                    tb_ceu_quiz_joho.keisai_shuryo_kikan,
+                    tb_ceu_quiz_joho.sankaryo
+                FROM
+                    tb_ceu_quiz_joho
+                    LEFT JOIN tb_ceu_quiz_joho_meisai
+                    ON  tb_ceu_quiz_joho.ceu_id = tb_ceu_quiz_joho_meisai.ceu_id
+                    AND tb_ceu_quiz_joho_meisai.kaiin_no = :kaiin_no
+                    AND tb_ceu_quiz_joho_meisai.sakujo_flg = 0
+                    AND ((tb_ceu_quiz_joho_meisai.nonyu_hoho_kbn IS NOT NULL) OR
+                         (tb_ceu_quiz_joho.sankaryo = 0.00))
+                WHERE
+                    tb_ceu_quiz_joho.keisai_kaishi_kikan < now()
+                AND tb_ceu_quiz_joho.keisai_shuryo_kikan > now()
+                ORDER BY tb_ceu_quiz_joho_meisai.ceu_quiz_meisai_id DESC
+            ) a
+        ORDER BY
+            a.keisai_kaishi_kikan DESC,
+            a.ceu_id DESC");
             $sth->execute([':kaiin_no' => $param['kaiin_no'],]);
-            $Tb_ceu_quiz_joho = $sth->fetch();
+            $Tb_ceu_quiz_joho = $sth->fetchAll();
+            error_log(print_r($Tb_ceu_quiz_joho, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanihara_select_log.txt');
         } catch (\PDOException $e) {
             $Tb_ceu_quiz_joho = [];
         }

@@ -26,6 +26,9 @@
     <body>
 		<header id="header">
 		</header>
+		<form action="../inputAnswer/inputAnswer_tpl.php" method="post">
+				<input type="hidden" name="ceu_id1" id="ceu_id1" value="<?php echo $ceu_id1; ?>">
+				<input type="hidden" name="ceu_id2" id="ceu_id2" value="<?php echo $ceu_id2; ?>">
 			<div class="wrap mh_c">
 				<h2>CEUクイズ</h2>
 				<div class="content_wrap">
@@ -33,35 +36,36 @@
 					
 					<table>
 						<tr>
-							<th>テキストテキストテキスト(0000年00月号)</th>
+							<th id="txt1">テキストテキストテキスト(0000年00月号)</th>
 							<td>
 								<div class="btn">
-									<button class="button" onclick="location.href='#'"><span>解答</span></button>
-									<button class="button" onclick="location.href='#'"><span>関連記事</span></button>
+									<button class="button kaito1" onclick="location.href='#'"><span>解答</span></button>
+									<button class="button kiji1" onclick="location.href='#'"><span>関連記事</span></button>
 								</div>
 							</td>
 						</tr>
 						<tr>
-							<th>テキストテキストテキスト(0000年00月号)</th>
+							<th id="txt2">テキストテキストテキスト(0000年00月号)</th>
 							<td>
 								<div class="btn">
-									<button class="button" onclick="location.href='#'"><span>解答</span></button>
-									<button class="button" onclick="location.href='#'"><span>関連記事</span></button>
+									<button class="button kaito2" onclick="location.href='#'"><span>解答</span></button>
+									<button class="button kiji2" onclick="location.href='#'"><span>関連記事</span></button>
 								</div>
 							</td>
 						</tr>
 						<tr>
-							<th>テキストテキストテキスト(0000年00月号)</th>
+							<th id="txt3">テキストテキストテキスト(0000年00月号)</th>
 							<td>
 								<div class="btn">
-									<button class="button" onclick="location.href='#'"><span>解答</span></button>
-									<button class="button" onclick="location.href='#'"><span>関連記事</span></button>
+									<button class="button kaito3" onclick="location.href='#'"><span>解答</span></button>
+									<button class="button kiji3" onclick="location.href='#'"><span>関連記事</span></button>
 								</div>
 							</td>
 						</tr>
 					</table>
 				</div>
 			</div>
+		</form>
 		<footer id="footer">
 		</footer>
 	</body>
