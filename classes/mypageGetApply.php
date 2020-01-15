@@ -31,15 +31,17 @@ $page_no = 1;
 *イベント情報取得 
 *************************************************************/
 
-$result_event = (new Tb_ceu_joho())->findByKaiinNoMimoushikomi($kaiin_no);
+// 会員情報
+$result_apply = (new Tb_ceu_joho())->findByKaiinNoMoushikomiZumi($kaiin_no);
 
 // 該当データありの場合
-if ($result_event != "") {
-	$result = $result_event;
+if ($result_apply != "") {
+	$result = $result_apply;
 
 }else{
 	$result = 0;
 }
+
 
 
    error_log(print_r($result, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka_log.txt');

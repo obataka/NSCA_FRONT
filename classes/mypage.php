@@ -8,7 +8,6 @@ require './DBAccess/Db.php';
 require './DBAccess/Tb_kaiin_joho.php';
 require './DBAccess/Tb_nintei_meisai.php';
 require './DBAccess/Tb_kaiin_ceu.php';
-require './DBAccess/Tb_ceu_joho.php';
 
 $ret = 0;
 
@@ -33,14 +32,9 @@ $result_kaiin = (new Tb_kaiin_joho())->findByKaiinNo($kaiin_no);
 // 該当データなしの場合
 if ($result_kaiin == "") {
     $ret = 0;
-
 // 該当データありの場合
 } else {
-
-$result = $result_kaiin;
-//$result['my_page_password'] 
-//    $ret = json_encode($result);
-
+	$result = $result_kaiin;
 }
 
 
@@ -62,7 +56,6 @@ if ($result_cscs != "") {
 
 	// 会員情報
 	$result_ceu_cscs = (new Tb_kaiin_ceu())->findCscsByKaiinNo($kaiin_no);
-   error_log(print_r("-----------", true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka_log.txt');
 
 	// 該当データありの場合
 	if ($result_ceu_cscs != "") {

@@ -24,7 +24,7 @@ class Tb_nintei_meisai
 						, DATE_FORMAT(kiso_gokakubi,'%Y/%m/%d') as kiso_gokkubi_c
 						, DATE_FORMAT(jissen_gokakubi,'%Y/%m/%d') as jissen_gokakubi_c
 						, d_shinsei_kbn as d_shinsei_kbn_c
-						, yuko_kigen as yuko_kigen_c
+						, DATE_FORMAT(yuko_kigen,'%Y/%m/%d') as yuko_kigen_c
 						, DATE_FORMAT(torikeshi_hizuke,'%Y/%m/%d') as torikeshi_hizuke_c
                      FROM tb_nintei_meisai
                      WHERE kaiin_no = :kaiin_no
@@ -55,7 +55,7 @@ class Tb_nintei_meisai
 						, DATE_FORMAT(kiso_gokakubi,'%Y/%m/%d') as kiso_gokkubi_n
 						, DATE_FORMAT(jissen_gokakubi,'%Y/%m/%d') as jissen_gokakubi_n
 						, d_shinsei_kbn as d_shinsei_kbn_n
-						, yuko_kigen as yuko_kigen_n
+						, DATE_FORMAT(yuko_kigen,'%Y/%m/%d') as yuko_kigen_n
 						, DATE_FORMAT(torikeshi_hizuke,'%Y/%m/%d') as torikeshi_hizuke_n
                      FROM tb_nintei_meisai
                      WHERE kaiin_no = :kaiin_no

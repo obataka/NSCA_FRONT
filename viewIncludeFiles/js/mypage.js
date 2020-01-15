@@ -60,13 +60,27 @@
 
                         tbEventJoho = JSON.parse(rtn);
 
-//for(tbEventJoho i = 0; i < tbEventJoho.length; i++) {
-//  tbEventJoho[i]["ceu_id"]
-//  tbEventJoho[i]["shutoku_naiyo"]
-//}
-//                        $('#kaiin_no').html(tbKaiinJoho["kaiin_no"]);
-//alert("---");
-//alert(tbEventJoho[0]["shutoku_naiyo"]);
+					// イベント表示件数2件分ループ処理する
+					for(var i = 0; i < 2 ; i++) {
+						// データがある場合はデータをセットする
+						if(i < tbEventJoho.length){
+							$("#event_list"+(i+1)).show();
+				            $("#event_meisho"+(i+1)).html(tbEventJoho[i]["meisho"]);
+				            $("#event_naiyo"+(i+1)).html(tbEventJoho[i]["shutoku_naiyo"]);
+							if(tbEventJoho[i]["nokori"] == 0){
+								$("#event_nokori"+(i+1)).hide();
+							}else{
+								$("#event_nokori"+(i+1)).show();
+							}
+						// データがない場合は非表示にする
+						}else{
+							$("#event_list"+(i+1)).hide();
+//							$("#event_meisho"+(i+1)).hide();
+//							$("#event_naiyo"+(i+1)).hide();
+//							$("#event_nokori"+(i+1)).hide();
+//							$("#event_button"+(i+1)).hide();
+						}
+					}
 				}
             },
             fail: function(rtn) {
@@ -77,6 +91,83 @@
             }
     });
 
+
+	/************************************************************
+	*申込状況情報取得
+	*************************************************************/
+    jQuery.ajax({
+        url:  '../../classes/mypageGetApply.php',
+        type: 'POST',
+        success: function(rtn) {
+
+            // 申込状況情、該当なし
+                if (rtn == 0) {
+//		            $("#err_pass_1").html("現在申込情報がございません");
+				} else {
+
+                        tbEventJoho = JSON.parse(rtn);
+
+					// イベント表示件数4件分ループ処理する
+					for(var i = 0; i < 4 ; i++) {
+						// データがある場合はデータをセットする
+						if(i < tbEventJoho.length){
+							$("#apply_list"+(i+1)).show();
+				            $("#apply_naiyo"+(i+1)).html(tbEventJoho[i]["shutoku_naiyo"]);
+				            $("#apply_button"+(i+1)).text(tbEventJoho[i]["button_text"]);
+						// データがない場合は非表示にする
+						}else{
+							$("#apply_list"+(i+1)).hide();
+//							$("#apply_naiyo"+(i+1)).hide();
+//							$("#apply_button"+(i+1)).hide();
+						}
+					}
+				}
+            },
+            fail: function(rtn) {
+                return false;
+            },
+            error: function(rtn) {
+                return false;
+            }
+    });
+
+
+
+	/************************************************************
+	*支払情報取得
+	*************************************************************/
+    jQuery.ajax({
+        url:  '../../classes/mypageGetPayment.php',
+        type: 'POST',
+        success: function(rtn) {
+
+            // 申込状況情、該当なし
+                if (rtn == 0) {
+//		            $("#err_pass_1").html("現在支払い情報がございません");
+				} else {
+
+                        tbEventJoho = JSON.parse(rtn);
+
+					// イベント表示件数4件分ループ処理する
+					for(var i = 0; i < 4 ; i++) {
+						// データがある場合はデータをセットする
+						if(i < tbEventJoho.length){
+							$("#payment_list"+(i+1)).show();
+				            $("#payment_naiyo"+(i+1)).html(tbEventJoho[i]["shutoku_naiyo"]);
+						// データがない場合は非表示にする
+						}else{
+							$("#payment_list"+(i+1)).hide();
+						}
+					}
+				}
+            },
+            fail: function(rtn) {
+                return false;
+            },
+            error: function(rtn) {
+                return false;
+            }
+    });
 
 
 
