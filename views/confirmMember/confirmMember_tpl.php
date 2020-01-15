@@ -42,8 +42,8 @@
 			
 			<div class="shinki_toroku">
 				<form action="?" method="post" autocomplete="off" id="confirmForm" enctype="multipart/form-data">
-					<input type="hidden" name="kaiinType" id="kaiinType" value="<?php echo $wk_kaiinType ?>">
-					<input type="hidden" name="kaiinSbt" id="kaiinSbt" value="<?php echo $wk_kaiinSbt ?>">
+					<input type="hidden" name="kaiinType" id="kaiinType" value="<?php echo $wk_kaiinType; ?>">
+					<input type="hidden" name="kaiinSbt" id="kaiinSbt" value="<?php echo $wk_kaiinSbt; ?>">
 					<input type="hidden" name="sel_option" id="sel_option" value="<?php echo $option; ?>">
 					<input type="hidden" name="wk_sel_option" id="wk_sel_option" value="<?php echo $wk_sel_option; ?>">
 					<input type="hidden" name="sel_riyu" id="sel_riyu" value="<?php echo $riyu; ?>">

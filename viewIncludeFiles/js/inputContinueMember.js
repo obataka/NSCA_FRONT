@@ -1,26 +1,22 @@
 (function ($) {
     $(document).ready(function () {
-        //その他記述欄の初期処理
-        //その他が選択されていない場合、非活性にする
-        $('#shikaku_sonota').prop('disabled', true);
-        $('#bunya_sonota').prop('disabled', true);
 
         $(document).on('change', '#shikaku_99', function () {
             if ($('#shikaku_99').is(':checked')) {
-                // ボタンを有効化
+                // テキストボックスを有効化
                 $('#shikaku_sonota').prop('disabled', false);
             } else {
-                // ボタンを無効化
+                // テキストボックスを無効化
                 $('#shikaku_sonota').prop('disabled', true);
             }
         });
 
         $(document).on('change', '#bunya_99', function () {
             if ($('#bunya_99').is(':checked')) {
-                // ボタンを有効化
+                // テキストボックスを有効化
                 $('#bunya_sonota').prop('disabled', false);
             } else {
-                // ボタンを無効化
+                // テキストボックスを無効化
                 $('#bunya_sonota').prop('disabled', true);
             }
         });
@@ -137,6 +133,14 @@
                             $(wk_sel_shikaku_name).prop("checked", true);
                         });
                     }
+                    //テキストボックス初期表示処理
+                    if ($('#shikaku_99').is(':checked')) {
+                        // テキストボックスを有効化
+                        $('#shikaku_sonota').prop('disabled', false);
+                    } else {
+                        // テキストボックスを無効化
+                        $('#shikaku_sonota').prop('disabled', true);
+                    }
                 }
             },
             fail: function (rtn) {
@@ -218,6 +222,15 @@
                             $(wk_sel_bunya_name).prop("checked", true);
                         });
                     }
+                    //テキストボックス初期表示処理
+                    if ($('#bunya_99').is(':checked')) {
+                        // テキストボックスを有効化
+                        $('#bunya_sonota').prop('disabled', false);
+                    } else {
+                        // テキストボックスを無効化
+                        $('#bunya_sonota').prop('disabled', true);
+                    }
+
                 }
             },
             fail: function (rtn) {
@@ -296,12 +309,6 @@
         var wk_sel_nagareyama = $('#wk_sel_nagareyama').val();
         if (wk_sel_nagareyama != "") {
             $('input[name="nagareyama"]').prop("checked", true);
-        }
-
-        //メール受信希望のメールアドレスボタン
-        var wk_sel_mail = $('#wk_sel_mail').val();
-        if (wk_sel_mail != "") {
-            $('input:radio[name="mail"]').val([wk_sel_mail]);
         }
 
         //メルマガ受信希望ボタン
@@ -572,13 +579,13 @@
                 //チェックありのhidden設定
                 var wa = 1;
                 $("#wk_sel_option").val(wa);
-                var test = '英文購読オプションあり';
+                var test = 'あり';
                 $('#sel_option').val(test);
             } else {
                 //チェックなしのhidden設定
                 var wa = 0;
                 $("#wk_sel_option").val(wa);
-                var test = '英文購読オプションなし';
+                var test = 'なし';
                 $('#sel_option').val(test);
             }
         });
@@ -643,27 +650,6 @@
                 var test = '流山市民ではありません。';
                 $('#sel_nagareyama').val(test);
                 var wawawa = $('#sel_nagareyama').val();
-            }
-        });
-
-        // /************************
-        //  * メールアドレスボタンチェンジイベント
-        //  ************************/
-        $("input:radio[name='mail']").change(function () {
-            //アドレス1hidden設定
-            if ($("input:radio[id='mail_1']:checked").val()) {
-                var wa = $("input:radio[id='mail_1']:checked").val();
-                $("#wk_sel_mail").val(wa);
-                var test1 = $('[name="mail"]:checked').attr('id');
-                var test2 = $('label[for="' + test1 + '"]').text();
-                $('#sel_mail').val(test2);
-            } else {
-                //アドレス2hidden設定
-                var wa = $("input:radio[id='mail_2']:checked").val();
-                $("#wk_sel_mail").val(wa);
-                var test1 = $('[name="mail"]:checked').attr('id');
-                var test2 = $('label[for="' + test1 + '"]').text();
-                $('#sel_mail').val(test2);
             }
         });
 
@@ -881,13 +867,7 @@
             $("#err_tel").html("");
             $("#err_keitai_tel").html("");
             $("#err_fax").html("");
-            $("#err_mail_address_1").html("");
-            $("#err_mail_address_2").html("");
-            $("#err_mail").html("");
-            $("#err_mail_login").html("");
             $("#err_merumaga").html("");
-            $("#err_pass_1").html("");
-            $("#err_pass_2").html("");
             $("#err_renraku_hoho").html("");
             $("#err_yubin").html("");
             $("#err_web").html("");
@@ -1262,87 +1242,6 @@
                 }
             }
 
-            //ログインするアドレスのチェックボックスが未選択の時 
-            if (!$("input:radio[name='mail_login']:checked").val()) {
-                //チェックされていない場合
-                wk_err_msg == "";
-                wk_err_msg = "ログインする時のメールアドレスを選択してください。";
-                $("#err_mail_address_2").html(wk_err_msg);
-            }
-
-            //ログインするメールアドレスが1の時、メールアドレス1の未入力チェック 
-            if ($("input:radio[id='mail_login_1']:checked").val()) {
-                if (!$('#mail_address_1').val()) {
-                    wk_err_msg == "";
-                    wk_err_msg = "ログイン時のメールアドレスを入力してください。";
-                    $("#err_mail_address_2").html(wk_err_msg);
-                }
-            }
-
-            //ログインするメールアドレスが2の時、メールアドレス2の未入力チェック 
-            if ($("input:radio[id='mail_login_2']:checked").val()) {
-                if (!$('#mail_address_2').val()) {
-                    wk_err_msg == "";
-                    wk_err_msg = "ログイン時のメールアドレスを入力してください。";
-                    $("#err_mail_address_2").html(wk_err_msg);
-                }
-            }
-
-            //メールアドレス1・メールアドレス2未入力チェック
-            if ($("#mail_address_1").val() == "" && $("#mail_address_2").val() == "") {
-                wk_err_msg == "";
-                wk_err_msg = "メールアドレス1またはメールアドレス2のいずれかを入力してください。";
-                $("#err_mail_address_1").html(wk_err_msg);
-                //エラー箇所にフォーカスを当てる
-                if (wk_focus_done == 0) {
-                    $("#mail_address_1").focus();
-                    wk_focus_done = 1;
-                }
-            }
-
-            //メール受信希望未選択チェック
-            if (!$("input:radio[name='mail']:checked").val()) {
-                //if (!$('input[name="mail"]').prop('checked')) {     
-                //チェックされていない場合
-                wk_err_msg == "";
-                wk_err_msg = "メール受信希望のメールアドレスを選択してください。";
-                $("#err_mail").html(wk_err_msg);
-            }
-
-            //メール受信希望1選択時チェック
-            if ($('input[id="mail_1"]').prop('checked')) {
-                //if  ($('input:radio[id="mail_1"]:checked').val()) {     
-                if ($("#mail_address_1").val() == "") {
-                    $("#err_mail_address_2").html("");
-                    wk_err_msg == "";
-                    wk_err_msg = "メールアドレス_1を入力してください。";
-                    $("#err_mail_address_1").html(wk_err_msg);
-                }
-            }
-            //メール受信希望2選択時チェック
-            if ($('input[id="mail_2"]').prop('checked')) {
-                //if  ($('input:radio[id="mail_2"]:checked').val()) {
-                if ($("#mail_address_2").val() == "") {
-                    $("#err_mail_address_1").html("");
-                    wk_err_msg == "";
-                    wk_err_msg = "メールアドレス_2を入力してください。";
-                    $("#err_mail_address_2").html(wk_err_msg);
-                }
-            }
-            //メールアドレス1未使用チェック
-            if ($("#mail_address_1").val() != "" && $('input[id="mail_1"]').prop('checked') == false && $('input[id="mail_login_1"]').prop('checked') == false) {
-                wk_err_msg == "";
-                wk_err_msg = "メール受信とログイン時にお使いにならないメールアドレス1を削除してください。";
-                $("#err_mail_login").html(wk_err_msg);
-            }
-
-            //メールアドレス2未使用チェック
-            if ($("#mail_address_2").val() != "" && $('input[id="mail_2"]').prop('checked') == false && $('input[id="mail_login_2"]').prop('checked') == false) {
-                wk_err_msg == "";
-                wk_err_msg = "メール受信とログイン時にお使いにならないメールアドレス2を削除してください。";
-                $("#err_mail_login").html(wk_err_msg);
-            }
-
             //メルマガ受信希望選択チェック
             if (!$('input:radio[name="merumaga"]:checked').val()) {
                 //チェックされていない場合
@@ -1351,211 +1250,16 @@
                 $("#err_merumaga").html(wk_err_msg);
             }
 
-            //メールアドレス1重複チェック 
-            if ($('#mail_address_1').val() !== "") {
-                jQuery.ajax({
-                    url: '../../classes/searchMailAddress1_2.php',
-                    type: 'POST',
-                    data:
-                    {
-                        //メールアドレスセット
-                        mail: $("#mail_address_1").val(),
-                    },
-                    success: function (rtn) {
-                        if (rtn == 0) {
-                            console.log(rtn);
-
-                            return false;
-                        } else {
-                            //登録済みの場合エラーメッセージを表示
-                            wk_err_msg == "";
-                            wk_err_msg = "すでにご登録頂いているメールアドレス1です。";
-                            $("#err_mail_address_1").html(wk_err_msg);
-                            //エラー箇所にフォーカスを当てる
-                            if (wk_focus_done == 0) {
-                                $("#mail_address_1").focus();
-                                wk_focus_done = 1;
-                            }
-                        }
-                    },
-                    fail: function (rtn) {
-                        return false;
-                    },
-                    error: function (rtn) {
-                        return false;
-                    }
-                });
-            }
-            //メールアドレス2重複チェック 
-            if ($('#mail_address_2').val() !== "") {
-                jQuery.ajax({
-                    url: '../../classes/searchMailAddress2_2.php',
-                    type: 'POST',
-                    data:
-                    {
-                        //メールアドレスセット
-                        mail: $("#mail_address_2").val(),
-                    },
-                    success: function (rtn) {
-                        if (rtn == 0) {
-                            console.log(rtn);
-
-                            return false;
-                        } else {
-                            //登録済みの場合エラーメッセージを表示
-                            wk_err_msg == "";
-                            wk_err_msg = "すでにご登録頂いているメールアドレス2です。";
-                            $("#err_mail_address_2").html(wk_err_msg);
-                            //エラー箇所にフォーカスを当てる
-                            if (wk_focus_done == 0) {
-                                $("#mail_address_2").focus();
-                                wk_focus_done = 1;
-                            }
-                        }
-                    },
-                    fail: function (rtn) {
-                        return false;
-                    },
-                    error: function (rtn) {
-                        return false;
-                    }
-                });
-            }
-            // //メルマガ配信を希望する、かつ、メールアドレス_1を選択している時のvalueの設定
-            // if ((document.getElementById("merumaga_1").checked == true) && (document.getElementById("mail_1").checked == true)) {
-            //     document.getElementById("mail_1").value = 1;
-            //     document.getElementById("mail_2").value = 0;
-            // }
-            // //メルマガ配信を希望する、かつ、メールアドレス_2を選択している時のvalueの設定
-            // if ((document.getElementById("merumaga_1").checked == true) && (document.getElementById("mail_2").checked == true)) {
-            //     document.getElementById("mail_1").value = 0;
-            //     document.getElementById("mail_2").value = 1;
-            // }
-            // //メルマガ配信を希望しないを選択している時のvalueの設定
-            // if (document.getElementById("merumaga_2").checked == true) {
-            //     document.getElementById("mail_1").value = 0;
-            //     document.getElementById("mail_2").value = 0;
-            // }
-
-            //メールアドレス1形式チェック 
-            var mail_regex1 = new RegExp('(?:[-!#-\'*+/-9=?A-Z^-~]+\.?(?:\.[-!#-\'*+/-9=?A-Z^-~]+)*|"(?:[!#-\[\]-~]|\\\\[\x09 -~])*")@[-!#-\'*+/-9=?A-Z^-~]+(?:\.[-!#-\'*+/-9=?A-Z^-~]+)*');
-            var mail_regex2 = new RegExp('^[^\@]+\@[^\@]+$');
-            if ($("#mail_address_1").val().match(mail_regex1) && $("#mail_address_1").val().match(mail_regex2)) {
-                // 全角チェック
-                if ($("#mail_address_1").val().match(/[^a-zA-Z0-9\!\"\#\$\%\&\'\(\)\=\~\|\-\^\\\@\[\;\:\]\,\.\/\\\<\>\?\_\`\{\+\*\} ]/)) {
-                    wk_err_msg == "";
-                    wk_err_msg = "メールアドレスに使用する文字を正しく入力してください。";
-                    $("#err_mail_address_1").html(wk_err_msg);
-                    //エラー箇所にフォーカスを当てる
-                    if (wk_focus_done == 0) {
-                        $("#mail_address_1").focus();
-                        wk_focus_done = 1;
-                    }
-                    return false;
-                }
-                // 末尾TLDチェック（〜.co,jpなどの末尾ミスチェック用）
-                if (!$("#mail_address_1").val().match(/\.[a-z]+$/)) {
-                    //TDLエラー
-                    wk_err_msg == "";
-                    wk_err_msg = "メールアドレスの形式が不正です。";
-                    $("#err_mail_address_1").html(wk_err_msg);
-                    //エラー箇所にフォーカスを当てる
-                    if (wk_focus_done == 0) {
-                        $("#mail_address_1").focus();
-                        wk_focus_done = 1;
-                    }
-                    return false;
-                }
-            }
-            //メールアドレス2形式チェック　
-            var mail_regex1 = new RegExp('(?:[-!#-\'*+/-9=?A-Z^-~]+\.?(?:\.[-!#-\'*+/-9=?A-Z^-~]+)*|"(?:[!#-\[\]-~]|\\\\[\x09 -~])*")@[-!#-\'*+/-9=?A-Z^-~]+(?:\.[-!#-\'*+/-9=?A-Z^-~]+)*');
-            var mail_regex2 = new RegExp('^[^\@]+\@[^\@]+$');
-            if ($("#mail_address_2").val().match(mail_regex1) && $("#mail_address_2").val().match(mail_regex2)) {
-                // 全角チェック
-                if ($("#mail_address_2").val().match(/[^a-zA-Z0-9\!\"\#\$\%\&\'\(\)\=\~\|\-\^\\\@\[\;\:\]\,\.\/\\\<\>\?\_\`\{\+\*\} ]/)) {
-                    wk_err_msg == "";
-                    wk_err_msg = "メールアドレスに使用する文字を正しく入力してください。";
-                    $("#err_mail_address_1").html(wk_err_msg);
-                    //エラー箇所にフォーカスを当てる
-                    if (wk_focus_done == 0) {
-                        $("#mail_address_2").focus();
-                        wk_focus_done = 1;
-                    }
-                    return false;
-                }
-                // 末尾TLDチェック（〜.co,jpなどの末尾ミスチェック用）
-                if (!$("#mail_address_2").val().match(/\.[a-z]+$/)) {
-                    //TDLエラー
-                    wk_err_msg == "";
-                    wk_err_msg = "メールアドレスの形式が不正です。";
-                    $("#err_mail_address_1").html(wk_err_msg);
-                    //エラー箇所にフォーカスを当てる
-                    if (wk_focus_done == 0) {
-                        $("#mail_address_2").focus();
-                        wk_focus_done = 1;
-                    }
-                    return false;
-                }
-            }
-
-            //パスワード未入力チェック
-            if ($("#pass_1").val() == "") {
-                wk_err_msg == "";
-                wk_err_msg = "パスワードを入力してください。";
-                $("#err_pass_1").html(wk_err_msg);
-                //エラー箇所にフォーカスを当てる
-                if (wk_focus_done == 0) {
-                    $("#pass_1").focus();
-                    wk_focus_done = 1;
-                }
-            }
-            //正しいパスワードチェック
-            if ($("#pass_1").val() !== "") {
-                var pass = $("#pass_1").val();
-                var re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d$@$!%*?&]{8,}/;
-                var pass = pass.match(re);
-                if (!pass) {
-                    wk_err_msg == "";
-                    wk_err_msg = "大文字と小文字のアルファベットおよび数字を1文字以上含む、" + "<br>" + "8桁以上のパスワードを入力してください。";
-                    $("#err_pass_1").html(wk_err_msg);
-                    //エラー箇所にフォーカスを当てる
-                    if (wk_focus_done == 0) {
-                        $("#pass_1").focus();
-                        wk_focus_done = 1;
-                    }
-                }
-            }
-            //確認用パスワード未入力チェック
-            if ($("#pass_2").val() == "") {
-                wk_err_msg == "";
-                wk_err_msg = "確認用パスワードを入力してください。";
-                $("#err_pass_2").html(wk_err_msg);
-                //エラー箇所にフォーカスを当てる
-                if (wk_focus_done == 0) {
-                    $("#pass_2").focus();
-                    wk_focus_done = 1;
-                }
-            }
-            //パスワード一致チェック
-            if ($("#pass_1").val() !== "" && $("#pass_2").val() !== "") {
-                if ($("#pass_1").val() !== $("#pass_2").val()) {
-                    wk_err_msg == "";
-                    wk_err_msg = "パスワードと確認用パスワードが一致していません。";
-                    $("#err_pass_1").html(wk_err_msg);
-                    $("#err_pass_2").html(wk_err_msg);
-                    //エラー箇所にフォーカスを当てる
-                    if (wk_focus_done == 0) {
-                        $("#pass_2").focus();
-                        wk_focus_done = 1;
-                    }
-                }
-            }
-
             //その他記述未入力チェック(NSCA以外の認定資格)
-            if ($('#shikaku_sonota').val() == "" && $('#shikaku_99').prop('checked')) {
+            if ($('textarea[name="shikaku_sonota"]').val() == "" && $('#shikaku_99').is(':checked')) {
+                wk_err_msg = "";
                 wk_err_msg = "NSCA以外の認定資格を記述してください。";
                 $("#err_shikaku").html(wk_err_msg);
-                wk_err_msg = "";
+                //エラー箇所にフォーカスを当てる
+                if (wk_focus_done == 0) {
+                    $("#shikaku_sonota").focus();
+                    wk_focus_done = 1;
+                }
             }
 
             //連絡方法の未選択チェック
@@ -1590,10 +1294,15 @@
                 $("#err_qa").html(wk_err_msg);
             }
             //その他記述未入力チェック(興味のある分野)
-            if ($('#bunya_sonota').val() == "" && $('#bunya_99').prop('checked')) {
-                wk_err_msg = "入会理由を記述してください。";
-                $("#err_bunya").html(wk_err_msg);
+            if ($('textarea[name="bunya_sonota"]').val() == "" && $('#bunya_99').is(':checked')) {
                 wk_err_msg = "";
+                wk_err_msg = "興味のある分野を記述してください。";
+                $("#err_bunya").html(wk_err_msg);
+                //エラー箇所にフォーカスを当てる
+                if (wk_focus_done == 0) {
+                    $("#bunya_sonota").focus();
+                    wk_focus_done = 1;
+                }
             }
             // エラーがある場合は、メッセージを表示し、処理を終了する
             if (wk_err_msg != "" || wk_err_msg1 != "" || wk_err_msg2 != "" || wk_err_msg3 != "" || wk_err_msg4 != "" || wk_err_msg5 != "") {

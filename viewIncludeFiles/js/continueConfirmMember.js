@@ -1,112 +1,5 @@
 (function ($) {
     $(document).ready(function () {
-        //会員情報取得
-        jQuery.ajax({
-            url: '../../classes/getTbkaiinJoho.php',
-            success: function (rtn) {
-                // rtn = 0 の場合は、該当なし
-                if (rtn == 0) {
-                    return false;
-                } else {
-                    //※正常に情報を取得できた時、変数に入れる
-                    getTbkaiinJoho = JSON.parse(rtn);
-                    console.log(getTbkaiinJoho);
-                    $kaiin_no = getTbkaiinJoho[0];
-                    $shimei = getTbkaiinJoho[7] + getTbkaiinJoho[8];
-                    $furigana = getTbkaiinJoho[10] + getTbkaiinJoho[11];
-                    $first = getTbkaiinJoho[43];
-                    $last = getTbkaiinJoho[44];
-                    $seinengappi = getTbkaiinJoho[13];
-                    $seibetsu_kbn = getTbkaiinJoho[14];
-                    $yubin_no = getTbkaiinJoho[15];
-                    $ken_no = getTbkaiinJoho[16];
-                    $chiiki_id = getTbkaiinJoho[17];
-                    $kemmei = getTbkaiinJoho[18];
-                    $jusho_1 = getTbkaiinJoho[19];
-                    $jusho_2 = getTbkaiinJoho[20];
-                    $kana_jusho_1 = getTbkaiinJoho[21];
-                    $kana_jusho_2 = getTbkaiinJoho[22];
-                    $tel = getTbkaiinJoho[23];
-                    $fax = getTbkaiinJoho[24];
-                    $keitai_denwa = getTbkaiinJoho[25];
-                    $keitai_denwa_shurui = getTbkaiinJoho[26];
-                    $email = getTbkaiinJoho[27];
-                    $keitai_email = getTbkaiinJoho[28];
-                    $url = getTbkaiinJoho[29];
-                    $shokugyo_kbn_1 = getTbkaiinJoho[31];
-                    $shokugyo_kbn_2 = getTbkaiinJoho[32];
-                    $shokugyo_kbn_3 = getTbkaiinJoho[33];
-                    $kimmusakimei = getTbkaiinJoho[34];
-                    $kimmusaki_yubin_no = getTbkaiinJoho[36];
-                    $kimmusaki_ken_no = getTbkaiinJoho[37];
-                    $kimmusaki_kemmei = getTbkaiinJoho[38];
-                    $kimmusaki_jusho_1 = getTbkaiinJoho[39];
-                    $kimmusaki_jusho_2 = getTbkaiinJoho[40];
-                    $kimmusaki_tel = getTbkaiinJoho[41];
-                    $kimmusaki_fax = getTbkaiinJoho[42];
-                    $gakuseisho_filemei_1 = getTbkaiinJoho[53];
-                    $gakuseisho_filemei_2 = getTbkaiinJoho[54];
-                    $yoyaku_kaiin_sbt = getTbkaiinJoho[98];
-                    $merumaga_haishin_pc_email = getTbkaiinJoho[88];
-                    $merumaga_haishin_keitai_email = getTbkaiinJoho[89];
-                    $renraku_hoho_yuso = getTbkaiinJoho[86];
-                    $renraku_hoho_denshi_email = getTbkaiinJoho[87];
-                    $merumaga_haishin_smartphone = getTbkaiinJoho[118];
-                    $yubin_haitatsusaki_kbn = getTbkaiinJoho[119];
-                    $website_keisai_kbn = getTbkaiinJoho[122];
-                    $daisansha_questionnaire_kbn = getTbkaiinJoho[120];
-                }
-            },
-            fail: function (rtn) {
-                return false;
-            },
-            error: function (rtn) {
-                return false;
-            }
-        });
-
-        //会員選択データ取得
-        jQuery.ajax({
-            url: '../../classes/getTbkaiinSentaku.php',
-            success: function (rtn) {
-                getTbkaiinSentaku = JSON.parse(rtn);
-                console.log(getTbkaiinSentaku);
-                $meisho_cd_shikaku = "";
-                $shikaku_sonota = "";
-                $meisho_cd_chiiki = "";
-                $meisho_cd_bunya = "";
-                $bunya_sonota = "";
-                //※正常に情報を取得できた時、変数に入れる
-                if (getTbkaiinSentaku != "") {
-                    $.each(getTbkaiinSentaku, function (index, value) {
-                        if (value[0] == 22) {
-                            //NSCA以外の認定資格
-                            $meisho_cd_shikaku = $meisho_cd_shikaku + value[1] + ", ";
-                            if (value[1] == 99) {
-                                $shikaku_sonota = value[2];
-                            }
-
-                        } else if (value[0] == 32) {
-                            //興味のある地域
-                            $meisho_cd_chiiki = $meisho_cd_chiiki + value[1] + ", ";
-
-                        } else if (value[0] == 24) {
-                            //興味のある分野   
-                            $meisho_cd_bunya = $meisho_cd_bunya + value[1] + ", ";
-                            if (value[1] == 99) {
-                                $bunya_sonota = value[2];
-                            }
-                        } 
-                    });
-                }
-            },
-            fail: function (rtn) {
-                return false;
-            },
-            error: function (rtn) {
-                return false;
-            }
-        });
 
         /*************************************************
         * 内容を修正するボタン押下時に値を保持して画面遷移する
@@ -146,8 +39,6 @@
                     fax: $("#fax").val(),
                     keitai_no: $("#keitai_tel").val(),
                     keitai_denwa_shurui: $keitai_denwa_shurui,
-                    email_1: $("#mail_address_1").val(),
-                    email_2: $("#mail_address_2").val(),
                     url_1: $("#url").val(),
                     shokugyo_kbn_1: $("#sel_shoku_1").val(),
                     shokugyo_kbn_2: $("#sel_shoku_2").val(),
@@ -207,19 +98,20 @@
                                     email_1: $("#mail_address_1").val(),
                                 },
                                 success: function (rtn) {
-                                    //英文オプションが有りの場合、支払方法選択画面に遷移する。
-                                    if ($("#wk_sel_option").val() == "") {
-                                        location.href = '../changeComplete/';
-                                    } else {
-                                        location.href = '../paymentSelect/';
-                                    }
-
-
+                                    location.href = '../paymentSelect/';
                                 },
                                 fail: function (rtn) {
+                                    //失敗時エラーメッセージを表示
+                                    wk_err_msg == "";
+                                    wk_err_msg = "会員情報の更新に失敗しました。";
+                                    $("#err_msg").html(wk_err_msg);
                                     return false;
                                 },
                                 error: function (rtn) {
+                                    //失敗時エラーメッセージを表示
+                                    wk_err_msg == "";
+                                    wk_err_msg = "会員情報の更新に失敗しました。";
+                                    $("#err_msg").html(wk_err_msg);
                                     return false;
                                 }
                             });
@@ -233,7 +125,7 @@
                                     //メールアドレス
                                     email_2: $("#mail_address_2").val(),
                                 },
-                                success: function (rtn) {                           
+                                success: function (rtn) {
                                     location.href = '../paymentSelect/';
                                 },
                                 fail: function (rtn) {

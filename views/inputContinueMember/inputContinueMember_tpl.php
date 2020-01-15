@@ -60,8 +60,6 @@
 				<input type="hidden" name="wk_sel_nagareyama" id="wk_sel_nagareyama" value="<?php echo $wk_sel_nagareyama; ?>">
 				<input type="hidden" name="sel_gender" id="sel_gender" value="<?php echo $gender; ?>">
 				<input type="hidden" name="wk_sel_gender" id="wk_sel_gender" value="<?php echo $wk_sel_gender; ?>">
-				<input type="hidden" name="sel_mail" id="sel_mail" value="<?php echo $mail; ?>">
-				<input type="hidden" name="wk_sel_mail" id="wk_sel_mail" value="<?php echo $wk_sel_mail; ?>">
 				<input type="hidden" name="wk_sel_merumaga" id="wk_sel_merumaga" value="<?php echo $wk_sel_merumaga; ?>">
 				<input type="hidden" name="sel_merumaga" id="sel_merumaga" value="<?php echo $merumaga; ?>">
 				<input type="hidden" name="shoku_1" id="shoku_1" value="<?php echo $shoku_1; ?>">
@@ -131,13 +129,13 @@
 							<th><span class="required">必須</span>氏名</th>
 							<td class="clearfix">
 								<div>
-									<p>姓</p><input id="name_sei" type="text" name="name" value="<?php echo $name_sei; ?>">
+									<p>姓</p><input id="name_sei" type="text" name="name_sei" value="<?php echo $name_sei; ?>">
 									<ul class="error_ul">
 										<li class="error" id="err_name_sei"></li>
 									</ul>
 								</div>
 								<div>
-									<p class="sp_mt_1">名</p><input id="name_mei" type="text" name="name" value="<?php echo $name_mei; ?>">
+									<p class="sp_mt_1">名</p><input id="name_mei" type="text" name="name_mei" value="<?php echo $name_mei; ?>">
 									<ul class="error_ul">
 										<li class="error" id="err_name_mei"></li>
 									</ul>
@@ -148,13 +146,13 @@
 							<th><span class="required">必須</span>フリガナ</th>
 							<td class="clearfix">
 								<div>
-									<p>セイ</p><input id="name_sei_kana" type="text" name="name" value="<?php echo $name_sei_kana; ?>">
+									<p>セイ</p><input id="name_sei_kana" type="text" name="name_sei_kana" value="<?php echo $name_sei_kana; ?>">
 									<ul class="error_ul">
 										<li class="error" id="err_name_sei_kana"></li>
 									</ul>
 								</div>
 								<div>
-									<p class="sp_mt_1">メイ</p><input id="name_mei_kana" type="text" name="name" value="<?php echo $name_mei_kana; ?>">
+									<p class="sp_mt_1">メイ</p><input id="name_mei_kana" type="text" name="name_mei_kana" value="<?php echo $name_mei_kana; ?>">
 									<ul class="error_ul">
 										<li class="error" id="err_name_mei_kana"></li>
 									</ul>
@@ -165,13 +163,13 @@
 							<th><span class="required">必須</span>ローマ字表記</th>
 							<td class="clearfix">
 								<div>
-									<p>Last(姓)</p><input id="name_last" type="text" name="name" value="<?php echo $name_last; ?>">
+									<p>Last(姓)</p><input id="name_last" type="text" name="name_last" value="<?php echo $name_last; ?>">
 									<ul class="error_ul">
 										<li class="error" id="err_name_last"></li>
 									</ul>
 								</div>
 								<div>
-									<p class="sp_mt_1">First(名)</p><input id="name_first" type="text" name="name" value="<?php echo $name_first; ?>">
+									<p class="sp_mt_1">First(名)</p><input id="name_first" type="text" name="name_first" value="<?php echo $name_first; ?>">
 									<ul class="error_ul">
 										<li class="error" id="err_name_first"></li>
 									</ul>
@@ -181,8 +179,8 @@
 						<tr class="birthday">
 							<th><span class="required">必須</span>生年月日</th>
 							<td>
-								<p>西暦</p><input id="year" type="text" name="name" value="<?php echo $year; ?>">年
-								<select id="month" name="manth">
+								<p>西暦</p><input id="year" type="text" name="year" value="<?php echo $year; ?>">年
+								<select id="month" name="month">
 									<option value="00"></option>
 									<option value="01">1</option>
 									<option value="02">2</option>
@@ -305,7 +303,7 @@
 								</ul>
 							</td>
 						</tr>
-						<tr class="mail">
+						<!-- <tr class="mail">
 							<th><span class="required">必須</span>メールアドレス</th>
 							<td>
 								<p>メールアドレス_1：</p>
@@ -321,7 +319,7 @@
 									<li class="error" id="err_mail_address_1"></li>
 								</ul>
 							</td>
-						</tr>
+						</tr> -->
 						<tr>
 							<th><span class="required">必須</span>メルマガ配信の希望</th>
 							<td>
@@ -334,7 +332,7 @@
 								</ul>
 							</td>
 						</tr>
-						<tr class="pass">
+						<!-- <tr class="pass">
 							<th><span class="required">必須</span>パスワード</th>
 							<td>
 								<input id="pass_1" class="w_50" type="text" name="pass_1" value="">
@@ -344,7 +342,7 @@
 									<li class="error"></li>
 								</ul>
 							</td>
-						</tr>
+						</tr> -->
 						<tr>
 							<th><span class="any"></span>URL</th>
 							<td>
@@ -379,20 +377,20 @@
 								<p class="mt_1">都道府県</p><select id="office_todohuken" name="office_math">
 									<option value=""></option>
 								</select>
-								<p class="mt_1">市区町村／番地</p><input id="office_shiku" class="w_80" type="text" name="" value="<?php echo $office_shiku; ?>">
-								<p class="mt_1">建物／部屋番号</p><input id="office_tatemono" class="w_80" type="text" name="" value="<?php echo $office_tatemono; ?>">
+								<p class="mt_1">市区町村／番地</p><input id="office_shiku" class="w_80" type="text" name="office_shiku" value="<?php echo $office_shiku; ?>">
+								<p class="mt_1">建物／部屋番号</p><input id="office_tatemono" class="w_80" type="text" name="office_tatemono" value="<?php echo $office_tatemono; ?>">
 							</td>
 						</tr>
 						<tr>
 							<th><span class="any"></span>所属先電話番号</th>
 							<td>
-								<input id="office_tel" class="w_50" type="tel" name="" value="">
+								<input id="office_tel" class="w_50" type="tel" name="office_tel" value="<?php echo $office_tel; ?>">
 							</td>
 						</tr>
 						<tr>
 							<th><span class="any"></span>所属先FAX番号</th>
 							<td>
-								<input id="office_fax" class="w_50" type="tel" name="" value="">
+								<input id="office_fax" class="w_50" type="tel" name="office_fax" value="<?php echo $office_fax; ?>">
 							</td>
 						</tr>
 						<tr>
@@ -400,7 +398,7 @@
 							<td class="clearfix">
 								<div id="nintei-shikaku-wrap">
 								</div>
-								<textarea id="shikaku_sonota" name="shikaku_sonota" placeholder="その他を選択した場合は必須入力となります"></textarea>
+								<textarea id="shikaku_sonota" name="shikaku_sonota" placeholder="その他を選択した場合は必須入力となります"><?php echo $shikaku_sonota; ?></textarea>
 								<ul class="error_ul">
 									<li class="error" id="err_shikaku"></li>
 								</ul>
@@ -465,7 +463,7 @@
 							<td class="clearfix">
 								<div id="Bunya">
 								</div>
-								<textarea id="bunya_sonota" name="bunya_sonota" placeholder="その他を選択した場合は必須入力となります"></textarea>
+								<textarea id="bunya_sonota" name="bunya_sonota" placeholder="その他を選択した場合は必須入力となります"><?php echo $bunya_sonota; ?></textarea>
 								<ul class="error_ul">
 									<li class="error" id="err_bunya"></li>
 								</ul>

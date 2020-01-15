@@ -1433,21 +1433,6 @@
                     }
                 });
             }
-            // //メルマガ配信を希望する、かつ、メールアドレス_1を選択している時のvalueの設定
-            // if ((document.getElementById("merumaga_1").checked == true) && (document.getElementById("mail_1").checked == true)) {
-            //     document.getElementById("mail_1").value = 1;
-            //     document.getElementById("mail_2").value = 0;
-            // }
-            // //メルマガ配信を希望する、かつ、メールアドレス_2を選択している時のvalueの設定
-            // if ((document.getElementById("merumaga_1").checked == true) && (document.getElementById("mail_2").checked == true)) {
-            //     document.getElementById("mail_1").value = 0;
-            //     document.getElementById("mail_2").value = 1;
-            // }
-            // //メルマガ配信を希望しないを選択している時のvalueの設定
-            // if (document.getElementById("merumaga_2").checked == true) {
-            //     document.getElementById("mail_1").value = 0;
-            //     document.getElementById("mail_2").value = 0;
-            // }
 
             //メールアドレス1形式チェック 
             var mail_regex1 = new RegExp('(?:[-!#-\'*+/-9=?A-Z^-~]+\.?(?:\.[-!#-\'*+/-9=?A-Z^-~]+)*|"(?:[!#-\[\]-~]|\\\\[\x09 -~])*")@[-!#-\'*+/-9=?A-Z^-~]+(?:\.[-!#-\'*+/-9=?A-Z^-~]+)*');
@@ -1564,11 +1549,17 @@
             }
 
             //その他記述未入力チェック(NSCA以外の認定資格)
-            if ($('#shikaku_sonota').val() == "" && $('#shikaku_99').prop('checked')) {
+            if ($('textarea[name="shikaku_sonota"]').val() == "" && $('#shikaku_99').is(':checked')) {
+                wk_err_msg = "";
                 wk_err_msg = "NSCA以外の認定資格を記述してください。";
                 $("#err_shikaku").html(wk_err_msg);
-                wk_err_msg = "";
+                //エラー箇所にフォーカスを当てる
+                if (wk_focus_done == 0) {
+                    $("#shikaku_sonota").focus();
+                    wk_focus_done = 1;
+                }
             }
+
 
             //連絡方法の未選択チェック
             if (!$('input:radio[name="hoho"]:checked').val()) {
@@ -1602,10 +1593,15 @@
                 $("#err_qa").html(wk_err_msg);
             }
             //その他記述未入力チェック(興味のある分野)
-            if ($('#bunya_sonota').val() == "" && $('#bunya_99').prop('checked')) {
-                wk_err_msg = "入会理由を記述してください。";
-                $("#err_bunya").html(wk_err_msg);
+            if ($('textarea[name="bunya_sonota"]').val() == "" && $('#bunya_99').is(':checked')) {
                 wk_err_msg = "";
+                wk_err_msg = "興味のある分野を記述してください。";
+                $("#err_bunya").html(wk_err_msg);
+                //エラー箇所にフォーカスを当てる
+                if (wk_focus_done == 0) {
+                    $("#bunya_sonota").focus();
+                    wk_focus_done = 1;
+                }
             }
             // エラーがある場合は、メッセージを表示し、処理を終了する
             if (wk_err_msg != "" || wk_err_msg1 != "" || wk_err_msg2 != "" || wk_err_msg3 != "" || wk_err_msg4 != "" || wk_err_msg5 != "") {
