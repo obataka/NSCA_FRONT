@@ -17,24 +17,24 @@
         <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.1.1.min.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
-		<script type="text/javascript" src="../../viewIncludeFiles/js/registSbtSelectError.js"></script>
-		<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
-		<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
+        <script type="text/javascript" src="../../viewIncludeFiles/js/registSbtSelectError.js"></script>
+        <script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
+        <script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
     </head>
     <body>
-	<header class="header_logo">
-		<div>
-			<img src="../../viewIncludeFiles/image/NSCA_Japan_rev.png" alt="ロゴ">
-		</div>
-	</header>
-	<div class="wrap mh_c">
-		<h1>新規登録 会員種別選択</h1>
-		<ul class="error_ul">
-			<li class="error" id="err_message"><?php echo $wk_error_msg;?></li>
-		</ul>
-		<p class="to_next_page"><a href="../registMail/">入会申込へ</a>
-	</div>
-	<footer id="footer">
-	</footer>
+    <header class="header_logo">
+        <div>
+            <img src="../../viewIncludeFiles/image/NSCA_Japan_rev.png" alt="ロゴ">
+        </div>
+    </header>
+    <div class="wrap mh_c">
+        <h1>新規登録 会員種別選択</h1>
+        <ul class="error_ul">
+            <li class="error" id="err_message"><?php echo $wk_error_msg;?></li>
+        </ul>
+        <p class="to_next_page"><a href="../registMail/">入会申込へ</a>
+    </div>
+    <footer id="footer">
+    </footer>
 </body>
 </html>

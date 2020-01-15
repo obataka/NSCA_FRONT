@@ -17,44 +17,44 @@
         <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.1.1.min.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
-		<script type="text/javascript" src="../../viewIncludeFiles/js/registMail.js"></script>
-		<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
-		<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
-
+        <script type="text/javascript" src="../../viewIncludeFiles/js/registMail.js"></script>
+        <script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
+        <script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
     </head>
     <body>
-	<header class="header_logo">
-		<img src="../../viewIncludeFiles/image/NSCA_Japan_rev.png" alt="ロゴ">
-	</header>
-	<div class="wrap mh_c btn_b_wrap">
-		<h2>入会申込</h2>
-		<div class="content_wrap">
-			<p class="h2_text">【登録の流れ】</p>
-			<ul>
-				<li>1.下記にメールアドレスを入力して、[メール送信]ボタンを押下します。</li>
-				<li>2.メールが届いたら、メールに記載されているURLをクリックします。</li>
-				<li>3.利用登録に必要なお名前やご連卓先などを入力して登録完了となります。</li>
-			</ul>
-			<h3>新規登録</h3>
-			<form>
-				<table>
-					<tr>
-						<th><span class="required">必須</span>メールアドレス</th>
-						<td>
-							<input id="mail" class="w_80" type="email" name="mail" value="">
-							<ul class="error_ul">
-								<li class="error"></li>
-							</ul>
-						</td>
-					</tr>
-				</table>
-			</form>
-			<section>
-				<button class="button btn_b btn_b_1" type="submit" value="" onclick="location.href='#'"><span>メール送信</span></button>
-			</section>
-		</div>
-	</div>
-	<footer id="footer">
-	</footer>
-</body>
-</html>
+        <header class="header_logo">
+            <div>
+            	<img src="../../viewIncludeFiles/image/NSCA_Japan_rev.png" alt="ロゴ">
+            </div>
+        </header>
+        <div class="wrap mh_c btn_b_wrap">
+            <h1>入会申込</h1>
+            <div class="content_wrap">
+                <p class="h2_text">【登録の流れ】</p>
+                <ul>
+                    <li>1.下記にメールアドレスを入力して、[メール送信]ボタンを押下します。</li>
+                    <li>2.メールが届いたら、メールに記載されているURLをクリックします。</li>
+                    <li>3.利用登録に必要なお名前やご連卓先などを入力して登録完了となります。</li>
+                </ul>
+                <form>
+                    <table>
+                        <tr>
+                            <th><span class="required">必須</span>メールアドレス</th>
+                            <td>
+                                <input id="mail" class="w_80" type="email" name="mail" value="">
+                                <ul class="error_ul">
+                                    <li class="error"></li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+                <section>
+                    <button class="button btn_b btn_b_1" type="submit" value="" onclick="location.href='#'"><span>メール送信</span></button>
+                </section>
+            </div>
+        </div>
+        <footer id="footer">
+        </footer>
+    </body>
+    </html>

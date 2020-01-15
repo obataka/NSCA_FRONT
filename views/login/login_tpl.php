@@ -40,7 +40,7 @@
                         <p>
                             <a href="../changePasswordMail/">パスワードをお忘れですか？</a><br>
                             <a href="../registInformation/" target="_blank">入会案内</a><span>|</span>
-                            <a href="../registSbtSelect/">新規登録はこちら</a>
+                            <a href="../registMail/">新規登録はこちら</a>
                         </p>
                     </div>
                 </div>

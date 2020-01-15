@@ -12,7 +12,7 @@
             if ($("#mail").val() == "") {
                     wk_err_msg == "";
                     wk_err_msg = "メールアドレス(PCまたは携帯)を入力してください。";
-                    $(".error_ul").html(wk_err_msg);
+                    $(".error").html(wk_err_msg);
                     //エラー箇所にフォーカスを当てる
                     if (wk_focus_done == 0) {
                         $("#mail").focus();
@@ -23,29 +23,29 @@
             var mail_regex2 = new RegExp( '^[^\@]+\@[^\@]+$' );
             if ($("#mail").val().match(mail_regex1) && $("#mail").val().match( mail_regex2)) {
                 // 全角チェック
-                if ( $("#mail").val().match( /[^a-zA-Z0-9\!\"\#\$\%\&\'\(\)\=\~\|\-\^\\\@\[\;\:\]\,\.\/\\\<\>\?\_\`\{\+\*\} ]/ ) ) { 
+                if ( $("#mail").val().match( /[^a-zA-Z0-9\!\"\#\$\%\&\'\(\)\=\~\|\-\^\\\@\[\;\:\]\,\.\/\\\<\>\?\_\`\{\+\*\} ]/ ) ) {
                     wk_err_msg == "";
                     wk_err_msg = "メールアドレスに使用する文字を正しく入力してください。";
-                    $(".error_ul").html(wk_err_msg);
+                    $(".error").html(wk_err_msg);
                     //エラー箇所にフォーカスを当てる
                     if (wk_focus_done == 0) {
                         $("#mail").focus();
                         wk_focus_done = 1;
                     }
-                    return false; 
+                    return false;
                 }
                 // 末尾TLDチェック（〜.co,jpなどの末尾ミスチェック用）
-                if ( !$("#mail").val().match( /\.[a-z]+$/ ) ) { 
+                if ( !$("#mail").val().match( /\.[a-z]+$/ ) ) {
                     //TDLエラー
                     wk_err_msg == "";
                     wk_err_msg = "メールアドレスの形式が不正です。";
-                    $(".error_ul").html(wk_err_msg);
+                    $(".error").html(wk_err_msg);
                     //エラー箇所にフォーカスを当てる
                     if (wk_focus_done == 0) {
                         $("#mail").focus();
                         wk_focus_done = 1;
                     }
-                    return false; 
+                    return false;
                 }
             }
             // エラーがある場合は、メッセージを表示し、処理を終了する
@@ -53,7 +53,7 @@
                 return false;
              }
             /************************************************************
-            *アドレスとトークンと有効期限をDBに登録し、入会案内メールを送信する 
+            *アドレスとトークンと有効期限をDBに登録し、入会案内メールを送信する
             *************************************************************/
              jQuery.ajax({
                 url:  '../../classes/sendMail.php',
@@ -68,7 +68,7 @@
                     if (rtn == 0) {
                         wk_err_msg == "";
                         wk_err_msg = "入会申込メール送信処理に失敗しました。";
-                        $(".error_ul").html(wk_err_msg);
+                        $(".error").html(wk_err_msg);
                         //エラー箇所にフォーカスを当てる
                         if (wk_focus_done == 0) {
                             $("#mail").focus();
@@ -77,7 +77,7 @@
                         return false;
                     } else {
                         //エラーがない場合送信完了画面に画面遷移
-                        location.href = '../registMailComplete/';       
+                        location.href = '../registMailComplete/';
                     }
                 },
                 fail: function(rtn) {
@@ -87,10 +87,6 @@
                     return false;
                 }
             });
-            //  //エラーがない場合送信完了画面に画面遷移
-            //  url = '../registMailComplete/';
-            // $('form').attr('action', url);
-            // $('form').submit();
         });
     });
 })(jQuery);
