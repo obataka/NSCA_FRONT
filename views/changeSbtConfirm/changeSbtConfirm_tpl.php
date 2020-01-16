@@ -51,7 +51,11 @@
 					<div class="chenge">
 						<p><span>変更後の会員種別</span></p>
 						<p><?php echo $wk_kaiinType; ?><br>
-							会費：<?php echo $wk_kaihi; ?></p>
+							会費：<?php if ($wk_kaiinSbt == 0) {
+								echo $wk_kaihi;
+							} else {
+								echo $wk_kaihi."円";
+							}?></p>
 					</div>
 				</div>
 				<section class="btn_wrap btn_b_2 btn_b">

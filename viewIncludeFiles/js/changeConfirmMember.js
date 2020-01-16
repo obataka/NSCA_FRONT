@@ -12,6 +12,7 @@
                     getTbkaiinJoho = JSON.parse(rtn);
                     console.log(getTbkaiinJoho);
                     $kaiin_no = getTbkaiinJoho[0];
+                    $kaiin_sbt_kbn = getTbkaiinJoho[4]
                     $shimei = getTbkaiinJoho[7] + getTbkaiinJoho[8];
                     $furigana = getTbkaiinJoho[10] + getTbkaiinJoho[11];
                     $first = getTbkaiinJoho[43];
@@ -96,7 +97,7 @@
                             if (value[1] == 99) {
                                 $bunya_sonota = value[2];
                             }
-                        } 
+                        }
                     });
                 }
             },
@@ -130,6 +131,7 @@
                 data:
                 {
                     kaiin_no: $kaiin_no,
+                    kaiin_sbt_kbn: $kaiin_sbt_kbn,
                     shimei: $shimei,
                     furigana: $furigana,
                     first: $first,
@@ -180,12 +182,9 @@
                 },
                 success: function (rtn) {
                     // rtn = 0 の場合は、該当なし
-
                     if (rtn == 0) {
                         console.log(010101);
                         return false;
-                    } else {
-
                     }
                 },
                 fail: function (rtn) {
@@ -206,6 +205,7 @@
                 data:
                 {
                     //会員情報のテーブル項目
+                    kaiin_sbt_kbn: $("#kaiinSbt").val(),
                     shimei_sei: $("#name_sei").val(),
                     shimei_mei: $("#name_mei").val(),
                     furigana_sei: $("#name_sei_kana").val(),
@@ -271,62 +271,7 @@
                     // rtn = 0 の場合は、該当なし
                     if (rtn == 0) {
                         return false;
-                    } else {
-                        // 登録成功の場合、登録情報修正完了画面に遷移する。 
-                        if ($("#mail").val() == 1) {
-                            console.log(12345678);
-                            jQuery.ajax({
-                                url: '../../classes/registCompleteMail.php',
-                                type: 'POST',
-                                data:
-                                {
-                                    //メールアドレス
-                                    email_1: $("#mail_address_1").val(),
-                                },
-                                success: function (rtn) {
-                                    //英文オプションが有りの場合、支払方法選択画面に遷移する。
-                                    if ($("#wk_sel_option").val() == "") {
-                                        location.href = '../changeComplete/';
-                                    } else {
-                                        location.href = '../paymentSelect/';
-                                    }
-
-
-                                },
-                                fail: function (rtn) {
-                                    return false;
-                                },
-                                error: function (rtn) {
-                                    return false;
-                                }
-                            });
-                        } else if ($("#mail").val() == 2) {
-                            console.log(1234567890000);
-                            jQuery.ajax({
-                                url: '../../classes/registCompleteMail.php',
-                                type: 'POST',
-                                data:
-                                {
-                                    //メールアドレス
-                                    email_2: $("#mail_address_2").val(),
-                                },
-                                success: function (rtn) {
-                                    //英文オプションが有りの場合、支払方法選択画面に遷移する。
-                                    if ($("#wk_sel_option").val() == "") {
-                                        location.href = '../changeComplete/';
-                                    } else {
-                                        location.href = '../paymentSelect/';
-                                    }
-                                },
-                                fail: function (rtn) {
-                                    return false;
-                                },
-                                error: function (rtn) {
-                                    return false;
-                                }
-                            });
-                        }
-                    }
+                    } 
                 },
                 fail: function (rtn) {
                     console.log(0);

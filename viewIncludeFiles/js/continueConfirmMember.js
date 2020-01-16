@@ -14,14 +14,13 @@
         * 次へボタン押下時にDBの値を更新して支払方法選択画面に遷移する。
         *******************************************/
         $("#next_button").click(function () {
-            console.log(123);
-
             jQuery.ajax({
                 url: '../../classes/changeMemberPost.php',
                 type: 'POST',
                 data:
                 {
                     //会員情報のテーブル項目
+                    kaiin_sbt_kbn: $("#kaiinSbt").val(),
                     shimei_sei: $("#name_sei").val(),
                     shimei_mei: $("#name_mei").val(),
                     furigana_sei: $("#name_sei_kana").val(),
@@ -38,7 +37,6 @@
                     tel: $("#tel").val(),
                     fax: $("#fax").val(),
                     keitai_no: $("#keitai_tel").val(),
-                    keitai_denwa_shurui: $keitai_denwa_shurui,
                     url_1: $("#url").val(),
                     shokugyo_kbn_1: $("#sel_shoku_1").val(),
                     shokugyo_kbn_2: $("#sel_shoku_2").val(),
@@ -51,10 +49,8 @@
                     kimmusaki_jusho_2: $("#office_tatemono").val(),
                     kimmusaki_tel: $("#office_tel").val(),
                     kimmusaki_fax: $("#office_fax").val(),
-                    gakuseisho_filemei_1: $gakuseisho_filemei_1,
-                    gakuseisho_filemei_2: $gakuseisho_filemei_2,
-                    yoyaku_kaiin_sbt: $yoyaku_kaiin_sbt,
-                    $merumaga_haishin_smartphone: $merumaga_haishin_smartphone,
+                    gakuseisho_filemei_1: $("#file_front").val(),
+                    gakuseisho_filemei_2: $("#file_back").val(),
                     nagareyama_shimin: $("#sel_nagareyama").val(),
                     first: $("#name_first").val(),
                     last: $("#name_last").val(),
@@ -81,69 +77,22 @@
                 },
 
                 success: function (rtn) {
+                    //更新成功の場合、支払方法選択画面に遷移する。
                     console.log(1);
-                    // rtn = 0 の場合は、該当なし
-                    if (rtn == 0) {
-                        return false;
-                    } else {
-                        // 登録成功の場合、登録情報修正完了画面に遷移する。 
-                        if ($("#mail").val() == 1) {
-                            console.log(12345678);
-                            jQuery.ajax({
-                                url: '../../classes/registCompleteMail.php',
-                                type: 'POST',
-                                data:
-                                {
-                                    //メールアドレス
-                                    email_1: $("#mail_address_1").val(),
-                                },
-                                success: function (rtn) {
-                                    location.href = '../paymentSelect/';
-                                },
-                                fail: function (rtn) {
-                                    //失敗時エラーメッセージを表示
-                                    wk_err_msg == "";
-                                    wk_err_msg = "会員情報の更新に失敗しました。";
-                                    $("#err_msg").html(wk_err_msg);
-                                    return false;
-                                },
-                                error: function (rtn) {
-                                    //失敗時エラーメッセージを表示
-                                    wk_err_msg == "";
-                                    wk_err_msg = "会員情報の更新に失敗しました。";
-                                    $("#err_msg").html(wk_err_msg);
-                                    return false;
-                                }
-                            });
-                        } else if ($("#mail").val() == 2) {
-                            console.log(1234567890000);
-                            jQuery.ajax({
-                                url: '../../classes/registCompleteMail.php',
-                                type: 'POST',
-                                data:
-                                {
-                                    //メールアドレス
-                                    email_2: $("#mail_address_2").val(),
-                                },
-                                success: function (rtn) {
-                                    location.href = '../paymentSelect/';
-                                },
-                                fail: function (rtn) {
-                                    return false;
-                                },
-                                error: function (rtn) {
-                                    return false;
-                                }
-                            });
-                        }
-                    }
+                    location.href = '../paymentSelect/';
                 },
                 fail: function (rtn) {
                     console.log(0);
+                    wk_err_msg == "";
+                    wk_err_msg = "会員情報の更新に失敗しました。";
+                    $("#err_msg").html(wk_err_msg);
                     return false;
                 },
                 error: function (rtn) {
                     console.log(000);
+                    wk_err_msg == "";
+                    wk_err_msg = "会員情報の更新に失敗しました。";
+                    $("#err_msg").html(wk_err_msg);
                     return false;
                 }
             });

@@ -397,32 +397,32 @@
                 $('#tel').val(getTbkaiinJoho[23]);
                 $('#fax').val(getTbkaiinJoho[24]);
                 $('#keitai_tel').val(getTbkaiinJoho[25]);
-                $('#mail_address_1').val(getTbkaiinJoho[27]);
-                $('#mail_address_2').val(getTbkaiinJoho[28]);
-                //メール受信希望のメールアドレスを判断
-                if (getTbkaiinJoho[124] == "") {
-                    $('input:radio[name="mail"]').val(["1"]);
-                }
-                if (getTbkaiinJoho[126] == "") {
-                    $('input:radio[name="mail"]').val(["2"]);
-                }
-                //メールアドレス値セット
-                if ($("input:radio[id='mail_1']:checked").val()) {
-                    var wa = $("input:radio[id='mail_1']:checked").val();
-                    $("#mail").val(wa);
-                    var ra = $("#mail").val();
-                    var test1 = $('[name="mail"]:checked').attr('id');
-                    var test2 = $('label[for="' + test1 + '"]').text();
-                    $('#sel_mail').val(test2);
-                } else {
-                    //メールアドレス値セット
-                    var wa = $("input:radio[id='mail_2']:checked").val();
-                    $("#mail").val(wa);
-                    var ra = $("#mail").val();
-                    var test1 = $('[name="mail"]:checked').attr('id');
-                    var test2 = $('label[for="' + test1 + '"]').text();
-                    $('#sel_mail').val(test2);
-                }
+                // $('#mail_address_1').val(getTbkaiinJoho[27]);
+                // $('#mail_address_2').val(getTbkaiinJoho[28]);
+                // //メール受信希望のメールアドレスを判断
+                // if (getTbkaiinJoho[124] == "") {
+                //     $('input:radio[name="mail"]').val(["1"]);
+                // }
+                // if (getTbkaiinJoho[126] == "") {
+                //     $('input:radio[name="mail"]').val(["2"]);
+                // }
+                // //メールアドレス値セット
+                // if ($("input:radio[id='mail_1']:checked").val()) {
+                //     var wa = $("input:radio[id='mail_1']:checked").val();
+                //     $("#mail").val(wa);
+                //     var ra = $("#mail").val();
+                //     var test1 = $('[name="mail"]:checked').attr('id');
+                //     var test2 = $('label[for="' + test1 + '"]').text();
+                //     $('#sel_mail').val(test2);
+                // } else {
+                //     //メールアドレス値セット
+                //     var wa = $("input:radio[id='mail_2']:checked").val();
+                //     $("#mail").val(wa);
+                //     var ra = $("#mail").val();
+                //     var test1 = $('[name="mail"]:checked').attr('id');
+                //     var test2 = $('label[for="' + test1 + '"]').text();
+                //     $('#sel_mail').val(test2);
+                // }
                 //メルマガ配信希望のチェック
                 if (getTbkaiinJoho[116] == "" || getTbkaiinJoho[117] == "") {
                     $('input:radio[name="merumaga"]').val(["1"]);
@@ -1041,23 +1041,23 @@
         // /************************
         //  * メールアドレスボタンチェンジイベント
         //  ************************/
-        $("input:radio[name='mail']").change(function () {
-            //アドレス1hidden設定
-            if ($("input:radio[id='mail_1']:checked").val()) {
-                var wa = $("input:radio[id='mail_1']:checked").val();
-                $("#wk_sel_mail").val(wa);
-                var test1 = $('[name="mail"]:checked').attr('id');
-                var test2 = $('label[for="' + test1 + '"]').text();
-                $('#sel_mail').val(test2);
-            } else {
-                //アドレス2hidden設定
-                var wa = $("input:radio[id='mail_2']:checked").val();
-                $("#wk_sel_mail").val(wa);
-                var test1 = $('[name="mail"]:checked').attr('id');
-                var test2 = $('label[for="' + test1 + '"]').text();
-                $('#sel_mail').val(test2);
-            }
-        });
+        // $("input:radio[name='mail']").change(function () {
+        //     //アドレス1hidden設定
+        //     if ($("input:radio[id='mail_1']:checked").val()) {
+        //         var wa = $("input:radio[id='mail_1']:checked").val();
+        //         $("#wk_sel_mail").val(wa);
+        //         var test1 = $('[name="mail"]:checked').attr('id');
+        //         var test2 = $('label[for="' + test1 + '"]').text();
+        //         $('#sel_mail').val(test2);
+        //     } else {
+        //         //アドレス2hidden設定
+        //         var wa = $("input:radio[id='mail_2']:checked").val();
+        //         $("#wk_sel_mail").val(wa);
+        //         var test1 = $('[name="mail"]:checked').attr('id');
+        //         var test2 = $('label[for="' + test1 + '"]').text();
+        //         $('#sel_mail').val(test2);
+        //     }
+        // });
 
         // /************************
         //  * メルマガ配信希望ラジオボタンチェンジイベント
@@ -1350,32 +1350,32 @@
                     $('#tel').val(getTbkaiinJoho[23]);
                     $('#fax').val(getTbkaiinJoho[24]);
                     $('#keitai_tel').val(getTbkaiinJoho[25]);
-                    $('#mail_address_1').val(getTbkaiinJoho[27]);
-                    $('#mail_address_2').val(getTbkaiinJoho[28]);
-                    //メール受信希望のメールアドレスを判断
-                    if (getTbkaiinJoho[124] == "") {
-                        $('input:radio[name="mail"]').val(["1"]);
-                    }
-                    if (getTbkaiinJoho[126] == "") {
-                        $('input:radio[name="mail"]').val(["2"]);
-                    }
-                    //メールアドレス値セット
-                    if ($("input:radio[id='mail_1']:checked").val()) {
-                        var wa = $("input:radio[id='mail_1']:checked").val();
-                        $("#mail").val(wa);
-                        var ra = $("#mail").val();
-                        var test1 = $('[name="mail"]:checked').attr('id');
-                        var test2 = $('label[for="' + test1 + '"]').text();
-                        $('#sel_mail').val(test2);
-                    } else {
-                        //メールアドレス値セット
-                        var wa = $("input:radio[id='mail_2']:checked").val();
-                        $("#mail").val(wa);
-                        var ra = $("#mail").val();
-                        var test1 = $('[name="mail"]:checked').attr('id');
-                        var test2 = $('label[for="' + test1 + '"]').text();
-                        $('#sel_mail').val(test2);
-                    }
+                    // $('#mail_address_1').val(getTbkaiinJoho[27]);
+                    // $('#mail_address_2').val(getTbkaiinJoho[28]);
+                    // //メール受信希望のメールアドレスを判断
+                    // if (getTbkaiinJoho[124] == "") {
+                    //     $('input:radio[name="mail"]').val(["1"]);
+                    // }
+                    // if (getTbkaiinJoho[126] == "") {
+                    //     $('input:radio[name="mail"]').val(["2"]);
+                    // }
+                    // //メールアドレス値セット
+                    // if ($("input:radio[id='mail_1']:checked").val()) {
+                    //     var wa = $("input:radio[id='mail_1']:checked").val();
+                    //     $("#mail").val(wa);
+                    //     var ra = $("#mail").val();
+                    //     var test1 = $('[name="mail"]:checked').attr('id');
+                    //     var test2 = $('label[for="' + test1 + '"]').text();
+                    //     $('#sel_mail').val(test2);
+                    // } else {
+                    //     //メールアドレス値セット
+                    //     var wa = $("input:radio[id='mail_2']:checked").val();
+                    //     $("#mail").val(wa);
+                    //     var ra = $("#mail").val();
+                    //     var test1 = $('[name="mail"]:checked').attr('id');
+                    //     var test2 = $('label[for="' + test1 + '"]').text();
+                    //     $('#sel_mail').val(test2);
+                    // }
                     //メルマガ配信希望のチェック
                     if (getTbkaiinJoho[116] == "" || getTbkaiinJoho[117] == "") {
                         $('input:radio[name="merumaga"]').val(["1"]);
@@ -1575,9 +1575,6 @@
             $("#err_tel").html("");
             $("#err_keitai_tel").html("");
             $("#err_fax").html("");
-            $("#err_mail_address_1").html("");
-            $("#err_mail_address_2").html("");
-            $("#err_mail").html("");
             $("#err_merumaga").html("");
             $("#err_renraku_hoho").html("");
             $("#err_yubin").html("");
@@ -1942,47 +1939,6 @@
                             wk_focus_done = 1;
                         }
                     }
-                }
-            }
-            //メールアドレス1・メールアドレス2未入力チェック
-            if ($("#mail_address_1").val() == "" && $("#mail_address_2").val() == "") {
-                wk_err_msg == "";
-                wk_err_msg = "メールアドレス1またはメールアドレス2のいずれかを入力してください。";
-                $("#err_mail_address_1").html(wk_err_msg);
-                $("#err_mail_address_2").html(wk_err_msg);
-                //エラー箇所にフォーカスを当てる
-                if (wk_focus_done == 0) {
-                    $("#mail_address_1").focus();
-                    wk_focus_done = 1;
-                }
-            }
-            //メール受信希望未選択チェック
-            if (!$("input:radio[name='mail']:checked").val()) {
-                //if (!$('input[name="mail"]').prop('checked')) {     
-                //チェックされていない場合
-                wk_err_msg == "";
-                wk_err_msg = "メール受信希望のメールアドレスを選択してください。";
-                $("#err_mail").html(wk_err_msg);
-            }
-
-            //メール受信希望1選択時チェック
-            if ($('input[id="mail_1"]').prop('checked')) {
-                //if  ($('input:radio[id="mail_1"]:checked').val()) {     
-                if ($("#mail_address_1").val() == "") {
-                    $("#err_mail_address_2").html("");
-                    wk_err_msg == "";
-                    wk_err_msg = "メールアドレス_1を入力してください。";
-                    $("#err_mail_address_1").html(wk_err_msg);
-                }
-            }
-            //メール受信希望2選択時チェック
-            if ($('input[id="mail_2"]').prop('checked')) {
-                //if  ($('input:radio[id="mail_2"]:checked').val()) {
-                if ($("#mail_address_2").val() == "") {
-                    $("#err_mail_address_1").html("");
-                    wk_err_msg == "";
-                    wk_err_msg = "メールアドレス_2を入力してください。";
-                    $("#err_mail_address_2").html(wk_err_msg);
                 }
             }
             //メルマガ受信希望選択チェック

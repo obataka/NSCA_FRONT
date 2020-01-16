@@ -545,6 +545,8 @@
                 $("#kaiin").text("利用会員(無料)");
                 $('#gakuseisho').empty();
                 //利用会員(無料)hidden設定
+                $("#kaihi").val("無料");
+                console.log($("#kaihi").val());
                 var sbt = $("input:radio[id='kaiin_select_0']:checked").val();
                 $("#kaiinSbt").val(sbt);
                 var test1 = $('[name="kaiin_select"]:checked').attr('id');
@@ -552,8 +554,10 @@
                 $('#kaiinType').val(test2);
             } else if ($("input:radio[id='kaiin_select_1']:checked").val()) {
                 $("#kaiin").text("NSCA正会員");
-                //NSCA正会員hidden設定
                 $('#gakuseisho').empty();
+                //NSCA正会員hidden設定
+                $("#kaihi").val(13200);
+                console.log($("#kaihi").val());
                 var sbt = $("input:radio[id='kaiin_select_1']:checked").val();
                 $("#kaiinSbt").val(sbt);
                 var test1 = $('[name="kaiin_select"]:checked').attr('id');
@@ -563,6 +567,8 @@
                 $("#kaiin").text("学生会員");
                 $('#gakuseisho').append(data);
                 //学生会員hidden設定
+                $("#kaihi").val(11000);
+                console.log($("#kaihi").val());
                 var sbt = $("input:radio[id='kaiin_select_2']:checked").val();
                 $("#kaiinSbt").val(sbt);
                 var test1 = $('[name="kaiin_select"]:checked').attr('id');
@@ -1107,7 +1113,8 @@
                         wk_focus_done = 1;
                     }
                 }
-            }            //都道府県選択チェック
+            }            
+            //都道府県選択チェック
             if ($("#address_todohuken").val() == 0) {
                 wk_err_msg == "";
                 wk_err_msg = "都道府県を選択してください。";

@@ -679,9 +679,13 @@ SQL;
             $sql = <<<SQL
                 UPDATE tb_kaiin_joho
                 SET
-                      shimei_sei            = :shimei_sei
+                	  kaiin_sbt_kbn         = :kaiin_sbt_kbn	
+                    , shimei_sei            = :shimei_sei
                     , shimei_mei            = :shimei_mei
                     , furigana_sei          = :furigana_sei
+                    , furigana_mei          = :furigana_mei
+                    , gakuseisho_filemei    = :gakuseisho_filemei 
+                    , gakuseisho_filemei_2  = :gakuseisho_filemei_2 
                     , furigana_mei          = :furigana_mei
                     , seinengappi           = :seinengappi
                     , seibetsu_kbn          = :seibetsu_kbn
@@ -696,8 +700,6 @@ SQL;
                     , tel                   = :tel
                     , keitai_no             = :keitai_no
                     , fax                   = :fax
-                    , email_1               = :email_1
-                    , email_2               = :email_2
                     , url_1                 = :url_1
                     , shokugyo_kbn_1        = :shokugyo_kbn_1
                     , shokugyo_kbn_2        = :shokugyo_kbn_2
@@ -721,10 +723,13 @@ SQL;
             $sth = $db->prepare($sql);
             $sth->execute([
                 ':kaiin_no'                         => $param['kaiin_no'],
+                ':kaiin_sbt_kbn'                    => $param['kaiin_sbt_kbn'],
                 ':shimei_sei'                       => $param['shimei_sei'],
                 ':shimei_mei'                       => $param['shimei_mei'],
                 ':furigana_sei'                     => $param['furigana_sei'],
                 ':furigana_mei'                     => $param['furigana_mei'],
+                ':gakuseisho_filemei'               => $param['gakuseisho_filemei'],
+                ':gakuseisho_filemei_2'             => $param['gakuseisho_filemei_2'],
                 ':seinengappi'                      => $param['seinengappi'],
                 ':seibetsu_kbn'                     => $param['seibetsu_kbn'],
                 ':yubin_no'                         => $param['yubin_no'],
@@ -738,8 +743,6 @@ SQL;
                 ':tel'                              => $param['tel'],
                 ':fax'                              => $param['fax'],
                 ':keitai_no'                        => $param['keitai_no'],
-                ':email_1'                          => $param['email_1'],
-                ':email_2'                          => $param['email_2'],
                 ':url_1'                            => $param['url_1'],
                 ':shokugyo_kbn_1'                   => $param['shokugyo_kbn_1'],
                 ':shokugyo_kbn_2'                   => $param['shokugyo_kbn_2'],
@@ -897,18 +900,12 @@ WHERE joho.kaiin_no = :kaiin_no
     }
 
     //会員種別を取得する
-    public function findBykaiinSbt()
+    public function findBykaiinSbt($param)
     {
-        $wk_kaiin_no = "";
-        // if (isset($_SESSION['kaiin_no'])) {
-        //         $wk_kaiin_no = $_SESSION['kaiin_no'];
-        // }
-        //$wk_kaiin_no = 10251033;
-        $wk_kaiin_no = 819121118;
         try {
             $db = Db::getInstance();
             $sth = $db->prepare("SELECT kaiin_sbt_kbn FROM tb_kaiin_joho WHERE kaiin_no = :kaiin_no");
-            $sth->execute([':kaiin_no' => $wk_kaiin_no,]);
+            $sth->execute([':kaiin_no' => $param['kaiin_no'],]);
             // $sth->execute([':kaiin_no' => $kaiin_no,]);
             $Tb_kaiin_joho = $sth->fetch();
         } catch (\PDOException $e) {

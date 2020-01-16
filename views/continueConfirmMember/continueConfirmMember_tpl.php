@@ -122,7 +122,7 @@
 							</td>
 						</tr>
 						<tr class="kaihi">
-							<th><span>会費<?php echo $wk_kaihi; ?></span></th>
+							<th><span>会費<?php echo $wk_kaihi;?></span></th>
 						</tr>
 					</table>
 				</div>

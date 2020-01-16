@@ -26,6 +26,7 @@ if (isset($_SESSION['kaiinNo'])) {
 // changeConfirmMember.jsでセットしたPOSTデータを取得する
 
 // 会員情報
+$kaiin_Sbt_kbn = (!empty($_POST['kaiin_sbt_kbn'])) ? htmlentities($_POST['kaiin_sbt_kbn'], ENT_QUOTES, "UTF-8") : "";
 $shimei_sei = (!empty($_POST['shimei_sei'])) ? htmlentities($_POST['shimei_sei'], ENT_QUOTES, "UTF-8") : "";
 $shimei_mei = (!empty($_POST['shimei_mei'])) ? htmlentities($_POST['shimei_mei'], ENT_QUOTES, "UTF-8") : "";
 $furigana_sei = (!empty($_POST['furigana_sei'])) ? htmlentities($_POST['furigana_sei'], ENT_QUOTES, "UTF-8") : "";
@@ -48,6 +49,8 @@ $url_1 = (!empty($_POST['url_1'])) ? htmlentities($_POST['url_1'], ENT_QUOTES, "
 $shokugyo_kbn_1 = (!empty($_POST['shokugyo_kbn_1'])) ? htmlentities($_POST['shokugyo_kbn_1'], ENT_QUOTES, "UTF-8") : "";
 $shokugyo_kbn_2 = (!empty($_POST['shokugyo_kbn_2'])) ? htmlentities($_POST['shokugyo_kbn_2'], ENT_QUOTES, "UTF-8") : "";
 $shokugyo_kbn_3 = (!empty($_POST['shokugyo_kbn_3'])) ? htmlentities($_POST['shokugyo_kbn_3'], ENT_QUOTES, "UTF-8") : "";
+$gakuseisho_filemei_1 = (!empty($_POST['gakuseisho_filemei_1'])) ? htmlentities($_POST['gakuseisho_filemei_1'], ENT_QUOTES, "UTF-8") : "";
+$gakuseisho_filemei_2 = (!empty($_POST['gakuseisho_filemei_2'])) ? htmlentities($_POST['gakuseisho_filemei_2'], ENT_QUOTES, "UTF-8") : "";
 $kimmusakimei = (!empty($_POST['kimmusakimei'])) ? htmlentities($_POST['kimmusakimei'], ENT_QUOTES, "UTF-8") : "";
 $kimmusaki_yubin_no = (!empty($_POST['kimmusaki_yubin_no'])) ? htmlentities($_POST['kimmusaki_yubin_no'], ENT_QUOTES, "UTF-8") : "";
 $kimmusaki_ken_no = (!empty($_POST['kimmusaki_ken_no'])) ? htmlentities($_POST['kimmusaki_ken_no'], ENT_QUOTES, "UTF-8") : "";
@@ -81,18 +84,7 @@ if ($merumaga == 1 && $mail == 2) {
 } else {
     $wk_mail2 = FALSE;
 }
-//メール受信希望のメールアドレスが1の場合
-if ($mail == 1) {
-    $receive_mail1 = TRUE;
-} else {
-    $receive_mail1 = FALSE;
-}
-//メール受信希望のメールアドレスが2の場合
-if ($mail == 2) {
-    $receive_mail2 = TRUE;
-} else {
-    $receive_mail2 = FALSE;
-}
+
 //連絡方法
 if ($hoho == 1) {
     $wk_hoho1 = TRUE;
@@ -150,6 +142,9 @@ $db->beginTransaction();
 
 $param = [
     'kaiin_no'                          => $wk_kaiin_no,
+    'kaiin_sbt_kbn'                     => $kaiin_Sbt_kbn,
+    'gakuseisho_filemei'                => $gakuseisho_filemei_1,
+    'gakuseisho_filemei_2'              => $gakuseisho_filemei_2,
     'shimei_sei'                        => $shimei_sei,
     'shimei_mei'                        => $shimei_mei,
     'furigana_sei'                      => $furigana_sei,
@@ -167,8 +162,6 @@ $param = [
     'tel'                               => $tel,
     'keitai_no'                         => $keitai_no,
     'fax'                               => $fax,
-    'email_1'                           => $email_1,
-    'email_2'                           => $email_2,
     'url_1'                             => $url_1,
     'shokugyo_kbn_1'                    => $shokugyo_kbn_1,
     'shokugyo_kbn_2'                    => $shokugyo_kbn_2,

@@ -14,10 +14,10 @@ class Tb_kaiin_sentaku
     public function findBySentaku()
     {
         $wk_kaiin_no = "";
-        // if (isset($_SESSION['kaiin_no'])) {
-        //         $wk_kaiin_no = $_SESSION['kaiin_no'];
-        // }
-        $wk_kaiin_no = 10251033;
+        if (isset($_SESSION['kaiin_no'])) {
+                $wk_kaiin_no = $_SESSION['kaiin_no'];
+        }
+        // $wk_kaiin_no = 10251033;
         //$wk_kaiin_no = 819121118;
         try {
             $db = Db::getInstance();
