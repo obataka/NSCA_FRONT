@@ -16,7 +16,9 @@ class Tb_ceu_joho
     {
         try {
             $db = Db::getInstance();
-            $sth = $db->prepare("SELECT 
+            $sth = $db->prepare("
+-- セミナー・レベル1・トレ検
+SELECT
 		 tb_ceu_joho.ceu_id
 		, event_kbn
 		, shutoku_naiyo
@@ -25,11 +27,11 @@ class Tb_ceu_joho
 		  ELSE 0
 		  END AS nokori
 , moushikomi
-FROM tb_ceu_joho 
+FROM tb_ceu_joho
 LEFT JOIN (SELECT ceu_id,count(kaiin_no) AS moushikomi,sum(nonyu_kingaku) as nonyu_kingaku FROM tb_ceu_joho_meisai
  			WHERE sakujo_flg=0 and kaiin_no = :kaiin_no GROUP BY ceu_id)  ceu_joho_kaiin
  	ON tb_ceu_joho.ceu_id = ceu_joho_kaiin.ceu_id
-LEFT JOIN (SELECT meisho_cd,meisho FROM ms_meishoKbn,ms_meisho 
+LEFT JOIN (SELECT meisho_cd,meisho FROM ms_meishoKbn,ms_meisho
 		WHERE ms_meishoKbn.meisho_id = ms_meisho.meisho_id
 	    AND meisho_kbn = 59)  meisho_event_kbn
 	ON meisho_event_kbn.meisho_cd = event_kbn
@@ -58,14 +60,14 @@ ORDER BY event_kbn
     {
         try {
             $db = Db::getInstance();
-            $sth = $db->prepare("SELECT 
+            $sth = $db->prepare("SELECT
 		 tb_ceu_joho.ceu_id
 		, event_kbn
 		, shutoku_naiyo
 		, CASE WHEN nonyu_hoho_kbn = 2 THEN '支払番号表示'
 		  ELSE '支払'
 		  END AS button_text
-FROM tb_ceu_joho 
+FROM tb_ceu_joho
 LEFT JOIN (SELECT ceu_id,count(kaiin_no) AS moushikomi,sum(nonyu_kingaku) as nonyu_kingaku ,MAX(nonyubi) AS nonyubi, MAX(nonyu_hoho_kbn) AS nonyu_hoho_kbn
  			 FROM tb_ceu_joho_meisai WHERE sakujo_flg=0 and kaiin_no = :kaiin_no GROUP BY ceu_id)  ceu_joho_kaiin
  	ON tb_ceu_joho.ceu_id = ceu_joho_kaiin.ceu_id
@@ -92,11 +94,11 @@ ORDER BY event_kbn
     {
         try {
             $db = Db::getInstance();
-            $sth = $db->prepare("SELECT 
+            $sth = $db->prepare("SELECT
 		 tb_ceu_joho.ceu_id
 		, event_kbn
 		, shutoku_naiyo
-FROM tb_ceu_joho 
+FROM tb_ceu_joho
 LEFT JOIN (SELECT ceu_id,count(kaiin_no) AS moushikomi,sum(nonyu_kingaku) as nonyu_kingaku ,MAX(nonyubi) AS nonyubi FROM tb_ceu_joho_meisai
  			WHERE sakujo_flg=0 and kaiin_no = :kaiin_no GROUP BY ceu_id)  ceu_joho_kaiin
  	ON tb_ceu_joho.ceu_id = ceu_joho_kaiin.ceu_id
