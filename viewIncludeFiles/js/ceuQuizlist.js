@@ -17,6 +17,7 @@
                     console.log(getCeuQuizJoho);
                     $('#txt1').html(getCeuQuizJoho[0]["shutoku_naiyo"]);
                     $('#txt2').html(getCeuQuizJoho[1]["shutoku_naiyo"]);
+                    //$('#txt3').html(getCeuQuizJoho[2]["shutoku_naiyo"]);
 
                     //1件目の関連記事URLがセットされていない場合、関連記事ボタンを非表示にする
                     var kiji1 = getCeuQuizJoho[0]["kanren_kiji_url"];
@@ -36,7 +37,18 @@
                         $('.kiji2').hide();
                     }
                     
+                    //3件目の関連記事URLがセットされていない場合、関連記事ボタンを非表示にする
+                    // var kiji3 = getCeuQuizJoho[2]["kanren_kiji_url"];
+
+                    // if (kiji3 !== "") {
+                    //     $(".kiji3").attr('onclick', 'location.href=' + "'" + kiji3 + "'");
+                    // } else {               
+                    //     $('.kiji3').hide();
+                    // }
+
+
                     //参加者登録して未納入の場合、又は納入していても合格している場合は解答ボタンを非表示にする
+
                     //1行目
                     var nonyubi1  = getCeuQuizJoho[0]["nonyubi"];
                     var sankaryo1 = getCeuQuizJoho[0]["sankaryo"];
@@ -45,8 +57,8 @@
 
                     if (nonyubi1 == "" && sankaryo1 == "0.00" || gohi_kbn1 !== 2) {
                        
-                        $('.kaito1').hide();
-
+                        //$('.kaito1').hide();
+                        $('#ceu_id1').val(ceu_id1);
                     } else {
 
                         //解答ボタンが有効の場合、ceuidをhiddenにセット
@@ -62,7 +74,7 @@
 
                     if (nonyubi2 == "" && sankaryo2 == "0.00" || gohi_kbn2 !== 2) {
                         
-                        $('.kaito2').prop('disabled', true);
+                        //$('.kaito2').hide();
 
                     } else {
 
@@ -70,6 +82,23 @@
                         $('#ceu_id2').val(ceu_id2);
                         
                     }
+
+                    //3行目
+                    // var nonyubi3  = getCeuQuizJoho[2]["nonyubi"];
+                    // var sankaryo3 = getCeuQuizJoho[2]["sankaryo"];                
+                    // var gohi_kbn3 = getCeuQuizJoho[2]["gohikbn_"];
+                    // var ceu_id3   = getCeuQuizJoho[2]["ceu_id"];
+
+                    // if (nonyubi3 == "" && sankaryo3 == "0.00" || gohi_kbn3 !== 2) {
+                        
+                    //     $('.kaito3').hide();
+
+                    // } else {
+
+                    //     //解答ボタンが有効の場合、ceuidをhiddenにセット
+                    //     $('#ceu_id3').val(ceu_id3);
+                        
+                    // }     
 
                 }
             },
@@ -81,20 +110,44 @@
             }
         });
 
+        //解答ボタンが押された時の処理
+        $(".kaito1").click(function() {
 
-        $(".button").click(function() {
-            location.href = kiji1;
+            //1行目の解答ボタンが押された時、クイズテキストをhidden項目にセットする
+            var quiz_txt = $('#txt1').html();
+            $('#quiz_txt').val(quiz_txt);
+            
+            //解答入力画面に画面遷移
+            url = '../inputAnswer/';
+            $('form').attr('action', url);
+            $('form').submit();
         });
 
+        $(".kaito2").click(function() {
+            
+            //2行目の解答ボタンが押された時、クイズテキストをhidden項目にセットする
+            var quiz_txt = $('#txt2').html();
+            $('#quiz_txt').val(quiz_txt);
 
+            //解答入力画面に画面遷移
+            url = '../inputAnswer/';
+            $('form').attr('action', url);
+            $('form').submit();
+        });
 
+        $(".kaito3").click(function() {
+            
+            //2行目の解答ボタンが押された時、クイズテキストをhidden項目にセットする
+            var quiz_txt = $('#txt3').html();
+            $('#quiz_txt').val(quiz_txt);
 
-
-        // /**********************
-        //  * マイページへボタン押下時の処理
-        //  **********************/
-        // $(".button").click(function() {
-        //     location.href = "../../mypage/";
-        // });
+            //解答入力画面に画面遷移
+            url = '../inputAnswer/';
+            $('form').attr('action', url);
+            $('form').submit();
+        });
+        
     });
+
+
 })(jQuery);

@@ -29,6 +29,9 @@
 		<form action="../inputAnswer/inputAnswer_tpl.php" method="post">
 				<input type="hidden" name="ceu_id1" id="ceu_id1" value="<?php echo $ceu_id1; ?>">
 				<input type="hidden" name="ceu_id2" id="ceu_id2" value="<?php echo $ceu_id2; ?>">
+				<input type="hidden" name="ceu_id3" id="ceu_id3" value="<?php echo $ceu_id3; ?>">
+				<input type="hidden" name="quiz_txt" id="quiz_txt" value="<?php echo $quiz_txt; ?>">
+		</form>
 			<div class="wrap mh_c">
 				<h2>CEUクイズ</h2>
 				<div class="content_wrap">
@@ -36,7 +39,7 @@
 					
 					<table>
 						<tr>
-							<th id="txt1">テキストテキストテキスト(0000年00月号)</th>
+							<th id="txt1"><!--テキストテキストテキスト(0000年00月号)--></th>
 							<td>
 								<div class="btn">
 									<button class="button kaito1" onclick="location.href='#'"><span>解答</span></button>
@@ -45,7 +48,7 @@
 							</td>
 						</tr>
 						<tr>
-							<th id="txt2">テキストテキストテキスト(0000年00月号)</th>
+							<th id="txt2"><!--テキストテキストテキスト(0000年00月号)--></th>
 							<td>
 								<div class="btn">
 									<button class="button kaito2" onclick="location.href='#'"><span>解答</span></button>
@@ -54,7 +57,7 @@
 							</td>
 						</tr>
 						<tr>
-							<th id="txt3">テキストテキストテキスト(0000年00月号)</th>
+							<th id="txt3"><!--テキストテキストテキスト(0000年00月号)--></th>
 							<td>
 								<div class="btn">
 									<button class="button kaito3" onclick="location.href='#'"><span>解答</span></button>
@@ -65,7 +68,6 @@
 					</table>
 				</div>
 			</div>
-		</form>
 		<footer id="footer">
 		</footer>
 	</body>

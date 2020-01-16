@@ -18,6 +18,7 @@
         <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.1.1.min.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
+		<script type="text/javascript" src="../../viewIncludeFiles/js/inputAnswer.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/header.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
@@ -26,8 +27,11 @@
 		<header id="header">
 		</header>
 			<div class="wrap">
+			<form action="?" method="post" autocomplete="off" id="inputAnswer">
+					<input type="hidden" name="ceu_id1" id="ceu_id1" value="<?php echo $ceu_id1; ?>">
+			</form>
 				<h2>CEUクイズ　回答入力</h2>
-				<p class="h2_text">テキストテキスト(0000年00月号)</p>
+				<p class="h2_text"><!--テキストテキスト(0000年00月号)--><?php echo $quiz_txt; ?></p>
 				<div class="content_wrap">
 					<div class="spb_arrows height_62">
 						<ul class="nav nav-tabs step-anchor">
