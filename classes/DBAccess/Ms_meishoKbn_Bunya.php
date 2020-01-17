@@ -19,7 +19,7 @@ class Ms_meishoKbn_Bunya
             INNER JOIN ms_meisho CHILD
             ON    MST.meisho_id = CHILD.meisho_id
             WHERE MST.meisho_kbn = 24
-            ORDER BY CHILD.meisho_cd");  
+            ORDER BY CHILD.meisho_cd");
             $sth->execute();
             $ms_Bunya = $sth->fetchAll();
         } catch (\PDOException $e) {

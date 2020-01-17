@@ -39,7 +39,7 @@
 				</ul>
 			</div>
 			<p class="top_text">テキストテキストテキストテキストテキストテキスト電話またはメールにて<a href="https://www.nsca-japan.or.jp/06_qanda/top.html#contact" target="_blank">お問い合わせ</a>ください。</p>
-			
+
 			<div class="shinki_toroku">
 				<form action="?" method="post" autocomplete="off" id="confirmForm" enctype="multipart/form-data">
 					<input type="hidden" name="kaiinType" id="kaiinType" value="<?php echo $wk_kaiinType; ?>">
@@ -114,7 +114,6 @@
 					<input type="hidden" name="wk_sel_yubin" id="wk_sel_yubin" value="<?php echo $wk_sel_yubin; ?>">
 					<input type="hidden" name="sel_qa" id="sel_qa" value="<?php echo $qa; ?>">
 					<input type="hidden" name="wk_sel_qa" id="wk_sel_qa" value="<?php echo $wk_sel_qa; ?>">
-					<input type="hidden" name="kaiinType" id="kaiinType" value="<?php echo $wk_kaiinType ?>" />
 					<input type="hidden" name="sel_chiiki" id="sel_chiiki" value="<?php echo $sel_chiiki; ?>">
 					<input type="hidden" name="sel_office_chiiki" id="sel_office_chiiki" value="<?php echo $sel_office_chiiki; ?>">
 					<input type="hidden" name="kenmei" id="kenmei" value="<?php echo $kenmei; ?>">
@@ -163,7 +162,7 @@
 								if ($filePath_back != "") {
 									echo '<p>学生証（裏）アップロード済み</p><img class="filePath_back" src="' .$filePath_back . '"><br>';
 								}
-								echo '</td> 			
+								echo '</td>
 								</tr>
 								';
 							}
@@ -184,7 +183,7 @@
 					</div>
 				</form>
 			</div>
-			
+
 			<div class="kihon_joho">
 				<h2>基本情報</h2>
 				<div class="bg_white">
@@ -395,11 +394,11 @@
 						</tr>
 					</table>
 				</div>
-					
+
 			</div>
 			<section class="btn_wrap">
-				<button class="button btn_gray" id="return_button" type="button" value="" onclick="location.href='#'">内容を修正する</button>
-				<button class="button" id="next_button" type="submit" value="" onclick="location.href='#'">登録する</button>
+				<button class="button btn_gray" id="return_button" type="button" value="">内容を修正する</button>
+				<button class="button" id="next_button" type="button" value="">登録する</button>
 			</section>
 
 		</div>

@@ -101,13 +101,13 @@
 			})
 
 			// Ajaxリクエストが失敗した時発動
-			.fail( (data) => {
+			.fail( (rtn) => {
 				$('#err_msg').html('システムエラーが発生しました。');
 				return false;
 			})
 
 			// Ajaxリクエストが成功・失敗どちらでも発動
-			.always( (data) => {
+			.always( (rtn) => {
 			});
 		});
 	});
