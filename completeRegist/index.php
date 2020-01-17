@@ -1,5 +1,5 @@
 <?php
-include_once '../ctrl/parts/inputHeader.php';
+include_once '../ctrl/parts/beforeLoginHeader.php';
 
 $includeView = '../views/completeRegist/completeRegist_tpl.php';
 

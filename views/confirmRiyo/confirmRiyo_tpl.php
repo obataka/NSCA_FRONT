@@ -37,7 +37,6 @@
 					<li><span><small>完了</small></span></li>
 				</ul>
 			</div>
-			<p class="top_text">テキストテキストテキストテキストテキストテキスト電話またはメールにて<a href="#">お問い合わせ</a>ください。</p>
 			<h2>新規登録</h2>
 			<div class="shinki_toroku bg_white">
 				<table>
@@ -49,15 +48,14 @@
 					</tr>
 				</table>
 			</div>
-			
 			<div class="kihon_joho">
 				<form action="?" method="post" autocomplete="off" id="confirmForm">
 					<input type="hidden" name="name_sei" id="name_sei" value="<?php echo $name_sei; ?>">
 					<input type="hidden" name="name_mei" id="name_mei" value="<?php echo $name_mei; ?>">
-					<input type="hidden" name="sei_kana_name" id="sei_kana_name" value="<?php echo $sei_kana_name; ?>">	
+					<input type="hidden" name="sei_kana_name" id="sei_kana_name" value="<?php echo $sei_kana_name; ?>">
 					<input type="hidden" name="sei_mei_name" id="sei_mei_name" value="<?php echo $sei_mei_name; ?>">
 					<input type="hidden" name="sei_mei_name" id="sei_mei_name" value="<?php echo $sei_mei_name; ?>">
-					<input type="hidden" name="seireki_name" id="seireki_name" value="<?php echo $seireki_name; ?>">	
+					<input type="hidden" name="seireki_name" id="seireki_name" value="<?php echo $seireki_name; ?>">
 					<input type="hidden" name="month" id="month" value="<?php echo $month; ?>">
 					<input type="hidden" name="day" id="day" value="<?php echo $day; ?>">
 					<input type="hidden" name="sel_gender" id="sel_gender" value="<?php echo $gender; ?>">
@@ -101,7 +99,7 @@
 								<td class="clearfix">
 									<div>
 										<?php echo $sei_kana_name; ?> <?php echo $sei_mei_name; ?>
-									</div>	
+									</div>
 								</td>
 							</tr>
 							<tr class="birthday">
@@ -164,8 +162,6 @@
 					</div>
 				</form>
 			</div>
-
-
 			<div class="oshirase">
 				<h2>お知らせ／連絡方法／アンケート</h2>
 				<div class="bg_white">
@@ -179,10 +175,12 @@
 					</table>
 				</div>
 			</div>
-			
+	   		<ul class="error_ul" style="margin-bottom: 30px;">
+				<li class="error" id="err_msg"></li>
+			</ul>
 			<section class="btn_wrap">
-				<button id="return_button" class="button btn_gray" type="button" value="" onclick="location.href='#'">内容を修正する</button>
-				<button id="next_button" class="button" type="submit" value="" onclick="location.href='#'">次へ</button>
+				<button id="return_button" class="button btn_gray" type="button" value="">内容を修正する</button>
+				<button id="next_button" class="button" type="button" value="">次へ</button>
 			</section>
 		</div>
 	<footer id="footer">

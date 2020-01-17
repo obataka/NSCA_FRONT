@@ -1,10 +1,12 @@
 (function($){
-    $(document).ready(function(){
-        /**********************
-         * マイページへボタン押下時の
-         **********************/
-        $(".button").click(function() {
-            location.href = "../../mypage/";
+
+	$(document).ready(function(){
+
+		/**
+         ** ログインへボタン押下時の
+         **/
+        $("#__toLogin").click(function() {
+            location.href = "../login/";
         });
     });
 })(jQuery);
