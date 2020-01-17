@@ -13,37 +13,32 @@
          ****************/
         jQuery.ajax({
             url: '../../classes/getTodofukenList.php',
-            success: function (rtn) {
-                // rtn = 0 の場合は、該当なし
-                if (rtn == 0) {
-                    return false;
-                } else {
-                    //※正常に住所情報を取得できた時の処理を書く場所
-                    getTodofukenList = JSON.parse(rtn);
-                    $.each(getTodofukenList, function (i, value) {
-                        $('#address_todohuken').append('<option name="' + value[2] + '" value="' + value[0] + '">' + value[1] + '</option>');
-                        $('#office_todohuken').append('<option  name="' + value[2] + '" value="' + value[0] + '">' + value[1] + '</option>');
-                    });
-                    // 修正で入力画面に戻ってきた時、都道府県のセレクトボックスの初期表示処理
-                    var test1 = $('#sel_math').val();
-                    // 選択済みの都道府県がある場合
-                    if (test1 != "") {
-                        $('#address_todohuken').val(test1);
-                    }
-                    // 修正で入力画面に戻ってきた時、所属先都道府県のセレクトボックスの初期表示処理
-                    var test2 = $('#sel_office_math').val();
-                    // 選択済みの都道府県がある場合
-                    if (test2 != "") {
-                        $('#office_todohuken').val(test2);
-                    }
+        }).done((rtn) => {
+            // rtn = 0 の場合は、該当なし
+            if (rtn == 0) {
+                return false;
+            } else {
+                //※正常に住所情報を取得できた時の処理を書く場所
+                getTodofukenList = JSON.parse(rtn);
+                $.each(getTodofukenList, function (i, value) {
+                    $('#address_todohuken').append('<option name="' + value[2] + '" value="' + value[0] + '">' + value[1] + '</option>');
+                    $('#office_todohuken').append('<option  name="' + value[2] + '" value="' + value[0] + '">' + value[1] + '</option>');
+                });
+                // 修正で入力画面に戻ってきた時、都道府県のセレクトボックスの初期表示処理
+                var test1 = $('#sel_math').val();
+                // 選択済みの都道府県がある場合
+                if (test1 != "") {
+                    $('#address_todohuken').val(test1);
                 }
-            },
-            fail: function (rtn) {
-                return false;
-            },
-            error: function (rtn) {
-                return false;
+                // 修正で入力画面に戻ってきた時、所属先都道府県のセレクトボックスの初期表示処理
+                var test2 = $('#sel_office_math').val();
+                // 選択済みの都道府県がある場合
+                if (test2 != "") {
+                    $('#office_todohuken').val(test2);
+                }
             }
+        }).fail((rtn) => {
+            return false;
         });
 
         /*********************************
@@ -51,45 +46,40 @@
          *********************************/
         jQuery.ajax({
             url: '../../classes/getMeishoList.php',
-            success: function (rtn) {
-                // rtn = 0 の場合は、該当なし
-                if (rtn == 0) {
-                    return false;
-                } else {
-                    //※正常に職業情報を取得できた時の処理を書く場所
-                    getMeishoList = JSON.parse(rtn);
-                    $.each(getMeishoList, function (i, value) {
-                        $('#job_1').append('<option value="' + value[0] + '">' + value[1] + '</option>');
-                        $('#job_2').append('<option value="' + value[0] + '">' + value[1] + '</option>');
-                        $('#job_3').append('<option value="' + value[0] + '">' + value[1] + '</option>');
-                    });
+        }).done((rtn) => {
+            // rtn = 0 の場合は、該当なし
+            if (rtn == 0) {
+                return false;
+            } else {
+                //※正常に職業情報を取得できた時の処理を書く場所
+                getMeishoList = JSON.parse(rtn);
+                $.each(getMeishoList, function (i, value) {
+                    $('#job_1').append('<option value="' + value[0] + '">' + value[1] + '</option>');
+                    $('#job_2').append('<option value="' + value[0] + '">' + value[1] + '</option>');
+                    $('#job_3').append('<option value="' + value[0] + '">' + value[1] + '</option>');
+                });
 
-                    // 修正で入力画面に戻ってきた時、職業のセレクトボックスの初期表示処理
-                    var test1 = $('#sel_shoku_1').val();
-                    // 選択済みの職業がある場合
-                    if (test1 != "") {
-                        $('#job_1').val(test1);
-                    }
-
-                    var test2 = $('#sel_shoku_2').val();
-                    // 選択済みの職業がある場合
-                    if (test2 != "") {
-                        $('#job_2').val(test2);
-                    }
-
-                    var test3 = $('#sel_shoku_3').val();
-                    // 選択済みの職業がある場合
-                    if (test3 != "") {
-                        $('#job_3').val(test3);
-                    }
+                // 修正で入力画面に戻ってきた時、職業のセレクトボックスの初期表示処理
+                var test1 = $('#sel_shoku_1').val();
+                // 選択済みの職業がある場合
+                if (test1 != "") {
+                    $('#job_1').val(test1);
                 }
-            },
-            fail: function (rtn) {
-                return false;
-            },
-            error: function (rtn) {
-                return false;
+
+                var test2 = $('#sel_shoku_2').val();
+                // 選択済みの職業がある場合
+                if (test2 != "") {
+                    $('#job_2').val(test2);
+                }
+
+                var test3 = $('#sel_shoku_3').val();
+                // 選択済みの職業がある場合
+                if (test3 != "") {
+                    $('#job_3').val(test3);
+                }
             }
+        }).fail((rtn) => {
+            return false;
         });
 
         /*********************************
@@ -97,40 +87,35 @@
         *********************************/
         jQuery.ajax({
             url: '../../classes/getShikakuList.php',
-            success: function (rtn) {
-                // rtn = 0 の場合は、該当なし
-                if (rtn == 0) {
-                    return false;
-                } else {
-                    //※正常に資格情報を取得できた時の処理を書く場所
-                    getShikakuList = JSON.parse(rtn);
-                    $.each(getShikakuList, function (i, value) {
+        }).done((rtn) => {
+            // rtn = 0 の場合は、該当なし
+            if (rtn == 0) {
+                return false;
+            } else {
+                //※正常に資格情報を取得できた時の処理を書く場所
+                getShikakuList = JSON.parse(rtn);
+                $.each(getShikakuList, function (i, value) {
 
-                        $('#nintei-shikaku-wrap').append('<div><input id="shikaku_' + value[0] + '" type="checkbox" name="shikaku" value="' + value[0] + '"><label class="checkbox" for="shikaku_' + value[0] + '">' + value[1] + '</label></div>');
+                    $('#nintei-shikaku-wrap').append('<div><input id="shikaku_' + value[0] + '" type="checkbox" name="shikaku" value="' + value[0] + '"><label class="checkbox" for="shikaku_' + value[0] + '">' + value[1] + '</label></div>');
 
+                });
+
+                // NSCA以外の認定資格：確認画面からの戻りなどで、すでに選択済みの値がある場合は選択状態にするための処理
+                var wk_sel_shikaku_1 = $('#wk_sel_shikaku').val();
+                if (wk_sel_shikaku_1 != "") {
+                    // 選択されたNSCAの以外の認定資格がある場合
+                    // 文字列に存在する半角スペースを除去してから
+                    // 「,」で分割し、配列に格納
+                    var arr_sel_shikaku = wk_sel_shikaku_1.split(',');
+                    $.each(arr_sel_shikaku, function () {
+                        var wk_sel_shikaku_2 = this.replace(" ", "");
+                        var wk_sel_shikaku_name = '#shikaku_' + wk_sel_shikaku_2;
+                        $(wk_sel_shikaku_name).prop("checked", true);
                     });
-
-                    // NSCA以外の認定資格：確認画面からの戻りなどで、すでに選択済みの値がある場合は選択状態にするための処理
-                    var wk_sel_shikaku_1 = $('#wk_sel_shikaku').val();
-                    if (wk_sel_shikaku_1 != "") {
-                        // 選択されたNSCAの以外の認定資格がある場合
-                        // 文字列に存在する半角スペースを除去してから
-                        // 「,」で分割し、配列に格納
-                        var arr_sel_shikaku = wk_sel_shikaku_1.split(',');
-                        $.each(arr_sel_shikaku, function () {
-                            var wk_sel_shikaku_2 = this.replace(" ", "");
-                            var wk_sel_shikaku_name = '#shikaku_' + wk_sel_shikaku_2;
-                            $(wk_sel_shikaku_name).prop("checked", true);
-                        });
-                    }
                 }
-            },
-            fail: function (rtn) {
-                return false;
-            },
-            error: function (rtn) {
-                return false;
             }
+        }).fail((rtn) => {
+            return false;
         });
 
         /*********************************
@@ -138,41 +123,36 @@
         *********************************/
         jQuery.ajax({
             url: '../../classes/getAreaList.php',
-            success: function (rtn) {
-                // rtn = 0 の場合は、該当なし
-                if (rtn == 0) {
-                    return false;
-                } else {
-                    //※正常に地域情報を取得できた時の処理を書く場所
-                    getAreaList = JSON.parse(rtn);
-                    $.each(getAreaList, function (i, value) {
-                        $('#Area').append('<input id="chiiki_' + value[0] + '" type="checkbox" name="chiiki" value="' + value[0] + '"><label class="checkbox" for="chiiki_' + value[0] + '">' + value[1] + '</label>');
-                        if (value[1] == "甲信越") {
-                            $('#Area').append('<br class="sp_no">');
-                        }
-                    });
-
-                    // 興味のある地域：確認画面からの戻りなどで、すでに選択済みの値がある場合は選択状態にするための処理
-                    var wk_sel_k_chiiki_1 = $('#wk_sel_k_chiiki').val();
-                    if (wk_sel_k_chiiki_1 != "") {
-                        // 選択された興味のある地域がある場合
-                        // 文字列に存在する半角スペースを除去してから
-                        // 「,」で分割し、配列に格納
-                        var arr_sel_k_chiiki = wk_sel_k_chiiki_1.split(',');
-                        $.each(arr_sel_k_chiiki, function () {
-                            var wk_sel_k_chiiki_2 = this.replace(" ", "");
-                            var wk_sel_k_chiiki_name = '#chiiki_' + wk_sel_k_chiiki_2;
-                            $(wk_sel_k_chiiki_name).prop("checked", true);
-                        });
+        }).done((rtn) => {
+            // rtn = 0 の場合は、該当なし
+            if (rtn == 0) {
+                return false;
+            } else {
+                //※正常に地域情報を取得できた時の処理を書く場所
+                getAreaList = JSON.parse(rtn);
+                $.each(getAreaList, function (i, value) {
+                    $('#Area').append('<input id="chiiki_' + value[0] + '" type="checkbox" name="chiiki" value="' + value[0] + '"><label class="checkbox" for="chiiki_' + value[0] + '">' + value[1] + '</label>');
+                    if (value[1] == "甲信越") {
+                        $('#Area').append('<br class="sp_no">');
                     }
+                });
+
+                // 興味のある地域：確認画面からの戻りなどで、すでに選択済みの値がある場合は選択状態にするための処理
+                var wk_sel_k_chiiki_1 = $('#wk_sel_k_chiiki').val();
+                if (wk_sel_k_chiiki_1 != "") {
+                    // 選択された興味のある地域がある場合
+                    // 文字列に存在する半角スペースを除去してから
+                    // 「,」で分割し、配列に格納
+                    var arr_sel_k_chiiki = wk_sel_k_chiiki_1.split(',');
+                    $.each(arr_sel_k_chiiki, function () {
+                        var wk_sel_k_chiiki_2 = this.replace(" ", "");
+                        var wk_sel_k_chiiki_name = '#chiiki_' + wk_sel_k_chiiki_2;
+                        $(wk_sel_k_chiiki_name).prop("checked", true);
+                    });
                 }
-            },
-            fail: function (rtn) {
-                return false;
-            },
-            error: function (rtn) {
-                return false;
             }
+        }).fail((rtn) => {
+            return false;
         });
 
         /*********************************
@@ -180,38 +160,33 @@
         *********************************/
         jQuery.ajax({
             url: '../../classes/getBunyaList.php',
-            success: function (rtn) {
-                // rtn = 0 の場合は、該当なし
-                if (rtn == 0) {
-                    return false;
-                } else {
-                    //※正常に分野情報を取得できた時の処理を書く場所
-                    getBunyaList = JSON.parse(rtn);
-                    $.each(getBunyaList, function (i, value) {
-                        $('#Bunya').append('<input id="bunya_' + value[0] + '" type="checkbox" name="bunya" value="' + value[0] + '"><label class="checkbox" for="bunya_' + value[0] + '">' + value[1] + '</label><br>');
-                    });
+        }).done((rtn) => {
+            // rtn = 0 の場合は、該当なし
+            if (rtn == 0) {
+                return false;
+            } else {
+                //※正常に分野情報を取得できた時の処理を書く場所
+                getBunyaList = JSON.parse(rtn);
+                $.each(getBunyaList, function (i, value) {
+                    $('#Bunya').append('<input id="bunya_' + value[0] + '" type="checkbox" name="bunya" value="' + value[0] + '"><label class="checkbox" for="bunya_' + value[0] + '">' + value[1] + '</label><br>');
+                });
 
-                    //興味のある分野：確認画面からの戻りなどで、すでに選択済みの値がある場合は選択状態にするための処理
-                    var wk_sel_bunya_1 = $('#wk_sel_bunya').val();
-                    if (wk_sel_bunya_1 != "") {
-                        // 選択された興味のある分野がある場合
-                        // 文字列に存在する半角スペースを除去してから
-                        // 「,」で分割し、配列に格納
-                        var arr_sel_bunya = wk_sel_bunya_1.split(',');
-                        $.each(arr_sel_bunya, function () {
-                            var wk_sel_bunya_2 = this.replace(" ", "");
-                            var wk_sel_bunya_name = '#bunya_' + wk_sel_bunya_2;
-                            $(wk_sel_bunya_name).prop("checked", true);
-                        });
-                    }
+                //興味のある分野：確認画面からの戻りなどで、すでに選択済みの値がある場合は選択状態にするための処理
+                var wk_sel_bunya_1 = $('#wk_sel_bunya').val();
+                if (wk_sel_bunya_1 != "") {
+                    // 選択された興味のある分野がある場合
+                    // 文字列に存在する半角スペースを除去してから
+                    // 「,」で分割し、配列に格納
+                    var arr_sel_bunya = wk_sel_bunya_1.split(',');
+                    $.each(arr_sel_bunya, function () {
+                        var wk_sel_bunya_2 = this.replace(" ", "");
+                        var wk_sel_bunya_name = '#bunya_' + wk_sel_bunya_2;
+                        $(wk_sel_bunya_name).prop("checked", true);
+                    });
                 }
-            },
-            fail: function (rtn) {
-                return false;
-            },
-            error: function (rtn) {
-                return false;
             }
+        }).fail((rtn) => {
+            return false;
         });
 
         /***************************************************************
@@ -393,30 +368,24 @@
                     postNo1: $("#yubin_nb_1").val(),
                     postNo2: $("#yubin_nb_2").val()
                 },
-                success: function (rtn) {
-                    // rtn = 0 の場合は、該当なし
-                    if (rtn == 0) {
-                        $("#err_address_yubin_nb_1").html("郵便番号から住所を取得できません");
-                        return false;
-                    } else {
-                        //※正常に住所情報を取得できた時の処理を書く場所
-                        wk_msYubinNo = JSON.parse(rtn);
-                        $("#address_todohuken option").filter(function (index) {
-                            return $(this).text() === wk_msYubinNo[7];
-                        }).prop("selected", true).change();
+            }).done((rtn) => {
+                // rtn = 0 の場合は、該当なし
+                if (rtn == 0) {
+                    $("#err_address_yubin_nb_1").html("郵便番号から住所を取得できません");
+                    return false;
+                } else {
+                    //※正常に住所情報を取得できた時の処理を書く場所
+                    wk_msYubinNo = JSON.parse(rtn);
+                    $("#address_todohuken option").filter(function (index) {
+                        return $(this).text() === wk_msYubinNo[7];
+                    }).prop("selected", true).change();
 
-                        $("#address_shiku").val(wk_msYubinNo[8] + wk_msYubinNo[9]);
-                        $("#address_yomi_shiku").val(wk_msYubinNo[5] + wk_msYubinNo[6]);
-                    }
-                },
-                fail: function (rtn) {
-                    $("#err_address_yubin_nb_1").html("郵便番号から住所を取得できません");
-                    return false;
-                },
-                error: function (rtn) {
-                    $("#err_address_yubin_nb_1").html("郵便番号から住所を取得できません");
-                    return false;
+                    $("#address_shiku").val(wk_msYubinNo[8] + wk_msYubinNo[9]);
+                    $("#address_yomi_shiku").val(wk_msYubinNo[5] + wk_msYubinNo[6]);
                 }
+            }).fail((rtn) => {
+                $("#err_address_yubin_nb_1").html("郵便番号から住所を取得できません");
+                return false;
             });
         });
 
@@ -481,28 +450,22 @@
                     postNo1: $("#office_yubin_nb_1").val(),
                     postNo2: $("#office_yubin_nb_2").val()
                 },
-                success: function (rtn) {
-                    // rtn = 0 の場合は、該当なし
-                    if (rtn == 0) {
-                        $("#err_address_yubin_nb_2").html("郵便番号から住所を取得できません");
-                        return false;
-                    } else {
-                        //※正常に住所情報を取得できた時の処理を書く場所
-                        wk_msYubinNo = JSON.parse(rtn);
-                        $("#office_todohuken option").filter(function (index) {
-                            return $(this).text() === wk_msYubinNo[7];
-                        }).prop("selected", true).change();
-                        $("#office_shiku").val(wk_msYubinNo[8] + wk_msYubinNo[9]);
-                    }
-                },
-                fail: function (rtn) {
+            }).done((rtn) => {
+                // rtn = 0 の場合は、該当なし
+                if (rtn == 0) {
                     $("#err_address_yubin_nb_2").html("郵便番号から住所を取得できません");
                     return false;
-                },
-                error: function (rtn) {
-                    $("#err_address_yubin_nb_2").html("郵便番号から住所を取得できません");
-                    return false;
+                } else {
+                    //※正常に住所情報を取得できた時の処理を書く場所
+                    wk_msYubinNo = JSON.parse(rtn);
+                    $("#office_todohuken option").filter(function (index) {
+                        return $(this).text() === wk_msYubinNo[7];
+                    }).prop("selected", true).change();
+                    $("#office_shiku").val(wk_msYubinNo[8] + wk_msYubinNo[9]);
                 }
+            }).fail((rtn) => {
+                $("#err_address_yubin_nb_2").html("郵便番号から住所を取得できません");
+                return false;
             });
         });
 
@@ -1408,29 +1371,24 @@
                         //メールアドレスセット
                         mail: $("#mail_address_2").val(),
                     },
-                    success: function (rtn) {
-                        if (rtn == 0) {
-                            console.log(rtn);
+                }).done((rtn) =>{
+                    if (rtn == 0) {
+                        console.log(rtn);
 
-                            return false;
-                        } else {
-                            //登録済みの場合エラーメッセージを表示
-                            wk_err_msg == "";
-                            wk_err_msg = "すでにご登録頂いているメールアドレス2です。";
-                            $("#err_mail_address_2").html(wk_err_msg);
-                            //エラー箇所にフォーカスを当てる
-                            if (wk_focus_done == 0) {
-                                $("#mail_address_2").focus();
-                                wk_focus_done = 1;
-                            }
+                        return false;
+                    } else {
+                        //登録済みの場合エラーメッセージを表示
+                        wk_err_msg == "";
+                        wk_err_msg = "すでにご登録頂いているメールアドレス2です。";
+                        $("#err_mail_address_2").html(wk_err_msg);
+                        //エラー箇所にフォーカスを当てる
+                        if (wk_focus_done == 0) {
+                            $("#mail_address_2").focus();
+                            wk_focus_done = 1;
                         }
-                    },
-                    fail: function (rtn) {
-                        return false;
-                    },
-                    error: function (rtn) {
-                        return false;
                     }
+                }).fail((rtn) =>{
+                    return false;
                 });
             }
 
