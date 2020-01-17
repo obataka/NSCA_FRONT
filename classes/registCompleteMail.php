@@ -4,33 +4,29 @@ namespace Was;
 session_start();
 
 require './Config/Config.php';
-require './DBAccess/Db.php'; 
-//require './DBAccess/ワンタイムURL.php';
+require './DBAccess/Db.php';
+require './Common/Util.php';
+
+$return_val = -1;
+$mail_send_ret = TRUE;
 
 //メールアドレス取得
-$email_1 = (!empty($_POST['email_1'])) ? htmlentities($_POST['email_1'], ENT_QUOTES, "UTF-8") : "";
-$email_2 = (!empty($_POST['email_2'])) ? htmlentities($_POST['email_2'], ENT_QUOTES, "UTF-8") : "";
+$email = (!empty($_POST['email'])) ? htmlentities($_POST['email'], ENT_QUOTES, "UTF-8") : "";
 
-$message="会員登録いただきまして誠にありがとうございます。"."\n";
+// 本文
+$message="会員登録いただきまして誠にありがとうございます。"."\n\n";
 $message.="お客様の登録が完了いたしましたのでご連絡申し上げます。"."\n";
-$message.="ご不明な点やご質問などございましたら、お気軽にお問い合せください。"."\n";
+$message.="ご不明な点やご質問などございましたら、お気軽にお問い合せください。"."\n\n";
 $message.="https://www.nsca-japan.or.jp/06_qanda/top.html#contact";
-my_send_mail($email_1,'入会案内',$message);
-my_send_mail($email_2,'入会案内',$message);
 
- 
-function my_send_mail($mailto, $subject, $message)
-{
-     
-    $message = mb_convert_encoding($message, "JIS", "UTF-8");
-    $subject = mb_convert_encoding($subject, "JIS", "UTF-8");
-     
-    $header ="From: NSCAジャパン <info@example.com>\n";
-     
-    mb_send_mail($mailto, $subject, $message, $header);
+// 件名
+$subject = "会員登録ありがとうございます。";
+
+$mail_send_ret = (new Util())->my_send_mail($email, $subject, $message);
+
+if (!$mail_send_ret) {
+    $return_val =  0;
 }
- 
-echo $result;
+
+echo $return_val;
 die();
-
-

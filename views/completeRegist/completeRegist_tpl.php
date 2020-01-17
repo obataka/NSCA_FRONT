@@ -17,9 +17,9 @@
         <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.1.1.min.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
-        <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.3.1.min.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
+        <script type="text/javascript" src="../../viewIncludeFiles/js/completeRegist.js"></script>
     </head>
     <body>
 	<header class="header_logo">
@@ -37,8 +37,8 @@
 				<li class="active"><span><small>完了</small></span></li>
 			</ul>
 		</div>
-		<p class="top_text">テキストテキストテキストテキストテキストテキスト</p>
-		<button class="button btn_b btn_b_1 btn_1" type="button" value="" onclick="location.href='#'"><span>マイページへ</span></button>
+		<p class="top_text">会員登録ありがとうございました。<br>メール受信を希望されましたメールアドレス宛に登録完了メールをお送り致しました。</p>
+		<button class="button btn_b btn_b_1 btn_1" type="button" id="__toLogin" value=""><span>ログインへ</span></button>
 	</div>
 	<footer id="footer">
 	</footer>

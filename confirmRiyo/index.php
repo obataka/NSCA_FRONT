@@ -1,5 +1,5 @@
 <?php
-include_once '../ctrl/parts/inputHeader.php';
+include_once '../ctrl/parts/beforeLoginHeader.php';
 
 $includeView = '../views/confirmRiyo/confirmRiyo_tpl.php';
 
