@@ -31,7 +31,7 @@ SQL;
                 ':koshin_nichiji'                => $param3['koshin_nichiji'],
             ]);
         } catch (\PDOException $e) {
-            error_log(print_r($e, true) . PHP_EOL, '3', 'error_log.txt');
+            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/eroor_log.txt');
             $db->rollBack();
             return FALSE;
         }

@@ -96,9 +96,6 @@
                     return false;
                 }
             });
-
         });
-
     });
-
 })(jQuery);

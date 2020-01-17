@@ -39,6 +39,9 @@
 				</ul>
 			</div>
 			<p class="h2_text">テキストテキストテキストテキストテキストテキスト</p>
+			<ul class="error_ul">
+				<li class="error" id="err_msg"></li>
+			</ul>
 			<h3>継続入力</h3>
 			<form action="?" method="post" autocomplete="off" id="confirmForm" enctype="multipart/form-data">
 				<input type="hidden" name="kaiinType" id="kaiinType" value="<?php echo $wk_kaiinType; ?>">
@@ -122,7 +125,12 @@
 							</td>
 						</tr>
 						<tr class="kaihi">
-							<th><span>会費<?php echo $wk_kaihi;?></span></th>
+							<th><span>会費<?php 
+							if ($wk_kaiinSbt == 0) {
+								echo $wk_kaihi; 
+							} else {
+								echo $wk_kaihi."円";
+							}?></span></th>
 						</tr>
 					</table>
 				</div>
@@ -311,7 +319,6 @@
 			<button class="button btn_gray" id="return_button" type="button" value="" onclick="location.href='#'"><span>内容を修正する</span></button>
 			<button class="button" id="next_button" type="button" value="" onclick="location.href='#'"><span>決済方法へ</span></button>
 		</section>
-	</div>
 	</div>
 	<footer id="footer">
 	</footer>

@@ -35,6 +35,9 @@
 		<img src="../../viewIncludeFiles/image/NSCA_Japan_rev.png" alt="ロゴ">
 	</header>
 	<div class="wrap mh_c btn_b_wrap">
+		<ul class="error_ul">
+			<li class="error" id="err_kaihi"></li>
+		</ul>
 		<h2>継続登録情報</h2>
 		<div class="content_wrap">
 			<div class="spb_arrows spb_arrows_3ver">
