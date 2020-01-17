@@ -5,7 +5,7 @@ session_start();
 
 require './Config/Config.php';
 require './DBAccess/Db.php';
-require './DBAccess/Tb_kaiin_joho2.php';
+require './DBAccess/Tb_kaiin_joho.php';
 
 $ret = '';
 $wk_no = 0;
@@ -19,9 +19,8 @@ $mail = (!empty($_POST['mail'])) ? htmlentities($_POST['mail'], ENT_QUOTES, "UTF
 $param = [
     'mail'  => $mail,
 ];
-// error_log(print_r($param, true). PHP_EOL, '3', 'tanihara_log1.txt');
 // SELECT処理
-$result = (new Tb_kaiin_joho2())->searchAddress1($param);
+$result = (new Tb_kaiin_joho())->searchAddress1($param);
 if ($result[0] == 0) {
     $result = 0;
 } else {

@@ -769,19 +769,13 @@ SQL;
         return TRUE;
     }
 
-    public function findBykaiinjoho2()
+public function findBykaiinjoho2($param)
     {
-        $wk_kaiin_no = "";
-        // if (isset($_SESSION['kaiin_no'])) {
-        //         $wk_kaiin_no = $_SESSION['kaiin_no'];
-        // }
-        //$wk_kaiin_no = 10251033;
-        $wk_kaiin_no = 819121118;
         try {
             $db = Db::getInstance();
             $sth = $db->prepare("SELECT * FROM tb_kaiin_joho LEFT JOIN tb_kaiin_sonota ON tb_kaiin_joho.kaiin_no = tb_kaiin_sonota.kaiin_no
                                  WHERE tb_kaiin_joho.kaiin_no = :kaiin_no AND tb_kaiin_joho.sakujo_flg = 0");
-            $sth->execute([':kaiin_no' => $wk_kaiin_no,]);
+            $sth->execute([':kaiin_no' => $param['kaiin_no'],]);
             // $sth->execute([':kaiin_no' => $kaiin_no,]);
             $Tb_kaiin_joho = $sth->fetch();
         } catch (\PDOException $e) {
@@ -944,4 +938,153 @@ SQL;
         }
         return TRUE;
     }
+
+    /**
+    * 更新処理
+    * @param array $param
+    * @return boolean
+    */
+    public function reissueMailAddress1($param)
+    {
+         $db = Db::getInstance();
+         $db->beginTransaction();
+         try {
+                $sql = <<<SQL
+                UPDATE tb_kaiin_joho
+                SET
+                    email_1               = :email_1
+                WHERE
+                      kaiin_no = :kaiin_no;
+SQL;
+                $sth = $db->prepare($sql);
+                $sth->execute([
+                    ':email_1'                 => $param['mail'],
+                    ':kaiin_no'                => $param['kaiin_no'],
+                ]);
+            $db->commit();
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error.txt');
+            $db->rollBack();
+            return FALSE;
+        }
+        return TRUE;
+    }
+
+    /**
+    * 更新処理
+    * @param array $param
+    * @return boolean
+    */
+    public function reissueMailAddress2($param)
+    {
+         $db = Db::getInstance();
+         $db->beginTransaction();
+         try {
+                $sql = <<<SQL
+                UPDATE tb_kaiin_joho
+                SET
+                    email_2               = :email_2
+                WHERE
+                      kaiin_no = :kaiin_no;
+SQL;
+                $sth = $db->prepare($sql);
+                $sth->execute([
+                    ':email_2'                 => $param['mail'],
+                    ':kaiin_no'                => $param['kaiin_no'],
+                ]);
+            $db->commit();
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error.txt');
+            $db->rollBack();
+            return FALSE;
+        }
+        return TRUE;
+    }
+
+        /*
+     * 登録（接続及びトランザクションは外側実施）
+     * @param object $db
+     * @param array $param
+     * @return boolean
+     */
+    public function updateRiyo($db, $param)
+    {
+         try {
+                $sql = <<<SQL
+                UPDATE tb_kaiin_joho
+                SET
+                      shimei_sei            = :shimei_sei
+                    , shimei_mei            = :shimei_mei
+                    , furigana_sei          = :furigana_sei
+                    , furigana_mei          = :furigana_mei
+                    , seinengappi           = :seinengappi
+                    , seibetsu_kbn          = :seibetsu_kbn
+                    , yubin_no              = :yubin_no
+                    , ken_no                = :ken_no
+                    , chiiki_id             = :chiiki_id
+                    , kemmei                = :kemmei
+                    , jusho_1               = :jusho_1
+                    , jusho_2               = :jusho_2
+                    , kana_jusho_1          = :kana_jusho_1
+                    , kana_jusho_2          = :kana_jusho_2
+                    , tel                   = :tel
+                    , keitai_no             = :keitai_no
+                    , nagareyama_shimin     = :nagareyama_shimin
+                    , koshin_user_id        = :koshin_user_id
+                    , koshin_nichiji        = :koshin_nichiji
+                WHERE
+                      kaiin_no = :kaiin_no;
+SQL;
+                $sth = $db->prepare($sql);
+                $sth->execute([
+                    ':shimei_sei'              => $param['shimei_sei'],
+                    ':shimei_mei'              => $param['shimei_mei'],
+                    ':furigana_sei'            => $param['furigana_sei'],
+                    ':furigana_mei'            => $param['furigana_mei'],
+                    ':seinengappi'             => $param['seinengappi'],
+                    ':seibetsu_kbn'            => $param['seibetsu_kbn'],
+                    ':yubin_no'                => $param['yubin_no'],
+                    ':ken_no'                  => $param['ken_no'],
+                    ':chiiki_id'               => $param['chiiki_id'],
+                    ':kemmei'                  => $param['kemmei'],
+                    ':jusho_1'                 => $param['jusho_1'],
+                    ':jusho_2'                 => $param['jusho_2'],
+                    ':kana_jusho_1'            => $param['kana_jusho_1'],
+                    ':kana_jusho_2'            => $param['kana_jusho_2'],
+                    ':tel'                     => $param['tel'],
+                    ':keitai_no'               => $param['keitai_no'],
+                    ':nagareyama_shimin'       => $param['nagareyama_shimin'],
+                    ':koshin_user_id'          => $param['koshin_user_id'],
+                    ':koshin_nichiji'          => $param['koshin_nichiji'],
+                    ':kaiin_no'               => $param['kaiin_no'],
+                ]);
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error.txt');
+            $db->rollBack();
+            return FALSE;
+        }
+        return TRUE;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
+

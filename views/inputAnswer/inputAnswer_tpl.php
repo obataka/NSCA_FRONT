@@ -43,7 +43,7 @@
 					</div>
 					<p class="text">選択肢から解答を選んでください。</p>
 					<div class="content">
-						<p class="dai">問題</p>
+						<p class="dai dai_1">問題</p>
 						<ul>
 							<li><input id="q1_1" type="radio" name="q_1" value="1"><label class="radio" for="q1_1">テキストテキスト</label><br></li>
 							<li><input id="q1_2" type="radio" name="q_1" value="1"><label class="radio" for="q1_2">テキストテキスト</label><br></li>
@@ -54,7 +54,7 @@
 						</ul>
 					</div>
 					<div class="content">
-						<p class="dai">問題</p>
+						<p class="dai dai_2">問題</p>
 						<ul>
 							<li><input id="q2_1" type="radio" name="q_2" value="1"><label class="radio" for="q2_1">テキストテキスト</label><br></li>
 							<li><input id="q2_2" type="radio" name="q_2" value="1"><label class="radio" for="q2_2">テキストテキスト</label><br></li>
@@ -66,7 +66,7 @@
 						</ul>
 					</div>
 					<div class="content">
-						<p class="dai">問題</p>
+						<p class="dai dai_3">問題</p>
 						<ul>
 							<li><input id="q3_1" type="radio" name="q_3" value="1"><label class="radio" for="q3_1">テキストテキスト</label><br></li>
 							<li><input id="q3_2" type="radio" name="q_3" value="1"><label class="radio" for="q3_2">テキストテキスト</label><br></li>
@@ -77,7 +77,7 @@
 						</ul>
 					</div>
 					<div class="content">
-						<p class="dai">問題</p>
+						<p class="dai dai_4">問題</p>
 						<ul>
 							<li><input id="q4_1" type="radio" name="q_4" value="1"><label class="radio" for="q4_1">テキストテキスト</label><br></li>
 							<li><input id="q4_2" type="radio" name="q_4" value="1"><label class="radio" for="q4_2">テキストテキスト</label><br></li>

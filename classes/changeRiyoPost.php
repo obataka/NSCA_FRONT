@@ -5,8 +5,8 @@ session_start();
 
 require './Config/Config.php';
 require './DBAccess/Db.php';
-require './DBAccess/Tb_kaiin_joho2.php';
-require './DBAccess/Tb_kaiin_sonota2.php';   
+require './DBAccess/Tb_kaiin_joho.php';
+require './DBAccess/Tb_kaiin_sonota.php';   
 $ret = '';
 $wk_no = 0;
 //セッションから会員番号を取得
@@ -34,8 +34,6 @@ $kana_jusho_1 = (!empty($_POST['kana_jusho_1'])) ? htmlentities($_POST['kana_jus
 $kana_jusho_2 = (!empty($_POST['kana_jusho_2'])) ? htmlentities($_POST['kana_jusho_2'], ENT_QUOTES, "UTF-8") : "";
 $tel = (!empty($_POST['tel'])) ? htmlentities($_POST['tel'], ENT_QUOTES, "UTF-8") : "";
 $keitai_no = (!empty($_POST['keitai_no'])) ? htmlentities($_POST['keitai_no'], ENT_QUOTES, "UTF-8") : "";
-$email_1 = (!empty($_POST['email_1'])) ? htmlentities($_POST['email_1'], ENT_QUOTES, "UTF-8") : "";
-$email_2 = (!empty($_POST['email_2'])) ? htmlentities($_POST['email_2'], ENT_QUOTES, "UTF-8") : "";
 $nagareyama_shimin = (!empty($_POST['nagareyama_shimin'])) ? htmlentities($_POST['nagareyama_shimin'], ENT_QUOTES, "UTF-8") : "";
 $chiiki_id = (!empty($_POST['chiiki_id'])) ? htmlentities($_POST['chiiki_id'], ENT_QUOTES, "UTF-8") : "";
 //会員その他
@@ -103,15 +101,13 @@ $param = [
     'kana_jusho_2'                      => $kana_jusho_2,
     'tel'                               => $tel,
     'keitai_no'                         => $keitai_no,
-    'email_1'                           => $email_1,
-    'email_2'                           => $email_2,
     'nagareyama_shimin'                 => $nagareyama_shimin,
     'koshin_user_id'                    => NULL,
     'koshin_nichiji'                    => date("Y/m/d H:i:s"),
     'kaiin_no'                          => $wk_kaiin_no,
 ];
 // 登録処理
-$result_joho = (new Tb_kaiin_joho2())->updateRiyo($db, $param);
+$result_joho = (new Tb_kaiin_joho())->updateRiyo($db, $param);
 
 // 更新成功の場合
 if ($result_joho == TRUE) {
@@ -130,7 +126,7 @@ if ($result_joho == TRUE) {
     ];
 
     // 更新処理
-    $result_sonota = (new Tb_kaiin_sonota2())->updateRiyoSonota($db, $param1);
+    $result_sonota = (new Tb_kaiin_sonota())->updateRiyoSonota($db, $param1);
 
     // 更新成功の場合
 if ($result_sonota == TRUE) {

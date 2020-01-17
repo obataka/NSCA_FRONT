@@ -5,7 +5,7 @@ session_start();
 
 require './Config/Config.php';
 require './DBAccess/Db.php';
-require './DBAccess/Tb_kaiin_joho2.php';
+require './DBAccess/Tb_kaiin_joho.php';
 //セッションから会員番号を取得
 if (isset($_SESSION['kaiinNo'])) {
    
@@ -20,7 +20,7 @@ $param = [
     'kaiin_no'  => $wk_kaiin_no,
 ];
 // データ取得処理
-$result = (new Tb_kaiin_joho2())->findBykaiinjoho($param);
+$result = (new Tb_kaiin_joho())->findBykaiinjoho($param);
 
 // 該当データなしの場合
 if ($result == '') {

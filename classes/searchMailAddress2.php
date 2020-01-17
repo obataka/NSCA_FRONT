@@ -5,7 +5,7 @@ session_start();
 
 require './Config/Config.php';
 require './DBAccess/Db.php';
-require './DBAccess/Tb_kaiin_joho2.php';
+require './DBAccess/Tb_kaiin_joho.php';
 
 $ret = '';
 $wk_no = 0;
@@ -21,7 +21,7 @@ $param = [
 ];
 // error_log(print_r($param, true). PHP_EOL, '3', 'tanihara_log1.txt');
 // SELECT処理
-$result = (new Tb_kaiin_joho2())->searchAddress2($param);
+$result = (new Tb_kaiin_joho())->searchAddress2($param);
 error_log(print_r($result, true). PHP_EOL, '3', 'tanihara_log1.txt');
 if ($result[0] == 0) {
     $result = 0;

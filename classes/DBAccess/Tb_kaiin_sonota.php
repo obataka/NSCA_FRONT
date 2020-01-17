@@ -268,7 +268,48 @@ SQL;
         return TRUE;
     }
 
-
+    /*
+     * 登録（接続及びトランザクションは外側実施）
+     * @param object $db
+     * @param array $param
+     * @return boolean
+     */
+    public function updateRiyoSonota($db, $param1)
+    {
+         try {
+                $sql = <<<SQL
+                UPDATE tb_kaiin_sonota
+                SET
+                      renraku_hoho_yuso             = :renraku_hoho_yuso
+                    , renraku_hoho_denshi_email     = :renraku_hoho_denshi_email
+                    , email_1_merumaga_haishin      = :email_1_merumaga_haishin
+                    , email_2_merumaga_haishin      = :email_2_merumaga_haishin
+                    , email_1_oshirase_uketori      = :email_1_oshirase_uketori
+                    , email_2_oshirase_uketori      = :email_2_oshirase_uketori
+                    , koshin_user_id                = :koshin_user_id
+                    , koshin_nichiji                = :koshin_nichiji
+                WHERE
+                      kaiin_no = :kaiin_no;
+SQL;
+                $sth = $db->prepare($sql);
+                $sth->execute([
+                    ':renraku_hoho_yuso'                    => $param1['renraku_hoho_yuso'],
+                    ':renraku_hoho_denshi_email'            => $param1['renraku_hoho_denshi_email'],
+                    ':email_1_merumaga_haishin'             => $param1['email_1_merumaga_haishin'],
+                    ':email_2_merumaga_haishin'             => $param1['email_2_merumaga_haishin'],
+                    ':email_1_oshirase_uketori'             => $param1['email_1_oshirase_uketori'],
+                    ':email_2_oshirase_uketori'             => $param1['email_2_oshirase_uketori'],
+                    ':koshin_user_id'                       => $param1['koshin_user_id'],
+                    ':koshin_nichiji'                       => $param1['koshin_nichiji'],
+                    ':kaiin_no'                             => $param['kaiin_no'],
+                ]);
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error.txt');
+            $db->rollBack();
+            return FALSE;
+        }
+        return TRUE;
+    }
 
 
 
