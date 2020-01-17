@@ -8,16 +8,16 @@ $("#token").val(param);
     /********************************
      * トークンが有効かチェック(初期表示)
      ********************************/
-    jQuery.ajax({
+    $.ajax({
         url:  '../../classes/checkReissuePassword.php',
         type: 'POST',
         data:
             {
                 token: $("#token").val()
-            },
-        success: function(rtn) {
-
-
+            }
+ 	})
+		// Ajaxリクエストが成功した時発動
+		.done( (rtn) => {
             // 会員情報、該当なし
                 if (rtn == 0) {
 		            $("#err_pass_1").html("有効期限が過ぎています。パスワード変更依頼メール画面からもう一度やり直してください。");
@@ -26,15 +26,17 @@ $("#token").val(param);
 			        $('button[type="submit"]').prop("disabled", true);
                     return false;
 				}
-            },
-            fail: function(rtn) {
-                return false;
-            },
-            error: function(rtn) {
-                return false;
-            }
-    });
+			})
 
+			// Ajaxリクエストが失敗した時発動
+			.fail( (rtn) => {
+				$('#err_msg').html('システムエラーが発生しました。');
+				return false;
+			})
+
+			// Ajaxリクエストが成功・失敗どちらでも発動
+			.always( (rtn) => {
+			});
 
         /********************************
          * 次へボタン押下時のエラーチェック
@@ -92,16 +94,16 @@ $("#token").val(param);
         /********************************
          * トークンが有効かチェック
          ********************************/
-        jQuery.ajax({
-            url:  '../../classes/checkReissuePassword.php',
-            type: 'POST',
-            data:
-	            {
+		$.ajax({
+			url:  '../../classes/checkReissuePassword.php',
+			type: 'POST',
+			data:{
 	                token: $("#token").val()
-	            },
-            success: function(rtn) {
+			}
+		})
 
-
+		// Ajaxリクエストが成功した時発動
+		.done( (rtn) => {
                 // 会員情報、該当なし
 	                if (rtn == 0) {
 			            $("#err_pass_1").html("有効期限が過ぎています。パスワード変更依頼メール画面からもう一度やり直してください。");
@@ -111,55 +113,64 @@ $("#token").val(param);
 	                    return false;
 					}else{
 
-
-
-        /********************************
+       /********************************
          * 新しいパスワードを登録
          ********************************/
 
 		 //エラーがない場合送信完了画面に画面遷移
 
-			             jQuery.ajax({
-			                url:  '../../classes/registReissuePassword.php',
-			                type: 'POST',
-			                data:
-			                {
+						$.ajax({
+							url:  '../../classes/registReissuePassword.php',
+							type: 'POST',
+							data:{
 			                    kaiin_no: rtn,
 			                    pass: $("#pass_1").val()
-			                },
-			                success: function(rtn) {
-			                    // rtn = 0 の場合は、該当なし
-			                    if (rtn == 0) {
-			                        return false;
-			                    } else {
-			                        //エラーがない場合送信完了画面に画面遷移
-			                        location.href = '../reissuePasswordComplete/';       
-			                    }
-			                },
-			                fail: function(rtn) {
-			                    return false;
-			                },
-			                error: function(rtn) {
-			                    return false;
-			                }
-			            });
+							}
+						})
+
+						// Ajaxリクエストが成功した時発動
+						.done( (rtn2) => {
+		                    // rtn2 = 0 の場合は、該当なし
+		                    if (rtn2 == 0) {
+		                        return false;
+		                    } else {
+		                        //エラーがない場合送信完了画面に画面遷移
+		                        location.href = '../reissuePasswordComplete/';       
+		                    }
+						})
+
+						// Ajaxリクエストが失敗した時発動
+						.fail( (rtn2) => {
+							$('#pass_1').html('システムエラーが発生しました。');
+							return false;
+						})
+
+						// Ajaxリクエストが成功・失敗どちらでも発動
+						.always( (rtn2) => {
+						});
+
 
 					}
+		})
 
-                },
-                fail: function(rtn) {
-                    return false;
-                },
-                error: function(rtn) {
-                    return false;
-                }
-            });
+		// Ajaxリクエストが失敗した時発動
+		.fail( (rtn) => {
+			$('#err_pass_1').html('システムエラーが発生しました。');
+			return false;
+		})
+
+		// Ajaxリクエストが成功・失敗どちらでも発動
+		.always( (rtn) => {
+		});
+
+
 
 
 	                    return false;
 
 
-//alert("入力チェックOK");
         });
+
+
     });
 })(jQuery);

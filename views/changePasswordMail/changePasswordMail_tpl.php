@@ -38,7 +38,7 @@
 		<h2>パスワード変更</h2>
 		<div class="content_wrap">
 			<p class="h2_text">テキストテキストテキストテキスト</p>
-			<form action="../changePasswordMail/changePasswordMail_tpl.php" method="post">
+			<form  method="post">
 				<table>
 					<tr>
 						<th><span class="required">必須</span>会員番号</th>
@@ -60,7 +60,7 @@
 					</tr>
 				</table>
 			<section>
-				<button  id="send_button" class="button btn_b btn_b_1" type="submit" value=""><span>送信</span></button>
+				<button  id="send_button" class="button btn_b btn_b_1" type="button" value=""><span>送信</span></button>
 			</section>
 			</form>
 		</div>

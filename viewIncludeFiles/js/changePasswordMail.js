@@ -37,19 +37,21 @@
                 return false;
              }
 
+         // 会員番号、メールアドレスがDBと一致するか確認する
 
-            // 会員番号、メールアドレスがDBと一致するか確認する
-
-        jQuery.ajax({
-            url:  '../../classes/checkChangePasswordMail.php',
-            type: 'POST',
-            data:
-	            {
+			$.ajax({
+				url:  '../../classes/checkChangePasswordMail.php',
+				type: 'POST',
+				data:{
 	                kaiin_no: $("#kaiin_no").val(),
 	                mail_address: $("#mail_address").val()
-	            },
-            success: function(rtn) {
+				}
+			})
+
+			// Ajaxリクエストが成功した時発動
+			.done( (rtn) => {
                 // 会員情報、該当なし
+
 	                if (rtn == 0) {
 			            $("#err_kaiin_no").html("会員番号かメールアドレスのどちらかまたは両方が一致しません。会員番号とメールアドレスをご確認下さい。");
 			            $("#err_mail_address").html("会員番号かメールアドレスのどちらかまたは両方が一致しません。会員番号とメールアドレスをご確認下さい。");
@@ -58,46 +60,52 @@
 					}else{
 
 
-            /************************************************************
+           /************************************************************
             *トークンと有効期限をDBに登録し、メールを送信する 
             *************************************************************/
 
-			             jQuery.ajax({
-			                url:  '../../classes/sendChangePasswordMail.php',
-			                type: 'POST',
-			                data:
-			                {
-			                    kaiin_no: $("#kaiin_no").val(),
-			                    mail_address: $("#mail_address").val()
-			                },
-			                success: function(rtn) {
-			                    // rtn = 0 の場合は、該当なし
-			                    if (rtn == 0) {
-			                        return false;
-			                    } else {
-			                        //エラーがない場合送信完了画面に画面遷移
-			                        location.href = '../changePasswordMailComplete/';       
-			                    }
-			                },
-			                fail: function(rtn) {
-			                    return false;
-			                },
-			                error: function(rtn) {
-			                    return false;
-			                }
-			            });
+						$.ajax({
+							url:  '../../classes/sendChangePasswordMail.php',
+							type: 'POST',
+							data:{
+				                    kaiin_no: $("#kaiin_no").val(),
+				                    mail_address: $("#mail_address").val()
+							}
+						})
+
+						// Ajaxリクエストが成功した時発動
+						.done( (rtn2) => {
+		                    // rtn = 0 の場合は、該当なし
+		                    if (rtn2 == 0) {
+		                        return false;
+		                    } else {
+		                        //エラーがない場合送信完了画面に画面遷移
+		                        location.href = '../changePasswordMailComplete/';       
+		                    }
+						})
+
+						// Ajaxリクエストが失敗した時発動
+						.fail( (rtn2) => {
+							$('#err_msg').html('システムエラーが発生しました。');
+							return false;
+						})
+
+						// Ajaxリクエストが成功・失敗どちらでも発動
+						.always( (rtn2) => {
+						});
 
 					}
+			})
 
-                },
-                fail: function(rtn) {
-                    return false;
-                },
-                error: function(rtn) {
-                    return false;
-                }
-            });
+			// Ajaxリクエストが失敗した時発動
+			.fail( (rtn) => {
+				$('#err_msg').html('システムエラーが発生しました。');
+				return false;
+			})
 
+			// Ajaxリクエストが成功・失敗どちらでも発動
+			.always( (rtn) => {
+			});
 
 
        return false;
