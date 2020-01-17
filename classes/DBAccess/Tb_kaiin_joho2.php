@@ -405,8 +405,6 @@ SQL;
                     , kana_jusho_2          = :kana_jusho_2
                     , tel                   = :tel
                     , keitai_no             = :keitai_no
-                    , email_1               = :email_1
-                    , email_2               = :email_2
                     , nagareyama_shimin     = :nagareyama_shimin
                     , koshin_user_id        = :koshin_user_id
                     , koshin_nichiji        = :koshin_nichiji
@@ -431,8 +429,6 @@ SQL;
                     ':kana_jusho_2'            => $param['kana_jusho_2'],
                     ':tel'                     => $param['tel'],
                     ':keitai_no'               => $param['keitai_no'],
-                    ':email_1'                 => $param['email_1'],
-                    ':email_2'                 => $param['email_2'],
                     ':nagareyama_shimin'       => $param['nagareyama_shimin'],
                     ':koshin_user_id'          => $param['koshin_user_id'],
                     ':koshin_nichiji'          => $param['koshin_nichiji'],
@@ -496,10 +492,6 @@ SQL;
     */
     public function reissueMailAddress1($param)
     {
-         // if (isset($_SESSION['kaiin_no'])) {
-         //         $wk_kaiin_no = $_SESSION['kaiin_no'];
-         // }
-         //$wk_kaiin_no = 819121118;
          $db = Db::getInstance();
          $db->beginTransaction();
          try {
@@ -508,11 +500,12 @@ SQL;
                 SET
                     email_1               = :email_1
                 WHERE
-                      kaiin_no = 819121119;
+                      kaiin_no = :kaiin_no;
 SQL;
                 $sth = $db->prepare($sql);
                 $sth->execute([
                     ':email_1'                 => $param['mail'],
+                    ':kaiin_no'                => $param['kaiin_no'],
                 ]);
             $db->commit();
         } catch (\PDOException $e) {
@@ -530,10 +523,6 @@ SQL;
     */
     public function reissueMailAddress2($param)
     {
-         // if (isset($_SESSION['kaiin_no'])) {
-         //         $wk_kaiin_no = $_SESSION['kaiin_no'];
-         // }
-         //$wk_kaiin_no = 819121118;
          $db = Db::getInstance();
          $db->beginTransaction();
          try {
@@ -542,11 +531,12 @@ SQL;
                 SET
                     email_2               = :email_2
                 WHERE
-                      kaiin_no = 819121119;
+                      kaiin_no = :kaiin_no;
 SQL;
                 $sth = $db->prepare($sql);
                 $sth->execute([
                     ':email_2'                 => $param['mail'],
+                    ':kaiin_no'                => $param['kaiin_no'],
                 ]);
             $db->commit();
         } catch (\PDOException $e) {
