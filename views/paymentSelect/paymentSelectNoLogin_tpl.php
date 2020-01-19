@@ -52,7 +52,7 @@
 								</tr>
 							</thead>
 							<tr>
-								<td id="pay_customer_name">○○　○○　様</td>
+								<td id="pay_customer_name"><?php echo $wk_name_sei; ?>　<?php echo $wk_name_mei; ?>　様</td>
 								<td id="pay_title">CSCS認定試験【両方（基礎科学、実践／応用）】</td>
 								<td id="pay_money">49,300円</td>
 							</tr>

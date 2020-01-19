@@ -398,7 +398,7 @@
 			</div>
 			<section class="btn_wrap">
 				<button class="button btn_gray" id="return_button" type="button" value="">内容を修正する</button>
-				<button class="button" id="next_button" type="button" value="">登録する</button>
+				<button class="button" id="next_button" type="button" value="">決済方法選択へ</button>
 			</section>
 
 		</div>
