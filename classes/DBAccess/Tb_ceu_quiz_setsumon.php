@@ -13,21 +13,23 @@ class Tb_ceu_quiz_setsumon
             // DB接続
             $db = Db::getInstance();
             $sth = $db->prepare("SELECT
-            tb_ceu_quiz_joho.shutoku_naiyo
-           ,tb_ceu_quiz_setsumon.setsumon_no
-           ,tb_ceu_quiz_setsumon.setsumon
-           ,tb_ceu_quiz_joho.sentakushisu
-           ,tb_ceu_quiz_setsumon.sentakushi_a
-           ,tb_ceu_quiz_setsumon.sentakushi_b
-           ,tb_ceu_quiz_setsumon.sentakushi_c
-           ,tb_ceu_quiz_setsumon.sentakushi_d
-           ,tb_ceu_quiz_setsumon.kaito_kbn
-           ,tb_ceu_quiz_joho.category_kbn
-            FROM tb_ceu_quiz_setsumon
-            LEFT JOIN tb_ceu_quiz_joho
-            ON tb_ceu_quiz_setsumon.ceu_id = tb_ceu_quiz_setsumon.ceu_id
-            WHERE tb_ceu_quiz_setsumon.ceu_id = :ceu_id
-            ORDER BY tb_ceu_quiz_setsumon.setsumon_no
+                 joho.shutoku_naiyo
+                ,setsumon.setsumon_no
+                ,setsumon.setsumon
+                ,joho.sentakushisu
+                ,setsumon.sentakushi_a
+                ,setsumon.sentakushi_b
+                ,setsumon.sentakushi_c
+                ,setsumon.sentakushi_d
+                ,setsumon.kaito_kbn
+                ,joho.category_kbn
+            FROM tb_ceu_quiz_joho joho
+            LEFT JOIN tb_ceu_quiz_setsumon setsumon
+                ON joho.ceu_id = setsumon.ceu_id
+                AND setsumon.sakujo_flg = 0
+            WHERE joho.ceu_id =  :ceu_id
+                AND joho.sakujo_flg = 0
+            ORDER BY setsumon.setsumon_no
            ");
             $sth->execute([':ceu_id' => $param['ceu_id'],]);
             $Tb_ceu_quiz_setsumon = $sth->fetchAll();

@@ -31,7 +31,7 @@
 					<input type="hidden" name="ceu_id1" id="ceu_id1" value="<?php echo $ceu_id1; ?>">
 			</form>
 				<h2>CEUクイズ　回答入力</h2>
-				<p class="h2_text"><!--テキストテキスト(0000年00月号)--><?php echo $quiz_txt; ?></p>
+				<p class="h2_text"><!--テキストテキスト(0000年00月号)--></p>
 				<div class="content_wrap">
 					<div class="spb_arrows height_62">
 						<ul class="nav nav-tabs step-anchor">
@@ -42,6 +42,7 @@
 						</ul>
 					</div>
 					<p class="text">選択肢から解答を選んでください。</p>
+					<div class="p_content">
 					<div class="content">
 						<p class="dai dai_1">問題</p>
 						<ul>
@@ -87,9 +88,10 @@
 							<li class="error" id="err_question_4"></li>
 						</ul>
 					</div>
+					</div>
 					<section class="btn_wrap">
 						<button class="button back" type="button" value="" onclick="location.href='#'"><span>CEUクイズ一覧へ</span></button>
-						<button class="button" type="submit" value="" onclick="location.href='#'"><span>次へ</span></button>
+						<button id="next_button" class="button" type="submit" value="" onclick="location.href='#'"><span>次へ</span></button>
 					</section>
 				</div>
 			</div>
