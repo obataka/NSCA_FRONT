@@ -35,7 +35,7 @@ $page_no = 1;
 $result_apply = (new Tb_ceu_joho())->findByKaiinNoMoushikomiZumi($kaiin_no);
 
 // 該当データありの場合
-if ($result_apply != "") {
+if (!empty($result_apply)) {
 	$result = $result_apply;
 
 }else{

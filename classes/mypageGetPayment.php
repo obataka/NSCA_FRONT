@@ -5,7 +5,7 @@ session_start();
 
 require './Config/Config.php';
 require './DBAccess/Db.php';
-require './DBAccess/Tb_ceu_joho.php';
+require './DBAccess/Tb_keiri_joho.php';
 
 $ret = 0;
 
@@ -25,28 +25,37 @@ $kaiin_no = "819122001";
 $page_no = 1;
 
 
-
-
 /************************************************************
 *イベント情報取得 
 *************************************************************/
 
-// 会員情報
-$result_payment = (new Tb_ceu_joho())->findByKaiinNoShiharaizumi($kaiin_no);
+// 表示期間を設定
+
+$standard_date = date("Y/05/01");
+
+if(date("Y/m/d") > $standard_date ){
+	// 基準日を超えた
+	// 今年の1/1～現時点まで表示
+	$start_date = date("Y/01/01");
+	$end_date = date("Y/12/31");
+}else{
+	// 基準日前
+	// 前年の1/1～現時点まで表示
+	$start_date = date("Y/01/01", strtotime("-1 year"));
+	$end_date = date("Y/12/31");
+}
+
+// 支払済情報
+$result_keiri = (new Tb_keiri_joho())->findByKaiinNoShiharaizumi($kaiin_no, $start_date, $end_date);
 
 // 該当データありの場合
-if ($result_payment != "") {
-	$result = $result_payment;
-   error_log(print_r('1111111', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka2_log.txt');
-
+if (!empty($result_keiri)) {
+	$result = $result_keiri;
 }else{
 	$result = 0;
 }
 
-
-
    error_log(print_r($result, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka2_log.txt');
-
 
     $ret = json_encode($result);
 

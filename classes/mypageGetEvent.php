@@ -34,7 +34,7 @@ $page_no = 1;
 $result_event = (new Tb_ceu_joho())->findByKaiinNoMimoushikomi($kaiin_no);
 
 // 該当データありの場合
-if ($result_event != "") {
+if (!empty($result_event)) {
 	$result = $result_event;
 
 }else{

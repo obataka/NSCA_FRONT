@@ -3,30 +3,30 @@
 
 
 	/************************************************************
-	*‰ïˆõî•ñæ“¾
+	*ä¼šå“¡æƒ…å ±å–å¾—
 	*************************************************************/
     jQuery.ajax({
         url:  '../../classes/mypage.php',
         type: 'POST',
         success: function(rtn) {
 
-           // ‰ïˆõî•ñAŠY“–‚È‚µ
+           // ä¼šå“¡æƒ…å ±ã€è©²å½“ãªã—
                 if (rtn == 0) {
-//		            $("#err_pass_1").html("—LŒøŠúŒÀ‚ª‰ß‚¬‚Ä‚¢‚Ü‚·BƒpƒXƒ[ƒh•ÏXˆË—Šƒ[ƒ‹‰æ–Ê‚©‚ç‚à‚¤ˆê“x‚â‚è’¼‚µ‚Ä‚­‚¾‚³‚¢B");
+//		            $("#err_pass_1").html("æœ‰åŠ¹æœŸé™ãŒéãã¦ã„ã¾ã™ã€‚ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰å¤‰æ›´ä¾é ¼ãƒ¡ãƒ¼ãƒ«ç”»é¢ã‹ã‚‰ã‚‚ã†ä¸€åº¦ã‚„ã‚Šç›´ã—ã¦ãã ã•ã„ã€‚");
 //                    $("#pass_1").prop("disabled", true);
 //                    return false;
 				}else{
 
                         tbKaiinJoho = JSON.parse(rtn);
 
-						// ‰ïˆõî•ñ
+						// ä¼šå“¡æƒ…å ±
                         $('#kaiin_no').html(tbKaiinJoho["kaiin_no"]);
                         $('#kaiin_name').html(tbKaiinJoho["kaiin_name"]);
                         $('#kaiin_sbt').html(tbKaiinJoho["kaiin_sbt"]);
                         $('#yuko_hizuke').html(tbKaiinJoho["yuko_hizuke"]);
                         $('#eibun_option').html(tbKaiinJoho["eibun_option"]);
 
-						// Œ±
+						// è©¦é¨“
                         $('#nintei_no_c').html(tbKaiinJoho["nintei_no_c"]);
                         $('#ninteibi_c').html(tbKaiinJoho["ninteibi_c"]);
                         $('#yuko_kigen_c').html(tbKaiinJoho["yuko_kigen_c"]);
@@ -45,7 +45,7 @@
     });
 
 	/************************************************************
-	*ƒCƒxƒ“ƒgî•ñæ“¾
+	*ã‚¤ãƒ™ãƒ³ãƒˆæƒ…å ±å–å¾—
 	*************************************************************/
 
     jQuery.ajax({
@@ -53,16 +53,16 @@
         type: 'POST',
         success: function(rtn) {
 
-            // ƒCƒxƒ“ƒgî•ñAŠY“–‚È‚µ
+            // ã‚¤ãƒ™ãƒ³ãƒˆæƒ…å ±ã€è©²å½“ãªã—
                 if (rtn == 0) {
-//		            $("#err_pass_1").html("Œ»İƒCƒxƒ“ƒgî•ñ‚ª‚²‚´‚¢‚Ü‚¹‚ñ");
+//		            $("#err_pass_1").html("ç¾åœ¨ã‚¤ãƒ™ãƒ³ãƒˆæƒ…å ±ãŒã”ã–ã„ã¾ã›ã‚“");
 				} else {
 
                         tbEventJoho = JSON.parse(rtn);
 
-					// ƒCƒxƒ“ƒg•\¦Œ”2Œ•ªƒ‹[ƒvˆ—‚·‚é
+					// ã‚¤ãƒ™ãƒ³ãƒˆè¡¨ç¤ºä»¶æ•°2ä»¶åˆ†ãƒ«ãƒ¼ãƒ—å‡¦ç†ã™ã‚‹
 					for(var i = 0; i < 2 ; i++) {
-						// ƒf[ƒ^‚ª‚ ‚éê‡‚Íƒf[ƒ^‚ğƒZƒbƒg‚·‚é
+						// ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹å ´åˆã¯ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 						if(i < tbEventJoho.length){
 							$("#event_list"+(i+1)).show();
 				            $("#event_meisho"+(i+1)).html(tbEventJoho[i]["meisho"]);
@@ -72,7 +72,7 @@
 							}else{
 								$("#event_nokori"+(i+1)).show();
 							}
-						// ƒf[ƒ^‚ª‚È‚¢ê‡‚Í”ñ•\¦‚É‚·‚é
+						// ãƒ‡ãƒ¼ã‚¿ãŒãªã„å ´åˆã¯éè¡¨ç¤ºã«ã™ã‚‹
 						}else{
 							$("#event_list"+(i+1)).hide();
 //							$("#event_meisho"+(i+1)).hide();
@@ -93,28 +93,28 @@
 
 
 	/************************************************************
-	*\ó‹µî•ñæ“¾
+	*ç”³è¾¼çŠ¶æ³æƒ…å ±å–å¾—
 	*************************************************************/
     jQuery.ajax({
         url:  '../../classes/mypageGetApply.php',
         type: 'POST',
         success: function(rtn) {
 
-            // \ó‹µîAŠY“–‚È‚µ
+            // ç”³è¾¼çŠ¶æ³æƒ…ã€è©²å½“ãªã—
                 if (rtn == 0) {
-//		            $("#err_pass_1").html("Œ»İ\î•ñ‚ª‚²‚´‚¢‚Ü‚¹‚ñ");
+//		            $("#err_pass_1").html("ç¾åœ¨ç”³è¾¼æƒ…å ±ãŒã”ã–ã„ã¾ã›ã‚“");
 				} else {
 
                         tbEventJoho = JSON.parse(rtn);
 
-					// ƒCƒxƒ“ƒg•\¦Œ”4Œ•ªƒ‹[ƒvˆ—‚·‚é
+					// ã‚¤ãƒ™ãƒ³ãƒˆè¡¨ç¤ºä»¶æ•°4ä»¶åˆ†ãƒ«ãƒ¼ãƒ—å‡¦ç†ã™ã‚‹
 					for(var i = 0; i < 4 ; i++) {
-						// ƒf[ƒ^‚ª‚ ‚éê‡‚Íƒf[ƒ^‚ğƒZƒbƒg‚·‚é
+						// ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹å ´åˆã¯ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 						if(i < tbEventJoho.length){
 							$("#apply_list"+(i+1)).show();
 				            $("#apply_naiyo"+(i+1)).html(tbEventJoho[i]["shutoku_naiyo"]);
 				            $("#apply_button"+(i+1)).text(tbEventJoho[i]["button_text"]);
-						// ƒf[ƒ^‚ª‚È‚¢ê‡‚Í”ñ•\¦‚É‚·‚é
+						// ãƒ‡ãƒ¼ã‚¿ãŒãªã„å ´åˆã¯éè¡¨ç¤ºã«ã™ã‚‹
 						}else{
 							$("#apply_list"+(i+1)).hide();
 //							$("#apply_naiyo"+(i+1)).hide();
@@ -134,27 +134,35 @@
 
 
 	/************************************************************
-	*x•¥î•ñæ“¾
+	*æ”¯æ‰•æƒ…å ±å–å¾—
 	*************************************************************/
     jQuery.ajax({
         url:  '../../classes/mypageGetPayment.php',
         type: 'POST',
         success: function(rtn) {
 
-            // \ó‹µîAŠY“–‚È‚µ
+            // ç”³è¾¼çŠ¶æ³æƒ…ã€è©²å½“ãªã—
                 if (rtn == 0) {
-//		            $("#err_pass_1").html("Œ»İx•¥‚¢î•ñ‚ª‚²‚´‚¢‚Ü‚¹‚ñ");
+					$("#payment_list1").show();
+		            $("#payment_naiyo1").html("ç¾åœ¨æ”¯æ‰•ã„æƒ…å ±ãŒã”ã–ã„ã¾ã›ã‚“");
+					$("#payment_button1").hide();
+					// ã‚¤ãƒ™ãƒ³ãƒˆè¡¨ç¤ºä»¶æ•°3ä»¶åˆ†ãƒ«ãƒ¼ãƒ—å‡¦ç†ã™ã‚‹
+					for(var i = 1; i < 4 ; i++) {
+						// ãƒ‡ãƒ¼ã‚¿ãŒãªã„å ´åˆã¯éè¡¨ç¤ºã«ã™ã‚‹
+						$("#payment_list"+(i+1)).hide();
+					}
 				} else {
 
-                        tbEventJoho = JSON.parse(rtn);
+                        tbKeiriJoho = JSON.parse(rtn);
 
-					// ƒCƒxƒ“ƒg•\¦Œ”4Œ•ªƒ‹[ƒvˆ—‚·‚é
+					// ã‚¤ãƒ™ãƒ³ãƒˆè¡¨ç¤ºä»¶æ•°4ä»¶åˆ†ãƒ«ãƒ¼ãƒ—å‡¦ç†ã™ã‚‹
 					for(var i = 0; i < 4 ; i++) {
-						// ƒf[ƒ^‚ª‚ ‚éê‡‚Íƒf[ƒ^‚ğƒZƒbƒg‚·‚é
-						if(i < tbEventJoho.length){
+						// ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹å ´åˆã¯ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+						if(i < tbKeiriJoho.length){
 							$("#payment_list"+(i+1)).show();
-				            $("#payment_naiyo"+(i+1)).html(tbEventJoho[i]["shutoku_naiyo"]);
-						// ƒf[ƒ^‚ª‚È‚¢ê‡‚Í”ñ•\¦‚É‚·‚é
+				            $("#payment_naiyo"+(i+1)).html(tbKeiriJoho[i]["uchiwake"]);
+							$("#payment_button"+(i+1)).show();
+						// ãƒ‡ãƒ¼ã‚¿ãŒãªã„å ´åˆã¯éè¡¨ç¤ºã«ã™ã‚‹
 						}else{
 							$("#payment_list"+(i+1)).hide();
 						}
