@@ -7,6 +7,7 @@ $includeView = '../views/confirmMember/confirmMember_tpl.php';
 if (isset($_SESSION['tranScreen']) && ($_SESSION['tranScreen'] != "")) {
     $wk_kaiinType = (isset($_SESSION['kaiinType'])) ? $_SESSION['kaiinType'] : "";
     $wk_kaiinSbt = (isset($_SESSION['kaiinSbt'])) ? $_SESSION['kaiinSbt'] : "";
+    $wk_kaihi = (!empty($_POST['kaihi'])) ? htmlentities($_POST['kaihi'], ENT_QUOTES, "UTF-8") : "";
     $option = (isset($_SESSION['sel_option'])) ? $_SESSION['sel_option'] : "";
     $wk_sel_option = (isset($_SESSION['wk_sel_option'])) ? $_SESSION['wk_sel_option'] : "";
     $riyu = (isset($_SESSION['sel_riyu'])) ? $_SESSION['sel_riyu'] : "";
@@ -42,6 +43,8 @@ if (isset($_SESSION['tranScreen']) && ($_SESSION['tranScreen'] != "")) {
     $fax = (isset($_SESSION['fax'])) ? $_SESSION['fax'] : "";
     $mail_address_1 = (isset($_SESSION['mail_address_1'])) ? $_SESSION['mail_address_1'] : "";
     $mail_address_2 = (isset($_SESSION['mail_address_2'])) ? $_SESSION['mail_address_2'] : "";
+    $mail_login = (!empty($_POST['sel_mail'])) ? htmlentities($_POST['sel_mail'], ENT_QUOTES, "UTF-8") : "";
+    $wk_sel_mail_login = (!empty($_POST['wk_sel_mail_login'])) ? htmlentities($_POST['wk_sel_mail_login'], ENT_QUOTES, "UTF-8") : "";
     $mail = (isset($_SESSION['sel_mail'])) ? $_SESSION['sel_mail'] : "";
     $wk_sel_mail = (isset($_SESSION['wk_sel_mail'])) ? $_SESSION['wk_sel_mail'] : "";
     $merumaga = (isset($_SESSION['sel_merumaga'])) ? $_SESSION['sel_merumaga'] : "";
@@ -83,13 +86,14 @@ if (isset($_SESSION['tranScreen']) && ($_SESSION['tranScreen'] != "")) {
     $sel_office_chiiki = (isset($_SESSION['sel_office_chiiki'])) ? $_SESSION['sel_office_chiiki'] : "";
 
     unset($_SESSION['tranScreen']);
-    error_log(print_r($_SESSION, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/sugai_log'. date("Ymd"). '.txt');
+    error_log(print_r($_SESSION, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/sugai_log' . date("Ymd") . '.txt');
 
 
-// SESSIONに積み込みがない場合
+    // SESSIONに積み込みがない場合
 } else {
     $wk_kaiinType = (!empty($_POST['kaiinType'])) ? htmlentities($_POST['kaiinType'], ENT_QUOTES, "UTF-8") : "";
     $wk_kaiinSbt = (!empty($_POST['kaiinSbt'])) ? htmlentities($_POST['kaiinSbt'], ENT_QUOTES, "UTF-8") : "";
+    $wk_kaihi = (!empty($_POST['kaihi'])) ? htmlentities($_POST['kaihi'], ENT_QUOTES, "UTF-8") : "";
     $option = (!empty($_POST['sel_option'])) ? htmlentities($_POST['sel_option'], ENT_QUOTES, "UTF-8") : "";
     $wk_sel_option = (!empty($_POST['wk_sel_option'])) ? htmlentities($_POST['wk_sel_option'], ENT_QUOTES, "UTF-8") : "";
     $riyu = (!empty($_POST['sel_riyu'])) ? htmlentities($_POST['sel_riyu'], ENT_QUOTES, "UTF-8") : "";
@@ -125,6 +129,8 @@ if (isset($_SESSION['tranScreen']) && ($_SESSION['tranScreen'] != "")) {
     $fax = (!empty($_POST['fax'])) ? htmlentities($_POST['fax'], ENT_QUOTES, "UTF-8") : "";
     $mail_address_1 = (!empty($_POST['mail_address_1'])) ? htmlentities($_POST['mail_address_1'], ENT_QUOTES, "UTF-8") : "";
     $mail_address_2 = (!empty($_POST['mail_address_2'])) ? htmlentities($_POST['mail_address_2'], ENT_QUOTES, "UTF-8") : "";
+    $mail_login = (!empty($_POST['sel_mail'])) ? htmlentities($_POST['sel_mail'], ENT_QUOTES, "UTF-8") : "";
+    $wk_sel_mail_login = (!empty($_POST['wk_sel_mail_login'])) ? htmlentities($_POST['wk_sel_mail_login'], ENT_QUOTES, "UTF-8") : "";
     $mail = (!empty($_POST['sel_mail'])) ? htmlentities($_POST['sel_mail'], ENT_QUOTES, "UTF-8") : "";
     $wk_sel_mail = (!empty($_POST['wk_sel_mail'])) ? htmlentities($_POST['wk_sel_mail'], ENT_QUOTES, "UTF-8") : "";
     $merumaga = (!empty($_POST['sel_merumaga'])) ? htmlentities($_POST['sel_merumaga'], ENT_QUOTES, "UTF-8") : "";
@@ -164,7 +170,9 @@ if (isset($_SESSION['tranScreen']) && ($_SESSION['tranScreen'] != "")) {
     $wk_sel_qa = (!empty($_POST['wk_sel_qa'])) ? htmlentities($_POST['wk_sel_qa'], ENT_QUOTES, "UTF-8") : "";
     $sel_chiiki = (!empty($_POST['sel_chiiki'])) ? htmlentities($_POST['sel_chiiki'], ENT_QUOTES, "UTF-8") : "";
     $sel_office_chiiki = (!empty($_POST['sel_office_chiiki'])) ? htmlentities($_POST['sel_office_chiiki'], ENT_QUOTES, "UTF-8") : "";
-
+}
+//学生会員のみファイルアップロード処理を行う。
+if ($wk_kaiinSbt == 2) {
     //存在を確認したいディレクトリ（ファイルでもOK）
     $directory_path = "../upload/" . date('Ymd_His');    //ディレクトリが存在するか確認
 
@@ -180,5 +188,6 @@ if (isset($_SESSION['tranScreen']) && ($_SESSION['tranScreen'] != "")) {
 
     move_uploaded_file($_FILES['file_back']['tmp_name'], $filePath_back);
 }
+
 
 include_once $includeView;

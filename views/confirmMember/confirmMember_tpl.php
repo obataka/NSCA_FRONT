@@ -44,6 +44,7 @@
 				<form action="?" method="post" autocomplete="off" id="confirmForm" enctype="multipart/form-data">
 					<input type="hidden" name="kaiinType" id="kaiinType" value="<?php echo $wk_kaiinType; ?>">
 					<input type="hidden" name="kaiinSbt" id="kaiinSbt" value="<?php echo $wk_kaiinSbt; ?>">
+					<input type="hidden" name="kaihi" id="kaihi" value="<?php echo $wk_kaihi; ?>">
 					<input type="hidden" name="sel_option" id="sel_option" value="<?php echo $option; ?>">
 					<input type="hidden" name="wk_sel_option" id="wk_sel_option" value="<?php echo $wk_sel_option; ?>">
 					<input type="hidden" name="sel_riyu" id="sel_riyu" value="<?php echo $riyu; ?>">
@@ -53,6 +54,8 @@
 					<input type="hidden" name="wk_sel_hoji" id="wk_sel_hoji" value="<?php echo $wk_sel_hoji; ?>">
 					<input type="hidden" name="file_front" id="file_front" value="<?php echo $file_front; ?>">
 					<input type="hidden" name="file_back" id="file_back" value="<?php echo $file_back; ?>">
+					<input type="hidden" name="filepath_front" id="filepath_front" value="<?php echo $filePath_front; ?>">
+					<input type="hidden" name="filepath_back" id="filepath_back" value="<?php echo $filePath_back; ?>">
 					<input type="hidden" name="name_mei" id="name_mei" value="<?php echo $name_mei; ?>">
 					<input type="hidden" name="name_sei" id="name_sei" value="<?php echo $name_sei; ?>">
 					<input type="hidden" name="name_sei_kana" id="name_sei_kana" value="<?php echo $name_sei_kana; ?>">
@@ -78,6 +81,8 @@
 					<input type="hidden" name="fax" id="fax" value="<?php echo $fax; ?>">
 					<input type="hidden" name="mail_address_1" id="mail_address_1" value="<?php echo $mail_address_1; ?>">
 					<input type="hidden" name="mail_address_2" id="mail_address_2" value="<?php echo $mail_address_2; ?>">
+					<input type="hidden" name="sel_mail_login" id="sel_mail_login" value="<?php echo $mail_login; ?>">
+					<input type="hidden" name="wk_sel_mail_login" id="wk_sel_mail_login" value="<?php echo $wk_sel_mail_login; ?>">
 					<input type="hidden" name="wk_sel_mail" id="wk_sel_mail" value="<?php echo $wk_sel_mail; ?>">
 					<input type="hidden" name="sel_mail" id="sel_mail" value="<?php echo $mail; ?>">
 					<input type="hidden" name="wk_sel_merumaga" id="wk_sel_merumaga" value="<?php echo $wk_sel_merumaga; ?>">
@@ -127,19 +132,13 @@
 									<?php echo $wk_kaiinType; ?>
 									<p>会費：
 										<?php
-											if ($sel_option != "") {
-												if ($wk_kaiinType == "NSCA正会員") {
-													echo '25,920円(英文購読オプション含む 12,960円)';
-												} elseif ($wk_kaiinType == "学生会員") {
-													echo '23,760円(英文購読オプション含む 10,800円)';
-												}
-											} else {
-												if ($wk_kaiinType == "NSCA正会員") {
-													echo '12,960円';
-												} elseif ($wk_kaiinType == "学生会員") {
-													echo '10,800円';
-												}
-											}
+										if ($wk_sel_option != "") {
+											$wk_kaihi += 12960;
+											echo number_format($wk_kaihi) . '円(英文購読オプション含む 12,960円)';
+											$wk_kaihi -= 12960;		//会費を初期化する　数値が加算されたままPOSTで渡したくないため		
+										} else {
+											echo number_format($wk_kaihi) . '円';
+										}
 										?>
 									</p>
 								</td>
@@ -157,10 +156,10 @@
 								<th><span class="required">必須</span>学生証</th>
 								<td class="file">';
 								if ($filePath_front != "") {
-									echo '<p>学生証（表）アップロード済み</p><img class="filePath_front" src="' .$filePath_front . '"><br>';
+									echo '<p>学生証（表）アップロード済み</p><img class="filePath_front" src="' . $filePath_front . '"><br>';
 								}
 								if ($filePath_back != "") {
-									echo '<p>学生証（裏）アップロード済み</p><img class="filePath_back" src="' .$filePath_back . '"><br>';
+									echo '<p>学生証（裏）アップロード済み</p><img class="filePath_back" src="' . $filePath_back . '"><br>';
 								}
 								echo '</td>
 								</tr>
@@ -170,7 +169,7 @@
 							<tr>
 								<th><span class="required">必須</span>入会理由</th>
 								<td>
-									<?php echo $riyu."<br>".$riyu_sonota; ?>
+									<?php echo $riyu . "<br>" . $riyu_sonota; ?>
 								</td>
 							</tr>
 							<tr class="nsca_hoji">
@@ -335,7 +334,7 @@
 								<div>
 									<?php
 									$shikaku = str_replace(",", "<br>", $shikaku);
-									echo $shikaku."<br>".$shikaku_sonota;
+									echo $shikaku . "<br>" . $shikaku_sonota;
 									?>
 								</div>
 							</td>
@@ -387,7 +386,7 @@
 								<div>
 									<?php
 									$bunya = str_replace(",", "<br>", $bunya);
-									echo $bunya."<br>".$bunya_sonota;
+									echo $bunya . "<br>" . $bunya_sonota;
 									?>
 								</div>
 							</td>

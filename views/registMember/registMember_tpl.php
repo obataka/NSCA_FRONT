@@ -23,30 +23,30 @@
 	<script type="text/javascript" src="../../viewIncludeFiles/js/iPhone.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
 	<script>
-		$(function(){
+		$(function() {
 			$("select").wrap("<span class='select_wrap'></span>");
 
-			$("#file_front").on('change',function(){
-				 var file = $(this).prop('files')[0];
+			$("#file_front").on('change', function() {
+				var file = $(this).prop('files')[0];
 
-				 if(!($(".filename_front").length)){
-					 $("#upload_front").append('<span class="filename_front"></span>');
-				 }
+				if (!($(".filename_front").length)) {
+					$("#upload_front").append('<span class="filename_front"></span>');
+				}
 
-				 $("#input_label_front").addClass('changed');
-				 $(".filename_front").html(file.name);
+				$("#input_label_front").addClass('changed');
+				$(".filename_front").html(file.name);
 
-			   });
-			$("#file_back").on('change',function(){
-				 var file = $(this).prop('files')[0];
+			});
+			$("#file_back").on('change', function() {
+				var file = $(this).prop('files')[0];
 
-				 if(!($(".filename_back").length)){
-					 $("#upload_back").append('<span class="filename_back"></span>');
-				 }
+				if (!($(".filename_back").length)) {
+					$("#upload_back").append('<span class="filename_back"></span>');
+				}
 
-				 $("#input_label_back").addClass('changed');
-				 $(".filename_back").html(file.name);
-			   });
+				$("#input_label_back").addClass('changed');
+				$(".filename_back").html(file.name);
+			});
 
 		});
 	</script>
@@ -90,6 +90,8 @@
 			<input type="hidden" name="wk_sel_nagareyama" id="wk_sel_nagareyama" value="<?php echo $wk_sel_nagareyama; ?>">
 			<input type="hidden" name="sel_gender" id="sel_gender" value="<?php echo $gender; ?>">
 			<input type="hidden" name="wk_sel_gender" id="wk_sel_gender" value="<?php echo $wk_sel_gender; ?>">
+			<input type="hidden" name="sel_mail_login" id="sel_mail_login" value="<?php echo $mail_login; ?>">
+			<input type="hidden" name="wk_sel_mail_login" id="wk_sel_mail_login" value="<?php echo $wk_sel_mail_login; ?>">
 			<input type="hidden" name="sel_mail" id="sel_mail" value="<?php echo $mail; ?>">
 			<input type="hidden" name="wk_sel_mail" id="wk_sel_mail" value="<?php echo $wk_sel_mail; ?>">
 			<input type="hidden" name="wk_sel_merumaga" id="wk_sel_merumaga" value="<?php echo $wk_sel_merumaga; ?>">
@@ -136,18 +138,16 @@
 						print '<tr>
 								<th><span class="required">必須</span>学生証</th>
 								<td class="file">
-
-
 									<div id="upload_front">
 									  <label for="file_front" id="input_label_front" class="button">アップロード（表面）</label>
 									  <input type="file" id="file_front" name="file_front" accept="image/*">
 									</div>
 									<p>';
-									if (move_uploaded_file($_FILES['file_front']['tmp_name'], $filePath_front)) {
-										chmod('../upload/' . $_FILES["file_front"]["name"], 0644);
-										print '<img src="'. $filePath_front.'">';
-									}
-									print '</p>
+						if (move_uploaded_file($_FILES['file_front']['tmp_name'], $filePath_front)) {
+							chmod('../upload/' . $_FILES["file_front"]["name"], 0644);
+							print '<img src="' . $filePath_front . '">';
+						}
+						print '</p>
 									<ul class="error_ul">
 										<li class="error" id="err_file_front"></li>
 									</ul>
@@ -159,11 +159,11 @@
 
 
 									<p>';
-									if (move_uploaded_file($_FILES['file_back']['tmp_name'], $filePath_back)) {
-										chmod('../upload/' . $_FILES["file_back"]["name"], 0644);
-										print '<img src="'. $filePath_back.'">';
-									}
-									print '</p>
+						if (move_uploaded_file($_FILES['file_back']['tmp_name'], $filePath_back)) {
+							chmod('../upload/' . $_FILES["file_back"]["name"], 0644);
+							print '<img src="' . $filePath_back . '">';
+						}
+						print '</p>
 									<ul class="error_ul">
 										<li class="error" id="err_file_back"></li>
 									</ul>
@@ -178,7 +178,6 @@
 									</ul>
 								</td>
 							</tr>';
-
 					} ?>
 					<tr class="riyu">
 						<th><span class="required">必須</span>入会理由</th>

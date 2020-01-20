@@ -15,7 +15,7 @@ class Tb_shiken_meisai
     {
         try {
             $db = Db::getInstance();
-            $sth = $db->prepare("SELECT juken_jotai_kbn, cbt_saijuken_kbn, kiso_gohi_kbn, jissen_gohi_kbn
+            $sth = $db->prepare("SELECT shiken_sbt_kbn, juken_jotai_kbn, cbt_saijuken_kbn, kiso_gohi_kbn, jissen_gohi_kbn
             FROM   tb_shiken_meisai
             WHERE kaiin_no = :kaiin_no
             ");

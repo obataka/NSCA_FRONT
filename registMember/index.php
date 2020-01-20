@@ -7,6 +7,12 @@ $includeView = '../views/registMember/registMember_tpl.php';
 $wk_kaiinSbt = (!empty($_POST['kaiinSbt'])) ? htmlentities($_POST['kaiinSbt'], ENT_QUOTES, "UTF-8") : "";
 $wk_kaihi = (!empty($_POST['kaihi'])) ? htmlentities($_POST['kaihi'], ENT_QUOTES, "UTF-8") : "";
 
+//会費にカンマがある場合、カンマをなくして数値型に変換する
+if (strpos($wk_kaihi, ',')) {
+    $wk_kaihi_1 = str_replace(',', '', $wk_kaihi);
+    $wk_kaihi = intval($wk_kaihi_1);
+}
+
 $Wk_kaiinType = "";             //会員種別を格納する変数
 
 if ($wk_kaiinSbt == 1) {
@@ -52,7 +58,9 @@ $keitai_tel = (!empty($_POST['keitai_tel'])) ? htmlentities($_POST['keitai_tel']
 $fax = (!empty($_POST['fax'])) ? htmlentities($_POST['fax'], ENT_QUOTES, "UTF-8") : "";
 $mail_address_1 = (!empty($_POST['mail_address_1'])) ? htmlentities($_POST['mail_address_1'], ENT_QUOTES, "UTF-8") : "";
 $mail_address_2 = (!empty($_POST['mail_address_2'])) ? htmlentities($_POST['mail_address_2'], ENT_QUOTES, "UTF-8") : "";
-$mail = (!empty($_POST['sel_mail'])) ? htmlentities($_POST['sel_mail'], ENT_QUOTES, "UTF-8") : "";
+$mail_login = (!empty($_POST['sel_mail'])) ? htmlentities($_POST['sel_mail'], ENT_QUOTES, "UTF-8") : "";
+$wk_sel_mail_login = (!empty($_POST['wk_sel_mail_login'])) ? htmlentities($_POST['wk_sel_mail_login'], ENT_QUOTES, "UTF-8") : "";
+$mail = (!empty($_POST['sel_mail_login'])) ? htmlentities($_POST['sel_mail_login'], ENT_QUOTES, "UTF-8") : "";
 $wk_sel_mail = (!empty($_POST['wk_sel_mail'])) ? htmlentities($_POST['wk_sel_mail'], ENT_QUOTES, "UTF-8") : "";
 $merumaga = (!empty($_POST['sel_merumaga'])) ? htmlentities($_POST['sel_merumaga'], ENT_QUOTES, "UTF-8") : "";
 $wk_sel_merumaga = (!empty($_POST['wk_sel_merumaga'])) ? htmlentities($_POST['wk_sel_merumaga'], ENT_QUOTES, "UTF-8") : "";

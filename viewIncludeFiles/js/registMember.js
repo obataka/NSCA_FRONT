@@ -244,6 +244,12 @@
             $('input[name="nagareyama"]').prop("checked", true);
         }
 
+        //ログイン希望のメールアドレスボタン
+        var wk_sel_mail_login = $('#wk_sel_mail_login').val();
+        if (wk_sel_mail_login != "") {
+            $('input:radio[name="mail_login"]').val([wk_sel_mail_login]);
+        }
+
         //メール受信希望のメールアドレスボタン
         var wk_sel_mail = $('#wk_sel_mail').val();
         if (wk_sel_mail != "") {
@@ -469,6 +475,7 @@
             });
         });
 
+        
         /************************
          * 英文購読オプションチェンジイベント
          ************************/
@@ -629,6 +636,25 @@
                 var test1 = $('[name="mail"]:checked').attr('id');
                 var test2 = $('label[for="' + test1 + '"]').text();
                 $('#sel_mail').val(test2);
+            }
+        });
+
+        //ログイン希望
+        $("input:radio[name='mail_login']").change(function () {
+            //アドレス1hidden設定
+            if ($("input:radio[id='mail_login_1']:checked").val()) {
+                var wa = $("input:radio[id='mail_login_1']:checked").val();
+                $("#wk_sel_mail_login").val(wa);
+                var test1 = $('[name="mail_login"]:checked').attr('id');
+                var test2 = $('label[for="' + test1 + '"]').text();
+                $('#sel_mail').val(test2);
+            } else {
+                //アドレス2hidden設定
+                var wa = $("input:radio[id='mail_login_2']:checked").val();
+                $("#wk_sel_mail_login").val(wa);
+                var test1 = $('[name="mail_login"]:checked').attr('id');
+                var test2 = $('label[for="' + test1 + '"]').text();
+                $('#sel_mail_login').val(test2);
             }
         });
 
@@ -1336,29 +1362,23 @@
                         //メールアドレスセット
                         mail: $("#mail_address_1").val(),
                     },
-                    success: function (rtn) {
-                        if (rtn == 0) {
-                            console.log(rtn);
-
-                            return false;
-                        } else {
-                            //登録済みの場合エラーメッセージを表示
-                            wk_err_msg == "";
-                            wk_err_msg = "すでにご登録頂いているメールアドレス1です。";
-                            $("#err_mail_address_1").html(wk_err_msg);
-                            //エラー箇所にフォーカスを当てる
-                            if (wk_focus_done == 0) {
-                                $("#mail_address_1").focus();
-                                wk_focus_done = 1;
-                            }
+                }).done((rtn) =>{
+                    if (rtn == 0) {
+                        console.log(rtn);
+                        return false;
+                    } else {
+                        //登録済みの場合エラーメッセージを表示
+                        wk_err_msg == "";
+                        wk_err_msg = "すでにご登録頂いているメールアドレス1です。";
+                        $("#err_mail_address_2").html(wk_err_msg);
+                        //エラー箇所にフォーカスを当てる
+                        if (wk_focus_done == 0) {
+                            $("#mail_address_1").focus();
+                            wk_focus_done = 1;
                         }
-                    },
-                    fail: function (rtn) {
-                        return false;
-                    },
-                    error: function (rtn) {
-                        return false;
                     }
+                }).fail((rtn) =>{
+                    return false;
                 });
             }
             //メールアドレス2重複チェック 
@@ -1374,7 +1394,6 @@
                 }).done((rtn) =>{
                     if (rtn == 0) {
                         console.log(rtn);
-
                         return false;
                     } else {
                         //登録済みの場合エラーメッセージを表示
