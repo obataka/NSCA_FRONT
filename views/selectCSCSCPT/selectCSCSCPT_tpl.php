@@ -19,7 +19,7 @@
 	<script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.1.1.min.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
-	<script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="../../viewIncludeFiles/js/selectCSCSCPT.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/js/header.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
@@ -71,9 +71,10 @@
 			</div>
 			<h3>テキストテキスト</h3>
 			<form action="../inputCSCSCPT/inputCSCSCPT_tpl.php" method="post" autocomplete="off" id="selectCSCSCPTForm">
-				<input type="hidden" name="shikaku_sbt" id="shikaku_sbt" value="">
+				<input type="hidden" name="shiken_sbt" id="shiken_sbt" value="">
 				<input type="hidden" name="cscs_shikaku" id="cscs_shikaku" value="">
-				
+				<input type="hidden" name="jukenryo" id="jukenryo" value="">
+
 				<div class="flex_wrap">
 					<div class="bg_blue">
 						<p class="title">CSCS 認定試験</p>

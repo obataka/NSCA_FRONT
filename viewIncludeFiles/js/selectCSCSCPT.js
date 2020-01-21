@@ -7,6 +7,7 @@
         jQuery.ajax({
             url: '../../classes/getTbShikenMeisai.php',
         }).done((rtn) => {
+            console.log(1);
             if (rtn == 0) {
                 //CSCS資格なしの場合、【両方(基礎化学、実践／応用)】出願
                 //NSCA_CPT資格なしの場合、【受験】出願
@@ -15,6 +16,7 @@
                 $("#cscs_shikaku").val("両方");
                 
             } else {
+                console.log(rtn);
                 getJukenJotaiKbn = JSON.parse(rtn);
                 $.each(getJukenJotaiKbn, function (i, value) {
                     if (value[0] == 1) {
@@ -55,18 +57,49 @@
                 });
             }
         }).fail((rtn) => {
+            console.log(0);
             return false;
         });
 
+        //受験料を格納する変数
+        var cscs_jukenryo = "";
+        var cscs_1_jukenryo = "";
+        var cpt_jukenryo = "";
+
+        // 受験料データ取得処理
+        jQuery.ajax({
+            url: '../../classes/getJukenryoData.php',
+        }).done((rtn) => {
+            // rtn = 0 の場合は、該当なし
+            if (rtn == 0) {
+                return false;
+            } else {
+                wk_cmControl = JSON.parse(rtn);
+                console.log(wk_cmControl);
+                cscs_jukenryo = Math.floor(wk_cmControl["cscs_jukenryo"]).toLocaleString();            
+                cscs_1_jukenryo = Math.floor(wk_cmControl["cscs_jukenryo_1_kamoku"]).toLocaleString();          
+                cpt_jukenryo = Math.floor(wk_cmControl["cpt_jukenryo"]).toLocaleString();             
+            }
+        }).fail((rtn) => {
+            return false;
+        });
+
+
         $("#cscs").click(function () {
-            $("#shikaku_sbt").val(1);
+            $("#shiken_sbt").val(1);
+            if ($("#cscs_shikaku").val() == "両方") {
+                $("#jukenryo").val(cscs_jukenryo);
+            } else {
+                $("#jukenryo").val(cscs_1_jukenryo);
+            }
             url = '../inputCSCSCPT/';
             $('form').attr('action', url);
             $('form').submit();
         });
 
         $("#nsca_cpt").click(function () {
-            $("#shikaku_sbt").val(2);
+            $("#shiken_sbt").val(2);
+            $("#jukenryo").val(cpt_jukenryo);
             url = '../inputCSCSCPT/';
             $('form').attr('action', url);
             $('form').submit();
@@ -74,4 +107,4 @@
 
     });
 
-});
+})(jQuery);
