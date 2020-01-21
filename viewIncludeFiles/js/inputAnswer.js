@@ -4,8 +4,8 @@
         /*************
         * 初期画面表示
         **************/
-       
-       $('.content').hide();
+
+        $('.content').hide();
 
         $.ajax({
             url:  '../../classes/getCeuQuizSetsumon.php',
@@ -25,11 +25,9 @@
                 return false;
 
             } else {
-                console.log(1111);
 
                 //※正常にCEUクイズ情報を取得できた時の処理
                 getCeuQuizSetsumon = JSON.parse(rtn);
-                console.log(getCeuQuizSetsumon);
                 $(".h2_text").text(getCeuQuizSetsumon[0]["shutoku_naiyo"]);
                 
                 // 配列getCeuQuizSetsumonを順に処理
@@ -37,23 +35,43 @@
                 $.each(getCeuQuizSetsumon,function(index, elem) {
                     
                     // 設問が見つからなかったところで出力停止
-                    if (elem.setsumon == "") { return false; }
-                    console.log(elem.setsumon);
-                    
-                    var test = '<div class="content">' 
-                                + '<p class="dai dai_' + [i] + '"></p>'
-                                + '<p class="no no_' + [i] + '"></p>'
-                                + '<ul>' 
-                                + '<li><input id="q' + [i] + '_1" type="radio" name="' + [i] + '_1" value=""><label class="radio' + [i] + '_1" for="q' + [i] + '_1"></label><br></li>'
-                                + '<li><input id="q' + [i] + '_2" type="radio" name="' + [i] + '_1" value=""><label class="radio' + [i] + '_2" for="q' + [i] + '_2"></label><br></li>'
-                                + '<li><input id="q' + [i] + '_3" type="radio" name="' + [i] + '_1" value=""><label class="radio' + [i] + '_3" for="q' + [i] + '_3"></label><br></li>'
-                                + '<li><input id="q' + [i] + '_4" type="radio" name="' + [i] + '_1" value="1"><label class="radio' + [i] + '_4" for="q' + [i] + '_4"></label><br></li>'
-                                + '</ul>'
-                                + '<ul class="error_ul' + [i] + '">'
-                                + '<li class="error" id="err_question"></li>'
-                                + '</ul>'
-                                + '</div>'
-                        $(".p_content").append(test);
+                    if (elem.setsumon == "") {
+                        return false;
+                    }
+
+                    //選択したラジオボタンの値をセットする為、動的にhiddenのinputタグを作成
+                    var input1 = $('<input>').attr({
+                        type: 'hidden',
+                        id: 'sel_q' + [i] + '_1',
+                        name: 'sel_q' + [i] + '_1',
+                        value: ''
+                    });
+                    $('form').prepend(input1);
+                    //選択したラジオボタンのテキストをセットする為、動的にhiddenのinputタグを作成
+                    var input2 = $('<input>').attr({
+                        type: 'hidden',
+                        id: 'val_q' + [i] + '_1',
+                        name: 'val_q' + [i] + '_1',
+                        value: ''
+                    });
+                    $('form').prepend(input2);
+                    //動的に<div>を作成
+                    var div = '<div class="content">' 
+                             + '<p class="dai dai_' + [i] + '"></p>'
+                             + '<p class="no no_' + [i] + '"></p>'
+                             + '<ul>' 
+                             + '<li><input id="q' + [i] + '_1" type="radio" name="q_' + [i] + '" value="1"><label class="radio' + [i] + '_1" for="q' + [i] + '_1"></label><br></li>'
+                             + '<li><input id="q' + [i] + '_2" type="radio" name="q_' + [i] + '" value="2"><label class="radio' + [i] + '_2" for="q' + [i] + '_2"></label><br></li>'
+                             + '<li><input id="q' + [i] + '_3" type="radio" name="q_' + [i] + '" value="3"><label class="radio' + [i] + '_3" for="q' + [i] + '_3"></label><br></li>'
+                             + '<li><input id="q' + [i] + '_4" type="radio" name="q_' + [i] + '" value="4"><label class="radio' + [i] + '_4" for="q' + [i] + '_4"></label><br></li>'
+                             + '</ul>'
+                             + '<ul class="error_ul' + [i] + '">'
+                             + '<li class="error" id="err_question"></li>'
+                             + '</ul>'
+                             + '</div>'
+
+                    //<div>を作成
+                    $(".p_content").append(div);
 
                     // 設問をセット
                     $(".dai_" + [i] + "").append(elem.setsumon)
@@ -107,36 +125,65 @@
         // Ajaxリクエストが成功・失敗どちらでも発動
         .always( (data) => {
         });
-        
+
+
         /*************************
         *CEUクイズ一覧へボタン押下時
         **************************/
         $(".back").click(function() {
+            
+            //クイズ回答確認画面に遷移する
             location.href = "../../ceuQuizlist/";
         });
 
+
+    
         /***************
         *次へボタン押下時
         ****************/
         $("#next_button").click(function() {
-            for (var i=1; i<50; i++) {
+            for (var i=1; i<10; i++) {
+
+                //初期化
                 var wk_err_msg = "";
-                //if文で3の時の条件分岐を指定
+                $(".error_ul" + [i] + "").html("");
+
+                //if文でtextが空白の時の条件分岐を指定
                 if ($("label.radio" + [i] + "_1").text() == "") {
-                  //が出たらbreakで中止
+
+                  //labelのtextが空白ならbreakで中止
                   break;
                 }
-
-                if (!$("input:radio[name='" + [i] + "_4']:checked").val()) {
-                    //チェックされていない場合
+                
+                //ラジオボタンが空白の場合
+                if (!$("input:radio[name='q_" + [i] + "']:checked").val()) {
+                    
+                    //ラジオボタンがチェックされていない場合
                     wk_err_msg == "";
-                    wk_err_msg = "エラーテスト表示";
+                    wk_err_msg = "入力に誤りがあります。<br>" + [i] + "問目の解答を選択してください。";
                     $(".error_ul" + [i] + "").html(wk_err_msg);  
-                }
+                    return false;
 
-             
-              }
+                //ラジオボタンがチェックされていたら、チェックされている値をhidden項目にセット
+                } else {
+
+                    var sel_q1_1 = "";
+                    var val_q1_1 = "";
+
+                    sel_q1_1 = $("input:radio[name='q_" + [i] + "']:checked").val();
+        
+                    val_q1_1 = $('[name="q_' + [i] + '"]:checked').attr('id');
+                    val_q1_1 = $('label[for="' + val_q1_1 + '"]').text();
+                    $('#val_q' + [i] + '_1').val(val_q1_1);
+                    $('#sel_q' + [i] + '_1').val(sel_q1_1);
+                }          
+            }
+
+            //エラーがなく、hidden項目に値をセットしたらCEUクイズ回答確認画面に画面遷移
+            url = '../confirmAnswer/';
+            $('form').attr('action', url);
+            $('form').submit();
+
         });
-
     });
 })(jQuery);

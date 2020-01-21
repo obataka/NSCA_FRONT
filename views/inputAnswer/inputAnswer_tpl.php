@@ -29,9 +29,8 @@
 			<div class="wrap">
 			<form action="?" method="post" autocomplete="off" id="inputAnswer">
 					<input type="hidden" name="ceu_id1" id="ceu_id1" value="<?php echo $ceu_id1; ?>">
-			</form>
 				<h2>CEUクイズ　回答入力</h2>
-				<p class="h2_text"><!--テキストテキスト(0000年00月号)--></p>
+				<p class="h2_text"></p>
 				<div class="content_wrap">
 					<div class="spb_arrows height_62">
 						<ul class="nav nav-tabs step-anchor">
@@ -43,57 +42,13 @@
 					</div>
 					<p class="text">選択肢から解答を選んでください。</p>
 					<div class="p_content">
-					<div class="content">
-						<p class="dai dai_1">問題</p>
-						<ul>
-							<li><input id="q1_1" type="radio" name="q_1" value="1"><label class="radio" for="q1_1">テキストテキスト</label><br></li>
-							<li><input id="q1_2" type="radio" name="q_1" value="1"><label class="radio" for="q1_2">テキストテキスト</label><br></li>
-							<li><input id="q1_3" type="radio" name="q_1" value="1"><label class="radio" for="q1_3">テキストテキスト</label><br></li>
-						</ul>
-						<ul class="error_ul">
-							<li class="error" id="err_question_1"></li>
-						</ul>
-					</div>
-					<div class="content">
-						<p class="dai dai_2">問題</p>
-						<ul>
-							<li><input id="q2_1" type="radio" name="q_2" value="1"><label class="radio" for="q2_1">テキストテキスト</label><br></li>
-							<li><input id="q2_2" type="radio" name="q_2" value="1"><label class="radio" for="q2_2">テキストテキスト</label><br></li>
-							<li><input id="q2_3" type="radio" name="q_2" value="1"><label class="radio" for="q2_3">テキストテキスト</label><br></li>
-							
-						</ul>
-						<ul class="error_ul">
-							<li class="error" id="err_question_2"></li>
-						</ul>
-					</div>
-					<div class="content">
-						<p class="dai dai_3">問題</p>
-						<ul>
-							<li><input id="q3_1" type="radio" name="q_3" value="1"><label class="radio" for="q3_1">テキストテキスト</label><br></li>
-							<li><input id="q3_2" type="radio" name="q_3" value="1"><label class="radio" for="q3_2">テキストテキスト</label><br></li>
-							<li><input id="q3_3" type="radio" name="q_3" value="1"><label class="radio" for="q3_3">テキストテキスト</label><br></li>
-						</ul>
-						<ul class="error_ul">
-							<li class="error" id="err_question_3"></li>
-						</ul>
-					</div>
-					<div class="content">
-						<p class="dai dai_4">問題</p>
-						<ul>
-							<li><input id="q4_1" type="radio" name="q_4" value="1"><label class="radio" for="q4_1">テキストテキスト</label><br></li>
-							<li><input id="q4_2" type="radio" name="q_4" value="1"><label class="radio" for="q4_2">テキストテキスト</label><br></li>
-							<li><input id="q4_3" type="radio" name="q_4" value="1"><label class="radio" for="q4_3">テキストテキスト</label><br></li>
-						</ul>
-						<ul class="error_ul">
-							<li class="error" id="err_question_4"></li>
-						</ul>
-					</div>
 					</div>
 					<section class="btn_wrap">
 						<button class="button back" type="button" value="" onclick="location.href='#'"><span>CEUクイズ一覧へ</span></button>
 						<button id="next_button" class="button" type="submit" value="" onclick="location.href='#'"><span>次へ</span></button>
 					</section>
 				</div>
+			</form>
 			</div>
 		<footer id="footer">
 		</footer>
