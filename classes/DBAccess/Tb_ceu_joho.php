@@ -12,7 +12,7 @@ class Tb_ceu_joho
      * @param varchar $kaiinNo
      * @return array|mixed
      */
-    public function findByKaiinNoMimoushikomi($kaiinNo)
+    public function findByKaiinNoMimoshikomi($kaiinNo)
     {
         try {
             $db = Db::getInstance();
@@ -23,7 +23,7 @@ class Tb_ceu_joho
 			SELECT 
 				tb_ceu_joho.ceu_id
 				, shutoku_naiyo
-				, moushikomi_mae_annai_url
+				, moshikomi_mae_annai_url
 				, event_kbn
 				, shutokubi
 			FROM tb_ceu_joho
@@ -60,14 +60,14 @@ class Tb_ceu_joho
 			SELECT 
 				tb_toreken.ceu_id
 				,shutoku_naiyo
-				,moushikomi_mae_annai_url
+				,moshikomi_mae_annai_url
 				,event_kbn
 				,shutokubi
 			FROM (
 				SELECT 
 					tb_ceu_joho.ceu_id,
 					CONCAT(tb_ceu_joho.shutoku_naiyo , ' ' , meisho_kyu_kbn.meisho) AS shutoku_naiyo,
-					moushikomi_mae_annai_url,
+					moshikomi_mae_annai_url,
 					event_kbn,
 					shutokubi,
 					CASE 
@@ -115,7 +115,7 @@ class Tb_ceu_joho
 			GROUP BY 
 				tb_toreken.ceu_id
 				,shutoku_naiyo
-				,moushikomi_mae_annai_url
+				,moshikomi_mae_annai_url
 				,event_kbn
 				,shutokubi
 
@@ -170,11 +170,11 @@ class Tb_ceu_joho
 		  ELSE '支払'
 		  END AS button_text
 FROM tb_ceu_joho
-LEFT JOIN (SELECT ceu_id,count(kaiin_no) AS moushikomi,sum(nonyu_kingaku) as nonyu_kingaku ,MAX(nonyubi) AS nonyubi, MAX(nonyu_hoho_kbn) AS nonyu_hoho_kbn
+LEFT JOIN (SELECT ceu_id,count(kaiin_no) AS moshikomi,sum(nonyu_kingaku) as nonyu_kingaku ,MAX(nonyubi) AS nonyubi, MAX(nonyu_hoho_kbn) AS nonyu_hoho_kbn
  			 FROM tb_ceu_joho_meisai WHERE sakujo_flg=0 and kaiin_no = :kaiin_no GROUP BY ceu_id)  ceu_joho_kaiin
  	ON tb_ceu_joho.ceu_id = ceu_joho_kaiin.ceu_id
 WHERE sakujo_flg=0 AND keisai_kaishi_kikan < now() AND keisai_shuryo_kikan > now()
-      AND moushikomi > 0 AND nonyubi IS NULL
+      AND moshikomi > 0 AND nonyubi IS NULL
 ORDER BY event_kbn
 ;
             ");
