@@ -60,13 +60,15 @@
 			</div>
 			<p class="h2_text">テキストテキストテキストテキストテキストテキスト</p>
 			<form action="?" method="post" autocomplete="off" id="inputCSCSCPTForm">
-				<input type="hidden" name="shiken_sbt" id="shiken_sbt" value="<?php echo $shiken_sbt;?>">
-				<input type="hidden" name="cscs_shikaku" id="cscs_shikaku" value="<?php echo $cscs_shikaku;?>">
-				<input type="hidden" name="jukenryo" id="jukenryo" value="<?php echo $jukenryo;?>">
+				<input type="hidden" name="shiken_sbt" id="shiken_sbt" value="<?php echo $shiken_sbt; ?>">
+				<input type="hidden" name="cscs_shikaku" id="cscs_shikaku" value="<?php echo $cscs_shikaku; ?>">
+				<input type="hidden" name="jukenryo" id="jukenryo" value="<?php echo $jukenryo; ?>">
+				<input type="hidden" name="sel_job" id="sel_job" value="<?php echo $job; ?>">
+				<input type="hidden" name="wk_sel_job" id="wk_sel_job" value="<?php echo $wk_sel_job; ?>">
 
 				<div class="bg_gray shiken">
-					<p><span>試験名</span><?php echo $shikenmei;?></p>
-					<p><span>受験料</span><?php echo $jukenryo;?>円</p>
+					<p><span>試験名</span><?php echo $shikenmei; ?></p>
+					<p><span>受験料</span><?php echo $jukenryo; ?>円</p>
 				</div>
 				<div class="kihon_joho">
 					<h3>資格認定試験出願フォーム</h3>
@@ -140,18 +142,112 @@
 								<ul class="error_ul">
 									<li class="error" id="err_shikaku_1"></li>
 								</ul>
-								<div class="bg_gray date">
+								<div class="bg_gray date" id="shikaku_date">
 									<p>認定日(発行日)</p>
 									<input id="shikaku_yuko" type="text" name="" value="">年
-									<select id="shikaku_yuko_month" name="manth"></select>月
-									<select id="shikaku_yuko_day" name="day"></select>日
+									<select id="shikaku_yuko_month" name="manth">
+										<option value="00"></option>
+										<option value="01">1</option>
+										<option value="02">2</option>
+										<option value="03">3</option>
+										<option value="04">4</option>
+										<option value="05">5</option>
+										<option value="06">6</option>
+										<option value="07">7</option>
+										<option value="08">8</option>
+										<option value="09">9</option>
+										<option value="10">10</option>
+										<option value="11">11</option>
+										<option value="12">12</option>
+									</select>月
+									<select id="shikaku_yuko_day" name="day">
+										<option value="00"></option>
+										<option value="01">1</option>
+										<option value="02">2</option>
+										<option value="03">3</option>
+										<option value="04">4</option>
+										<option value="05">5</option>
+										<option value="06">6</option>
+										<option value="07">7</option>
+										<option value="08">8</option>
+										<option value="09">9</option>
+										<option value="10">10</option>
+										<option value="11">11</option>
+										<option value="12">12</option>
+										<option value="13">13</option>
+										<option value="14">14</option>
+										<option value="15">15</option>
+										<option value="16">16</option>
+										<option value="17">17</option>
+										<option value="18">18</option>
+										<option value="19">19</option>
+										<option value="20">20</option>
+										<option value="21">21</option>
+										<option value="22">22</option>
+										<option value="23">23</option>
+										<option value="24">24</option>
+										<option value="25">25</option>
+										<option value="26">26</option>
+										<option value="27">27</option>
+										<option value="28">28</option>
+										<option value="29">29</option>
+										<option value="30">30</option>
+										<option value="31">31</option>
+									</select>日
 									<ul class="error_ul">
 										<li class="error" id="err_shikaku_yuko"></li>
 									</ul>
 									<p class="mt_1">有効期限</p>
 									<input id="yuko_kigen" type="text" name="" value="">年
-									<select id="yuko_kigen_month" name="manth"></select>月
-									<select id="yuko_kigen_day" name="day"></select>日
+									<select id="yuko_kigen_month" name="manth">
+										<option value="00"></option>
+										<option value="01">1</option>
+										<option value="02">2</option>
+										<option value="03">3</option>
+										<option value="04">4</option>
+										<option value="05">5</option>
+										<option value="06">6</option>
+										<option value="07">7</option>
+										<option value="08">8</option>
+										<option value="09">9</option>
+										<option value="10">10</option>
+										<option value="11">11</option>
+										<option value="12">12</option>
+									</select>月
+									<select id="yuko_kigen_day" name="day">
+										<option value="00"></option>
+										<option value="01">1</option>
+										<option value="02">2</option>
+										<option value="03">3</option>
+										<option value="04">4</option>
+										<option value="05">5</option>
+										<option value="06">6</option>
+										<option value="07">7</option>
+										<option value="08">8</option>
+										<option value="09">9</option>
+										<option value="10">10</option>
+										<option value="11">11</option>
+										<option value="12">12</option>
+										<option value="13">13</option>
+										<option value="14">14</option>
+										<option value="15">15</option>
+										<option value="16">16</option>
+										<option value="17">17</option>
+										<option value="18">18</option>
+										<option value="19">19</option>
+										<option value="20">20</option>
+										<option value="21">21</option>
+										<option value="22">22</option>
+										<option value="23">23</option>
+										<option value="24">24</option>
+										<option value="25">25</option>
+										<option value="26">26</option>
+										<option value="27">27</option>
+										<option value="28">28</option>
+										<option value="29">29</option>
+										<option value="30">30</option>
+										<option value="31">31</option>
+									</select>日
 									<ul class="error_ul">
 										<li class="error" id="err_yuko_kigen"></li>
 									</ul>
@@ -170,7 +266,7 @@
 										(NSCAジャパン資格認定試験ハンドブック)
 									</p>
 								</div>
-								<div class="bg_gray kakunin">
+								<div class="bg_gray kakunin" id="shikaku_kakunin">
 									<input id="kakunin" type="checkbox" name="" value="">
 									<label class="checkbox" for="kakunin">必ずご確認ください</label>
 									<ul class="error_ul">

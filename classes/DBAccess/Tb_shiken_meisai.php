@@ -24,8 +24,7 @@ class Tb_shiken_meisai
         } catch (\PDOException $e) {
             error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/eroor_log.txt');
             $Tb_juken_jotai = [];
-            return FALSE;
         }
-        return TRUE;
+        return $Tb_juken_jotai;
     }
 }
