@@ -153,39 +153,6 @@ class Tb_ceu_joho
         return $kaiinJoho;
     }
 
-    /*
-     * 会員番号から有効なイベント情報（申込済,未支払）を取得する（マイページ表示用）
-     * @param varchar $kaiinNo
-     * @return array|mixed
-     */
-    public function findByKaiinNoMoushikomizumi($kaiinNo)
-    {
-        try {
-            $db = Db::getInstance();
-            $sth = $db->prepare("SELECT
-		 tb_ceu_joho.ceu_id
-		, event_kbn
-		, shutoku_naiyo
-		, CASE WHEN nonyu_hoho_kbn = 2 THEN '支払番号表示'
-		  ELSE '支払'
-		  END AS button_text
-FROM tb_ceu_joho
-LEFT JOIN (SELECT ceu_id,count(kaiin_no) AS moshikomi,sum(nonyu_kingaku) as nonyu_kingaku ,MAX(nonyubi) AS nonyubi, MAX(nonyu_hoho_kbn) AS nonyu_hoho_kbn
- 			 FROM tb_ceu_joho_meisai WHERE sakujo_flg=0 and kaiin_no = :kaiin_no GROUP BY ceu_id)  ceu_joho_kaiin
- 	ON tb_ceu_joho.ceu_id = ceu_joho_kaiin.ceu_id
-WHERE sakujo_flg=0 AND keisai_kaishi_kikan < now() AND keisai_shuryo_kikan > now()
-      AND moshikomi > 0 AND nonyubi IS NULL
-ORDER BY event_kbn
-;
-            ");
-            $sth->execute([':kaiin_no' => $kaiinNo]);
-            $kaiinJoho  = $sth->fetchAll();
-        } catch (\PDOException $e) {
-            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
-            $kaiinJoho = [];
-        }
-        return $kaiinJoho;
-    }
 
 
 }

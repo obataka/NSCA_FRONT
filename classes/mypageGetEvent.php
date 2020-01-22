@@ -31,18 +31,21 @@ $page_no = 1;
 *イベント情報取得 
 *************************************************************/
 
-$result_event = (new Tb_ceu_joho())->findByKaiinNoMimoushikomi($kaiin_no);
+$result_event = (new Tb_ceu_joho())->findByKaiinNoMimoshikomi($kaiin_no);
+   error_log(print_r('イベント取得処理2', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka2_log.txt');
 
 // 該当データありの場合
 if (!empty($result_event)) {
+   error_log(print_r('イベントデータあり', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka2_log.txt');
 	$result = $result_event;
 
 }else{
 	$result = 0;
+   error_log(print_r('イベントデータなし', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka2_log.txt');
 }
 
 
-   error_log(print_r($result, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka_log.txt');
+   error_log(print_r($result, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka2_log.txt');
 
 
     $ret = json_encode($result);

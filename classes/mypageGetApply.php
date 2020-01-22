@@ -5,7 +5,7 @@ session_start();
 
 require './Config/Config.php';
 require './DBAccess/Db.php';
-require './DBAccess/Tb_ceu_joho.php';
+require './DBAccess/Vmoshikomi_jokyo.php';
 
 $ret = 0;
 
@@ -32,19 +32,21 @@ $page_no = 1;
 *************************************************************/
 
 // 会員情報
-$result_apply = (new Tb_ceu_joho())->findByKaiinNoMoushikomiZumi($kaiin_no);
+$result_apply = (new Vmoshikomi_jokyo())->findByKaiinNo($kaiin_no);
 
 // 該当データありの場合
 if (!empty($result_apply)) {
+   error_log(print_r('申込データあり', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka2_log.txt');
 	$result = $result_apply;
 
 }else{
 	$result = 0;
+   error_log(print_r('申込データなし', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka2_log.txt');
 }
 
 
 
-   error_log(print_r($result, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka_log.txt');
+   error_log(print_r($result, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka2_log.txt');
 
 
     $ret = json_encode($result);
