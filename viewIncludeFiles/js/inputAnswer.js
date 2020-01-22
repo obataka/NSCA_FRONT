@@ -42,28 +42,22 @@
                     //選択したラジオボタンの値をセットする為、動的にhiddenのinputタグを作成
                     var input1 = $('<input>').attr({
                         type: 'hidden',
+                        class: 'q1_' + [i] + '',
                         id: 'sel_q' + [i] + '_1',
-                        name: 'sel_q' + [i] + '_1',
+                        name: 'sel_q[' + [i] + ']',
                         value: ''
                     });
                     $('form').prepend(input1);
-                    //選択したラジオボタンのテキストをセットする為、動的にhiddenのinputタグを作成
-                    var input2 = $('<input>').attr({
-                        type: 'hidden',
-                        id: 'val_q' + [i] + '_1',
-                        name: 'val_q' + [i] + '_1',
-                        value: ''
-                    });
-                    $('form').prepend(input2);
+
                     //動的に<div>を作成
                     var div = '<div class="content">' 
                              + '<p class="dai dai_' + [i] + '"></p>'
                              + '<p class="no no_' + [i] + '"></p>'
                              + '<ul>' 
-                             + '<li><input id="q' + [i] + '_1" type="radio" name="q_' + [i] + '" value="1"><label class="radio' + [i] + '_1" for="q' + [i] + '_1"></label><br></li>'
-                             + '<li><input id="q' + [i] + '_2" type="radio" name="q_' + [i] + '" value="2"><label class="radio' + [i] + '_2" for="q' + [i] + '_2"></label><br></li>'
-                             + '<li><input id="q' + [i] + '_3" type="radio" name="q_' + [i] + '" value="3"><label class="radio' + [i] + '_3" for="q' + [i] + '_3"></label><br></li>'
-                             + '<li><input id="q' + [i] + '_4" type="radio" name="q_' + [i] + '" value="4"><label class="radio' + [i] + '_4" for="q' + [i] + '_4"></label><br></li>'
+                             + '<li><input id="q' + [i] + '_1" class="q1_' + [i] + '" type="radio" name="q_[' + [i] + ']" value="A"><label class="radio' + [i] + '_1" for="q' + [i] + '_1"></label><br></li>'
+                             + '<li><input id="q' + [i] + '_2" class="q1_' + [i] + '" type="radio" name="q_[' + [i] + ']" value="B"><label class="radio' + [i] + '_2" for="q' + [i] + '_2"></label><br></li>'
+                             + '<li><input id="q' + [i] + '_3" class="q1_' + [i] + '" type="radio" name="q_[' + [i] + ']" value="C"><label class="radio' + [i] + '_3" for="q' + [i] + '_3"></label><br></li>'
+                             + '<li><input id="q' + [i] + '_4" class="q1_' + [i] + '" type="radio" name="q_[' + [i] + ']" value="D"><label class="radio' + [i] + '_4" for="q' + [i] + '_4"></label><br></li>'
                              + '</ul>'
                              + '<ul class="error_ul' + [i] + '">'
                              + '<li class="error" id="err_question"></li>'
@@ -127,6 +121,32 @@
         });
 
 
+
+        //ラジオボタンが押されたらチェックされた値とテキストをhidden項目にセットする
+        $(".p_content").on('change', "input[type='radio']", function () {
+            var sel_id = "";
+            var sel_class = "";
+            var sel_label_txt = "";
+
+            sel_class = $(this).attr('class');
+            sel_id = $(this).attr('id');
+
+            sel_label_txt =  $('label[for="' + sel_id + '"]').text();
+
+
+            $("input[type='hidden'][class='" + sel_class + "']").val(sel_label_txt);
+            
+        });
+
+
+
+
+
+
+
+
+
+
         /*************************
         *CEUクイズ一覧へボタン押下時
         **************************/
@@ -156,8 +176,8 @@
                 }
                 
                 //ラジオボタンが空白の場合
-                if (!$("input:radio[name='q_" + [i] + "']:checked").val()) {
-                    
+                if (!$("input:radio[name='q_[" + [i] + "]']:checked").val()) {
+
                     //ラジオボタンがチェックされていない場合
                     wk_err_msg == "";
                     wk_err_msg = "入力に誤りがあります。<br>" + [i] + "問目の解答を選択してください。";
@@ -170,9 +190,9 @@
                     var sel_q1_1 = "";
                     var val_q1_1 = "";
 
-                    sel_q1_1 = $("input:radio[name='q_" + [i] + "']:checked").val();
+                    sel_q1_1 = $("input:radio[name='q_[" + [i] + "]']:checked").val();
         
-                    val_q1_1 = $('[name="q_' + [i] + '"]:checked').attr('id');
+                    val_q1_1 = $('[name="q_[' + [i] + ']"]:checked').attr('id');
                     val_q1_1 = $('label[for="' + val_q1_1 + '"]').text();
                     $('#val_q' + [i] + '_1').val(val_q1_1);
                     $('#sel_q' + [i] + '_1').val(sel_q1_1);
@@ -180,9 +200,9 @@
             }
 
             //エラーがなく、hidden項目に値をセットしたらCEUクイズ回答確認画面に画面遷移
-            url = '../confirmAnswer/';
-            $('form').attr('action', url);
-            $('form').submit();
+            // url = '../confirmAnswer/';
+            // $('form').attr('action', url);
+            // $('form').submit();
 
         });
     });

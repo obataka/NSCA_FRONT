@@ -27,6 +27,8 @@
 		<header id="header">
 		</header>
 			<div class="wrap mh_c">
+			<form action="?" method="post" autocomplete="off" id="inputAnswer">
+					<input type="hidden" name="ceu_id1" id="ceu_id1" value="<?php echo $ceu_id1; ?>">
 				<h2>CEUクイズ　回答確認</h2>
 				<p class="h2_text">テキストテキスト(0000年00月号)</p>
 				<div class="content_wrap">
@@ -38,9 +40,9 @@
 							<li><span><small>支払<br class="sp_no">(決済専用サイトへ)</small></span></li>
 						</ul>
 					</div>
-					<p class="text">選択肢から解答を選んでください。</p>
-					<section>
-						<div class="content">
+					<p class="text">選択肢から解答を選んでください。</p><br>
+					<section class="p_section">
+						<!--<div class="content">
 							<p class="dai">問題</p>
 							<p class="kai"></p>
 						</div>
@@ -55,7 +57,7 @@
 						<div class="content">
 							<p class="dai">問題</p>
 							<p class="kai"></p>
-						</div>
+						</div>-->
 					</section>
 					
 					<section class="btn_wrap">
@@ -63,6 +65,7 @@
 						<button class="button" type="submit" value="" onclick="location.href='#'"><span>決済方法選択へ</span></button>
 					</section>
 				</div>
+			</form>
 			</div>
 		<footer id="footer">
 		</footer>
