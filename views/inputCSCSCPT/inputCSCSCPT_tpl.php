@@ -63,6 +63,15 @@
 				<input type="hidden" name="shiken_sbt" id="shiken_sbt" value="<?php echo $shiken_sbt; ?>">
 				<input type="hidden" name="cscs_shikaku" id="cscs_shikaku" value="<?php echo $cscs_shikaku; ?>">
 				<input type="hidden" name="jukenryo" id="jukenryo" value="<?php echo $jukenryo; ?>">
+				<input type="hidden" name="wk_kaiin_no" id="wk_kaiin_no" value="<?php echo $wk_kaiin_no; ?>">
+				<input type="hidden" name="wk_shimei" id="wk_shimei" value="<?php echo $wk_shimei; ?>">
+				<input type="hidden" name="wk_furigana" id="wk_furigana" value="<?php echo $wk_furigana; ?>">
+				<input type="hidden" name="wk_firstlast" id="wk_firstlast" value="<?php echo $wk_firstlast; ?>">
+				<input type="hidden" name="wk_tel" id="wk_tel" value="<?php echo $wk_tel; ?>">
+				<input type="hidden" name="wk_address" id="wk_address" value="<?php echo $wk_address; ?>">
+				<input type="hidden" name="wk_pc_address" id="wk_pc_address" value="<?php echo $wk_pc_address; ?>">
+				<input type="hidden" name="wk_shikaku_yuko" id="wk_shikaku_yuko" value="<?php echo $wk_shikaku_yuko; ?>">
+				<input type="hidden" name="wk_yuko_kigen" id="wk_yuko_kigen" value="<?php echo $wk_yuko_kigen; ?>">
 				<input type="hidden" name="sel_job" id="sel_job" value="<?php echo $job; ?>">
 				<input type="hidden" name="wk_sel_job" id="wk_sel_job" value="<?php echo $wk_sel_job; ?>">
 
@@ -109,26 +118,6 @@
 							<td>
 								<p>※複数選択可<br>※最大3つまで</p>
 								<div id="job">
-									<!-- <input id="job_1" type="checkbox" name="job" value=""><label class="checkbox" for="job_1">ストレングス&amp;コンディショニングコーチ</label><br>
-									<input id="job_2" type="checkbox" name="job" value=""><label class="checkbox" for="job_2">パーソナルトレーナー</label><br>
-									<input id="job_3" type="checkbox" name="job" value=""><label class="checkbox" for="job_3">アスレティックトレーナー</label><br>
-									<input id="job_4" type="checkbox" name="job" value=""><label class="checkbox" for="job_4">フィットネスインストラクター<br>(公共施設運動指導者含む)</label><br>
-									<input id="job_5" type="checkbox" name="job" value=""><label class="checkbox" for="job_5">教員(小学校、中学校、高等学校)</label><br>
-									<input id="job_6" type="checkbox" name="job" value=""><label class="checkbox" for="job_6">専門学校教員</label><br>
-									<input id="job_7" type="checkbox" name="job" value=""><label class="checkbox" for="job_7">大学教員</label><br>
-									<input id="job_8" type="checkbox" name="job" value=""><label class="checkbox" for="job_8">医師</label><br>
-									<input id="job_9" type="checkbox" name="job" value=""><label class="checkbox" for="job_9">医療関係(PT、OT、看護士など)</label>
-								</div>
-								<div>
-									<input id="job_10" type="checkbox" name="job" value=""><label class="checkbox" for="job_10">治療関係(柔整、鍼灸、マッサージ師など)</label><br>
-									<input id="job_11" type="checkbox" name="job" value=""><label class="checkbox" for="job_11">介護関係</label><br>
-									<input id="job_12" type="checkbox" name="job" value=""><label class="checkbox" for="job_12">栄養士、管理栄養士</label><br>
-									<input id="job_13" type="checkbox" name="job" value=""><label class="checkbox" for="job_13">コーチ、監督</label><br>
-									<input id="job_14" type="checkbox" name="job" value=""><label class="checkbox" for="job_14">スポーツ選手</label><br>
-									<input id="job_15" type="checkbox" name="job" value=""><label class="checkbox" for="job_15">大学生、大学院生</label><br>
-									<input id="job_16" type="checkbox" name="job" value=""><label class="checkbox" for="job_16">専門学生</label><br>
-									<input id="job_17" type="checkbox" name="job" value=""><label class="checkbox" for="job_17">高校生、中学生</label><br>
-									<input id="job_18" type="checkbox" name="job" value=""><label class="checkbox" for="job_18">その他</label> -->
 								</div>
 								<ul class="error_ul">
 									<li class="error" id="err_job"></li>
@@ -266,30 +255,7 @@
 										(NSCAジャパン資格認定試験ハンドブック)
 									</p>
 								</div>
-								<div class="bg_gray kakunin" id="shikaku_kakunin">
-									<input id="kakunin" type="checkbox" name="" value="">
-									<label class="checkbox" for="kakunin">必ずご確認ください</label>
-									<ul class="error_ul">
-										<li class="error" id="err_kakunin"></li>
-									</ul>
-									<div class="bg_white">
-										<div>
-											<input id="kakunin_1" type="checkbox" name="" value="">
-											<label class="checkbox" for="kakunin_1">有効なCPR/AED資格を保持せず受験した場合、<br>
-												その試験結果の有効期限は受験日から1年間であることを確認しました。</label>
-											<ul class="error_ul">
-												<li class="error" id="err_kakunin_1"></li>
-											</ul>
-										</div>
-										<div>
-											<input id="kakunin_2" type="checkbox" name="" value="">
-											<label class="checkbox" for="kakunin_2">有効なCPR/AEDの認定証のコピーを提出するまでは、<br>
-												試験に合格しても資格認定されないことを確認しました。</label>
-											<ul class="error_ul">
-												<li class="error" id="err_kakunin_2"></li>
-											</ul>
-										</div>
-									</div>
+								<div id="shikaku_kakunin">
 								</div>
 							</td>
 						</tr>

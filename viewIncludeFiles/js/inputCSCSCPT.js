@@ -20,6 +20,9 @@
             //有効資格ラジオボタンの初期表示処理
             if (getTbkaiinJoho["cpraed_hoji_kbn"] == 1) {
                 $("input:radio[id='shikaku_1']").prop("checked", true);
+
+                //必ずご確認くださいのブロック非表示
+                $("#shikaku_kakunin").empty();
             } else {
                 $("input:radio[id='shikaku_2']").prop("checked", true);
                 $('#shikaku_yuko').prop("disabled", true);
@@ -28,6 +31,35 @@
                 $('#yuko_kigen').prop("disabled", true);
                 $('#yuko_kigen_month').prop("disabled", true);
                 $('#yuko_kigen_day').prop("disabled", true);
+
+                //必ずご確認くださいのブロック表示
+                $("#shikaku_kakunin").append(`
+                <div class="bg_gray kakunin">
+					<input id="kakunin" type="checkbox" name="" value="">
+					<label class="checkbox" for="kakunin">必ずご確認ください</label>
+					<ul class="error_ul">
+						<li class="error" id="err_kakunin"></li>
+				    </ul>
+					<div class="bg_white">
+						<div>
+							<input id="kakunin_1" type="checkbox" name="" value="">
+							<label class="checkbox" for="kakunin_1">有効なCPR/AED資格を保持せず受験した場合、<br>
+								その試験結果の有効期限は受験日から1年間であることを確認しました。</label>
+							<ul class="error_ul">
+								<li class="error" id="err_kakunin_1"></li>
+							</ul>
+						</div>
+						<div>
+							<input id="kakunin_2" type="checkbox" name="" value="">
+							<label class="checkbox" for="kakunin_2">有効なCPR/AEDの認定証のコピーを提出するまでは、<br>
+								試験に合格しても資格認定されないことを確認しました。</label>
+							<ul class="error_ul">
+								<li class="error" id="err_kakunin_2"></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+                `);
             }
 
             if (getTbkaiinJoho["cpraed_ninteibi"] && getTbkaiinJoho["cpraed_yuko_kigembi"]) {
@@ -40,6 +72,17 @@
                 $("#yuko_kigen_month").val(yuko_kigen_val[1]);
                 $("#yuko_kigen_day").val(yuko_kigen_val[2]);
             }
+
+            //hiddenタグにパラメータを設定する
+            $("#wk_kaiin_no").val(getTbkaiinJoho[0]);
+            $("#wk_shimei").val(getTbkaiinJoho["shimei_sei"] + " " + getTbkaiinJoho["shimei_mei"]);
+            $("#wk_furigana").val(getTbkaiinJoho["furigana_sei"] + " " + getTbkaiinJoho["furigana_mei"]);
+            $("#wk_firstlast").val(getTbkaiinJoho["last"] + " " + getTbkaiinJoho["first"]);
+            $("#wk_tel").val(getTbkaiinJoho["tel"]);
+            $("#wk_address").val(getTbkaiinJoho["yubin_no"] + getTbkaiinJoho["kemmei"] + getTbkaiinJoho["jusho_1"] + getTbkaiinJoho["jusho_2"]);
+            $("#wk_pc_address").val(getTbkaiinJoho["email_1"]);
+            $("#wk_shikaku_yuko").val(getTbkaiinJoho["cpraed_ninteibi"]);
+            $("#wk_yuko_kigen").val(getTbkaiinJoho["cpraed_yuko_kigembi"]);
 
         }).fail((rtn) => {
             return false;
@@ -114,9 +157,15 @@
                 $('#yuko_kigen').prop("disabled", false);
                 $('#yuko_kigen_month').prop("disabled", false);
                 $('#yuko_kigen_day').prop("disabled", false);
+
+                //確認チェックボックスのチェックオフ
                 $('#kakunin').prop('checked', false);
                 $('#kakunin_1').prop('checked', false);
                 $('#kakunin_2').prop('checked', false);
+
+                //必ずご確認くださいのブロック非表示
+                $("#shikaku_kakunin").empty();
+
             } else {
                 $('#shikaku_yuko').prop("disabled", true);
                 $('#shikaku_yuko_month').prop("disabled", true);
@@ -124,9 +173,70 @@
                 $('#yuko_kigen').prop("disabled", true);
                 $('#yuko_kigen_month').prop("disabled", true);
                 $('#yuko_kigen_day').prop("disabled", true);
+                $('#shikaku_yuko').val("");
+                $('#shikaku_yuko_month').val("");
+                $('#shikaku_yuko_day').val("");
+                $('#yuko_kigen').val("");
+                $('#yuko_kigen_month').val("");
+                $('#yuko_kigen_day').val("");
+
+                //必ずご確認くださいのブロック表示
+                $("#shikaku_kakunin").append(`
+                <div class="bg_gray kakunin">
+					<input id="kakunin" type="checkbox" name="" value="">
+					<label class="checkbox" for="kakunin">必ずご確認ください</label>
+					<ul class="error_ul">
+						<li class="error" id="err_kakunin"></li>
+				    </ul>
+					<div class="bg_white">
+						<div>
+							<input id="kakunin_1" type="checkbox" name="" value="">
+							<label class="checkbox" for="kakunin_1">有効なCPR/AED資格を保持せず受験した場合、<br>
+								その試験結果の有効期限は受験日から1年間であることを確認しました。</label>
+							<ul class="error_ul">
+								<li class="error" id="err_kakunin_1"></li>
+							</ul>
+						</div>
+						<div>
+							<input id="kakunin_2" type="checkbox" name="" value="">
+							<label class="checkbox" for="kakunin_2">有効なCPR/AEDの認定証のコピーを提出するまでは、<br>
+								試験に合格しても資格認定されないことを確認しました。</label>
+							<ul class="error_ul">
+								<li class="error" id="err_kakunin_2"></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+                `);
             }
         });
 
+        var wk_shikaku_yuko_month = "";
+        var wk_shikaku_yuko_day = "";
+        var wk_yuko_kigen_month = "";
+        var wk_yuko_kigen_day = "";
+        /********************************
+       * 認定日,有効期限チェンジイベント
+       ********************************/
+        $('#shikaku_yuko_month').change(function () {
+            wk_shikaku_yuko_month = $('#shikaku_yuko_month').val();
+
+        });
+
+        $('#shikaku_yuko_day').change(function () {
+            wk_shikaku_yuko_day = $('#shikaku_yuko_day').val();
+
+        });
+
+        $('#yuko_kigen_month').change(function () {
+            wk_yuko_kigen_month = $('#yuko_kigen_month').val();
+
+        });
+
+        $('#yuko_kigen_day').change(function () {
+            wk_yuko_kigen_day = $('#yuko_kigen_day').val();
+
+        });
         /********************************
         * 戻るボタン押下時の処理
         ********************************/
@@ -165,10 +275,8 @@
                 $("#err_job").html(wk_err_msg);
             }
 
-            var shikaku = document.getElementById("shikaku_1");
-
             //有効な資格を所持している場合の処理
-            if (shikaku.checked == true) {
+            if (document.getElementById("shikaku_1").checked == true) {
                 //認定日（発行日）入力チェック
                 if ($('#shikaku_yuko').val() == "" && $('#shikaku_yuko_month').val() == 0 && $('#shikaku_yuko_day').val() == 0) {
                     wk_err_msg_1 = "認定日（発行日）が入力されていません。認定日（発行日）を入力してください。";
@@ -214,7 +322,7 @@
                             var strDate = $('#shikaku_yuko').val() + "/" + $('#shikaku_yuko_month').val() + "/" + $('#shikaku_yuko_day').val(); //変数に認定日を格納する
                             var dateObj = new Date(strDate);    //strDateをDateオブジェクトに変換
 
-                            var y = dateObj.getFullYear(); 
+                            var y = dateObj.getFullYear();
                             var m = dateObj.getMonth() + 1;
                             var d = dateObj.getDate();
 
@@ -227,7 +335,7 @@
                             }
 
                             var objStr = y + "/" + m + "/" + d;
-                           
+
                             if (strDate != objStr) {
                                 wk_err_msg_1 = "";
                                 wk_err_msg_1 = "認定日（発行日）が正しくありません。認定日（発行日）を正しく入力してください。";
@@ -293,7 +401,7 @@
                             //有効期限日妥当性チェック
                             var strDate = $('#yuko_kigen').val() + "/" + $('#yuko_kigen_month').val() + "/" + $('#yuko_kigen_day').val(); //変数に認定日を格納する
                             var dateObj = new Date(strDate);　//strDateをDateオブジェクトに変換    
-                            var y = dateObj.getFullYear(); 
+                            var y = dateObj.getFullYear();
                             var m = dateObj.getMonth() + 1;
                             var d = dateObj.getDate();
 
@@ -363,14 +471,14 @@
             }
 
             // エラーがある場合は、メッセージを表示し、処理を終了する
-            if (wk_err_msg != "") {
+            if (wk_err_msg != "" || wk_err_msg_1 != "") {
                 return false;
             }
 
             //配列の内容を変数jobTextとjobValに代入する
             var job_val = [];
             var job_text = [];
-            $('input[name=job:checked').each(function (i) {
+            $('input[name=job]:checked').each(function (i) {
                 job_val.push($(this).val());
                 job_text.push($('label[for="job_' + $(this).val() + '"]').text());
             });
@@ -384,8 +492,14 @@
             $('#sel_job').val(jobText);
             $('#wk_sel_job').val(jobVal);
 
+            //hiddenタグに入力した認定日と有効期限を格納する
+            if (wk_shikaku_yuko_day || wk_shikaku_yuko_month || wk_yuko_kigen_day || wk_yuko_kigen_month) {
+                $('#wk_shikaku_yuko').val($('#shikaku_yuko').val() + "/" + wk_shikaku_yuko_month + "/" + wk_shikaku_yuko_day);
+                $('#wk_yuko_kigen').val($('#yuko_kigen').val() + "/" + wk_yuko_kigen_month + "/" + wk_yuko_kigen_day);
+            }
+
             //エラーがない場合出願時必要書類の確認画面に画面遷移
-            url = '../entryCoonfirm/';
+            url = '../entryConfirm/';
             $('form').attr('action', url);
             $('form').submit();
 
