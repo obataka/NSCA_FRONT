@@ -28,6 +28,7 @@
 
                 //※正常にCEUクイズ情報を取得できた時の処理
                 getCeuQuizSetsumon = JSON.parse(rtn);
+                console.log(getCeuQuizSetsumon);
                 $(".h2_text").text(getCeuQuizSetsumon[0]["shutoku_naiyo"]);
                 
                 // 配列getCeuQuizSetsumonを順に処理
@@ -104,6 +105,16 @@
                         $("label.radio" + [i] + "_4").hide();
                     }
 
+                    /**********************************
+                    * 選択済みのラジオボタンの初期表示処理
+                    ***********************************/
+                    var sel_radio = $('#q_' + [i] + '').val();
+                    if (sel_radio != "") {
+                        $('input:radio[name="q_[' + [i] + ']"]').val([sel_radio]);
+                    }
+
+
+
                     //ループでidとnameとclassのiを+1する
                     i = i + 1;
                 });               
@@ -137,12 +148,6 @@
             $("input[type='hidden'][class='" + sel_class + "']").val(sel_label_txt);
             
         });
-
-
-
-
-
-
 
 
 
@@ -185,24 +190,22 @@
                     return false;
 
                 //ラジオボタンがチェックされていたら、チェックされている値をhidden項目にセット
-                } else {
+                 } else {
 
                     var sel_q1_1 = "";
-                    var val_q1_1 = "";
-
-                    sel_q1_1 = $("input:radio[name='q_[" + [i] + "]']:checked").val();
         
-                    val_q1_1 = $('[name="q_[' + [i] + ']"]:checked').attr('id');
-                    val_q1_1 = $('label[for="' + val_q1_1 + '"]').text();
-                    $('#val_q' + [i] + '_1').val(val_q1_1);
+                    sel_q1_1 = $('[name="q_[' + [i] + ']"]:checked').attr('id');
+                    sel_q1_1 = $('label[for="' + sel_q1_1 + '"]').text();
                     $('#sel_q' + [i] + '_1').val(sel_q1_1);
+
+                    
                 }          
             }
 
             //エラーがなく、hidden項目に値をセットしたらCEUクイズ回答確認画面に画面遷移
-            // url = '../confirmAnswer/';
-            // $('form').attr('action', url);
-            // $('form').submit();
+            url = '../confirmAnswer/';
+            $('form').attr('action', url);
+            $('form').submit();
 
         });
     });

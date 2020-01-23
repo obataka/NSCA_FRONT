@@ -28,7 +28,30 @@
 		</header>
 			<div class="wrap mh_c">
 			<form action="?" method="post" autocomplete="off" id="inputAnswer">
-					<input type="hidden" name="ceu_id1" id="ceu_id1" value="<?php echo $ceu_id1; ?>">
+					<input type="hidden" name="ceu_id1" id="ceu_id1" value="<?php echo $ceu_id1; ?>">				
+					
+
+					<?php foreach($sel_q as $key => $value) {
+						echo '<input type="hidden" name="sel_q" id="sel_q';
+						echo $key;
+						echo '" value="';
+						echo $value;
+						echo '">';
+					} ?>
+					
+
+					<?php foreach($q_ as $key => $value) {
+						echo '<input type="hidden" name="q_[';
+						echo $key;
+						echo ']" id="q_';
+						echo $key;
+						echo '" value="';
+						echo $value;
+						echo '">';
+					} ?>
+
+
+
 				<h2>CEUクイズ　回答確認</h2>
 				<p class="h2_text">テキストテキスト(0000年00月号)</p>
 				<div class="content_wrap">

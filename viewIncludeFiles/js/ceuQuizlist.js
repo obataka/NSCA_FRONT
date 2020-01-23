@@ -4,149 +4,126 @@
         /*************
         * 初期画面表示
         **************/
-        jQuery.ajax({
+        $.ajax({
         url:  '../../classes/getCeuQuizJoho.php',
-            success: function(rtn) {
-                // rtn = 0 の場合は、該当なし
-                if (rtn == 0) {
-                    return false;
-                } else {
+        })
+        .done( (rtn) => {
+            // rtn = 0 の場合は、該当なし
+            if (rtn == 0) {
+
+                return false;
+
+            } else {
 
                     //※正常にCEUクイズ情報を取得できた時の処理
                     getCeuQuizJoho = JSON.parse(rtn);
                     console.log(getCeuQuizJoho);
-                    $('#txt1').html(getCeuQuizJoho[0]["shutoku_naiyo"]);
-                    $('#txt2').html(getCeuQuizJoho[1]["shutoku_naiyo"]);
-                    //$('#txt3').html(getCeuQuizJoho[2]["shutoku_naiyo"]);
+                    var i = 0;
+                    $.each(getCeuQuizJoho,function(index, elem) {
 
-                    //1件目の関連記事URLがセットされていない場合、関連記事ボタンを非表示にする
-                    var kiji1 = getCeuQuizJoho[0]["kanren_kiji_url"];
+                        // 設問が見つからなかったところで出力停止
+                        if (elem.shutoku_naiyo == "") {
+                            return false;
+                        }
+                        
 
-                    if (kiji1 !== "") {
-                        $(".kiji1").attr('onclick', 'location.href=' + "'" + kiji1 + "'");
-                    } else {               
-                        $('.kiji1').hide();
-                    }
+                        // //動的にhiddenのinputタグを作成
+                        // var input1 = $('<input>').attr({
+                        //     type: 'hidden',
+                        //     id: 'ceu_id' + [i] + '',
+                        //     name: 'ceu_id[' + [i] + ']',
+                        //     value: ''
+                        // });
+                        // $('form').prepend(input1);
 
-                    //2件目の関連記事URLがセットされていない場合、関連記事ボタンを非表示にする
-                    var kiji2 = getCeuQuizJoho[1]["kanren_kiji_url"];
+                        // //動的にhiddenのinputタグを作成
+                        // var input1 = $('<input>').attr({
+                        //     type: 'hidden',
+                        //     id: 'quiz_txt' + [i] + '',
+                        //     name: 'quiz_txt[' + [i] + ']',
+                        //     value: ''
+                        // });
+                        // $('form').prepend(input1);
 
-                    if (kiji2 !== "") {
-                        $(".kiji2").attr('onclick', 'location.href=' + "'" + kiji2 + "'");
-                    } else {               
-                        $('.kiji2').hide();
-                    }
+
+                    //動的に<table>を作成
+                    var table = '<tr>' 
+                              + '<th id="txt' + [i] + '"></th>'
+                              + '<td>'
+                              + '<div class="btn">' 
+                              + '<button class="button  test kaito' + [i] + '" value="" onclick="" location.href=""><span>解答</span></button>'
+                              + '<button class="button kiji' + [i] + '" onclick="" location.href=""><span>関連記事</span></button>'
+                              + '</div>'
+                              + '</td>'
+                              + '</tr>'
+
+                    //<div>を作成
+                    $("table").append(table);
+
+                    $('#txt' + [i] + '').html(getCeuQuizJoho[i]["shutoku_naiyo"]);
+
                     
-                    //3件目の関連記事URLがセットされていない場合、関連記事ボタンを非表示にする
-                    // var kiji3 = getCeuQuizJoho[2]["kanren_kiji_url"];
+                    //1件目の関連記事URLがセットされていない場合、関連記事ボタンを非表示にする
+                    var kiji = getCeuQuizJoho[i]["kanren_kiji_url"];
 
-                    // if (kiji3 !== "") {
-                    //     $(".kiji3").attr('onclick', 'location.href=' + "'" + kiji3 + "'");
-                    // } else {               
-                    //     $('.kiji3').hide();
-                    // }
+                    if (kiji !== "") {
+                        $(".kiji" + [i] + "").attr('onclick', 'location.href=' + "'" + kiji + "'");
+                    } else {               
+                        $('.kiji' + [i] + '').hide();
+                    }
 
+                    
 
                     //参加者登録して未納入の場合、又は納入していても合格している場合は解答ボタンを非表示にする
 
                     //1行目
-                    var nonyubi1  = getCeuQuizJoho[0]["nonyubi"];
-                    var sankaryo1 = getCeuQuizJoho[0]["sankaryo"];
-                    var gohi_kbn1 = getCeuQuizJoho[0]["gohikbn_"];
-                    var ceu_id1   = getCeuQuizJoho[0]["ceu_id"];
+                    var nonyubi  = getCeuQuizJoho[i]["nonyubi"];
+                    var sankaryo = getCeuQuizJoho[i]["sankaryo"];
+                    var gohi_kbn = getCeuQuizJoho[i]["gohikbn_"];
+                    var ceu_id   = getCeuQuizJoho[i]["ceu_id"];
 
-                    if (nonyubi1 == "" && sankaryo1 == "0.00" || gohi_kbn1 !== 2) {
+                    if (nonyubi == "" && sankaryo == "0.00" || gohi_kbn !== 2) {
                        
                         //$('.kaito1').hide();
-                        $('#ceu_id1').val(ceu_id1);
+                        $('.kaito' + [i] + '').val(ceu_id);
                     } else {
 
                         //解答ボタンが有効の場合、ceuidをhiddenにセット
-                        $('#ceu_id1').val(ceu_id1);
+                        $('.kaito' + [i] + '').val(ceu_id);
 
                     }
 
-                    //2行目
-                    var nonyubi2  = getCeuQuizJoho[1]["nonyubi"];
-                    var sankaryo2 = getCeuQuizJoho[1]["sankaryo"];                
-                    var gohi_kbn2 = getCeuQuizJoho[1]["gohikbn_"];
-                    var ceu_id2   = getCeuQuizJoho[1]["ceu_id"];
+                i = i + 1;
 
-                    if (nonyubi2 == "" && sankaryo2 == "0.00" || gohi_kbn2 !== 2) {
-                        
-                        //$('.kaito2').hide();
+                });
 
-                    } else {
+                };
+            })
+            // Ajaxリクエストが失敗した時発動
+        .fail( (rtn) => {
+            $('.error_ul').html('システムエラーが発生しました。');
+            return false;
+        })
 
-                        //解答ボタンが有効の場合、ceuidをhiddenにセット
-                        $('#ceu_id2').val(ceu_id2);
-                        
-                    }
-
-                    //3行目
-                    // var nonyubi3  = getCeuQuizJoho[2]["nonyubi"];
-                    // var sankaryo3 = getCeuQuizJoho[2]["sankaryo"];                
-                    // var gohi_kbn3 = getCeuQuizJoho[2]["gohikbn_"];
-                    // var ceu_id3   = getCeuQuizJoho[2]["ceu_id"];
-
-                    // if (nonyubi3 == "" && sankaryo3 == "0.00" || gohi_kbn3 !== 2) {
-                        
-                    //     $('.kaito3').hide();
-
-                    // } else {
-
-                    //     //解答ボタンが有効の場合、ceuidをhiddenにセット
-                    //     $('#ceu_id3').val(ceu_id3);
-                        
-                    // }     
-
-                }
-            },
-            fail: function(rtn) {
-                return false;
-            },
-            error: function(rtn) {
-                return false;
-            }
+        // Ajaxリクエストが成功・失敗どちらでも発動
+        .always( (data) => {
         });
 
-        //解答ボタンが押された時の処理
-        $(".kaito1").click(function() {
 
-            //1行目の解答ボタンが押された時、クイズテキストをhidden項目にセットする
-            var quiz_txt = $('#txt1').html();
-            $('#quiz_txt').val(quiz_txt);
-            
-            //解答入力画面に画面遷移
+        //ラジオボタンが押されたらチェックされた値とテキストをhidden項目にセットする
+        $(".content_wrap").on('click', '.test', function () {
+
+            var sel_val = "";
+
+            sel_val = $(this).attr('value');
+
+            $('#ceu_id1').val(sel_val);
+
             url = '../inputAnswer/';
             $('form').attr('action', url);
             $('form').submit();
-        });
-
-        $(".kaito2").click(function() {
             
-            //2行目の解答ボタンが押された時、クイズテキストをhidden項目にセットする
-            var quiz_txt = $('#txt2').html();
-            $('#quiz_txt').val(quiz_txt);
-
-            //解答入力画面に画面遷移
-            url = '../inputAnswer/';
-            $('form').attr('action', url);
-            $('form').submit();
         });
-
-        $(".kaito3").click(function() {
-            
-            //2行目の解答ボタンが押された時、クイズテキストをhidden項目にセットする
-            var quiz_txt = $('#txt3').html();
-            $('#quiz_txt').val(quiz_txt);
-
-            //解答入力画面に画面遷移
-            url = '../inputAnswer/';
-            $('form').attr('action', url);
-            $('form').submit();
-        });
-        
     });
 
 

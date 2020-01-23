@@ -28,7 +28,23 @@
 		</header>
 			<div class="wrap">
 			<form action="?" method="post" autocomplete="off" id="inputAnswer">
-					<input type="hidden" name="ceu_id1" id="ceu_id1" value="<?php echo $ceu_id1; ?>">
+				<input type="hidden" name="ceu_id1" id="ceu_id1" value="<?php echo $ceu_id1; ?>">
+
+				<?php 
+				if (!empty($q_)){
+				foreach($q_ as $key => $value) {
+					echo '<input type="hidden" name="q_';
+					echo $key;
+					echo '" id="q_';
+					echo $key;
+					echo '" value="';
+					echo $value;
+					echo '">';
+				} 
+				}
+				?>
+
+
 				<h2>CEUクイズ　回答入力</h2>
 				<p class="h2_text"></p>
 				<div class="content_wrap">
