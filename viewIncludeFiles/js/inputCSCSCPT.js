@@ -460,7 +460,7 @@
                         } else {
                             //有効期限日妥当性チェック
                             var strDate = $('#yuko_kigen').val() + "/" + $('#yuko_kigen_month').val() + "/" + $('#yuko_kigen_day').val(); //変数に認定日を格納する
-                            var dateObj = new Date(strDate);　//strDateをDateオブジェクトに変換    
+                            var dateObj = new Date(strDate); //strDateをDateオブジェクトに変換
                             var y = dateObj.getFullYear();
                             var m = dateObj.getMonth() + 1;
                             var d = dateObj.getDate();
