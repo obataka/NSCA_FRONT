@@ -769,7 +769,7 @@ SQL;
         return TRUE;
     }
 
-    public function findBykaiinjoho2()
+public function findBykaiinjoho2($param)
     {
         try {
             $db = Db::getInstance();

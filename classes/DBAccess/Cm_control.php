@@ -26,6 +26,30 @@ class Cm_control
 
         return $cmControl;
     }
+
+    /*
+    * @return boolean
+    */
+
+    public function findByCmControl()
+    {
+        try {
+            $db = Db::getInstance();
+            $sth = $db->prepare("SELECT * FROM cm_control WHERE id = :id;");
+            $sth->execute([':id' => '1',]);
+            $cmControl = $sth->fetch();
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
+            $cmControl = [];
+        }
+
+        return $cmControl;
+    }
+
+
+
+
+
 //
 //    /**
 //     * エリア日付検索

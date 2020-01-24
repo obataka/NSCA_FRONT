@@ -52,4 +52,56 @@ class Tb_ceu_quiz_joho
         }
         return $Tb_ceu_quiz_joho;
     }
+
+
+
+    public function GetByQuizjoho($param)
+    {
+        try {
+            $db = Db::getInstance();
+            $sth = $db->prepare("SELECT tb_ceu_quiz_joho.shutoku_naiyo, tb_ceu_quiz_joho.sankaryo FROM tb_ceu_quiz_joho 
+                                 WHERE tb_ceu_quiz_joho.ceu_id	= :ceu_id");
+            $sth->execute([':ceu_id' => $param['ceu_id'],]);
+            $Tb_ceu_quiz_joho = $sth->fetch();
+        } catch (\PDOException $e) {
+            $Tb_ceu_quiz_joho = [];
+        }
+        return $Tb_ceu_quiz_joho;
+    }
+
+
+    public function GetByQuizAnswer($param)
+    {
+        try {
+            $db = Db::getInstance();
+            $sth = $db->prepare("SELECT tb_ceu_quiz_joho.shutoku_naiyo, tb_ceu_quiz_setsumon.setsumon_no, tb_ceu_quiz_setsumon.setsumon, tb_ceu_quiz_joho.sentakushisu,
+                                        tb_ceu_quiz_setsumon.sentakushi_a, tb_ceu_quiz_setsumon.sentakushi_b, tb_ceu_quiz_setsumon.sentakushi_c, tb_ceu_quiz_setsumon.sentakushi_d,
+                                        tb_ceu_quiz_setsumon.kaito_kbn, tb_ceu_quiz_joho.category_kbn
+                                 FROM 
+                                        tb_ceu_quiz_joho
+                                 LEFT JOIN
+                                        tb_ceu_quiz_setsumon
+                                 ON
+                                        tb_ceu_quiz_joho.ceu_id = tb_ceu_quiz_setsumon.ceu_id   
+                                 WHERE 
+                                        tb_ceu_quiz_joho.ceu_id	= :ceu_id
+                                 ORDER BY      
+                                        tb_ceu_quiz_setsumon.setsumon_no
+                                ");
+                                
+
+            $sth->execute([':ceu_id' => $param['ceu_id'],]);
+            $Tb_ceu_quiz_joho = $sth->fetch();
+        } catch (\PDOException $e) {
+            $Tb_ceu_quiz_joho = [];
+        }
+        return $Tb_ceu_quiz_joho;
+    }
+
+
+
+
+
+
+
 }

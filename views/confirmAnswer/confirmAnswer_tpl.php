@@ -27,28 +27,35 @@
 		<header id="header">
 		</header>
 			<div class="wrap mh_c">
-			<form action="?" method="post" autocomplete="off" id="inputAnswer">
-					<input type="hidden" name="ceu_id1" id="ceu_id1" value="<?php echo $ceu_id1; ?>">				
+			<form action="?" method="post" autocomplete="off" id="confirmAnswer">
+					<input type="hidden" name="ceu_id1" id="ceu_id1" value="<?php echo $ceu_id1; ?>">
+
+					<?php 
+					if (!empty($sel_q)){
+						foreach((array)$sel_q as $key => $value) {
+							echo '<input type="hidden" name="sel_q" id="sel_q';
+							echo $key;
+							echo '" value="';
+							echo $value;
+							echo '">';
+						} 
+					}
+					?>
 					
 
-					<?php foreach($sel_q as $key => $value) {
-						echo '<input type="hidden" name="sel_q" id="sel_q';
-						echo $key;
-						echo '" value="';
-						echo $value;
-						echo '">';
-					} ?>
-					
-
-					<?php foreach($q_ as $key => $value) {
-						echo '<input type="hidden" name="q_[';
-						echo $key;
-						echo ']" id="q_';
-						echo $key;
-						echo '" value="';
-						echo $value;
-						echo '">';
-					} ?>
+					<?php 
+					if (!empty($q_)){
+						foreach($q_ as $key => $value) {
+							echo '<input type="hidden" name="q_[';
+							echo $key;
+							echo ']" id="q_';
+							echo $key;
+							echo '" value="';
+							echo $value;
+							echo '">';
+						} 
+					}
+					?>
 
 
 
@@ -84,8 +91,8 @@
 					</section>
 					
 					<section class="btn_wrap">
-						<button class="button back" type="button" value="" onclick="location.href='#'"><span>回答を修正する</span></button>
-						<button class="button" type="submit" value="" onclick="location.href='#'"><span>決済方法選択へ</span></button>
+						<button class="button back" type="button" value="" onclick="location.href=''"><span>回答を修正する</span></button>
+						<button class="button" id="next_button" type="submit" value="" onclick="location.href=''"><span>決済方法選択へ</span></button>
 					</section>
 				</div>
 			</form>
