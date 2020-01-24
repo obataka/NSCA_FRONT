@@ -44,7 +44,7 @@ class Vmoshikomi_jokyo
 			detail.nonyu_hoho_kbn,
 			detail.hasso_dempyo_no,
 			buppan_kbn
-		FROM vwmoshikomi_jokyo detail		
+		FROM vmoshikomi_jokyo detail		
 		LEFT JOIN tb_keiri_joho purch
 		ON	((detail.ceu_id		= purch.ceu_id 
 			AND detail.ceu_meisai_id	= purch.ceu_meisai_id)	-- CEU関連
@@ -73,11 +73,11 @@ class Vmoshikomi_jokyo
 
 		-- 会費・CEU報告・英文オプション
 		SELECT 
-			vwmoshikomi_jokyo.ceu_id,
+			vmoshikomi_jokyo.ceu_id,
 			shutoku_naiyo,
-			vwmoshikomi_jokyo.ceu_meisai_id,
-			vwmoshikomi_jokyo.kaiin_no,
-			vwmoshikomi_jokyo.id,
+			vmoshikomi_jokyo.ceu_meisai_id,
+			vmoshikomi_jokyo.kaiin_no,
+			vmoshikomi_jokyo.id,
 			ifnull(nonyubi,nonyubi)	AS nonyubi,
 			settleno,
 			kessai_kekka,
@@ -86,32 +86,32 @@ class Vmoshikomi_jokyo
 			pay_type_specify,
 			koshin_nichiji,
 --			@dtm取得日時			AS 取得日時,
-			vwmoshikomi_jokyo.etc_id,
-			vwmoshikomi_jokyo.etc_meisai_id,
+			vmoshikomi_jokyo.etc_id,
+			vmoshikomi_jokyo.etc_meisai_id,
 			moshikomi_go_annai_url,
 			staff_kbn,
 			cancel_shimekiribi,
 			gohi_kbn,
 			event_kbn,
 			nonyu_hoho_kbn,
-			vwmoshikomi_jokyo.hasso_dempyo_no,
+			vmoshikomi_jokyo.hasso_dempyo_no,
 			buppan_kbn
-		FROM vwmoshikomi_jokyo
+		FROM vmoshikomi_jokyo
 		LEFT JOIN tb_kessai_hakko
-			ON vwmoshikomi_jokyo.id=tb_kessai_hakko.id
+			ON vmoshikomi_jokyo.id=tb_kessai_hakko.id
 		WHERE event_kbn IN (40,41,42)
 		  AND nonyubi IS NULL
-		  AND vwmoshikomi_jokyo.kaiin_no		= :kaiin_no
+		  AND vmoshikomi_jokyo.kaiin_no		= :kaiin_no
 
 		UNION ALL
 
 		-- 物販
 		SELECT 
-			vwmoshikomi_jokyo.ceu_id,
+			vmoshikomi_jokyo.ceu_id,
 			shutoku_naiyo,
-			vwmoshikomi_jokyo.ceu_meisai_id,
-			vwmoshikomi_jokyo.kaiin_no,
-			vwmoshikomi_jokyo.id,
+			vmoshikomi_jokyo.ceu_meisai_id,
+			vmoshikomi_jokyo.kaiin_no,
+			vmoshikomi_jokyo.id,
 			ifnull(nonyubi,nonyubi)	AS nonyubi,
 			settleno,
 			kessai_kekka,
@@ -120,21 +120,21 @@ class Vmoshikomi_jokyo
 			pay_type_specify,
 			koshin_nichiji,
 --			@dtm取得日時			AS 取得日時,
-			vwmoshikomi_jokyo.etc_id,
-			vwmoshikomi_jokyo.etc_meisai_id,
+			vmoshikomi_jokyo.etc_id,
+			vmoshikomi_jokyo.etc_meisai_id,
 			moshikomi_go_annai_url,
 			staff_kbn,
 			cancel_shimekiribi,
 			gohi_kbn,
 			event_kbn,
 			nonyu_hoho_kbn,
-			vwmoshikomi_jokyo.hasso_dempyo_no,
+			vmoshikomi_jokyo.hasso_dempyo_no,
 			buppan_kbn
-		FROM vwmoshikomi_jokyo
+		FROM vmoshikomi_jokyo
 		LEFT JOIN tb_kessai_hakko
-			ON vwmoshikomi_jokyo.id=tb_kessai_hakko.id
+			ON vmoshikomi_jokyo.id=tb_kessai_hakko.id
 		WHERE event_kbn = 60
-		  AND vwmoshikomi_jokyo.kaiin_no		= :kaiin_no
+		  AND vmoshikomi_jokyo.kaiin_no		= :kaiin_no
 
 	) AS tb申込
 	ORDER BY nonyubi,id

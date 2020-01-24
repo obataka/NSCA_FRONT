@@ -19,13 +19,15 @@ class Tb_ceu_joho
             $sth = $db->prepare("
 -- セミナー（総会含む）・トレ検・カンファレンス
 
-		-- ■■■　セミナー　■■■
 			SELECT 
 				tb_ceu_joho.ceu_id
 				, shutoku_naiyo
 				, moshikomi_mae_annai_url
 				, event_kbn
 				, shutokubi
+				, CASE WHEN teiinsu IS NULL OR (zansho_ikichi IS NOT NULL AND zansho_ikichi < ifnull(sanka_ninzu,0)) THEN 1
+				  ELSE 0
+				  END AS nokori
 			FROM tb_ceu_joho
 			LEFT JOIN (
 						SELECT ceu_id
@@ -58,11 +60,14 @@ class Tb_ceu_joho
 
 		-- ■■■　トレ検　■■■
 			SELECT 
-				tb_toreken.ceu_id
+				 tb_toreken.ceu_id
 				,shutoku_naiyo
 				,moshikomi_mae_annai_url
 				,event_kbn
 				,shutokubi
+				, CASE WHEN zansho_ikichi IS NOT NULL AND zansho_ikichi < ifnull(sanka_ninzu,0) THEN 1
+				  ELSE 0
+				  END AS nokori
 			FROM (
 				SELECT 
 					tb_ceu_joho.ceu_id,
@@ -71,17 +76,20 @@ class Tb_ceu_joho
 					event_kbn,
 					shutokubi,
 					CASE 
-						WHEN tb_toreken_jisshi_shosai.teiinsu > ifnull(sankasya,0) THEN 0
+						WHEN tb_toreken_jisshi_shosai.teiinsu > ifnull(sanka_ninzu,0) THEN 0
 						ELSE 1
 					END AS kuuseki,
 					tb_toreken_jisshi_shosai.jisshi_no,
 					keisai_kaishi_kikan,
-					keisai_shuryo_kikan
+					keisai_shuryo_kikan,
+					zansho_ikichi,
+					sanka_ninzu
+
 				FROM tb_ceu_joho
 				LEFT JOIN tb_toreken_jisshi_shosai
 					ON tb_ceu_joho.ceu_id = tb_toreken_jisshi_shosai.ceu_id
 				LEFT JOIN (
-					SELECT ceu_id,jisshi_no,COUNT(*) AS sankasya
+					SELECT ceu_id,jisshi_no,COUNT(*) AS sanka_ninzu
 					FROM tb_ceu_joho_meisai 
 					WHERE staff_kbn =0
 					  AND sakujo_flg=0
@@ -123,11 +131,12 @@ class Tb_ceu_joho
 
 		-- ■■■　カンファレンス　■■■
 		SELECT 
-			tb_ceu_conference_joho.ceu_id,
-			tb_ceu_conference_joho.shutoku_naiyo,
-			tb_ceu_conference_joho.moshikomi_mae_annai_url,
-			tb_ceu_conference_joho.event_kbn,
-			tb_ceu_conference_joho.shutokubi
+			tb_ceu_conference_joho.ceu_id
+			, tb_ceu_conference_joho.shutoku_naiyo
+			, tb_ceu_conference_joho.moshikomi_mae_annai_url
+			, tb_ceu_conference_joho.event_kbn
+			, tb_ceu_conference_joho.shutokubi
+			, 0 AS nokori
 		FROM tb_ceu_conference_joho
 		LEFT JOIN (
 			-- カンファレンスに参加している

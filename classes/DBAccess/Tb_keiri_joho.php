@@ -130,4 +130,72 @@ class Tb_keiri_joho
     }
 
 
+    /*
+     * 伝票番号(ID)後発で、有効な同一ETCIDを持つ物販経理を返却する
+     * 経理種目CD2：01（教材）、03（名刺）、07（送料）、09(物販)、99（その他）
+     * @param varchar $id
+     * @return array|mixed
+     */
+    public function findByEtcId($id,$etc_id)
+    {
+        try {
+            $db = Db::getInstance();
+            $sth = $db->prepare("
+	SELECT * FROM tb_keiri_joho
+	WHERE id = :id
+		AND sakujo_flg = 0
+		AND	id	>   :id
+		AND	keiri_shumoku_cd_1	=   '02'     -- 販売
+		AND	keiri_shumoku_cd_2	IN ('01','03','07','09','99')
+		AND	etc_id	= :etc_id
+;
+            ");
+            $sth->execute([
+					':id' => $id
+					,':etc_id' => $etc_id
+			]);
+            $keiriJoho  = $sth->fetchAll();
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
+            $keiriJoho = [];
+        }
+        return $keiriJoho;
+    }
+
+
+
+    /*
+     * 経理情報テーブルを削除する(削除フラグ=1でUPDATE)（マイページ表示）
+     * @param varchar $id
+     * @return boolean
+     */
+    public function updateKonyubi($kaiin_no,$konyu_id,$koshin_user_id)
+    {
+            $db = Db::getInstance();
+	         $db->beginTransaction();
+        try {
+
+                $sql = <<<SQL
+                UPDATE tb_keiri_joho
+                SET   sakujo_flg = 1
+					, koshin_user_id = :koshin_user_id
+				WHERE id	= :id
+SQL;
+                $sth = $db->prepare($sql);
+                $sth->execute([
+					':id' => $id
+                ]);
+            $db->commit();
+
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
+            return FALSE;
+        }
+        return $TRUE;
+    }
+
+
+
+
+
 }
