@@ -78,21 +78,28 @@
 					<input type="hidden" name="wk_yuko_kigen" id="wk_yuko_kigen" value="<?php echo $wk_yuko_kigen; ?>">
 					<input type="hidden" name="sel_job" id="sel_job" value="<?php echo $job; ?>">
 					<input type="hidden" name="wk_sel_job" id="wk_sel_job" value="<?php echo $wk_sel_job; ?>">
+					<input type="hidden" name="wk_kakunin" id="wk_kakunin" value="<?php echo $wk_kakunin; ?>">
+					<input type="hidden" name="wk_shiken_policy_doi" id="wk_shiken_policy_doi" value="<?php echo $wk_shiken_policy_doi; ?>">
+					<input type="hidden" name="wk_cancel_policy_doi" id="wk_cancel_policy_doi" value="<?php echo $wk_cancel_policy_doi; ?>">
+					<input type="hidden" name="wk_rinri_doi" id="wk_rinri_doi" value="<?php echo $wk_rinri_doi; ?>">
 					<input type="hidden" name="wk_gakui" id="wk_gakui" value="<?php echo $wk_gakui; ?>">
+					<input type="hidden" name="wk_txt_gakui" id="wk_txt_gakui" value="<?php echo $wk_txt_gakui; ?>">
 					<input type="hidden" name="wk_bunya" id="wk_bunya" value="<?php echo $wk_bunya; ?>">
+					<input type="hidden" name="wk_txt_bunya" id="wk_txt_bunya" value="<?php echo $wk_txt_bunya; ?>">
+					<input type="hidden" name="wk_bunya_sonota" id="wk_bunya_sonota" value="<?php echo $wk_bunya_sonota; ?>">
+					<input type="hidden" name="wk_hitsuyo" id="wk_hitsuyo" value="<?php echo $wk_hitsuyo; ?>">
+					<input type="hidden" name="wk_caution_1" id="wk_caution_1" value="<?php echo $wk_caution_1; ?>">
+					<input type="hidden" name="wk_caution_2" id="wk_caution_2" value="<?php echo $wk_caution_2; ?>">
+					<input type="hidden" name="wk_caution_3" id="wk_caution_3" value="<?php echo $wk_caution_3; ?>">
 					<table>
 						<tr>
 							<th><span class="required">必須</span>取得学位</th>
-							<td>
-								<div id="shutoku_gakui">
-								</div>
+							<td id="shutoku_gakui">
 								<ul class="error_ul">
 									<li class="error"></li>
 								</ul>
 								<p class="yotei">卒業予定日<br class="pc_none">
-									<select id="yotei_year" name="year">
-										<option value=""></option>
-									</select>年
+									<input id="yotei_year" type="text" name="" value="">年
 									<select id="yotei_month" name="manth">
 										<option value="00"></option>
 										<option value="01">1</option>
@@ -143,7 +150,7 @@
 										<option value="31">31</option>
 									</select>日</p>
 								<ul class="error_ul">
-									<li class="error"></li>
+									<li class="error" id="err_yoteibi"></li>
 								</ul>
 								<p class="gakui">取得学位分野または卒業見込みの学位分野<br>
 									<select id="gakui_bunya" name="">
@@ -151,6 +158,9 @@
 									</select>
 									<textarea id="gakui_sonota" placeholder="その他を選択した場合は必須入力となります"></textarea>
 								</p>
+								<ul class="error_ul">
+									<li class="error" id="err_gakui"></li>
+								</ul>
 							</td>
 						</tr>
 						<tr class="hitsuyo">
@@ -171,16 +181,16 @@
 							<th><span class="required">必須</span>注意事項</th>
 							<td>
 								<p>※読んだら必ずチェックを入れてください</p>
-								<input id="caution_1" type="checkbox" name="caution" value=""><label class="checkbox" for="caution_1">証明書は、発行から１年以内のものを提出してください。</label>
+								<input id="caution_1" type="checkbox" name="caution_1" value=""><label class="checkbox" for="caution_1">証明書は、発行から１年以内のものを提出してください。</label>
 								<ul class="error_ul">
 									<li class="error" id="err_caution_1"></li>
 								</ul>
-								<input id="caution_2" type="checkbox" name="caution" value=""><label class="checkbox" for="caution_2">証明書のコピーは、出願書類として認められません。<br>
+								<input id="caution_2" type="checkbox" name="caution_2" value=""><label class="checkbox" for="caution_2">証明書のコピーは、出願書類として認められません。<br>
 									また、卒業証書や学位記の原本は、出願書類として認められません。</label>
 								<ul class="error_ul">
 									<li class="error" id="err_caution_2"></li>
 								</ul>
-								<input id="caution_3" type="checkbox" name="caution" value=""><label class="checkbox" for="caution_3">改姓・改名により、登録情報と証明書の氏名が異なる場合は、<br>
+								<input id="caution_3" type="checkbox" name="caution_3" value=""><label class="checkbox" for="caution_3">改姓・改名により、登録情報と証明書の氏名が異なる場合は、<br>
 									改姓あるいは改名を証明する公的証明書(戸籍抄本、戸籍謄本など)の原本をあわせて提出してください。</label>
 								<ul class="error_ul">
 									<li class="error" id="err_caution_3"></li>

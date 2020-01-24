@@ -2,7 +2,7 @@
 
 include_once '../ctrl/parts/beforeLoginHeader.php';
 
-$includeView = '../views/entryConfirm/entryConfirm_tpl.php';
+$includeView = '../views/entryFinalConfirm/entryFinalConfirm_tpl.php';
 
 // POSTからパラメータを取得する
 $shiken_sbt = (!empty($_POST['shiken_sbt'])) ? htmlentities($_POST['shiken_sbt'], ENT_QUOTES, "UTF-8") : "";
@@ -32,6 +32,7 @@ $wk_txt_gakui = (!empty($_POST['wk_txt_gakui'])) ? htmlentities($_POST['wk_txt_g
 $wk_bunya = (!empty($_POST['wk_bunya'])) ? htmlentities($_POST['wk_bunya'], ENT_QUOTES, "UTF-8") : "";
 $wk_txt_bunya = (!empty($_POST['wk_txt_bunya'])) ? htmlentities($_POST['wk_txt_bunya'], ENT_QUOTES, "UTF-8") : "";
 $wk_bunya_sonota = (!empty($_POST['wk_bunya_sonota'])) ? htmlentities($_POST['wk_bunya_sonota'], ENT_QUOTES, "UTF-8") : "";
+
 
 //試験名を格納する変数
 $shikenmei = "";

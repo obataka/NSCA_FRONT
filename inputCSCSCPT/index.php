@@ -14,9 +14,16 @@ $wk_furigana = (!empty($_POST['wk_furigana'])) ? htmlentities($_POST['wk_furigan
 $wk_firstlast = (!empty($_POST['wk_firstlast'])) ? htmlentities($_POST['wk_firstlast'], ENT_QUOTES, "UTF-8") : "";
 $wk_tel = (!empty($_POST['wk_tel'])) ? htmlentities($_POST['wk_tel'], ENT_QUOTES, "UTF-8") : "";
 $wk_address = (!empty($_POST['wk_address'])) ? htmlentities($_POST['wk_address'], ENT_QUOTES, "UTF-8") : "";
+$job = (!empty($_POST['sel_job'])) ? htmlentities($_POST['sel_job'], ENT_QUOTES, "UTF-8") : "";
+$wk_sel_job = (!empty($_POST['wk_sel_job'])) ? htmlentities($_POST['wk_sel_job'], ENT_QUOTES, "UTF-8") : "";
 $wk_pc_address = (!empty($_POST['wk_pc_address'])) ? htmlentities($_POST['wk_pc_address'], ENT_QUOTES, "UTF-8") : "";
 $wk_shikaku_yuko = (!empty($_POST['wk_shikaku_yuko'])) ? htmlentities($_POST['wk_shikaku_yuko'], ENT_QUOTES, "UTF-8") : "";
 $wk_yuko_kigen = (!empty($_POST['wk_yuko_kigen'])) ? htmlentities($_POST['wk_yuko_kigen'], ENT_QUOTES, "UTF-8") : "";
+$wk_kakunin = (!empty($_POST['wk_kakunin'])) ? htmlentities($_POST['wk_kakunin'], ENT_QUOTES, "UTF-8") : "";
+$wk_shiken_policy_doi = (!empty($_POST['wk_shiken_policy_doi'])) ? htmlentities($_POST['wk_shiken_policy_doi'], ENT_QUOTES, "UTF-8") : "";
+$wk_cancel_policy_doi = (!empty($_POST['wk_cancel_policy_doi'])) ? htmlentities($_POST['wk_cancel_policy_doi'], ENT_QUOTES, "UTF-8") : "";
+$wk_rinri_doi = (!empty($_POST['wk_rinri_doi'])) ? htmlentities($_POST['wk_rinri_doi'], ENT_QUOTES, "UTF-8") : "";
+
 
 //試験名を格納する変数
 $shikenmei = "";

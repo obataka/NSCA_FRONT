@@ -146,6 +146,66 @@
             }
         });
 
+        /************************
+         * 確認ボタンチェンジイベント
+         ************************/
+        $("#kakunin").change(function () {
+            if ($("input[name='kakunin']").prop('checked')) {
+                //チェックありのhidden設定
+                var wa = 1;
+                $("#wk_kakunin").val(wa);
+            } else {
+                //チェックなしのhidden設定
+                var wa = 0;
+                $("#wk_kakunin").val(wa);
+            }
+        });
+
+        /************************
+         * 試験ポリシーボタンチェンジイベント
+         ************************/
+        $("#shiken_policy_doi").change(function () {
+            if ($("input[name='shiken_policy_doi']").prop('checked')) {
+                //チェックありのhidden設定
+                var wa = 1;
+                $("#wk_shiken_policy_doi").val(wa);
+            } else {
+                //チェックなしのhidden設定
+                var wa = 0;
+                $("#wk_shiken_policy_doi").val(wa);
+            }
+        });
+
+        /************************
+         * 試験キャンセルポリシーボタンチェンジイベント
+         ************************/
+        $("#cancel_policy_doi").change(function () {
+            if ($("input[name='cancel_policy_doi']").prop('checked')) {
+                //チェックありのhidden設定
+                var wa = 1;
+                $("#wk_cancel_policy_doi").val(wa);
+            } else {
+                //チェックなしのhidden設定
+                var wa = 0;
+                $("#wk_cancel_policy_doi").val(wa);
+            }
+        });
+
+        /************************
+         * 倫理規定ボタンチェンジイベント
+         ************************/
+        $("#rinri_doi").change(function () {
+            if ($("input[name='rinri_doi']").prop('checked')) {
+                //チェックありのhidden設定
+                var wa = 1;
+                $("#wk_rinri_doi").val(wa);
+            } else {
+                //チェックなしのhidden設定
+                var wa = 0;
+                $("#wk_rinri_doi").val(wa);
+            }
+        });
+
         /*********************************
          * //有効な資格ラジオボタンチェンジイベント
          *********************************/
@@ -183,7 +243,7 @@
                 //必ずご確認くださいのブロック表示
                 $("#shikaku_kakunin").append(`
                 <div class="bg_gray kakunin">
-					<input id="kakunin" type="checkbox" name="" value="">
+					<input id="kakunin" type="checkbox" name="kakunin" value="">
 					<label class="checkbox" for="kakunin">必ずご確認ください</label>
 					<ul class="error_ul">
 						<li class="error" id="err_kakunin"></li>

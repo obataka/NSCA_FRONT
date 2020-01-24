@@ -72,6 +72,10 @@
 				<input type="hidden" name="wk_pc_address" id="wk_pc_address" value="<?php echo $wk_pc_address; ?>">
 				<input type="hidden" name="wk_shikaku_yuko" id="wk_shikaku_yuko" value="<?php echo $wk_shikaku_yuko; ?>">
 				<input type="hidden" name="wk_yuko_kigen" id="wk_yuko_kigen" value="<?php echo $wk_yuko_kigen; ?>">
+				<input type="hidden" name="wk_kakunin" id="wk_kakunin" value="<?php echo $wk_kakunin; ?>">
+				<input type="hidden" name="wk_shiken_policy_doi" id="wk_shiken_policy_doi" value="<?php echo $wk_shiken_policy_doi; ?>">
+				<input type="hidden" name="wk_cancel_policy_doi" id="wk_cancel_policy_doi" value="<?php echo $wk_cancel_policy_doi; ?>">
+				<input type="hidden" name="wk_rinri_doi" id="wk_rinri_doi" value="<?php echo $wk_rinri_doi; ?>">
 				<input type="hidden" name="sel_job" id="sel_job" value="<?php echo $job; ?>">
 				<input type="hidden" name="wk_sel_job" id="wk_sel_job" value="<?php echo $wk_sel_job; ?>">
 
@@ -280,7 +284,7 @@
 				</p>
 			</div>
 			<p class="doi">
-				<input id="shiken_policy_doi" type="checkbox" name="" value="">
+				<input id="shiken_policy_doi" type="checkbox" name="shiken_policy_doi" value="">
 				<label class="checkbox" for="shiken_policy_doi">上記の試験ポリシーに同意します</label>
 				<ul class="error_ul">
 					<li class="error" id="err_shiken_policy_doi"></li>
@@ -294,7 +298,7 @@
 				</p>
 			</div>
 			<p class="doi">
-				<input id="cancel_policy_doi" type="checkbox" name="" value="">
+				<input id="cancel_policy_doi" type="checkbox" name="cancel_policy_doi" value="">
 				<label class="checkbox" for="cancel_policy_doi">上記の試験キャンセルポリシーに同意します</label>
 				<ul class="error_ul">
 					<li class="error" id="err_cancel_policy_doi"></li>
@@ -445,7 +449,7 @@
 				</p>
 			</div>
 			<p class="doi">
-				<input id="rinri_doi" type="checkbox" name="" value="">
+				<input id="rinri_doi" type="checkbox" name="rinri_doi" value="">
 				<label class="checkbox" for="rinri_doi">上記の倫理規定に同意します</label>
 				<ul class="error_ul">
 					<li class="error" id="err_rinri_doi"></li>
