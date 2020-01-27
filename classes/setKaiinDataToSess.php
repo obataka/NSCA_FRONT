@@ -5,9 +5,199 @@ session_start();
 
 require './Config/Config.php';
 require './DBAccess/Db.php';
+require './DBAccess/Tb_kaiin_joho.php';
+require './DBAccess/Cm_control.php';
+require './DBAccess/Tb_ceu_quiz_joho.php';
+require './DBAccess/Tb_ceu_quiz_setsumon.php';
 
-$return_value = -1;
+$wk_no = 0;
 
+
+
+//POSTデータを取得
+//confirmAnswer.jsでセットしたPOSTデータを取得する
+// 会員情報
+$ceu_id = (!empty($_POST['ceu_id'])) ? htmlentities($_POST['ceu_id'], ENT_QUOTES, "UTF-8") : "";
+$ques_num1 = $_POST['ques_num'];
+$ques_num = explode(",", $ques_num1);
+//配列ques_num1をエスケープする
+if (!empty($ques_num1)) {
+    foreach((array)$ques_num1 as $key => $value) {
+    $ques_num1[$key] = htmlentities($value, ENT_QUOTES);
+    }
+};
+
+
+//セッションから会員番号を取得
+$wk_kaiin_no = '';
+if (isset($_SESSION['kaiinNo'])) {
+   
+    // ログインしている
+    $wk_kaiin_no = $_SESSION['kaiinNo'];
+}
+
+/**********************
+* パラメーター設定
+***********************/
+// DB接続
+$db = Db::getInstance();
+
+// トランザクション開始
+$db->beginTransaction();
+
+$param = [
+    'kaiin_no'  => $wk_kaiin_no,
+];
+
+// データ取得処理
+$result_kaiin = (new Tb_kaiin_joho())->findBykaiinjoho($param);
+
+
+//会員情報取得成功の場合
+if ($result_kaiin == TRUE) {
+
+    //データ取得処理
+    $result_Cm = (new Cm_control())->findByCmControl();
+    
+    //Cmコントロール取得成功の場合
+    if ($result_Cm == TRUE) {
+        
+        //ceu_idをセット
+        $param = [
+            'ceu_id'  => $ceu_id,
+        ];
+        // データ取得処理
+        $result_quizjoho = (new Tb_ceu_quiz_joho())->GetByQuizjoho($param);
+        
+        //クイズ情報取得成功の場合
+        if ($result_quizjoho == TRUE) {
+            
+            $param = [
+                'kaiin_no'  => $wk_kaiin_no,
+                'ceu_id'  => $ceu_id,
+            ];
+            // データ取得処理
+            $result_setsumon = (new Tb_ceu_quiz_setsumon())->findByQuizSetsumon($param);
+            
+            //設問情報取得成功の場合の場合
+            if ($result_setsumon == TRUE) {
+                
+                //SESSIONに値をセットする
+                $_SESSION['shimei'] = $result_kaiin['shimei_sei'] . $result_kaiin['shimei_mei'];
+                $_SESSION['furigana'] = $result_kaiin['[furigana_sei]'] . $result_kaiin['[furigana_mei]'];
+                
+                //電話番号が空白ではなかったら、電話番号をセットする
+                if ($result_kaiin['tel'] !== "") {
+                    $_SESSION['tel'] = $result_kaiin['tel'];
+                
+                //電話番号が空白だったら、携帯番号をセットする
+                } else {
+                    $_SESSION['keitai_no'] = $result_kaiin['keitai_no'];
+                };
+                $_SESSION['sankaryo'] = $result_quizjoho['sankaryo'];
+                $_SESSION['shutoku_naiyo'] = $result_quizjoho['[shutoku_naiyo] '] . $result_quizjoho['sankaryo'];
+                $_SESSION['payeasy_mei'] = $result_quizjoho['[shutoku_naiyo] '] . $result_quizjoho['sankaryo'];
+                $_SESSION['payeasy_kana'] = $result_quizjoho['[shutoku_naiyo] '] . $result_quizjoho['sankaryo'];
+                $_SESSION['keiri1'] = "08";
+                $_SESSION['keiri2'] = "02";
+                $_SESSION['keiri3'] = "";
+                $_SESSION['keiri3'] = "";
+                $_SESSION['keiri3'] = $ceu_id;
+
+                //設問数初期設定
+                $n = 0;
+
+                //正解数を求める
+                for ($i = 0; $i < 50; $i++) {
+                    
+                    //選択肢が空になったらループ終了
+                    if ($ques_num[$i] == "") {
+                        break;
+                    }
+
+                    //選択肢と回答のアルファベットが一緒の場合、回答数+1
+                    if ($ques_num[$i] ==  $result_setsumon[$i]['kaito_kbn']) {
+                        $percent += 1;
+                    }
+
+                    //設問数count up
+                    $n += 1;
+                }
+                
+                //正答率を求める
+                $percentage = ($percent / $n) * 100;
+
+                //クイズ得点が正答率より上回っていた場合
+                if ($result_Cm['quiz_tokuten'] > $percentage) {
+
+                    //合否区分は2
+                    $_SESSION['gohi_kbn'] = 2;
+                
+                //クイズ得点が正答率より下回っていた場合
+                } else {
+
+                    //合否区分は1
+                    $_SESSION['gohi_kbn'] = 1;
+                }
+                $_SESSION['percentage'] = $percentage;
+
+                
+
+                // commit
+                $db->commit();
+
+                // 戻り値に1設定
+                $result = 1;
+
+            //設問情報取得失敗の場合
+            } else {
+
+                // ロールバック
+                $db->rollBack();
+
+                // 戻り値に0設定
+                $result = 0;
+            }
+        
+        //クイズ情報取得失敗の場合
+        } else {
+
+            // ロールバック
+            $db->rollBack();
+
+            // 戻り値に0設定
+            $result = 0;
+        }
+
+    //Cmコントロール取得失敗の場合
+    } else {
+        // ロールバック
+        $db->rollBack();
+
+        // 戻り値に0設定
+        $result = 0;
+    }
+
+//会員情報取得失敗の場合
+} else {
+    // ロールバック
+    $db->rollBack();
+
+    // 戻り値に0設定
+    $result = 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+//$return_value = -1;
 // POSTデータを取得
 // confirmMember.jsでセットしたPOSTデータからSESSIONにセット
 // 入力された会員情報
@@ -23,106 +213,5 @@ $_SESSION['keiri2'] = (!empty($_POST['keiri2'])) ? htmlentities($_POST['keiri2']
 $_SESSION['keiri3'] = (!empty($_POST['keiri3'])) ? htmlentities($_POST['keiri3'], ENT_QUOTES, "UTF-8") : "";
 
 
-
-$sankaryo = $_SESSION['sankaryo'];
-$shutoku_naiyo = $_SESSION['shutoku_naiyo'];
-$tel = $_SESSION['tel'];
-$furigana = $_SESSION['furigana'];
-$shimei = $_SESSION['shimei'];
-$payeasy_mei = $_SESSION['payeasy_mei'];
-$payeasy_kana = $_SESSION['payeasy_kana'];
-$keiri1 = $_SESSION['keiri1'];
-$keiri2 = $_SESSION['keiri2'];
-$keiri3 = $_SESSION['keiri3'];
-
-
-
-error_log(print_r($sankaryo, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanihara_sankaryo_log.txt');
-error_log(print_r($shutoku_naiyo, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanihara_shutoku_naiyo_log.txt');
-error_log(print_r($tel, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanihara_tel_log.txt');
-error_log(print_r($furigana, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanihara_furigana_log.txt');
-error_log(print_r($shimei, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanihara_shimei_log.txt');
-error_log(print_r($payeasy_mei, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanihara_payeasy_mei_log.txt');
-error_log(print_r($payeasy_kana, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanihara_payeasy_kana_log.txt');
-error_log(print_r($keiri1, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanihara_keiri1_log.txt');
-error_log(print_r($keiri2, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanihara_keiri2_log.txt');
-error_log(print_r($keiri3, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanihara_keiri3_log.txt');
-
-
-
-
-// $_SESSION['wk_sel_riyu'] = (!empty($_POST['wk_sel_riyu'])) ? htmlentities($_POST['wk_sel_riyu'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['sel_riyu_sonota'] = (!empty($_POST['sel_riyu_sonota'])) ? htmlentities($_POST['sel_riyu_sonota'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['sel_hoji'] = (!empty($_POST['sel_hoji'])) ? htmlentities($_POST['sel_hoji'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['wk_sel_hoji'] = (!empty($_POST['wk_sel_hoji'])) ? htmlentities($_POST['wk_sel_hoji'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['file_front'] = (!empty($_POST['file_front'])) ? htmlentities($_POST['file_front'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['file_back'] = (!empty($_POST['file_back'])) ? htmlentities($_POST['file_back'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['name_sei'] = (!empty($_POST['name_sei'])) ? htmlentities($_POST['name_sei'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['name_mei'] = (!empty($_POST['name_mei'])) ? htmlentities($_POST['name_mei'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['name_sei_kana'] = (!empty($_POST['name_sei_kana'])) ? htmlentities($_POST['name_sei_kana'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['name_mei_kana'] = (!empty($_POST['name_mei_kana'])) ? htmlentities($_POST['name_mei_kana'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['name_last'] = (!empty($_POST['name_last'])) ? htmlentities($_POST['name_last'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['name_first'] = (!empty($_POST['name_first'])) ? htmlentities($_POST['name_first'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['year'] = (!empty($_POST['year'])) ? htmlentities($_POST['year'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['month'] = (!empty($_POST['month'])) ? htmlentities($_POST['month'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['day'] = (!empty($_POST['day'])) ? htmlentities($_POST['day'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['sel_gender'] = (!empty($_POST['sel_gender'])) ? htmlentities($_POST['sel_gender'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['wk_sel_gender'] = (!empty($_POST['wk_sel_gender'])) ? htmlentities($_POST['wk_sel_gender'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['yubin_nb_1'] = (!empty($_POST['yubin_nb_1'])) ? htmlentities($_POST['yubin_nb_1'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['yubin_nb_2'] = (!empty($_POST['yubin_nb_2'])) ? htmlentities($_POST['yubin_nb_2'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['sel_math'] = (!empty($_POST['sel_math'])) ? htmlentities($_POST['sel_math'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['kenmei'] = (!empty($_POST['kenmei'])) ? htmlentities($_POST['kenmei'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['address_shiku'] = (!empty($_POST['address_shiku'])) ? htmlentities($_POST['address_shiku'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['address_tatemono'] = (!empty($_POST['address_tatemono'])) ? htmlentities($_POST['address_tatemono'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['address_yomi_shiku'] = (!empty($_POST['address_yomi_shiku'])) ? htmlentities($_POST['address_yomi_shiku'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['address_yomi_tatemono'] = (!empty($_POST['address_yomi_tatemono'])) ? htmlentities($_POST['address_yomi_tatemono'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['sel_nagareyama'] = (!empty($_POST['sel_nagareyama'])) ? htmlentities($_POST['sel_nagareyama'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['wk_sel_nagareyama'] = (!empty($_POST['wk_sel_nagareyama'])) ? htmlentities($_POST['wk_sel_nagareyama'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['tel'] = (!empty($_POST['tel'])) ? htmlentities($_POST['tel'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['keitai_tel'] = (!empty($_POST['keitai_tel'])) ? htmlentities($_POST['keitai_tel'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['fax'] = (!empty($_POST['fax'])) ? htmlentities($_POST['fax'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['mail_address_1'] = (!empty($_POST['mail_address_1'])) ? htmlentities($_POST['mail_address_1'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['mail_address_2'] = (!empty($_POST['mail_address_2'])) ? htmlentities($_POST['mail_address_2'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['sel_mail'] = (!empty($_POST['sel_mail'])) ? htmlentities($_POST['sel_mail'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['wk_sel_mail'] = (!empty($_POST['wk_sel_mail'])) ? htmlentities($_POST['wk_sel_mail'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['sel_merumaga'] = (!empty($_POST['sel_merumaga'])) ? htmlentities($_POST['sel_merumaga'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['wk_sel_merumaga'] = (!empty($_POST['wk_sel_merumaga'])) ? htmlentities($_POST['wk_sel_merumaga'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['pass_1'] = (!empty($_POST['pass_1'])) ? htmlentities($_POST['pass_1'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['url'] = (!empty($_POST['url'])) ? htmlentities($_POST['url'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['shoku_1'] = (!empty($_POST['shoku_1'])) ? htmlentities($_POST['shoku_1'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['shoku_2'] = (!empty($_POST['shoku_2'])) ? htmlentities($_POST['shoku_2'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['shoku_3'] = (!empty($_POST['shoku_3'])) ? htmlentities($_POST['shoku_3'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['sel_shoku_1'] = (!empty($_POST['sel_shoku_1'])) ? htmlentities($_POST['sel_shoku_1'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['sel_shoku_2'] = (!empty($_POST['sel_shoku_2'])) ? htmlentities($_POST['sel_shoku_2'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['sel_shoku_3'] = (!empty($_POST['sel_shoku_3'])) ? htmlentities($_POST['sel_shoku_3'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['office_yubin_nb_1'] = (!empty($_POST['office_yubin_nb_1'])) ? htmlentities($_POST['office_yubin_nb_1'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['office_yubin_nb_2'] = (!empty($_POST['office_yubin_nb_2'])) ? htmlentities($_POST['office_yubin_nb_2'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['sel_office_math'] = (!empty($_POST['sel_office_math'])) ? htmlentities($_POST['sel_office_math'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['office_kenmei'] = (!empty($_POST['office_kenmei'])) ? htmlentities($_POST['office_kenmei'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['office_name'] = (!empty($_POST['office_name'])) ? htmlentities($_POST['office_name'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['office_shiku'] = (!empty($_POST['office_shiku'])) ? htmlentities($_POST['office_shiku'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['office_tatemono'] = (!empty($_POST['office_tatemono'])) ? htmlentities($_POST['office_tatemono'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['office_fax'] = (!empty($_POST['office_fax'])) ? htmlentities($_POST['office_fax'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['office_tel'] = (!empty($_POST['office_tel'])) ? htmlentities($_POST['office_tel'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['sel_shikaku'] = (!empty($_POST['sel_shikaku'])) ? htmlentities($_POST['sel_shikaku'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['wk_sel_shikaku'] = (!empty($_POST['wk_sel_shikaku'])) ? htmlentities($_POST['wk_sel_shikaku'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['sel_shikaku_sonota'] = (!empty($_POST['sel_shikaku_sonota'])) ? htmlentities($_POST['sel_shikaku_sonota'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['sel_k_chiiki'] = (!empty($_POST['sel_k_chiiki'])) ? htmlentities($_POST['sel_k_chiiki'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['wk_sel_k_chiiki'] = (!empty($_POST['wk_sel_k_chiiki'])) ? htmlentities($_POST['wk_sel_k_chiiki'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['sel_bunya'] = (!empty($_POST['sel_bunya'])) ? htmlentities($_POST['sel_bunya'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['wk_sel_bunya'] = (!empty($_POST['wk_sel_bunya'])) ? htmlentities($_POST['wk_sel_bunya'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['sel_bunya_sonota'] = (!empty($_POST['sel_bunya_sonota'])) ? htmlentities($_POST['sel_bunya_sonota'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['sel_hoho'] = (!empty($_POST['sel_hoho'])) ? htmlentities($_POST['sel_hoho'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['wk_sel_hoho'] = (!empty($_POST['wk_sel_hoho'])) ? htmlentities($_POST['wk_sel_hoho'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['sel_yubin'] = (!empty($_POST['sel_yubin'])) ? htmlentities($_POST['sel_yubin'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['wk_sel_yubin'] = (!empty($_POST['wk_sel_yubin'])) ? htmlentities($_POST['wk_sel_yubin'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['sel_web'] = (!empty($_POST['sel_web'])) ? htmlentities($_POST['sel_web'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['wk_sel_web'] = (!empty($_POST['wk_sel_web'])) ? htmlentities($_POST['wk_sel_web'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['sel_qa'] = (!empty($_POST['sel_qa'])) ? htmlentities($_POST['sel_qa'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['wk_sel_qa'] = (!empty($_POST['wk_sel_qa'])) ? htmlentities($_POST['wk_sel_qa'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['sel_chiiki'] = (!empty($_POST['sel_chiiki'])) ? htmlentities($_POST['sel_chiiki'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['sel_office_chiiki'] = (!empty($_POST['sel_office_chiiki'])) ? htmlentities($_POST['sel_office_chiiki'], ENT_QUOTES, "UTF-8") : "";
-// $_SESSION['tranScreen'] = (!empty($_POST['tranScreen'])) ? htmlentities($_POST['tranScreen'], ENT_QUOTES, "UTF-8") : "";
-
-echo $return_value;
+echo $result;
 die();

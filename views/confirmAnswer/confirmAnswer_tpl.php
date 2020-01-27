@@ -29,7 +29,7 @@
 			<div class="wrap mh_c">
 			<form action="?" method="post" autocomplete="off" id="confirmAnswer">
 					<input type="hidden" name="ceu_id1" id="ceu_id1" value="<?php echo $ceu_id1; ?>">
-
+					<input type="hidden" name="ques_num" id="ques_num" value="<?php echo implode(",", $q_); ?>">
 					<?php 
 					if (!empty($sel_q)){
 						foreach((array)$sel_q as $key => $value) {
@@ -41,24 +41,6 @@
 						} 
 					}
 					?>
-					
-
-					<?php 
-					if (!empty($q_)){
-						foreach($q_ as $key => $value) {
-							echo '<input type="hidden" name="q_[';
-							echo $key;
-							echo ']" id="q_';
-							echo $key;
-							echo '" value="';
-							echo $value;
-							echo '">';
-						} 
-					}
-					?>
-
-
-
 				<h2>CEUクイズ　回答確認</h2>
 				<p class="h2_text">テキストテキスト(0000年00月号)</p>
 				<div class="content_wrap">
