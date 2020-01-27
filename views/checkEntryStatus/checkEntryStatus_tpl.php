@@ -17,7 +17,8 @@
 
         <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.1.1.min.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.js"></script>
-        <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
+		<script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
+		<script type="text/javascript" src="../../viewIncludeFiles/js/checkEntryStatus.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/header.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
@@ -30,7 +31,7 @@
 				<div class="content_wrap">
 					<h3>出願状況確認</h3>
 					<div class="content jokyo">
-						<table>
+						<table id="jokyo">
 							<thead>
 								<tr>
 								<th>試験名</th>
@@ -47,7 +48,7 @@
 								<td data-label="受付日">2019/04/02</td>
 								<td data-label="支払"><button class="button" type="button" value="" onclick="location.href='#'"><span>支払番号表示</span></button></td>
 								<td data-label="確認事項">CPRAED確認済み<br>卒業証明書確認済み</td>
-								<td data-label="手続き"><button class="button cancel" type="button" value="" onclick="location.href='#'"><span>受験キャンセル</span></button></td>
+								<td data-label="手続き"><button class="button cancel" type="button" id="cancel" value="" onclick="location.href='#'"><span>受験キャンセル</span></button></td>
 							</tr>
 							<tr>
 								<td data-label="試験名">テキストテキスト</td>
@@ -55,7 +56,7 @@
 								<td data-label="受付日">2000/00/00</td>
 								<td data-label="支払"></td>
 								<td data-label="確認事項">CPRAED確認済み<br>卒業証明書確認済み</td>
-								<td data-label="手続き"><button class="button cancel" type="button" value="" onclick="location.href='#'"><span>受験キャンセル</span></button></td>
+								<td data-label="手続き"><button class="button cancel" type="button" id="cancel" value="" onclick="location.href='#'"><span>受験キャンセル</span></button></td>
 							</tr>
 						</table>
 						<p class="kome">コンビニ及びPay-easyの決済を選択した方は、支払いが完了すると「支払番号表示」ボタンが消えます。</p>
