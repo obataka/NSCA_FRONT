@@ -39,9 +39,7 @@ SQL;
             error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
             return FALSE;
         }
-        return $TRUE;
+        return TRUE;
     }
-
-
 
 }

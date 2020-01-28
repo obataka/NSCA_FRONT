@@ -169,7 +169,7 @@ class Tb_keiri_joho
      * @param varchar $id
      * @return boolean
      */
-    public function updateKonyubi($kaiin_no,$konyu_id,$koshin_user_id)
+    public function updateSakujoFlg($id,$koshin_user_id)
     {
             $db = Db::getInstance();
 	         $db->beginTransaction();
@@ -184,6 +184,7 @@ SQL;
                 $sth = $db->prepare($sql);
                 $sth->execute([
 					':id' => $id
+					,':koshin_user_id' => $koshin_user_id
                 ]);
             $db->commit();
 
@@ -191,11 +192,8 @@ SQL;
             error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
             return FALSE;
         }
-        return $TRUE;
+        return TRUE;
     }
-
-
-
 
 
 }
