@@ -7,12 +7,13 @@ require './Config/Config.php';
 require './DBAccess/Db.php';
 require './DBAccess/Tb_shiken_meisai.php';
 //セッションから会員番号を取得
-if (isset($_SESSION['kaiinNo'])) {
+// if (isset($_SESSION['kaiinNo'])) {
    
-    // ログインしている
-    $wk_kaiin_no = $_SESSION['kaiinNo'];
-}
+//     // ログインしている
+//     $wk_kaiin_no = $_SESSION['kaiinNo'];
+// }
 
+$wk_kaiin_no = 50000073;
 
 $param = [
     'kaiin_no'  => $wk_kaiin_no,

@@ -42,7 +42,7 @@
 								<th>手続き</th>
 								</tr>
 							</thead>						
-							<tr>
+							<!-- <tr>
 								<td data-label="試験名">NSCA-CPT認定試験</td>
 								<td data-label="状況">出願中</td>
 								<td data-label="受付日">2019/04/02</td>
@@ -57,14 +57,14 @@
 								<td data-label="支払"></td>
 								<td data-label="確認事項">CPRAED確認済み<br>卒業証明書確認済み</td>
 								<td data-label="手続き"><button class="button cancel" type="button" id="cancel" value="" onclick="location.href='#'"><span>受験キャンセル</span></button></td>
-							</tr>
+							</tr> -->
 						</table>
 						<p class="kome">コンビニ及びPay-easyの決済を選択した方は、支払いが完了すると「支払番号表示」ボタンが消えます。</p>
 					</div>
 						
 					<h3>試験ステータス</h3>
 					<div class="content shiken">
-						<table>
+						<table id="status">
 							<thead>
 								<tr>
 									<th>試験名</th>
@@ -75,7 +75,7 @@
 								</tr>
 							</thead>	
 							<tr>
-								<td data-label="試験名">CSCS認定試験</td>
+								<!-- <td data-label="試験名">CSCS認定試験</td>
 								<td data-label="状況">受理中</td>
 								<td data-label="受付日">2019/06/27</td>
 								<td data-label="確認事項"><span class="mb_10">左記認定試験の出願を承りました。</span>
@@ -97,7 +97,7 @@
 								<td data-label="手続き">
 									<button class="button irai" type="button" value="" onclick="location.href='#'"><span>延長依頼</span></button>
 									<button class="button cancel" type="button" value="" onclick="location.href='#'"><span>受験キャンセル</span></button>
-								</td>
+								</td> -->
 							</tr>
 						</table>
 						<p><span class="blue">PEARSON VUEメンテナンス情報</span>
@@ -108,7 +108,7 @@
 					<h3>試験期間延長手続き</h3>
 					<div class="content encho">
 					<p class="text">延長申請があった場合に表示されます</p>
-						<table>
+						<table id="encho">
 							<thead>
 								<tr>
 									<th>試験名</th>
@@ -118,7 +118,7 @@
 									<th>手続き</th>
 								</tr>
 							</thead>
-							<tr>
+							<!-- <tr>
 								<td data-label="試験名">NSCA-CPT認定試験</td>
 								<td data-label="状況">延長手続き中</td>
 								<td data-label="受付日">2019/04/02</td>
@@ -127,7 +127,7 @@
 								</td>
 								<td data-label="手続き"><button class="button kessai" type="button" value="" onclick="location.href='#'"><span>決済</span></button>
 								</td>
-							</tr>
+							</tr> -->
 						</table>
 						<ul>
 							<li>延長手続きは、延長手続き料の支払いが完了しませんと、受理となりません。</li>
