@@ -18,6 +18,7 @@
         <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.1.1.min.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
+		<script type="text/javascript" src="../../viewIncludeFiles/js/ceuGetList.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/header.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
@@ -35,10 +36,10 @@
 					<div class="link">
 						<p>CEUリンク集</p>
 						<ul>
-							<li><a href="#">継続教育（CEU）について</a></li>
-							<li><a href="#">特別プログラム(*D)</a></li>
-							<li><a href="#">CEU管理の移行(日本←→米国)</a></li>
-							<li><a href="#">Q&amp;A</a></li>
+							<li id="kyoiku"><a href="">継続教育（CEU）について</a></li>
+							<li id="program"><a href="">特別プログラム(*D)</a></li>
+							<li id="ceu_kanri"><a href="">CEU管理の移行(日本←→米国)</a></li>
+							<li id="qa"><a href="">Q&amp;A</a></li>
 						</ul>
 					</div>
 				</section>
