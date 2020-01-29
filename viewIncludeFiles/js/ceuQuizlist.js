@@ -84,8 +84,8 @@
 
                     if (nonyubi == "" && sankaryo == "0.00" || gohi_kbn !== 2) {
                        
-                        $('.kaito1').hide();
-
+                        //$('.kaito1').hide();
+                        $('.kaito' + [i] + '').val(ceu_id);
                     } else {
 
                         //解答ボタンが有効の場合、ceuidをhiddenにセット

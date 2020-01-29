@@ -36,8 +36,7 @@
               // rtn = 0 の場合
             if (rtn == 0) {
 
-                console.log(0);
-
+                console.log(0);               
 
             } else {
 
