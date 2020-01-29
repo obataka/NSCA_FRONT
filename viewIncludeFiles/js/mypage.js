@@ -55,6 +55,15 @@
 
             // イベント情報、該当なし
                 if (rtn == 0) {
+					$("#event_list1").show();
+		            $("#event_meisho1").hide();
+		            $("#event_naiyo1").html("現在イベント情報がございません");
+					$("#event_button1").hide();
+					// イベント表示件数3件分ループ処理する
+					for(var i = 1; i < 4 ; i++) {
+						// データがない場合は非表示にする
+						$("#event_list"+(i+1)).hide();
+					}
 //		            $("#err_pass_1").html("現在イベント情報がございません");
 				} else {
 
@@ -65,6 +74,7 @@
 						// データがある場合はデータをセットする
 						if(i < tbEventJoho.length){
 							$("#event_list"+(i+1)).show();
+							$("#event_meisho"+(i+1)).show();
 				            $("#event_meisho"+(i+1)).html(tbEventJoho[i]["meisho"]);
 				            $("#event_naiyo"+(i+1)).html(tbEventJoho[i]["shutoku_naiyo"]);
 							if(tbEventJoho[i]["nokori"] == 0){
@@ -100,9 +110,16 @@
         type: 'POST',
         success: function(rtn) {
 
-            // 申込状況情、該当なし
+            // 申込状況情報、該当なし
                 if (rtn == 0) {
-//		            $("#err_pass_1").html("現在申込情報がございません");
+					$("#apply_list1").show();
+		            $("#apply_naiyo1").html("現在申込情報がございません");
+					$("#apply_button1").hide();
+					// イベント表示件数3件分ループ処理する
+					for(var i = 1; i < 4 ; i++) {
+						// データがない場合は非表示にする
+						$("#apply_list"+(i+1)).hide();
+					}
 				} else {
 
                         tbEventJoho = JSON.parse(rtn);
@@ -141,7 +158,7 @@
         type: 'POST',
         success: function(rtn) {
 
-            // 申込状況情、該当なし
+            // 支払状況情報、該当なし
                 if (rtn == 0) {
 					$("#payment_list1").show();
 		            $("#payment_naiyo1").html("現在支払い情報がございません");
@@ -177,6 +194,51 @@
             }
     });
 
+
+	/************************************************************
+	*お知らせ情報取得
+	*************************************************************/
+    jQuery.ajax({
+        url:  '../../classes/mypageGetInformation.php',
+        type: 'POST',
+        success: function(rtn) {
+
+            // お知らせ情報、該当なし
+                if (rtn == 0) {
+					$("#payment_list1").show();
+		            $("#payment_naiyo1").html("お知らせ情報がございません");
+					$("#payment_button1").hide();
+					// イベント表示件数3件分ループ処理する
+					for(var i = 1; i < 4 ; i++) {
+						// データがない場合は非表示にする
+						$("#payment_list"+(i+1)).hide();
+					}
+				} else {
+
+                        tbKeiriJoho = JSON.parse(rtn);
+
+					// イベント表示件数4件分ループ処理する
+					for(var i = 0; i < 4 ; i++) {
+						// データがある場合はデータをセットする
+						if(i < tbKeiriJoho.length){
+							$("#payment_list"+(i+1)).show();
+				            $("#payment_naiyo"+(i+1)).html(tbKeiriJoho[i]["naiyo"]);
+							$("#payment_button"+(i+1)).show();
+				            $("#payment_button"+(i+1)).text(tbEventJoho[i]["button_text"]);
+						// データがない場合は非表示にする
+						}else{
+							$("#payment_list"+(i+1)).hide();
+						}
+					}
+				}
+            },
+            fail: function(rtn) {
+                return false;
+            },
+            error: function(rtn) {
+                return false;
+            }
+    });
 
 
 

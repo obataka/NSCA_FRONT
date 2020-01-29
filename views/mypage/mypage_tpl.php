@@ -162,17 +162,17 @@
 				<h2>お知らせ</h2>
 				<div class="bg_white">
 					<ul>
-						<li class="list">
-							<span class="list_text">体力トレーニング検定&reg;(トレ検&reg;)随時、検定を実施しております。</span >
-							<button class="button" type="button" onclick="location.href='#'"><span>お申込</span></button>
+						<li class="list" id="info_list1"><div class="sub">
+							<span class="list_text" id="info_naiyo1">体力トレーニング検定&reg;(トレ検&reg;)随時、検定を実施しております。</span >
+							<button class="button" type="button" id="info_button1" onclick="location.href='#'"><span>お申込</span></button>
 						</li>
-						<li class="list">
-							<span class="list_text">郵便物が戻ってきています。ご住所の確認をお願いいたします。</span >
-							<button class="button" type="button" onclick="location.href='#'"><span>登録情報</span></button>
+						<li class="list" id="info_list2"><div class="sub">
+							<span class="list_text" id="info_naiyo2">郵便物が戻ってきています。ご住所の確認をお願いいたします。</span >
+							<button class="button" type="button" id="info_button2" onclick="location.href='#'"><span>登録情報</span></button>
 						</li>
-						<li class="list">
-							<span class="list_text">テキストテキストテキストテキストテキストテキストテキストテキスト</span >
-							<button class="button" type="button" onclick="location.href='#'"><span>継続手続き</span></button>
+						<li class="list" id="info_list3"><div class="sub">
+							<span class="list_text" id="info_naiyo3">テキストテキストテキストテキストテキストテキストテキストテキスト</span >
+							<button class="button" type="button" id="info_button3" onclick="location.href='#'"><span>継続手続き</span></button>
 						</li>
 					</ul>
 				</div>

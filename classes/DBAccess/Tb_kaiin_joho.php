@@ -832,7 +832,12 @@ SQL;
 	, kaiin_sbt_kbn
 	, meisho_kaiin_sbt.meisho as kaiin_sbt
 	, DATE_FORMAT(yuko_hizuke,'%Y/%m/%d') as yuko_hizuke
+	, eibun_option_kbn
 	, meisho_eibun.meisho as eibun_option
+	, taikai_shorui_juribi
+	, hasso_teishibi
+	, kaihi_kessai_error_code
+	, eibun_option_kikan_to
 FROM tb_kaiin_joho joho
 	
 LEFT JOIN tb_kaiin_jotai jotai
