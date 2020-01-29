@@ -72,7 +72,7 @@ class Tb_nintei_meisai
     }
 
     
-    public function findBycscsNinteibi($param)
+    public function findBycscsNinteibi($db, $param)
     {
         try {
             $sth = $db->prepare("SELECT
@@ -88,8 +88,8 @@ class Tb_nintei_meisai
                                  AND
                                     torikeshi_hizuke IS NULL
                                 ");
-            $sth->execute([':kaiin_no' => $param['kaiin_no'],]);
-            // $sth->execute([':kaiin_no' => '807032810',]);
+            $sth->execute([':kaiin_no' => '807031506',]);
+            // $sth->execute([':kaiin_no' => $param['kaiin_no'],]);
             $CSCSninteibi = $sth->fetch();
         } catch (\PDOException $e) {
             $CSCSninteibi = [];
@@ -98,7 +98,7 @@ class Tb_nintei_meisai
     }
 
 
-    public function findBycptNinteibi($param)
+    public function findBycptNinteibi($db, $param)
     {
         try {
             $sth = $db->prepare("SELECT
@@ -114,48 +114,14 @@ class Tb_nintei_meisai
                                  AND
                                     torikeshi_hizuke IS NULL
                                 ");
-            $sth->execute([':kaiin_no' => $param['kaiin_no'],]);
-            // $sth->execute([':kaiin_no' => '807032810',]);
+            $sth->execute([':kaiin_no' => '807031506',]);
+            // $sth->execute([':kaiin_no' => $param['kaiin_no'],]);
             $CPTninteibi = $sth->fetch();
         } catch (\PDOException $e) {
             $CPTninteibi = [];
         }
         return $CPTninteibi;
     }
-
-
-
-
-
-
-
-
-
-    /*
-     * 存在チェック（パスワード変更用）
-     * @param varchar $kaiinNo
-     * @param varchar $mailAddress
-     * @return resultCount(0:該当なし、1:該当あり、9:エラー)
-     */
-    // public function findByKaiinNoAndEmail($kaiinNo, $mailAddress)
-    // {
-    //     try {
-    //         $db = Db::getInstance();
-    //         $sth = $db->prepare("SELECT COUNT(*) AS resultCount
-    //                   FROM tb_kaiin_joho
-    //                  WHERE kaiin_no = :kaiin_no
-    //                    AND (email_1 = :mailAddress OR email_2 = :mailAddress)
-    //                    AND toroku_jokyo_kbn = 1
-    //                    AND sakujo_flg = 0;
-    //         ");
-    //         $sth->execute([':mailAddress' => $mailAddress, ':kaiin_no' => $kaiinNo]);
-    //         $row  = $sth->fetch();
-    //     } catch (\PDOException $e) {
-    //         return 9;
-    //     }
-    //     return $row["resultCount"];
-    // }
-
 
 
 

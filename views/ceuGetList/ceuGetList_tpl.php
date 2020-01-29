@@ -63,7 +63,7 @@
 							</tr>
 							<tr>
 								<td>カテゴリーA</td>
-								<td data-label="CSCS">0.00</td>
+								<td id="category_a" data-label="CSCS">0.00</td>
 								<td data-label="NSCA-CPT">0.00</td>
 								<td data-label="取得ポイント">0.00</td>
 							</tr>

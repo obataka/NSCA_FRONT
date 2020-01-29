@@ -42,8 +42,14 @@
             } else {
 
                 console.log(1);
-
-
+                getCeuSyutokuJokyo = JSON.parse(rtn);
+                console.log(getCeuSyutokuJokyo);
+                //
+                var category_a = getCeuSyutokuJokyo['category_a_gokei'];
+                var dig = Number(category_a);
+                var Num = dig.toFixed(2);
+                $('#category_a').text(Num);
+                
             }
         })
 
