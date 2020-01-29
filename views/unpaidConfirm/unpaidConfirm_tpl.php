@@ -18,6 +18,7 @@
         <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.1.1.min.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
+		<script type="text/javascript" src="../../viewIncludeFiles/js/unpaidConfirm.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/header.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
@@ -29,7 +30,7 @@
 			<h2 class="mb_10">支払金額確認</h2>
 			<div class="content_wrap">
 				<p class="mt_1em">金額をご確認の上、決済をお願いいたします。</p>
-				<table>
+				<table id="kessai">
 					<tr>
 						<th>テキストテキストテキスト</th>
 						<td>000000円</td>

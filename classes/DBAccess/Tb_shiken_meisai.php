@@ -87,12 +87,12 @@ class Tb_shiken_meisai
     {
         try {
             $db = Db::getInstance();
-            $sth = $db->prepare("SELECT shiken_sbt_kbn, kamoku_sentaku_kbn, juken_jotai_kbn, nonyubi, nonyu_hoho_kbn,  uketsukebi, juribi
+            $sth = $db->prepare("SELECT *
             FROM   tb_shiken_meisai
             WHERE kaiin_no = :kaiin_no
             ");
             $sth->execute([':kaiin_no' => $param['kaiin_no'],]);
-            $Tb_juken_jotai = $sth->fetch();
+            $Tb_juken_jotai = $sth->fetchAll();
         } catch (\PDOException $e) {
             error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/eroor_log.txt');
             $Tb_juken_jotai = [];

@@ -42,22 +42,6 @@
 								<th>手続き</th>
 								</tr>
 							</thead>						
-							<!-- <tr>
-								<td data-label="試験名">NSCA-CPT認定試験</td>
-								<td data-label="状況">出願中</td>
-								<td data-label="受付日">2019/04/02</td>
-								<td data-label="支払"><button class="button" type="button" value="" onclick="location.href='#'"><span>支払番号表示</span></button></td>
-								<td data-label="確認事項">CPRAED確認済み<br>卒業証明書確認済み</td>
-								<td data-label="手続き"><button class="button cancel" type="button" id="cancel" value="" onclick="location.href='#'"><span>受験キャンセル</span></button></td>
-							</tr>
-							<tr>
-								<td data-label="試験名">テキストテキスト</td>
-								<td data-label="状況">出願中</td>
-								<td data-label="受付日">2000/00/00</td>
-								<td data-label="支払"></td>
-								<td data-label="確認事項">CPRAED確認済み<br>卒業証明書確認済み</td>
-								<td data-label="手続き"><button class="button cancel" type="button" id="cancel" value="" onclick="location.href='#'"><span>受験キャンセル</span></button></td>
-							</tr> -->
 						</table>
 						<p class="kome">コンビニ及びPay-easyの決済を選択した方は、支払いが完了すると「支払番号表示」ボタンが消えます。</p>
 					</div>
@@ -74,31 +58,6 @@
 									<th>手続き</th>
 								</tr>
 							</thead>	
-							<tr>
-								<!-- <td data-label="試験名">CSCS認定試験</td>
-								<td data-label="状況">受理中</td>
-								<td data-label="受付日">2019/06/27</td>
-								<td data-label="確認事項"><span class="mb_10">左記認定試験の出願を承りました。</span>
-									NSCAジャパン受理日より、2～3週間後に、試験代行会社 PEARSON VUE よりメールが送信されます。メール内容に従って、試験日・試験会場の予約手続きを進めてください。<br>
-									<span class="blue">NSCAジャパン受理日:2019/06/27</span>
-								</td>
-								<td data-label="手続き"><button class="button irai" type="button" value="" onclick="location.href='#'"><span>延長依頼</span></button>
-									<button class="button cancel" type="button" value="" onclick="location.href='#'"><span>受験キャンセル</span></button>
-								</td>
-							</tr>
-							<tr>
-								<td data-label="試験名">NSCA-CPT認定試験</td>
-								<td data-label="状況">受験可能期間</td>
-								<td data-label="受付日">2019/04/02</td>
-								<td data-label="確認事項"><span class="mb_10">左記認定試験の出願を承りました。</span>
-									NSCAジャパン受理日より、2～3週間後に、試験代行会社 PEARSON VUE よりメールが送信されます。メール内容に従って、試験日・試験会場の予約手続きを進めてください。<br>
-									<span class="blue">NSCAジャパン受理日:2019/04/23</span>
-								</td>
-								<td data-label="手続き">
-									<button class="button irai" type="button" value="" onclick="location.href='#'"><span>延長依頼</span></button>
-									<button class="button cancel" type="button" value="" onclick="location.href='#'"><span>受験キャンセル</span></button>
-								</td> -->
-							</tr>
 						</table>
 						<p><span class="blue">PEARSON VUEメンテナンス情報</span>
 							メンテナンス中は、オンラインでの試験予約手続きができませんので、ご注意ください。</p>
@@ -118,16 +77,6 @@
 									<th>手続き</th>
 								</tr>
 							</thead>
-							<!-- <tr>
-								<td data-label="試験名">NSCA-CPT認定試験</td>
-								<td data-label="状況">延長手続き中</td>
-								<td data-label="受付日">2019/04/02</td>
-								<td data-label="確認事項"><span class="mb_10">左記認定試験の出願を承りました。</span>
-									試験代行会社 PEARSON VUE よりメールが送信されます。メール内容に従って、試験日・試験会場の予約手続きを進めてください。
-								</td>
-								<td data-label="手続き"><button class="button kessai" type="button" value="" onclick="location.href='#'"><span>決済</span></button>
-								</td>
-							</tr> -->
 						</table>
 						<ul>
 							<li>延長手続きは、延長手続き料の支払いが完了しませんと、受理となりません。</li>
