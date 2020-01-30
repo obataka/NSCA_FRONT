@@ -23,7 +23,7 @@ class Vceu_shutoku_shosai
                                  AND
                                     vceu_shutoku_shosai.nendo_id = cm_control.nendo_id
                                 ");
-            $sth->execute([':kaiin_no' => '807031506',]);
+            $sth->execute([':kaiin_no' => '10251033',]);
             // $sth->execute([':kaiin_no' => $param['kaiin_no'],]);
             $Meisai = $sth->fetch();
         } catch (\PDOException $e) {

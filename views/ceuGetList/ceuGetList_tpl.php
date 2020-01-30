@@ -57,44 +57,44 @@
 						<tbody>
 							<tr>
 								<td>必要CEU（①）</td>
-								<td data-label="CSCS">0.00</td>
-								<td data-label="NSCA-CPT">6.00</td>
+								<td id="cscs_hitsuyo" data-label="CSCS"></td>
+								<td id="cpt_hitsuyo" data-label="NSCA-CPT"></td>
 								<td></td>
 							</tr>
 							<tr>
 								<td>カテゴリーA</td>
-								<td id="category_a" data-label="CSCS">0.00</td>
-								<td data-label="NSCA-CPT">0.00</td>
-								<td data-label="取得ポイント">0.00</td>
+								<td id="cscs_category_a" data-label="CSCS"></td>
+								<td id="cpt_category_a" data-label="NSCA-CPT"></td>
+								<td id="a_syutoku_p" data-label="取得ポイント"></td>
 							</tr>
 							<tr>
 								<td>カテゴリーB</td>
-								<td data-label="CSCS">0.00</td>
-								<td data-label="NSCA-CPT">0.00</td>
-								<td data-label="取得ポイント">0.00</td>
+								<td id="cscs_category_b" data-label="CSCS"></td>
+								<td id="cpt_category_b" data-label="NSCA-CPT"></td>
+								<td id="b_syutoku_p" data-label="取得ポイント"></td>
 							</tr>
 							<tr>
 								<td>カテゴリーC</td>
-								<td data-label="CSCS">0.00</td>
-								<td data-label="NSCA-CPT">0.00</td>
-								<td data-label="取得ポイント">0.00</td>
+								<td id="cscs_category_c" data-label="CSCS"></td>
+								<td id="cpt_category_c" data-label="NSCA-CPT"></td>
+								<td id="c_syutoku_p" data-label="取得ポイント"></td>
 							</tr>
 							<tr>
 								<td>カテゴリーD</td>
-								<td data-label="CSCS">0.00</td>
-								<td data-label="NSCA-CPT">1.00</td>
-								<td data-label="取得ポイント">1.00</td>
+								<td id="cscs_category_d" data-label="CSCS"></td>
+								<td id="cpt_category_d" data-label="NSCA-CPT"></td>
+								<td id="d_syutoku_p" data-label="取得ポイント"></td>
 							</tr>
 							<tr>
 								<td>現在取得CEU（②）</td>
-								<td data-label="CSCS">0.00</td>
-								<td data-label="NSCA-CPT">1.00</td>
+								<td id="cscs_genzai" data-label="CSCS"></td>
+								<td id="cpt_genzai" data-label="NSCA-CPT"></td>
 								<td></td>
 							</tr>
 							<tr>
 								<td>残りCEU（①－②）</td>
-								<td data-label="CSCS">0.00</td>
-								<td data-label="NSCA-CPT">5.00</td>
+								<td id="cscs_zan" data-label="CSCS"></td>
+								<td id="cpt_zan"data-label="NSCA-CPT"></td>
 								<td></td>
 							</tr>
 						</tbody>

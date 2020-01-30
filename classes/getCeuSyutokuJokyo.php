@@ -43,7 +43,7 @@ if ($result_cscs == TRUE || $result_cscs == TRUE) {
     error_log(print_r($result_Meisai, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanihara_result_Meisai_log.txt');
     
     // 明細行がない場合
-    if ($result_Meisai['COUNT(*)'] == 1) {
+    if ($result_Meisai['COUNT(*)'] == 0) {
         
         
         $result_total_null = (new Tb_kaiin_ceu())->getTotalNull($db, $param);
@@ -57,7 +57,9 @@ if ($result_cscs == TRUE || $result_cscs == TRUE) {
             'cpt_ninteibi'  => $result_cpt['ninteibi'],
         ];
         
+        error_log(print_r($ninteibi, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanihara_ninteibi_log.txt');
         $result_total_value = (new Tb_kaiin_ceu())->getTotal($db, $param, $ninteibi);
+        error_log(print_r($result_total_value, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanihara_result_total_value_log.txt');
         echo json_encode($result_total_value);
         // commit
         $db->commit();

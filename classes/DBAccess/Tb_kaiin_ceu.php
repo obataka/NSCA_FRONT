@@ -107,7 +107,7 @@ class Tb_kaiin_ceu
 	                                tb_kaiin_ceu.sakujo_flg	= 0
                                 ");
             $sth->execute([':kaiin_no' => $param['kaiin_no'],]);
-            // $sth->execute([':kaiin_no' => '807031506',]);
+            // $sth->execute([':kaiin_no' => '10251033',]);
             $TotalValue = $sth->fetch();
         } catch (\PDOException $e) {
             $TotalValue = [];
@@ -169,7 +169,7 @@ class Tb_kaiin_ceu
                                 FROM
                                     vceu_shutoku_shosai
                                 WHERE
-                                    ((shutokubi >= :cscs_ninteibi) OR (shutokubi >= :cpt_ninteibi))
+                                    ((ceu_shutokubi >= :cscs_ninteibi) OR (ceu_shutokubi >= :cpt_ninteibi))
                                 GROUP BY 
                                     kaiin_no, nendo_id, category_kbn
                                 ) AS a
@@ -189,7 +189,7 @@ class Tb_kaiin_ceu
                                     FROM
                                         vceu_shutoku_shosai
                                     WHERE
-                                        ((shutokubi >= :cscs_ninteibi) OR (shutokubi >= :cpt_ninteibi))
+                                        ((ceu_shutokubi >= :cscs_ninteibi) OR (ceu_shutokubi >= :cpt_ninteibi))
                                     GROUP BY 
                                         kaiin_no, nendo_id, category_kbn
                                 ) AS b
@@ -198,7 +198,7 @@ class Tb_kaiin_ceu
                                 AND
                                     vceu_shutoku_shosai.nendo_id = b.nendo_id
                                 AND
-                                    a.category_kbn = 2
+                                    b.category_kbn = 2
                                 LEFT JOIN
                                     (
                                     SELECT
@@ -209,7 +209,7 @@ class Tb_kaiin_ceu
                                     FROM
                                         vceu_shutoku_shosai
                                     WHERE
-                                        ((shutokubi >= :cscs_ninteibi) OR (shutokubi >= :cpt_ninteibi))
+                                        ((ceu_shutokubi >= :cscs_ninteibi) OR (ceu_shutokubi >= :cpt_ninteibi))
                                     GROUP BY 
                                         kaiin_no, nendo_id, category_kbn
                                 ) AS c
@@ -218,7 +218,7 @@ class Tb_kaiin_ceu
                                 AND
                                     vceu_shutoku_shosai.nendo_id = c.nendo_id
                                 AND
-                                    a.category_kbn = 3
+                                    c.category_kbn = 3
                                 LEFT JOIN
                                     (
                                     SELECT
@@ -229,7 +229,7 @@ class Tb_kaiin_ceu
                                     FROM
                                         vceu_shutoku_shosai
                                     WHERE
-                                        ((shutokubi >= :cscs_ninteibi) OR (shutokubi >= :cpt_ninteibi))
+                                        ((ceu_shutokubi >= :cscs_ninteibi) OR (ceu_shutokubi >= :cpt_ninteibi))
                                     GROUP BY 
                                         kaiin_no, nendo_id, category_kbn
                                 ) AS d
@@ -238,7 +238,7 @@ class Tb_kaiin_ceu
                                 AND
                                     vceu_shutoku_shosai.nendo_id = d.nendo_id
                                 AND
-                                    a.category_kbn = 4
+                                    d.category_kbn = 4
                                 LEFT JOIN
                                     cm_control
                                 ON
@@ -248,9 +248,9 @@ class Tb_kaiin_ceu
                                 AND
                                     vceu_shutoku_shosai.nendo_id = cm_control.nendo_id
                                 ");
-            $sth->execute([':kaiin_no' => '807031506', ':cscs_ninteibi' => $ninteibi['cscs_ninteibi'], ':cpt_ninteibi' => $ninteibi['cpt_ninteibi'],]);
+            $sth->execute([':kaiin_no' => '10251033', ':cscs_ninteibi' => $ninteibi['cscs_ninteibi'], ':cpt_ninteibi' => $ninteibi['cpt_ninteibi'],]);
             // $sth->execute([':kaiin_no' => $param['kaiin_no'],]);
-            $TotalValue = $sth->fetch();
+            $TotalValue = $sth->fetchAll();
         } catch (\PDOException $e) {
             $TotalValue = [];
         }
