@@ -1,7 +1,7 @@
 <?php
 namespace Was;
 
-class oshirase
+class TB_oshirase
 {
     public function __construct()
     {
@@ -20,7 +20,7 @@ class oshirase
             $sth = $db->prepare("
 	SELECT mongon
  	FROM  tb_oshirase
---	LEFT JOIN tb_hambai_joho 
+--	LEFT JOIN tb_hambai_joho
 --		ON tb_hambai_konyusha_joho_meisai.hambai_id = tb_hambai_joho.hambai_id
 	WHERE tb_oshirase.sakujo_flg = 0
 		AND hyoji_yuko_kikan_kaishi_nichiji <= now()

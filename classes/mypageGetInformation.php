@@ -14,14 +14,14 @@ $ret = 0;
 
 
 /************************************************************
-*セッションから会員番号取得 
+*セッションから会員番号取得
 *************************************************************/
 
 $kaiin_no = "819122001";
 
 
 /************************************************************
-*POSTからページ番号取得 
+*POSTからページ番号取得
 *************************************************************/
 
 // 画面初期表示時
@@ -95,11 +95,11 @@ if(!empty($result_kaiin['taikai_shorui_juribi'])){ // 退会予約済み
 
 		// 自動課金者
 		// 決済エラーなし
-		if(is_null($result_kaiin['kaihi_kessai_error_code']) 
+		if(is_null($result_kaiin['kaihi_kessai_error_code'])
 				|| ($result_kaiin['kaihi_kessai_error_code'] != 1 && $result_kaiin['kaihi_kessai_error_code'] != 3)){		// 決済エラーなし
-		
+
                 // 英文オプションの有無によってメッセージを変える
-				if(!is_null($result_kaiin['eibun_option'])) &&  $result_kaiin['eibun_option'] == 1 
+				if(!is_null($result_kaiin['eibun_option']) &&  $result_kaiin['eibun_option'] == 1
 						&& (is_null($result_kaiin['eibun_option_kikan_to'])) || $result_kaiin['eibun_option_kikan_to'] > $result_kaiin['yuko_hizuke']){
 
 //              dtRow("内容") = "年会費及び英文購読オプション会費はご登録のクレジットカードより" & dtmLimit.Month & "月20日(土日祝日の場合は翌営業日)に自動支払い処理をいたします。"
@@ -128,7 +128,7 @@ if(!empty($result_kaiin['taikai_shorui_juribi'])){ // 退会予約済み
 //                        dtRow("別画面") = InfoLinKTarget.Target_Non
 
 		}
-		
+
 
 		// 自動課金以外
 
@@ -153,9 +153,9 @@ if(!empty($result_kaiin['taikai_shorui_juribi'])){ // 退会予約済み
 
 
 //①郵送物が戻ってきています。ご住所の確認をお願いいたします。
-　　//　登録情報ボタン（会員情報修正に飛ぶ）
-　　//（表示条件）
-　　//　　→TB会員ジャーナル.発送停止日に日付あり（管理システムで入れる）
+//　登録情報ボタン（会員情報修正に飛ぶ）
+//（表示条件）
+//　　→TB会員ジャーナル.発送停止日に日付あり（管理システムで入れる）
 
 //　②有効期限切れ
 //　　　継続手続ボタン（会員情報修正に飛ぶ）

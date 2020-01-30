@@ -15,14 +15,14 @@ $ret = 0;
 
 
 /************************************************************
-*セッションから会員番号取得 
+*セッションから会員番号取得
 *************************************************************/
 
 $kaiin_no = "819122001";
 
 
 /************************************************************
-*POSTからページ番号取得 
+*POSTからページ番号取得
 *************************************************************/
 
 // 画面初期表示時
@@ -59,7 +59,7 @@ if (!empty($result_apply2)) {
 
 /**********************************************
  * 申込内容を取得
- * @params $kaiin_no 
+ * @params $kaiin_no
  **********************************************/
 function getMousikomiData($kaiin_no) {
 
@@ -79,7 +79,7 @@ function getMousikomiData($kaiin_no) {
 
 /**********************************************
  * 申込状況をチェック
- * @params Array $result 
+ * @params Array $result
  **********************************************/
 function chkMousikomiData($result) {
 
@@ -109,7 +109,7 @@ function chkMousikomiData($result) {
 					// $retStatus(1:発行受付/2:発行取消/3:決済開始/4:決済完了/5:決済中断/6:決済完了後取消/7:有効期限切れ
 					// *********************************************************************************
 					// *********************************************************************************
-					 $retResult = "OK";	
+					 $retResult = "OK";
 					 $retStatus = "3";
 
 					if($retResult == "OK"){
@@ -125,7 +125,7 @@ function chkMousikomiData($result) {
 							}
 							// トランザクション完了
 						}
-				
+
 					}else{
 							// ステータスを"NG"に更新
 		   error_log(print_r('決済発行テーブルを更新：NG', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka2_log.txt');
@@ -146,7 +146,7 @@ function chkMousikomiData($result) {
 		   error_log(print_r('支払いタイプ：カード', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka2_log.txt');
 
 			$yokuseiFlg = chkYokuseiKikan($value['koshin_nichiji'],$value['syutoku_nichiji']);
-			
+
 			if($yokuseiFlg == 0){ //  ■ 開放(現行仕様)
 				// ステータス確認
 				if($value['status'] == ""){
@@ -185,7 +185,7 @@ function chkMousikomiData($result) {
 
 /**********************************************
  * 画面表示データ作成
- * @params Array $result 
+ * @params Array $result
  **********************************************/
 function createMousikomiData($result) {
 	$result_array = [];
@@ -216,7 +216,7 @@ function createMousikomiData($result) {
 					// $retStatus(1:発行受付/2:発行取消/3:決済開始/4:決済完了/5:決済中断/6:決済完了後取消/7:有効期限切れ
 					// *********************************************************************************
 					// *********************************************************************************
-					 $retResult = "OK";	
+					 $retResult = "OK";
 					 $retStatus = "3";
 
 					if($retResult == "OK"){
@@ -232,7 +232,7 @@ function createMousikomiData($result) {
 							}
 							// トランザクション完了
 						}
-				
+
 					}else{
 							// ステータスを"NG"に更新
 		   error_log(print_r('決済発行テーブルを更新：NG', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka2_log.txt');
@@ -253,7 +253,7 @@ function createMousikomiData($result) {
 		   error_log(print_r('支払いタイプ：カード', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka2_log.txt');
 
 			$yokuseiFlg = chkYokuseiKikan($value['koshin_nichiji'],$value['syutoku_nichiji']);
-			
+
 			if($yokuseiFlg == 0){ //  ■ 開放(現行仕様)
 				// ステータス確認
 				if($value['status'] == ""){
@@ -271,7 +271,7 @@ function createMousikomiData($result) {
 		}
 
 		array_push($result_array,$value);
-		
+
 	}
 
 		   error_log(print_r('result_array', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka2_log.txt');
@@ -283,7 +283,7 @@ function createMousikomiData($result) {
 
 /*
  * 抑制期間判定
- * @params $updateData 
+ * @params $updateData
  * @params $getData
  */
 function chkYokuseiKikan($updateData, $getData) {
@@ -310,7 +310,7 @@ function chkYokuseiKikan($updateData, $getData) {
 
 /*
  * 決済発行テーブルを更新
- * @params $updateData 
+ * @params $updateData
  * @params $getData
  */
 function updateKessaiHakko($id, $settleno,$status) {
