@@ -8,12 +8,11 @@ require './DBAccess/Db.php';
 require './DBAccess/Tb_kessai_hakko.php';
 
 //セッションから会員番号を取得
-// if (isset($_SESSION['kaiinNo'])) {
+if (isset($_SESSION['kaiinNo'])) {
    
-//     // ログインしている
-//     $wk_kaiin_no = $_SESSION['kaiinNo'];
-// }
-$wk_kaiin_no = 819122001;
+    // ログインしている
+    $wk_kaiin_no = $_SESSION['kaiinNo'];
+}
 
 $param = [
     'kaiin_no'  => $wk_kaiin_no,

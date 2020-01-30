@@ -451,11 +451,12 @@
 						</table>
 					</div>
 				</div>
+				<section class="btn_wrap">
+					<button class="button btn_gray" type="button" value="" onclick="location.href='#'"><span>クリア</span></button>
+					<button class="button" type="button" id="next_button" value="" onclick="location.href='#'"><span>次へ</span></button>
+				</section>
 			</form>
-			<section class="btn_wrap">
-				<button class="button btn_gray" type="button" value="" onclick="location.href='#'"><span>クリア</span></button>
-				<button class="button" type="submit" id="next_button" value="" onclick="location.href='#'"><span>次へ</span></button>
-			</section>
+			
 		</div>
 	</div>
 	<footer id="footer">

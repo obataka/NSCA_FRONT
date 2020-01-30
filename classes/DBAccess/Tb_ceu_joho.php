@@ -162,6 +162,23 @@ class Tb_ceu_joho
         return $kaiinJoho;
     }
 
+	/**
+	 * @return array|mixed
+	 */
+	public function findByAllRec()
+	{
+		try {
+			$db = Db::getInstance();
+			$sth = $db->prepare("SELECT *
+            FROM  tb_ceu_joho");
+			$sth->execute();
+			$tb_ceu_joho = $sth->fetchAll();
+		} catch (\PDOException $e) {
+			error_log(print_r($e, true) . PHP_EOL, '3', 'error_log.txt');
+			$tb_ceu_joho = [];
+		}
 
+		return $tb_ceu_joho;
+	}
 
 }
