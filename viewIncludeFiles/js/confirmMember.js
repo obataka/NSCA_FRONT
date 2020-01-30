@@ -24,6 +24,7 @@
 					//会員情報のテーブル項目
 					kaiinType: $("#kaiinType").val(),
 					kaiinSbt: $("#kaiinSbt").val(),
+					kaihi: $("#kaihi").val(),
 					sel_option: $("#sel_option").val(),
 					wk_sel_option: $("#wk_sel_option").val(),
 					sel_riyu: $("#sel_riyu").val(),
@@ -33,6 +34,8 @@
 					wk_sel_hoji: $("#wk_sel_hoji").val(),
 					file_front: $("#filepath_front").val(),
 					file_back: $("#filepath_back").val(),
+					filepath_front: $("#filepath_front").val(),
+					filepath_back: $("#filepath_back").val(),
 					name_mei: $("#name_mei").val(),
 					name_sei: $("#name_sei").val(),
 					name_sei_kana: $("#name_sei_kana").val(),
@@ -58,6 +61,8 @@
 					fax: $("#fax").val(),
 					mail_address_1: $("#mail_address_1").val(),
 					mail_address_2: $("#mail_address_2").val(),
+					sel_mail_login: $("#sel_mail_login").val(),
+					wk_sel_mail_login: $("#wk_sel_mail_login").val(),
 					wk_sel_mail: $("#wk_sel_mail").val(),
 					sel_mail: $("#sel_mail").val(),
 					wk_sel_merumaga: $("#wk_sel_merumaga").val(),
@@ -97,6 +102,7 @@
 					sel_chiiki: $("#sel_chiiki").val(),
 					sel_office_chiiki: $("#sel_office_chiiki").val(),
 					kenmei: $("#kenmei").val(),
+					office_kenmei: $("#office_kenmei").val(),
 					tranScreen: 'confirmMember'
 				}
 			})

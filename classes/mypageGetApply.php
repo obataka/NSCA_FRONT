@@ -151,7 +151,7 @@ function chkMousikomiData($result) {
 				// ステータス確認
 				if($value['status'] == ""){
 	                // 同一購入者ID(ETCID)を保持する後発のTB経理情報があるか確認する
-					$result_hakko = (new Tb_kessai_hakko())->findByEtcId($value['id'],$value['etc_id']);
+				    $result_hakko = (new Tb_kessai_hakko())->findByEtcId($value['id'],$value['etc_id']);
 
 					// 同一ETCIDを持つ後発データなし
 					if (empty($result_hakko)) {
