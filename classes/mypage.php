@@ -19,8 +19,12 @@ $ret = 0;
 $kaiin_no = "819122001";
 
 
+/************************************************************
+*決済データチェック処理 (決済途中の取引ステータスを取得して削除する)
+*************************************************************/
 
-
+//*******************未実装******************
+//CmFregiInqueryStatus
 
 /************************************************************
 *会員情報取得 
@@ -36,6 +40,55 @@ if ($result_kaiin == "") {
 } else {
 	$result = $result_kaiin;
 }
+
+
+/************************************************************
+*会員有効期限チェック 
+*************************************************************/
+
+$yuko_hizuke = chkYukoKigen($result_kaiin['yuko_hizuke']);
+
+$today = date('Y/m/d');
+if(is_null($yuko_hizuke)){ 			// 有効日付なし　→　TRUE
+	$yukokigenFlg =  TRUE;
+}elseif($yuko_hizuke < $today){		// 有効日付<今日　→　FALSE
+	$yukokigenFlg =  FALSE;
+}else{								// 有効日付≧今日　→　FALSE
+	$yukokigenFlg =  TRUE;
+}
+
+//SESSIONに値をセットする
+$_SESSION['yukokigenFlg'] = $yukokigenFlg;
+
+
+
+
+/************************************************************
+*有効期限切れ対策 
+*************************************************************/
+
+ //有効期限が切れた→継続処理以外は行わせない
+
+//        ' ①　CEU取得状況
+//        .lbtnCeuReport.Visible = False  ' CEU報告
+//        .lbtnCeuState.Visible = False   ' CEU詳細画面へのリンク(詳しくはこちら)
+//        .lblExamEntry.Visible = False   ' 認定資格無の場合の試験申込ボタンキャプション
+//        .lbtnExamEntry.Visible = False  ' 認定資格無の場合の試験申込ボタン
+//        .pnlCeuQuiz.Visible = False     ' クイズ一覧画面へのリンク
+//        .pnlPersonal.Visible = False    ' パーソナルデベロップメント申告へのリンク
+//        ' ②　会員限定コンテンツ
+//        .lbtnContents.Visible = False   ' 限定コンテンツへのリンクボタン(パネル毎消すと空白が空きすぎる)
+//        '.pnlPremiere.Visible = False
+//
+//        ' ③　セミナー一覧
+//        .pnlSeminar.Visible = False
+//        ' ④　求人一覧
+//        .pnlKyujin.Visible = False
+
+
+
+
+
 
 
 

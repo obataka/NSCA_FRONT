@@ -831,6 +831,7 @@ SQL;
  	, CONCAT(shimei_sei ,'　', shimei_mei) as kaiin_name
 	, kaiin_sbt_kbn
 	, meisho_kaiin_sbt.meisho as kaiin_sbt
+	, DATE_FORMAT(nyukaibi,'%Y/%m/%d') as yuko_hizuke
 	, DATE_FORMAT(yuko_hizuke,'%Y/%m/%d') as yuko_hizuke
 	, eibun_option_kbn
 	, meisho_eibun.meisho as eibun_option

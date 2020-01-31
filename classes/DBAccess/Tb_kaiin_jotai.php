@@ -128,7 +128,59 @@ SQL;
     }
 
 
-
+    /*
+     * 会員番号から継続会費の支払状況を取得する
+     * @param varchar $kaiinNo
+     * @return array
+     */
+    public function findKeizokuKaihiByKaiinNo($kaiinNo)
+    {
+        try {
+            $db = Db::getInstance();
+            $sth = $db->prepare("SELECT
+	  yuko_hizuke
+	, gakuseisho_kakunin_kbn
+	, sbt_henko_yoyakubi
+	, yoyaku_kaiin_sbt
+	, tekiyo_kaishibi
+	, kaihi_nyukimbi
+	, kaihi_shiharai_hoho_kbn
+	, keiri_dempyo_no
+	, nonyubi
+	, nonyu_kingaku
+	, nonyu_hoho_kbn
+	, tb_kessai_hakko.id
+	, tb_kessai_hakko.settleno
+	, tb_kessai_hakko.koshin_nichiji
+FROM tb_kaiin_jotai
+INNER JOIN (
+	SELECT kaiin_no 
+		, MAX(keiri_dempyo_no)  AS max_dempyo_no
+	FROM tb_keiri_joho
+	WHERE keiri_shumoku_cd_1 = '01'
+		AND keiri_shumoku_cd_2 = '02'
+		AND sakujo_flg = 0
+		AND nonyu_hoho_kbn IS NOT NULL
+		AND kaiin_no = :kaiin_no
+	GROUP BY kaiin_no
+) tb_keiri_joho_max
+	ON  tb_kaiin_jotai.kaiin_no = tb_keiri_joho_max.kaiin_no
+LEFT JOIN tb_keiri_joho
+	ON tb_kaiin_jotai.kaiin_no = tb_keiri_joho.kaiin_no
+	ON max_dempyo_no = keiri_dempyo_no
+LEFT JOIN tb_kessai_hakko
+	ON tb_keiri_joho.id = tb_kessai_hakko.id
+WHERE tb_kaiin_jotai.sakujo_flg = 0
+;
+            ");
+            $sth->execute([':kaiin_no' => $kaiinNo]);
+            $kaiinJotai  = $sth->fetch();
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
+            $kaiinJotai = [];
+        }
+        return $kaiinJotai;
+    }
 
 
 
