@@ -47,6 +47,7 @@
 					<input type="hidden" name="kaihi" id="kaihi" value="<?php echo $wk_kaihi; ?>">
 					<input type="hidden" name="sel_option" id="sel_option" value="<?php echo $option; ?>">
 					<input type="hidden" name="wk_sel_option" id="wk_sel_option" value="<?php echo $wk_sel_option; ?>">
+					<input type="hidden" name="kaihi_eibun_option" id="kaihi_eibun_option" value="<?php echo $kaihi_eibun_option; ?>">
 					<input type="hidden" name="sel_riyu" id="sel_riyu" value="<?php echo $riyu; ?>">
 					<input type="hidden" name="wk_sel_riyu" id="wk_sel_riyu" value="<?php echo $wk_sel_riyu; ?>">
 					<input type="hidden" name="sel_riyu_sonota" id="sel_riyu_sonota" value="<?php echo $riyu_sonota; ?>">
@@ -133,9 +134,9 @@
 									<p>会費：
 										<?php
 										if ($wk_sel_option != "") {
-											$wk_kaihi += 12960;
+											$wk_kaihi += $kaihi_eibun_option;
 											echo number_format($wk_kaihi) . '円(英文購読オプション含む 12,960円)';
-											$wk_kaihi -= 12960;		//会費を初期化する　数値が加算されたままPOSTで渡したくないため		
+											$wk_kaihi -= $kaihi_eibun_option;		//会費を初期化する　数値が加算されたままPOSTで渡したくないため		
 										} else {
 											echo number_format($wk_kaihi) . '円';
 										}

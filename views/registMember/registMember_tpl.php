@@ -75,6 +75,7 @@
 			<input type="hidden" name="kaihi" id="kaihi" value="<?php echo $wk_kaihi; ?>">
 			<input type="hidden" name="sel_option" id="sel_option" value="<?php echo $option; ?>">
 			<input type="hidden" name="wk_sel_option" id="wk_sel_option" value="<?php echo $wk_sel_option; ?>">
+			<input type="hidden" name="kaihi_eibun_option" id="kaihi_eibun_option" value="<?php echo $kaihi_eibun_option; ?>">
 			<input type="hidden" name="sel_hoji" id="sel_hoji" value="<?php echo $nsca_hoji; ?>">
 			<input type="hidden" name="wk_sel_hoji" id="wk_sel_hoji" value="<?php echo $wk_sel_hoji; ?>">
 			<input type="hidden" name="sel_riyu" id="sel_riyu" value="<?php echo $riyu; ?>">

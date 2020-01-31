@@ -93,6 +93,7 @@ $_SESSION['sel_office_chiiki'] = (!empty($_POST['sel_office_chiiki'])) ? htmlent
 $_SESSION['kenmei'] = (!empty($_POST['kenmei'])) ? htmlentities($_POST['kenmei'], ENT_QUOTES, "UTF-8") : "";
 $_SESSION['office_kenmei'] = (!empty($_POST['office_kenmei'])) ? htmlentities($_POST['office_kenmei'], ENT_QUOTES, "UTF-8") : "";
 $_SESSION['tranScreen'] = (!empty($_POST['tranScreen'])) ? htmlentities($_POST['tranScreen'], ENT_QUOTES, "UTF-8") : "";
+$_SESSION['kaihi_eibun_option'] = (!empty($_POST['kaihi_eibun_option'])) ? htmlentities($_POST['kaihi_eibun_option'], ENT_QUOTES, "UTF-8") : "";
 
 echo $return_value;
 die();

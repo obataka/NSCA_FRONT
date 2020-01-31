@@ -27,6 +27,7 @@
 					kaihi: $("#kaihi").val(),
 					sel_option: $("#sel_option").val(),
 					wk_sel_option: $("#wk_sel_option").val(),
+					kaihi_eibun_option: $("#kaihi_eibun_option").val(),
 					sel_riyu: $("#sel_riyu").val(),
 					wk_sel_riyu: $("#wk_sel_riyu").val(),
 					sel_riyu_sonota: $("#sel_riyu_sonota").val(),

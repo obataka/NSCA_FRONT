@@ -7,6 +7,24 @@
         } else if ($('#kaiinType').val() == "NSCA正会員") {
             $('title').html('入会申込｜NSCA正会員');
         }
+        /****************
+         * //英文オプション費用取得
+         ****************/
+        jQuery.ajax({
+            url: '../../classes/getEibunOption.php',
+        }).done((rtn) => {
+            // rtn = 0 の場合は、該当なし
+            if (rtn == 0) {
+                return false;
+            } else {
+                getEibunOption = JSON.parse(rtn);
+                //hiddenタグに会費英文オプションをセット
+                console.log(getEibunOption['kaihi_eibun_option']);
+                $('#kaihi_eibun_option').val(Math.floor(getEibunOption['kaihi_eibun_option']));
+            }
+        }).fail((rtn) => {
+            return false;
+        });
 
         /****************
          * //都道府県取得

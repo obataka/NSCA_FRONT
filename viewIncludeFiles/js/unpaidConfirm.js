@@ -89,7 +89,8 @@
 					name_sei_kana: $("#name_sei_kana").val(),
                     name_mei_kana: $("#name_mei_kana").val(),
                     tel: $("#tel").val(),
-					keitai_tel: $("#keitai_tel").val(),
+                    keitai_tel: $("#keitai_tel").val(),
+                    tranScreen: 'unpaidConfirm'
                 }
             }).done((data) => {
                 url = '../paymentSelectNoLogin/';

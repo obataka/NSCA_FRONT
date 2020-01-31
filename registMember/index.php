@@ -24,6 +24,8 @@ if ($wk_kaiinSbt == 1) {
 }
 
 $option = (!empty($_POST['sel_option'])) ? htmlentities($_POST['sel_option'], ENT_QUOTES, "UTF-8") : "";
+$kaihi_eibun_option = (!empty($_POST['kaihi_eibun_option'])) ? htmlentities($_POST['kaihi_eibun_option'], ENT_QUOTES, "UTF-8") : "";
+$kaihi_eibun_option = intval($kaihi_eibun_option);
 $wk_sel_option = (!empty($_POST['wk_sel_option'])) ? htmlentities($_POST['wk_sel_option'], ENT_QUOTES, "UTF-8") : "";
 $riyu = (!empty($_POST['sel_riyu'])) ? htmlentities($_POST['sel_riyu'], ENT_QUOTES, "UTF-8") : "";
 $wk_sel_riyu = (!empty($_POST['wk_sel_riyu'])) ? htmlentities($_POST['wk_sel_riyu'], ENT_QUOTES, "UTF-8") : "";
