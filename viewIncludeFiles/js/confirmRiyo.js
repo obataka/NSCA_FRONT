@@ -49,6 +49,7 @@
 					//会員その他テーブルの項目
 					mail: $("#mail").val(),
 					merumaga: $("#merumaga").val(),
+					wk_sel_mail_login: $("#wk_sel_mail_login").val(),
 				}
 			})
 

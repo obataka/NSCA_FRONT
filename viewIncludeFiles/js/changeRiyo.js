@@ -65,7 +65,6 @@
              
                 // rtn = 0 の場合は、該当なし
                 if (rtn == 0) {
-                    console.log(333);
                     
                     $('.error_ul').html('システムエラーが発生しました。');
                     return false;
@@ -208,7 +207,6 @@
             
             // Ajaxリクエストが失敗した時発動
             .fail( (rtn) => {
-                console.log(1111);
                 
                 $('.error_ul').html('システムエラーが発生しました。');
                 return false;

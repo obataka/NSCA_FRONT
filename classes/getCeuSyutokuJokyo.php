@@ -31,7 +31,7 @@ $param = [
 
 // cscs認定日取得処理
 $result_cscs = (new Tb_nintei_meisai())->findBycscsNinteibi($db, $param);
-error_log(print_r($result_cscs, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanihara_result_cscs_log.txt');
+
 // cpt認定日取得処理
 $result_cpt = (new Tb_nintei_meisai())->findBycptNinteibi($db, $param);
 
@@ -40,14 +40,11 @@ if ($result_cscs == TRUE || $result_cscs == TRUE) {
 
     //明細行をカウントする処理
     $result_Meisai = (new Vceu_shutoku_shosai())->findByMeisai($db,$param);
-    error_log(print_r($result_Meisai, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanihara_result_Meisai_log.txt');
     
     // 明細行がない場合
     if ($result_Meisai['COUNT(*)'] == 0) {
         
-        
         $result_total_null = (new Tb_kaiin_ceu())->getTotalNull($db, $param);
-        error_log(print_r($result_total_null, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanihara_result_total_null_log.txt');
         
     // 明細行がある場合
     } else {
@@ -57,14 +54,14 @@ if ($result_cscs == TRUE || $result_cscs == TRUE) {
             'cpt_ninteibi'  => $result_cpt['ninteibi'],
         ];
         
-        error_log(print_r($ninteibi, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanihara_ninteibi_log.txt');
         $result_total_value = (new Tb_kaiin_ceu())->getTotal($db, $param, $ninteibi);
-        error_log(print_r($result_total_value, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanihara_result_total_value_log.txt');
+        
         echo json_encode($result_total_value);
         // commit
         $db->commit();
 
     }
+    
 // cscs認定日がない場合
 } else {
 

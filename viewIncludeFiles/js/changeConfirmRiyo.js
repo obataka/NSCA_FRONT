@@ -16,7 +16,6 @@
 
             //※正常に情報を取得できた時、変数に入れる
             getTbkaiinJoho = JSON.parse(rtn);
-            console.log(getTbkaiinJoho);
              
             $kaiin_no = getTbkaiinJoho[0];
             $shimei = getTbkaiinJoho[7] + getTbkaiinJoho[8];

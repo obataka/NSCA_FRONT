@@ -88,8 +88,8 @@ class Tb_nintei_meisai
                                  AND
                                     torikeshi_hizuke IS NULL
                                 ");
-            $sth->execute([':kaiin_no' => '10251033',]);
-            // $sth->execute([':kaiin_no' => $param['kaiin_no'],]);
+            // $sth->execute([':kaiin_no' => '10251033',]);
+            $sth->execute([':kaiin_no' => $param['kaiin_no'],]);
             $CSCSninteibi = $sth->fetch();
         } catch (\PDOException $e) {
             $CSCSninteibi = [];
@@ -114,8 +114,8 @@ class Tb_nintei_meisai
                                  AND
                                     torikeshi_hizuke IS NULL
                                 ");
-            $sth->execute([':kaiin_no' => '10251033',]);
-            // $sth->execute([':kaiin_no' => $param['kaiin_no'],]);
+            // $sth->execute([':kaiin_no' => '10251033',]);
+            $sth->execute([':kaiin_no' => $param['kaiin_no'],]);
             $CPTninteibi = $sth->fetch();
         } catch (\PDOException $e) {
             $CPTninteibi = [];

@@ -143,7 +143,7 @@
 								<td>
 									<p>メールアドレス1：<?php echo $mail_address_1; ?></p>
 									<p>メールアドレス2：<?php echo $mail_address_2; ?></p>
-									<p>メール受信希望のメールアドレス：<?php echo $sel_mail; ?></p>
+									<p>メール受信希望のメールアドレス：<?php echo $mail; ?></p>
 								</td>
 							</tr>
 							<tr>

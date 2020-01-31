@@ -17,7 +17,7 @@
 
                     //※正常にCEUクイズ情報を取得できた時の処理
                     getCeuQuizJoho = JSON.parse(rtn);
-                    console.log(getCeuQuizJoho);
+
                     var i = 0;
                     $.each(getCeuQuizJoho,function(index, elem) {
 
@@ -84,8 +84,8 @@
 
                     if (nonyubi == "" && sankaryo == "0.00" || gohi_kbn !== 2) {
                        
-                        //$('.kaito1').hide();
-                        $('.kaito' + [i] + '').val(ceu_id);
+                        $('.kaito1').hide();
+
                     } else {
 
                         //解答ボタンが有効の場合、ceuidをhiddenにセット

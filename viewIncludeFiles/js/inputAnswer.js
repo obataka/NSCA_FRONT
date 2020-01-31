@@ -28,7 +28,6 @@
 
                 //※正常にCEUクイズ情報を取得できた時の処理
                 getCeuQuizSetsumon = JSON.parse(rtn);
-                console.log(getCeuQuizSetsumon);
                 $(".h2_text").text(getCeuQuizSetsumon[0]["shutoku_naiyo"]);
                 
                 // 配列getCeuQuizSetsumonを順に処理

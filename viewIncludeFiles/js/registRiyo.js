@@ -64,9 +64,15 @@
         }
 
         //メール受信希望のメールアドレスボタン
-        var wk_sel_mail = $('#mail').val();
-        if (wk_sel_mail != "") {
-            $('input:radio[name="mail"]').val([wk_sel_mail]);
+        var mail_login = $('#mail_login').val();
+        if (mail_login != "") {
+            $('input:radio[name="mail"]').val([mail_login]);
+        }
+
+        //ログイン希望のメールアドレスボタン
+        var wk_sel_mail_login = $('#wk_sel_mail_login').val();
+        if (wk_sel_mail_login != "") {
+            $('input:radio[name="mail_login"]').val([wk_sel_mail_login]);
         }
 
         //メルマガ受信希望ボタン
@@ -248,6 +254,28 @@
                 var test1 = $('[name="mail"]:checked').attr('id');
                 var test2 = $('label[for="' + test1 + '"]').text();
                 $('#sel_mail').val(test2);
+            }
+        });
+        //ログイン希望
+        $("input:radio[name='mail_login']").change(function () {
+            //アドレス1hidden設定
+            if ($("input:radio[id='mail_login_1']:checked").val()) {
+                var log1_val = $("input:radio[id='mail_login_1']:checked").val();
+                $("#wk_sel_mail_login").val(log1_val);
+                
+                var log1_id = $('[name="mail_login"]:checked').attr('id');
+                var log1_txt = $('label[for="' + log1_id + '"]').text();
+                $('#sel_mail').val(log1_txt);
+
+            } else {
+
+                //アドレス2hidden設定
+                var log2_val = $("input:radio[id='mail_login_2']:checked").val();
+                $("#wk_sel_mail_login").val(log2_val);
+
+                var log2_id = $('[name="mail_login"]:checked').attr('id');
+                var log2_txt = $('label[for="' + log2_id + '"]').text();
+                $('#sel_mail_login').val(log2_txt);
             }
         });
         /************************

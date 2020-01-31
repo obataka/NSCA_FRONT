@@ -36,10 +36,22 @@ $nagareyama_shimin = (!empty($_POST['nagareyama_shimin'])) ? htmlentities($_POST
 $chiiki_id = (!empty($_POST['chiiki_id'])) ? htmlentities($_POST['chiiki_id'], ENT_QUOTES, "UTF-8") : "";
 $password = (!empty($_POST['my_page_password'])) ? htmlentities($_POST['my_page_password'], ENT_QUOTES, "UTF-8") : "";
 
+
 //会員その他
 $mail = (!empty($_POST['mail'])) ? htmlentities($_POST['mail'], ENT_QUOTES, "UTF-8") : "";
 $merumaga = (!empty($_POST['merumaga'])) ? htmlentities($_POST['merumaga'], ENT_QUOTES, "UTF-8") : "";
+$wk_sel_mail_login = (!empty($_POST['wk_sel_mail_login'])) ? htmlentities($_POST['wk_sel_mail_login'], ENT_QUOTES, "UTF-8") : "";
 
+//ログインするメールアドレス
+if ($wk_sel_mail_login = 1) {
+    $sel_mail_login1 = TRUE;
+    $sel_mail_login2 = FALSE;
+} else {
+    $sel_mail_login1 = FALSE;
+    $sel_mail_login2 = TRUE;
+}
+error_log(print_r($sel_mail_login1, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanihara_sel_mail_login1.txt');
+error_log(print_r($sel_mail_login2, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanihara_sel_mail_login2.txt');
 // 先頭8、西暦の下2桁、月（0埋め）、日（0埋め）、連番2桁0うめ
 //　　 8 . date('y') . date('m') . date('d')
 $wk_kaiin_no_joken =  "8" . date('y') . date('m') . date('d');
@@ -206,9 +218,9 @@ if ($result_joho == TRUE) {
         'website_keisai_kbn'                => NULL,
         'card_toroku'                       => NULL,
         'email_1_oshirase_uketori'          => $receive_mail1,
-        'email_1_login'                     => TRUE,
+        'email_1_login'                     => $sel_mail_login1,
         'email_2_oshirase_uketori'          => $receive_mail2,
-        'email_2_login'                     => FALSE,
+        'email_2_login'                     => $sel_mail_login2,
         'sakujo_flg'                        => "0",
         'sakusei_user_id'                   => NULL,
         'koshin_user_id'                    => NULL,

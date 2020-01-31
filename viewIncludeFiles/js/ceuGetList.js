@@ -1,31 +1,31 @@
 (function($){
     $(document).ready(function(){
     
-        /************************
+        /******************************
         *継続教育(CEU)についてにurlセット
-        *************************/
+        *******************************/
         $("#kyoiku a").attr("href", "http://www.nsca-japan.or.jp/ceu/")
 
-        /************************
+        /***************************
         *特別プログラム(*D)にurlセット
-        *************************/
+        ****************************/
         $("#program a").attr("href", "https://member.nsca-japan.or.jp/etc/ceu/d_pgm.html")
 
-        /************************
-        *特別プログラム(*D)にurlセット
-        *************************/
+        /**********************************
+        *CEU管理の移行(日本←→米国)にurlセット
+        ***********************************/
         $("#ceu_kanri a").attr("href", "http://www.nsca-japan.or.jp/explain/trans_from_cc_japan.html")
 
-        /************************
-        *特別プログラム(*D)にurlセット
-        *************************/
+        /*************
+        *Q&Aにurlセット
+        **************/
         $("#qa a").attr("href", "http://www.nsca-japan.or.jp/06_qanda/ceu.html")
 
 
 
-        /*************
+        /****************
         *CEU取得状況を取得
-        **************/
+        *****************/
         $.ajax({
             url:  '../../classes/getCeuSyutokuJokyo.php',  
         })
@@ -33,15 +33,14 @@
         // Ajaxリクエストが成功した時発動
         .done( (rtn) => {
 
-              // rtn = 0 の場合
+            // rtn = 0 の場合
             if (rtn == 0) {
 
-                //現在取得しているCEU取得状況はございません。               
+                return false;
 
             } else {
 
                 getCeuSyutokuJokyo = JSON.parse(rtn);
-                console.log(getCeuSyutokuJokyo);
 
                 //CSCSCEU数
                 var cscs_hitsuyo = getCeuSyutokuJokyo[0]['hitsuyo_ceusu'];
@@ -170,9 +169,58 @@
         });
         
 
+        /************
+        *CEU情報を取得
+        *************/
+       $.ajax({
+        url:  '../../classes/getCeuJoho_shutokujokyo_scr.php',  
+        })
 
-        
+        // Ajaxリクエストが成功した時発動
+        .done( (rtn) => {
+            if (rtn == 0) {
+
+                return false;
+
+            } else {
+                getCeuJoho = JSON.parse(rtn);
+                
+                var i = 0;
+                $.each(getCeuJoho,function(index, elem) {
+
+                    //値が見つからなかったところで出力停止
+                    if (getCeuJoho == "") {
+                        return false;
+                    }
+
+                //動的に<table>を作成
+                var tbody = '<tr>'
+                            +'<td data-label="取得日">' + getCeuJoho[i]['shutokubi'] + '</td>'
+                            +'<td data-label="カテゴリー">' + getCeuJoho[i]['category'] + '</td>'
+                            +'<td data-label="CEU数">' + getCeuJoho[i]['ceusu'] + '</td>'
+                            +'<td data-label="CSCS">' + getCeuJoho[i]['CSCS'] + '</td>'
+                            +'<td data-label="CPT">' + getCeuJoho[i]['CPT'] + '</td>'
+                            +'<td data-label="レベル&#8545;P">' + getCeuJoho[i]['level2_point'] + '</td>'
+                            +'<td data-label="CEU内容">' + getCeuJoho[i]['shutoku_naiyo'] + '</td>'
+                            +'</tr>'
+
+                //<tbody>にappend
+                $("#ceu_joho").append(tbody);
+
+                i = i + 1;
+
+                });
+            }
+        })
+
+        // Ajaxリクエストが失敗した時発動
+        .fail( (rtn) => {
+           $('.error_ul').html('システムエラーが発生しました。');
+           return false;
+        })
+
+        // Ajaxリクエストが成功・失敗どちらでも発動
+        .always( (data) => {
+        });        
     });
-
-
 })(jQuery);

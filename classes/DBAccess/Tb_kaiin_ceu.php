@@ -248,8 +248,8 @@ class Tb_kaiin_ceu
                                 AND
                                     vceu_shutoku_shosai.nendo_id = cm_control.nendo_id
                                 ");
-            $sth->execute([':kaiin_no' => '10251033', ':cscs_ninteibi' => $ninteibi['cscs_ninteibi'], ':cpt_ninteibi' => $ninteibi['cpt_ninteibi'],]);
-            // $sth->execute([':kaiin_no' => $param['kaiin_no'],]);
+            $sth->execute([':kaiin_no' => $param['kaiin_no'], ':cscs_ninteibi' => $ninteibi['cscs_ninteibi'], ':cpt_ninteibi' => $ninteibi['cpt_ninteibi'],]);
+            // $sth->execute([':kaiin_no' => '10251033',]);
             $TotalValue = $sth->fetchAll();
         } catch (\PDOException $e) {
             $TotalValue = [];

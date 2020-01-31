@@ -117,25 +117,7 @@
 								<th>CEU内容</th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
-								<td data-label="取得日">2019/05/15</td>
-								<td data-label="カテゴリー">D</td>
-								<td data-label="CEU数">0.50</td>
-								<td data-label="CSCS">0.00</td>
-								<td data-label="CPT">0.50</td>
-								<td data-label="レベル&#8545;P">0.00</td>
-								<td data-label="CEU内容">2019年パーソナルディベロップメント</td>
-							</tr>
-							<tr>
-								<td data-label="取得日">2019/05/16</td>
-								<td data-label="カテゴリー">D</td>
-								<td data-label="CEU数">0.50</td>
-								<td data-label="CSCS">0.00</td>
-								<td data-label="CPT">0.50</td>
-								<td data-label="レベル&#8545;P">0.00</td>
-								<td data-label="CEU内容">2019年パーソナルディベロップメント</td>
-							</tr>
+						<tbody id="ceu_joho">
 						</tbody>
 
 					</table>

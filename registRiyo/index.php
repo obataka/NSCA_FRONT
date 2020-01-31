@@ -34,5 +34,7 @@ $sel_hoho = (!empty($_POST['sel_hoho'])) ? htmlentities($_POST['sel_hoho'], ENT_
 $sel_nagareyama = (!empty($_POST['sel_nagareyama'])) ? htmlentities($_POST['sel_nagareyama'], ENT_QUOTES, "UTF-8") : "";
 $sel_chiiki = (!empty($_POST['sel_chiiki'])) ? htmlentities($_POST['sel_chiiki'], ENT_QUOTES, "UTF-8") : "";
 $pass = (!empty($_POST['pass'])) ? htmlentities($_POST['pass'], ENT_QUOTES, "UTF-8") : "";
+$mail_login = (!empty($_POST['mail_login'])) ? htmlentities($_POST['mail_login'], ENT_QUOTES, "UTF-8") : "";
+$wk_sel_mail_login = (!empty($_POST['wk_sel_mail_login'])) ? htmlentities($_POST['wk_sel_mail_login'], ENT_QUOTES, "UTF-8") : "";
 
 include_once $includeView;
