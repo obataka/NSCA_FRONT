@@ -55,11 +55,11 @@
                         var cellJokyo5 = row.insertCell(-1);
                         var cellJokyo6 = row.insertCell(-1);
 
-                        cellJokyo6.innerHTML = '<button class="button cancel" type="button" id="cancel" value="" onclick="location.href=\'#\'"><span>受験キャンセル</span></button>';
+                        cellJokyo6.innerHTML = '<button class="button cancel" type="button" id="cancel" value=""><span>受験キャンセル</span></button>';
                         cellJokyo3.innerHTML = uketsukebi[idx].slice(0, 10).split('-').join('/'); 
 
                         if ((nonyu_hoho_kbn == 2 || nonyu_hoho_kbn == 4) && nonyubi == "") {
-                            cellJokyo4.innerHTML = '<button class="button" type="button" value="" id="payment_num" onclick="location.href=\'#\'"><span>支払番号表示</span></button>';
+                            cellJokyo4.innerHTML = '<button class="button" type="button" id="payment_num" value=""><span>支払番号表示</span></button>';
                         }
 
                     } else if (juken_jotai_kbn[idx] == 7) {
@@ -78,7 +78,7 @@
 
                         cellEncho4.innerHTML = '<span class="mb_10">左記認定試験の出願を承りました。</span>' +
                             '試験代行会社 PEARSON VUE よりメールが送信されます。メール内容に従って、試験日・試験会場の予約手続きを進めてください。';
-                        cellEncho5.innerHTML = '<button class="button kessai" type="button" id="kessai" value="" onclick="location.href=\'#\'"><span>決済</span>';
+                        cellEncho5.innerHTML = '<button class="button kessai" type="button" id="kessai" value=""><span>決済</span>';
                         cellEncho3.innerHTML = uketsukebi[idx].slice(0, 10).split('-').join('/');
 
                     } else {
@@ -100,7 +100,7 @@
                             '<span class="blue">NSCAジャパン受理日:' + juribi.slice(0, 10).split('-').join('/'); +'</span>';
 
                         cellStatus5.innerHTML = '<button class="button irai" type="button" id="irai" value="" onclick="location.href=\'#\'"><span>延長依頼</span></button>' +
-                            '<button class="button cancel" type="button" id="cancel" value="" onclick="location.href=\'#\'"><span>受験キャンセル</span></button>';
+                            '<button class="button cancel" type="button" id="cancel" value=""><span>受験キャンセル</span></button>';
 
                         cellStatus3.innerHTML = uketsukebi[idx].slice(0, 10).split('-').join('/');
                     }
