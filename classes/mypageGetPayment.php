@@ -55,6 +55,7 @@ if (!empty($result_keiri)) {
 	$result = 0;
 }
 
+	error_log(print_r('****支払済情報', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka2_log.txt');
    error_log(print_r($result, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka2_log.txt');
 
     $ret = json_encode($result);

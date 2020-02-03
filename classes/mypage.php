@@ -29,6 +29,7 @@ $kaiin_no = "819122001";
 /************************************************************
 *会員情報取得 
 *************************************************************/
+	error_log(print_r('****会員情報取得処理', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka_log.txt');
 
 // 会員情報
 $result_kaiin = (new Tb_kaiin_joho())->findByKaiinNo($kaiin_no);
@@ -46,14 +47,14 @@ if ($result_kaiin == "") {
 *会員有効期限チェック 
 *************************************************************/
 
-$yuko_hizuke = chkYukoKigen($result_kaiin['yuko_hizuke']);
+$yuko_hizuke = $result_kaiin['yuko_hizuke'];
 
 $today = date('Y/m/d');
 if(is_null($yuko_hizuke)){ 			// 有効日付なし　→　TRUE
 	$yukokigenFlg =  TRUE;
 }elseif($yuko_hizuke < $today){		// 有効日付<今日　→　FALSE
 	$yukokigenFlg =  FALSE;
-}else{								// 有効日付≧今日　→　FALSE
+}else{								// 有効日付≧今日　→　TRUE
 	$yukokigenFlg =  TRUE;
 }
 
@@ -142,7 +143,6 @@ if ($result_nsca != "") {
 	}
 
 }
-
 
 
    error_log(print_r($result, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka_log.txt');
