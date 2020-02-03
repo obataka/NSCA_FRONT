@@ -86,43 +86,45 @@ if(!empty($result_kaiin['taikai_shorui_juribi'])){ // 退会予約済み
 
 }else{ // 有効期限切れ前
 
-	// 継続処理完了チェック
-	$keizoku_kanryo = chkKeizokuStatus($kaiin_no);
-	if($keizoku_kanryo != 3){ 							// 継続完了前
 
-	error_log(print_r('****継続完了前', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka3_log.txt');
-
-		$yuko_hizuke = $result_kaiin['yuko_hizuke'];
-		$kijyunbi =  date("Y/m/d",strtotime("+2 month"));
+	$yuko_hizuke = $result_kaiin['yuko_hizuke'];
+	$kijyunbi =  date("Y/m/d",strtotime("+2 month"));
 	error_log(print_r($yuko_hizuke, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka3_log.txt');
 	error_log(print_r($kijyunbi, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka3_log.txt');
 
-        //有効期限まで２ヵ月を切っている場合、お知らせ表示
-		if(!is_null($yuko_hizuke) && $yuko_hizuke < $kijyunbi){
-	error_log(print_r('****有効期限２ヵ月切る', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka3_log.txt');
+    //有効期限まで２ヵ月を切っている場合、お知らせ表示
+	if(!is_null($yuko_hizuke) && $yuko_hizuke < $kijyunbi){
+		error_log(print_r('****有効期限２ヵ月切る', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka3_log.txt');
 
-			// ピックアップ6 is not null && 一桁目="q"　→　自動課金者
-			$result_pic_up =  (new Tb_kaiin_pick_up())->findByKaiinNo($kaiin_no);
-			$pick_up_6 = "";
-			if(!empty($result_pic_up)){$pick_up_6 = $result_pic_up['yuko_hizuke'];}
-			if(!empty($pick_up_6) && substr($result_pic_up,0,1) == "q"){ 				// 自動課金者
-	error_log(print_r('****自動課金者', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka3_log.txt');
+		// ピックアップ6 is not null && 一桁目="q"　→　自動課金者
+		$result_pic_up =  (new Tb_kaiin_pick_up())->findByKaiinNo($kaiin_no);
+		$pick_up_6 = "";
+		if(!empty($result_pic_up)){$pick_up_6 = $result_pic_up['yuko_hizuke'];}
+		if(!empty($pick_up_6) && substr($result_pic_up,0,1) == "q"){ 				// 自動課金者
+			error_log(print_r('****自動課金者', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka3_log.txt');
+
+			// 継続処理完了チェック
+			$keizoku_kanryo = chkKeizokuStatus($kaiin_no);
+			if($keizoku_kanryo == 0 || $keizoku_kanryo == 3){ 							// 継続完了前
+		        // 自動課金は、予約会員種別を決済前に登録することがある
+		        // 予約会員種別の登録済みで、自動課金が未決済の場合、完了として返却される
+				error_log(print_r('****継続完了前', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka3_log.txt');
+
 				// 決済エラーなし
 				if(is_null($result_kaiin['kaihi_kessai_error_code'])
 						|| ($result_kaiin['kaihi_kessai_error_code'] != 1 && $result_kaiin['kaihi_kessai_error_code'] != 3)){		// 決済エラーなし
 
-
 						$yuko_month = date('n', strtotime($result_kaiin['yuko_hizuke']));
 
 		                // 英文オプションの有無によってメッセージを変える
+						$naiyo2 = $yuko_month."月20日(土日祝日の場合は翌営業日)に自動支払い処理をいたします。";
 						if(!is_null($result_kaiin['eibun_option']) &&  $result_kaiin['eibun_option'] == 1
-								&& (is_null($result_kaiin['eibun_option_kikan_to'])) || $result_kaiin['eibun_option_kikan_to'] > $result_kaiin['yuko_hizuke']){
+								&& (is_null($result_kaiin['eibun_option_kikan_to'])) 
+								|| $result_kaiin['eibun_option_kikan_to'] > $result_kaiin['yuko_hizuke']){
 
-				             $naiyo = "年会費及び英文購読オプション会費はご登録のクレジットカードより".$yuko_month."月20日(土日祝日の場合は翌営業日)に自動支払い処理をいたします。";
+				             $naiyo = "年会費及び英文購読オプション会費はご登録のクレジットカードより".$naiyo2;
 						}else{
-
-			                 $naiyo =  "年会費はご登録のクレジットカードより".$yuko_month."月20日(土日祝日の場合は翌営業日)に自動支払い処理をいたします。";
-
+			                 $naiyo =  "年会費はご登録のクレジットカードより".$naiyo2;
 						}
 						$kigen_array = array (
 						  'naiyo' => $naiyo,
@@ -134,7 +136,6 @@ if(!empty($result_kaiin['taikai_shorui_juribi'])){ // 退会予約済み
 						  'betsugamen' => 'no'
 						);
 						array_push($result_array,$kigen_array);
-
 				}else{                                                                      		// 決済エラーあり
 
 						$kigen_array = array (
@@ -149,45 +150,30 @@ if(!empty($result_kaiin['taikai_shorui_juribi'])){ // 退会予約済み
 						array_push($result_array,$kigen_array);
 
 				}
-			}else{													// 自動課金者以外
+			}
+		}else{													// 自動課金者以外
 
 	error_log(print_r('****自動課金者以外', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka3_log.txt');
 
+			// 継続処理完了チェック
+			$keizoku_kanryo = chkKeizokuStatus($kaiin_no);
+			if($keizoku_kanryo == 0){ 							// 継続完了前
 
-//            If Me.継続会費の支払状況を確認する(ViewState("MemberID").ToString, intState) = False Then Return False
-
-//            ' 支払状況
-//            Select Case intState
-//                Case clsCommon.geumContinuState.Cont_Non              ' 手続きしていない
-//                    dtRow = rdtInfo.NewRow
-//                    dtRow("内容") = "会員有効期限が近づいていますので継続手続をお願いいたします。"
-//                    dtRow("URL") = "~/02_regist/EditMemberInfo.aspx"
-//                    dtRow("ボタンタイトル") = "継続手続"
-//                    dtRow("メニュー番号") = clsCommon.geumMenu.Menu_Member
-//                    dtRow("処理番号") = clsCommon.geumMemberProcess.Process_Continue
-//                    dtRow("ボタン種別") = InfoButtonType.Button_Command ' ボタン
-//                    dtRow("別画面") = InfoLinKTarget.Target_Non
-
-
+						$kigen_array = array (
+						  'naiyo' => '会員有効期限が近づいていますので継続手続をお願いいたします。',
+						  'url' => '~/kaiin_joho/',
+						  'button_text' => '継続手続',
+						  'menu_no' => 'clsCommon.geumMenu.Menu_Member',
+						  'syori__no' => 'clsCommon.geumMemberProcess.Process_Continue',
+						  'button_sbt' => 'InfoButtonType.Button_Command',
+						  'betsugamen' => 'no'
+						);
+						array_push($result_array,$kigen_array);
 
 			}
 		}
 	}
 }
-
-
-		// 自動課金以外
-
-		// 継続手続きの状況を確認
-		// 手続きしていない場合
-
-//                    dtRow("内容") = "会員有効期限が近づいていますので継続手続をお願いいたします。"
-//                    dtRow("URL") = "~/02_regist/EditMemberInfo.aspx"
-//                    dtRow("ボタンタイトル") = "継続手続"
-//                    dtRow("メニュー番号") = clsCommon.geumMenu.Menu_Member
-//                    dtRow("処理番号") = clsCommon.geumMemberProcess.Process_Continue
-//                    dtRow("ボタン種別") = InfoButtonType.Button_Command ' ボタン
-//                    dtRow("別画面") = InfoLinKTarget.Target_Non
 
 
 
@@ -261,13 +247,14 @@ function chkKeizokuStatus($kaiin_no) {
 	error_log(print_r('継続会費の支払状況チェック', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka3_log.txt');
 
 	// 決済データを取得する
-	$result_keiri_joho =  (new Tb_kaiin_jotai())->findKeizokuKaihiByKaiinNo($kaiin_no);
+	$result_kaiin_jotai =  (new Tb_kaiin_jotai())->findKeizokuKaihiByKaiinNo($kaiin_no);
+	error_log(print_r('決済データを取得', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka3_log.txt');
 
 	$status = 0;
 
 	if(empty($result_kaiin_jotai)){	// 決済データなし　→　未手続
 		$status = 0;
-        return True;
+        return $status;
 	}
 
 	if(is_null($result_kaiin_jotai['yoyaku_kaiin_sbt'])){
@@ -283,10 +270,10 @@ function chkKeizokuStatus($kaiin_no) {
 //                            .hidID.Value = row.Item("ID")
  //                           .hidSETTLENO.Value = row.Item("SETTLENO")
 				$status = 1;
+			}
 		}else{
-			if($result_kaiin_jotai['yoyaku_kaiin_sbt']　== 2){ // 学生
-				if($result_kaiin_jotai['gakuseisho_kakunin_kbn']　== 0) // 学生証未確認
-
+			if($result_kaiin_jotai['yoyaku_kaiin_sbt'] == 2){ // 学生
+				if($result_kaiin_jotai['gakuseisho_kakunin_kbn'] == 0){ // 学生証未確認
 					$status = 2;
 				}else{
                     // 入金および学生証の確認が終了しているので有効日付が
@@ -298,8 +285,10 @@ function chkKeizokuStatus($kaiin_no) {
 					$status = 3; // 手続き完了
 			}
 		}
-
 	}
+	error_log(print_r($status, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka3_log.txt');
+    return $status;
+
 }
 
 $ret = json_encode($result_array);
