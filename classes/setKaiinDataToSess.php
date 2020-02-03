@@ -188,5 +188,30 @@ if ($result_kaiin == TRUE) {
 }
 
 
+
+
+
+
+
+
+
+
+
+//$return_value = -1;
+// POSTデータを取得
+// confirmMember.jsでセットしたPOSTデータからSESSIONにセット
+// 入力された会員情報
+$_SESSION['shimei'] = (!empty($_POST['shimei'])) ? htmlentities($_POST['shimei'], ENT_QUOTES, "UTF-8") : "";
+$_SESSION['furigana'] = (!empty($_POST['furigana'])) ? htmlentities($_POST['furigana'], ENT_QUOTES, "UTF-8") : "";
+$_SESSION['tel'] = (!empty($_POST['tel'])) ? htmlentities($_POST['tel'], ENT_QUOTES, "UTF-8") : "";
+$_SESSION['sankaryo'] = (!empty($_POST['sankaryo'])) ? htmlentities($_POST['sankaryo'], ENT_QUOTES, "UTF-8") : "";
+$_SESSION['shutoku_naiyo'] = (!empty($_POST['shutoku_naiyo'])) ? htmlentities($_POST['shutoku_naiyo'], ENT_QUOTES, "UTF-8") : "";
+$_SESSION['payeasy_mei'] = (!empty($_POST['payeasy_mei'])) ? htmlentities($_POST['payeasy_mei'], ENT_QUOTES, "UTF-8") : "";
+$_SESSION['payeasy_kana'] = (!empty($_POST['payeasy_kana'])) ? htmlentities($_POST['payeasy_kana'], ENT_QUOTES, "UTF-8") : "";
+$_SESSION['keiri1'] = (!empty($_POST['keiri1'])) ? htmlentities($_POST['keiri1'], ENT_QUOTES, "UTF-8") : "";
+$_SESSION['keiri2'] = (!empty($_POST['keiri2'])) ? htmlentities($_POST['keiri2'], ENT_QUOTES, "UTF-8") : "";
+$_SESSION['keiri3'] = (!empty($_POST['keiri3'])) ? htmlentities($_POST['keiri3'], ENT_QUOTES, "UTF-8") : "";
+
+
 echo $result;
 die();

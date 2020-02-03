@@ -924,6 +924,7 @@
                     }
             }
 
+            
             //ログインするアドレスのチェックボックスが未選択の時 2019/01/06
             if (!$("input:radio[name='mail_login']:checked").val()) {
              

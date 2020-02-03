@@ -83,6 +83,8 @@
 					<input type="hidden" name="sel_chiiki" id="sel_chiiki" value="<?php echo $sel_chiiki; ?>">
 					<input type="hidden" name="kenmei" id="kenmei" value="<?php echo $kenmei; ?>">
 					<input type="hidden" name="pass" id="pass" value="<?php echo $pass; ?>">
+					<input type="hidden" name="mail_login" id="mail_login" value="<?php echo $mail_login; ?>">
+					<input type="hidden" name="wk_sel_mail_login" id="wk_sel_mail_login" value="<?php echo $wk_sel_mail_login; ?>">
 					<h2>基本情報</h2>
 					<div class="bg_white">
 						<table>
