@@ -132,6 +132,9 @@
 									<li class="error" id="err_address_shiku"></li>
 								</ul>
 								<p class="mt_1">建物／部屋番号</p><input id="address_tatemono" class="w_80" type="text" name="address_tatemono" value="<?php echo $address_tatemono; ?>"><br>
+								<ul class="error_ul">
+									<li class="error" id="err_address_tatemono"></li>
+								</ul>
 								<input id="nagareyama" type="checkbox" name="nagareyama" value="nagareyama">
 							</td>
 						</tr>
@@ -152,7 +155,7 @@
 					<p class="event_name" id="event_name"><span>イベント名</span></p>
 					<div>
 						<p id="event_day"><span>開催日</span></p>
-						<p id="event_hiyo"><span>参加費</span>円</p>
+						<p id="event_hiyo"><span>参加費</span></p>
 					</div>
 				</div>
 				<button class="button btn_gray clear" type="button" id="clear" value="" onclick="location.href='#'"><span>クリア</span></button>

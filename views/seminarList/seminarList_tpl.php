@@ -33,8 +33,8 @@
 		<div class="content_wrap">
 			<form action="?" method="post">
 				<input type="hidden" id="kaiin_no" name="kaiin_no" value="<?php echo $wk_kaiin_no; ?>">
-				<input type="hidden" id="tb_name" name="tb_name" value="<?php echo $tb_name; ?>">
 				<input type="hidden" id="ceu_id" name="ceu_id" value="<?php echo $ceu_id; ?>">
+				<input type="hidden" id="tb_name" name="tb_name" value="<?php echo $tb_name; ?>">
 				<div class="event">
 					<table id="event">
 					</table>

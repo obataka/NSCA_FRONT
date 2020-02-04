@@ -51,7 +51,7 @@
                                 '<td>' +
                                     '<div class="btn">' +
                                         '<button class="button" onclick="location.href=\'' + val['moshikomi_mae_annai_url'] + '\'"><span>詳細</span></button>' +
-                                        '<button class="button shinsei" value="tb_ceu_conference_joho-'+ val['ceu_id'] +'"><span>申請</span></button>' +
+                                        '<button class="button shinsei" value="tb_conference_joho-'+ val['ceu_id'] +'"><span>申請</span></button>' +
                                     '</div>' +
                                 '</td>' +
                             '<tr>'

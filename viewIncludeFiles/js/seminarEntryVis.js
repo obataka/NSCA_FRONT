@@ -198,20 +198,48 @@
             data: {
                 tb_name: $('#tb_name').val(),
                 ceu_id: $('#ceu_id').val(),
-            },
+            }
+        }).done((rtn) => {
+            getEventJoho = JSON.parse(rtn);
 
-        }).done((rtn) =>{
-            console.log(rtn);
-        }).fail((rtn) =>{
-            console.log(rtn);
+            //イベント区分表示
+            jQuery.ajax({
+                url: '../../classes/getEventSbt.php',
+            }).done((rtn) => {
+                getEventSbt = JSON.parse(rtn);
+                $.each(getEventSbt, function (i, val) {
+                    if (val['meisho_cd'] == getEventJoho[0]['event_kbn']) {
+                        $('#event_sbt').after(val['meisho']);
+                    }
+                });
+            }).fail((rtn) => {
+                return false;
+            });
+
+            //イベント名、開催日、参加費
+            if ($('#tb_name').val() == 'tb_toreken_joho') {
+                $('#event_name').append(getEventJoho[0]['kentei_title']);
+                $('#event_day').append(getEventJoho[0]['kaisaibi'].slice(0, 10).split('-').join('/'));
+                $('#event_hiyo').append(getEventJoho[0]['ippan_sankaryo'] + '円');
+            } else {
+                $('#event_name').append(getEventJoho[0]['shutoku_naiyo']);
+                $('#event_day').append(getEventJoho[0]['shutokubi'].slice(0, 10).split('-').join('/'));
+                $('#event_hiyo').append(Math.floor(getEventJoho[0]['ippan_sankaryo']) + '円');
+            }
+
+        }).fail((rtn) => {
             return false;
         });
+
+
 
         /********************************
         * クリアボタン押下処理
         ********************************/
         $("#clear").click(function () {
             //入力内容をクリアする
+            document.seminarEntryVisForm.reset();
+
         });
         /********************************
          * NSCAトップへボタン押下処理
@@ -223,7 +251,177 @@
          * 次へボタン押下処理
          ********************************/
         $("#next").click(function () {
-            //
+            //エラーメッセージエリア初期化
+            $("#err_name_sei").html("");
+            $("#err_name_mei").html("");
+            $("#err_name_sei_kana").html("");
+            $("#err_name_mei_kana").html("");
+            $("#err_mail_address_1").html("");
+            $("#err_mail_address_2").html("");
+            $("#err_address_yubin_nb").html("");
+            $("#err_address_todohuken").html("");
+            $("#err_address_shiku").html("");
+            $("#err_address_tatemono").html("");
+            $("#err_tel").html("");
+
+            var wk_focus_done = 0;
+            var wk_err_msg = "";
+
+            //氏名(姓)未入力チェック
+            if ($("#name_sei").val() == "") {
+                wk_err_msg = "氏名(姓)を入力してください。";
+                $("#err_name_sei").html(wk_err_msg);
+                wk_err_msg = "";
+                //エラー箇所にフォーカスを当てる
+                if (wk_focus_done == 0) {
+                    $("#name_sei").focus();
+                    wk_focus_done = 1;
+                }
+            }
+            //氏名(名)未入力チェック
+            if ($("#name_mei").val() == "") {
+                wk_err_msg = "";
+                wk_err_msg = "氏名(名)を入力してください。";
+                $("#err_name_mei").html(wk_err_msg);
+                //エラー箇所にフォーカスを当てる
+                if (wk_focus_done == 0) {
+                    $("#name_mei").focus();
+                    wk_focus_done = 1;
+                }
+            }
+            //フリガナ_セイ未入力チェック
+            if ($("#name_sei_kana").val() == "") {
+                wk_err_msg = "";
+                wk_err_msg = "フリガナ(姓)を入力してください。";
+                $("#err_name_sei_kana").html(wk_err_msg);
+                //エラー箇所にフォーカスを当てる
+                if (wk_focus_done == 0) {
+                    $("#name_sei_kana").focus();
+                    wk_focus_done = 1;
+                }
+            }
+            //フリガナ_セイ全角カナチェック
+            if ($("#name_sei_kana").val() !== "") {
+                var sei = $("#name_sei_kana").val();
+                var re = /^[ァ-ンヴー]*$/;
+                var sei = sei.match(re);
+                if (!sei) {
+                    wk_err_msg == "";
+                    wk_err_msg = "フリガナ(姓)は全角カナで入力してください。";
+                    $("#err_name_sei_kana").html(wk_err_msg);
+                    //エラー箇所にフォーカスを当てる
+                    if (wk_focus_done == 0) {
+                        $("#name_sei_kana").focus();
+                        wk_focus_done = 1;
+                    }
+                }
+            }
+            //フリガナ_メイ未入力チェック
+            if ($("#name_mei_kana").val() == "") {
+                wk_err_msg = "";
+                wk_err_msg = "フリガナ(名)を入力してください。";
+                $("#err_name_mei_kana").html(wk_err_msg);
+                //エラー箇所にフォーカスを当てる
+                if (wk_focus_done == 0) {
+                    $("#name_mei_kana").focus();
+                    wk_focus_done = 1;
+                }
+            }
+            //フリガナ_メイ全角カナチェック
+            if ($("#name_mei_kana").val() !== "") {
+                var sei = $("#name_mei_kana").val();
+                var re = /^[ァ-ンヴー]*$/;
+                var sei = sei.match(re);
+                if (!sei) {
+                    wk_err_msg == "";
+                    wk_err_msg = "フリガナ(名)は全角カナで入力してください。";
+                    $("#err_name_mei_kana").html(wk_err_msg);
+                    //エラー箇所にフォーカスを当てる
+                    if (wk_focus_done == 0) {
+                        $("#name_mei_kana").focus();
+                        wk_focus_done = 1;
+                    }
+                }
+            }
+
+            // 郵便番号上未入力チェック
+            if ($("#yubin_nb_1").val() == "") {
+                if (wk_err_msg1 == "") {
+                    wk_err_msg1 = "郵便番号が未入力です。";
+                    $("#err_address_yubin_nb_1").html(wk_err_msg1);
+                }
+                //エラー箇所にフォーカスを当てる
+                if (wk_focus_done == 0) {
+                    $("#yubin_nb_1").focus();
+                    wk_focus_done = 1;
+                }
+            }
+            // 郵便番号下未入力チェック
+            if ($("#yubin_nb_2").val() == "") {
+                if (wk_err_msg1 == "") {
+                    wk_err_msg1 = "郵便番号が未入力です。";
+                    $("#err_address_yubin_nb_1").html(wk_err_msg1);
+                }
+                //エラー箇所にフォーカスを当てる
+                if (wk_focus_done == 0) {
+                    $("#yubin_nb_2").focus();
+                    wk_focus_done = 1;
+                }
+            }
+            //郵便番号正規表現チェック
+            var postcode = $("#yubin_nb_1").val() + '-' + $("#yubin_nb_2").val();
+            var re = /^\d{3}-?\d{4}$/;
+            var postcode = postcode.match(re);
+            if (!postcode) {
+                if (wk_err_msg1 == "") {
+                    wk_err_msg1 = "正しい郵便番号を半角数字で入力してください。";
+                    $("#err_address_yubin_nb_1").html(wk_err_msg1);
+                    //エラー箇所にフォーカスを当てる
+                    if (wk_focus_done == 0) {
+                        $("#yubin_nb_1").focus();
+                        wk_focus_done = 1;
+                    }
+                }
+            }            
+            
+            //都道府県選択チェック
+            if ($("#address_todohuken").val() == 0) {
+                wk_err_msg == "";
+                wk_err_msg = "都道府県を選択してください。";
+                $("#err_address_todohuken").html(wk_err_msg);
+            }
+            //市区町村/番地未入力チェック
+            if ($("#address_shiku").val() == "") {
+                wk_err_msg == "";
+                wk_err_msg = "市区町村/番地を入力してください。";
+                $("#err_address_shiku").html(wk_err_msg);
+                //エラー箇所にフォーカスを当てる
+                if (wk_focus_done == 0) {
+                    $("#address_shiku").focus();
+                    wk_focus_done = 1;
+                }
+            }
+            //建物/部屋番号未入力チェック
+            if ($("#address_tatemono").val() == "") {
+                wk_err_msg == "";
+                wk_err_msg = "建物/部屋番号を入力してください。";
+                $("#err_address_tatemono").html(wk_err_msg);
+                //エラー箇所にフォーカスを当てる
+                if (wk_focus_done == 0) {
+                    $("#address_tatemono").focus();
+                    wk_focus_done = 1;
+                }
+            }
+
+            // エラーがある場合は、メッセージを表示し、処理を終了する
+            if (wk_err_msg != "") {
+                return false;
+            }
+
+            //エラーがない場合確認画面に画面遷移
+            url = '../seminarConfirm/';
+            $('form').attr('action', url);
+            $('form').submit();
         });
     });
 })(jQuery);
