@@ -36,8 +36,9 @@
 	<div class="wrap">
 		<h2>イベント申込</h2>
 		<form action="" method="post" name="seminarEntryVisForm">
-			<input type="hidden" id="tb_name" name="tb_name" value="<?php echo $tb_name; ?>">
-			<input type="hidden" id="ceu_id" name="ceu_id" value="<?php echo $ceu_id; ?>">
+			<input type="hidden" name="tb_name" id="tb_name" value="<?php echo $tb_name; ?>">
+			<input type="hidden" name="ceu_id" id="ceu_id" value="<?php echo $ceu_id; ?>">
+			<input type="hidden" name="kaiin_no" id="kaiin_no"value="<?php echo $wk_kaiin_no; ?>">
 			<input type="hidden" name="kenmei" id="kenmei" value="<?php echo $kenmei; ?>">
 			<input type="hidden" name="sel_math" id="sel_math" value="<?php echo $sel_math; ?>">
 			<input type="hidden" name="shikakumei" id="shikakumei" value="<?php echo $shikakumei; ?>">
@@ -110,6 +111,9 @@
 									<option value="">資格無</option>
 								</select>
 								<p class="mt_1">テキストテキストテキストテキストテキスト</p>
+								<ul class="error_ul">
+									<li class="error" id="err_bei_kaiin"></li>
+								</ul>
 							</td>
 						</tr>
 						<tr class="address">

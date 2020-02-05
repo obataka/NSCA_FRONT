@@ -4,6 +4,15 @@ include_once '../ctrl/parts/beforeLoginHeader.php';
 
 $includeView = '../views/seminarEntryVis/seminarEntryVis_tpl.php';
 
+if (isset($_SESSION['kaiinNo'])) {
+    // ÉçÉOÉCÉìÇµÇƒÇ¢ÇÈ
+    $wk_kaiin_no = $_SESSION['kaiinNo'];
+ 
+ } else {
+ 
+     $wk_kaiin_no = "";
+ }
+ 
 $name_sei = (!empty($_POST['name_sei'])) ? htmlentities($_POST['name_sei'], ENT_QUOTES, "UTF-8") : "";
 $name_mei = (!empty($_POST['name_mei'])) ? htmlentities($_POST['name_mei'], ENT_QUOTES, "UTF-8") : "";
 $name_sei_kana = (!empty($_POST['name_sei_kana'])) ? htmlentities($_POST['name_sei_kana'], ENT_QUOTES, "UTF-8") : "";

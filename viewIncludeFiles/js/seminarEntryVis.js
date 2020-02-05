@@ -112,7 +112,7 @@
         $("#street_address_search").click(function () {
 
             // エラーメッセージエリア初期化
-            $("#err_address_yubin_nb_1").html("");
+            $("#err_yubin_nb").html("");
 
             var wk_focus_done = 0;
             var wk_err_msg = "";
@@ -184,7 +184,7 @@
                     $("#address_yomi_shiku").val(wk_msYubinNo[5] + wk_msYubinNo[6]);
                 }
             }).fail((rtn) => {
-                $("#err_address_yubin_nb_1").html("郵便番号から住所を取得できません");
+                $("#err_yubin_nb").html("郵便番号から住所を取得できません");
                 return false;
             });
         });
@@ -201,7 +201,7 @@
             }
         }).done((rtn) => {
             getEventJoho = JSON.parse(rtn);
-
+            console.log(getEventJoho);
             //イベント区分表示
             jQuery.ajax({
                 url: '../../classes/getEventSbt.php',
@@ -217,6 +217,7 @@
             });
 
             //イベント名、開催日、参加費
+            console.log($('#kaiin_no').val());
             if ($('#tb_name').val() == 'tb_toreken_joho') {
                 $('#event_name').append(getEventJoho[0]['kentei_title']);
                 $('#event_day').append(getEventJoho[0]['kaisaibi'].slice(0, 10).split('-').join('/'));
@@ -224,7 +225,51 @@
             } else {
                 $('#event_name').append(getEventJoho[0]['shutoku_naiyo']);
                 $('#event_day').append(getEventJoho[0]['shutokubi'].slice(0, 10).split('-').join('/'));
-                $('#event_hiyo').append(Math.floor(getEventJoho[0]['ippan_sankaryo']) + '円');
+
+                if ($('#tb_name').val() == 'tb_ceu_conference_joho') {
+
+                    //会員種別によって、表示内容を変える
+                    if ($('#kaiin_no').val() != "") {
+                        //会員種別取得
+                        jQuery.ajax({
+                            url: '../../classes/getKaiinSbt.php',
+                            type: 'POST',
+                        }).done((rtn) => {
+                            wk_kaiin_sbt = JSON.parse(rtn);
+                            switch (wk_kaiin_sbt['kaiin_sbt_kbn']) {
+                                //利用会員の場合
+                                case "0":
+                                    $('#event_hiyo').append('両日参加料:' + Math.floor(getEventJoho[0]['riyo_toroku_ryojitsu_sankaryo']) + '円<br>');
+                                    $('#event_hiyo').append('1日目参加料:' + Math.floor(getEventJoho[0]['riyo_toroku_1_nichime_sankaryo']) + '円<br>');
+                                    $('#event_hiyo').append('2日目参加料:' + Math.floor(getEventJoho[0]['riyo_toroku_2_nichime_sankaryo']) + '円<br>');
+                                    break;
+                                //正会員の場合
+                                case "1":
+                                    $('#event_hiyo').append('両日参加料:' + Math.floor(getEventJoho[0]['conference_seikaiin_ryojitsu_sankaryo']) + '円<br>');
+                                    $('#event_hiyo').append('1日目参加料:' + Math.floor(getEventJoho[0]['conference_seikaiin_1_nichime_sankaryo']) + '円<br>');
+                                    $('#event_hiyo').append('2日目参加料:' + Math.floor(getEventJoho[0]['conference_seikaiin_2_nichime_sankaryo']) + '円<br>');
+                                    break;
+                                //学生会員の場合
+                                case "2":
+                                    $('#event_hiyo').append('両日参加料:' + Math.floor(getEventJoho[0]['conference_gakuseikaiin_ryojitsu_sankaryo']) + '円<br>');
+                                    $('#event_hiyo').append('1日目参加料:' + Math.floor(getEventJoho[0]['conference_gakuseikaiin_1_nichime_sankaryo']) + '円<br>');
+                                    $('#event_hiyo').append('2日目参加料:' + Math.floor(getEventJoho[0]['conference_gakuseikaiin_2_nichime_sankaryo']) + '円<br>');
+                                    break;
+                            }
+                        }).fail((rtn) => {
+                            return false;
+                        });
+
+                    } else {
+                        //一般の場合
+                        $('#event_hiyo').append('両日参加料:' + Math.floor(getEventJoho[0]['ippan_ryojitsu_sankaryo']) + '円<br>');
+                        $('#event_hiyo').append('1日目参加料:' + Math.floor(getEventJoho[0]['ippan_1_nichime_sankaryo']) + '円<br>');
+                        $('#event_hiyo').append('2日目参加料:' + Math.floor(getEventJoho[0]['ippan_2_nichime_sankaryo']) + '円<br>');
+                    }
+                    $('#event_hiyo').append('懇親会参加料:' + Math.floor(getEventJoho[0]['konshinkai_sankaryo']) + '円<br>');
+                } else {
+                    $('#event_hiyo').append(Math.floor(getEventJoho[0]['ippan_sankaryo']) + '円');
+                }
             }
 
         }).fail((rtn) => {
@@ -263,6 +308,7 @@
             $("#err_address_shiku").html("");
             $("#err_address_tatemono").html("");
             $("#err_tel").html("");
+            $("#err_bei_kaiin").html("");
 
             var wk_focus_done = 0;
             var wk_err_msg = "";
@@ -278,6 +324,19 @@
                     wk_focus_done = 1;
                 }
             }
+
+            //氏名(姓)文字数チェック
+            if ($("#name_sei").val().length > 40) {
+                wk_err_msg = "氏名(姓)は40文字以内で入力してください。";
+                $("#err_name_sei").html(wk_err_msg);
+                wk_err_msg = "";
+                //エラー箇所にフォーカスを当てる
+                if (wk_focus_done == 0) {
+                    $("#name_sei").focus();
+                    wk_focus_done = 1;
+                }
+            }
+
             //氏名(名)未入力チェック
             if ($("#name_mei").val() == "") {
                 wk_err_msg = "";
@@ -289,6 +348,19 @@
                     wk_focus_done = 1;
                 }
             }
+
+            //氏名(名)文字数チェック
+            if ($("#name_mei").val().length > 40) {
+                wk_err_msg = "氏名(名)は40文字以内で入力してください。";
+                $("#err_name_mei").html(wk_err_msg);
+                wk_err_msg = "";
+                //エラー箇所にフォーカスを当てる
+                if (wk_focus_done == 0) {
+                    $("#name_mei").focus();
+                    wk_focus_done = 1;
+                }
+            }
+
             //フリガナ_セイ未入力チェック
             if ($("#name_sei_kana").val() == "") {
                 wk_err_msg = "";
@@ -300,6 +372,7 @@
                     wk_focus_done = 1;
                 }
             }
+
             //フリガナ_セイ全角カナチェック
             if ($("#name_sei_kana").val() !== "") {
                 var sei = $("#name_sei_kana").val();
@@ -316,6 +389,19 @@
                     }
                 }
             }
+
+            //フリガナ_セイ文字数チェック
+            if ($("#name_sei_kana").val().length > 40) {
+                wk_err_msg = "フリガナ(姓)は40文字以内で入力してください。";
+                $("#err_name_sei_kana").html(wk_err_msg);
+                wk_err_msg = "";
+                //エラー箇所にフォーカスを当てる
+                if (wk_focus_done == 0) {
+                    $("#name_sei_kana").focus();
+                    wk_focus_done = 1;
+                }
+            }
+
             //フリガナ_メイ未入力チェック
             if ($("#name_mei_kana").val() == "") {
                 wk_err_msg = "";
@@ -327,6 +413,7 @@
                     wk_focus_done = 1;
                 }
             }
+
             //フリガナ_メイ全角カナチェック
             if ($("#name_mei_kana").val() !== "") {
                 var sei = $("#name_mei_kana").val();
@@ -344,11 +431,23 @@
                 }
             }
 
+            //フリガナ_メイ文字数チェック
+            if ($("#name_mei_kana").val().length > 40) {
+                wk_err_msg = "フリガナ(メイ)は40文字以内で入力してください。";
+                $("#err_name_mei_kana").html(wk_err_msg);
+                wk_err_msg = "";
+                //エラー箇所にフォーカスを当てる
+                if (wk_focus_done == 0) {
+                    $("#name_mei_kana").focus();
+                    wk_focus_done = 1;
+                }
+            }
+
             // 郵便番号上未入力チェック
             if ($("#yubin_nb_1").val() == "") {
-                if (wk_err_msg1 == "") {
-                    wk_err_msg1 = "郵便番号が未入力です。";
-                    $("#err_address_yubin_nb_1").html(wk_err_msg1);
+                if (wk_err_msg == "") {
+                    wk_err_msg = "郵便番号が未入力です。";
+                    $("#err_yubin_nb").html(wk_err_msg);
                 }
                 //エラー箇所にフォーカスを当てる
                 if (wk_focus_done == 0) {
@@ -358,9 +457,9 @@
             }
             // 郵便番号下未入力チェック
             if ($("#yubin_nb_2").val() == "") {
-                if (wk_err_msg1 == "") {
-                    wk_err_msg1 = "郵便番号が未入力です。";
-                    $("#err_address_yubin_nb_1").html(wk_err_msg1);
+                if (wk_err_msg == "") {
+                    wk_err_msg = "郵便番号が未入力です。";
+                    $("#err_yubin_nb").html(wk_err_msg);
                 }
                 //エラー箇所にフォーカスを当てる
                 if (wk_focus_done == 0) {
@@ -373,8 +472,8 @@
             var re = /^\d{3}-?\d{4}$/;
             var postcode = postcode.match(re);
             if (!postcode) {
-                if (wk_err_msg1 == "") {
-                    wk_err_msg1 = "正しい郵便番号を半角数字で入力してください。";
+                if (wk_err_msg == "") {
+                    wk_err_msg = "正しい郵便番号を半角数字で入力してください。";
                     $("#err_address_yubin_nb_1").html(wk_err_msg1);
                     //エラー箇所にフォーカスを当てる
                     if (wk_focus_done == 0) {
@@ -382,14 +481,15 @@
                         wk_focus_done = 1;
                     }
                 }
-            }            
-            
+            }
+
             //都道府県選択チェック
             if ($("#address_todohuken").val() == 0) {
                 wk_err_msg == "";
                 wk_err_msg = "都道府県を選択してください。";
                 $("#err_address_todohuken").html(wk_err_msg);
             }
+
             //市区町村/番地未入力チェック
             if ($("#address_shiku").val() == "") {
                 wk_err_msg == "";
@@ -409,6 +509,110 @@
                 //エラー箇所にフォーカスを当てる
                 if (wk_focus_done == 0) {
                     $("#address_tatemono").focus();
+                    wk_focus_done = 1;
+                }
+            }
+
+            //米国会員入力チェック　チェックボックスが未選択の場合はチェックしない
+            if ($('#bei_kaiin').is(':checked')) {
+                //会員番号未入力チェック
+                if ($("#bei_kaiin_no").val() == "") {
+                    wk_err_msg == "";
+                    wk_err_msg = "米国会員番号を入力してください。";
+                    $("#err_bei_kaiin").html(wk_err_msg);
+                    //エラー箇所にフォーカスを当てる
+                    if (wk_focus_done == 0) {
+                        $("#bei_kaiin_no").focus();
+                        wk_focus_done = 1;
+                    }
+                }
+
+                //会員番号正規表現チェック
+                var bei_kaiin_no = $("#bei_kaiin_no").val();
+                var re = /^[0-9]+$/;
+                var bei_kaiin_no = bei_kaiin_no.match(re);
+
+                if (!bei_kaiin_no) {
+                    wk_err_msg == "";
+                    wk_err_msg = "米国会員番号は半角英数字で入力してください。";
+                    $("#err_bei_kaiin").html(wk_err_msg);
+                    //エラー箇所にフォーカスを当てる
+                    if (wk_focus_done == 0) {
+                        $("#bei_kaiin_no").focus();
+                        wk_focus_done = 1;
+                    }
+                }
+
+                //会員番号文字数チェック
+                if ($("#bei_kaiin_no").val().length > 25) {
+                    wk_err_msg == "";
+                    wk_err_msg = "米国会員番号は25字以内で入力してください。";
+                    $("#err_bei_kaiin").html(wk_err_msg);
+                    //エラー箇所にフォーカスを当てる
+                    if (wk_focus_done == 0) {
+                        $("#bei_kaiin_no").focus();
+                        wk_focus_done = 1;
+                    }
+                }
+            }
+
+            //電話番号未入力チェック
+            if ($("#tel_1").val() == "" || $("#tel_2").val() == "" || $("#tel_3").val() == "") {
+                wk_err_msg == "";
+                wk_err_msg = "TELを入力してください。";
+                $("#err_tel").html(wk_err_msg);
+                //エラー箇所にフォーカスを当てる
+                if (wk_focus_done == 0) {
+                    $("#tel_1").focus();
+                    wk_focus_done = 1;
+                }
+            }
+
+            //電話番号文字数チェック
+            //TEL1
+            if ($("#tel_1").val().length > 5) {
+                wk_err_msg == "";
+                wk_err_msg = "TEL1は5文字以内で入力してください。";
+                $("#err_tel").html(wk_err_msg);
+                //エラー箇所にフォーカスを当てる
+                if (wk_focus_done == 0) {
+                    $("#tel_1").focus();
+                    wk_focus_done = 1;
+                }
+            }
+            //TEL2
+            if ($("#tel_1").val().length > 4) {
+                wk_err_msg == "";
+                wk_err_msg = "TEL2は4文字以内で入力してください。";
+                $("#err_tel").html(wk_err_msg);
+                //エラー箇所にフォーカスを当てる
+                if (wk_focus_done == 0) {
+                    $("#tel_1").focus();
+                    wk_focus_done = 1;
+                }
+            }
+            //TEL3
+            if ($("#tel_3").val().length > 4) {
+                wk_err_msg == "";
+                wk_err_msg = "TEL3は4文字以内で入力してください。";
+                $("#err_tel").html(wk_err_msg);
+                //エラー箇所にフォーカスを当てる
+                if (wk_focus_done == 0) {
+                    $("#tel_3").focus();
+                    wk_focus_done = 1;
+                }
+            }
+
+            //電話番号正規表現チェック
+            var tel = $("#tel_1").val() + '-' + $("#tel_2").val() + '-' + $("#tel_3").val();
+            var re = /^[0-9]{5}}-[0-9]{4}-[0-9]{4}$/;
+            var tel = tel.match(re);
+            if (!tel) {
+                if (wk_err_msg == "") {
+                    wk_err_msg = "TELは半角数字で入力してください。";
+                }
+                if (wk_focus_done == 0) {
+                    $("#err_tel").focus();
                     wk_focus_done = 1;
                 }
             }
