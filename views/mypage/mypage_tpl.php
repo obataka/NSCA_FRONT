@@ -143,13 +143,16 @@
 							<p class="right">CEU報告は<a>こちら</a>から</p>
 						</div>
 						<div class="cscs">
-							<p class="cscs">CSCS</p>
+							<p class="cscs">CSCS　　　　　　　　　　　　　　　<span id="cscs_kazu">3.05/6.0</span></p>
+							<p>取得率：<span id="cscs_hiritu">35％</span></p>
 							<img src="https://placehold.jp/280x30.png">
-							<p>「CEU報告」の手続きを行って資格を更新してください</p>
+							<p id="cscs_msg">「CEU報告」の手続きを行って資格を更新してください</p>
 						</div>
 						<div class="nsca">
-							<p class="nsca">NSCA-CAP</p>
+							<p class="nsca">NSCA-CAP　　　　　　　　　　　　<span id="nsca_kazu">4.05/6.0</span></p>
+							<p>取得率：<span id="nsca_hiritu">42％</span></p>
 							<img src="https://placehold.jp/280x30.png">
+							<p id="nsca_msg">「CEU報告」の手続きを行って資格を更新してください</p>
 						</div>						
 						<div class="btn_wrap">
 							<button class="button" type="button" onclick="location.href='#'"><span>CEUクイズ</span></button>
@@ -295,17 +298,36 @@
 				<h2>求人情報</h2>
 				<div class="bg_white">
 					<ul>
-						<li class="list">
-							<div class="sub">
-								<p class="sub_1">テキスト</p>
-							</div>
-							<span class="list_text"><a>テキストテキストテキストテキストテキストテキストテキストテキスト</a></span>
+						<div class="sub">
+								<p class="sub_1" id="jobList_new1">新着</p>
+						</div>
+						<li class="list" id="jobList_list1">
+							<span class="list_text"><a id="jobList_naiyo1" onclick="">
+							【パーソナル】　ABSCDE株式会社</a></span>
 						</li>
-						<li class="list">
-							<div class="sub">
-								<p class="sub_1">テキスト</p>
-							</div>
-							<span class="list_text"><a>テキストテキストテキストテキスト</a></span>
+						<div class="sub">
+								<p class="sub_1" id="jobList_new2">新着</p>
+						</div>
+						<li class="list" id="jobList_list2">
+							<span class="list_text"><a id="jobList_naiyo2"  target="_self">【コーチ】○○○○○○○○○○○○○○</a></span>
+						</li>
+						<div class="sub">
+								<p class="sub_1" id="jobList_new3">新着</p>
+						</div>
+						<li class="list" id="jobList_list3">
+							<span class="list_text"><a id="jobList_naiyo3">テキストテキストテキストテキストテキストテキストテキストテキスト</a></span>
+						</li>
+						<div class="sub">
+								<p class="sub_1" id="jobList_new4">新着</p>
+						</div>
+						<li class="list" id="jobList_list4">
+							<span class="list_text"><a id="jobList_naiyo4">テキストテキストテキストテキストテキストテキストテキストテキスト</a></span>
+						</li>
+						<div class="sub">
+								<p class="sub_1" id="jobList_new5">新着</p>
+						</div>
+						<li class="list" id="jobList_list5">
+							<span class="list_text"><a id="jobList_naiyo5">テキストテキストテキストテキストテキストテキストテキストテキスト</a></span>
 						</li>
 					</ul>
 				</div>

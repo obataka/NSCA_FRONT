@@ -115,6 +115,8 @@ if ($result_cscs != "") {
 	if ($result_ceu_cscs != "") {
 		$result += $result_ceu_cscs;
 	}
+   error_log(print_r("cscs", true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka_log.txt');
+   error_log(print_r($result_ceu_cscs, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka_log.txt');
 
 }
 
@@ -141,6 +143,8 @@ if ($result_nsca != "") {
 	if ($result_ceu_nsca != "") {
 		$result += $result_ceu_nsca;
 	}
+   error_log(print_r("nsca", true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka_log.txt');
+   error_log(print_r($result_ceu_nsca, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka_log.txt');
 
 }
 

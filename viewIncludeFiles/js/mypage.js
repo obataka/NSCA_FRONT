@@ -2,6 +2,9 @@
     $(document).ready(function(){
 
 
+
+
+
 	/************************************************************
 	*会員情報取得
 	*************************************************************/
@@ -33,6 +36,30 @@
                         $('#nintei_no_n').html(tbKaiinJoho["nintei_no_n"]);
                         $('#ninteibi_n').html(tbKaiinJoho["ninteibi_n"]);
                         $('#yuko_kigen_n').html(tbKaiinJoho["yuko_kigen_n"]);
+
+						// CEU
+						$wk_hitsuyo_ceusu= tbKaiinJoho["hitsuyo_ceusu"].substr(0,tbKaiinJoho["hitsuyo_ceusu"].length-2);
+						$wk_shutoku_ceusu= tbKaiinJoho["genzai_shutoku_ceusu"].substr(0,tbKaiinJoho["genzai_shutoku_ceusu"].length-2);
+                        $('#cscs_kazu').html($wk_shutoku_ceusu + "/" + $wk_hitsuyo_ceusu);
+						$cscs_hiritu = Math.round(tbKaiinJoho["genzai_shutoku_ceusu"] / tbKaiinJoho["hitsuyo_ceu_zansu"] *100);
+                        $('#cscs_hiritu').html($cscs_hiritu + "％");
+						if(tbKaiinJoho["genzai_shutoku_ceusu"] >= tbKaiinJoho["hitsuyo_ceusu"]){
+							$("#cscs_msg").html("「CEU報告」の手続きを行って資格を更新してください");
+						}else{
+							$("#cscs_msg").html("");
+						}
+
+						// NSCA-CAP
+//						$wk_hitsuyo_nscasu= tbKaiinJoho["hitsuyo_nscasu"].substr(0,tbKaiinJoho["hitsuyo_nscasu"].length-2);
+//						$wk_shutoku_nscasu= tbKaiinJoho["genzai_shutoku_nscasu"].substr(0,tbKaiinJoho["genzai_shutoku_nscasu"].length-2);
+//                        $('#nsca_kazu').html($wk_shutoku_nscasu + "/" + $wk_hitsuyo_nscasu);
+//						$nsca_hiritu = Math.round(tbKaiinJoho["genzai_shutoku_nscasu"] / tbKaiinJoho["hitsuyo_nsca_zansu"] *100);
+//                        $('#nsca_hiritu').html($nsca_hiritu + "％");
+//						if(tbKaiinJoho["genzai_shutoku_nscasu"] >= tbKaiinJoho["hitsuyo_nscasu"]){
+//							$("#nsca_msg").html("NSCA-CAP報告」の手続きを行って資格を更新してください");
+//						}else{
+//							$("#nsca_msg").html("");
+//						}
 
 				}
             },
@@ -249,6 +276,63 @@
 
 // **********************************************************
 // 有効期限フラグ=TRUEの場合　求人情報表示
+
+	/************************************************************
+	*求人情報取得
+	*************************************************************/
+    jQuery.ajax({
+        url:  '../../classes/mypageGetJobList.php',
+        type: 'POST',
+        success: function(rtn) {
+
+            // 求人情報、該当なし
+                if (rtn == 0) {
+					$("#jobList_list1").show();
+		            $("#jobList_naiyo1").html("求人情報がございません");
+					$("#jobList_button1").hide();
+					// イベント表示件数5件分ループ処理する
+					for(var i = 1; i < 5 ; i++) {
+						// データがない場合は非表示にする
+						$("#jobList_list"+(i+1)).hide();
+					}
+				} else {
+
+                        jobList = JSON.parse(rtn);
+
+					// イベント表示件数5件分ループ処理する
+					for(var i = 0; i < 5 ; i++) {
+						// データがある場合はデータをセットする
+						if(i < jobList.length){
+							$("#jobList_list"+(i+1)).show();
+				            $("#jobList_naiyo"+(i+1)).html(jobList[i]["naiyo"]);
+							if(jobList[i]["shinchaku"] == 0){
+								$("#jobList_new"+(i+1)).hide();
+							}else{
+							$("#jobList_new"+(i+1)).show();
+							}
+							if(jobList[i]["betsugamen"] == 1){$wkWindow ="_blank";}else{$wkWindow ="_self";}
+							if(jobList[i]["size_shitei_kbn"] == 1){
+								$wkWindowSize ="width=" + jobList[i]["yokohaba"] + ",height=" + jobList[i]["tatehaba"];
+							}else{
+								$wkWindowSize ="";
+							}
+							$wk="window.open('" + jobList[i]["url"] + "', '" + $wkWindow + "', '" + $wkWindowSize + "')";
+							$("#jobList_naiyo"+(i+1)).attr("onClick", $wk);
+						// データがない場合は非表示にする
+						}else{
+							$("#jobList_list"+(i+1)).hide();
+						}
+					}
+				}
+            },
+            fail: function(rtn) {
+                return false;
+            },
+            error: function(rtn) {
+                return false;
+            }
+    });
+
 
 
     });

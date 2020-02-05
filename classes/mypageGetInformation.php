@@ -291,6 +291,12 @@ function chkKeizokuStatus($kaiin_no) {
 
 }
 
+
+// 表示データなし
+if(empty($result_array)){
+	return 0;
+}
+
 $ret = json_encode($result_array);
 
 

@@ -19,9 +19,10 @@ class Tb_kaiin_ceu
             $sth = $db->prepare("SELECT 
 						  tb_kaiin_ceu.*
                      FROM tb_kaiin_ceu
-					 INNER JOIN (select nendo_id from cm_nendo where now() between ceu_kikan_from and ceu_kikan_to) nendo
-					    ON nendo.nendo_id = tb_kaiin_ceu.nendo_id
+					 INNER JOIN cm_control 
+					 	ON 1=1
                      WHERE kaiin_no = :kaiin_no
+                       AND tb_kaiin_ceu.nendo_id = cm_control.nendo_id
                        AND sakujo_flg = 0
                        AND shiken_sbt_kbn = 1
  ;
@@ -46,9 +47,10 @@ class Tb_kaiin_ceu
             $sth = $db->prepare("SELECT 
 						  tb_kaiin_ceu.*
                      FROM tb_kaiin_ceu
-					 INNER JOIN (select nendo_id from cm_nendo where now() between ceu_kikan_from and ceu_kikan_to) nendo
-					    ON nendo.nendo_id = tb_kaiin_ceu.nendo_id
+					 INNER JOIN cm_control 
+					 	ON 1=1
                      WHERE kaiin_no = :kaiin_no
+                       AND tb_kaiin_ceu.nendo_id = cm_control.nendo_id
                        AND sakujo_flg = 0
                        AND shiken_sbt_kbn = 2
  ;
