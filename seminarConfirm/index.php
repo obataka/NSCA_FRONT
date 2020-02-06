@@ -2,10 +2,10 @@
 
 include_once '../ctrl/parts/beforeLoginHeader.php';
 
-$includeView = '../views/seminarEntryVis/seminarEntryVis_tpl.php';
+$includeView = '../views/seminarConfirm/seminarConfirm_tpl.php';
 
 if (isset($_SESSION['kaiinNo'])) {
-    // ÉçÉOÉCÉìÇµÇƒÇ¢ÇÈ
+    // „É≠„Ç∞„Ç§„É≥„Åó„Å¶„ÅÑ„Çã
     $wk_kaiin_no = $_SESSION['kaiinNo'];
  
  } else {
@@ -35,8 +35,8 @@ $nagareyama = (!empty($_POST['sel_nagareyama'])) ? htmlentities($_POST['sel_naga
 $wk_sel_nagareyama = (!empty($_POST['wk_sel_nagareyama'])) ? htmlentities($_POST['wk_sel_nagareyama'], ENT_QUOTES, "UTF-8") : "";
 $bei_kaiin = (!empty($_POST['sel_bei_kaiin'])) ? htmlentities($_POST['sel_bei_kaiin'], ENT_QUOTES, "UTF-8") : "";
 $wk_sel_bei_kaiin = (!empty($_POST['wk_sel_bei_kaiin'])) ? htmlentities($_POST['wk_sel_bei_kaiin'], ENT_QUOTES, "UTF-8") : "";
+$screen_name = (!empty($_POST['screen_name'])) ? htmlentities($_POST['screen_name'], ENT_QUOTES, "UTF-8") : "";
 
-$screen_name = 'seminarEntryVis';
 $ceu_id = (!empty($_POST['ceu_id'])) ? htmlentities($_POST['ceu_id'], ENT_QUOTES, "UTF-8") : "";
 $tb_name = (!empty($_POST['tb_name'])) ? htmlentities($_POST['tb_name'], ENT_QUOTES, "UTF-8") : "";
 include_once $includeView;

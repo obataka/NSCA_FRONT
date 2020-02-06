@@ -46,6 +46,8 @@
 			<input type="hidden" name="sel_nagareyama" id="sel_nagareyama" value="<?php echo $nagareyama; ?>">
 			<input type="hidden" name="wk_sel_nagareyama" id="wk_sel_nagareyama" value="<?php echo $wk_sel_nagareyama; ?>">
 			<input type="hidden" name="sel_bei_kaiin" id="sel_bei_kaiin" value="<?php echo $bei_kaiin; ?>">
+			<input type="hidden" id="screen_name" name="screen_name" value="<?php echo $screen_name ?>">
+
 			<div class="content_wrap">
 				<p class="h2_text">テキストテキストテキストテキストテキストテキスト</p>
 				<div class="kihon_joho">
@@ -56,13 +58,13 @@
 							<th><span class="required">必須</span>氏名</th>
 							<td class="clearfix">
 								<div>
-									<p>姓</p><input id="name_sei" type="text" name="name" value="<?php echo $name_sei; ?>">
+									<p>姓</p><input id="name_sei" type="text" name="name_sei" value="<?php echo $name_sei; ?>">
 									<ul class="error_ul">
 										<li class="error" id="err_name_sei"></li>
 									</ul>
 								</div>
 								<div>
-									<p class="sp_mt_1">名</p><input id="name_mei" type="text" name="name" value="<?php echo $name_mei; ?>">
+									<p class="sp_mt_1">名</p><input id="name_mei" type="text" name="name_mei" value="<?php echo $name_mei; ?>">
 									<ul class="error_ul">
 										<li class="error" id="err_name_mei"></li>
 									</ul>
@@ -73,13 +75,13 @@
 							<th><span class="required">必須</span>フリガナ</th>
 							<td class="clearfix">
 								<div>
-									<p>セイ</p><input id="name_sei_kana" type="text" name="name" value="<?php echo $name_sei_kana; ?>">
+									<p>セイ</p><input id="name_sei_kana" type="text" name="name_sei_kana" value="<?php echo $name_sei_kana; ?>">
 									<ul class="error_ul">
 										<li class="error" id="err_name_sei_kana"></li>
 									</ul>
 								</div>
 								<div>
-									<p class="sp_mt_1">メイ</p><input id="name_mei_kana" type="text" name="name" value="<?php echo $name_mei_kana; ?>">
+									<p class="sp_mt_1">メイ</p><input id="name_mei_kana" type="text" name="name_mei_kana" value="<?php echo $name_mei_kana; ?>">
 									<ul class="error_ul">
 										<li class="error" id="err_name_mei_kana"></li>
 									</ul>
@@ -89,12 +91,12 @@
 						<tr class="mail">
 							<th><span class="required">必須</span>メールアドレス</th>
 							<td>
-								<input id="mail_address_1" class="w_80" type="email" name="email" value="<?php echo $mail_address_1; ?>" oncopy="return false" onpaste="return false" oncontextmenu="return false">
+								<input id="mail_address_1" class="w_80" type="email" name="mail_address_1" value="<?php echo $mail_address_1; ?>" oncopy="return false" onpaste="return false" oncontextmenu="return false">
 								<ul class="error_ul">
 									<li class="error" id="err_mail_address_1"></li>
 								</ul>
 								<p class="mt_1">※確認のためもう一度入力してください(コピー不可)</p>
-								<input id="mail_address_2" class="w_80" type="email" name="email" value="<?php echo $mail_address_2; ?>" oncopy="return false" onpaste="return false" oncontextmenu="return false">
+								<input id="mail_address_2" class="w_80" type="email" name="mail_address_2" value="<?php echo $mail_address_2; ?>" oncopy="return false" onpaste="return false" oncontextmenu="return false">
 								<ul class="error_ul">
 									<li class="error" id="err_mail_address_2"></li>
 								</ul>
@@ -108,7 +110,6 @@
 								<label class="checkbox" for="bei_kaiin">米国会員番号</label><br class="sp_bl">
 								<input id="bei_kaiin_no" type="text" name="bei_kaiin_no" value="<?php echo $bei_kaiin_no; ?>">
 								<select id="shikaku_kbn" name="shikaku">
-									<option value="">資格無</option>
 								</select>
 								<p class="mt_1">テキストテキストテキストテキストテキスト</p>
 								<ul class="error_ul">
@@ -145,7 +146,7 @@
 						<tr>
 							<th><span class="required">必須</span>TEL</th>
 							<td>
-								<input id="tel_1" class="w_20" type="tel" name="tel" value="<?php echo $tel_1; ?>">-<input id="tel_2" class="w_20" type="tel" name="tel" value="<?php echo $tel_2; ?>">-<input id="tel_3" class="w_20" type="tel" name="tel" value="<?php echo $tel_3; ?>">
+								<input id="tel_1" class="w_20" type="tel" name="tel_1" value="<?php echo $tel_1; ?>">-<input id="tel_2" class="w_20" type="tel" name="tel_2" value="<?php echo $tel_2; ?>">-<input id="tel_3" class="w_20" type="tel" name="tel_3" value="<?php echo $tel_3; ?>">
 								<ul class="error_ul">
 									<li class="error" id="err_tel"></li>
 								</ul>

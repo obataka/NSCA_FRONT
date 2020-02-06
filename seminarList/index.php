@@ -14,4 +14,5 @@ if (isset($_SESSION['kaiinNo'])) {
 
 $ceu_id = (!empty($_POST['ceu_id'])) ? htmlentities($_POST['ceu_id'], ENT_QUOTES, "UTF-8") : "";
 $tb_name = (!empty($_POST['tb_name'])) ? htmlentities($_POST['tb_name'], ENT_QUOTES, "UTF-8") : "";
+$screen_name = 'seminarList';
 include_once $includeView;
