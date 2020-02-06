@@ -24,12 +24,15 @@ $kaiin_no = "819122001";
 *************************************************************/
 
 //*******************未実装******************
-//CmFregiInqueryStatus
+//CmFregiInqueryStatus　　WebApplication\SharedClass\clsShFunction.vb
+//　・cvw申込状況ALLから決済データを取得（wusp90100）
+//　・F-REGI決済情報照会
+//　・取引ステータス区分＝発行受付、発行取消（コンビニ、Pay-easyの支払いを途中でやめた）　→　決済途中のデータを削除
+//　・取引ステータス区分＝決済開始、決済完了　→　ステータスを"OK"に更新
 
 /************************************************************
 *会員情報取得 
 *************************************************************/
-	error_log(print_r('****会員情報取得処理', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka_log.txt');
 
 // 会員情報
 $result_kaiin = (new Tb_kaiin_joho())->findByKaiinNo($kaiin_no);
@@ -61,35 +64,7 @@ if(is_null($yuko_hizuke)){ 			// 有効日付なし　→　TRUE
 //SESSIONに値をセットする
 $_SESSION['yukokigenFlg'] = $yukokigenFlg;
 
-
-
-
-/************************************************************
-*有効期限切れ対策 
-*************************************************************/
-
- //有効期限が切れた→継続処理以外は行わせない
-
-//        ' ①　CEU取得状況
-//        .lbtnCeuReport.Visible = False  ' CEU報告
-//        .lbtnCeuState.Visible = False   ' CEU詳細画面へのリンク(詳しくはこちら)
-//        .lblExamEntry.Visible = False   ' 認定資格無の場合の試験申込ボタンキャプション
-//        .lbtnExamEntry.Visible = False  ' 認定資格無の場合の試験申込ボタン
-//        .pnlCeuQuiz.Visible = False     ' クイズ一覧画面へのリンク
-//        .pnlPersonal.Visible = False    ' パーソナルデベロップメント申告へのリンク
-//        ' ②　会員限定コンテンツ
-//        .lbtnContents.Visible = False   ' 限定コンテンツへのリンクボタン(パネル毎消すと空白が空きすぎる)
-//        '.pnlPremiere.Visible = False
-//
-//        ' ③　セミナー一覧
-//        .pnlSeminar.Visible = False
-//        ' ④　求人一覧
-//        .pnlKyujin.Visible = False
-
-
-
-
-
+$result += array('yukokigenFlg' => $yukokigenFlg);
 
 
 
@@ -97,7 +72,7 @@ $_SESSION['yukokigenFlg'] = $yukokigenFlg;
 *CSCS情報取得 
 *************************************************************/
 
-// 会員情報
+// CSCS情報
 $result_cscs = (new Tb_nintei_meisai())->findCscsByKaiinNo($kaiin_no);
 
 // 該当データありの場合
@@ -108,15 +83,13 @@ if ($result_cscs != "") {
 	*CEU CSCS情報取得 
 	*************************************************************/
 
-	// 会員情報
+	// CEU CSCS情報
 	$result_ceu_cscs = (new Tb_kaiin_ceu())->findCscsByKaiinNo($kaiin_no);
 
 	// 該当データありの場合
 	if ($result_ceu_cscs != "") {
 		$result += $result_ceu_cscs;
 	}
-   error_log(print_r("cscs", true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka_log.txt');
-   error_log(print_r($result_ceu_cscs, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka_log.txt');
 
 }
 
@@ -125,7 +98,7 @@ if ($result_cscs != "") {
 *NSCA-CAP情報取得 
 *************************************************************/
 
-// 会員情報
+// NSCA-CAP情報
 $result_nsca = (new Tb_nintei_meisai())->findNscaByKaiinNo($kaiin_no);
 
 // 該当データありの場合
@@ -136,21 +109,17 @@ if ($result_nsca != "") {
 	*CEU NSCA-CAP情報取得 
 	*************************************************************/
 
-	// 会員情報
+	// CEU NNSCA-CAP情報
 	$result_ceu_nsca = (new Tb_kaiin_ceu())->findNscaByKaiinNo($kaiin_no);
 
 	// 該当データありの場合
 	if ($result_ceu_nsca != "") {
 		$result += $result_ceu_nsca;
 	}
-   error_log(print_r("nsca", true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka_log.txt');
-   error_log(print_r($result_ceu_nsca, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka_log.txt');
 
 }
 
-
    error_log(print_r($result, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka_log.txt');
-
 
     $ret = json_encode($result);
 

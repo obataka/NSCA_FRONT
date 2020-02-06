@@ -29,6 +29,8 @@ class Tb_nintei_meisai
                      FROM tb_nintei_meisai
                      WHERE kaiin_no = :kaiin_no
                        AND sakujo_flg = 0
+					   AND NULLIF(nintei_no,'') IS NOT NULL
+					   AND ninteibi IS NOT NULL
                        AND shiken_sbt_kbn = 1
  ;
             ");
@@ -60,6 +62,8 @@ class Tb_nintei_meisai
                      FROM tb_nintei_meisai
                      WHERE kaiin_no = :kaiin_no
                        AND sakujo_flg = 0
+					   AND NULLIF(nintei_no,'') IS NOT NULL
+					   AND ninteibi IS NOT NULL
                        AND shiken_sbt_kbn = 2
  ;
             ");

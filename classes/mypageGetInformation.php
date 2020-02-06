@@ -43,7 +43,7 @@ $result_kaiin =  (new Tb_kaiin_joho())->findByKaiinNo($kaiin_no);
 if(!is_null($result_kaiin['hasso_teishibi'])){
 	$yubin_array = array (
 	  'naiyo' => '郵送物が戻ってきています。ご住所の確認をお願いいたします。',
-	  'url' => '~/kaiin_joho/',
+	  'url' => '~/changeMember/',
 	  'button_text' => '登録情報',
 	  'menu_no' => 'clsCommon.geumMenu.Menu_Member',
 	  'syori__no' => 'clsCommon.geumMemberProcess.Process_Edit',
@@ -75,7 +75,7 @@ if(!empty($result_kaiin['taikai_shorui_juribi'])){ // 退会予約済み
 	$naiyo = "会員有効期限が過ぎていますので、<span style='color: #ff0000; background-color: transparent'>継続手続き</span>をお願いいたします。";
 	$kigen_array = array (
 	  'naiyo' => $naiyo,
-	  'url' => '~/kaiin_joho/',
+	  'url' => '~/registMember/',
 	  'button_text' => '継続手続',
 	  'menu_no' => 'clsCommon.geumMenu.Menu_Member',
 	  'syori__no' => 'clsCommon.geumMemberProcess.Process_Continue',
@@ -140,7 +140,7 @@ if(!empty($result_kaiin['taikai_shorui_juribi'])){ // 退会予約済み
 
 						$kigen_array = array (
 						  'naiyo' => 'ご登録のクレジットカードによる自動支払処理ができませんでした。別のクレジットカードまたはコンビニ払いにて継続手続きをお願いいたします。',
-						  'url' => '~/kaiin_joho/',
+						  'url' => '~/registMember/',
 						  'button_text' => '継続手続',
 						  'menu_no' => 'clsCommon.geumMenu.Menu_Member',
 						  'syori__no' => 'clsCommon.geumMemberProcess.Process_Continue',
@@ -161,7 +161,7 @@ if(!empty($result_kaiin['taikai_shorui_juribi'])){ // 退会予約済み
 
 						$kigen_array = array (
 						  'naiyo' => '会員有効期限が近づいていますので継続手続をお願いいたします。',
-						  'url' => '~/kaiin_joho/',
+						  'url' => '~/registMember/',
 						  'button_text' => '継続手続',
 						  'menu_no' => 'clsCommon.geumMenu.Menu_Member',
 						  'syori__no' => 'clsCommon.geumMemberProcess.Process_Continue',
@@ -189,10 +189,15 @@ error_log(print_r($result_information, true). PHP_EOL, '3', '/home/nls001/demo-n
 if(!empty($result_information)){
 	foreach ($result_information as $value) {
 		$naiyo = $value['mongon'];
+		if(!$yukokigenFlg){ // 有効期限切れ
+			$button_text = "";
+		}else{
+			$button_text = "お申込";
+		}
 		$info_array = array (
 		  'naiyo' => $naiyo,
 		  'url' => '~/kaiin_joho/',
-		  'button_text' => 'お申込',
+		  'button_text' => $button_text,
 		  'menu_no' => 'clsCommon.geumMenu.Menu_Member',
 		  'syori__no' => 'clsCommon.geumMemberProcess.Process_Continue',
 		  'button_sbt' => 'InfoButtonType.Button_Command',

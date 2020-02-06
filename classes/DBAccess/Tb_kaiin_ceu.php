@@ -17,7 +17,9 @@ class Tb_kaiin_ceu
         try {
             $db = Db::getInstance();
             $sth = $db->prepare("SELECT 
-						  tb_kaiin_ceu.*
+						  hitsuyo_ceusu         AS hitsuyo_ceusu_c
+						, hitsuyo_ceu_zansu     AS hitsuyo_ceu_zansu_c
+						, genzai_shutoku_ceusu  AS genzai_shutoku_ceusu_c
                      FROM tb_kaiin_ceu
 					 INNER JOIN cm_control 
 					 	ON 1=1
@@ -45,7 +47,9 @@ class Tb_kaiin_ceu
         try {
             $db = Db::getInstance();
             $sth = $db->prepare("SELECT 
-						  tb_kaiin_ceu.*
+						  hitsuyo_ceusu         AS hitsuyo_ceusu_n
+						, hitsuyo_ceu_zansu     AS hitsuyo_ceu_zansu_n
+						, genzai_shutoku_ceusu  AS genzai_shutoku_ceusu_n
                      FROM tb_kaiin_ceu
 					 INNER JOIN cm_control 
 					 	ON 1=1
