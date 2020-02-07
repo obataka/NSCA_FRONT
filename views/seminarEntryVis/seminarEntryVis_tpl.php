@@ -43,10 +43,8 @@
 			<input type="hidden" name="sel_math" id="sel_math" value="<?php echo $sel_math; ?>">
 			<input type="hidden" name="shikakumei" id="shikakumei" value="<?php echo $shikakumei; ?>">
 			<input type="hidden" name="sel_shikaku" id="sel_shikaku" value="<?php echo $sel_shikaku; ?>">
-			<input type="hidden" name="sel_nagareyama" id="sel_nagareyama" value="<?php echo $nagareyama; ?>">
-			<input type="hidden" name="wk_sel_nagareyama" id="wk_sel_nagareyama" value="<?php echo $wk_sel_nagareyama; ?>">
 			<input type="hidden" name="sel_bei_kaiin" id="sel_bei_kaiin" value="<?php echo $bei_kaiin; ?>">
-			<input type="hidden" id="screen_name" name="screen_name" value="<?php echo $screen_name ?>">
+			<input type="hidden" id="screen_name" name="screen_name" value="<?php echo $screen_name; ?>">
 
 			<div class="content_wrap">
 				<p class="h2_text">テキストテキストテキストテキストテキストテキスト</p>
@@ -140,7 +138,6 @@
 								<ul class="error_ul">
 									<li class="error" id="err_address_tatemono"></li>
 								</ul>
-								<input id="nagareyama" type="checkbox" name="nagareyama" value="nagareyama">
 							</td>
 						</tr>
 						<tr>

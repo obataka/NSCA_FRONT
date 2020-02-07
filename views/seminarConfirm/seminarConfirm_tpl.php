@@ -42,6 +42,14 @@
 			<form action="" method="post" name="seminarConfirmForm">
 				<input type="hidden" name="tb_name" id="tb_name" value="<?php echo $tb_name; ?>">
 				<input type="hidden" name="ceu_id" id="ceu_id" value="<?php echo $ceu_id; ?>">
+				<input type="hidden" name="sel_event_sbt" id="sel_event_sbt" value="">
+				<input type="hidden" name="sel_event_name" id="sel_event_name" value="">
+				<input type="hidden" name="sel_event_day" id="sel_event_day" value="">
+				<input type="hidden" name="sel_event_hiyo_ippan" id="sel_event_hiyo_ippan" value="">
+				<input type="hidden" name="sel_event_hiyo_ryojitsu" id="sel_event_hiyo_ryojitsu" value="">
+				<input type="hidden" name="sel_event_hiyo_1" id="sel_event_hiyo_1" value="">
+				<input type="hidden" name="sel_event_hiyo_2" id="sel_event_hiyo_2" value="">
+				<input type="hidden" name="sel_event_hiyo_konshin" id="sel_event_hiyo_konshin" value="">
 				<input type="hidden" name="name_sei" id="name_sei" value="<?php echo $name_sei; ?>">
 				<input type="hidden" name="name_mei" id="name_mei" value="<?php echo $name_mei; ?>">
 				<input type="hidden" name="name_sei_kana" id="name_sei_kana" value="<?php echo $name_sei_kana; ?>">
@@ -49,6 +57,7 @@
 				<input type="hidden" name="tel_1" id="tel_1" value="<?php echo $tel_1; ?>">
 				<input type="hidden" name="tel_2" id="tel_2" value="<?php echo $tel_2; ?>">
 				<input type="hidden" name="tel_3" id="tel_3" value="<?php echo $tel_3; ?>">
+				<input type="hidden" name="tel" id="tel" value="<?php echo $tel; ?>">
 				<input type="hidden" name="kaiin_no" id="kaiin_no" value="<?php echo $wk_kaiin_no; ?>">
 				<input type="hidden" name="bei_kaiin_no" id="bei_kaiin_no" value="<?php echo $bei_kaiin_no; ?>">
 				<input type="hidden" name="kenmei" id="kenmei" value="<?php echo $kenmei; ?>">
@@ -61,10 +70,8 @@
 				<input type="hidden" name="address_tatemono" id="address_tatemono" value="<?php echo $address_tatemono; ?>">
 				<input type="hidden" name="shikakumei" id="shikakumei" value="<?php echo $shikakumei; ?>">
 				<input type="hidden" name="sel_shikaku" id="sel_shikaku" value="<?php echo $sel_shikaku; ?>">
-				<input type="hidden" name="sel_nagareyama" id="sel_nagareyama" value="<?php echo $nagareyama; ?>">
-				<input type="hidden" name="wk_sel_nagareyama" id="wk_sel_nagareyama" value="<?php echo $wk_sel_nagareyama; ?>">
 				<input type="hidden" name="sel_bei_kaiin" id="sel_bei_kaiin" value="<?php echo $bei_kaiin; ?>">
-				<input type="hidden" name="screen_name" id="screen_name" value="<?php echo $screen_name ?>">
+				<input type="hidden" name="screen_name" id="screen_name" value="<?php echo $screen_name; ?>">
 				<div class="bg_gray">
 					<p class="sbt" id="event_sbt">主催セミナー</p>
 					<p class="event_name" id="event_name"><span>イベント名</span></p>
@@ -85,20 +92,20 @@
 							</tr>
 							<tr class="name">
 								<th><span class="required">必須</span>氏名</th>
-								<td>
+								<td id="shimei">
 									<?php echo $name_sei; ?> <?php echo $name_mei; ?>
 								</td>
 							</tr>
 							<tr class="name">
 								<th><span class="required">必須</span>フリガナ</th>
-								<td>
+								<td id="furigana">
 									<?php echo $name_sei_kana; ?> <?php echo $name_mei_kana; ?>
 								</td>
 							</tr>
 							<tr>
 								<th><span class="required">必須</span>電話番号</th>
-								<td>
-									<?php echo $tel_1; ?><?php echo $tel_2; ?><?php echo $tel_3 ?>
+								<td id="denwa_bango">
+									<?php echo $tel; ?>
 								</td>
 							</tr>
 						</table>

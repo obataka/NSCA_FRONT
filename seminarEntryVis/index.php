@@ -31,8 +31,6 @@ $address_tatemono = (!empty($_POST['address_tatemono'])) ? htmlentities($_POST['
 $tel_1 = (!empty($_POST['tel_1'])) ? htmlentities($_POST['tel_1'], ENT_QUOTES, "UTF-8") : "";
 $tel_2 = (!empty($_POST['tel_2'])) ? htmlentities($_POST['tel_2'], ENT_QUOTES, "UTF-8") : "";
 $tel_3 = (!empty($_POST['tel_3'])) ? htmlentities($_POST['tel_3'], ENT_QUOTES, "UTF-8") : "";
-$nagareyama = (!empty($_POST['sel_nagareyama'])) ? htmlentities($_POST['sel_nagareyama'], ENT_QUOTES, "UTF-8") : "";
-$wk_sel_nagareyama = (!empty($_POST['wk_sel_nagareyama'])) ? htmlentities($_POST['wk_sel_nagareyama'], ENT_QUOTES, "UTF-8") : "";
 $bei_kaiin = (!empty($_POST['sel_bei_kaiin'])) ? htmlentities($_POST['sel_bei_kaiin'], ENT_QUOTES, "UTF-8") : "";
 $wk_sel_bei_kaiin = (!empty($_POST['wk_sel_bei_kaiin'])) ? htmlentities($_POST['wk_sel_bei_kaiin'], ENT_QUOTES, "UTF-8") : "";
 
