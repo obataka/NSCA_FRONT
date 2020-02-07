@@ -188,15 +188,16 @@ error_log(print_r($result_information, true). PHP_EOL, '3', '/home/nls001/demo-n
 
 if(!empty($result_information)){
 	foreach ($result_information as $value) {
-		$naiyo = $value['mongon'];
+		$naiyo = $value['naiyo'];
+		$url = $value['url'];
 		if(!$yukokigenFlg){ // 有効期限切れ
 			$button_text = "";
 		}else{
-			$button_text = "お申込";
+			$button_text = $value['button_text'];
 		}
 		$info_array = array (
 		  'naiyo' => $naiyo,
-		  'url' => '~/kaiin_joho/',
+		  'url' => $url,
 		  'button_text' => $button_text,
 		  'menu_no' => 'clsCommon.geumMenu.Menu_Member',
 		  'syori__no' => 'clsCommon.geumMemberProcess.Process_Continue',

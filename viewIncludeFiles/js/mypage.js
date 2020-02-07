@@ -284,10 +284,12 @@
 								$("#jobList_list1").show();
 					            $("#jobList_naiyo1").html("求人情報がございません");
 								$("#jobList_button1").hide();
+								$("#jobList_new1").hide();
 								// イベント表示件数5件分ループ処理する
 								for(var i = 1; i < 5 ; i++) {
 									// データがない場合は非表示にする
 									$("#jobList_list"+(i+1)).hide();
+									$("#jobList_new"+(i+1)).hide();
 								}
 							} else {
 
@@ -315,6 +317,7 @@
 									// データがない場合は非表示にする
 									}else{
 										$("#jobList_list"+(i+1)).hide();
+										$("#jobList_new"+(i+1)).hide();
 									}
 								}
 							}
@@ -339,14 +342,18 @@
 //                    .lbtnExamEntry.Visible = False  ' 認定資格無の場合の試験申込ボタン
 //                    .pnlCeuQuiz.Visible = False     ' クイズ一覧画面へのリンク
 //                    .pnlPersonal.Visible = False    ' パーソナルデベロップメント申告へのリンク
+
+
 //                    ' ②　会員限定コンテンツ
+						$('#kaiin_contents').hide();
 //                    .lbtnContents.Visible = False   ' 限定コンテンツへのリンクボタン(パネル毎消すと空白が空きすぎる)
 //                    '.pnlPremiere.Visible = False
 
 //                    ' ③　セミナー一覧
+						$('#event').hide();
 //                    .pnlSeminar.Visible = False
 //                    ' ④　求人一覧
-//                    .pnlKyujin.Visible = False
+						$('#kyujin_joho').hide();
 			}
 
             },

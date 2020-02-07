@@ -31,7 +31,7 @@ $page_no = 1;
 
 
 // 支払済情報
-$result_kyujin_joho = (new Tb_kyujin_joho())->findShowData();
+$result_kyujin_joho = (new Tb_kyujin_joho())->findShowData($page_no);
 
 // 該当データありの場合
 if (!empty($result_kyujin_joho)) {

@@ -332,10 +332,13 @@
 					</ul>
 				</div>
 				<div class="page">
-					<button class="button" type="button" onclick="location.href='#'"><span>1</span></button>
-					<button class="button" type="button" onclick="location.href='#'"><span>2</span></button>
-					<button class="button" type="button" onclick="location.href='#'"><span>3</span></button>
-					<button class="button" type="button" onclick="location.href='#'"><span><i class="fas fa-angle-right"></i></span></button>
+					<button class="button" type="button" id="jobList_page_before"><span><i class="fas fa-angle-left"></i></span></button>
+					<button class="button" type="button" id="jobList_page1"><span>1</span></button>
+					<button class="button" type="button" id="jobList_page2"><span>2</span></button>
+					<button class="button" type="button" id="jobList_page3"><span>3</span></button>
+					<button class="button" type="button" id="jobList_page_next"><span><i class="fas fa-angle-right"></i></span></button>
+					<input type="hidden" id="jobList_page_now" name="jobList_page_now" value="1">
+					<input type="hidden" id="jobList_page_all" name="jobList_page_all" value="">
 				</div>
 			</div>
 		</div>
