@@ -180,11 +180,19 @@
 					</ul>
 				</div>
 				<div class="page">
-					<button class="button" type="button" onclick="location.href='#'"><span>1</span></button>
-					<button class="button" type="button" onclick="location.href='#'"><span>2</span></button>
-					<button class="button" type="button" onclick="location.href='#'"><span>3</span></button>
-					<button class="button" type="button" onclick="location.href='#'"><span><i class="fas fa-angle-right"></i></span></button>
+					<button class="button" type="button"><span id="infoList_page_before"><i class="fas fa-angle-left"></i></span></button>
+					<button class="button" type="button"><span id="infoList_page1">1</span></button>
+					<button class="button" type="button"><span id="infoList_page2">2</span></button>
+					<button class="button" type="button"><span id="infoList_page3">3</span></button>
+					<button class="button" type="button"><span id="infoList_page_next"><i class="fas fa-angle-right"></i></span></button>
+					<input type="hidden" id="infoList_pageNo_b" name="infoList_pageNo_b" value="0">
+					<input type="hidden" id="infoList_pageNo_n" name="infoList_pageNo_n" value="4">
+					<input type="hidden" id="infoList_pageNo_1" name="infoList_pageNo_1" value="1">
+					<input type="hidden" id="infoList_pageNo_2" name="infoList_pageNo_2" value="2">
+					<input type="hidden" id="infoList_pageNo_3" name="infoList_pageNo_3" value="3">
 				</div>
+
+
 			</div>
 			<div id="event">
 				<h2>イベント</h2>
@@ -332,13 +340,16 @@
 					</ul>
 				</div>
 				<div class="page">
-					<button class="button" type="button" id="jobList_page_before"><span><i class="fas fa-angle-left"></i></span></button>
-					<button class="button" type="button" id="jobList_page1"><span>1</span></button>
-					<button class="button" type="button" id="jobList_page2"><span>2</span></button>
-					<button class="button" type="button" id="jobList_page3"><span>3</span></button>
-					<button class="button" type="button" id="jobList_page_next"><span><i class="fas fa-angle-right"></i></span></button>
-					<input type="hidden" id="jobList_page_now" name="jobList_page_now" value="1">
-					<input type="hidden" id="jobList_page_all" name="jobList_page_all" value="">
+					<button class="button" type="button"><span id="jobList_page_before"><i class="fas fa-angle-left"></i></span></button>
+					<button class="button" type="button"><span id="jobList_page1">1</span></button>
+					<button class="button" type="button"><span id="jobList_page2">2</span></button>
+					<button class="button" type="button"><span id="jobList_page3">3</span></button>
+					<button class="button" type="button"><span id="jobList_page_next"><i class="fas fa-angle-right"></i></span></button>
+					<input type="hidden" id="jobList_pageNo_b" name="jobList_pageNo_b" value="0">
+					<input type="hidden" id="jobList_pageNo_n" name="jobList_pageNo_n" value="4">
+					<input type="hidden" id="jobList_pageNo_1" name="jobList_pageNo_1" value="1">
+					<input type="hidden" id="jobList_pageNo_2" name="jobList_pageNo_2" value="2">
+					<input type="hidden" id="jobList_pageNo_3" name="jobList_pageNo_3" value="3">
 				</div>
 			</div>
 		</div>

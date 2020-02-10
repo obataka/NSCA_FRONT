@@ -1,5 +1,8 @@
 (function($){
+
     $(document).ready(function(){
+
+
 
 
     // 電子ブック、物販はペンディング（実装まで非表示）
@@ -75,51 +78,7 @@
 				/************************************************************
 				*お知らせ情報取得
 				*************************************************************/
-			    jQuery.ajax({
-			        url:  '../../classes/mypageGetInformation.php',
-			        type: 'POST',
-			        success: function(rtn) {
-
-			            // お知らせ情報、該当なし
-			                if (rtn == 0) {
-								$("#info_list1").show();
-					            $("#info_naiyo1").html("お知らせ情報がございません");
-								$("#info_button1").hide();
-								// イベント表示件数3件分ループ処理する
-								for(var i = 1; i < 3 ; i++) {
-									// データがない場合は非表示にする
-									$("#info_list"+(i+1)).hide();
-								}
-							} else {
-
-			                        infoJoho = JSON.parse(rtn);
-
-								// イベント表示件数3件分ループ処理する
-								for(var i = 0; i < 3 ; i++) {
-									// データがある場合はデータをセットする
-									if(i < infoJoho.length){
-										$("#info_list"+(i+1)).show();
-							            $("#info_naiyo"+(i+1)).html(infoJoho[i]["naiyo"]);
-										if(infoJoho[i]["button_text"] == ""){
-											$("#info_button"+(i+1)).hide();
-										}else{
-										$("#info_button"+(i+1)).show();
-							            $("#info_button"+(i+1)).text(infoJoho[i]["button_text"]);
-										}
-									// データがない場合は非表示にする
-									}else{
-										$("#info_list"+(i+1)).hide();
-									}
-								}
-							}
-			            },
-			            fail: function(rtn) {
-			                return false;
-			            },
-			            error: function(rtn) {
-			                return false;
-			            }
-			    });
+				getDataInfoList(1);
 
 				/************************************************************
 				*申込状況情報取得
@@ -274,61 +233,8 @@
 				/************************************************************
 				*求人情報取得
 				*************************************************************/
-			    jQuery.ajax({
-			        url:  '../../classes/mypageGetJobList.php',
-			        type: 'POST',
-			        success: function(rtn) {
+				getDataJobList(1);
 
-			            // 求人情報、該当なし
-			                if (rtn == 0) {
-								$("#jobList_list1").show();
-					            $("#jobList_naiyo1").html("求人情報がございません");
-								$("#jobList_button1").hide();
-								$("#jobList_new1").hide();
-								// イベント表示件数5件分ループ処理する
-								for(var i = 1; i < 5 ; i++) {
-									// データがない場合は非表示にする
-									$("#jobList_list"+(i+1)).hide();
-									$("#jobList_new"+(i+1)).hide();
-								}
-							} else {
-
-			                        jobList = JSON.parse(rtn);
-
-								// イベント表示件数5件分ループ処理する
-								for(var i = 0; i < 5 ; i++) {
-									// データがある場合はデータをセットする
-									if(i < jobList.length){
-										$("#jobList_list"+(i+1)).show();
-							            $("#jobList_naiyo"+(i+1)).html(jobList[i]["naiyo"]);
-										if(jobList[i]["shinchaku"] == 0){
-											$("#jobList_new"+(i+1)).hide();
-										}else{
-										$("#jobList_new"+(i+1)).show();
-										}
-										if(jobList[i]["betsugamen"] == 1){$wkWindow ="_blank";}else{$wkWindow ="_self";}
-										if(jobList[i]["size_shitei_kbn"] == 1){
-											$wkWindowSize ="width=" + jobList[i]["yokohaba"] + ",height=" + jobList[i]["tatehaba"];
-										}else{
-											$wkWindowSize ="";
-										}
-										$wk="window.open('" + jobList[i]["url"] + "', '" + $wkWindow + "', '" + $wkWindowSize + "')";
-										$("#jobList_naiyo"+(i+1)).attr("onClick", $wk);
-									// データがない場合は非表示にする
-									}else{
-										$("#jobList_list"+(i+1)).hide();
-										$("#jobList_new"+(i+1)).hide();
-									}
-								}
-							}
-			            },
-			            fail: function(rtn) {
-			                return false;
-			            },
-			            error: function(rtn) {
-			                return false;
-			            }
-			    });
 
 			// **********************************************************
 			// 有効期限フラグ=FALSEの場合　CEU
@@ -366,6 +272,300 @@
     });
 
 
+	/************************************************************
+	*お知らせ情報データ取得・画面表示（ページングあり）
+	*************************************************************/
+	function getDataInfoList(pageNo){
+
+		// 画面表示件数
+		infoData_show_count = 3;
+		first_infoData_count = (pageNo - 1) * infoData_show_count;
+
+	    jQuery.ajax({
+	        url:  '../../classes/mypageGetInformation.php',
+	        type: 'POST',
+	        success: function(rtn) {
+
+	            // お知らせ情報、該当なし
+	                if (rtn == 0) {
+						$("#info_list1").show();
+			            $("#info_naiyo1").html("お知らせ情報がございません");
+						$("#info_button1").hide();
+						// イベント表示件数3件分ループ処理する
+						for(var i = 1; i < 3 ; i++) {
+							// データがない場合は非表示にする
+							$("#info_list"+(i+1)).hide();
+						}
+					} else {
+
+	                        infoJoho = JSON.parse(rtn);
+							j=first_infoData_count;
+
+						// 表示件数分ループ処理する
+						for(var i = 1; i <= infoData_show_count ; i++) {
+							// データがある場合はデータをセットする
+							if(j < infoJoho.length){
+								$("#info_list"+(i)).show();
+					            $("#info_naiyo"+(i)).html(infoJoho[j]["naiyo"]);
+								if(infoJoho[j]["button_text"] == ""){
+									$("#info_button"+(i)).hide();
+								}else{
+								$("#info_button"+(i)).show();
+					            $("#info_button"+(i)).text(infoJoho[j]["button_text"]);
+								}
+							// データがない場合は非表示にする
+							}else{
+								$("#info_list"+(i)).hide();
+							}
+							j++;
+						}
+
+								$("#infoList_page_before").show();
+								$("#infoList_page2").show();
+								$("#infoList_page3").show();
+								$("#infoList_page_next").show();
+
+								if(pageNo <= 3){
+									$("#infoList_page_before").hide();
+								}
+
+								if(pageNo == 1){
+									$("#infoList_pageNo_1").val(1);
+									$("#infoList_pageNo_2").val(2);
+									$("#infoList_pageNo_3").val(3);
+									$("#infoList_pageNo_n").val(4);
+									$("#infoList_page1").html(1);
+									$("#infoList_page2").html(2);
+									$("#infoList_page3").html(3);
+									$("#infoList_page1").prop('disabled', true);
+									$("#infoList_page2").prop('disabled', false);
+									$("#infoList_page3").prop('disabled', false);
+								}else if(pageNo != 2 && (pageNo + 1) * infoData_show_count > infoJoho.length){
+									$("#infoList_pageNo_b").val(pageNo - 3);
+									$("#infoList_pageNo_1").val(pageNo - 2);
+									$("#infoList_pageNo_2").val(pageNo - 1);
+									$("#infoList_pageNo_3").val(pageNo);
+									$("#infoList_pageNo_n").val(pageNo + 1);
+									$("#infoList_page1").html(pageNo - 2);
+									$("#infoList_page2").html(pageNo - 1);
+									$("#infoList_page3").html(pageNo);
+									$("#infoList_page1").prop('disabled', false);
+									$("#infoList_page2").prop('disabled', false);
+									$("#infoList_page3").prop('disabled', true);
+								}else{
+									$("#infoList_pageNo_b").val(pageNo - 2);
+									$("#infoList_pageNo_1").val(pageNo - 1);
+									$("#infoList_pageNo_2").val(pageNo);
+									$("#infoList_pageNo_3").val(pageNo + 1);
+									$("#infoList_pageNo_n").val(pageNo + 2);
+									$("#infoList_page1").html(pageNo - 1);
+									$("#infoList_page2").html(pageNo);
+									$("#infoList_page3").html(pageNo + 1);
+									$("#infoList_page1").prop('disabled', false);
+									$("#infoList_page2").prop('disabled', true);
+									$("#infoList_page3").prop('disabled', false);
+								}
+								
+
+								if($("#infoList_pageNo_1").val() * infoData_show_count > infoJoho.length){
+									$("#infoList_page2").hide();
+								}
+								if($("#infoList_pageNo_2").val() * infoData_show_count > infoJoho.length){
+									$("#infoList_page3").hide();
+								}
+								if($("#infoList_pageNo_3").val() * infoData_show_count >= infoJoho.length){
+									$("#infoList_page_next").hide();
+								}
+
+					}
+	            },
+	            fail: function(rtn) {
+	                return false;
+	            },
+	            error: function(rtn) {
+	                return false;
+	            }
+	    });
+	}
+
+	/************************************************************
+	*会員情報データ取得・画面表示（ページングあり）
+	*************************************************************/
+	function getDataJobList(pageNo){
+
+		// 画面表示件数
+		deta_show_count = 5;
+		first_data_count = (pageNo - 1) * deta_show_count;
+
+			    jQuery.ajax({
+			        url:  '../../classes/mypageGetJobList.php',
+			        type: 'POST',
+			        success: function(rtn) {
+
+			            // 求人情報、該当なし
+			                if (rtn == 0) {
+								$("#jobList_list1").show();
+					            $("#jobList_naiyo1").html("求人情報がございません");
+								$("#jobList_button1").hide();
+								$("#jobList_new1").hide();
+								// イベント表示件数5件分ループ処理する
+								for(var i = 1; i < 5 ; i++) {
+									// データがない場合は非表示にする
+									$("#jobList_list"+(i+1)).hide();
+									$("#jobList_new"+(i+1)).hide();
+								}
+							} else {
+
+			                        jobList = JSON.parse(rtn);
+									
+									j=first_data_count;
+
+								// 求人表示件数分ループ処理する
+								for(var i = 1; i <= deta_show_count ; i++) {
+
+									// データがある場合はデータをセットする
+									if(j < jobList.length){
+										$("#jobList_list"+(i)).show();
+							            $("#jobList_naiyo"+(i)).html(jobList[j]["naiyo"]);
+										if(jobList[j]["shinchaku"] == 0){
+											$("#jobList_new"+(i)).hide();
+										}else{
+										$("#jobList_new"+(i)).show();
+										}
+										if(jobList[j]["betsugamen"] == 1){$wkWindow ="_blank";}else{$wkWindow ="_self";}
+										if(jobList[j]["size_shitei_kbn"] == 1){
+											$wkWindowSize ="width=" + jobList[j]["yokohaba"] + ",height=" + jobList[j]["tatehaba"];
+										}else{
+											$wkWindowSize ="";
+										}
+										$wk="window.open('" + jobList[j]["url"] + "', '" + $wkWindow + "', '" + $wkWindowSize + "')";
+										$("#jobList_naiyo"+(i)).attr("onClick", $wk);
+									// データがない場合は非表示にする
+									}else{
+										$("#jobList_list"+(i)).hide();
+										$("#jobList_new"+(i)).hide();
+									}
+									j++;
+								}
+
+								$("#jobList_page_before").show();
+								$("#jobList_page2").show();
+								$("#jobList_page3").show();
+								$("#jobList_page_next").show();
+
+								if(pageNo <= 3){
+									$("#jobList_page_before").hide();
+								}
+
+								if(pageNo == 1){
+									$("#jobList_pageNo_1").val(1);
+									$("#jobList_pageNo_2").val(2);
+									$("#jobList_pageNo_3").val(3);
+									$("#jobList_pageNo_n").val(4);
+									$("#jobList_page1").html(1);
+									$("#jobList_page2").html(2);
+									$("#jobList_page3").html(3);
+									$("#jobList_page1").prop('disabled', true);
+									$("#jobList_page2").prop('disabled', false);
+									$("#jobList_page3").prop('disabled', false);
+								}else if(pageNo != 2 && (pageNo + 1) * deta_show_count > jobList.length){
+									$("#jobList_pageNo_b").val(pageNo - 3);
+									$("#jobList_pageNo_1").val(pageNo - 2);
+									$("#jobList_pageNo_2").val(pageNo - 1);
+									$("#jobList_pageNo_3").val(pageNo);
+									$("#jobList_pageNo_n").val(pageNo + 1);
+									$("#jobList_page1").html(pageNo - 2);
+									$("#jobList_page2").html(pageNo - 1);
+									$("#jobList_page3").html(pageNo);
+									$("#jobList_page1").prop('disabled', false);
+									$("#jobList_page2").prop('disabled', false);
+									$("#jobList_page3").prop('disabled', true);
+								}else{
+									$("#jobList_pageNo_b").val(pageNo - 2);
+									$("#jobList_pageNo_1").val(pageNo - 1);
+									$("#jobList_pageNo_2").val(pageNo);
+									$("#jobList_pageNo_3").val(pageNo + 1);
+									$("#jobList_pageNo_n").val(pageNo + 2);
+									$("#jobList_page1").html(pageNo - 1);
+									$("#jobList_page2").html(pageNo);
+									$("#jobList_page3").html(pageNo + 1);
+									$("#jobList_page1").prop('disabled', false);
+									$("#jobList_page2").prop('disabled', true);
+									$("#jobList_page3").prop('disabled', false);
+								}
+								
+
+								if($("#jobList_pageNo_1").val() * deta_show_count > jobList.length){
+									$("#jobList_page2").hide();
+								}
+								if($("#jobList_pageNo_2").val() * deta_show_count > jobList.length){
+									$("#jobList_page3").hide();
+								}
+								if($("#jobList_pageNo_3").val() * deta_show_count >= jobList.length){
+									$("#jobList_page_next").hide();
+								}
+							}
+			            },
+			            fail: function(rtn) {
+			                return false;
+			            },
+			            error: function(rtn) {
+			                return false;
+			            }
+			    });
+
+
+	}
+
+
+	// お知らせ情報ページング処理
+
+     $("#infoList_page1").click(function() {
+		getDataInfoList(parseInt($("#infoList_pageNo_1").val()));
+        });
+
+     $("#infoList_page2").click(function() {
+		getDataInfoList(parseInt($("#infoList_pageNo_2").val()));
+        });
+
+     $("#infoList_page3").click(function() {
+		getDataInfoList(parseInt($("#infoList_pageNo_3").val()));
+        });
+
+     $("#infoList_page_before").click(function() {
+		getDataInfoList(parseInt($("#infoList_pageNo_b").val()));
+        });
+
+     $("#infoList_page_next").click(function() {
+		getDataInfoList(parseInt($("#infoList_pageNo_n").val()));
+        });
+
+
+	// 求人情報ページング処理
+
+     $("#jobList_page1").click(function() {
+		getDataJobList(parseInt($("#jobList_pageNo_1").val()));
+        });
+
+     $("#jobList_page2").click(function() {
+		getDataJobList(parseInt($("#jobList_pageNo_2").val()));
+        });
+
+     $("#jobList_page3").click(function() {
+		getDataJobList(parseInt($("#jobList_pageNo_3").val()));
+        });
+
+     $("#jobList_page_before").click(function() {
+		getDataJobList(parseInt($("#jobList_pageNo_b").val()));
+        });
+
+     $("#jobList_page_next").click(function() {
+		getDataJobList(parseInt($("#jobList_pageNo_n").val()));
+        });
+
+
+
     });
+
 })(jQuery);
 
