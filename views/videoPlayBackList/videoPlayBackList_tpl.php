@@ -18,7 +18,7 @@
         <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.1.1.min.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
-        <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="../../viewIncludeFiles/js/videoPlayBackList.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/header.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
@@ -29,7 +29,7 @@
 	<div class="wrap mh_c btn_b_wrap">
 		<h2>購入済み動画一覧</h2>
 			<div class="table">
-				<table>
+				<table id="movie">
 					<tr class="thead">
 						<th>タイトル</th>
 						<th>ご視聴開始日</th>

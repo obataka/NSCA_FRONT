@@ -181,7 +181,7 @@
 				type: 'POST',
 				data: {
 
-					//TB会員情報のテーブル項目
+					//会員情報
 					name_mei: $("#name_mei").val(),
 					name_sei: $("#name_sei").val(),
 					name_sei_kana: $("#name_sei_kana").val(),
