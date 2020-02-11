@@ -381,7 +381,7 @@ select::-ms-expand {
 }
 table input[type="text"],
 table input[type="email"],
-table input[type="tel"], 
+table input[type="tel"],
 input[type="password"] {
     width: 100%;
     height: 35px;
@@ -542,7 +542,8 @@ input[type="number"] {
 }
 .kaiin_sbt section {
 	background: #fff;
-	width: 30%;
+/* 	width: 30%; */
+	width: 49%;
 	padding: 30px;
 }
 .sbt_title {
@@ -621,7 +622,7 @@ input[type="number"] {
 }
 .btn_b_1 {
     left: 0;
-    right: 0;	
+    right: 0;
 	margin: auto;
 }
 .btn_b_2 {
@@ -846,11 +847,11 @@ footer p {
 #datepicker thead th:last-child {
     background-color: #A4ECFF!important;
 }
-.ui-state-default, 
-.ui-widget-content .ui-state-default, 
+.ui-state-default,
+.ui-widget-content .ui-state-default,
 .ui-widget-header .ui-state-default,
 .ui-button,
-html .ui-button.ui-state-disabled:hover, 
+html .ui-button.ui-state-disabled:hover,
 html .ui-button.ui-state-disabled:active {
 	border: none!important;
 }
@@ -969,7 +970,7 @@ button[type="submit"]:disabled:hover::after {
         background: none;
         color: #333;
     }
-    .kihon_joho td div:first-child, 
+    .kihon_joho td div:first-child,
     .oshirase td div:first-child {
         margin-top: 0!important;
     }
@@ -993,7 +994,7 @@ button[type="submit"]:disabled:hover::after {
 		height: auto;
 		margin-bottom: 0;
 	}
-	
+
 /*会員種別*/
 	.kaiin_sbt form {
 		display: block;
@@ -1005,8 +1006,8 @@ button[type="submit"]:disabled:hover::after {
 	.kaiin_sbt section:last-of-type {
 		margin-bottom: 0;
 	}
-	
-	
+
+
 /*button*/
 	.btn_wrap {
 		justify-content: space-evenly;
@@ -1015,7 +1016,7 @@ button[type="submit"]:disabled:hover::after {
 		color: #fff;
 		background: #005699;
 	}
-	.btn_gray:hover, 
+	.btn_gray:hover,
 	.back:hover {
 		background: #888!important;
 		color:#fff !important;
@@ -1033,7 +1034,7 @@ button[type="submit"]:disabled:hover::after {
     footer p {
         font-size: 10px;
     }
-	
+
 	/*ステッププログレス*/
     .spb_arrows>ul.step-anchor>li.active>span:after {
         border-left: 20px solid #669FCC!important;
@@ -1050,7 +1051,7 @@ button[type="submit"]:disabled:hover::after {
     .spb_arrows>ul.step-anchor>li>span {
         padding-left: 20px;
     }
-	
+
 	/*カレンダー*/
 	.ui-datepicker th {
 		display: table-cell;
@@ -1240,8 +1241,8 @@ button[type="submit"]:disabled:hover::after {
 	}
 	.spb_arrows.height_62>ul.step-anchor>li>span {
 		height: auto;
-	}	
-	
+	}
+
 	/*カレンダー*/
 	.ui-datepicker-inline {
 		padding: 10px!important;
@@ -1249,7 +1250,7 @@ button[type="submit"]:disabled:hover::after {
 	#datepicker {
 		margin-top: 0;
 	}
-	
+
 	/*ファイヤ―フォックスのみ*/
 	@-moz-document url-prefix() {
 		.spb_arrows>ul.step-anchor>li>span.spb_border:before {
@@ -1260,13 +1261,13 @@ button[type="submit"]:disabled:hover::after {
 			top: 230%;
 		}
 	}
-	
+
 	/*IEのみ*/
 	_:-ms-lang(x)::-ms-backdrop,
 	.spb_arrows_6ver li span {
 		line-height: inherit!important;
 	}
-	
+
 	/*edgeのみ*/
 	@supports (-ms-ime-align:auto) {
 		.spb_arrows>ul.step-anchor>li>span.spb_border:before {

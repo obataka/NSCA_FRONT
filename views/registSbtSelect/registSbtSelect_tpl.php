@@ -43,14 +43,14 @@
 		</ul>
 		<div class="kaiin_sbt">
 			<form action="?" method="POST" autocomplete="off" id="registSbtSleForm" name="registSbtSleForm">
-				<section>
-					<div>
-						<p class="sbt_title">利用登録(無料)</p>
-						<p class="kaihi">会費：無料</p>
-					</div>
-					<p class="text">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-					<button class="button" id="__registRiyo"><span>利用登録(無料)の<br>登録はこちら</span></button>
-				</section>
+<!-- 				<section> -->
+<!-- 					<div> -->
+<!-- 						<p class="sbt_title">利用登録(無料)</p> -->
+<!-- 						<p class="kaihi">会費：無料</p> -->
+<!-- 					</div> -->
+<!-- 					<p class="text">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p> -->
+<!-- 					<button class="button" id="__registRiyo"><span>利用登録(無料)の<br>登録はこちら</span></button> -->
+<!-- 				</section> -->
 				<section>
 					<div>
 						<p class="sbt_title">NSCA正会員</p>
