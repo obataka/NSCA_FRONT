@@ -1,20 +1,21 @@
 <?php
 namespace Was;
 
-class Tb_doga_joho
+class Tb_doga_konyusha_meisai
 {
     public function __construct()
     {
     }
 
-    public function findByDogaJoho()
+    public function findByDogaKonyushaMeisai($param)
     {
         try {
             $db = Db::getInstance();
             $sth = $db->prepare("SELECT *
-            FROM   tb_doga_joho
+            FROM   tb_doga_konyusha_meisai
+            WHERE kaiin_no = :kaiin_no
             ");
-            $sth->execute();
+            $sth->execute([':kaiin_no' => $param['kaiin_no'],]);
             $Tb_kessai_hakko = $sth->fetchAll();
         } catch (\PDOException $e) {
             error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/eroor_log.txt');
