@@ -47,14 +47,25 @@
 				<form>
 					<dl>
 						<dt>施設利用案内</dt>
-						<dd>テキストテキストテキストテキスト</dd>
+						<dd>初回ご利用時は、利用に際しての説明を行わせていただきます。</dd>
 						<dt>駐車場利用</dt>
 						<dd>テキストテキストテキストテキスト<br>
 							<span class="required">必須</span>
 							<input id="not_use" type="radio" name="parking">
 							<label for="not_use">利用しない</label>
 							<input id="use" type="radio" name="parking">
-							<label for="use">利用する</label>
+							<label for="use">利用する</label><br>
+							　　　台数 <select id="chushajo_riyo_daisu">
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+							</select> 台
 							<ul class="error_ul">
 								<li class="error" id="err_parking"></li>
 							</ul>
@@ -62,8 +73,14 @@
 						<dt>測定機能の希望(有料)</dt>
 						<dd>テキストテキストテキストテキスト<br>
 							<span class="required">必須</span>
-							<input id="sokutei" class="checkbox" type="checkbox" name="sokutei">
-							<label class="checkbox" for="sokutei">体組成計</label>
+							<input id="taisoseikei" class="checkbox" type="checkbox" name="taisoseikei">
+							<label class="checkbox" for="taisoseikei">体組成計</label>
+							<input id="force_plate" class="checkbox" type="checkbox" name="taisoseikei">
+							<label class="checkbox" for="force_plate">フォースプレート</label>
+							<input id="dart_fish" class="checkbox" type="checkbox" name="dart_fish">
+							<label class="checkbox" for="dart_fish">ダートフィッシュ</label>
+							<input id="paformance" class="checkbox" type="checkbox" name="paformance">
+							<label class="checkbox" for="paformance">パフォーマンスアセスメント</label>
 							<ul class="error_ul">
 								<li class="error" id="err_sokutei"></li>
 							</ul>
@@ -83,22 +100,26 @@
 						</dd>
 						<dt>利用月</dt>
 						<dd><span class="required">必須</span>
-							<select id="use_month"></select>
+							<select id="use_month">
+								<option value="2020/02/01">2020年2月</option>
+								<option value="2020/03/01">2020年3月</option>
+							</select>
 							<ul class="error_ul">
 								<li class="error" id="err_use_month"></li>
 							</ul>
 						</dd>
 						<dt>利用日</dt>
-						<dd>テキストテキストテキストテキスト<br>
+						<dd>日付をクリックして、ご利用の時間帯を選択してください。<br>
 							<span class="required">必須</span>
 							<!---カレンダー--->
 							<div id="datepicker"></div>
 							<ul class="error_ul">
 								<li class="error" id="err_use_day"></li>
 							</ul>
-							<p class="mt_1">選択した日付：<br>
-								利用時間：
-							</p>
+							<p class="mt_1">
+								選択した日付：<span id="selected_date">9999/12/31</span><br>
+								利用時間：<span id="selected_time">12:00</span></p>
+							
 						</dd>
 					</dl>
 				</form>

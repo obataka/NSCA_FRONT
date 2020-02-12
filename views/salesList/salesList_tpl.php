@@ -48,11 +48,11 @@
 								<td>
 									<div>
 										<img src="https://placehold.jp/150x150.png">
-										<p class="product_name">NSCA決定版　ストレングストレーニング＆コンディショニング 第4版</p>											
+										<p class="product_name"><span id="cscs_title_1">NSCA決定版　ストレングストレーニング＆コンディショニング 第4版</span></p>											
 									</div>
-									<button class="button pc_bl" type="button" value="" onclick="location.href='#'"><span>詳細</span></button>
+									<button class="button pc_bl" type="button" value=""  id="cscs_button_1"><span>詳細</span></button>
 								</td>
-								<td data-label="販売価格" class="price">会員価格：11.664円</td>
+								<td data-label="販売価格" class="price">会員価格：<span id="cscs_price_1">11.664円</span></td>
 								<td class="sp_bl">
 									<button class="button" type="button" value="" onclick="location.href='#'"><span>詳細</span></button>
 								</td>

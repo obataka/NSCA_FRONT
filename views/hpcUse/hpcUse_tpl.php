@@ -60,7 +60,7 @@
 	                        <span class="sub">NSCA会員</span>
 	                        <div class="btn">
 	                            <button class="button" type="button" onclick="location.href='#'"><span>詳しく見る</span></button>
-	                            <button class="button" type="button" onclick="location.href='#'"><span>予約する</span></button>
+	                            <button class="button" type="button" onclick="location.href='../../hpcUseInput'"><span>予約する</span></button>
 	                        </div>      
 	                    </div>                  
 	                </div>
