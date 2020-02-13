@@ -15,14 +15,14 @@
         <link rel="stylesheet" href="../../viewIncludeFiles/css/extensionApplication.css" />
 		<link rel="stylesheet" href="../../viewIncludeFiles/css/header.css">
 
-        <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.1.1.min.js"></script>
-        <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.js"></script>
-        <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
-        <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.3.1.min.js"></script>
-			<script type="text/javascript" src="../../viewIncludeFiles/js/header.js"></script>
-			<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
-			<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
-    </head>
+		<script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.1.1.min.js"></script>
+		<script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.js"></script>
+		<script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
+		<script type="text/javascript" src="../../viewIncludeFiles/js/extensionApplication.js"></script>
+		<script type="text/javascript" src="../../viewIncludeFiles/js/header.js"></script>
+		<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
+		<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
+		</head>
     <body>
 	<header id="header">
 	</header>
@@ -63,9 +63,9 @@
 			</table>
 			
 			<h3>本文</h3>
+			<form action="" method="post">
 			<article>
-				<form>
-					<textarea>
+					<textarea id="mail_honbun">
 特定非営利活動法人 NSCAジャパン 事務局 御中
 認定試験の試験期間延長を申込みます。
 						
@@ -75,7 +75,6 @@
 【氏名】		○○　○○ 様
 【受験資格】	ＣＳＣＳ認定試験【両方（基礎科学、実践／応用）】
 【メール】	aaaaaaa@aaa.jp</textarea>					
-				</form>
 				<section>
 					<p>「送信」ボタンを押しますと、事務局へメールが送信されると同時に、ご自身へも控えとしてメールが送信されます。<br>
 						<span class="kome">※事務局から受験延長を受け付ける返信があるまで、マイページの表示は変更されません。</span>
@@ -83,9 +82,10 @@
 				</section>
 			</article>
 			<section class="btn_wrap">
-				<button class="button btn_gray" type="button" value="" onclick="location.href='#'"><span>出願状況確認画面へ</span></button>
-				<button class="button" type="submit" value="" onclick="location.href='#'"><span>送信</span></button>
+				<button class="button btn_gray" type="button" value="" id="__goBack"><span>出願状況確認画面へ</span></button>
+				<button class="button" type="button" value="" id="__send"><span>送信</span></button>
 			</section>
+			</form>
 		</div>
 	</div>
 	<footer id="footer">
