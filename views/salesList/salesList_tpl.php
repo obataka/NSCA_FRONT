@@ -22,6 +22,7 @@
 		<script type="text/javascript" src="../../viewIncludeFiles/js/header.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
+        <script type="text/javascript" src="../../viewIncludeFiles/js/salesList.js"></script>
 		
     </head>
    <body>
@@ -36,7 +37,7 @@
 			<section>
 				<h3>CSCS</h3>
 				<div class="content">
-					<table>
+					<table id="table_cscs">
 						<thead>
 							<tr>
 								<th>商品名</th>
