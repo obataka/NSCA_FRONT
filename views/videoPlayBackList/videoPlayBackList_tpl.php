@@ -31,7 +31,8 @@
 	<div class="wrap mh_c btn_b_wrap">
 		<h2>購入済み動画一覧</h2>
 		<div class="table">
-			<form method="POST" action="../videoPlayBack/videoPlayBack_tpl.php">
+			<form method="POST" name="videoPlayBackListForm" action="../../videoPlayBack/">
+				<input type="hidden" id="doga_id" name="doga_id" value="">
 				<table id="movie">
 					<tr class="thead">
 						<th>タイトル</th>
