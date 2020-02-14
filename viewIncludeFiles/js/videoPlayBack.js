@@ -14,10 +14,11 @@
             url: '../../classes/getTbDogaJoho.php',
         }).done((rtn) => {
             getDogaList = JSON.parse(rtn);
+            console.log(getDogaList);
             var doga_id = $('#doga_id').val();
 
-            $.each(getDogaList, function(i, val){
-                if(val['doga_id'] == doga_id) {
+            $.each(getDogaList, function (i, val) {
+                if (val['doga_id'] == doga_id) {
                     $('#video').append(val['umekomi_tag']);
                     return false;
                 }

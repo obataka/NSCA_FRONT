@@ -15,7 +15,7 @@ class Ms_meishoKbn_Shikaku
         try {
             $db = Db::getInstance();
             $sth = $db->prepare("SELECT CHILD.meisho_cd, CHILD.meisho 
-            FROM   ms_meishoKbn MST
+            FROM   ms_meisho_kbn MST
             INNER JOIN ms_meisho CHILD
             ON    MST.meisho_id = CHILD.meisho_id
             WHERE MST.meisho_kbn = 22

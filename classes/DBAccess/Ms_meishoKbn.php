@@ -18,11 +18,11 @@ class Ms_meishoKbn
         try {
             $db = Db::getInstance();
             $sth = $db->prepare("SELECT CHILD.meisho_cd, CHILD.meisho 
-            FROM   ms_meishoKbn MST
+            FROM   ms_meisho_kbn MST
             INNER JOIN ms_meisho CHILD
             ON    MST.meisho_id = CHILD.meisho_id
             WHERE MST.meisho_kbn = 23
-            ORDER BY CHILD.meisho_cd;
+            ORDER BY CHILD.meisho_cd
             ");
             $sth->execute();
             $ms_meisho = $sth->fetchAll();
@@ -40,11 +40,11 @@ class Ms_meishoKbn
         try {
             $db = Db::getInstance();
             $sth = $db->prepare("SELECT CHILD.meisho_cd, CHILD.meisho 
-            FROM   ms_meishoKbn MST
+            FROM   ms_meisho_kbn MST
             INNER JOIN ms_meisho CHILD
             ON    MST.meisho_id = CHILD.meisho_id
             WHERE MST.meisho_kbn = 38
-            ORDER BY CHILD.meisho_cd;
+            ORDER BY CHILD.meisho_cd
             ");
             $sth->execute();
             $ms_meisho = $sth->fetchAll();
@@ -62,11 +62,11 @@ class Ms_meishoKbn
         try {
             $db = Db::getInstance();
             $sth = $db->prepare("SELECT CHILD.meisho_cd, CHILD.meisho 
-            FROM   ms_meishoKbn MST
+            FROM   ms_meisho_kbn MST
             INNER JOIN ms_meisho CHILD
             ON    MST.meisho_id = CHILD.meisho_id
             WHERE MST.meisho_kbn = 1
-            ORDER BY CHILD.meisho_cd;
+            ORDER BY CHILD.meisho_cd
             ");
             $sth->execute();
             $ms_meisho = $sth->fetchAll();
@@ -84,11 +84,11 @@ class Ms_meishoKbn
         try {
             $db = Db::getInstance();
             $sth = $db->prepare("SELECT CHILD.meisho_cd, CHILD.meisho 
-            FROM   ms_meishoKbn MST
+            FROM   ms_meisho_kbn MST
             INNER JOIN ms_meisho CHILD
             ON    MST.meisho_id = CHILD.meisho_id
             WHERE MST.meisho_kbn = 33
-            ORDER BY CHILD.meisho_cd;
+            ORDER BY CHILD.meisho_cd
             ");
             $sth->execute();
             $ms_meisho = $sth->fetchAll();
@@ -106,11 +106,11 @@ class Ms_meishoKbn
         try {
             $db = Db::getInstance();
             $sth = $db->prepare("SELECT CHILD.meisho_cd, CHILD.meisho 
-            FROM   ms_meishoKbn MST
+            FROM   ms_meisho_kbn MST
             INNER JOIN ms_meisho CHILD
             ON    MST.meisho_id = CHILD.meisho_id
             WHERE MST.meisho_kbn = 3
-            ORDER BY CHILD.meisho_cd;
+            ORDER BY CHILD.meisho_cd
             ");
             $sth->execute();
             $ms_meisho = $sth->fetchAll();
@@ -128,11 +128,11 @@ class Ms_meishoKbn
         try {
             $db = Db::getInstance();
             $sth = $db->prepare("SELECT CHILD.meisho_cd, CHILD.meisho 
-            FROM   ms_meishoKbn MST
+            FROM   ms_meisho_kbn MST
             INNER JOIN ms_meisho CHILD
             ON    MST.meisho_id = CHILD.meisho_id
             WHERE MST.meisho_kbn = 5
-            ORDER BY CHILD.meisho_cd;
+            ORDER BY CHILD.meisho_cd
             ");
             $sth->execute();
             $ms_meisho = $sth->fetchAll();
@@ -150,11 +150,11 @@ class Ms_meishoKbn
         try {
             $db = Db::getInstance();
             $sth = $db->prepare("SELECT CHILD.meisho_cd, CHILD.meisho 
-            FROM   ms_meishoKbn MST
+            FROM   ms_meisho_kbn MST
             INNER JOIN ms_meisho CHILD
             ON    MST.meisho_id = CHILD.meisho_id
             WHERE MST.meisho_kbn = 59
-            ORDER BY CHILD.meisho_cd;
+            ORDER BY CHILD.meisho_cd
             ");
             $sth->execute();
             $ms_meisho = $sth->fetchAll();
@@ -172,11 +172,11 @@ class Ms_meishoKbn
         try {
             $db = Db::getInstance();
             $sth = $db->prepare("SELECT CHILD.meisho_cd, CHILD.meisho 
-            FROM   ms_meishoKbn MST
+            FROM   ms_meisho_kbn MST
             INNER JOIN ms_meisho CHILD
             ON    MST.meisho_id = CHILD.meisho_id
             WHERE MST.meisho_kbn = 26
-            ORDER BY CHILD.meisho_cd;
+            ORDER BY CHILD.meisho_cd
             ");
             $sth->execute();
             $ms_meisho = $sth->fetchAll();

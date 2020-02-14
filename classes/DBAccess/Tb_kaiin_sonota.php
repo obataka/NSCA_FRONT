@@ -301,7 +301,7 @@ SQL;
                     ':email_2_oshirase_uketori'             => $param1['email_2_oshirase_uketori'],
                     ':koshin_user_id'                       => $param1['koshin_user_id'],
                     ':koshin_nichiji'                       => $param1['koshin_nichiji'],
-                    ':kaiin_no'                             => $param['kaiin_no'],
+                    ':kaiin_no'                             => $param1['kaiin_no'],
                 ]);
         } catch (\PDOException $e) {
             error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error.txt');
@@ -311,10 +311,22 @@ SQL;
         return TRUE;
     }
 
-
-
-
-
+    public function findBySonota($param)
+    {
+        try {
+            $db = Db::getInstance();
+            $sth = $db->prepare("SELECT *
+            FROM   tb_kaiin_sonota
+            WHERE kaiin_no = :kaiin_no
+            ");
+            $sth->execute([':kaiin_no' => $param['kaiin_no'],]);
+            $Tb_juken_jotai = $sth->fetchAll();
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/eroor_log.txt');
+            $Tb_juken_jotai = [];
+        }
+        return $Tb_juken_jotai;
+    }
 
 
 
