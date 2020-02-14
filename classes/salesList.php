@@ -14,6 +14,7 @@ $ret = 0;
 *セッションから会員番号取得 
 *************************************************************/
 
+//$kaiin_no = "";
 $kaiin_no = "819122001";
 
 
@@ -34,6 +35,22 @@ if ($result_hambai == "") {
 
    error_log(print_r("販売情報取得", true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka_log.txt');
    error_log(print_r($result_hambai, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka_log.txt');
+
+
+
+
+/************************************************************
+*動画情報取得 
+*************************************************************/
+
+// ログインしている場合のみ動画情報を表示する
+
+
+
+
+
+
+
 
 //    $ret = json_encode($result_hambai);
 

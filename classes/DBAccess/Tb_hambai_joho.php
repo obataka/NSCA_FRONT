@@ -22,10 +22,8 @@ class Tb_hambai_joho
 		tb_hambai_joho.hambai_id,
 		tb_hambai_joho.hambai_kbn,
 		tb_hambai_joho.hambai_settei_kbn,
---		dbo.csf00010(@tinthambai_settei_kbn,tb_hambai_joho.hambai_settei_kbn) AS 販売設定名称,
 		tb_hambai_joho.keiri_shumoku_cd_2,
 		ifnull(tb_hambai_joho.shikaku_kbn,0) AS shikaku_kbn,
---		dbo.csf00010(@tintshikaku_kbn,tb_hambai_joho.shikaku_kbn) AS 資格名称,
       	tb_hambai_joho.hambai_title,
 		tb_hambai_joho.hambai_title_chuigaki,
 		tb_hambai_joho.hambai_title_tsuiki,
@@ -37,19 +35,32 @@ class Tb_hambai_joho
 		tb_hambai_joho.setsumei_gazo_url_3,
 		tb_hambai_joho.setsumei_gazo_url_4,
 		tb_hambai_joho.pdf_url,
-		tb_hambai_joho.kaiin_kakaku,
-		FLOOR(kaiin_kakaku * zeiritu) AS kaiin_kakaku_zeikomi,
-		tb_hambai_joho.ippan_kakaku,
-		FLOOR(ippan_kakaku * zeiritu) AS ippan_kakaku_zeikomi,
 
-		tb_hambai_joho.riyo_toroku_kakaku,
-		tb_hambai_joho.ninteikosei_kakaku,
-		tb_hambai_joho.gakusei_kakaku,
-		tb_hambai_joho.nagareyama_shimin_kakaku,
+-- 会員種別などにより取得する価格を設定（一般・正会員・学生会員・利用登録・流山市民）
+		CASE 
+			WHEN kaiin_no IS NULL THEN FLOOR(ippan_kakaku * zeiritu)                     -- 一般（登録なし）
+			WHEN nagareyama_shimin = 1 THEN FLOOR(nagareyama_shimin_kakaku * zeiritu)   -- 流山市民
+			WHEN kaiin_sbt_kbn = 1 THEN FLOOR(kaiin_kakaku * zeiritu)                    -- 正会員
+			WHEN kaiin_sbt_kbn = 0 THEN FLOOR(riyo_toroku_kakaku * zeiritu)              -- 利用登録（無料）
+			WHEN kaiin_sbt_kbn = 2 THEN FLOOR(gakusei_kakaku * zeiritu)                  -- 学生会員
+		ELSE 0
+		END AS kakaku_zeikomi,
+
+		CASE 
+			WHEN kaiin_no IS NULL THEN '一般'                   -- 一般（登録なし）
+			WHEN nagareyama_shimin = 1 THEN '流山市民'             -- 流山市民
+			WHEN kaiin_sbt_kbn = 1 THEN '会員'                  -- 正会員
+			WHEN kaiin_sbt_kbn = 0 THEN '利用登録'              -- 利用登録（無料）
+			WHEN kaiin_sbt_kbn = 2 THEN '学生'                  -- 学生会員
+		ELSE 0
+		END AS kakaku_title,
+
+		-- 一般の場合会員価格も表示する
+		FLOOR(kaiin_kakaku * zeiritu) AS kaiin_kakaku_zeikomi,
+		'会員' AS kaiin_kakaku_title,
 
 		tb_hambai_joho.menu_sort_jun,
 		tb_hambai_joho.hambai_sort_jun
---		dbo.csf00010(@tint販売区分,tb_hambai_joho.販売区分) AS メニュー名
 	FROM tb_hambai_joho 
 	LEFT JOIN (
 			SELECT 
@@ -80,6 +91,7 @@ class Tb_hambai_joho
 	WHERE tb_hambai_joho.sakujo_flg = 0
 		-- 販売中、在庫切れ
 		AND (tb_hambai_joho.hambai_settei_kbn = 1 OR tb_hambai_joho.hambai_settei_kbn = 3)
+		-- 学生会員はデータ取得しない
 		-- 会員＋CSCSのみ
 		AND (((kaiin_sbt_kbn = 1) AND (shutoku_jokyo = 1) 
 		AND ((ifnull(shikaku_kbn,0) = 1) OR (ifnull(shikaku_kbn,0) = 2) OR (ifnull(shikaku_kbn,0) = 3) OR (ifnull(shikaku_kbn,0) = 0)))
@@ -92,8 +104,9 @@ class Tb_hambai_joho
 		-- 会員＋資格なし
 		OR ((kaiin_sbt_kbn = 1) AND (shutoku_jokyo = 0) 
 		AND ((ifnull(shikaku_kbn,0) = 1) OR (ifnull(shikaku_kbn,0) = 0)))
-		-- 一般
-		OR ((kaiin_sbt_kbn = 0) AND (ifnull(shikaku_kbn,0) = 0)))
+
+		-- 一般(未ログイン)
+		OR ((kaiin_sbt_kbn IS NULL) AND (ifnull(shikaku_kbn,0) = 0)))
 
 
 	ORDER BY tb_hambai_joho.menu_sort_jun,tb_hambai_joho.hambai_sort_jun

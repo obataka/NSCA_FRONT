@@ -77,7 +77,7 @@
 
 				<h3>NSCA-CPT</h3>
 				<div class="content">
-					<table>
+					<table id="table_nsca">
 						<thead>
 							<tr>
 								<th>商品名</th>
@@ -117,7 +117,7 @@
 
 				<h3>ジャーナル</h3>
 				<div class="content">
-					<table>
+					<table id="table_journal">
 						<thead>
 							<tr>
 								<th>商品名</th>
@@ -157,7 +157,7 @@
 
 				<h3>セミナー動画</h3>
 				<div class="content">
-					<table>
+					<table id="table_douga">
 						<thead>
 							<tr>
 								<th>商品名</th>
@@ -197,7 +197,7 @@
 
 				<h3>エクササイズDVD</h3>
 				<div class="content">
-						<table>
+						<table id="table_dvd">
 						<thead>
 							<tr>
 								<th>商品名</th>
@@ -237,7 +237,7 @@
 
 				<h3>その他書籍</h3>
 				<div class="content">
-					<table>
+					<table id="table_other">
 						<thead>
 							<tr>
 								<th>商品名</th>
@@ -277,7 +277,7 @@
 
 				<h3>オリジナル商品</h3>
 				<div class="content">
-					<table>
+					<table id="table_original">
 						<thead>
 							<tr>
 								<th>商品名</th>
@@ -316,7 +316,7 @@
 				</div>
 
 				<h3>ホームスタディ</h3>
-					<table>
+					<table id="table_homestudy">
 						<thead>
 							<tr>
 								<th>商品名</th>
@@ -356,7 +356,7 @@
 
 				<h3>名刺タイプA</h3>
 				<div class="content">
-					<table>
+					<table id="table_meishi_a">
 						<thead>
 							<tr>
 								<th>商品名</th>
@@ -396,7 +396,7 @@
 
 				<h3>名刺タイプB</h3>
 				<div class="content">
-					<table>
+					<table id="table_meishi_b">
 						<thead>
 							<tr>
 								<th>商品名</th>
@@ -436,7 +436,7 @@
 
 				<h3>英語版認定証</h3>
 				<div class="content">
-					<table>
+					<table id="table_english">
 						<thead>
 							<tr>
 								<th>商品名</th>
