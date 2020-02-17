@@ -4,19 +4,19 @@
         * 初期表示処理
         ********************************/
         //試験情報取得
+
+        //試験名を格納する変数
+        var shiken_mei = "";
+
+        //会員情報を格納する変数
+        var kaiin_no = "";
+        var name = "";
+        var address = "";
+
         jQuery.ajax({
             url: '../../classes/getShutuganJokyo.php',
         }).done((rtn) => {
             getShutuganJokyo = JSON.parse(rtn);
-
-            //試験名を格納する変数
-            var shiken_mei = "";
-
-            //会員情報を格納する変数
-            var kaiin_no = "";
-            var name = "";
-            var address = "";
-
             $.each(getShutuganJokyo, function (i, val) {
                 if (val['shiken_meisai_id'] == $('#shiken_meisai_id').val()) {
                     //試験種別から名称取得し、表示する
@@ -31,17 +31,37 @@
                         getShikenSbt = JSON.parse(rtn);
                         $.each(getShikenSbt, function (i, val) {
                             if (val['meisho_cd'] == shiken_sbt) {
-                                //試験種別を表示
-                                $('#shiken_sbt').append(val['meisho'] + '認定試験<br>');
 
-                                shiken_mei = val['meisho'] + '認定試験';
+                                //試験種別がCSCSの場合、科目選択区分に応じて追記表示する
+                                if (shiken_sbt == 1) {
+                                    switch (kamoku_kbn) {
+                                        case '1':
+                                            //両方
+                                            $('#shiken_sbt').append(val['meisho'] + '認定試験<br>両方(基礎科学、実践／応用)');
+                                            shiken_mei = val['meisho'] + '認定試験【両方(基礎科学、実践／応用)】';
+                                            break;
+                                        case '2':
+                                            //基礎
+                                            $('#shiken_sbt').append(val['meisho'] + '認定試験<br>【基礎科学】');
+                                            shiken_mei = val['meisho'] + '認定試験【基礎科学】';
+                                            break;
+                                        case '3':
+                                            //実践
+                                            $('#shiken_sbt').append(val['meisho'] + '認定試験<br>【実践／応用】');
+                                            shiken_mei = val['meisho'] + '認定試験【実践／応用】';
+                                            break;
+                                    }
+                                } else {
+                                    //試験種別を表示
+                                    $('#shiken_sbt').append(val['meisho'] + '認定試験<br>');
+                                    shiken_mei = val['meisho'] + '認定試験';
+                                }
 
                                 //会員情報取得
                                 jQuery.ajax({
                                     url: '../../classes/getTbkaiinJoho.php',
                                 }).done((rtn) => {
                                     getKaiinJoho = JSON.parse(rtn);
-                                    console.log(getKaiinJoho);
 
                                     kaiin_no = getKaiinJoho[0];
                                     //氏名とメールアドレス表示
@@ -97,25 +117,6 @@
                                 }).fail((rtn) => {
                                     return false;
                                 });
-
-
-                                //試験種別がCSCSの場合、科目選択区分に応じて追記表示する
-                                if (shiken_sbt == 1) {
-                                    switch (kamoku_kbn) {
-                                        case '1':
-                                            //両方
-                                            $('#shiken_sbt').append('両方(基礎科学、実践／応用)');
-                                            break;
-                                        case '2':
-                                            //基礎
-                                            $('#shiken_sbt').append('【基礎科学】');
-                                            break;
-                                        case '3':
-                                            //実践
-                                            $('#shiken_sbt').append('【実践／応用】');
-                                            break;
-                                    }
-                                }
                             }
 
                         });
@@ -159,28 +160,58 @@
        * 出願状況確認画面へボタン押下時
        ********************************/
         $('#return').click(function () {
-            location.href = '../../checkEntryStatus';
+            location.href = '../../checkEntryStatus/';
         });
 
         /********************************
         * 送信ボタン押下時
         ********************************/
         $('#send').click(function () {
-            jQuery.ajax ({
-                url: '../../classes/sendEntryCancelMail.php',
-                type: 'POST',
-                data:
-                {
-                    message: $('#text').val(),
-                },
-            }).done((rtn) =>{
 
-            }).fail((rtn) =>{
+            //エラーメッセージエリア初期化
+            $("#err_mail").html("");
 
-            }); 
+            var wk_err_msg = "";
+            var wk_focus_done = 0;
+
+            //本文未入力チェック
+            if ($("#text").val() == "") {
+                wk_err_msg = "本文が入力されていません。本文を入力してください。";
+                $("#err_mail").html(wk_err_msg);
+                //エラー箇所にフォーカスを当てる
+                if (wk_focus_done == 0) {
+                    $("#text").focus();
+                    wk_focus_done = 1;
+                }
+            }
+
+            // エラーがある場合は、メッセージを表示し、処理を終了する
+            if (wk_err_msg != "") {
+                return false;
+            } else {
+                jQuery.ajax({
+                    url: '../../classes/sendEntryCancelMail.php',
+                    type: 'POST',
+                    data:
+                    {
+                        message: $('#text').val(),
+                        mail_address: address,
+                    },
+                }).done((rtn) => {
+                    if (rtn == 0) {
+                        wk_err_msg = "メールの送信に失敗しました。";
+                        $("#err_mail").html(wk_err_msg);
+                        return false;
+                    } else {
+                        location.href = '../../entryCancelComplete/';
+                    }
+                }).fail((rtn) => {
+                    wk_err_msg = "メールの送信に失敗しました。";
+                    $("#err_mail").html(wk_err_msg);
+                    return false;
+                });
+            }
         });
-
-
 
     });
 })(jQuery);

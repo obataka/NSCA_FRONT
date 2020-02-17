@@ -97,6 +97,9 @@
 						<p>「送信」ボタンを押しますと、事務局へメールが送信されると同時に、ご自身へも控えとしてメールが送信されます。<br>
 							<span class="kome">※事務局から受験キャンセルを受け付ける返信があるまで、マイページの表示は変更されません。</span>
 						</p>
+						<ul class="error_ul">
+							<li class="error" id="err_mail"></li>
+						</ul>
 					</section>
 				</article>
 				<section class="btn_wrap">
