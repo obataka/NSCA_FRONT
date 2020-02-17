@@ -34,8 +34,11 @@
 			<div class="clearfix">
 				<button class="button top_btn" type="submit" value="" onclick="location.href='#'"><span>買い物カゴ</span></button>
 			</div>
+			<div>
+				<button class="button top_btn" id="login_button" value="" onclick="location.href='#'"><span>マイページログイン</span></button>
+			</div>
 			<section>
-				<h3>CSCS</h3>
+				<h3 id="title_cscs">CSCS</h3>
 				<div class="content">
 					<table id="table_cscs">
 						<thead>
@@ -75,7 +78,7 @@
 					</table>
 				</div>
 
-				<h3>NSCA-CPT</h3>
+				<h3 id="title_cscs">NSCA-CPT</h3>
 				<div class="content">
 					<table id="table_nsca">
 						<thead>
@@ -115,7 +118,7 @@
 					</table>
 				</div>
 
-				<h3>ジャーナル</h3>
+				<h3 id="title_journal">ジャーナル</h3>
 				<div class="content">
 					<table id="table_journal">
 						<thead>
@@ -155,9 +158,9 @@
 					</table>
 				</div>
 
-				<h3>セミナー動画</h3>
+				<h3 id="title_doga">セミナー動画</h3>
 				<div class="content">
-					<table id="table_douga">
+					<table id="table_doga">
 						<thead>
 							<tr>
 								<th>商品名</th>
@@ -168,20 +171,7 @@
 							<tr>
 								<td>
 									<div>
-										<img src="https://placehold.jp/150x150.png">
-										<p class="product_name">テキストテキストテキスト</p>											
-									</div>
-									<button class="button pc_bl" type="button" value="" onclick="location.href='#'"><span>詳細</span></button>
-								</td>
-								<td data-label="販売価格" class="price">会員価格：0000円</td>
-								<td class="sp_bl">
-									<button class="button" type="button" value="" onclick="location.href='#'"><span>詳細</span></button>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<div>
-										<img src="https://placehold.jp/150x150.png">
+										<iframe width="280" height="157.5" src="https://www.youtube.com/embed/EdAO_p6msC0" frameborder="0" allowfullscreen></iframe>
 										<p class="product_name">テキストテキストテキスト</p>											
 									</div>
 									<button class="button pc_bl" type="button" value="" onclick="location.href='#'"><span>詳細</span></button>
@@ -195,7 +185,7 @@
 					</table>
 				</div>
 
-				<h3>エクササイズDVD</h3>
+				<h3 id="title_dvd">エクササイズDVD</h3>
 				<div class="content">
 						<table id="table_dvd">
 						<thead>
@@ -235,7 +225,7 @@
 					</table>
 				</div>
 
-				<h3>その他書籍</h3>
+				<h3 id="title_other">その他書籍</h3>
 				<div class="content">
 					<table id="table_other">
 						<thead>
@@ -275,7 +265,7 @@
 					</table>
 				</div>
 
-				<h3>オリジナル商品</h3>
+				<h3 id="title_original">オリジナル商品</h3>
 				<div class="content">
 					<table id="table_original">
 						<thead>
@@ -315,7 +305,7 @@
 					</table>
 				</div>
 
-				<h3>ホームスタディ</h3>
+				<h3 id="title_homestudy">ホームスタディ</h3>
 					<table id="table_homestudy">
 						<thead>
 							<tr>
@@ -354,7 +344,7 @@
 					</table>
 				</div>
 
-				<h3>名刺タイプA</h3>
+				<h3 id="title_meishi_a">名刺タイプA</h3>
 				<div class="content">
 					<table id="table_meishi_a">
 						<thead>
@@ -394,7 +384,7 @@
 					</table>
 				</div>
 
-				<h3>名刺タイプB</h3>
+				<h3 id="title_meishi_b">名刺タイプB</h3>
 				<div class="content">
 					<table id="table_meishi_b">
 						<thead>
@@ -434,7 +424,7 @@
 					</table>
 				</div>
 
-				<h3>英語版認定証</h3>
+				<h3 id="title_english">英語版認定証</h3>
 				<div class="content">
 					<table id="table_english">
 						<thead>
@@ -475,6 +465,16 @@
 				</div>
 
 			</section>
+
+
+			<p class="text" id="no_login_info">
+				NSCAジャパン会員専用サイト「マイページ」にログインすると、会員限定商品の購入も可能になります！<br>
+				会員限定商品には、資格認定者限定の「名刺」や「英語版認定証」をはじめ、
+				NSCAジャパン会員だけしか購入することができないアイテムを用意しております。<br>
+				NSCAジャパン会員の方は、【マイページログイン】 のボタンを押してログインください。<br>
+				まだの方は、NSCAジャパン会員になりますとお安くご購入いただけます！ <br>
+			</p>
+
 
 			<h3>新着情報</h3>
 			<div class="news">
