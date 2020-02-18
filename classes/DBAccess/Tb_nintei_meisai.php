@@ -127,9 +127,85 @@ class Tb_nintei_meisai
         return $CPTninteibi;
     }
 
+    public function countcscsShutokujokyo($db, $param)
+    {
+        try {
+            $sth = $db->prepare("SELECT
+                                    COUNT(*)
+                                 FROM
+                                    tb_nintei_meisai
+                                 WHERE
+                                    kaiin_no = :kaiin_no
+                                 AND
+                                    shiken_sbt_kbn = 1
+                                 AND 
+                                    sakujo_flg = 0
+                                 AND 
+                                    NULLIF(nintei_no, '') IS NOT NULL 
+                                 AND 
+                                    ninteibi IS NOT NULL  
+                                 AND
+                                    torikeshi_hizuke IS NULL
+                                ");
+            // $sth->execute([':kaiin_no' => '10251033',]);
+            $sth->execute([':kaiin_no' => $param['kaiin_no'],]);
+            $countcscs = $sth->fetch();
+        } catch (\PDOException $e) {
+            $countcscs = [];
+        }
+        return $countcscs;
+    }
 
+    public function countcptShutokujokyo($db, $param)
+    {
+        try {
+            $sth = $db->prepare("SELECT
+                                    COUNT(*)
+                                 FROM
+                                    tb_nintei_meisai
+                                 WHERE
+                                    kaiin_no = :kaiin_no
+                                 AND
+                                    shiken_sbt_kbn = 2
+                                 AND 
+                                    sakujo_flg = 0
+                                 AND 
+                                    NULLIF(nintei_no, '') IS NOT NULL 
+                                 AND 
+                                    ninteibi IS NOT NULL  
+                                 AND
+                                    torikeshi_hizuke IS NULL
+                                ");
+            // $sth->execute([':kaiin_no' => '10251033',]);
+            $sth->execute([':kaiin_no' => $param['kaiin_no'],]);
+            $countcpt = $sth->fetch();
+        } catch (\PDOException $e) {
+            $countcpt = [];
+        }
+        return $countcpt;
+    }
 
-
-
+    public function getceuKanrihi($db, $param)
+    {
+        try {
+            $sth = $db->prepare("SELECT 
+                                    
+                                 FROM
+                                    tb_nintei_meisai
+                                 WHERE
+                                    kaiin_no = :kaiin_no
+                                 AND 
+                                    sakujo_flg = 0
+                                 AND
+                                    torikeshi_hizuke IS NULL
+                                ");
+            // $sth->execute([':kaiin_no' => '10251033',]);
+            $sth->execute([':kaiin_no' => $param['kaiin_no'],]);
+            $countcpt = $sth->fetch();
+        } catch (\PDOException $e) {
+            $countcpt = [];
+        }
+        return $countcpt;
+    }
 
 }

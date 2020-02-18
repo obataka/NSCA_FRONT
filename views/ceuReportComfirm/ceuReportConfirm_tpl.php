@@ -18,7 +18,7 @@
         <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.1.1.min.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
-        <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="../../viewIncludeFiles/js/ceuReportConfirm.js"></script>
 			<script type="text/javascript" src="../../viewIncludeFiles/js/header.js"></script>
     </head>
     <body>
@@ -39,23 +39,23 @@
 				<table>
 					<tr>
 						<th><span class="required">必須</span>会員番号</th>
-						<td class="clearfix"></td>
+						<td class="clearfix" id="kaiin_no"></td>
 					</tr>
 					<tr>
 						<th><span class="required">必須</span>氏名</th>
-						<td class="clearfix"></td>
+						<td class="clearfix" id="shimei"></td>
 					</tr>
 					<tr>
 						<th><span class="required">必須</span>フリガナ</th>
-						<td></td>
+						<td id="furigana"></td>
 					</tr>
 					<tr>
 						<th><span class="required">必須</span>電話番号</th>
-						<td></td>
+						<td id="tel"></td>
 					</tr>
 					<tr>
 						<th><span class="required">必須</span>メールアドレス</th>
-						<td></td>
+						<td id="address"></td>
 					</tr>
 					<tr>
 						<th><span class="any"></span>CSCS</th>

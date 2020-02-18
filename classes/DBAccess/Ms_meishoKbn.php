@@ -187,4 +187,24 @@ class Ms_meishoKbn
 
         return $ms_meisho;
     }
+
+    //ŽŽŒ±Ží•ÊŽæ“¾
+    public function findByShikenSbtKbn($db, $param)
+    {
+        try {
+            $sth = $db->prepare("SELECT ms_meisho.meisho 
+            FROM   ms_meisho, tb_nintei_meisai
+            WHERE  ms_meisho.meisho_kbn = 1
+            AND    ms_meisho.meisho_cd = tb_nintei_meisai.shiken_sbt_kbn
+            AND    tb_nintei_meisai.kaiin_no = :kaiin_no
+            ");
+            $sth->execute([':kaiin_no' => $param['kaiin_no'],]);
+            $ms_meisho = $sth->fetchAll();
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true) . PHP_EOL, '3', 'error_log.txt');
+            $ms_meisho = [];
+        }
+
+        return $ms_meisho;
+    }
 }
