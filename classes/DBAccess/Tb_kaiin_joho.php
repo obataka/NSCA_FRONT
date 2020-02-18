@@ -827,39 +827,38 @@ SQL;
     {
         try {
             $db = Db::getInstance();
-            $sth = $db->prepare("SELECT joho.kaiin_no
- 	, CONCAT(shimei_sei ,'　', shimei_mei) as kaiin_name
-	, kaiin_sbt_kbn
-	, meisho_kaiin_sbt.meisho as kaiin_sbt
-	, DATE_FORMAT(nyukaibi,'%Y/%m/%d') as yuko_hizuke
-	, DATE_FORMAT(yuko_hizuke,'%Y/%m/%d') as yuko_hizuke
-	, eibun_option_kbn
-	, meisho_eibun.meisho as eibun_option
-	, taikai_shorui_juribi
-	, hasso_teishibi
-	, kaihi_kessai_error_code
-	, eibun_option_kikan_to
-FROM tb_kaiin_joho joho
-	
-LEFT JOIN tb_kaiin_jotai jotai
-	ON  joho.kaiin_no = jotai.kaiin_no
-LEFT JOIN tb_kaiin_journal journal 
-	ON  joho.kaiin_no = journal.kaiin_no
+            $sth = $db->prepare("
+	SELECT joho.kaiin_no
+	 	, CONCAT(shimei_sei ,'　', shimei_mei) as kaiin_name
+		, kaiin_sbt_kbn
+		, meisho_kaiin_sbt.meisho as kaiin_sbt
+		, DATE_FORMAT(nyukaibi,'%Y/%m/%d') as yuko_hizuke
+		, DATE_FORMAT(yuko_hizuke,'%Y/%m/%d') as yuko_hizuke
+		, eibun_option_kbn
+		, meisho_eibun.meisho as eibun_option
+		, taikai_shorui_juribi
+		, hasso_teishibi
+		, kaihi_kessai_error_code
+		, eibun_option_kikan_to
+	FROM tb_kaiin_joho joho
+		
+	LEFT JOIN tb_kaiin_jotai jotai
+		ON  joho.kaiin_no = jotai.kaiin_no
+	LEFT JOIN tb_kaiin_journal journal 
+		ON  joho.kaiin_no = journal.kaiin_no
 
--- 名称取得（会員種別）
-LEFT JOIN (SELECT meisho_cd,meisho FROM ms_meishoKbn,ms_meisho 
-		WHERE ms_meishoKbn.meisho_id = ms_meisho.meisho_id
-	    AND meisho_kbn = 10)  meisho_kaiin_sbt
-	ON meisho_kaiin_sbt.meisho_cd = kaiin_sbt_kbn
--- 名称取得（英文オプション）
-LEFT JOIN (SELECT meisho_cd,meisho FROM ms_meishoKbn,ms_meisho 
-		WHERE ms_meishoKbn.meisho_id = ms_meisho.meisho_id
-	    AND meisho_kbn = 12)  meisho_eibun
-	ON meisho_eibun.meisho_cd = journal.eibun_option_kbn
+	-- 名称取得（会員種別）
+	LEFT JOIN vms_meisho meisho_kaiin_sbt
+		ON meisho_kaiin_sbt.meisho_cd = kaiin_sbt_kbn
+		AND meisho_kaiin_sbt.meisho_kbn = 10
+	-- 名称取得（英文オプション）
+	LEFT JOIN vms_meisho meisho_eibun
+		ON meisho_eibun.meisho_cd = journal.eibun_option_kbn
+		AND meisho_eibun.meisho_kbn = 12
 
-WHERE joho.kaiin_no = :kaiin_no
-    AND toroku_jokyo_kbn = 1
-    AND joho.sakujo_flg = 0
+	WHERE joho.kaiin_no = :kaiin_no
+	    AND toroku_jokyo_kbn = 1
+	    AND joho.sakujo_flg = 0
 ;
 
             ");

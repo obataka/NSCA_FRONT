@@ -18,25 +18,23 @@ class Tb_hambai_joho
             $db = Db::getInstance();
             $sth = $db->prepare("
 
+ SELECT * 
+ FROM(
 	SELECT
 		tb_hambai_joho.hambai_id,
+		tb_hambai_joho.shurui,
 		tb_hambai_joho.hambai_kbn,
-		tb_hambai_joho.hambai_settei_kbn,
-		tb_hambai_joho.keiri_shumoku_cd_2,
-		ifnull(tb_hambai_joho.shikaku_kbn,0) AS shikaku_kbn,
+--		tb_hambai_joho.hambai_settei_kbn,
+--		tb_hambai_joho.keiri_shumoku_cd_2,
+--		ifnull(tb_hambai_joho.shikaku_kbn,0) AS shikaku_kbn,
       	tb_hambai_joho.hambai_title,
 		tb_hambai_joho.hambai_title_chuigaki,
 		tb_hambai_joho.hambai_title_tsuiki,
 		tb_hambai_joho.gaiyo,
 		tb_hambai_joho.setsumei,
 		tb_hambai_joho.gazo_url,
-		tb_hambai_joho.setsumei_gazo_url_1,
-		tb_hambai_joho.setsumei_gazo_url_2,
-		tb_hambai_joho.setsumei_gazo_url_3,
-		tb_hambai_joho.setsumei_gazo_url_4,
-		tb_hambai_joho.pdf_url,
 
--- 会員種別などにより取得する価格を設定（一般・正会員・学生会員・利用登録・流山市民）
+	-- 会員種別などにより取得する価格を設定（一般・正会員・学生会員・利用登録・流山市民）
 		CASE 
 			WHEN kaiin_no IS NULL THEN FLOOR(ippan_kakaku * zeiritu)                     -- 一般（登録なし）
 			WHEN nagareyama_shimin = 1 THEN FLOOR(nagareyama_shimin_kakaku * zeiritu)   -- 流山市民
@@ -60,8 +58,22 @@ class Tb_hambai_joho
 		'会員' AS kaiin_kakaku_title,
 
 		tb_hambai_joho.menu_sort_jun,
-		tb_hambai_joho.hambai_sort_jun
+		tb_hambai_joho.hambai_sort_jun,
+		kaiin_sbt_kbn,
+		ifnull(shutoku_jokyo,0) AS shutoku_jokyo,
+		tb_hambai_joho_seigen_shikaku_nashi.meisho_cd AS hyoji_seigen,
+		tb_hambai_joho_seigen_shikaku_ari.meisho_cd AS hyoji_seigen_shikaku
 	FROM tb_hambai_joho 
+	LEFT JOIN tb_hambai_joho_seigen AS tb_hambai_joho_seigen_shikaku_nashi
+			ON tb_hambai_joho.hambai_id = tb_hambai_joho_seigen_shikaku_nashi.hambai_id
+			AND tb_hambai_joho_seigen_shikaku_nashi.sakujo_flg = 0
+			AND tb_hambai_joho_seigen_shikaku_nashi.seigen_kbn = 0                        -- 表示制限
+			AND tb_hambai_joho_seigen_shikaku_nashi.meisho_cd < 4                        -- 資格認定
+	LEFT JOIN tb_hambai_joho_seigen AS tb_hambai_joho_seigen_shikaku_ari
+			ON tb_hambai_joho_seigen_shikaku_nashi.hambai_id = tb_hambai_joho_seigen_shikaku_ari.hambai_id
+			AND tb_hambai_joho_seigen_shikaku_ari.sakujo_flg = 0
+			AND tb_hambai_joho_seigen_shikaku_ari.seigen_kbn = 0                        -- 表示制限
+			AND tb_hambai_joho_seigen_shikaku_ari.meisho_cd = 4                        -- 資格認定
 	LEFT JOIN (
 			SELECT 
 		 CASE 
@@ -89,29 +101,26 @@ class Tb_hambai_joho
 			) tb_kaiin_ceu
 			ON 1=1
 	WHERE tb_hambai_joho.sakujo_flg = 0
-		-- 販売中、在庫切れ
-		AND (tb_hambai_joho.hambai_settei_kbn = 1 OR tb_hambai_joho.hambai_settei_kbn = 3)
-		-- 学生会員はデータ取得しない
-		-- 会員＋CSCSのみ
-		AND (((kaiin_sbt_kbn = 1) AND (shutoku_jokyo = 1) 
-		AND ((ifnull(shikaku_kbn,0) = 1) OR (ifnull(shikaku_kbn,0) = 2) OR (ifnull(shikaku_kbn,0) = 3) OR (ifnull(shikaku_kbn,0) = 0)))
-		-- 会員＋NSCA-CPTのみ
-		OR ((kaiin_sbt_kbn = 1) AND (shutoku_jokyo = 2) 
-		AND ((ifnull(shikaku_kbn,0) = 1) OR (ifnull(shikaku_kbn,0) = 2) OR (ifnull(shikaku_kbn,0) = 4) OR (ifnull(shikaku_kbn,0) = 0)))
-		-- 会員＋両認定
-		OR ((kaiin_sbt_kbn = 1) AND (shutoku_jokyo = 3) 
-		AND ((ifnull(shikaku_kbn,0) = 1) OR (ifnull(shikaku_kbn,0) = 3) OR (ifnull(shikaku_kbn,0) = 4) OR (ifnull(shikaku_kbn,0) = 5) OR (ifnull(shikaku_kbn,0) = 0)))	-- いずれかの認定は除く
-		-- 会員＋資格なし
-		OR ((kaiin_sbt_kbn = 1) AND (shutoku_jokyo = 0) 
-		AND ((ifnull(shikaku_kbn,0) = 1) OR (ifnull(shikaku_kbn,0) = 0)))
+		-- 掲載期間
+		AND tb_hambai_joho.keisai_kikan_kaishi <= now()
+		AND tb_hambai_joho.keisai_kikan_shuryo >= now()
 
-		-- 一般(未ログイン)
-		OR ((kaiin_sbt_kbn IS NULL) AND (ifnull(shikaku_kbn,0) = 0)))
+ )	hanbai_joho
+WHERE 
+-- 一般(未ログイン)
+(hyoji_seigen = 1 AND :kaiin_no = '')
+-- 登録会員・資格なし
+OR (hyoji_seigen = 2 AND hyoji_seigen_shikaku IS NULL AND kaiin_sbt_kbn = 0)
+-- 登録会員・資格あり
+OR (hyoji_seigen = 2 AND hyoji_seigen_shikaku IS NOT NULL AND kaiin_sbt_kbn = 0 AND shutoku_jokyo > 0)
+-- 会員・資格なし
+OR (hyoji_seigen = 3 AND hyoji_seigen_shikaku IS NULL AND kaiin_sbt_kbn = 1)
+-- 会員・資格あり
+OR (hyoji_seigen = 3 AND hyoji_seigen_shikaku IS NOT NULL AND kaiin_sbt_kbn = 1 AND shutoku_jokyo > 0)
 
+ORDER BY menu_sort_jun,hambai_sort_jun
 
-	ORDER BY tb_hambai_joho.menu_sort_jun,tb_hambai_joho.hambai_sort_jun
 ;
-
 
             ");
             $sth->execute([':kaiin_no' => $kaiinNo]);
