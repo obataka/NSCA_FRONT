@@ -7,18 +7,18 @@ class Cm_hitsuyo_ceu
     {
     }
 
-    public function findByceuKanrihi($db, $param)
+    public function findByceuKanrihi($db, $ninteibi, $nendo_id)
     {
         try {
-            $sth = $db->prepare("SELECT cm_hitsuyo_ceu.ceu_kanrihi
-            FROM   cm_hitsuyo_ceu, tb_nintei_meisai, cm_control
-            WHERE  cm_hitsuyo_ceu.nendo_id = cm_control.nendo_id
-            AND    ms_meisho.ninteibi_from <= tb_nintei_meisai.ninteibi
-            AND    ms_meisho.ninteibi_to >= tb_nintei_meisai.ninteibi
+            $sth = $db->prepare("SELECT ceu_kanrihi
+            FROM   cm_hitsuyo_ceu
+            WHERE  nendo_id = $nendo_id
+            AND    ninteibi_from <= $ninteibi
+            AND    ninteibi_to >= $ninteibi
             GROUP BY ceu_kanrihi
             ");
-            $sth->execute([':kaiin_no' => $param['kaiin_no'],]);
-            $kanrihi = $sth->fetch();
+            $sth->execute();
+            $kanrihi = $sth->fetchAll();
         } catch (\PDOException $e) {
             error_log(print_r($e, true) . PHP_EOL, '3', 'error_log.txt');
             $kanrihi = [];

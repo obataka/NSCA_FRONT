@@ -54,6 +54,9 @@
         if (rtn == 0) {
             return false;
         } else {
+            console.log(rtn);
+            getceuKanrihi = JSON.parse(rtn);
+            
         }
             
     }).fail((rtn) => {
