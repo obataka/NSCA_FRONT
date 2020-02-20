@@ -231,7 +231,7 @@ class Tb_nintei_meisai
                                  WHERE
                                     a.kaiin_no = :kaiin_no
                                  AND 
-                                    sakujo_flg = 0
+                                    a.sakujo_flg = 0
                                 ");
          // $sth->execute([':kaiin_no' => '10251033',]);
          $sth->execute([':kaiin_no' => $param['kaiin_no'],]);
@@ -247,7 +247,7 @@ class Tb_nintei_meisai
 
       try {
          $sth = $db->prepare("SELECT 
-                                    $shiken_sbt_kbn AS shiken_sbt_kbn, $ceu_kanrihi AS ceu_kanrihi
+                                    '$shiken_sbt_kbn' AS shiken_sbt_kbn, $ceu_kanrihi AS ceu_kanrihi
                                  FROM
                                     tb_nintei_meisai
                                  WHERE
@@ -270,7 +270,7 @@ class Tb_nintei_meisai
    {
       try {
          $sth = $db->prepare("SELECT 
-                                    $shiken_sbt_kbn AS shiken_sbt_kbn, $ceu_kanrihi AS ceu_kanrihi
+                                    '$shiken_sbt_kbn' AS shiken_sbt_kbn, $ceu_kanrihi AS ceu_kanrihi
                                  FROM
                                     tb_nintei_meisai a
                                  LEFT JOIN tb_nintei_meisai cscs_nintei
@@ -286,7 +286,7 @@ class Tb_nintei_meisai
                                  WHERE
                                     a.kaiin_no = :kaiin_no
                                  AND 
-                                    sakujo_flg = 0
+                                    a.sakujo_flg = 0
                                 ");
          // $sth->execute([':kaiin_no' => '10251033',]);
          $sth->execute([':kaiin_no' => $param['kaiin_no'],]);

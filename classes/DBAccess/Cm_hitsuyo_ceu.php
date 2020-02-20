@@ -13,8 +13,8 @@ class Cm_hitsuyo_ceu
             $sth = $db->prepare("SELECT ceu_kanrihi
             FROM   cm_hitsuyo_ceu
             WHERE  nendo_id = $nendo_id
-            AND    ninteibi_from <= $ninteibi
-            AND    ninteibi_to >= $ninteibi
+            AND    ninteibi_from <= '$ninteibi'
+            AND    ninteibi_to >= '$ninteibi'
             GROUP BY ceu_kanrihi
             ");
             $sth->execute();

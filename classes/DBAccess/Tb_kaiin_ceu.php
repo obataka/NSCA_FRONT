@@ -263,4 +263,238 @@ class Tb_kaiin_ceu
         return $TotalValue;
     }
 
+    /*
+    * 更新処理
+    * @param array $param
+    * @return boolean
+    */
+    public function updateRecCSCS($db, $param)
+    {
+        try {
+            $sql = <<<SQL
+                UPDATE tb_kaiin_ceu
+                SET
+                	  cpraed_kakunin_kbn            = 1
+                    , cpraed_kakunimbi              = CONVERT(SMALLDATETIME,GETDATE(),111)
+                    , nonyubi                       = :nonyubi
+                    , nonyu_hoho_kbn                = :NULL
+                    , nonyu_kingaku                 = :NULL
+                    , shikaku_koshinryo_nofu_kbn    = :0
+                    , kanryo_hizuke                 = :nonyubi
+                    , koshin_user_id                = :koshin_user_id
+                WHERE
+                    shiken_sbt_kbn = 1
+                AND
+                    kaiin_no = :kaiin_no
+                AND
+                    nendo_id = :nendo_id;
+SQL;
+            $sth = $db->prepare($sql);
+            $sth->execute([
+                ':kaiin_no'                         => $param['kaiin_no'],
+                ':koshin_user_id'                   => $param['user_id'],
+                ':nonyubi'                          => $param['nonyubi'],
+                ':nendo_id'                         => $param['nendo_id'],
+            ]);
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/sugai_log.txt');
+            $db->rollBack();
+            return FALSE;
+        }
+        return TRUE;
+    }
+
+    public function insertRecCSCS($db, $param)
+    {
+        try {
+            $sql = <<<SQL
+                INSERT INTO tb_kaiin_ceu
+                (
+                    kaiin_no
+                    nendo_id,
+                    shiken_sbt_kbn,
+                    cpraed_kakunin_kbn,
+                    cpraed_kakunimbi,
+                    sikaku_koshinryo_nofu_kbn,
+                    nonyubi,
+                    nonyu_hoho_kbn,
+                    nonyu_kingaku,
+                    kanryo_hizuke,
+                    sakujo_flg,
+                    sakusei_user_id,
+                    koushin_user_id
+
+                )
+                VALUES
+                (
+                    :kaiin_no,
+                    :nendo_id,
+                    1,
+                    1,
+                    CONVERT(SMALLDATETIME,GETDATE(),111)
+                    0,
+                    :nonyubi,
+                    :NULL,
+                    :NULL,
+                    :nonyubi,
+                    0,
+                    :koshin_user_id,
+                    :koshin_user_id
+                );
+SQL;
+            $sth = $db->prepare($sql);
+            $sth->execute([
+                ':kaiin_no'                         => $param['kaiin_no'],
+                ':koshin_user_id'                   => $param['user_id'],
+                ':nonyubi'                          => $param['nonyubi'],
+                ':nendo_id'                         => $param['nendo_id'],
+            ]);
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/sugai_log.txt');
+            $db->rollBack();
+            return FALSE;
+        }
+        return TRUE;
+    }
+
+    public function updateRecCPT($db, $param)
+    {
+        try {
+            $sql = <<<SQL
+                UPDATE tb_kaiin_ceu
+                SET
+                	  cpraed_kakunin_kbn            = 1
+                    , cpraed_kakunimbi              = CONVERT(SMALLDATETIME,GETDATE(),111)
+                    , nonyubi                       = :nonyubi
+                    , nonyu_hoho_kbn                = :NULL
+                    , nonyu_kingaku                 = :NULL
+                    , shikaku_koshinryo_nofu_kbn    = :0
+                    , kanryo_hizuke                 = :nonyubi
+                    , koshin_user_id                = :koshin_user_id
+                WHERE
+                    shiken_sbt_kbn = 2
+                AND
+                    kaiin_no = :kaiin_no
+                AND
+                    nendo_id = :nendo_id;
+SQL;
+            $sth = $db->prepare($sql);
+            $sth->execute([
+                ':kaiin_no'                         => $param['kaiin_no'],
+                ':koshin_user_id'                   => $param['user_id'],
+                ':nonyubi'                          => $param['nonyubi'],
+                ':nendo_id'                         => $param['nendo_id'],
+            ]);
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/sugai_log.txt');
+            $db->rollBack();
+            return FALSE;
+        }
+        return TRUE;
+    }
+
+    public function insertRecCPT($db, $param)
+    {
+        try {
+            $sql = <<<SQL
+                INSERT INTO tb_kaiin_ceu
+                (
+                    kaiin_no,
+                    nendo_id,
+                    shiken_sbt_kbn,
+                    cpraed_kakunin_kbn,
+                    cpraed_kakunimbi,
+                    sikaku_koshinryo_nofu_kbn,
+                    nonyubi,
+                    nonyu_hoho_kbn,
+                    nonyu_kingaku,
+                    kanryo_hizuke,
+                    sakujo_flg,
+                    sakusei_user_id,
+                    koushin_user_id
+
+                )
+                VALUES
+                (
+                    :kaiin_no,
+                    :nendo_id,
+                    2,
+                    1,
+                    CONVERT(SMALLDATETIME,GETDATE(),111)
+                    0,
+                    :nonyubi,
+                    :NULL,
+                    :NULL,
+                    :nonyubi,
+                    0,
+                    :koshin_user_id,
+                    :koshin_user_id
+                );
+SQL;
+            $sth = $db->prepare($sql);
+            $sth->execute([
+                ':kaiin_no'                         => $param['kaiin_no'],
+                ':koshin_user_id'                   => $param['user_id'],
+                ':nonyubi'                          => $param['nonyubi'],
+                ':nendo_id'                         => $param['nendo_id'],
+            ]);
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/sugai_log.txt');
+            $db->rollBack();
+            return FALSE;
+        }
+        return TRUE;
+    }
+
+    public function chkExistsCSCS($db, $param)
+    {
+        try {
+            $sth = $db->prepare("SELECT 
+                                    *
+                                FROM
+                                    tb_kaiin_ceu
+                                WHERE
+                                    kaiin_no = :kaiin_no
+                                AND 
+                                    shiken_sbt_kbn = 1
+                                AND
+                                    nendo_id = :nendo_id");
+            $sth->execute([
+                ':kaiin_no'                         => $param['kaiin_no'],
+                ':nendo_id'                         => $param['nendo_id'],
+            ]);
+            $cscs = $sth->fetchAll();
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/shibata_log.txt');
+            $cscs = [];
+      }
+      return $cscs;
+    }
+
+    public function chkExistsCPT($db, $param)
+    {
+        try {
+            $sth = $db->prepare("SELECT 
+                                    *
+                                FROM
+                                    tb_kaiin_ceu
+                                WHERE
+                                    kaiin_no = :kaiin_no
+                                AND 
+                                    shiken_sbt_kbn = 2
+                                AND
+                                    nendo_id = :nendo_id");
+            $sth->execute([
+                ':kaiin_no'                         => $param['kaiin_no'],
+                ':nendo_id'                         => $param['nendo_id'],
+            ]);
+            $cpt = $sth->fetchAll();
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/shibata_log.txt');
+            $cpt = [];
+      }
+      return $cpt;
+    }
+
+
 }

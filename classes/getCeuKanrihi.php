@@ -46,57 +46,27 @@ if ($cnt_cpt[0]['COUNT(*)'] != 0 && $cnt_cscs[0]['COUNT(*)'] != 0) {
 
     //認定明細のレコード取得
     $nintei_meisai = (new Tb_nintei_meisai())->findByNinteiMeisaiRyo($db, $param);
-
     $result = [];
 
     for ($i = 0; $i < count($nintei_meisai); $i++) {
-        if ($nintei_meisai[$i]['shiken_sbt_kbn'] == 1) {
-            if ($nintei_meisai[$i]['ninteibi'] >= $nintei_meisai[1]['ninteibi']) {
-                //年度ID取得
-                $nendo_id = (new Cm_control())->findByNendoId($db);
+        if ($nintei_meisai[$i][2] == 1) {
+            //年度ID取得
+            $nendo_id = (new Cm_control())->findByNendoId($db);
 
-                //試験種別区分取得
-                $shiken_sbt_kbn = (new Ms_meishoKbn())->findByShikenSbtKbn($db, $nintei_meisai[$i]['shiken_sbt_kbn']);
+            //試験種別区分取得
+            $shiken_sbt_kbn = (new Ms_meishoKbn())->findByShikenSbtKbn($db, $nintei_meisai[$i][2]);
 
+            if ($nintei_meisai[$i][3] >= $nintei_meisai[1][3]) {
                 //管理費取得
-                $ceu_kanrihi = (new Cm_hitsuyo_ceu())->findByceuKanrihi($db, $nintei_meisai[$i]['ninteibi'], $nendo_id['nendo_id']);
+                $ceu_kanrihi = (new Cm_hitsuyo_ceu())->findByceuKanrihi($db, $nintei_meisai[$i][3], $nendo_id['nendo_id']);
 
                 //税率取得
                 $zeiritsu = getShohizei($db);
 
-                $ceu_kanrihi = $ceu_kanrihi / 2 * $zeiritsu;
+                $wk_ceu_kanrihi = $ceu_kanrihi[0]['ceu_kanrihi'] / 2 * $zeiritsu;
             } else {
                 //管理費取得
-                $ceu_kanrihi = (new Cm_hitsuyo_ceu())->findByceuKanrihi($db, $nintei_meisai[$i]['ninteibi'], $nendo_id)['nendo_id'];
-
-                //税率取得
-                $zeiritsu = getShohizei($db);
-
-                $ceu_kanrihi = $ceu_kanrihi * $zeiritsu;
-            }
-
-            $result[] = (new Tb_nintei_meisai())->getceuKanrihiRyo($db, $param, $shiken_sbt_kbn, $ceu_kanrihi);
-        } else if ($nintei_meisai[$i]['shiken_sbt_kbn'] == 2) {
-            if ($nintei_meisai[$i]['ninteibi'] >= $nintei_meisai[0]['ninteibi']) {
-                //年度ID取得
-                $nendo_id = (new Cm_control())->findByNendoId($db);
-
-                //試験種別区分取得
-                $shiken_sbt_kbn = (new Ms_meishoKbn())->findByShikenSbtKbn($db, $nintei_meisai[$i]['shiken_sbt_kbn']);
-
-                //管理費取得
-                $ceu_kanrihi = (new Cm_hitsuyo_ceu())->findByceuKanrihi($db, $nintei_meisai[$i]['ninteibi'], $nendo_id['nendo_id']);
-
-                //税率取得
-                $zeiritsu = getShohizei($db);
-
-                $ceu_kanrihi[0]['ceu_kanrihi'] = $ceu_kanrihi / 2 * $zeiritsu;
-            } else {
-                //年度ID取得
-                $nendo_id = (new Cm_control())->findByNendoId($db);
-
-                //管理費取得
-                $ceu_kanrihi = (new Cm_hitsuyo_ceu())->findByceuKanrihi($db, $nintei_meisai[$i]['ninteibi'], $nendo_id['nendo_id']);
+                $ceu_kanrihi = (new Cm_hitsuyo_ceu())->findByceuKanrihi($db, $nintei_meisai[$i][3], $nendo_id['nendo_id']);
 
                 //税率取得
                 $zeiritsu = getShohizei($db);
@@ -104,39 +74,81 @@ if ($cnt_cpt[0]['COUNT(*)'] != 0 && $cnt_cscs[0]['COUNT(*)'] != 0) {
                 $wk_ceu_kanrihi = $ceu_kanrihi[0]['ceu_kanrihi'] * $zeiritsu;
             }
 
-            $result[] = (new Tb_nintei_meisai())->getceuKanrihiRyo($db, $param, $shiken_sbt_kbn[$i]['meisho'], $wk_ceu_kanrihi);
+            $result[] = (new Tb_nintei_meisai())->getceuKanrihiRyo($db, $param, $shiken_sbt_kbn[0]['meisho'], $wk_ceu_kanrihi);
+
+        } else if ($nintei_meisai[$i][2] == 2) {
+            //年度ID取得
+            $nendo_id = (new Cm_control())->findByNendoId($db);
+
+            //試験種別区分取得
+            $shiken_sbt_kbn = (new Ms_meishoKbn())->findByShikenSbtKbn($db, $nintei_meisai[$i][2]);
+
+            if ($nintei_meisai[$i][3] >= $nintei_meisai[0][3]) {
+
+                //管理費取得
+                $ceu_kanrihi = (new Cm_hitsuyo_ceu())->findByceuKanrihi($db, $nintei_meisai[$i][3], $nendo_id['nendo_id']);
+
+                //税率取得
+                $zeiritsu = getShohizei($db);
+
+                $wk_ceu_kanrihi = $ceu_kanrihi[0]['ceu_kanrihi'] / 2 * $zeiritsu;
+
+            } else {
+                //管理費取得
+                $ceu_kanrihi = (new Cm_hitsuyo_ceu())->findByceuKanrihi($db, $nintei_meisai[$i][3], $nendo_id['nendo_id']);
+
+                //税率取得
+                $zeiritsu = getShohizei($db);
+
+                $wk_ceu_kanrihi = $ceu_kanrihi[0]['ceu_kanrihi'] * $zeiritsu;
+            }
+
+            $result[] = (new Tb_nintei_meisai())->getceuKanrihiRyo($db, $param, $shiken_sbt_kbn[0]['meisho'], $wk_ceu_kanrihi);
         }
     }
+
+    // 該当データなしの場合
+    if ($result == '') {
+        echo 0;
+        // 該当データありの場合
+    } else {
+        echo json_encode($result);
+    }
+    
 } else {
 
-    //認定明細のカラム取得
+    $result = [];
     if ($cnt_cscs[0]['COUNT(*)'] != 0) {
         $wk_shiken_sbt_kbn = 1;
+        //認定明細のカラム取得
         $nintei_meisai = (new Tb_nintei_meisai())->findByNinteiMeisai($db, $param, $wk_shiken_sbt_kbn);
 
         //年度ID取得
         $nendo_id = (new Cm_control())->findByNendoId($db);
-    
+
         //試験種別区分取得
         $shiken_sbt_kbn = (new Ms_meishoKbn())->findByShikenSbtKbn($db, $nintei_meisai[0]['shiken_sbt_kbn']);
 
         //管理費取得
         $ceu_kanrihi = (new Cm_hitsuyo_ceu())->findByceuKanrihi($db, $nintei_meisai[0]['ninteibi'], $nendo_id['nendo_id']);
-        error_log(print_r($nendo_id, true), "3", "/home/nls001/demo-nls02.work/public_html/app_error_log/shibata_log_re.txt");
-        error_log(print_r($nintei_meisai, true), "3", "/home/nls001/demo-nls02.work/public_html/app_error_log/shibata_log_re.txt");
-        error_log(print_r($ceu_kanrihi, true), "3", "/home/nls001/demo-nls02.work/public_html/app_error_log/shibata_log_re.txt");
 
         $zeiritsu = getShohizei($db);
 
         $wk_ceu_kanrihi = $ceu_kanrihi[0]['ceu_kanrihi'] * $zeiritsu;
+
         $result = (new Tb_nintei_meisai())->getceuKanrihi($db, $param, $shiken_sbt_kbn[0]['meisho'], $wk_ceu_kanrihi);
+
+        if (count($result) >= 2) {
+            array_pop($result);
+        }
 
     } else if ($cnt_cpt[0]['COUNT(*)'] != 0) {
         $wk_shiken_sbt_kbn = 2;
+        //認定明細のカラム取得
+        $nintei_meisai = (new Tb_nintei_meisai())->findByNinteiMeisai($db, $param, $wk_shiken_sbt_kbn);
+
         //年度ID取得
         $nendo_id = (new Cm_control())->findByNendoId($db);
-
-        $nintei_meisai = (new Tb_nintei_meisai())->findByNinteiMeisai($db, $param, $wk_shiken_sbt_kbn);
 
         //試験種別区分取得
         $shiken_sbt_kbn = (new Ms_meishoKbn())->findByShikenSbtKbn($db, $nintei_meisai[0]['shiken_sbt_kbn']);
@@ -147,16 +159,29 @@ if ($cnt_cpt[0]['COUNT(*)'] != 0 && $cnt_cscs[0]['COUNT(*)'] != 0) {
         $zeiritsu = getShohizei($db);
 
         $wk_ceu_kanrihi = $ceu_kanrihi[0]['ceu_kanrihi'] * $zeiritsu;
-    
+
         $result = (new Tb_nintei_meisai())->getceuKanrihi($db, $param, $shiken_sbt_kbn[0]['meisho'], $wk_ceu_kanrihi);
+
+        if (count($result) >= 2) {
+            array_pop($result);
+        }
     }
+
+    // 該当データなしの場合
+    if ($result == '') {
+        echo 0;
+        // 該当データありの場合
+    } else {
+        echo json_encode($result);
+    }
+    
 }
 
 //消費税を取得する関数
 function getShohizei($db)
 {
     $shohizei = (new Cm_control())->findByShohizei($db);
-    
+
     $zeiritsu = "";
     //切替日1がnullなら税1
     if ($shohizei['kirikae_nengappi_1'] == "") {
@@ -178,14 +203,6 @@ function getShohizei($db)
     $zeiritsu = $zeiritsu + 1;
 
     return $zeiritsu;
-}
-
-// 該当データなしの場合
-if ($result == '') {
-    echo 0;
-    // 該当データありの場合
-} else {
-    echo json_encode($result);
 }
 
 die();

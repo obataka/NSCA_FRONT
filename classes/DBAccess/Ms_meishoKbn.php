@@ -192,10 +192,13 @@ class Ms_meishoKbn
     public function findByShikenSbtKbn($db, $shiken_sbt_kbn)
     {
         try {
-            $sth = $db->prepare("SELECT meisho 
-            FROM   ms_meisho
-            WHERE  meisho_id = 1
-            AND    meisho_cd = $shiken_sbt_kbn
+            $sth = $db->prepare("SELECT CHILD.meisho_cd, CHILD.meisho 
+            FROM   ms_meisho_kbn MST
+            INNER JOIN ms_meisho CHILD
+            ON    MST.meisho_id = CHILD.meisho_id
+            WHERE MST.meisho_kbn = 1
+            AND   CHILD.meisho_cd = $shiken_sbt_kbn
+            ORDER BY CHILD.meisho_cd
             ");
             $sth->execute();
             $ms_meisho = $sth->fetchAll();
