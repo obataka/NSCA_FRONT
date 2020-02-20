@@ -40,6 +40,7 @@
 			<section>
 				<h3 id="title_cscs">CSCS</h3>
 				<div class="content">
+				<div class="buttons-area">
 					<table id="table_cscs">
 						<thead>
 							<tr>
@@ -54,11 +55,11 @@
 										<img src="https://placehold.jp/150x150.png">
 										<p class="product_name"><span id="cscs_title_1">NSCA決定版　ストレングストレーニング＆コンディショニング 第4版</span></p>											
 									</div>
-									<button class="button pc_bl" type="button" value=""  id="cscs_button_1"><span>詳細</span></button>
+									<button class="button pc_bl" type="button" value=""  id="cscs_button_1" onclick="clickShosai(1)"><span>詳細</span></button>
 								</td>
 								<td data-label="販売価格" class="price">会員価格：<span id="cscs_price_1">11.664円</span></td>
 								<td class="sp_bl">
-									<button class="button" type="button" value="" onclick="location.href='#'"><span>詳細</span></button>
+									<button class="button" type="button" value="">詳細</button>
 								</td>
 							</tr>
 							<tr>
@@ -77,9 +78,11 @@
 						</tbody>
 					</table>
 				</div>
+				</div>
 
 				<h3 id="title_nsca">NSCA-CPT</h3>
 				<div class="content">
+				<div class="buttons-area">
 					<table id="table_nsca">
 						<thead>
 							<tr>
@@ -104,9 +107,11 @@
 						</tbody>
 					</table>
 				</div>
+				</div>
 
 				<h3 id="title_journal">ジャーナル</h3>
 				<div class="content">
+				<div class="buttons-area">
 					<table id="table_journal">
 						<thead>
 							<tr>
@@ -144,9 +149,11 @@
 						</tbody>
 					</table>
 				</div>
+				</div>
 
 				<h3 id="title_doga">セミナー動画</h3>
 				<div class="content">
+				<div class="buttons-doga-area">
 					<table id="table_doga">
 						<thead>
 							<tr>
@@ -171,9 +178,11 @@
 						</tbody>
 					</table>
 				</div>
+				</div>
 
 				<h3 id="title_dvd">エクササイズDVD</h3>
 				<div class="content">
+				<div class="buttons-area">
 						<table id="table_dvd">
 						<thead>
 							<tr>
@@ -211,9 +220,11 @@
 						</tbody>
 					</table>
 				</div>
+				</div>
 
 				<h3 id="title_other">その他書籍</h3>
 				<div class="content">
+				<div class="buttons-area">
 					<table id="table_other">
 						<thead>
 							<tr>
@@ -238,9 +249,11 @@
 						</tbody>
 					</table>
 				</div>
+				</div>
 
 				<h3 id="title_original">オリジナル商品</h3>
 				<div class="content">
+				<div class="buttons-area">
 					<table id="table_original">
 						<thead>
 							<tr>
@@ -265,8 +278,10 @@
 						</tbody>
 					</table>
 				</div>
+				</div>
 
 				<h3 id="title_homestudy">ホームスタディ</h3>
+				<div class="buttons-area">
 					<table id="table_homestudy">
 						<thead>
 							<tr>
@@ -291,9 +306,11 @@
 						</tbody>
 					</table>
 				</div>
+				</div>
 
 				<h3 id="title_meishi_a">名刺タイプA</h3>
 				<div class="content">
+				<div class="buttons-area">
 					<table id="table_meishi_a">
 						<thead>
 							<tr>
@@ -318,9 +335,11 @@
 						</tbody>
 					</table>
 				</div>
+				</div>
 
 				<h3 id="title_meishi_b">名刺タイプB</h3>
 				<div class="content">
+				<div class="buttons-area">
 					<table id="table_meishi_b">
 						<thead>
 							<tr>
@@ -345,9 +364,11 @@
 						</tbody>
 					</table>
 				</div>
+				</div>
 
 				<h3 id="title_english">英語版認定証</h3>
 				<div class="content">
+				<div class="buttons-area">
 					<table id="table_english">
 						<thead>
 							<tr>
@@ -371,6 +392,7 @@
 							</tr>
 						</tbody>
 					</table>
+				</div>
 				</div>
 
 			</section>
@@ -520,6 +542,14 @@
 			</p>
 		</div>
 	</div>
+
+	<form id="hambai_form" action="../product/" method="post">
+		<input type="hidden" name="hambai_id" id="hambai_id" value="">
+	</form>
+	<form id="doga_form" action="../productMovie/" method="post">
+		<input type="hidden" name="doga_id" id="doga_id" value="">
+	</form>
+
 	<footer id="footer">
 	</footer>
 </body>

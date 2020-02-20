@@ -19,7 +19,8 @@
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.3.1.min.js"></script>
-			<script type="text/javascript" src="../../viewIncludeFiles/js/header.js"></script>
+		<script type="text/javascript" src="../../viewIncludeFiles/js/header.js"></script>
+		<script type="text/javascript" src="../../viewIncludeFiles/js/product.js"></script>
     </head>
     <body>
 	<header id="header">
@@ -32,18 +33,18 @@
 			</div>
 			<h3>商品購入</h3>
 			<div class="product">
-				<p class="product_title">体力トレーニング検定1級問題集</p>
+				<p class="product_title"><span id="product_title">体力トレーニング検定1級問題集</span></p>
 				<form>
 					<section>
-						<p class="product_img"><img src="https://placehold.jp/949494/ffffff/200x250.png"></p>
+						<p class="product_img"><img id="product_img" src="https://placehold.jp/949494/ffffff/200x250.png"></p>
 						<table>
 							<tr>
 								<th>一般価格</th>
-								<td>0000円<span class="zei">(税込み・送料別)</span></td>
+								<td><span id="price_ippan">0000円</span><span class="zei">(税込み・送料別)</span></td>
 							</tr>
 							<tr>
-								<th>会員価格</th>
-								<td><span class="blue">0000円</span><span class="zei">(税込み・送料別)</span></td>
+								<th><span id="price_label">会員価格</span></th>
+								<td><span id="price_kaiin" class="blue">0000円</span><span class="zei">(税込み・送料別)</span></td>
 							</tr>
 							<tr>
 								<th>購入数</th>
@@ -69,6 +70,7 @@
 			</section>
 		</div>
 	</div>
+		<input type="text" name="hambai_id" id="hambai_id" value="<?php echo $_POST['hambai_id'] ?>">
 	<footer>
 		<p><small>&copy; Copyright &copy; 2016 NSCA JAPAN. All Rights Reserved.</small></p>
 	</footer>

@@ -43,9 +43,9 @@
 	                              + '<td>'
 	                              + '<div>'
 	                              + '<iframe width="280" height="157.5" src="' + tbHanbaiJoho[i]["gazo_url"] + '" frameborder="0" allowfullscreen></iframe>'
-	                              + '<p class="product_name"><span id="cscs_title_' + [i] + '">' + tbHanbaiJoho[i]["hambai_title"] + '</span></p>' 
+	                              + '<p class="product_name"><span id="product_title_' + [i] + '">' + tbHanbaiJoho[i]["hambai_title"] + '</span></p>' 
 	                              + '</div>'
-	                              + '<button class="button  pc_bl" type="button" id=cscs_button_' + [i] + '"><span>詳細</span></button>'
+	                              + '<button class="button  pc_bl" type="button"  data-id="' + tbHanbaiJoho[i]["hambai_id"] + '"><span>詳細</span></button>'
 	                              + '</td>'
 	                              + '<td data-label="販売価格" class="price">' + tbHanbaiJoho[i]["kakaku_title"] 
 								  + '価格：<span id="cscs_price_' + [i] + '">' + kakaku + '円</span></td>'
@@ -60,9 +60,9 @@
 	                              + '<td>'
 	                              + '<div>'
 	                              + '<img src="' + tbHanbaiJoho[i]["gazo_url"] + '">'
-	                              + '<p class="product_name"><span id="cscs_title_' + [i] + '">' + tbHanbaiJoho[i]["hambai_title"] + '</span></p>' 
+	                              + '<p class="product_name"><span id="product_title_' + [i] + '">' + tbHanbaiJoho[i]["hambai_title"] + '</span></p>' 
 	                              + '</div>'
-	                              + '<button class="button  pc_bl" type="button" id=cscs_button_' + [i] + '"><span>詳細</span></button>'
+	                              + '<button class="button  pc_bl" type="button"  data-id="' + tbHanbaiJoho[i]["hambai_id"] + '"><span>詳細</span></button>'
 	                              + '</td>'
 	                              + '<td data-label="販売価格" class="price">' + tbHanbaiJoho[i]["kakaku_title"] 
 								  + '価格：<span id="cscs_price_' + [i] + '">' + kakaku + '円</span>';
@@ -172,6 +172,29 @@
 	 });
 
 
+/************************************************************
+	*詳細ボタン押下時（動画以外）
+*************************************************************/
+
+$('.buttons-area').on('click', 'button', function() {
+ 
+//			url = '../product/';
+//			$('form').attr('action', url);
+	var hambai_id = $(this).data('id');
+	$("#hambai_id").val(hambai_id);
+    $("#hambai_form").submit();
+});
+
+/************************************************************
+	*詳細ボタン押下時（動画）
+*************************************************************/
+
+$('.buttons-doga-area').on('click', 'button', function() {
+ 
+	var doga_id = $(this).data('id');
+	$("#doga_id").val(doga_id);
+    $("#doga_form").submit();
+});
 
     });
 })(jQuery);
