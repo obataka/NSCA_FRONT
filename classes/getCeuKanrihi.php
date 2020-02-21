@@ -18,8 +18,6 @@ if (isset($_SESSION['kaiinNo'])) {
     $wk_kaiin_no = $_SESSION['kaiinNo'];
 }
 
-$wk_kaiin_no = 817020906;
-
 /**********************
  * 会員番号セット
  ***********************/

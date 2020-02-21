@@ -175,7 +175,7 @@
         ********************************/
         $("#end").click(function () {
             console.log($("#wk_kaiin_no").val());
-            
+
 
             // データを追加する処理
             $.ajax({
@@ -192,8 +192,12 @@
 
                 // Ajaxリクエストが成功した時発動
                 .done((data) => {
-                    alert('データの更新が完了しました。');
-                    return false;
+                    if (data == 0) {
+                        return false;
+                    } else {
+                        alert('データの更新が完了しました。');
+                    }
+
                 })
 
                 // Ajaxリクエストが失敗した時発動
