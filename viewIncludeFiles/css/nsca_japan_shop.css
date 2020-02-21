@@ -121,6 +121,9 @@ td .button {
 .blue {
 	color: #005699;
 }
+.red {
+	color: #ff0000;
+}
 .text:last-of-type {
     margin-bottom: 60px;
 }

@@ -37,6 +37,7 @@ if ($result_hambai == "") {
 		  'shurui' => $value['shurui'],
 		  'hambai_kbn' => $value['hambai_kbn'],
 		  'hambai_title' => $value['hambai_title'],
+		  'chuigaki' => $value['hambai_title_chuigaki'],
 		  'gaiyo' => $value['gaiyo'],
 		  'gazo_url' => $value['gazo_url'],
 		  'kakaku_zeikomi' => $value['kakaku_zeikomi'],

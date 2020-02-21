@@ -53,7 +53,11 @@
 								<td>
 									<div>
 										<img src="https://placehold.jp/150x150.png">
-										<p class="product_name"><span id="cscs_title_1">NSCA決定版　ストレングストレーニング＆コンディショニング 第4版</span></p>											
+										<p class="product_name">
+											<span id="cscs_title_1">NSCA決定版　ストレングストレーニング＆コンディショニング 第4版</span>
+											<br><br>
+											<span id="cscs_tuiki_1" class="red">※割引キャンペーン中</span>
+										</p>
 									</div>
 									<button class="button pc_bl" type="button" value=""  id="cscs_button_1" onclick="clickShosai(1)"><span>詳細</span></button>
 								</td>

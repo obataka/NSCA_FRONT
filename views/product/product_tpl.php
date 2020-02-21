@@ -29,7 +29,8 @@
 		<h2>商品詳細確認</h2>
 		<div class="content_wrap">	
 			<div class="top_btn clearfix">
-				<button class="button" type="button" onclick="location.href='#'"><span>買い物かご</span></button>
+				<button class="button" type="button" onclick=""><span>買い物かご</span></button>
+				<button class="button" id="login_button" type="button" onclick=""><span>マイページログイン</span></button>
 			</div>
 			<h3>商品購入</h3>
 			<div class="product">
@@ -43,16 +44,23 @@
 								<td><span id="price_ippan">0000円</span><span class="zei">(税込み・送料別)</span></td>
 							</tr>
 							<tr>
-								<th><span id="price_label">会員価格</span></th>
-								<td><span id="price_kaiin" class="blue">0000円</span><span class="zei">(税込み・送料別)</span></td>
+								<th><span id="price_label">会員</span>価格</th>
+								<td><span id="price_kaiin" class="blue">0000</span>円<span class="zei">(税込み・送料別)</span></td>
 							</tr>
 							<tr>
 								<th>購入数</th>
-								<td><input id="number" type="number" name="number" value="1" min="0">法人・学校様は<a href="#">こちら</a></td>
+								<td><input id="number" type="number" name="number" value="1" min="0">
+									<span id="tsuiki">法人・学校様は<a href="#">こちら</a></span></td>
 							</tr>
 							<tr>
 								<th>選択事項</th>
-								<td>商品オプションなし</td>
+								<td>商品オプション<span id="option">なし</span>
+								<button value="" onclick=""><span>在庫表を見る</span></button>
+								<br>
+								<select name="option_list"> 
+								<option value="1">ノーマル（在庫あり）</option>
+								<option value="2">限定版（在庫なし）</option>
+								</td>
 							</tr>
 						</table>
 					</section>
@@ -60,13 +68,21 @@
 			</div>
 			<h3>詳細説明</h3>
 			<div class="setsumei">
-				<img src="https://placehold.jp/949494/ffffff/150x200.png">
+				<span id="gaiyo">概要は〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇</span>
+				<br>
+				<span id="setsumei_gazo_1"><img src="https://placehold.jp/949494/ffffff/150x200.png"></span>
+				<span id="setsumei_gazo_2"><img src="https://placehold.jp/949494/ffffff/150x200.png"></span>
+				<span id="setsumei_gazo_3"><img src="https://placehold.jp/949494/ffffff/150x200.png"></span>
+				<span id="setsumei_gazo_4"><img src="https://placehold.jp/949494/ffffff/150x200.png"></span>
+				<br>
+				<span id="setsumei">説明は〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇</span>
 			</div>
 			<p class="kome">※理由の如何に関わらず、お支払い後の購入のキャンセルはお受け致しかねます。</p>
 			<p>@nsca-japan.or.jpからのメールを受信できるように設定をお願いします</p>
 			<section class="btn_wrap">
 				<button class="button btn_gray" type="button" value="" onclick="location.href='#'"><span>商品一覧へ</span></button>
 				<button class="button" type="submit" value="" onclick="location.href='#'"><span>かごに入れる</span></button>
+				<button class="button" type="submit" value="" onclick="location.href='#'"><span>マイページにログインしてお買い物かごに入れる</span></button>
 			</section>
 		</div>
 	</div>
