@@ -22,12 +22,32 @@
 					var kakaku = Number(tbHanbaiJoho["kakaku_zeikomi"]).toLocaleString();
 					var kaiin_kakaku = Number(tbHanbaiJoho["kaiin_kakaku_zeikomi"]).toLocaleString();
 
-//                        $('#product_img').html(tbHanbaiJoho["gazo_url"]);
-                        $('#price_ippan').html(ippan_kakaku);
-                        $('#price_kaiin').html(kakaku);
-                        $('#price_label').html(tbHanbaiJoho["kakaku_title"]);
-                        $('#gaiyo').html(tbHanbaiJoho["gaiyo"]);
-                        $('#setsumei').html(tbHanbaiJoho["setsumei"]);
+                    $('#product_img').attr('src', tbHanbaiJoho["gazo_url"]);
+                    $('#price_ippan').html(ippan_kakaku);
+                    $('#price_kaiin').html(kakaku);
+                    $('#price_label').html(tbHanbaiJoho["kakaku_title"]);
+                    $('#tsuiki').html(tbHanbaiJoho["hambai_title_tsuiki"]);
+                    $('#gaiyo').html(tbHanbaiJoho["gaiyo"]);
+                    $('#setsumei').html(tbHanbaiJoho["setsumei"]);
+
+					for(var i = 1; i <= 4 ; i++) {
+
+						if(tbHanbaiJoho["setsumei_gazo_url_" + i] != ""){
+		                    $('#setsumei_gazo_' + i).attr('src', tbHanbaiJoho["setsumei_gazo_url_" + i]);
+		                    $('#setsumei_gazo_' + i).show();
+						}else{
+		                    $('#setsumei_gazo_' + i).hide();
+						}
+					}
+
+					if(tbHanbaiJoho["kaiin_no"] == ""){ // 未ログイン
+						$('#login_button').show();
+						$('#buy_login_button').show();
+					}else{ // ログイン中
+						$('#login_button').hide();
+						$('#buy_login_button').hide();
+					}
+
 				}
         },
         fail: function(rtn) {

@@ -49,13 +49,13 @@
 							</tr>
 							<tr>
 								<th>購入数</th>
-								<td><input id="number" type="number" name="number" value="1" min="0">
+								<td><input id="buy_number" type="number" name="number" value="1" min="0">
 									<span id="tsuiki">法人・学校様は<a href="#">こちら</a></span></td>
 							</tr>
 							<tr>
 								<th>選択事項</th>
 								<td>商品オプション<span id="option">なし</span>
-								<button value="" onclick=""><span>在庫表を見る</span></button>
+								<button  id="show_salesStock_button" value="" onclick=""><span>在庫表を見る</span></button>
 								<br>
 								<select name="option_list"> 
 								<option value="1">ノーマル（在庫あり）</option>
@@ -70,19 +70,19 @@
 			<div class="setsumei">
 				<span id="gaiyo">概要は〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇</span>
 				<br>
-				<span id="setsumei_gazo_1"><img src="https://placehold.jp/949494/ffffff/150x200.png"></span>
-				<span id="setsumei_gazo_2"><img src="https://placehold.jp/949494/ffffff/150x200.png"></span>
-				<span id="setsumei_gazo_3"><img src="https://placehold.jp/949494/ffffff/150x200.png"></span>
-				<span id="setsumei_gazo_4"><img src="https://placehold.jp/949494/ffffff/150x200.png"></span>
+				<span><img id="setsumei_gazo_1" src="https://placehold.jp/949494/ffffff/150x200.png"></span>
+				<span><img id="setsumei_gazo_2" src="https://placehold.jp/949494/ffffff/150x200.png"></span>
+				<span><img id="setsumei_gazo_3" src="https://placehold.jp/949494/ffffff/150x200.png"></span>
+				<span><img id="setsumei_gazo_4" src="https://placehold.jp/949494/ffffff/150x200.png"></span>
 				<br>
 				<span id="setsumei">説明は〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇</span>
 			</div>
 			<p class="kome">※理由の如何に関わらず、お支払い後の購入のキャンセルはお受け致しかねます。</p>
 			<p>@nsca-japan.or.jpからのメールを受信できるように設定をお願いします</p>
 			<section class="btn_wrap">
-				<button class="button btn_gray" type="button" value="" onclick="location.href='#'"><span>商品一覧へ</span></button>
-				<button class="button" type="submit" value="" onclick="location.href='#'"><span>かごに入れる</span></button>
-				<button class="button" type="submit" value="" onclick="location.href='#'"><span>マイページにログインしてお買い物かごに入れる</span></button>
+				<button class="button btn_gray" id="go_salesList_button" type="button" value="" onclick="location.href='#'"><span>商品一覧へ</span></button>
+				<button class="button" id="buy_button" onclick="location.href='#'"><span>かごに入れる</span></button>
+				<button class="button" id="buy_login_button" onclick="location.href='#'"><span>マイページにログインしてお買い物かごに入れる</span></button>
 			</section>
 		</div>
 	</div>

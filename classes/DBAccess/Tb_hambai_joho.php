@@ -156,14 +156,14 @@ ORDER BY menu_sort_jun,hambai_sort_jun
 --		ifnull(tb_hambai_joho.shikaku_kbn,0) AS shikaku_kbn,
       	tb_hambai_joho.hambai_title,
 		ifnull(tb_hambai_joho.hambai_title_chuigaki,'') AS hambai_title_chuigaki,
-		tb_hambai_joho.hambai_title_tsuiki,
+		ifnull(tb_hambai_joho.hambai_title_tsuiki,'') AS hambai_title_tsuiki,
 		ifnull(tb_hambai_joho.gaiyo,'') AS gaiyo,
 		ifnull(tb_hambai_joho.setsumei,'') AS setsumei,
-		tb_hambai_joho.gazo_url,
-		tb_hambai_joho.setsumei_gazo_url_1,
-		tb_hambai_joho.setsumei_gazo_url_2,
-		tb_hambai_joho.setsumei_gazo_url_3,
-		tb_hambai_joho.setsumei_gazo_url_4,
+		ifnull(tb_hambai_joho.gazo_url,'') AS gazo_url,
+		ifnull(tb_hambai_joho.setsumei_gazo_url_1,'') AS setsumei_gazo_url_1,
+		ifnull(tb_hambai_joho.setsumei_gazo_url_2,'') AS setsumei_gazo_url_2,
+		ifnull(tb_hambai_joho.setsumei_gazo_url_3,'') AS setsumei_gazo_url_3,
+		ifnull(tb_hambai_joho.setsumei_gazo_url_4,'') AS setsumei_gazo_url_4,
 
 	-- 会員種別などにより取得する価格を設定（一般・正会員・学生会員・利用登録・流山市民）
 		CASE 

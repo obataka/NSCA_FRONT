@@ -38,10 +38,34 @@ echo 0;
 // 該当データありの場合
 } else {
 
-   error_log(print_r("****販売詳細情報取得****", true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka_log.txt');
-   error_log(print_r($result_hambai, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka_log.txt');
 
-    echo json_encode($result_hambai);
+		$hambai_array = array (
+		  'kaiin_no' => $kaiin_no,
+		  'hambai_id' => $result_hambai['hambai_id'],
+		  'shurui' => $result_hambai['shurui'],
+		  'hambai_kbn' => $result_hambai['hambai_kbn'],
+		  'hambai_title' => $result_hambai['hambai_title'],
+		  'hambai_title_chuigaki' => $result_hambai['hambai_title_chuigaki'],
+		  'hambai_title_tsuiki' => $result_hambai['hambai_title_tsuiki'],
+		  'gaiyo' => $result_hambai['gaiyo'],
+		  'setsumei' => $result_hambai['setsumei'],
+		  'gazo_url' => $result_hambai['gazo_url'],
+		  'setsumei_gazo_url_1' => $result_hambai['setsumei_gazo_url_1'],
+		  'setsumei_gazo_url_2' => $result_hambai['setsumei_gazo_url_2'],
+		  'setsumei_gazo_url_3' => $result_hambai['setsumei_gazo_url_3'],
+		  'setsumei_gazo_url_4' => $result_hambai['setsumei_gazo_url_4'],
+		  'kakaku_zeikomi' => $result_hambai['kakaku_zeikomi'],
+		  'kakaku_title' => $result_hambai['kakaku_title'],
+		  'ippan_kakaku_zeikomi' => $result_hambai['ippan_kakaku_zeikomi'],
+		  'kaiin_kakaku_zeikomi' => $result_hambai['kaiin_kakaku_zeikomi'],
+		  'kaiin_kakaku_title' => $result_hambai['kaiin_kakaku_title']
+		);
+
+
+   error_log(print_r("****販売詳細情報取得****", true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka_log.txt');
+   error_log(print_r($hambai_array, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka_log.txt');
+
+    echo json_encode($hambai_array);
 
 }
 
