@@ -1,25 +1,25 @@
 (function ($) {
     $(document).ready(function () {
         /************************
-         * 入会理由チェンジイベント
+         * 年チェンジイベント
          ************************/
         //ラジオボタンが切り替わったら発動
         $("input:radio[name='year']").change(function () {
             if ($("input:radio[id='year_1']:checked").val()) {
                 var test1 = $('[name="year"]:checked').attr('id');
                 var test2 = $('label[for="' + test1 + '"]').text();
-                $('#year').val(test2);
-                $('#wk_year').val(1);
+                $('#sel_year').val(test2);
+                $('#wk_sel_year').val(1);
             } else if ($("input:radio[id='year_2']:checked").val()) {
                 var test1 = $('[name="year"]:checked').attr('id');
                 var test2 = $('label[for="' + test1 + '"]').text();
-                $('#year').val(test2);
-                $('#wk_year').val(2);
+                $('#sel_year').val(test2);
+                $('#wk_sel_year').val(2);
             } else if ($("input:radio[id='year_3']:checked").val()) {
                 var test1 = $('[name="year"]:checked').attr('id');
                 var test2 = $('label[for="' + test1 + '"]').text();
-                $('#year').val(test2);
-                $('#wk_year').val(3);
+                $('#sel_year').val(test2);
+                $('#wk_sel_year').val(3);
             }
         });
 
@@ -31,13 +31,13 @@
             if ($("input:radio[id='katsudo_1']:checked").val()) {
                 var test1 = $('[name="katsudo"]:checked').attr('id');
                 var test2 = $('label[for="' + test1 + '"]').text();
-                $('#katsudo').val(test2);
-                $('#wk_katsudo').val(1);
+                $('#sel_katsudo').val(test2);
+                $('#wk_sel_katsudo').val(1);
             } else {
                 var test1 = $('[name="katsudo"]:checked').attr('id');
                 var test2 = $('label[for="' + test1 + '"]').text();
-                $('#katsudo').val(test2);
-                $('#wk_katsudo').val(2);
+                $('#sel_katsudo').val(test2);
+                $('#wk_sel_katsudo').val(2);
             } 
         });
 
@@ -75,7 +75,7 @@
         }
 
         //年
-        var wk_year = $('#wk_year').val();
+        var wk_year = $('#wk_sel_year').val();
         if (wk_year != "") {
             if (wk_year == 1) {
                 $('#year_1').prop("checked", true);
@@ -87,7 +87,7 @@
         }
 
         //活動
-        var wk_katsudo = $('#wk_katsudo').val();
+        var wk_katsudo = $('#wk_sel_katsudo').val();
         if (wk_katsudo != "") {
             if (wk_katsudo == 1) {
                 $('#katsudo_1').prop("checked", true);
@@ -132,7 +132,16 @@
                 $("#err_doi").html(wk_err_msg);
             }
 
+            // エラーがある場合は、メッセージを表示し、処理を終了する
+            if (wk_err_msg != "") {
+                return false;
+            }
 
+            //エラーがない場合確認画面に画面遷移
+            url = '../personalDevelopmentConfirm/';
+            $('form').attr('action', url);
+            $('form').submit();
+            
         });
     });
 })(jQuery);

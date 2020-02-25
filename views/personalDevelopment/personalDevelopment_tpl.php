@@ -40,10 +40,10 @@
 				<form method="POST" action="" name="personalDevelopmentForm">
 					<input type="hidden" id="chkCSCS" name="chkCSCS" value="<?php echo $chkCSCS; ?>">
 					<input type="hidden" id="chkCPT" name="chkCPT" value="<?php echo $chkCPT; ?>">
-					<input type="hidden" id="year" name="year" value="<?php echo $year; ?>">
-					<input type="hidden" id="wk_year" name="wk_year" value="<?php echo $wk_year; ?>">
-					<input type="hidden" id="katsudo" name="katsudo" value="<?php echo $katsudo; ?>">
-					<input type="hidden" id="wk_katsudo" name="wk_katsudo" value="<?php echo $wk_katsudo; ?>">
+					<input type="hidden" id="sel_year" name="sel_year" value="<?php echo $year; ?>">
+					<input type="hidden" id="wk_sel_year" name="wk_sel_year" value="<?php echo $wk_sel_year; ?>">
+					<input type="hidden" id="sel_katsudo" name="sel_katsudo" value="<?php echo $katsudo; ?>">
+					<input type="hidden" id="wk_sel_katsudo" name="wk_sel_katsudo" value="<?php echo $wk_sel_katsudo; ?>">
 					<p>パーソナルディベロップメントで付与されるCEUは1年間で0.5CEUです。同一年内に複数回申告しても、付与されるCEUは0.5CEUまでです。認定年前以前のかつどうには、CEUは付与されません。パーソナルディベロップメントについてのよくあるご質問などは、<a href="#">こちら</a>のページで紹介しています。</p>
 					<table>
 						<tr>

@@ -2,7 +2,7 @@
 
 include_once '../ctrl/parts/beforeLoginHeader.php';
 
-$includeView = '../views/personalDevelopment/personalDevelopment_tpl.php';
+$includeView = '../views/personalDevelopmentConfirm/personalDevelopmentConfirm_tpl.php';
 
 $chkCSCS = (!empty($_POST['chkCSCS'])) ? htmlentities($_POST['chkCSCS'], ENT_QUOTES, "UTF-8") : "";
 $chkCPT = (!empty($_POST['chkCPT'])) ? htmlentities($_POST['chkCPT'], ENT_QUOTES, "UTF-8") : "";
