@@ -24,13 +24,13 @@ $wk_kaiin_no = 10251033;
 $kaiin_sbt = (!empty($_POST['kaiin_sbt'])) ? htmlentities($_POST['kaiin_sbt'], ENT_QUOTES, "UTF-8") : "";
 $kaiin_column = "";
 switch ($kaiin_sbt) {
-    case 0:
+    case '0':
         $kaiin_column = "riyo_toroku_sankaryo";
         break;
-    case 1:
+    case '1':
         $kaiin_column = "seikaiin_sankaryo";
         break;
-    case 2:
+    case '2':
         $kaiin_column = "gakuseikaiin_sankaryo";
         break;
 }
@@ -84,7 +84,7 @@ if ($result_cscs == TRUE && $result_cpt == TRUE) {
 //パーソナルディベロップメント情報取得
 $result = (new Tb_ceu_joho())->findByPersonalDevelopment($db, $param, $ninteibi, $kaiin_column);
 
-error_log(print_r($result, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/shibata_log.txt');
+// error_log(print_r($result, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/shibata_log.txt');
 
 // 該当データなしの場合
 if ($result == '') {

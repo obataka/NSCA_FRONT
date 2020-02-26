@@ -184,10 +184,11 @@ class Tb_ceu_joho
 	public function findByPersonalDevelopment($db, $param, $ninteibi, $kaiin_column)
 	{
 		try {
+			$sth = $db->query("SET @hyoji_No = 0; 
+								SET @nendo_id = NULL; ");
 			$sth = $db->prepare("SELECT tb_ceu_joho.nendo_id,
-										(SELECT COUNT(*) + 1 FROM cm_nendo WHERE nendo_id = cm_nendo.nendo_id AND ceu_kikan_from > cm_nendo.ceu_kikan_from ORDER BY YEAR(cm_nendo.ceu_kikan_from)) AS hyoji_No,
-										ROW_NUMBER() OVER(PARTITION BY cm_nendo.nendo_id ORDER BY YEAR(cm_nendo.ceu_kikan_from))	AS hyoji_No,
-										CASE ROW_NUMBER() OVER(PARTITION BY cm_nendo.nendo_id ORDER BY YEAR(cm_nendo.ceu_kikan_from))
+										IF (@nendo_id != cm_nendo.nendo_id, @hyoji_No = 1, @hyoji_No = @hyoji_No + 1) AS hyoji_No,
+										CASE @hyoji_No
 											WHEN 1 THEN YEAR(cm_nendo.ceu_kikan_from)
 											WHEN 2 THEN YEAR(cm_nendo.ceu_kikan_from) + 1
 											WHEN 3 THEN YEAR(cm_nendo.ceu_kikan_from) + 2
@@ -198,8 +199,7 @@ class Tb_ceu_joho
 										tb_ceu_joho.ceusu,
 										CASE 
 											WHEN '$ninteibi' > tb_ceu_joho.shutokubi THEN 1
-											WHEN '$ninteibi' IS NULL THEN 1
-											ELSE ISNULL(tb_ceu_joho_meisai.keijo_kbn,0)
+											ELSE IFNULL(tb_ceu_joho_meisai.keijo_kbn,0)
 										END	AS keijo_kbn
 								FROM  tb_ceu_joho
 								LEFT JOIN tb_ceu_joho_meisai
@@ -209,9 +209,9 @@ class Tb_ceu_joho
 								LEFT JOIN cm_nendo
 								ON	tb_ceu_joho.nendo_id			= cm_nendo.nendo_id
 								WHERE
-								tb_ceu_joho.event_kbn	= 10	
-								AND	cm_nendo.nendo_id = :nendo_id
-								AND	tb_ceu_joho.sakujo_flg	= 0
+								tb_ceu_joho.event_kbn 				= 10	
+								AND	cm_nendo.nendo_id 				= :nendo_id
+								AND	tb_ceu_joho.sakujo_flg 			= 0
 								GROUP BY
 								cm_nendo.nendo_id
 								,tb_ceu_joho.ceu_id
@@ -225,14 +225,13 @@ class Tb_ceu_joho
 								,tb_ceu_joho.category_kbn
 								,cm_nendo.ceu_kikan_from
 								,tb_ceu_joho.ceusu
-								,tb_ceu_joho_meisai.keijo_kbn
+								,tb_ceu_joho_meisai.keijo_kbn;
 								");
 			$sth->execute([
 				':kaiin_no' => $param['kaiin_no'],
 				':nendo_id' => $param['nendo_id'],
 			]);
 			$tb_ceu_joho = $sth->fetchAll();
-			error_log(print_r($ninteibi, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/shibata_log.txt');
 		} catch (\PDOException $e) {
 			error_log(print_r($e, true) . PHP_EOL, '3', 'error_log.txt');
 			$tb_ceu_joho = [];
@@ -240,5 +239,7 @@ class Tb_ceu_joho
 
 		return $tb_ceu_joho;
 	}
+
+	
 
 }

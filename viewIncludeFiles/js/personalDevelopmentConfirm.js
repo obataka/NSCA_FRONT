@@ -10,6 +10,8 @@
             $('#shikaku').append('NSCA-CPT<br>');
         }
 
+        getPersonalDevelopment = "";
+        getKaiinJoho = "";
         /****************
         *会員情報を取得
         *****************/
@@ -23,27 +25,60 @@
                 getKaiinJoho = JSON.parse(rtn);
                 //会員情報を表示する
                 $('#kaiin_sbt').val(getKaiinJoho['kaiin_sbt_kbn']);
+
+                //パーソナルディベロップメント情報を取得する
+                $.ajax({
+                    url: '../../classes/getPersonalDevelopmentData.php',
+                    type: 'POST',
+                    data: {
+                        kaiin_sbt: $('#kaiin_sbt').val()
+                    }
+                }).done((data) => {
+                    getPersonalDevelopment = JSON.parse(data);
+
+                }).fail((data) => {
+                    return false;
+                });
             }
         }).fail((rtn) => {
             return false;
         });
 
-        //パーソナルディベロップメント情報を取得する
-        $.ajax({
-            url: '../../classes/getPersonalDevelopmentData.php',
-            type: 'POST',
-            data: {
-                kaiin_sbt: $('#kaiin_sbt').val()
-            }
-        }).done((data) => {
-
-        }).fail((data) => {
-            return false;
-        });
 
 
         //申告ボタン押下時処理
         $("#next").click(function () {
+            if (getPersonalDevelopment == "") {
+                return false;
+            }
+
+            //申告済みの年度かチェック
+            $.each(getPersonalDevelopment, function (i, val) {
+                if (val['keijo_kbn'] == 1) {
+                    return false;
+                } else {
+                    //TBCEU情報明細を取得する
+                    $.ajax({
+                        url: '../../classes/updateCEUJohoMeisai.php',
+                        type: 'POST',
+                        data: {
+                            ceu_id: val['ceu_id'],
+                        }
+
+                    }).done((data) => {
+                        if (data == 0) {
+                            return false;
+                        } else {
+                            
+                        }
+
+                    }).fail((data) => {
+                        return false;
+                    });
+                }
+            });
+
+
 
         });
 
