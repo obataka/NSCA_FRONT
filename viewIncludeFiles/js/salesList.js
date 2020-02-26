@@ -37,15 +37,24 @@
 				for(var i = 0; i < tbHanbaiJoho.length ; i++) {
 					var kakaku = Number(tbHanbaiJoho[i]["kakaku_zeikomi"]).toLocaleString();
 					var kaiin_kakaku = Number(tbHanbaiJoho[i]["kaiin_kakaku_zeikomi"]).toLocaleString();
+					var sample_url = "";
+
                    //動的に<table>を作成
 					if(tbHanbaiJoho[i]["shurui"] == 2){ // 動画
+						if(tbHanbaiJoho[i]["sample_url"]){
+							sample_url = "";
+						}
+						var sample_url = (tbHanbaiJoho[i]["sample_url"]) ? tbHanbaiJoho[i]["sample_url"]: "";
 	                    var tbody = '<tr>' 
 	                              + '<td>'
 	                              + '<div>'
-	                              + '<iframe width="280" height="157.5" src="' + tbHanbaiJoho[i]["gazo_url"] + '" frameborder="0" allowfullscreen></iframe>'
-	                              + '<p class="product_name"><span id="product_title_' + [i] + '">' + tbHanbaiJoho[i]["hambai_title"] + '</span>' 		                            + '<br><br>'
-	                              + '<span id="product_chuigaki_' + [i] + '" class="red">' + tbHanbaiJoho[i]["chuigaki"] + '</span></p>'
-	                              + '</div>'
+	                              + '<img src="' + tbHanbaiJoho[i]["gazo_url"] + '" width="300">'
+	                              + '<p class="product_name"><span id="product_title_' + [i] + '">' + tbHanbaiJoho[i]["hambai_title"] + '</span>' 
+	                              + '<br><br>'
+	                              + '<span id="product_chuigaki_' + [i] + '">' + tbHanbaiJoho[i]["chuigaki"] + '</span>'
+	                              + '<br><br>'
+	                              + '<a href="' + sample_url + '" target="_blank">サンプル動画を見る</a>'
+	                              + '</p></div>'
 	                              + '<button class="button  pc_bl" type="button"  data-id="' + tbHanbaiJoho[i]["hambai_id"] + '"><span>詳細</span></button>'
 	                              + '</td>'
 	                              + '<td data-label="販売価格" class="price">' + tbHanbaiJoho[i]["kakaku_title"] 
@@ -60,7 +69,7 @@
 	                    var tbody = '<tr>' 
 	                              + '<td>'
 	                              + '<div>'
-	                              + '<img src="' + tbHanbaiJoho[i]["gazo_url"] + '">'
+	                              + '<img src="' + tbHanbaiJoho[i]["gazo_url"] + '" width="300">'
 	                              + '<p class="product_name"><span id="product_title_' + [i] + '">' + tbHanbaiJoho[i]["hambai_title"] + '</span>' 
 	                              + '<br><br>'
 	                              + '<span id="product_chuigaki_' + [i] + '" class="red">' + tbHanbaiJoho[i]["chuigaki"] + '</span></p>'
