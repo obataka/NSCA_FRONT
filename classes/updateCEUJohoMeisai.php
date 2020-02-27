@@ -58,8 +58,6 @@ if ($ceu['event_kbn'] == 10) {
 //TBCEU情報明細のレコード存在確認
 $ceu_exists = (new Tb_ceu_joho_meisai())->chkExistsJoho($db, $param);
 
-// error_log(print_r($ceu, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/shibata_log.txt');
-
 //レコードがあれば更新、なければ追加
 if (!empty($ceu_exists)) {
     // 更新処理

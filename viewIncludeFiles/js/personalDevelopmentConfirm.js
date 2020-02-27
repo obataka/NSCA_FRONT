@@ -35,6 +35,7 @@
                     }
                 }).done((data) => {
                     getPersonalDevelopment = JSON.parse(data);
+                    console.log(getPersonalDevelopment);
 
                 }).fail((data) => {
                     return false;
@@ -52,32 +53,62 @@
                 return false;
             }
 
+            var idx = $('#wk_sel_year').val() - 1;
+
             //申告済みの年度かチェック
-            $.each(getPersonalDevelopment, function (i, val) {
-                if (val['keijo_kbn'] == 1) {
-                    return false;
-                } else {
-                    //TBCEU情報明細を取得する
-                    $.ajax({
-                        url: '../../classes/updateCEUJohoMeisai.php',
-                        type: 'POST',
-                        data: {
-                            ceu_id: val['ceu_id'],
-                        }
+            if (getPersonalDevelopment[idx]['keijo_kbn'] == 1) {
+                return false;
+            } else {
+                console.log(123);
+                //TBCEU情報明細を更新する
+                $.ajax({
+                    url: '../../classes/updateCEUJohoMeisai.php',
+                    type: 'POST',
+                    data: {
+                        ceu_id: getPersonalDevelopment[idx]['ceu_id'],
+                    }
 
-                    }).done((data) => {
-                        if (data == 0) {
-                            return false;
-                        } else {
-                            
-                        }
-
-                    }).fail((data) => {
+                }).done((data) => {
+                    if (data == 0) {
+                        console.log(0);
                         return false;
-                    });
-                }
-            });
+                    } else {
+                        console.log(1);
+                        var shutokubi = "";
+                        if (getPersonalDevelopment[idx]['shutokubi'] != "") {
+                            shutokubi = getPersonalDevelopment[idx]['shutokubi'];
+                        }
 
+                        //TB会員CEUを更新する
+                        $.ajax({
+                            url: '../../classes/updateKaiinCEU.php',
+                            type: 'POST',
+                            data: {
+                                category_kbn: getPersonalDevelopment[idx]['category_kbn'],
+                                nendo_id: getPersonalDevelopment[idx]['nendo_id'],
+                                ceusu: getPersonalDevelopment[idx]['ceusu'],
+                                shutokubi: shutokubi,
+                                chkCSCS: $('#chkCSCS').val(),
+                                chkCPT: $('#chkCPT').val(),
+                            }
+
+                        }).done((data) => {
+                            if (data == 0) {
+                                console.log(555);
+                                return false;
+                            } else {
+                                console.log(111);
+                            }
+
+                        }).fail((data) => {
+                            return false;
+                        });
+                    }
+
+                }).fail((data) => {
+                    return false;
+                });
+            }
 
 
         });
