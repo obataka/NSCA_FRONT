@@ -2,25 +2,24 @@
     $(document).ready(function(){
 
 	/************************************************************
-	*¤•iÚ×î•ñæ“¾
+	*å•†å“è©³ç´°æƒ…å ±å–å¾—
 	*************************************************************/
     jQuery.ajax({
         url:  '../../classes/product.php',
         type: 'POST',
         data:{hambai_id: $("#hambai_id").val()},
         success: function(rtn) {
-           // ¤•iÚ×î•ñAŠY“–‚È‚µ
+           // å•†å“è©³ç´°æƒ…å ±ã€è©²å½“ãªã—
                 if (rtn == 0) {
-//		            $("#err_pass_1").html("—LŒøŠúŒÀ‚ª‰ß‚¬‚Ä‚¢‚Ü‚·BƒpƒXƒ[ƒh•ÏXˆË—Šƒ[ƒ‹‰æ–Ê‚©‚ç‚à‚¤ˆê“x‚â‚è’¼‚µ‚Ä‚­‚¾‚³‚¢B");
-//                    $("#pass_1").prop("disabled", true);
-//                    return false;
-				}else{
 
+
+				}else{
+					var price_tani = "å††";
                     tbHanbaiJoho = JSON.parse(rtn);
                         $('#product_title').html(tbHanbaiJoho["hambai_title"]);
-					var ippan_kakaku = Number(tbHanbaiJoho["ippan_kakaku_zeikomi"]).toLocaleString();
-					var kakaku = Number(tbHanbaiJoho["kakaku_zeikomi"]).toLocaleString();
-					var kaiin_kakaku = Number(tbHanbaiJoho["kaiin_kakaku_zeikomi"]).toLocaleString();
+					var ippan_kakaku = Number(tbHanbaiJoho["ippan_kakaku_zeikomi"]).toLocaleString() + "å††";
+					var kakaku = Number(tbHanbaiJoho["kakaku_zeikomi"]).toLocaleString() + "å††";
+					var kaiin_kakaku = Number(tbHanbaiJoho["kaiin_kakaku_zeikomi"]).toLocaleString() + "å††";
 
                     $('#product_img').attr('src', tbHanbaiJoho["gazo_url"]);
                     $('#price_ippan').html(ippan_kakaku);
@@ -40,12 +39,16 @@
 						}
 					}
 
-					if(tbHanbaiJoho["kaiin_no"] == ""){ // –¢ƒƒOƒCƒ“
+					if(tbHanbaiJoho["kaiin_no"] == ""){ // æœªãƒ­ã‚°ã‚¤ãƒ³
 						$('#login_button').show();
 						$('#buy_login_button').show();
-					}else{ // ƒƒOƒCƒ“’†
+						 $('#price_ippan').addClass("price");
+						 $('#price_kaiin').removeClass("price");
+					}else{ // ãƒ­ã‚°ã‚¤ãƒ³ä¸­
 						$('#login_button').hide();
 						$('#buy_login_button').hide();
+						 $('#price_ippan').removeClass("price");
+						 $('#price_kaiin').addClass("price");
 					}
 
 				}
@@ -57,6 +60,27 @@
             return false;
         }
     });
+
+/************************************************************
+	*ã€ã‹ã”ã«å…¥ã‚Œã‚‹ã€‘ãƒœã‚¿ãƒ³æŠ¼ä¸‹æ™‚
+*************************************************************/
+$('#buy_button').on('click', function() {
+//    $("#product_form").attr('action', '/sample.html');
+//    $("#product_form").submit();
+
+	alert("ã‹ã”ã«å…¥ã‚Œã‚‹");
+});
+
+/************************************************************
+	*ã€ãƒã‚¤ãƒšãƒ¼ã‚¸ã«ãƒ­ã‚°ã‚¤ãƒ³ã—ã¦ãŠè²·ã„ç‰©ã‹ã”ã«å…¥ã‚Œã‚‹ã€‘ãƒœã‚¿ãƒ³æŠ¼ä¸‹æ™‚
+*************************************************************/
+
+$('#buy_login_button').click(function() {
+ 
+    $("#product_form").attr('action', '../login/');
+    $("#product_form").submit();
+});
+
 
 
     });

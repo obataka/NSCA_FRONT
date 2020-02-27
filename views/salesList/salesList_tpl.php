@@ -32,10 +32,10 @@
 		<h2>NSCAジャパンショップ</h2>
 		<div class="content_wrap">
 			<div class="clearfix">
-				<button class="button top_btn" type="submit" value="" onclick="location.href='#'"><span>買い物カゴ</span></button>
+				<button class="button top_btn" type="submit" value="" onclick="location.href='../shoppingBasket/'"><span>買い物カゴ</span></button>
 			</div>
 			<div>
-				<button class="button top_btn" id="login_button" value="" onclick="location.href='#'"><span>マイページログイン</span></button>
+				<button class="button top_btn" id="login_button" value="" onclick="location.href='../login/'"><span>マイページログイン</span></button>
 			</div>
 			<section>
 				<h3 id="title_cscs">CSCS</h3>

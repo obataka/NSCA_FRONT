@@ -164,12 +164,12 @@
 				$('#title_doga').hide();
 			}
 
-			if(tbHanbaiJoho[0]["kaiin_no"] == ""){ // 未ログイン
+			if(tbHanbaiJoho[0]["kaiin_no"] == ""){ // 会員以外
 				$('#login_button').show();
 				$('#no_login_info').show();
 				$('#table_doga').hide();
 				$('#title_doga').hide();
-			}else{ // ログイン中
+			}else{ 									// 会員
 				$('#login_button').hide();
 				$('#no_login_info').hide();
 			}
@@ -190,8 +190,6 @@
 
 $('.buttons-area').on('click', 'button', function() {
  
-//			url = '../product/';
-//			$('form').attr('action', url);
 	var hambai_id = $(this).data('id');
 	$("#hambai_id").val(hambai_id);
     $("#hambai_form").submit();

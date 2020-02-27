@@ -50,6 +50,10 @@ tr {
 	text-indent: -1em;
 	padding-left: 1em;
 }
+.price {
+	color: #ffa500;
+	font-weight: bold;
+}
 
 @media screen and (max-width: 768px) {
 	table {
