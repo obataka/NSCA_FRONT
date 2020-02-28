@@ -15,8 +15,8 @@ $result_array = [];
 *セッションから会員番号取得 
 *************************************************************/
 
-$kaiin_no = "";
-//$kaiin_no = "819122001";
+//$kaiin_no = "";
+$kaiin_no = "819122001";
 
 /************************************************************
 *販売情報取得 
@@ -66,6 +66,7 @@ if($kaiin_no != ""){
 			$hambai_doga_array = array (
 			  'kaiin_no' => $kaiin_no,
 			  'hambai_id' => $value['hambai_id'],
+			  'doga_id' => "",
 			  'shurui' => $value['shurui'],
 			  'hambai_kbn' => $value['hambai_kbn'],
 			  'hambai_title' => $value['hambai_title'],
@@ -103,7 +104,8 @@ if($kaiin_no != ""){
 
 			$doga_array = array (
 			  'kaiin_no' => $kaiin_no,
-			  'hambai_id' => $value['doga_id'],
+			  'hambai_id' => "",
+			  'doga_id' => $value['doga_id'],
 			  'shurui' => 2,
 			  'hambai_kbn' => 0,
 			  'hambai_title' => $value['doga_title'],

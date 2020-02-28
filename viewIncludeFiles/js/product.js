@@ -23,8 +23,6 @@
 
                     $('#product_img').attr('src', tbHanbaiJoho["gazo_url"]);
                     $('#price_ippan').html(ippan_kakaku);
-                    $('#price_kaiin').html(kakaku);
-                    $('#price_label').html(tbHanbaiJoho["kakaku_title"]);
                     $('#tsuiki').html(tbHanbaiJoho["hambai_title_tsuiki"]);
                     $('#gaiyo').html(tbHanbaiJoho["gaiyo"]);
                     $('#setsumei').html(tbHanbaiJoho["setsumei"]);
@@ -42,13 +40,18 @@
 					if(tbHanbaiJoho["kaiin_no"] == ""){ // 未ログイン
 						$('#login_button').show();
 						$('#buy_login_button').show();
-						 $('#price_ippan').addClass("price");
-						 $('#price_kaiin').removeClass("price");
+	                    $('#price_ippan').addClass("price");
+	                    $('#price_kaiin').removeClass("price");
+	                    $('#price_label').html(tbHanbaiJoho["kaiin_kakaku_title"]);
+	                    $('#price_kaiin').html(kaiin_kakaku);
+
 					}else{ // ログイン中
 						$('#login_button').hide();
 						$('#buy_login_button').hide();
-						 $('#price_ippan').removeClass("price");
-						 $('#price_kaiin').addClass("price");
+						$('#price_ippan').removeClass("price");
+						$('#price_kaiin').addClass("price");
+	                    $('#price_label').html(tbHanbaiJoho["kakaku_title"]);
+	                    $('#price_kaiin').html(kakaku);
 					}
 
 				}

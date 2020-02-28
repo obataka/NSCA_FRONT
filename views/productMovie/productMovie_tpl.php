@@ -20,28 +20,7 @@
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.3.1.min.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/header.js"></script>
-		<script>
-			$(function(){
-				
-				$('.cscs_accordion').hide();
-				$('.cscs_btn').click(function(){
-					$('.cscs_accordion').slideToggle();
-					$(this).toggleClass("active");
-				});
-				
-				$('.nsca_accordion').hide();
-				$('.nsca_btn').click(function(){
-					$('.nsca_accordion').slideToggle();
-					$(this).toggleClass("active");
-				});
-				$('.conference_accordion').hide();
-				$('.conference_btn').click(function(){
-					$('.conference_accordion').slideToggle();
-					$(this).toggleClass("active");
-				});
-				
-			});
-		</script>
+		<script type="text/javascript" src="../../viewIncludeFiles/js/productMovie.js"></script>
     </head>
     <body>
 	<header id="header">
@@ -50,218 +29,50 @@
 		<h2>商品詳細確認</h2>
 		<div class="content_wrap">	
 			<div class="top_btn clearfix">
-				<button class="button price" type="button" onclick="location.href='#'"><span>買い物かご</span></button>
+				<button class="button" type="button" onclick="location.href='../shoppingBasket/'"><span>買い物かご</span></button>
 			</div>
-			<h3>CSCS動画</h3>
+			<h3>商品購入</h3>
 			<form>
 				<div class="movie_wrap">
 					<div class="bg_gray">
-						<p class="movie_title">セミナー動画タイトル</p>
+						<p class="movie_title"><span id="product_title">セミナー動画タイトル</span></p>
+						<input type="hidden" name="hambai_id" id="hambai_id" value="<?php echo $_POST['hambai_doga_id'] ?>">
+						<input type="hidden" name="doga_id" id="doga_id" value="<?php echo $_POST['doga_id'] ?>">
+					<section>
 						<div class="movie">
 							<!----<video src=""></video>----->
-							<img src="https://placehold.jp/949494/ffffff/350x220.png">
+							<img id="product_img" src="https://placehold.jp/949494/ffffff/350x220.png">
 						</div>
-						<p class="text">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-						<section>
-							<p>一般価格：00000円<span class="zei">(税込み)</span></p>
-							<p>会員価格：00000円<span class="zei">(税込み)</span></p>
 						</section>
-						<div class="bg_white">
-							<input id="cscs_1" type="checkbox" name="cscs" value=""><label class="checkbox" for="cscs_1">購入する</label>
-						</div>
-					</div>
-					<div class="bg_gray">
-						<p class="movie_title">セミナー動画タイトル</p>
-						<div class="movie">
-							<!----<video src=""></video>----->
-							<img src="https://placehold.jp/949494/ffffff/350x220.png">
-						</div>
-						<p class="text">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
 						<section>
-							<p>一般価格：00000円<span class="zei">(税込み)</span></p>
-							<p>会員価格：00000円<span class="zei">(税込み)</span></p>
+							<p>価格：<span id="price_kaiin" class="price">0000円</span><span class="zei">(税込み・送料別)</span></p>
 						</section>
-						<div class="bg_white">
-							<input id="cscs_2" type="checkbox" name="cscs" value=""><label class="checkbox" for="cscs_2">購入する</label>
-						</div>
-					</div>
+						<section>
+							<span id="tsuiki">法人・学校様は<a href="#">こちら</a></span>
+					</section>
 				</div>
-				<div class="movie_wrap cscs_accordion">
-					<div class="bg_gray">
-						<p class="movie_title">セミナー動画タイトル</p>
-						<div class="movie">
-							<!----<video src=""></video>----->
-							<img src="https://placehold.jp/949494/ffffff/350x220.png">
-						</div>
-						<p class="text">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-						<section>
-							<p>一般価格：00000円<span class="zei">(税込み)</span></p>
-							<p>会員価格：00000円<span class="zei">(税込み)</span></p>
-						</section>
-						<div class="bg_white">
-							<input id="cscs_3" type="checkbox" name="cscs" value=""><label class="checkbox" for="cscs_3">購入する</label>
-						</div>
-					</div>
-					<div class="bg_gray">
-						<p class="movie_title">セミナー動画タイトル</p>
-						<div class="movie">
-							<!----<video src=""></video>----->
-							<img src="https://placehold.jp/949494/ffffff/350x220.png">
-						</div>
-						<p class="text">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-						<section>
-							<p>一般価格：00000円<span class="zei">(税込み)</span></p>
-							<p>会員価格：00000円<span class="zei">(税込み)</span></p>
-						</section>
-						<div class="bg_white">
-							<input id="cscs_4" type="checkbox" name="cscs" value=""><label class="checkbox" for="cscs_4">購入する</label>
-						</div>
-					</div>
-				</div>
-				<button class="button cscs_btn" type="button" value="">CSCS動画をすべて見る</button>
-				
-				<h3>NSCA-CPT動画</h3>
-				<div class="movie_wrap">
-					<div class="bg_gray">
-						<p class="movie_title">セミナー動画タイトル</p>
-						<div class="movie">
-							<!----<video src=""></video>----->
-							<img src="https://placehold.jp/949494/ffffff/350x220.png">
-						</div>
-						<p class="text">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-						<section>
-							<p>一般価格：00000円<span class="zei">(税込み)</span></p>
-							<p>会員価格：00000円<span class="zei">(税込み)</span></p>
-						</section>
-						<div class="bg_white">
-							<input id="nsca_1" type="checkbox" name="nsca" value=""><label class="checkbox" for="nsca_1">購入する</label>
-						</div>
-					</div>
-					<div class="bg_gray">
-						<p class="movie_title">セミナー動画タイトル</p>
-						<div class="movie">
-							<!----<video src=""></video>----->
-							<img src="https://placehold.jp/949494/ffffff/350x220.png">
-						</div>
-						<p class="text">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-						<section>
-							<p>一般価格：00000円<span class="zei">(税込み)</span></p>
-							<p>会員価格：00000円<span class="zei">(税込み)</span></p>
-						</section>
-						<div class="bg_white">
-							<input id="nsca_2" type="checkbox" name="nsca" value=""><label class="checkbox" for="nsca_2">購入する</label>
-						</div>
-					</div>
-				</div>
-				<div class="movie_wrap nsca_accordion">
-					<div class="bg_gray">
-						<p class="movie_title">セミナー動画タイトル</p>
-						<div class="movie">
-							<!----<video src=""></video>----->
-							<img src="https://placehold.jp/949494/ffffff/350x220.png">
-						</div>
-						<p class="text">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-						<section>
-							<p>一般価格：00000円<span class="zei">(税込み)</span></p>
-							<p>会員価格：00000円<span class="zei">(税込み)</span></p>
-						</section>
-						<div class="bg_white">
-							<input id="nsca_3" type="checkbox" name="nsca" value=""><label class="checkbox" for="nsca_3">購入する</label>
-						</div>
-					</div>
-					<div class="bg_gray">
-						<p class="movie_title">セミナー動画タイトル</p>
-						<div class="movie">
-							<!----<video src=""></video>----->
-							<img src="https://placehold.jp/949494/ffffff/350x220.png">
-						</div>
-						<p class="text">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-						<section>
-							<p>一般価格：00000円<span class="zei">(税込み)</span></p>
-							<p>会員価格：00000円<span class="zei">(税込み)</span></p>
-						</section>
-						<div class="bg_white">
-							<input id="nsca_4" type="checkbox" name="nsca" value=""><label class="checkbox" for="nsca_4">購入する</label>
-						</div>
-					</div>
-				</div>
-				<button class="button nsca_btn" type="button" value="">NSCA-CPT動画をすべて見る</button>
-				
-				<h3>カンファレンス動画</h3>
-				<div class="movie_wrap">
-					<div class="bg_gray">
-						<p class="movie_title">セミナー動画タイトル</p>
-						<div class="movie">
-							<!----<video src=""></video>----->
-							<img src="https://placehold.jp/949494/ffffff/350x220.png">
-						</div>
-						<p class="text">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-						<section>
-							<p>一般価格：00000円<span class="zei">(税込み)</span></p>
-							<p>会員価格：00000円<span class="zei">(税込み)</span></p>
-						</section>
-						<div class="bg_white">
-							<input id="conference_1" type="checkbox" name="conference" value=""><label class="checkbox" for="conference_1">購入する</label>
-						</div>
-					</div>
-					<div class="bg_gray">
-						<p class="movie_title">セミナー動画タイトル</p>
-						<div class="movie">
-							<!----<video src=""></video>----->
-							<img src="https://placehold.jp/949494/ffffff/350x220.png">
-						</div>
-						<p class="text">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-						<section>
-							<p>一般価格：00000円<span class="zei">(税込み)</span></p>
-							<p>会員価格：00000円<span class="zei">(税込み)</span></p>
-						</section>
-						<div class="bg_white">
-							<input id="conference_2" type="checkbox" name="conference" value=""><label class="checkbox" for="conference_2">購入する</label>
-						</div>
-					</div>
-				</div>
-				<div class="movie_wrap conference_accordion">
-					<div class="bg_gray">
-						<p class="movie_title">セミナー動画タイトル</p>
-						<div class="movie">
-							<!----<video src=""></video>----->
-							<img src="https://placehold.jp/949494/ffffff/350x220.png">
-						</div>
-						<p class="text">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-						<section>
-							<p>一般価格：00000円<span class="zei">(税込み)</span></p>
-							<p>会員価格：00000円<span class="zei">(税込み)</span></p>
-						</section>
-						<div class="bg_white">
-							<input id="conference_3" type="checkbox" name="conference" value=""><label class="checkbox" for="conference_3">購入する</label>
-						</div>
-					</div>
-					<div class="bg_gray">
-						<p class="movie_title">セミナー動画タイトル</p>
-						<div class="movie">
-							<!----<video src=""></video>----->
-							<img src="https://placehold.jp/949494/ffffff/350x220.png">
-						</div>
-						<p class="text">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-						<section>
-							<p>一般価格：00000円<span class="zei">(税込み)</span></p>
-							<p>会員価格：00000円<span class="zei">(税込み)</span></p>
-						</section>
-						<div class="bg_white">
-							<input id="conference_4" type="checkbox" name="conference" value=""><label class="checkbox" for="conference_4">購入する</label>
-						</div>
-					</div>
-				</div>
-				<button class="button conference_btn" type="button" value="">カンファレンス動画をすべて見る</button>
-
-				
-			</form>
-			<p>法人・学校様は<a href="#">こちら</a><br>
-				@nsca-japan.or.jpからのメールを受信できるように設定をお願いします</p>
+			</div>
+		</form>
+			<h3>詳細説明</h3>
+			<div class="setsumei">
+				<span id="gaiyo">概要は〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇</span>
+				<br>
+				<span><img id="setsumei_gazo_1" src="https://placehold.jp/949494/ffffff/150x200.png"></span>
+				<span><img id="setsumei_gazo_2" src="https://placehold.jp/949494/ffffff/150x200.png"></span>
+				<span><img id="setsumei_gazo_3" src="https://placehold.jp/949494/ffffff/150x200.png"></span>
+				<span><img id="setsumei_gazo_4" src="https://placehold.jp/949494/ffffff/150x200.png"></span>
+				<br>
+				<span id="setsumei">説明は〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇</span>
+			</div><br><br>
+			<p class="kome">※理由の如何に関わらず、お支払い後の購入のキャンセルはお受け致しかねます。</p>
+			<p class="kome">※動画配信期間は、購入から１年間です。予告なく配信を停止する可能性がございますので、あらかじめご了承ください</p>
+			<p class="kome"></p>
+			<p>@nsca-japan.or.jpからのメールを受信できるように設定をお願いします</p>
 			<section class="btn_wrap">
-				<button class="button btn_gray" type="button" value="" onclick="location.href='#'"><span>商品一覧へ</span></button>
-				<button class="button" type="submit" value="" onclick="location.href='#'"><span>かごに入れる</span></button>
+				<button class="button btn_gray" id="go_salesList_button" type="button" value=""  onclick="location.href='../salesList/'"><span>商品一覧へ</span></button>
+				<button class="button" type="button" id="buy_button">かごに入れる</button>
 			</section>
+
 		</div>
 	</div>
 	<footer>

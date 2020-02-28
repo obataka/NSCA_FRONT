@@ -551,6 +551,7 @@
 		<input type="hidden" name="hambai_id" id="hambai_id" value="">
 	</form>
 	<form id="doga_form" action="../productMovie/" method="post">
+		<input type="hidden" name="hambai_doga_id" id="hambai_doga_id" value="">
 		<input type="hidden" name="doga_id" id="doga_id" value="">
 	</form>
 

@@ -325,6 +325,8 @@ ORDER BY menu_sort_jun,hambai_sort_jun
 		FLOOR(ippan_kakaku * zeiritu) AS ippan_kakaku_zeikomi,
 		tb_hambai_joho.menu_sort_jun,
 		tb_hambai_joho.hambai_sort_jun,
+		tb_hambai_joho.umekomi_tag,
+		tb_hambai_joho.sample_url,
 		kaiin_sbt_kbn,
 		ifnull(shutoku_jokyo,0) AS shutoku_jokyo,
 		tb_hambai_joho_seigen_shikaku_nashi.meisho_cd AS hyoji_seigen,
