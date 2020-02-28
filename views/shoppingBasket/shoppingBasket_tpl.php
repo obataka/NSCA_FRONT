@@ -5,7 +5,7 @@
         <meta http-equiv="Content-Style-Type" content="text/css" />
         <meta name='format-detection' content='telephone=no' />
         <meta name='viewport' content='width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no' />
-        <title>お買い物こごの商品一覧</title>
+        <title>お買い物かごの商品一覧</title>
         <!-- favicon -->
         <link rel="icon" href="../../viewIncludeFiles/image/favicon.ico">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
@@ -18,7 +18,7 @@
         <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.1.1.min.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
-        <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="../../viewIncludeFiles/js/shoppingBasket.js"></script>
 			<script type="text/javascript" src="../../viewIncludeFiles/js/header.js"></script>
     </head>
     <body>

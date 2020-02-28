@@ -35,10 +35,10 @@ class Tb_kaiin_nintei
    {
       try {
          $sth = $db->prepare("UPDATE tb_kaiin_nintei
-                              SET(
+                              SET
                                  level_2_point = IFNULL(level_2_point, 0) + $level_2_point,
                                  koshin_user_id = :koshin_user_id 
-                              )
+                              
                               WHERE
                                  kaiin_no = :kaiin_no
                               AND 
@@ -47,7 +47,6 @@ class Tb_kaiin_nintei
          // $sth->execute([':kaiin_no' => '10251033',]);
          $sth->execute([
             ':kaiin_no'          => $param['kaiin_no'],
-            ':shutokubi'         => $param['shutokubi'],
             ':koshin_user_id'    => $param['user_id'],
          ]);
       } catch (\PDOException $e) {
@@ -61,10 +60,10 @@ class Tb_kaiin_nintei
    {
       try {
          $sth = $db->prepare("UPDATE tb_kaiin_nintei
-                              SET(
+                              SET
                                  level_2_theme_$meisho_cd = 1,
                                  koshin_user_id = :koshin_user_id 
-                              )
+                              
                               WHERE
                                  kaiin_no = :kaiin_no
                               AND 

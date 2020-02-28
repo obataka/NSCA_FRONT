@@ -35,7 +35,7 @@
                     }
                 }).done((data) => {
                     getPersonalDevelopment = JSON.parse(data);
-                    console.log(getPersonalDevelopment);
+
 
                 }).fail((data) => {
                     return false;
@@ -70,10 +70,8 @@
 
                 }).done((data) => {
                     if (data == 0) {
-                        console.log(0);
                         return false;
                     } else {
-                        console.log(1);
                         var shutokubi = "";
                         if (getPersonalDevelopment[idx]['shutokubi'] != "") {
                             shutokubi = getPersonalDevelopment[idx]['shutokubi'];
@@ -94,10 +92,39 @@
 
                         }).done((data) => {
                             if (data == 0) {
-                                console.log(555);
                                 return false;
                             } else {
-                                console.log(111);
+                                // HIDDENデータをSESSIONに積込む処理
+                                $.ajax({
+                                    url: '../../classes/setPersonalDevelopmentDataToSess.php',
+                                    type: 'POST',
+                                    data: {
+
+                                        //会員情報
+                                        kaiin_no: getKaiinJoho[0],
+                                        ceu_id: getPersonalDevelopment[idx]['ceu_id'],
+                                        category_kbn: getPersonalDevelopment[idx]['category_kbn'],
+                                        nendo_id: getPersonalDevelopment[idx]['nendo_id'],
+                                        ceusu: getPersonalDevelopment[idx]['ceusu'],
+                                        shutokubi: shutokubi,
+                                        chkCSCS: $('#chkCSCS').val(),
+                                        chkCPT: $('#chkCPT').val(),
+                                        
+                                        tranScreen: 'personalDevelopmentConfirm'
+                                    }
+                                })
+
+                                    // Ajaxリクエストが成功した時発動
+                                    .done((data) => {
+                                        url = '../paymentSelectNoLogin/';
+                                        $('form').attr('action', url);
+                                        $('form').submit();
+                                    })
+
+                                    // Ajaxリクエストが失敗した時発動
+                                    .fail((data) => {
+                                        return false;
+                                    })
                             }
 
                         }).fail((data) => {

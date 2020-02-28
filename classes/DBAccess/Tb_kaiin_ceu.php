@@ -549,70 +549,16 @@ SQL;
         return $cscs;
     }
 
-    public function getCSCSCEUsu($db, $param)
-    {
-        try {
-            $sth = $db->prepare("SELECT 
-                                    hitsuyo_ceusu,
-                                    genzai_shutoku_ceusu
-                                FROM
-                                    tb_kaiin_ceu
-                                WHERE
-                                    kaiin_no = :kaiin_no
-                                AND 
-                                    shiken_sbt_kbn = 1
-                                AND
-                                    nendo_id = :nendo_id
-                                ");
-            $sth->execute([
-                ':kaiin_no'                         => $param['kaiin_no'],
-                ':nendo_id'                         => $param['nendo_id'],
-            ]);
-            $cscs = $sth->fetchAll();
-        } catch (\PDOException $e) {
-            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/shibata_log.txt');
-            $cscs = [];
-        }
-        return $cscs;
-    }
-
-    public function getCPTCEUsu($db, $param)
-    {
-        try {
-            $sth = $db->prepare("SELECT 
-                                    hitsuyo_ceusu,
-                                    genzai_shutoku_ceusu
-                                FROM
-                                    tb_kaiin_ceu
-                                WHERE
-                                    kaiin_no = :kaiin_no
-                                AND 
-                                    shiken_sbt_kbn = 2
-                                AND
-                                    nendo_id = :nendo_id
-                                ");
-            $sth->execute([
-                ':kaiin_no'                         => $param['kaiin_no'],
-                ':nendo_id'                         => $param['nendo_id'],
-            ]);
-            $cscs = $sth->fetchAll();
-        } catch (\PDOException $e) {
-            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/shibata_log.txt');
-            $cscs = [];
-        }
-        return $cscs;
-    }
-
-    public function updateCEUsuCSCS($db, $param, $koshin_ceusu)
+    public function updateCEUsuCSCS($db, $param, $param_ceusu)
     {
         try {
             $sth = $db->prepare("UPDATE tb_kaiin_ceu
 								SET
-									category_a_gokei         			= CASE WHEN {$param['category_kbn']} = 1 THEN category_a_gokei + $koshin_ceusu ELSE category_a_gokei END,
-									, category_b_gokei                	= CASE WHEN {$param['category_kbn']} = 2 THEN category_b_gokei + $koshin_ceusu ELSE category_b_gokei END,
-									, category_c_gokei                 	= CASE WHEN {$param['category_kbn']} = 3 THEN category_c_gokei + $koshin_ceusu ELSE category_c_gokei END,
-									, category_d_gokei                  = CASE WHEN {$param['category_kbn']} = 4 THEN category_d_gokei + $koshin_ceusu ELSE category_d_gokei END,
-									, genzai_shutoku_ceusu              = CASE WHEN {$param['category_kbn']} IN (1,2,3,4) THEN genzai_shutoku_ceusu +$koshin_ceusu ELSE genzai_shutoku_ceusu END,
+									category_a_gokei         			= category_a_gokei + :category_a
+									, category_b_gokei                	= category_b_gokei + :category_b
+									, category_c_gokei                 	= category_c_gokei + :category_c
+									, category_d_gokei                  = category_d_gokei + :category_d
+									, genzai_shutoku_ceusu              = genzai_shutoku_ceusu + :genzai_shutoku
                                     , koshin_user_id                    = :koshin_user_id
 								WHERE
 									nendo_id = :nendo_id
@@ -623,8 +569,13 @@ SQL;
 								");
             $sth->execute([
                 ':kaiin_no'                         => $param['kaiin_no'],
-                ':nendo_id'                   		=> $param['ceu_id'],
-				':koshin_user_id'                   => $param['user_id'],
+                ':nendo_id'                         => $param['nendo_id'],
+                ':koshin_user_id'                   => $param['user_id'],
+                ':category_a'                       => $param_ceusu['category_a'],
+                ':category_b'                       => $param_ceusu['category_b'],
+                ':category_c'                       => $param_ceusu['category_c'],
+                ':category_d'                       => $param_ceusu['category_d'],
+                ':genzai_shutoku'                   => $param_ceusu['genzai_shutoku'],
             ]);
         } catch (\PDOException $e) {
             error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/sugai_log.txt');
@@ -654,7 +605,7 @@ SQL;
 								");
             $sth->execute([
                 ':kaiin_no'                         => $param['kaiin_no'],
-                ':nendo_id'                   		=> $param['ceu_id'],
+                ':nendo_id'                           => $param['nendos_id'],
             ]);
         } catch (\PDOException $e) {
             error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/sugai_log.txt');
@@ -664,28 +615,33 @@ SQL;
         return TRUE;
     }
 
-    public function updateCEUsuCPT($db, $param, $koshin_ceusu)
+    public function updateCEUsuCPT($db, $param, $param_ceusu)
     {
         try {
             $sth = $db->prepare("UPDATE tb_kaiin_ceu
-								SET
-									category_a_gokei         			= CASE WHEN {$param['category_kbn']} = 1 THEN category_a_gokei + $koshin_ceusu ELSE category_a_gokei END,
-									, category_b_gokei                	= CASE WHEN {$param['category_kbn']} = 2 THEN category_b_gokei + $koshin_ceusu ELSE category_b_gokei END,
-									, category_c_gokei                 	= CASE WHEN {$param['category_kbn']} = 3 THEN category_c_gokei + $koshin_ceusu ELSE category_c_gokei END,
-									, category_d_gokei                  = CASE WHEN {$param['category_kbn']} = 4 THEN category_d_gokei + $koshin_ceusu ELSE category_d_gokei END,
-									, genzai_shutoku_ceusu              = CASE WHEN {$param['category_kbn']} IN (1,2,3,4) THEN genzai_shutoku_ceusu +$koshin_ceusu ELSE genzai_shutoku_ceusu END,
+                                SET
+                                    category_a_gokei         			= category_a_gokei + :category_a
+                                    , category_b_gokei                	= category_b_gokei + :category_b
+                                    , category_c_gokei                 	= category_c_gokei + :category_c
+                                    , category_d_gokei                  = category_d_gokei + :category_d
+                                    , genzai_shutoku_ceusu              = genzai_shutoku_ceusu + :genzai_shutoku
                                     , koshin_user_id                    = :koshin_user_id
-								WHERE
-									nendo_id = :nendo_id
-								AND
-									kaiin_no = :kaiin_no
+                                WHERE
+                                    nendo_id = :nendo_id
+                                AND
+                                    kaiin_no = :kaiin_no
                                 AND
                                     shiken_sbt_kbn = 2
-								");
+                                ");
             $sth->execute([
                 ':kaiin_no'                         => $param['kaiin_no'],
-                ':nendo_id'                   		=> $param['ceu_id'],
-				':koshin_user_id'                   => $param['user_id'],
+                ':nendo_id'                         => $param['nendo_id'],
+                ':koshin_user_id'                   => $param['user_id'],
+                ':category_a'                       => $param_ceusu['category_a'],
+                ':category_b'                       => $param_ceusu['category_b'],
+                ':category_c'                       => $param_ceusu['category_c'],
+                ':category_d'                       => $param_ceusu['category_d'],
+                ':genzai_shutoku'                   => $param_ceusu['genzai_shutoku'],
             ]);
         } catch (\PDOException $e) {
             error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/sugai_log.txt');
@@ -715,7 +671,7 @@ SQL;
 								");
             $sth->execute([
                 ':kaiin_no'                         => $param['kaiin_no'],
-                ':nendo_id'                   		=> $param['ceu_id'],
+                ':nendo_id'                           => $param['nendo_id'],
             ]);
         } catch (\PDOException $e) {
             error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/sugai_log.txt');

@@ -30,7 +30,7 @@ if (isset($_SESSION['kaiinNo'])) {
 
 $wk_kaiin_no = 10251033;
 
-$user_id = "hoge";
+$user_id = "chisato";
 
 //personalDevelopmentConfirmでセットしたPOSTデータを取得する
 $category_kbn = (!empty($_POST['category_kbn'])) ? htmlentities($_POST['category_kbn'], ENT_QUOTES, "UTF-8") : "";
@@ -75,7 +75,6 @@ $level2_exists = (new Tb_kaiin_nintei())->chkExistsLevel2($db, $param);
 
 if (!empty($level2_exists) && $level2_exists[0]['level_2_point'] && (strtotime($ninteibi_cscs['ninteibi']) <= strtotime($param['shutokubi']) || strtotime($ninteibi_cpt['ninteibi']) <= strtotime($param['shutokubi']))) {
     $result = (new Tb_kaiin_nintei())->updateLevel2($db, $param, $level2_exists[0]['level_2_point']);
-    error_log(print_r($result, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/shibata_log.txt');
     if ($result == false) {
         $db->rollBack();
 
@@ -107,38 +106,56 @@ if (!empty($level2_exists) && $level2_exists[0]['level_2_point'] && (strtotime($
         }
 
         if ($flg) {
-            
+
             if ($chkCSCS == 1 && $chkCPT == 1) {
                 //CSCSの更新
                 $cscs_exists = (new Tb_kaiin_ceu())->chkExistsCSCSFlg($db, $param);
                 if (!empty($cscs_exists) && strtotime($ninteibi_cscs['ninteibi']) <= strtotime($param['shutokubi']) && $jogen_cscs > 0) {
-                    $ceusu = (new Tb_kaiin_ceu())->getCSCSCEUsu($db, $param);
                     $koshin_ceusu = $param['ceusu'];
+
+                    //ceu数更新用パラメータ設定
+                    $param_ceusu = [
+                        'category_a'        => 0,
+                        'category_b'        => 0,
+                        'category_c'        => 0,
+                        'category_d'        => 0,
+                        'genzai_shutoku'    => 0,
+                    ];
+
+                    //カテゴリー毎の上限数のチェックを実施
                     switch ($param['category_kbn']) {
-                        case '1':
+                        case 1:
                             if (($cscs_exists['category_a_gokei'] + $koshin_ceusu) > $jogen_cscs) {
-                                $koshin_ceusu = $jogen_cscs - $cscs_exists['category_a_gokei'];
+                                $koshin_ceusu = $jogen_cscs['jogen_ceusu'] - $cscs_exists['category_a_gokei'];
+                                $param_ceusu['category_a'] = $koshin_ceusu;
+                                $param_ceusu['genzai_shutoku'] = $koshin_ceusu;
                                 break;
                             } else {
                                 break;
                             }
-                        case '2':
-                            if (($cscs_exists['category_a_gokei'] + $koshin_ceusu) > $jogen_cscs) {
-                                $koshin_ceusu = $jogen_cscs - $cscs_exists['category_b_gokei'];
+                        case 2:
+                            if (($cscs_exists['category_b_gokei'] + $koshin_ceusu) > $jogen_cscs) {
+                                $koshin_ceusu = $jogen_cscs['jogen_ceusu'] - $cscs_exists['category_b_gokei'];
+                                $param_ceusu['category_b'] = $koshin_ceusu;
+                                $param_ceusu['genzai_shutoku'] = $koshin_ceusu;
                                 break;
                             } else {
                                 break;
                             }
-                        case '3':
-                            if (($cscs_exists['category_a_gokei'] + $koshin_ceusu) > $jogen_cscs) {
-                                $koshin_ceusu = $jogen_cscs - $cscs_exists['category_c_gokei'];
+                        case 3:
+                            if (($cscs_exists['category_c_gokei'] + $koshin_ceusu) > $jogen_cscs) {
+                                $koshin_ceusu = $jogen_cscs['jogen_ceusu'] - $cscs_exists['category_c_gokei'];
+                                $param_ceusu['category_c'] = $koshin_ceusu;
+                                $param_ceusu['genzai_shutoku'] = $koshin_ceusu;
                                 break;
                             } else {
                                 break;
                             }
-                        case '4':
-                            if (($cscs_exists['category_a_gokei'] + $koshin_ceusu) > $jogen_cscs) {
-                                $koshin_ceusu = $jogen_cscs - $cscs_exists['category_d_gokei'];
+                        case 4:
+                            if (($cscs_exists['category_d_gokei'] + $koshin_ceusu) > $jogen_cscs) {
+                                $koshin_ceusu = $jogen_cscs['jogen_ceusu'] - $cscs_exists['category_d_gokei'];
+                                $param_ceusu['category_d'] = $koshin_ceusu;
+                                $param_ceusu['genzai_shutoku'] = $koshin_ceusu;
                                 break;
                             } else {
                                 break;
@@ -148,7 +165,7 @@ if (!empty($level2_exists) && $level2_exists[0]['level_2_point'] && (strtotime($
                     }
 
                     //CEU数の更新
-                    $result = (new Tb_kaiin_ceu())->updateCEUsuCSCS($db, $param, $koshin_ceusu);
+                    $result = (new Tb_kaiin_ceu())->updateCEUsuCSCS($db, $param, $param_ceusu);
                     // 更新失敗の場合
                     if ($result == false) {
                         $db->rollBack();
@@ -158,7 +175,7 @@ if (!empty($level2_exists) && $level2_exists[0]['level_2_point'] && (strtotime($
                         // 更新成功の場合
                     } else {
 
-                        $result = (new Tb_kaiin_ceu())->updateCEUsuZanCSCS($db, $param, $koshin_ceusu);
+                        $result = (new Tb_kaiin_ceu())->updateCEUsuZanCSCS($db, $param);
                         // 更新失敗の場合
                         if ($result == false) {
                             $db->rollBack();
@@ -170,33 +187,51 @@ if (!empty($level2_exists) && $level2_exists[0]['level_2_point'] && (strtotime($
                             //NSCA_CPTの更新
                             $cpt_exists = (new Tb_kaiin_ceu())->chkExistsCPT($db, $param);
                             if (!empty($cpt_exists) && strtotime($ninteibi_cpt['ninteibi']) <= strtotime($param['shutokubi']) && $jogen_cpt > 0) {
-                                $ceusu = (new Tb_kaiin_ceu())->getCPTCEUsu($db, $param);
                                 $koshin_ceusu = $param['ceusu'];
+
+                                //ceu数更新用パラメータ設定
+                                $param_ceusu = [
+                                    'category_a'        => 0,
+                                    'category_b'        => 0,
+                                    'category_c'        => 0,
+                                    'category_d'        => 0,
+                                    'genzai_shutoku'    => 0,
+                                ];
+
+                                //カテゴリー毎の上限数のチェックを実施
                                 switch ($param['category_kbn']) {
-                                    case '1':
+                                    case 1:
                                         if (($cpt_exists['category_a_gokei'] + $koshin_ceusu) > $jogen_cpt) {
-                                            $koshin_ceusu = $jogen_cpt - $cpt_exists['category_a_gokei'];
+                                            $koshin_ceusu = $jogen_cpt['jogen_ceusu'] - $cpt_exists['category_a_gokei'];
+                                            $param_ceusu['category_a'] = $koshin_ceusu;
+                                            $param_ceusu['genzai_shutoku'] = $koshin_ceusu;
                                             break;
                                         } else {
                                             break;
                                         }
-                                    case '2':
-                                        if (($cpt_exists['category_a_gokei'] + $koshin_ceusu) > $jogen_cpt) {
-                                            $koshin_ceusu = $jogen_cpt - $cpt_exists['category_b_gokei'];
+                                    case 2:
+                                        if (($cpt_exists['category_b_gokei'] + $koshin_ceusu) > $jogen_cpt) {
+                                            $koshin_ceusu = $jogen_cpt['jogen_ceusu'] - $cpt_exists['category_b_gokei'];
+                                            $param_ceusu['category_b'] = $koshin_ceusu;
+                                            $param_ceusu['genzai_shutoku'] = $koshin_ceusu;
                                             break;
                                         } else {
                                             break;
                                         }
-                                    case '3':
-                                        if (($cpt_exists['category_a_gokei'] + $koshin_ceusu) > $jogen_cpt) {
-                                            $koshin_ceusu = $jogen_cpt - $cpt_exists['category_c_gokei'];
+                                    case 3:
+                                        if (($cpt_exists['category_c_gokei'] + $koshin_ceusu) > $jogen_cpt) {
+                                            $koshin_ceusu = $jogen_cpt['jogen_ceusu'] - $cpt_exists['category_c_gokei'];
+                                            $param_ceusu['category_c'] = $koshin_ceusu;
+                                            $param_ceusu['genzai_shutoku'] = $koshin_ceusu;
                                             break;
                                         } else {
                                             break;
                                         }
-                                    case '4':
-                                        if (($cpt_exists['category_a_gokei'] + $koshin_ceusu) > $jogen_cpt) {
-                                            $koshin_ceusu = $jogen_cpt - $cpt_exists['category_d_gokei'];
+                                    case 4:
+                                        if (($cpt_exists['category_d_gokei'] + $koshin_ceusu) > $jogen_cpt) {
+                                            $koshin_ceusu = $jogen_cpt['jogen_ceusu'] - $cpt_exists['category_d_gokei'];
+                                            $param_ceusu['category_d'] = $koshin_ceusu;
+                                            $param_ceusu['genzai_shutoku'] = $koshin_ceusu;
                                             break;
                                         } else {
                                             break;
@@ -206,7 +241,7 @@ if (!empty($level2_exists) && $level2_exists[0]['level_2_point'] && (strtotime($
                                 }
 
                                 //CEU数の更新
-                                $result = (new Tb_kaiin_ceu())->updateCEUsuCPT($db, $param, $koshin_ceusu);
+                                $result = (new Tb_kaiin_ceu())->updateCEUsuCPT($db, $param, $param_ceusu);
                                 // 更新失敗の場合
                                 if ($result == false) {
                                     $db->rollBack();
@@ -215,8 +250,7 @@ if (!empty($level2_exists) && $level2_exists[0]['level_2_point'] && (strtotime($
                                     $result = 0;
                                     // 更新成功の場合
                                 } else {
-
-                                    $result = (new Tb_kaiin_ceu())->updateCEUsuZanCPT($db, $param, $koshin_ceusu);
+                                    $result = (new Tb_kaiin_ceu())->updateCEUsuZanCPT($db, $param);
                                     // 更新失敗の場合
                                     if ($result == false) {
                                         $db->rollBack();
@@ -225,7 +259,6 @@ if (!empty($level2_exists) && $level2_exists[0]['level_2_point'] && (strtotime($
                                         $result = 0;
                                         // 更新成功の場合
                                     } else {
-
                                         // commit
                                         $db->commit();
 
@@ -241,33 +274,51 @@ if (!empty($level2_exists) && $level2_exists[0]['level_2_point'] && (strtotime($
                 //CSCSの更新
                 $cscs_exists = (new Tb_kaiin_ceu())->chkExistsCSCSFlg($db, $param);
                 if (!empty($cscs_exists) && strtotime($ninteibi_cscs['ninteibi']) <= strtotime($param['shutokubi']) && $jogen_cscs > 0) {
-                    $ceusu = (new Tb_kaiin_ceu())->getCSCSCEUsu($db, $param);
                     $koshin_ceusu = $param['ceusu'];
+
+                    //ceu数更新用パラメータ設定
+                    $param_ceusu = [
+                        'category_a'        => 0,
+                        'category_b'        => 0,
+                        'category_c'        => 0,
+                        'category_d'        => 0,
+                        'genzai_shutoku'    => 0,
+                    ];
+
+                    //カテゴリー毎の上限数のチェックを実施
                     switch ($param['category_kbn']) {
-                        case '1':
+                        case 1:
                             if (($cscs_exists['category_a_gokei'] + $koshin_ceusu) > $jogen_cscs) {
-                                $koshin_ceusu = $jogen_cscs - $cscs_exists['category_a_gokei'];
+                                $koshin_ceusu = $jogen_cscs['jogen_ceusu'] - $cscs_exists['category_a_gokei'];
+                                $param_ceusu['category_a'] = $koshin_ceusu;
+                                $param_ceusu['genzai_shutoku'] = $koshin_ceusu;
                                 break;
                             } else {
                                 break;
                             }
-                        case '2':
-                            if (($cscs_exists['category_a_gokei'] + $koshin_ceusu) > $jogen_cscs) {
-                                $koshin_ceusu = $jogen_cscs - $cscs_exists['category_b_gokei'];
+                        case 2:
+                            if (($cscs_exists['category_b_gokei'] + $koshin_ceusu) > $jogen_cscs) {
+                                $koshin_ceusu = $jogen_cscs['jogen_ceusu'] - $cscs_exists['category_b_gokei'];
+                                $param_ceusu['category_b'] = $koshin_ceusu;
+                                $param_ceusu['genzai_shutoku'] = $koshin_ceusu;
                                 break;
                             } else {
                                 break;
                             }
-                        case '3':
-                            if (($cscs_exists['category_a_gokei'] + $koshin_ceusu) > $jogen_cscs) {
-                                $koshin_ceusu = $jogen_cscs - $cscs_exists['category_c_gokei'];
+                        case 3:
+                            if (($cscs_exists['category_c_gokei'] + $koshin_ceusu) > $jogen_cscs) {
+                                $koshin_ceusu = $jogen_cscs['jogen_ceusu'] - $cscs_exists['category_c_gokei'];
+                                $param_ceusu['category_c'] = $koshin_ceusu;
+                                $param_ceusu['genzai_shutoku'] = $koshin_ceusu;
                                 break;
                             } else {
                                 break;
                             }
-                        case '4':
-                            if (($cscs_exists['category_a_gokei'] + $koshin_ceusu) > $jogen_cscs) {
-                                $koshin_ceusu = $jogen_cscs - $cscs_exists['category_d_gokei'];
+                        case 4:
+                            if (($cscs_exists['category_d_gokei'] + $koshin_ceusu) > $jogen_cscs) {
+                                $koshin_ceusu = $jogen_cscs['jogen_ceusu'] - $cscs_exists['category_d_gokei'];
+                                $param_ceusu['category_d'] = $koshin_ceusu;
+                                $param_ceusu['genzai_shutoku'] = $koshin_ceusu;
                                 break;
                             } else {
                                 break;
@@ -277,7 +328,7 @@ if (!empty($level2_exists) && $level2_exists[0]['level_2_point'] && (strtotime($
                     }
 
                     //CEU数の更新
-                    $result = (new Tb_kaiin_ceu())->updateCEUsuCSCS($db, $param, $koshin_ceusu);
+                    $result = (new Tb_kaiin_ceu())->updateCEUsuCSCS($db, $param, $param_ceusu);
                     // 更新失敗の場合
                     if ($result == false) {
                         $db->rollBack();
@@ -287,7 +338,7 @@ if (!empty($level2_exists) && $level2_exists[0]['level_2_point'] && (strtotime($
                         // 更新成功の場合
                     } else {
 
-                        $result = (new Tb_kaiin_ceu())->updateCEUsuZanCSCS($db, $param, $koshin_ceusu);
+                        $result = (new Tb_kaiin_ceu())->updateCEUsuZanCSCS($db, $param);
                         // 更新失敗の場合
                         if ($result == false) {
                             $db->rollBack();
@@ -308,33 +359,51 @@ if (!empty($level2_exists) && $level2_exists[0]['level_2_point'] && (strtotime($
                 //NSCA_CPTの更新
                 $cpt_exists = (new Tb_kaiin_ceu())->chkExistsCPT($db, $param);
                 if (!empty($cpt_exists) && strtotime($ninteibi_cpt['ninteibi']) <= strtotime($param['shutokubi']) && $jogen_cpt > 0) {
-                    $ceusu = (new Tb_kaiin_ceu())->getCPTCEUsu($db, $param);
                     $koshin_ceusu = $param['ceusu'];
+
+                    //ceu数更新用パラメータ設定
+                    $param_ceusu = [
+                        'category_a'        => 0,
+                        'category_b'        => 0,
+                        'category_c'        => 0,
+                        'category_d'        => 0,
+                        'genzai_shutoku'    => 0,
+                    ];
+
+                    //カテゴリー毎の上限数のチェックを実施
                     switch ($param['category_kbn']) {
-                        case '1':
+                        case 1:
                             if (($cpt_exists['category_a_gokei'] + $koshin_ceusu) > $jogen_cpt) {
-                                $koshin_ceusu = $jogen_cpt - $cpt_exists['category_a_gokei'];
+                                $koshin_ceusu = $jogen_cpt['jogen_ceusu'] - $cpt_exists['category_a_gokei'];
+                                $param_ceusu['category_a'] = $koshin_ceusu;
+                                $param_ceusu['genzai_shutoku'] = $koshin_ceusu;
                                 break;
                             } else {
                                 break;
                             }
-                        case '2':
-                            if (($cpt_exists['category_a_gokei'] + $koshin_ceusu) > $jogen_cpt) {
-                                $koshin_ceusu = $jogen_cpt - $cpt_exists['category_b_gokei'];
+                        case 2:
+                            if (($cpt_exists['category_b_gokei'] + $koshin_ceusu) > $jogen_cpt) {
+                                $koshin_ceusu = $jogen_cpt['jogen_ceusu'] - $cpt_exists['category_b_gokei'];
+                                $param_ceusu['category_b'] = $koshin_ceusu;
+                                $param_ceusu['genzai_shutoku'] = $koshin_ceusu;
                                 break;
                             } else {
                                 break;
                             }
-                        case '3':
-                            if (($cpt_exists['category_a_gokei'] + $koshin_ceusu) > $jogen_cpt) {
-                                $koshin_ceusu = $jogen_cpt - $cpt_exists['category_c_gokei'];
+                        case 3:
+                            if (($cpt_exists['category_c_gokei'] + $koshin_ceusu) > $jogen_cpt) {
+                                $koshin_ceusu = $jogen_cpt['jogen_ceusu'] - $cpt_exists['category_c_gokei'];
+                                $param_ceusu['category_c'] = $koshin_ceusu;
+                                $param_ceusu['genzai_shutoku'] = $koshin_ceusu;
                                 break;
                             } else {
                                 break;
                             }
-                        case '4':
-                            if (($cpt_exists['category_a_gokei'] + $koshin_ceusu) > $jogen_cpt) {
-                                $koshin_ceusu = $jogen_cpt - $cpt_exists['category_d_gokei'];
+                        case 4:
+                            if (($cpt_exists['category_d_gokei'] + $koshin_ceusu) > $jogen_cpt) {
+                                $koshin_ceusu = $jogen_cpt['jogen_ceusu'] - $cpt_exists['category_d_gokei'];
+                                $param_ceusu['category_d'] = $koshin_ceusu;
+                                $param_ceusu['genzai_shutoku'] = $koshin_ceusu;
                                 break;
                             } else {
                                 break;
@@ -344,7 +413,7 @@ if (!empty($level2_exists) && $level2_exists[0]['level_2_point'] && (strtotime($
                     }
 
                     //CEU数の更新
-                    $result = (new Tb_kaiin_ceu())->updateCEUsuCPT($db, $param, $koshin_ceusu);
+                    $result = (new Tb_kaiin_ceu())->updateCEUsuCPT($db, $param, $param_ceusu);
                     // 更新失敗の場合
                     if ($result == false) {
                         $db->rollBack();
@@ -354,7 +423,7 @@ if (!empty($level2_exists) && $level2_exists[0]['level_2_point'] && (strtotime($
                         // 更新成功の場合
                     } else {
 
-                        $result = (new Tb_kaiin_ceu())->updateCEUsuZanCPT($db, $param, $koshin_ceusu);
+                        $result = (new Tb_kaiin_ceu())->updateCEUsuZanCPT($db, $param);
                         // 更新失敗の場合
                         if ($result == false) {
                             $db->rollBack();
