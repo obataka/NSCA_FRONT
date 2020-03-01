@@ -22,6 +22,7 @@
 		<script type="text/javascript" src="../../viewIncludeFiles/js/header.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
+		<script type="text/javascript" src="../../viewIncludeFiles/js/cardInfoInput.js"></script>
     </head>
     <body>
 	<header id="header">
@@ -82,8 +83,8 @@
 					</table>
 				</div>
 				<section class="btn_wrap btn_b_2">
-					<button class="button back" type="button" value="" onclick="location.href='nyukai_riyo.html'"><span>決済方法選択画面へ</span></button>
-					<button class="button" type="submit" value="" onclick="location.href='nyukai_toroku_kanryo.html'"><span>次へ</span></button>
+					<button class="button back" type="button" value="" id="back"><span>決済方法選択画面へ</span></button>
+					<button class="button" type="submit" value="" id="next"><span>次へ</span></button>
 				</section>
 			</div>
 		</div>

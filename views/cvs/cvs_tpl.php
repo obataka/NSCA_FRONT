@@ -21,7 +21,8 @@
         <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.3.1.min.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/header.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
-		<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
+        <script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
+        <script type="text/javascript" src="../../viewIncludeFiles/js/cvs.js"></script>
     </head>
 	<body>
 	<header id="header">
@@ -56,13 +57,13 @@
                 </div>
 				<h3>お支払方法の選択</h3>
 				<div class="shiharai_img">
-                    <a href="#"><img src="https://placehold.jp/150x150.png"></a>
-                    <a href="#"><img src="https://placehold.jp/150x150.png"></a>
-                    <a href="#"><img src="https://placehold.jp/150x150.png"></a>
-                    <a href="#"><img src="https://placehold.jp/150x150.png"></a>
-                    <a href="#"><img src="https://placehold.jp/150x150.png"></a>                       
+                    <a href="../cvsConfirm/"><img src="https://placehold.jp/150x150.png"></a>
+                    <a href="../cvsConfirm/"><img src="https://placehold.jp/150x150.png"></a>
+                    <a href="../cvsConfirm/"><img src="https://placehold.jp/150x150.png"></a>
+                    <a href="../cvsConfirm/"><img src="https://placehold.jp/150x150.png"></a>
+                    <a href="../cvsConfirm/"><img src="https://placehold.jp/150x150.png"></a>                       
                 </div>
-				<button class="button" type="button" value="" onclick="location.href='#'"><span>決済方法選択画面へ</span></button>
+				<button class="button" type="button" id="back" value=""><span>決済方法選択画面へ</span></button>
 			</div>
 		</div>
 	<footer id="footer">

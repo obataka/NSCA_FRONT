@@ -21,7 +21,8 @@
         <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.3.1.min.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/header.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
-		<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
+        <script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
+        <script type="text/javascript" src="../../viewIncludeFiles/js/cvsConfirm.js"></script>
     </head>
 	<body>
 	<header id="header">
@@ -31,7 +32,7 @@
 		<div class="content_wrap">
 			<p>テキストテキストテキストテキストテキストテキスト</p>
             <p class="text">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-        	<button class="button btn_b btn_b_1" type="button" value="" onclick="location.href='#'"><span>コンビニ決済選択画面へ</span></button>
+        	<button class="button btn_b btn_b_1" type="button" id="my_page" value=""><span>マイページへ</span></button>
 		</div>
 	</div>
 	<footer id="footer">
