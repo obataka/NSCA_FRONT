@@ -8,6 +8,7 @@ require './Config/Config.php';
 require './DBAccess/Db.php';
 require './DBAccess/Tb_hambai_konyusha_joho.php';
 require './DBAccess/Cm_control.php';
+require './DBAccess/Ms_meishoKbn.php';
 
 
 //セッションから会員番号を取得
@@ -31,9 +32,26 @@ $db->beginTransaction();
 
 $zeiritsu = getShohizei($db);
 
-
-
 $result = (new Tb_hambai_konyusha_joho())->findBySalesCartList($db, $param, $zeiritsu);
+//error_log(print_r($result, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/shibata_log.txt');
+
+for ($i = 0; $i < count($result); $i++) {
+    //販売設定名称、資格名称取得
+    $hambai_settei_meisho = (new Ms_meishoKbn())->findByHambaiMeisho($db, $result[$i]['hambai_settei_kbn'], 222);
+    $result[$i]['hambai_settei_meisho'] = $hambai_settei_meisho['meisho'];
+
+    $shikaku_meisho = (new Ms_meishoKbn())->findByHambaiMeisho($db, $result[$i]['shikaku_kbn'], 229);
+    $result[$i]['shikaku_meisho'] = $shikaku_meisho['meisho'];
+
+
+    //販売サイズ名称、販売カラー名称取得
+    $hambai_size_meisho = (new Ms_meishoKbn())->findByHambaiMeisho($db, $result[$i]['size_kbn'], 223);
+    $result[$i]['siza_meisho'] = $hambai_size_meisho['meisho'];
+
+
+    $hambai_color_meisho = (new Ms_meishoKbn())->findByHambaiMeisho($db, $result[$i]['color_kbn'], 224);
+    $result[$i]['color_meisho'] = $hambai_color_meisho['meisho'];
+}
 
 // 該当データなしの場合
 if ($result == '') {

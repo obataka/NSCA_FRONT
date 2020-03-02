@@ -54,25 +54,21 @@ SQL;
                                     ,tb_hambai_konyusha_joho_meisai.hambai_id
                                     ,tb_hambai_konyusha_joho_meisai.hambai_size_kbn AS size_kbn
                                     ,tb_hambai_konyusha_joho_meisai.hambai_color_kbn AS color_kbn
-                                    ,CONVERT(INT,tb_hambai_konyusha_joho_meisai.kakaku) AS kakaku
-                                    ,CONVERT(INT,tb_hambai_konyusha_joho_meisai.kakaku) * $zeiritsu AS zeikomi_kakaku
+                                    ,CAST(tb_hambai_konyusha_joho_meisai.kakaku AS SIGNED) AS kakaku
+                                    ,CAST(tb_hambai_konyusha_joho_meisai.kakaku AS SIGNED) * $zeiritsu AS zeikomi_kakaku
                                     ,tb_hambai_konyusha_joho_meisai.suryo
                                     ,tb_hambai_joho.hambai_title
                                     ,tb_hambai_joho.hambai_title_chuigaki
                                     ,tb_hambai_joho.gazo_url
-                                    ,CONVERT(INT,tb_hambai_joho.kaiin_kakaku) AS kaiin_kakaku
-                                    ,CONVERT(INT,tb_hambai_joho.kaiin_kakaku) * $zeiritsu AS kaiin_zeikomi_kakaku
-                                    ,CONVERT(INT,tb_hambai_joho.ippan_kakaku) AS ippan_kakaku
-                                    ,CONVERT(INT,tb_hambai_joho.ippan_kakaku) * $zeiritsu AS ippan_zeikomi_kakaku
+                                    ,CAST(tb_hambai_joho.kaiin_kakaku AS SIGNED) AS kaiin_kakaku
+                                    ,CAST(tb_hambai_joho.kaiin_kakaku AS SIGNED) * $zeiritsu AS kaiin_zeikomi_kakaku
+                                    ,CAST(tb_hambai_joho.ippan_kakaku AS SIGNED) AS ippan_kakaku
+                                    ,CAST(tb_hambai_joho.ippan_kakaku AS SIGNED) * $zeiritsu AS ippan_zeikomi_kakaku
                                     ,tb_hambai_joho.gaiyo
                                     ,tb_hambai_joho.setsumei
                                     ,tb_hambai_joho.hambai_kbn
                                     ,tb_hambai_joho.hambai_settei_kbn
                                     ,tb_hambai_joho.shikaku_kbn
-                                    ,AS hambai_settei_meisho
-                                    ,AS size_meisho
-                                    ,AS color_meisho
-                                    ,AS shikaku_meisho
                                 FROM tb_hambai_konyusha_joho
                                 LEFT JOIN tb_hambai_konyusha_joho_meisai ON tb_hambai_konyusha_joho.konyu_id = tb_hambai_konyusha_joho_meisai.konyu_id
                                 LEFT JOIN tb_hambai_joho ON tb_hambai_konyusha_joho_meisai.hambai_id = tb_hambai_joho.hambai_id
