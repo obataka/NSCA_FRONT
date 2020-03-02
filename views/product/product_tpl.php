@@ -29,7 +29,7 @@
 		<h2>商品詳細確認</h2>
 		<div class="content_wrap">	
 			<div class="top_btn clearfix">
-				<button class="button" type="button" onclick="location.href='../shoppingBasket/'"><span>買い物かご</span></button>
+				<button class="button" type="button" id="go_basket"><span>買い物かご</span></button>
 				<button class="button" id="login_button" type="button" onclick="location.href='../login/'"><span>マイページログイン</span></button>
 			</div>
 			<h3>商品購入</h3>
@@ -81,7 +81,7 @@
 			<p class="kome">※理由の如何に関わらず、お支払い後の購入のキャンセルはお受け致しかねます。</p>
 			<p>@nsca-japan.or.jpからのメールを受信できるように設定をお願いします</p>
 			<section class="btn_wrap">
-				<button class="button btn_gray" id="go_salesList_button" type="button" value=""  onclick="location.href='../salesList/'"><span>商品一覧へ</span></button>
+				<button class="button btn_gray" type="button" id="go_salesList_button"><span>商品一覧へ</span></button>
 				<button class="button" type="button" id="buy_button">かごに入れる</button>
 				<button class="button" type="button" id="buy_login_button" >マイページにログインしてお買い物かごに入れる</button>
 			</section>

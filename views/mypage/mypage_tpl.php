@@ -107,10 +107,10 @@
 						</tr>-->
 					</table>
 					<div class="btn_wrap">
-						<button class="button" type="button" onclick="location.href='#'"><span>パスワード再発行</span></button>
-						<button class="button" type="button" onclick="location.href='#'"><span>登録情報修正</span></button>
-						<button class="button" type="button" onclick="location.href='#'"><span>メールアドレスの変更</span></button>
-						<button class="button" type="button" onclick="location.href='#'"><span>保険に入る</span></button>
+						<button class="button" type="button" id="goReissuePassword"><span>パスワード再発行</span></button>
+						<button class="button" type="button" id="goChangeMember"><span>登録情報修正</span></button>
+						<button class="button" type="button" id="goChangeMail"><span>メールアドレスの変更</span></button>
+						<button class="button" type="button" id="goInsurance"><span>保険に入る</span></button>
 					</div>
 				</div>
 			</div>
@@ -131,8 +131,8 @@
 							<p>資格有効期限：<span id="yuko_kigen_n">0000/00/00</span></p>
 						</div>
 						<div class="btn_wrap">
-							<button class="button" type="button" onclick="location.href='#'"><span>試験申込</span></button>
-							<button class="button" type="button" onclick="location.href='#'"><span>試験申込内容状況</span></button>
+							<button class="button" type="button" id="goSelectCSCSCPT"><span>試験申込</span></button>
+							<button class="button" type="button" id="goCheckEntryStatus"><span>試験申込内容状況</span></button>
 						</div>
 					</div>
 				</div>
@@ -155,8 +155,8 @@
 							<p id="nsca_msg">「CEU報告」の手続きを行って資格を更新してください</p>
 						</div>						
 						<div class="btn_wrap">
-							<button class="button" type="button" onclick="location.href='#'"><span>CEUクイズ</span></button>
-							<button class="button" type="button" onclick="location.href='#'"><span>内訳詳細を見る</span></button>
+							<button class="button" type="button" id="goCeuQuizlist" ><span>CEUクイズ</span></button>
+							<button class="button" type="button" id="goCeuGetList" ><span>内訳詳細を見る</span></button>
 						</div>         
 					</div>
 				</div>

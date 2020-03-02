@@ -41,11 +41,11 @@ if($hambaiId !=""){
 	//		array_push($result_array,array('kaiin_no'=>$kaiin_no,'hambai_id'=>''));
 	// 該当データありの場合
 	} else {
-
 			$hambai_array = array (
 			  'kaiin_no' => $kaiin_no,
 			  'hambai_id' => $result_hambai['hambai_id'],
 			  'doga_id' => "",
+			  'hambai_kikan' => "",
 			  'hambai_title' => $result_hambai['hambai_title'],
 			  'hambai_title_chuigaki' => $result_hambai['hambai_title_chuigaki'],
 			  'hambai_title_tsuiki' => $result_hambai['hambai_title_tsuiki'],
@@ -81,11 +81,23 @@ if($hambaiId !=""){
 	//		array_push($result_array,array('kaiin_no'=>$kaiin_no,'hambai_id'=>''));
 	// 該当データありの場合
 	} else {
+			$hambai_kikan = "";
+			$hambai_kaishi = (is_null($result_doga['hambai_kaishi'])) ? "" : $result_doga['hambai_kaishi'];
+			$hambai_shuryo = (is_null($result_doga['hambai_shuryo'])) ? "" : $result_doga['hambai_shuryo'];
+
+			if($result_doga['hambai_shuryo_settei_kbn'] == 2){
+				$hambai_kikan = $hambai_kaishi."～".$hambai_shuryo;
+			}else{
+				$hambai_kikan = $hambai_kaishi."～現在配信中";
+			}
+
+
 
 			$doga_array = array (
 			  'kaiin_no' => $kaiin_no,
 			  'hambai_id' => "",
 			  'doga_id' => $result_doga['doga_id'],
+			  'hambai_kikan' => $hambai_kikan,
 			  'hambai_title' => $result_doga['doga_title'],
 			  'hambai_title_chuigaki' => "",
 			  'hambai_title_tsuiki' => "",
