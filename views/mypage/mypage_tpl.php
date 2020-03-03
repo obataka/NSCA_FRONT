@@ -87,7 +87,7 @@
 							<th>会員種別</th>
 							<td>
 								<span id="kaiin_sbt"></span><br>
-								<p class="sbt_change"><a>会員種別の変更</a></p>
+								<p class="sbt_change"><a id="goChangeSbt">会員種別の変更</a></p>
 							</td>
 						</tr>
 						<tr>
@@ -140,7 +140,7 @@
 					<h2>CEU</h2>
 					<div class="bg_white match_height_1">
 						<div class="clearfix">
-							<p class="right">CEU報告は<a>こちら</a>から</p>
+							<p class="right">CEU報告は<a id="goCeuReport">こちら</a>から</p>
 						</div>
 						<div class="cscs">
 							<p class="cscs">CSCS　　　　　　　　　　　　　　　<span id="cscs_kazu">3.05/6.0</span></p>
@@ -163,21 +163,23 @@
 			</section>
 			<div id="news">
 				<h2>お知らせ</h2>
+				<div class="info-buttons-area">
 				<div class="bg_white">
 					<ul>
 						<li class="list" id="info_list1"><div class="sub">
 							<span class="list_text" id="info_naiyo1">体力トレーニング検定&reg;(トレ検&reg;)随時、検定を実施しております。</span >
-							<button class="button" type="button" id="info_button1" onclick="location.href='#'"><span>お申込</span></button>
+							<button class="button" type="button" id="info_button1"><span>お申込</span></button>
 						</li>
 						<li class="list" id="info_list2"><div class="sub">
 							<span class="list_text" id="info_naiyo2">郵便物が戻ってきています。ご住所の確認をお願いいたします。</span >
-							<button class="button" type="button" id="info_button2" onclick="location.href='#'"><span>登録情報</span></button>
+							<button class="button" type="button" id="info_button2"><span>登録情報</span></button>
 						</li>
 						<li class="list" id="info_list3"><div class="sub">
 							<span class="list_text" id="info_naiyo3">テキストテキストテキストテキストテキストテキストテキストテキスト</span >
-							<button class="button" type="button" id="info_button3" onclick="location.href='#'"><span>継続手続き</span></button>
+							<button class="button" type="button" id="info_button3"><span>継続手続き</span></button>
 						</li>
 					</ul>
+				</div>
 				</div>
 				<div class="page">
 					<button class="button" type="button"><span id="infoList_page_before"><i class="fas fa-angle-left"></i></span></button>

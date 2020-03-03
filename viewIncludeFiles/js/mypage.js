@@ -192,6 +192,7 @@
 					            $("#event_meisho1").hide();
 					            $("#event_naiyo1").html("現在イベント情報がございません");
 								$("#event_button1").hide();
+								$("#event_nokori1").hide();
 								// イベント表示件数3件分ループ処理する
 								for(var i = 1; i < 4 ; i++) {
 									// データがない場合は非表示にする
@@ -312,6 +313,7 @@
 								}else{
 								$("#info_button"+(i)).show();
 					            $("#info_button"+(i)).text(infoJoho[j]["button_text"]);
+					            $("#info_button"+(i)).data('id',infoJoho[j]["url"]);
 								}
 							// データがない場合は非表示にする
 							}else{
@@ -566,11 +568,27 @@
 
 
 /************************************************************
+	*【会員種別の変更】リンク押下時
+*************************************************************/
+$('#goChangeSbt').on('click', function() {
+
+	window.location.href = '../changeSbt/';
+
+});
+/************************************************************
 	*【パスワード再発行】ボタン押下時
 *************************************************************/
 $('#goReissuePassword').on('click', function() {
 
-	window.location.href = '../reissuePassword/'
+	window.location.href = '../reissuePassword/';
+
+});
+/************************************************************
+	*【パスワード再発行】ボタン押下時
+*************************************************************/
+$('#goReissuePassword').on('click', function() {
+
+	window.location.href = '../reissuePassword/';
 
 });
 
@@ -579,7 +597,7 @@ $('#goReissuePassword').on('click', function() {
 *************************************************************/
 $('#goChangeMember').on('click', function() {
 
-	window.location.href = '../changeMember/'
+	window.location.href = '../changeMember/';
 
 });
 
@@ -589,7 +607,7 @@ $('#goChangeMember').on('click', function() {
 $('#goChangeMail').on('click', function() {
 
 alert("メールアドレスの変更");
-//	window.location.href = '../changeMember/'
+//	window.location.href = '../changeMember/';
 
 });
 
@@ -599,7 +617,7 @@ alert("メールアドレスの変更");
 $('#goInsurance').on('click', function() {
 
 alert("保険に入る");
-//	window.location.href = '../changeMember/'
+//	window.location.href = '../changeMember/';
 
 });
 
@@ -608,7 +626,7 @@ alert("保険に入る");
 *************************************************************/
 $('#goSelectCSCSCPT').on('click', function() {
 
-	window.location.href = '../selectCSCSCPT/'
+	window.location.href = '../selectCSCSCPT/';
 
 });
 
@@ -617,7 +635,16 @@ $('#goSelectCSCSCPT').on('click', function() {
 *************************************************************/
 $('#goCheckEntryStatus').on('click', function() {
 
-	window.location.href = '../checkEntryStatus/'
+	window.location.href = '../checkEntryStatus/';
+
+});
+
+/************************************************************
+	*【CEU報告はこちら】リンク押下時
+*************************************************************/
+$('#goCeuReport').on('click', function() {
+
+	window.location.href = '../ceuReport/';
 
 });
 
@@ -626,7 +653,7 @@ $('#goCheckEntryStatus').on('click', function() {
 *************************************************************/
 $('#goCeuQuizlist').on('click', function() {
 
-	window.location.href = '../ceuQuizlist/'
+	window.location.href = '../ceuQuizlist/';
 
 });
 
@@ -635,10 +662,20 @@ $('#goCeuQuizlist').on('click', function() {
 *************************************************************/
 $('#goCeuGetList').on('click', function() {
 
-	window.location.href = '../ceuGetList/'
+	window.location.href = '../ceuGetList/';
 
 });
 
+/************************************************************
+	*お知らせ　ボタン押下時
+*************************************************************/
+
+$('.info-buttons-area').on('click', 'button', function() {
+ 
+	var url = $(this).data('id');
+	window.location.href = url;
+
+});
 
     });
 

@@ -18,9 +18,18 @@ $ret = 0;
 /************************************************************
 *セッションから会員番号,有効期限フラグを取得
 *************************************************************/
+$kaiin_no = '';
+$yukokigenFlg = FALSE;
 
-$kaiin_no = "819122001";
-$yukokigenFlg = TRUE;
+//セッションから会員番号を取得
+if (isset($_SESSION['kaiinNo'])) {
+    $kaiin_no = $_SESSION['kaiinNo'];
+}
+
+//セッションから有効期限フラグを取得
+if (isset($_SESSION['yukokigenFlg'])) {
+    $yukokigenFlg = $_SESSION['yukokigenFlg'];
+}
 
 
 /************************************************************
@@ -43,7 +52,7 @@ $result_kaiin =  (new Tb_kaiin_joho())->findByKaiinNo($kaiin_no);
 if(!is_null($result_kaiin['hasso_teishibi'])){
 	$yubin_array = array (
 	  'naiyo' => '郵送物が戻ってきています。ご住所の確認をお願いいたします。',
-	  'url' => '~/changeMember/',
+	  'url' => '../changeMember/',
 	  'button_text' => '登録情報',
 	  'menu_no' => 'clsCommon.geumMenu.Menu_Member',
 	  'syori__no' => 'clsCommon.geumMemberProcess.Process_Edit',
@@ -75,7 +84,7 @@ if(!empty($result_kaiin['taikai_shorui_juribi'])){ // 退会予約済み
 	$naiyo = "会員有効期限が過ぎていますので、<span style='color: #ff0000; background-color: transparent'>継続手続き</span>をお願いいたします。";
 	$kigen_array = array (
 	  'naiyo' => $naiyo,
-	  'url' => '~/registMember/',
+	  'url' => '../continueRequest/',
 	  'button_text' => '継続手続',
 	  'menu_no' => 'clsCommon.geumMenu.Menu_Member',
 	  'syori__no' => 'clsCommon.geumMemberProcess.Process_Continue',
@@ -140,7 +149,7 @@ if(!empty($result_kaiin['taikai_shorui_juribi'])){ // 退会予約済み
 
 						$kigen_array = array (
 						  'naiyo' => 'ご登録のクレジットカードによる自動支払処理ができませんでした。別のクレジットカードまたはコンビニ払いにて継続手続きをお願いいたします。',
-						  'url' => '~/registMember/',
+						  'url' => '~/continueRequest/',
 						  'button_text' => '継続手続',
 						  'menu_no' => 'clsCommon.geumMenu.Menu_Member',
 						  'syori__no' => 'clsCommon.geumMemberProcess.Process_Continue',
@@ -161,7 +170,7 @@ if(!empty($result_kaiin['taikai_shorui_juribi'])){ // 退会予約済み
 
 						$kigen_array = array (
 						  'naiyo' => '会員有効期限が近づいていますので継続手続をお願いいたします。',
-						  'url' => '~/registMember/',
+						  'url' => '../continueRequest/',
 						  'button_text' => '継続手続',
 						  'menu_no' => 'clsCommon.geumMenu.Menu_Member',
 						  'syori__no' => 'clsCommon.geumMemberProcess.Process_Continue',
