@@ -37,7 +37,7 @@
                                 </tr>
                                 <tr>
                                     <th>数量<span>：</span></th>
-                                    <td><input id="number_` + i + `" type="number" name="number" value="1" min="0"></td>
+                                    <td><input id="number_` + i + `" type="number" name="number" value="` + val['suryo'] + `" min="0"></td>
                                 </tr>
                                 <tr>
                                     <th>小計(円)<span>：</span></th>
@@ -46,8 +46,8 @@
                             </table>
                         </section>
                     </div>`);
-
-                    gokei = gokei + Math.floor(val['zeikomi_kakaku']);
+                    
+                    gokei = gokei + Math.floor(val['zeikomi_kakaku']) * val['suryo'];
                 });
 
                 $('#hambai_joho').val(getSalesCartList);
@@ -70,13 +70,55 @@
         $(document).on('click', '.delete', function () {
             val = $(this).val();
             $('#product_' + val).remove();
+
+            //配列からも削除する
+            getSalesCartList.splice(val, 1);
+            console.log(getSalesCartList);
+
+            //DBからも削除する
+            jQuery.ajax({
+                url: '../../classes/deleteSalesCartData.php',
+                type: 'POST',
+                data: {
+                    konyu_id: getSalesCartList[val]['konyu_id'],
+                    hambai_id: getSalesCartList[val]['hambai_id'],
+                    size_kbn: getSalesCartList[val]['size_kbn'],
+                    color_kbn: getSalesCartList[val]['color_kbn'],
+                    buppan_soyo: getCmControl['buppan_soyo'],
+                    user_id: 'chisato',
+
+                }
+            }).done((rtn) => {
+
+            }).fail((rtn) => {
+                return false;
+            });
         });
 
         //かごの中を空にするボタンクリック時処理
         $('#reset').click(function () {
             $('#product').remove();
+            getSalesCartList = [];
             gokei = 0;
             $('#sum').text((gokei + Math.floor(getCmControl['buppan_soyo'])) + '円');
+
+            //DBからも削除する
+            jQuery.ajax({
+                url: '../../classes/deleteAllSalesCartData.php',
+                type: 'POST',
+                data: {
+                    konyu_id: getSalesCartList[val]['konyu_id'],
+                    user_id: 'chisato',
+                }
+            }).done((rtn) => {
+
+            }).fail((rtn) => {
+                return false;
+            });
+
+
+            //買い物かごが空なら、買い物を確定ボタンを無効化する
+            $('#next').prop('disabled', true);
         });
 
         //再計算クリック時処理
@@ -93,7 +135,81 @@
 
         //他の商品を見るクリック時処理
         $('#back').click(function () {
+            //セッションに値をセットして画面遷移する
+            $.each(getSalesCartList, function (i, val) {
+                konyu_id = konyu_id + val['konyu_id'] + ', ';
+                $('#konyu_id').val(konyu_id);
 
+                hambai_id = hambai_id + val['hambai_id'] + ', ';
+                $('#hambai_id').val(hambai_id);
+
+                hambai_title = hambai_title + val['hambai_title'] + ', ';
+                $('#hambai_title').val(hambai_title);
+
+                hambai_title_chuigaki = hambai_title_chuigaki + val['hambai_title_chuigaki'] + ', ';
+                $('#hambai_title_chuigaki').val(hambai_title_chuigaki);
+
+                gazo_url = gazo_url + val['gazo_url'] + ', ';
+                $('#gazo_url').val(gazo_url);
+
+                kaiin_kakaku = kaiin_kakaku + val['kaiin_kakaku'] + ', ';
+                $('#kaiin_kakaku').val(kaiin_kakaku);
+
+                kaiin_zeikomi_kakaku = kaiin_zeikomi_kakaku + val['kaiin_zeikomi_kakaku'] + ', ';
+                $('#kaiin_zeikomi_kakaku').val(kaiin_zeikomi_kakaku);
+
+                ippan_kakaku = ippan_kakaku + val['ippan_kakaku'] + ', ';
+                $('#ippan_kakaku').val(ippan_kakaku);
+
+                ippan_zeikomi_kakaku = ippan_zeikomi_kakaku + val['ippan_zeikomi_kakaku'] + ', ';
+                $('#ippan_zeikomi_kakaku').val(ippan_zeikomi_kakaku);
+
+                gaiyo = gaiyo + val['gaiyo'] + ', ';
+                $('#gaiyo').val(gaiyo);
+
+                hambai_kbn = hambai_kbn + val['hambai_kbn'] + ', ';
+                $('#hambai_kbn').val(hambai_kbn);
+
+                hambai_settei_kbn = hambai_settei_kbn + val['hambai_settei_kbn'] + ', ';
+                $('#hambai_settei_kbn').val(hambai_settei_kbn);
+
+                hambai_settei_meisho = hambai_settei_meisho + val['hambai_settei_meisho'] + ', ';
+                $('#hambai_settei_meisho').val(hambai_settei_meisho);
+
+                setsumei = setsumei + val['setsumei'] + ', ';
+                $('#setsumei').val(setsumei);
+
+                kakaku = kakaku + val['kakaku'] + ', ';
+                $('#kakaku').val(kakaku);
+
+                // 販売設定区分が販売中以外なら購入数を0
+                if (val['hambai_settei_kbn'] == 1) {
+                    konyusu = konyusu + $('#number_' + i).val() + ', ';
+                    $('#konyusu').val(konyusu);
+                } else {
+                    konyusu = konyusu + 0 + ', ';
+                    $('#konyusu').val(konyusu);
+                }
+
+                zeikomi_kakaku = zeikomi_kakaku + val['zeikomi_kakaku'] + ', ';
+                $('#zeikomi_kakaku').val(zeikomi_kakaku);
+
+                color_kbn = color_kbn + val['color_kbn'] + ', ';
+                $('#color_kbn').val(color_kbn);
+
+                color_meisho = color_meisho + val['color_meisho'] + ', ';
+                $('#color_meisho').val(color_meisho);
+
+                size_kbn = size_kbn + val['size_kbn'] + ', ';
+                $('#size_kbn').val(size_kbn);
+
+                size_meisho = size_meisho + val['size_meisho'] + ', ';
+                $('#size_meisho').val(size_meisho);
+
+                shikaku_kbn = shikaku_kbn + val['shikaku_kbn'] + ', ';
+                $('#shikaku_kbn').val(shikaku_kbn);
+
+            });
 
             url = '../salesList/';
             $('form').attr('action', url);
@@ -102,7 +218,79 @@
 
         //買い物を確定ボタンクリック時処理
         $('#next').click(function () {
+            //セッションに値をセットして画面遷移する
+            $.each(getSalesCartList, function (i, val) {
+                konyu_id = konyu_id + val['konyu_id'] + ', ';
+                $('#konyu_id').val(konyu_id);
 
+                hambai_id = hambai_id + val['hambai_id'] + ', ';
+                $('#hambai_id').val(hambai_id);
+
+                hambai_title = hambai_title + val['hambai_title'] + ', ';
+                $('#hambai_title').val(hambai_title);
+
+                hambai_title_chuigaki = hambai_title_chuigaki + val['hambai_title_chuigaki'] + ', ';
+                $('#hambai_title_chuigaki').val(hambai_title_chuigaki);
+
+                gazo_url = gazo_url + val['gazo_url'] + ', ';
+                $('#gazo_url').val(gazo_url);
+
+                kaiin_kakaku = kaiin_kakaku + val['kaiin_kakaku'] + ', ';
+                $('#kaiin_kakaku').val(kaiin_kakaku);
+
+                kaiin_zeikomi_kakaku = kaiin_zeikomi_kakaku + val['kaiin_zeikomi_kakaku'] + ', ';
+                $('#kaiin_zeikomi_kakaku').val(kaiin_zeikomi_kakaku);
+
+                ippan_kakaku = ippan_kakaku + val['ippan_kakaku'] + ', ';
+                $('#ippan_kakaku').val(ippan_kakaku);
+
+                ippan_zeikomi_kakaku = ippan_zeikomi_kakaku + val['ippan_zeikomi_kakaku'] + ', ';
+                $('#ippan_zeikomi_kakaku').val(ippan_zeikomi_kakaku);
+
+                gaiyo = gaiyo + val['gaiyo'] + ', ';
+                $('#gaiyo').val(gaiyo);
+
+                hambai_kbn = hambai_kbn + val['hambai_kbn'] + ', ';
+                $('#hambai_kbn').val(hambai_kbn);
+
+                hambai_settei_kbn = hambai_settei_kbn + val['hambai_settei_kbn'] + ', ';
+                $('#hambai_settei_kbn').val(hambai_settei_kbn);
+
+                hambai_settei_meisho = hambai_settei_meisho + val['hambai_settei_meisho'] + ', ';
+                $('#hambai_settei_meisho').val(hambai_settei_meisho);
+
+                setsumei = setsumei + val['setsumei'] + ', ';
+                $('#setsumei').val(setsumei);
+
+                kakaku = kakaku + val['kakaku'] + ', ';
+                $('#kakaku').val(kakaku);
+
+                konyusu = konyusu + $('#number_' + i).val() + ', ';
+                $('#konyusu').val(konyusu);
+
+                zeikomi_kakaku = zeikomi_kakaku + val['zeikomi_kakaku'] + ', ';
+                $('#zeikomi_kakaku').val(zeikomi_kakaku);
+
+                color_kbn = color_kbn + val['color_kbn'] + ', ';
+                $('#color_kbn').val(color_kbn);
+
+                color_meisho = color_meisho + val['color_meisho'] + ', ';
+                $('#color_meisho').val(color_meisho);
+
+                size_kbn = size_kbn + val['size_kbn'] + ', ';
+                $('#size_kbn').val(size_kbn);
+
+                size_meisho = size_meisho + val['size_meisho'] + ', ';
+                $('#size_meisho').val(size_meisho);
+
+                shikaku_kbn = shikaku_kbn + val['shikaku_kbn'] + ', ';
+                $('#shikaku_kbn').val(shikaku_kbn);
+
+            });
+
+            url = '../shoppingConfirm/';
+            $('form').attr('action', url);
+            $('form').submit();
         });
 
     });

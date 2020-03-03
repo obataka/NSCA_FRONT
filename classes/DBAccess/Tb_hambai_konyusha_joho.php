@@ -88,4 +88,55 @@ SQL;
 
         return $tb_ceu_joho;
     }
+
+    public function deleteAllKonyushaJoho($db, $param)
+    {
+        try {
+
+                $sql = <<<SQL
+                UPDATE tb_hambai_konyusha_joho
+                SET   sakujo_flg = 1
+					, koshin_user_id = :koshin_user_id
+				WHERE sakujo_flg	= 0
+				  AND konyu_id = :konyu_id
+                  AND kaiin_no = :kaiin_no;
+SQL;
+                $sth = $db->prepare($sql);
+                $sth->execute([
+                    ':kaiin_no'            => $param['kaiin_no']
+					,':konyu_id'            => $param['konyu_id']
+                    ,':koshin_user_id'      => $param['koshin_user_id']
+                ]);
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
+            return FALSE;
+        }
+        return TRUE;
+    }
+
+    public function updateGokeiKingaku($db, $param, $gokei, $soryo_gokei)
+    {
+        try {
+
+                $sql = <<<SQL
+                UPDATE tb_hambai_konyusha_joho
+                SET   gokei_kingaku = $gokei
+                    , soryo = $soryo_gokei
+					, koshin_user_id = :koshin_user_id
+				WHERE sakujo_flg	= 0
+				  AND konyu_id = :konyu_id
+                  AND kaiin_no = :kaiin_no;
+SQL;
+                $sth = $db->prepare($sql);
+                $sth->execute([
+                    ':kaiin_no'            => $param['kaiin_no']
+					,':konyu_id'            => $param['konyu_id']
+                    ,':koshin_user_id'      => $param['koshin_user_id']
+                ]);
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
+            return FALSE;
+        }
+        return TRUE;
+    }
 }

@@ -33,24 +33,24 @@ $db->beginTransaction();
 $zeiritsu = getShohizei($db);
 
 $result = (new Tb_hambai_konyusha_joho())->findBySalesCartList($db, $param, $zeiritsu);
-//error_log(print_r($result, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/shibata_log.txt');
+// error_log(print_r($hambai_settei_meisho, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/shibata_log.txt');
 
 for ($i = 0; $i < count($result); $i++) {
     //販売設定名称、資格名称取得
-    $hambai_settei_meisho = (new Ms_meishoKbn())->findByHambaiMeisho($db, $result[$i]['hambai_settei_kbn'], 222);
-    $result[$i]['hambai_settei_meisho'] = $hambai_settei_meisho['meisho'];
+    $hambai_settei_meisho = (new Ms_meishoKbn())->findByHambaiMeisho($db, 222,  $result[$i]['hambai_settei_kbn']);
+    $result[$i]['hambai_settei_meisho'] = $hambai_settei_meisho[0]['meisho'];
 
-    $shikaku_meisho = (new Ms_meishoKbn())->findByHambaiMeisho($db, $result[$i]['shikaku_kbn'], 229);
-    $result[$i]['shikaku_meisho'] = $shikaku_meisho['meisho'];
+    $shikaku_meisho = (new Ms_meishoKbn())->findByHambaiMeisho($db, 229, $result[$i]['shikaku_kbn']);
+    $result[$i]['shikaku_meisho'] = $shikaku_meisho[0]['meisho'];
 
 
     //販売サイズ名称、販売カラー名称取得
-    $hambai_size_meisho = (new Ms_meishoKbn())->findByHambaiMeisho($db, $result[$i]['size_kbn'], 223);
-    $result[$i]['siza_meisho'] = $hambai_size_meisho['meisho'];
+    $hambai_size_meisho = (new Ms_meishoKbn())->findByHambaiMeisho($db, 223, $result[$i]['size_kbn']);
+    $result[$i]['size_meisho'] = $hambai_size_meisho[0]['meisho'];
 
 
-    $hambai_color_meisho = (new Ms_meishoKbn())->findByHambaiMeisho($db, $result[$i]['color_kbn'], 224);
-    $result[$i]['color_meisho'] = $hambai_color_meisho['meisho'];
+    $hambai_color_meisho = (new Ms_meishoKbn())->findByHambaiMeisho($db, 224, $result[$i]['color_kbn']);
+    $result[$i]['color_meisho'] = $hambai_color_meisho[0]['meisho'];
 }
 
 // 該当データなしの場合
