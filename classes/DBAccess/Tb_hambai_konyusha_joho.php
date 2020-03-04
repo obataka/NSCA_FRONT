@@ -120,7 +120,7 @@ SQL;
 
                 $sql = <<<SQL
                 UPDATE tb_hambai_konyusha_joho
-                SET   gokei_kingaku = $gokei
+                SET   gokei_kingaku = $gokei + $soryo_gokei
                     , soryo = $soryo_gokei
 					, koshin_user_id = :koshin_user_id
 				WHERE sakujo_flg	= 0

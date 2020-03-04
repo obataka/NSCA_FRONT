@@ -36,9 +36,11 @@ $param = [
     'konyu_id'              => $konyu_id,
     'koshin_user_id'        => $user_id,
 ];
-
+error_log(print_r($param, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/shibata_log.txt');
 //商品(カラー、サイズ)を削除
 $result = (new Tb_hambai_konyusha_joho_meisai())->deleteAllSalesCartData($db, $param);
+error_log(print_r('deleteAllSalesCartData', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/shibata_log.txt');
+error_log(print_r($result, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/shibata_log.txt');
 // 更新失敗の場合
 if ($result == false) {
     $db->rollBack();
@@ -48,6 +50,8 @@ if ($result == false) {
     // 更新成功の場合
 } else {
     $result = (new Tb_hambai_konyusha_joho())->deleteAllKonyushaJoho($db, $param);
+    error_log(print_r('deleteAllKonyushaJoho', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/shibata_log.txt');
+    error_log(print_r($result, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/shibata_log.txt');
     // 更新失敗の場合
     if ($result == false) {
         $db->rollBack();
@@ -64,7 +68,5 @@ if ($result == false) {
     }
 }
 
-
-$result = "";
-
+echo $result;
 die();

@@ -119,19 +119,17 @@ SQL;
         return TRUE;
     }
 
-    public function soryoKeisan1($db, $param, $soryo_gokei, $soryo)
+    public function soryoKeisan($db, $param)
     {
         try {
 
                 $sql = <<<SQL
-                SELECT  $soryo_gokei + $soryo 
+                SELECT  tb_hambai_joho.hambai_kbn
                 FROM tb_hambai_konyusha_joho_meisai
                 LEFT JOIN tb_hambai_joho
                 ON tb_hambai_konyusha_joho_meisai.hambai_id = tb_hambai_joho.hambai_id
                 WHERE konyu_id = :konyu_id
                 AND   sakujo_flg = 0
-                AND   (tb_hambai_joho.hambai_kbn = 7 OR tb_hambai_joho.hambai_kbn = 8)
-                LIMIT 1;
 SQL;
                 $sth = $db->prepare($sql);
                 $sth->execute([
@@ -145,29 +143,32 @@ SQL;
         return $meisaiJoho;
     }
 
-    public function soryoKeisan2($db, $param, $soryo_gokei, $soryo)
+    public function updateAllSalesCartData($db, $param)
     {
         try {
-
                 $sql = <<<SQL
-                SELECT $soryo_gokei + $soryo 
-                FROM tb_hambai_konyusha_joho_meisai
-                LEFT JOIN tb_hambai_joho
-                ON tb_hambai_konyusha_joho_meisai.hambai_id = tb_hambai_joho.hambai_id
-                WHERE konyu_id = :konyu_id
-                AND   sakujo_flg = 0
-                AND   tb_hambai_joho.hambai_kbn = 9
-                LIMIT 1;
+                UPDATE tb_hambai_konyusha_joho_meisai
+                SET   suryo = :suryo
+					, koshin_user_id = :koshin_user_id
+				WHERE sakujo_flg	= 0
+				  AND konyu_id = :konyu_id
+                  AND hambai_id = :hambai_id
+                  AND size_kbn = :size_kbn
+                  AND color_kbn = :color_kbn;
 SQL;
                 $sth = $db->prepare($sql);
                 $sth->execute([
-					':konyu_id'            => $param['konyu_id']
+					':konyu_id'             => $param['konyu_id']
+                    ,':koshin_user_id'      => $param['koshin_user_id']
+                    ,':suryo'               => $param['konyusu']
+                    ,':hambai_id'           => $param['hambai_id']
+                    ,':size_kbn'            => $param['size_kbn']
+                    ,':color_kbn'           => $param['color_kbn']
                 ]);
-                $meisaiJoho  = $sth->fetchAll();
         } catch (\PDOException $e) {
             error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
-            $meisaiJoho = [];
+            return FALSE;
         }
-        return $meisaiJoho;
+        return TRUE;
     }
 }
