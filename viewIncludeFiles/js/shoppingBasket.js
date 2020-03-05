@@ -7,6 +7,9 @@
         var getCmControl = "";
         var getSalesCartList = "";
 
+        //セッションの値を入れる配列
+        var sesSalesCartList = [];
+
         /********************
          * TB販売購入者情報から買い物かごの内容を表示する(会員のみ)
          ********************/
@@ -26,6 +29,10 @@
                 $('#tesuryo').text(Math.floor(getCmControl['buppan_soyo']) + '円');
 
                 $.each(getSalesCartList, function (i, val) {
+                    sesSalesCartList.push(getSalesCartList[i]);
+                });
+
+                $.each(sesSalesCartList, function (i, val) {
                     $('#product').append(`<div id="product_` + i + `">
                         <p class="product_title">` + val['hambai_title'] + `</p>
                         <section>
@@ -50,7 +57,6 @@
                     gokei = gokei + Math.floor(val['zeikomi_kakaku']) * val['suryo'];
                 });
 
-                $('#hambai_joho').val(getSalesCartList);
                 $('#sum').text(gokei + Math.floor(getCmControl['buppan_soyo']) + '円');
                 $('#gokei_kingaku').val(gokei + Math.floor(getCmControl['buppan_soyo']));
 
@@ -58,9 +64,11 @@
                 if (!($('#product').length)) {
                     $('#next').prop('disabled', true);
                 }
+
             }).fail((rtn) => {
                 return false;
             });
+
 
         }).fail((rtn) => {
             return false;
@@ -74,11 +82,11 @@
                 url: '../../classes/deleteSalesCartData.php',
                 type: 'POST',
                 data: {
-                    konyu_id: getSalesCartList[val]['konyu_id'],
-                    hambai_id: getSalesCartList[val]['hambai_id'],
-                    size_kbn: getSalesCartList[val]['size_kbn'],
-                    color_kbn: getSalesCartList[val]['color_kbn'],
-                    buppan_soyo: getCmControl['buppan_soyo'],
+                    konyu_id: sesSalesCartList[val]['konyu_id'],
+                    hambai_id: sesSalesCartList[val]['hambai_id'],
+                    size_kbn: sesSalesCartList[val]['size_kbn'],
+                    color_kbn: sesSalesCartList[val]['color_kbn'],
+                    buppan_soyo: sesCmControl['buppan_soyo'],
                     user_id: 'chisato',
                 }
             }).done((rtn) => {
@@ -88,14 +96,14 @@
                     $('#product_' + val).remove();
 
                     //配列からも削除する
-                    getSalesCartList.splice(val, 1);
-                    console.log(getSalesCartList);
+                    sesSalesCartList.splice(val, 1);
+                    console.log(sesSalesCartList);
                 } else {
                     console.log(0);
                     return false
                 }
             }).fail((rtn) => {
-                console.log(0);
+                console.log(011);
                 return false;
             });
         });
@@ -103,13 +111,24 @@
         //かごの中を空にするボタンクリック時処理
         $('#reset').click(function () {
             var flg = 1;
-            $.each(getSalesCartList, function (i, val) {
+
+            //重複をなくした購入IDの配列を作る
+            var konyu_id = [];
+            $.each(sesSalesCartList, function (i, val) {
+                konyu_id.push(val['konyu_id']);
+            });
+
+            var wk_konyu_id = konyu_id.filter(function (x, i, self) {
+                return self.indexOf(x) === i;
+            });
+
+            $.each(wk_konyu_id, function (i, val) {
                 //DBからも削除する
                 jQuery.ajax({
                     url: '../../classes/deleteAllSalesCartData.php',
                     type: 'POST',
                     data: {
-                        konyu_id: val['konyu_id'],
+                        konyu_id: val[i],
                         user_id: 'chisato',
                     }
                 }).done((rtn) => {
@@ -117,25 +136,29 @@
                         console.log(0);
                         flg = 0;
                         return false;
+                    } else {
+                        flg = 1;
                     }
                 }).fail((rtn) => {
+                    console.log(011);
                     flg = 0;
                     return false;
                 });
+
             });
 
             if (flg == 1) {
                 console.log(1);
 
                 $('#product').remove();
-                getSalesCartList = [];
+                sesSalesCartList = [];
                 gokei = 0;
                 $('#sum').text((gokei + Math.floor(getCmControl['buppan_soyo'])) + '円');
 
                 //買い物かごが空なら、買い物を確定ボタンを無効化する
                 $('#next').prop('disabled', true);
             } else {
-                console.log(0);
+                console.log(011);
                 return false;
             }
         });
@@ -143,7 +166,7 @@
         //再計算クリック時処理
         $('#keisan').click(function () {
             sai_sum = 0;
-            $.each(getSalesCartList, function (i, val) {
+            $.each(sesSalesCartList, function (i, val) {
                 shokei_sai = Math.floor(val['zeikomi_kakaku']) * $('#number_' + i).val();
                 $('#shokei_' + i).text(shokei_sai + '円');
                 sai_sum = sai_sum + shokei_sai;
@@ -152,7 +175,7 @@
             $('#sum').text(sai_sum + Math.floor(getCmControl['buppan_soyo']) + '円');
             $('#gokei_kingaku').val(sai_sum + Math.floor(getCmControl['buppan_soyo']));
 
-            $.each(getSalesCartList, function (i, val) {
+            $.each(sesSalesCartList, function (i, val) {
                 konyu_id = konyu_id + val['konyu_id'] + ',';
                 $('#konyu_id').val(konyu_id);
 
@@ -198,6 +221,7 @@
                 }
 
             }).fail((rtn) => {
+                console.log(011);
                 return false;
             });
 
@@ -206,7 +230,7 @@
         //他の商品を見るクリック時処理
         $('#back').click(function () {
             //セッションに値をセットして画面遷移する
-            $.each(getSalesCartList, function (i, val) {
+            $.each(sesSalesCartList, function (i, val) {
                 konyu_id = konyu_id + val['konyu_id'] + ',';
                 $('#konyu_id').val(konyu_id);
 
@@ -288,11 +312,29 @@
                 data: {
                     konyu_id: $('#konyu_id').val(),
                     hambai_id: $('#hambai_id').val(),
-                    user_id: 'chisato',
+                    hambai_title: $('#hambai_title').val(),
+                    hambai_title_chuigaki: $('#hambai_title_chuigaki').val(),
+                    gazo_url: $('#gazo_url').val(),
+                    kaiin_kakaku: $('#kaiin_kakaku').val(),
+                    kaiin_zeikomi_kakaku: $('#kaiin_zeikomi_kakaku').val(),
+                    ippan_kakaku: $('#ippan_kakaku').val(),
+                    ippan_zeikomi_kakaku: $('#ippan_zeikomi_kakaku').val(),
+                    gaiyo: $('#gaiyo').val(),
+                    hambai_kbn: $('#hambai_kbn').val(),
+                    hambai_settei_kbn: $('#hambai_settei_kbn').val(),
+                    hambai_settei_meisho: $('#hambai_settei_meisho').val(),
+                    setsumei: $('#setsumei').val(),
+                    kakaku: $('#kakaku').val(),
                     konyusu: $('#konyusu').val(),
+                    zeikomi_kakaku: $('#zeikomi_kakaku').val(),
                     size_kbn: $('#size_kbn').val(),
+                    size_meisho: $('#size_meisho').val(),
                     color_kbn: $('#color_kbn').val(),
+                    color_meisho: $('#color_meisho').val(),
+                    shikaku_kbn: $('#shikaku_kbn').val(),
+                    gokei_kingaku: $('#gokei_kingaku').val(),
                     buppan_soyo: getCmControl['buppan_soyo'],
+                    user_id: 'chisato',
                     idx: getSalesCartList.length,
                 }
             }).done((rtn) => {
@@ -307,17 +349,16 @@
                 }
 
             }).fail((rtn) => {
+                console.log(011);
                 return false;
             });
-
-
 
         });
 
         //買い物を確定ボタンクリック時処理
         $('#next').click(function () {
             //セッションに値をセットして画面遷移する
-            $.each(getSalesCartList, function (i, val) {
+            $.each(sesSalesCartList, function (i, val) {
                 konyu_id = konyu_id + val['konyu_id'] + ',';
                 $('#konyu_id').val(konyu_id);
 
@@ -399,11 +440,29 @@
                 data: {
                     konyu_id: $('#konyu_id').val(),
                     hambai_id: $('#hambai_id').val(),
-                    user_id: 'chisato',
+                    hambai_title: $('#hambai_title').val(),
+                    hambai_title_chuigaki: $('#hambai_title_chuigaki').val(),
+                    gazo_url: $('#gazo_url').val(),
+                    kaiin_kakaku: $('#kaiin_kakaku').val(),
+                    kaiin_zeikomi_kakaku: $('#kaiin_zeikomi_kakaku').val(),
+                    ippan_kakaku: $('#ippan_kakaku').val(),
+                    ippan_zeikomi_kakaku: $('#ippan_zeikomi_kakaku').val(),
+                    gaiyo: $('#gaiyo').val(),
+                    hambai_kbn: $('#hambai_kbn').val(),
+                    hambai_settei_kbn: $('#hambai_settei_kbn').val(),
+                    hambai_settei_meisho: $('#hambai_settei_meisho').val(),
+                    setsumei: $('#setsumei').val(),
+                    kakaku: $('#kakaku').val(),
                     konyusu: $('#konyusu').val(),
+                    zeikomi_kakaku: $('#zeikomi_kakaku').val(),
                     size_kbn: $('#size_kbn').val(),
+                    size_meisho: $('#size_meisho').val(),
                     color_kbn: $('#color_kbn').val(),
+                    color_meisho: $('#color_meisho').val(),
+                    shikaku_kbn: $('#shikaku_kbn').val(),
+                    gokei_kingaku: $('#gokei_kingaku').val(),
                     buppan_soyo: getCmControl['buppan_soyo'],
+                    user_id: 'chisato',
                     idx: getSalesCartList.length,
                 }
             }).done((rtn) => {
@@ -417,6 +476,7 @@
                     return false;
                 }
             }).fail((rtn) => {
+                console.log(011);
                 return false;
             });
 

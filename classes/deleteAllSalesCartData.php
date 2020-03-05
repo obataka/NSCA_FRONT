@@ -6,8 +6,8 @@ session_start();
 
 require './Config/Config.php';
 require './DBAccess/Db.php';
-require './DBAccess/tb_hambai_konyusha_joho_meisai.php';
-require './DBAccess/tb_hambai_konyusha_joho.php';
+require './DBAccess/Tb_hambai_konyusha_joho_meisai.php';
+require './DBAccess/Tb_hambai_konyusha_joho.php';
 
 //shoppingBasket.jsでセットしたPOSTデータを取得する
 $konyu_id = (!empty($_POST['konyu_id'])) ? htmlentities($_POST['konyu_id'], ENT_QUOTES, "UTF-8") : "";

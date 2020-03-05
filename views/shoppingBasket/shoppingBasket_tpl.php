@@ -29,6 +29,7 @@
 	<div class="wrap">
 		<h2>お買い物かごの商品一覧</h2>
 		<form action="" name="shoppingBasketForm" method="post">
+			<input type="hidden" name="kaiin_no" id="kaiin_no" value="<?php echo $wk_kaiin_no; ?>">
 			<input type="hidden" name="konyu_id" id="konyu_id" value="<?php echo $konyu_id; ?>">
 			<input type="hidden" name="gokei_kingaku" id="gokei_kingaku" value="<?php echo $gokei_kingaku; ?>">
 			<input type="hidden" name="hambai_id" id="hambai_id" value="<?php echo $hambai_id; ?>">
@@ -36,10 +37,10 @@
 			<input type="hidden" name="hambai_title_chuigaki" id="hambai_title_chuigaki" value="<?php echo $hambai_title_chuigaki; ?>">
 			<input type="hidden" name="gazo_url" id="gazo_url" value="<?php echo $gazo_url; ?>">
 			<input type="hidden" name="kaiin_kakaku" id="kaiin_kakaku" value="<?php echo $kaiin_kakaku; ?>">
-			<input type="hidden" name="kaiin_zeikomi_kakaku" id="kaiin_zeikomi_kakaku" value="<?php echo $kaiin_zeikomi_kakaku; ?>">			
+			<input type="hidden" name="kaiin_zeikomi_kakaku" id="kaiin_zeikomi_kakaku" value="<?php echo $kaiin_zeikomi_kakaku; ?>">
 			<input type="hidden" name="ippan_kakaku" id="ippan_kakaku" value="<?php echo $ippan_kakaku; ?>">
 			<input type="hidden" name="ippan_zeikomi_kakaku" id="ippan_zeikomi_kakaku" value="<?php echo $ippan_zeikomi_kakaku; ?>">
-			<input type="hidden" name="gaiyo" id="gaiyo" value="<?php echo $gaiyo; ?>">
+			<input type="hidden" name="wk_gaiyo" id="wk_gaiyo" value="<?php echo $gaiyo; ?>">
 			<input type="hidden" name="hambai_kbn" id="hambai_kbn" value="<?php echo $hambai_kbn; ?>">
 			<input type="hidden" name="hambai_settei_kbn" id="hambai_settei_kbn" value="<?php echo $hambai_settei_kbn; ?>">
 			<input type="hidden" name="hambai_settei_meisho" id="hambai_settei_meisho" value="<?php echo $hambai_settei_meisho; ?>">
@@ -48,7 +49,7 @@
 			<input type="hidden" name="konyusu" id="konyusu" value="<?php echo $konyusu; ?>">
 			<input type="hidden" name="zeikomi_kakaku" id="zeikomi_kakaku" value="<?php echo $zeikomi_kakaku; ?>">
 			<input type="hidden" name="color_kbn" id="color_kbn" value="<?php echo $color_kbn; ?>">
-			<input type="hidden" name="color_meisho" id="color_meisho" value="<?php echo $color_meisho; ?>">			
+			<input type="hidden" name="color_meisho" id="color_meisho" value="<?php echo $color_meisho; ?>">
 			<input type="hidden" name="size_kbn" id="size_kbn" value="<?php echo $size_kbn; ?>">
 			<input type="hidden" name="size_meisho" id="size_meisho" value="<?php echo $size_meisho; ?>">
 			<input type="hidden" name="shikaku_kbn" id="shikaku_kbn" value="<?php echo $shikaku_kbn; ?>">

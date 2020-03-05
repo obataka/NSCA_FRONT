@@ -109,6 +109,7 @@ SQL;
                 ]);
         } catch (\PDOException $e) {
             error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
+            $db->rollBack();
             return FALSE;
         }
         return TRUE;
@@ -135,6 +136,50 @@ SQL;
                 ]);
         } catch (\PDOException $e) {
             error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
+            $db->rollBack();
+            return FALSE;
+        }
+        return TRUE;
+    }
+
+    public function insertKonyushaJoho($db, $param, $gokei)
+    {
+        try {
+
+                $sql = <<<SQL
+                INSERT INTO	tb_hambai_konyusha_joho
+				(
+					kaiin_no
+					,konyusha_kbn
+					,gokei_kingaku
+					,soryo
+					,sofusaki_henko_kbn
+					,sakujo_flg
+					,sakusei_user_id
+					,koshin_user_id
+				)
+			VALUES
+				(
+					:kaiin_no
+					,1
+					,$gokei
+					,:buppan_soyo
+					,0
+					,0
+					,:koshin_user_id
+					,:koshin_user_id
+				);
+SQL;
+                $sth = $db->prepare($sql);
+                $sth->execute([
+                    ':kaiin_no'                 => $param['kaiin_no']
+					,':buppan_soyo'             => $param['buppan_soyo']
+                    ,':sakusei_user_id'         => $param['koshin_user_id']
+                    ,':koshin_user_id'          => $param['koshin_user_id']
+                ]);
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
+            $db->rollBack();
             return FALSE;
         }
         return TRUE;

@@ -7,8 +7,8 @@ session_start();
 require './Config/Config.php';
 require './DBAccess/Db.php';
 require './DBAccess/Cm_control.php';
-require './DBAccess/tb_hambai_konyusha_joho_meisai.php';
-require './DBAccess/tb_hambai_konyusha_joho.php';
+require './DBAccess/Tb_hambai_konyusha_joho_meisai.php';
+require './DBAccess/Tb_hambai_konyusha_joho.php';
 
 //shoppingBasket.jsでセットしたPOSTデータを取得する
 $konyu_id = (!empty($_POST['konyu_id'])) ? htmlentities($_POST['konyu_id'], ENT_QUOTES, "UTF-8") : "";
@@ -61,6 +61,8 @@ if ($result == false) {
 } else {
 
     $meisai_exists = (new Tb_hambai_konyusha_joho_meisai())->chkMeisaiExists($db, $param);
+    error_log(print_r($meisai_exists, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/shibata_log.txt');
+
     if (!empty($meisai_exists)) {
 
         $zeiritsu = getShohizei($db);

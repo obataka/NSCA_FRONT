@@ -33,7 +33,7 @@ $db->beginTransaction();
 $zeiritsu = getShohizei($db);
 
 $result = (new Tb_hambai_konyusha_joho())->findBySalesCartList($db, $param, $zeiritsu);
-// error_log(print_r($hambai_settei_meisho, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/shibata_log.txt');
+// error_log(print_r($result, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/shibata_log.txt');
 
 for ($i = 0; $i < count($result); $i++) {
     //販売設定名称、資格名称取得

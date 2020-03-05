@@ -4,11 +4,12 @@ namespace Was;
 
 session_start();
 
+
 require './Config/Config.php';
 require './DBAccess/Db.php';
 require './DBAccess/Cm_control.php';
-require './DBAccess/tb_hambai_konyusha_joho_meisai.php';
-require './DBAccess/tb_hambai_konyusha_joho.php';
+require './DBAccess/Tb_hambai_konyusha_joho_meisai.php';
+require './DBAccess/Tb_hambai_konyusha_joho.php';
 
 //shoppingBasket.jsでセットしたPOSTデータを取得する
 $konyu_id = (!empty($_POST['konyu_id'])) ? htmlentities($_POST['konyu_id'], ENT_QUOTES, "UTF-8") : "";
@@ -19,7 +20,6 @@ $user_id = (!empty($_POST['user_id'])) ? htmlentities($_POST['user_id'], ENT_QUO
 $buppan_soyo = (!empty($_POST['buppan_soyo'])) ? htmlentities($_POST['buppan_soyo'], ENT_QUOTES, "UTF-8") : "";
 $konyusu = (!empty($_POST['konyusu'])) ? htmlentities($_POST['konyusu'], ENT_QUOTES, "UTF-8") : "";
 $idx = (!empty($_POST['idx'])) ? htmlentities($_POST['idx'], ENT_QUOTES, "UTF-8") : "";
-
 
 //セッションから会員番号を取得
 if (isset($_SESSION['kaiinNo'])) {
