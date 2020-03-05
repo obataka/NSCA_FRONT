@@ -100,15 +100,15 @@
 								}
 							} else {
 
-			                        tbEventJoho = JSON.parse(rtn);
+			                        tbApplyJoho = JSON.parse(rtn);
 
 								// イベント表示件数4件分ループ処理する
 								for(var i = 0; i < 4 ; i++) {
 									// データがある場合はデータをセットする
-									if(i < tbEventJoho.length){
+									if(i < tbApplyJoho.length){
 										$("#apply_list"+(i+1)).show();
-							            $("#apply_naiyo"+(i+1)).html(tbEventJoho[i]["shutoku_naiyo"]);
-							            $("#apply_button"+(i+1)).text(tbEventJoho[i]["button_text"]);
+							            $("#apply_naiyo"+(i+1)).html(tbApplyJoho[i]["shutoku_naiyo"]);
+							            $("#apply_button"+(i+1)).text(tbApplyJoho[i]["button_text"]);
 									// データがない場合は非表示にする
 									}else{
 										$("#apply_list"+(i+1)).hide();
@@ -210,6 +210,7 @@
 										$("#event_meisho"+(i+1)).show();
 							            $("#event_meisho"+(i+1)).html(tbEventJoho[i]["meisho"]);
 							            $("#event_naiyo"+(i+1)).html(tbEventJoho[i]["shutoku_naiyo"]);
+							            $("#event_button"+(i+1)).data('id',tbEventJoho[i]["ceu_id"]);
 										if(tbEventJoho[i]["nokori"] == 0){
 											$("#event_nokori"+(i+1)).hide();
 										}else{
@@ -339,9 +340,12 @@
 									$("#infoList_page1").html(1);
 									$("#infoList_page2").html(2);
 									$("#infoList_page3").html(3);
-									$("#infoList_page1").prop('disabled', true);
-									$("#infoList_page2").prop('disabled', false);
-									$("#infoList_page3").prop('disabled', false);
+									$('#infoList_page1').css('pointer-events', 'none');
+									$('#infoList_page1').css('pointer-events', 'auto');
+									$('#infoList_page1').css('pointer-events', 'auto');
+//									$("#infoList_page1").prop('disabled', true);
+//									$("#infoList_page2").prop('disabled', false);
+//									$("#infoList_page3").prop('disabled', false);
 								}else if(pageNo != 2 && (pageNo + 1) * infoData_show_count > infoJoho.length){
 									$("#infoList_pageNo_b").val(pageNo - 3);
 									$("#infoList_pageNo_1").val(pageNo - 2);
@@ -351,9 +355,12 @@
 									$("#infoList_page1").html(pageNo - 2);
 									$("#infoList_page2").html(pageNo - 1);
 									$("#infoList_page3").html(pageNo);
-									$("#infoList_page1").prop('disabled', false);
-									$("#infoList_page2").prop('disabled', false);
-									$("#infoList_page3").prop('disabled', true);
+									$('#infoList_page1').css('pointer-events', 'auto');
+									$('#infoList_page1').css('pointer-events', 'auto');
+									$('#infoList_page1').css('pointer-events', 'none');
+//									$("#infoList_page1").prop('disabled', false);
+//									$("#infoList_page2").prop('disabled', false);
+//									$("#infoList_page3").prop('disabled', true);
 								}else{
 									$("#infoList_pageNo_b").val(pageNo - 2);
 									$("#infoList_pageNo_1").val(pageNo - 1);
@@ -363,9 +370,12 @@
 									$("#infoList_page1").html(pageNo - 1);
 									$("#infoList_page2").html(pageNo);
 									$("#infoList_page3").html(pageNo + 1);
-									$("#infoList_page1").prop('disabled', false);
-									$("#infoList_page2").prop('disabled', true);
-									$("#infoList_page3").prop('disabled', false);
+									$('#infoList_page1').css('pointer-events', 'auto');
+									$('#infoList_page1').css('pointer-events', 'none');
+									$('#infoList_page1').css('pointer-events', 'auto');
+//									$("#infoList_page1").prop('disabled', false);
+//									$("#infoList_page2").prop('disabled', true);
+//									$("#infoList_page3").prop('disabled', false);
 								}
 								
 
@@ -467,9 +477,12 @@
 									$("#jobList_page1").html(1);
 									$("#jobList_page2").html(2);
 									$("#jobList_page3").html(3);
-									$("#jobList_page1").prop('disabled', true);
-									$("#jobList_page2").prop('disabled', false);
-									$("#jobList_page3").prop('disabled', false);
+									$('#jobList_page1').css('pointer-events', 'none');
+									$('#jobList_page2').css('pointer-events', 'auto');
+									$('#jobList_page3').css('pointer-events', 'auto');
+//									$("#jobList_page1").prop('disabled', true);
+//									$("#jobList_page2").prop('disabled', false);
+//									$("#jobList_page3").prop('disabled', false);
 								}else if(pageNo != 2 && (pageNo + 1) * deta_show_count > jobList.length){
 									$("#jobList_pageNo_b").val(pageNo - 3);
 									$("#jobList_pageNo_1").val(pageNo - 2);
@@ -479,9 +492,12 @@
 									$("#jobList_page1").html(pageNo - 2);
 									$("#jobList_page2").html(pageNo - 1);
 									$("#jobList_page3").html(pageNo);
-									$("#jobList_page1").prop('disabled', false);
-									$("#jobList_page2").prop('disabled', false);
-									$("#jobList_page3").prop('disabled', true);
+									$('#jobList_page1').css('pointer-events', 'auto');
+									$('#jobList_page2').css('pointer-events', 'auto');
+									$('#jobList_page3').css('pointer-events', 'none');
+//									$("#jobList_page1").prop('disabled', false);
+//									$("#jobList_page2").prop('disabled', false);
+//									$("#jobList_page3").prop('disabled', true);
 								}else{
 									$("#jobList_pageNo_b").val(pageNo - 2);
 									$("#jobList_pageNo_1").val(pageNo - 1);
@@ -491,9 +507,12 @@
 									$("#jobList_page1").html(pageNo - 1);
 									$("#jobList_page2").html(pageNo);
 									$("#jobList_page3").html(pageNo + 1);
-									$("#jobList_page1").prop('disabled', false);
-									$("#jobList_page2").prop('disabled', true);
-									$("#jobList_page3").prop('disabled', false);
+									$('#jobList_page1').css('pointer-events', 'auto');
+									$('#jobList_page2').css('pointer-events', 'none');
+									$('#jobList_page3').css('pointer-events', 'auto');
+//									$("#jobList_page1").prop('disabled', false);
+//									$("#jobList_page2").prop('disabled', true);
+//									$("#jobList_page3").prop('disabled', false);
 								}
 								
 
@@ -676,6 +695,29 @@ $('.info-buttons-area').on('click', 'button', function() {
 	window.location.href = url;
 
 });
+
+/************************************************************
+	*もっと見る（イベント）　リンク押下時
+*************************************************************/
+
+$('#goSeminarList').on('click', function() {
+ 
+	window.location.href = '../seminarList/';
+
+});
+
+/************************************************************
+	*お申込（イベント）　ボタン押下時
+*************************************************************/
+
+$('.event-buttons-area').on('click', 'button', function() {
+ 
+	var ceu_id = $(this).data('id');
+	$("#ceu_id").val(ceu_id);
+    $("#event_form").submit();
+
+});
+
 
     });
 

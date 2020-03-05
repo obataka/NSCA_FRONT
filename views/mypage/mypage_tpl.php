@@ -198,6 +198,7 @@
 			</div>
 			<div id="event">
 				<h2>イベント</h2>
+				<div class="event-buttons-area">
 				<div class="bg_white">
 					<ul>
 						<li class="list" id="event_list1"><div class="sub">
@@ -205,7 +206,7 @@
 								<p class="sub_2" id="event_nokori1">残りわずか</p>
 							</div>
 							<span class="list_text" id="event_naiyo1">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</span>
-							<button class="button" type="button" id="event_button1" onclick="location.href='#'"><span>お申込</span></button>
+							<button class="button" type="button" id="event_button1"><span>お申込</span></button>
 						</li>
 						<li class="list" id="event_list2">
 							<div class="sub">
@@ -213,12 +214,13 @@
 								<p class="sub_2" id="event_nokori2">残りわずか</p>
 							</div>
 							<span class="list_text" id="event_naiyo2">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</span>
-							<button class="button" type="button" id="event_button2" onclick="location.href='#'"><span>お申込</span></button>
+							<button class="button" type="button" id="event_button2"><span>お申込</span></button>
 						</li>
 					</ul>
 				</div>
+				</div>
 				<div class="page">
-					<p><a>もっと見る</a></p>
+					<p><a id="goSeminarList">もっと見る</a></p>
 				</div>
 			</div>
 			<section>
@@ -228,19 +230,19 @@
 						<ul>
 							<li class="list" id="apply_list1">
 								<span class="list_text" id="apply_naiyo1"><a>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</a></span>
-								<button class="button" type="button" id="apply_button1" onclick="location.href='#'"><span>支払</span></button>
+								<button class="button" type="button" id="apply_button1"><span>支払</span></button>
 							</li>
 							<li class="list" id="apply_list2">
 								<span class="list_text" id="apply_naiyo2"><a>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</a></span>
-								<button class="button" type="button" id="apply_button2" onclick="location.href='#'"><span>支払番号表示</span></button>
+								<button class="button" type="button" id="apply_button2"><span>支払番号表示</span></button>
 							</li>
 							<li class="list" id="apply_list3">
 								<span class="list_text" id="apply_naiyo3"><a>テキストテキストテキストテキスト</a></span>
-								<button class="button" type="button" id="apply_button3" onclick="location.href='#'"><span>支払</span></button>
+								<button class="button" type="button" id="apply_button3"><span>支払</span></button>
 							</li>
 							<li class="list" id="apply_list4">
 								<span class="list_text" id="apply_naiyo4"><a>テキストテキストテキストテキスト</a></span>
-								<button class="button" type="button" id="apply_button4" onclick="location.href='#'"><span>支払</span></button>
+								<button class="button" type="button" id="apply_button4"><span>支払</span></button>
 							</li>
 						</ul>
 					</div>
@@ -356,6 +358,9 @@
 			</div>
 		</div>
 	</div>
+	<form id="event_form" action="../seminarEntryVis/" method="post">
+		<input type="hidden" name="ceu_id" id="ceu_id" value="">
+	</form>
 	<footer id="footer">
 	</footer>
 </body>

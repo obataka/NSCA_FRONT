@@ -71,7 +71,7 @@ class Tb_ceu_joho
 			FROM (
 				SELECT 
 					tb_ceu_joho.ceu_id,
-					CONCAT(tb_ceu_joho.shutoku_naiyo , ' ' , meisho_kyu_kbn.meisho) AS shutoku_naiyo,
+					CONCAT(tb_ceu_joho.shutoku_naiyo , ' ' , vms_meisho.meisho) AS shutoku_naiyo,
 					moshikomi_mae_annai_url,
 					event_kbn,
 					shutokubi,
@@ -99,10 +99,9 @@ class Tb_ceu_joho
 					ON tb_ceu_joho.ceu_id = tb_toreken_sankasya.ceu_id
 					AND  tb_toreken_jisshi_shosai.jisshi_no = tb_toreken_sankasya.jisshi_no
 				-- 名称取得（会員種別）
-				LEFT JOIN (SELECT meisho_cd,meisho FROM ms_meishoKbn,ms_meisho 
-						WHERE ms_meishoKbn.meisho_id = ms_meisho.meisho_id
-					    AND meisho_kbn = 58)  meisho_kyu_kbn
-					ON meisho_kyu_kbn.meisho_cd = tb_ceu_joho.kyu_kbn
+				LEFT JOIN vms_meisho
+					ON meisho_cd = tb_ceu_joho.kyu_kbn
+					AND meisho_kbn = 58 
 				WHERE tb_ceu_joho.sakujo_flg = 0
 				  AND event_shurui_kbn = 3
 				  AND tb_toreken_jisshi_shosai.sakujo_flg = 0
