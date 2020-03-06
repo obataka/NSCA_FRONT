@@ -53,11 +53,7 @@ if(!is_null($result_kaiin['hasso_teishibi'])){
 	$yubin_array = array (
 	  'naiyo' => '郵送物が戻ってきています。ご住所の確認をお願いいたします。',
 	  'url' => '../changeMember/',
-	  'button_text' => '登録情報',
-	  'menu_no' => 'clsCommon.geumMenu.Menu_Member',
-	  'syori__no' => 'clsCommon.geumMemberProcess.Process_Edit',
-	  'button_sbt' => 'InfoButtonType.Button_Command',
-	  'betsugamen' => 'no'
+	  'button_text' => '登録情報'
 	);
 	array_push($result_array,$yubin_array);
 
@@ -70,11 +66,7 @@ if(!empty($result_kaiin['taikai_shorui_juribi'])){ // 退会予約済み
 	$taikai_array = array (
 	  'naiyo' => $naiyo,
 	  'url' => '',
-	  'button_text' => '',
-	  'menu_no' => '0',
-	  'syori__no' => '0',
-	  'button_sbt' => '',
-	  'betsugamen' => 'no'
+	  'button_text' => ''
 	);
 	array_push($result_array,$taikai_array);
 
@@ -84,12 +76,8 @@ if(!empty($result_kaiin['taikai_shorui_juribi'])){ // 退会予約済み
 	$naiyo = "会員有効期限が過ぎていますので、<span style='color: #ff0000; background-color: transparent'>継続手続き</span>をお願いいたします。";
 	$kigen_array = array (
 	  'naiyo' => $naiyo,
-	  'url' => '../continueRequest/',
-	  'button_text' => '継続手続',
-	  'menu_no' => 'clsCommon.geumMenu.Menu_Member',
-	  'syori__no' => 'clsCommon.geumMemberProcess.Process_Continue',
-	  'button_sbt' => 'InfoButtonType.Button_Command',
-	  'betsugamen' => 'no'
+	  'url' => '../continueMemberRequest/',
+	  'button_text' => '継続手続'
 	);
 	array_push($result_array,$kigen_array);
 
@@ -138,23 +126,15 @@ if(!empty($result_kaiin['taikai_shorui_juribi'])){ // 退会予約済み
 						$kigen_array = array (
 						  'naiyo' => $naiyo,
 						  'url' => '',
-						  'button_text' => '',
-						  'menu_no' => '0',
-						  'syori__no' => '0',
-						  'button_sbt' => '',
-						  'betsugamen' => 'no'
+						  'button_text' => ''
 						);
 						array_push($result_array,$kigen_array);
 				}else{                                                                      		// 決済エラーあり
 
 						$kigen_array = array (
 						  'naiyo' => 'ご登録のクレジットカードによる自動支払処理ができませんでした。別のクレジットカードまたはコンビニ払いにて継続手続きをお願いいたします。',
-						  'url' => '~/continueRequest/',
-						  'button_text' => '継続手続',
-						  'menu_no' => 'clsCommon.geumMenu.Menu_Member',
-						  'syori__no' => 'clsCommon.geumMemberProcess.Process_Continue',
-						  'button_sbt' => 'InfoButtonType.Button_Command',
-						  'betsugamen' => 'no'
+						  'url' => '../continueMemberRequest/',
+						  'button_text' => '継続手続'
 						);
 						array_push($result_array,$kigen_array);
 
@@ -170,12 +150,8 @@ if(!empty($result_kaiin['taikai_shorui_juribi'])){ // 退会予約済み
 
 						$kigen_array = array (
 						  'naiyo' => '会員有効期限が近づいていますので継続手続をお願いいたします。',
-						  'url' => '../continueRequest/',
-						  'button_text' => '継続手続',
-						  'menu_no' => 'clsCommon.geumMenu.Menu_Member',
-						  'syori__no' => 'clsCommon.geumMemberProcess.Process_Continue',
-						  'button_sbt' => 'InfoButtonType.Button_Command',
-						  'betsugamen' => 'no'
+						  'url' => '../continueMemberRequest/',
+						  'button_text' => '継続手続'
 						);
 						array_push($result_array,$kigen_array);
 
@@ -207,11 +183,7 @@ if(!empty($result_information)){
 		$info_array = array (
 		  'naiyo' => $naiyo,
 		  'url' => $url,
-		  'button_text' => $button_text,
-		  'menu_no' => 'clsCommon.geumMenu.Menu_Member',
-		  'syori__no' => 'clsCommon.geumMemberProcess.Process_Continue',
-		  'button_sbt' => 'InfoButtonType.Button_Command',
-		  'betsugamen' => 'no'
+		  'button_text' => $button_text
 		);
 		array_push($result_array,$info_array);
 	}

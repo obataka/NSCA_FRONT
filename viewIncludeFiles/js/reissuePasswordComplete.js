@@ -5,10 +5,12 @@
     /********************************
      * ログイン中かチェック(初期表示)
      ********************************/
-    jQuery.ajax({
-        url:  '../../classes/reissuePasswordComplete.php',
-        type: 'POST',
-    success: function(rtn) {
+		$.ajax({
+	        url:  '../../classes/reissuePasswordComplete.php',
+	        type: 'POST'
+		})
+
+		.done( (rtn) => {
         // 会員情報、該当なし
             if (rtn == "") {  // 未ログイン
 				$('#goLogin').show();
@@ -17,16 +19,13 @@
 				$('#goLogin').hide();
 				$('#goMypage').show();
 			}
-    },
-    fail: function(rtn) {
-        return false;
-    },
-    error: function(rtn) {
-        return false;
-    }
-    });
-
-
+		})
+		.fail( (rtn) => {
+//			$('#pass_1').html('システムエラーが発生しました。');
+			return false;
+		})
+		.always( (rtn) => {
+		});
 
 
 /************************************************************

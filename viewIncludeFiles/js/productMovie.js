@@ -1,22 +1,21 @@
 (function($){
     $(document).ready(function(){
 
-//alert($("#doga_id").val());
 	/************************************************************
 	*商品詳細情報取得
 	*************************************************************/
-    jQuery.ajax({
-        url:  '../../classes/productMovie.php',
-        type: 'POST',
-        data:{
-			hambai_id: $("#hambai_doga_id").val()
-			,doga_id: $("#doga_id").val()
-		},
-        success: function(rtn) {
+		$.ajax({
+			url: '../../classes/productMovie.php',
+	        type: 'POST',
+	        data:{
+				hambai_id: $("#hambai_doga_id").val()
+				,doga_id: $("#doga_id").val()
+			}
+		})
+		.done( (rtn) => {
 
            // 商品詳細情報、該当なし
                 if (rtn == 0) {
-
 
 				}else{
 					var price_tani = "円";
@@ -27,9 +26,7 @@
                     $('#product_img').attr('src', tbHanbaiJoho["gazo_url"]);
                     $('#hambai_kikan').html(tbHanbaiJoho["hambai_kikan"]);
                     $('#price_kaiin').html(kakaku);
-//                    $('#tsuiki').html(tbHanbaiJoho["hambai_title_tsuiki"]);
                     $('#gaiyo').html(tbHanbaiJoho["gaiyo"]);
-//                    $('#setsumei').html(tbHanbaiJoho["setsumei"]);
 
 					for(var i = 1; i <= 4 ; i++) {
 
@@ -42,14 +39,13 @@
 					}
 
 				}
-        },
-        fail: function(rtn) {
-            return false;
-        },
-        error: function(rtn) {
-            return false;
-        }
-    });
+		})
+		.fail( (rtn) => {
+//			$('#pass_1').html('システムエラーが発生しました。');
+			return false;
+		})
+		.always( (rtn) => {
+		});
 
 /************************************************************
 	*【買い物かご】ボタン押下時
