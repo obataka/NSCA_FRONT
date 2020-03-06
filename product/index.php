@@ -11,8 +11,8 @@ if (isset($_SESSION['kaiinNo'])) {
     $wk_kaiin_no = $_SESSION['kaiinNo'];
 }
 
-$konyu_id = (!empty($_POST['konyu_id'])) ? htmlentities($_POST['konyu_id'], ENT_QUOTES, "UTF-8") : "";
 $gokei_kingaku = (!empty($_POST['gokei_kingaku'])) ? htmlentities($_POST['gokei_kingaku'], ENT_QUOTES, "UTF-8") : "";
+$wk_hambai_id = (!empty($_POST['wk_hambai_id'])) ? htmlentities($_POST['wk_hambai_id'], ENT_QUOTES, "UTF-8") : "";
 $hambai_id = (!empty($_POST['hambai_id'])) ? htmlentities($_POST['hambai_id'], ENT_QUOTES, "UTF-8") : "";
 $hambai_title = (!empty($_POST['hambai_title'])) ? htmlentities($_POST['hambai_title'], ENT_QUOTES, "UTF-8") : "";
 $hambai_title_chuigaki = (!empty($_POST['hambai_title_chuigaki'])) ? htmlentities($_POST['hambai_title_chuigaki'], ENT_QUOTES, "UTF-8") : "";

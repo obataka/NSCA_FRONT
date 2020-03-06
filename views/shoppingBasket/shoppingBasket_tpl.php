@@ -33,6 +33,7 @@
 			<input type="hidden" name="konyu_id" id="konyu_id" value="<?php echo $konyu_id; ?>">
 			<input type="hidden" name="gokei_kingaku" id="gokei_kingaku" value="<?php echo $gokei_kingaku; ?>">
 			<input type="hidden" name="hambai_id" id="hambai_id" value="<?php echo $hambai_id; ?>">
+			<input type="hidden" name="wk_hambai_id" id="wk_hambai_id" value="<?php echo $wk_hambai_id; ?>">
 			<input type="hidden" name="hambai_title" id="hambai_title" value="<?php echo $hambai_title; ?>">
 			<input type="hidden" name="hambai_title_chuigaki" id="hambai_title_chuigaki" value="<?php echo $hambai_title_chuigaki; ?>">
 			<input type="hidden" name="gazo_url" id="gazo_url" value="<?php echo $gazo_url; ?>">

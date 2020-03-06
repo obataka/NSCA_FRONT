@@ -79,7 +79,7 @@
 		*************************************************************/
 		$('#buy_button').on('click', function () {
 			//商品を追加（データベースお買い物かごへ登録）※会員のみ
-			if (tbHanbaiJoho["kaiin_no"] ) {
+			if ($('#kaiin_no').val()) {
 				jQuery.ajax({
 					url: '../../classes/insertSalesCartData.php',
 					type: 'POST',
@@ -92,7 +92,7 @@
 						kakaku: tbHanbaiJoho["kaiin_kakaku_zeikomi"],
 						suryo: $('#buy_number').val(),
 						user_id: 'chisato',
-	
+
 					}
 				}).done((rtn) => {
 					if (rtn == 1) {
@@ -110,8 +110,102 @@
 				});
 			} else {
 				//セッションに値をセットして画面遷移
+				if ($('#wk_hambai_id').val() != "") {
+					hambai_id = $('#wk_hambai_id').val() + tbHanbaiJoho["hambai_id"] + ',';
+					$('#wk_hambai_id').val(hambai_id);
+				} else {
+					hambai_id = tbHanbaiJoho["hambai_id"] + ',';
+					$('#wk_hambai_id').val(hambai_id);
+				}
+
+				if ($('#hambai_title').val() != "") {
+					hambai_title = $('#hambai_title').val() + tbHanbaiJoho["hambai_title"] + ',';
+					$('#hambai_title').val(hambai_title);
+				} else {
+					hambai_title = tbHanbaiJoho["hambai_title"] + ',';
+					$('#hambai_title').val(hambai_title);
+				}
+
+				if ($('#hambai_title_chuigaki').val() != "") {
+					hambai_title_chuigaki = $('#hambai_title_chuigaki').val() + tbHanbaiJoho["hambai_title_chuigaki"] + ',' ;
+					$('#hambai_title_chuigaki').val(hambai_title_chuigaki);
+				} else {
+					hambai_title_chuigaki = tbHanbaiJoho["hambai_title_chuigaki"] + ',';
+					$('#hambai_title_chuigaki').val(hambai_title_chuigaki);
+				}
+
+				if ($('#hambai_kbn').val() != "") {
+					hambai_kbn = $('#hambai_kbn').val() + tbHanbaiJoho["hambai_kbn"] + ',' ;
+					$('#hambai_kbn').val(hambai_kbn);
+				} else {
+					hambai_kbn = tbHanbaiJoho["hambai_kbn"] + ',';
+					$('#hambai_kbn').val(hambai_kbn);
+				}
+
+				if ($('#wk_gaiyo').val() != "") {
+					gaiyo = $('#wk_gaiyo').val() + tbHanbaiJoho["gaiyo"]  + ',';
+					$('#wk_gaiyo').val(gaiyo);
+				} else {
+					gaiyo = tbHanbaiJoho["gaiyo"] + ',';
+					$('#wk_gaiyo').val(gaiyo);
+				}
+
+				if ($('#gazo_url').val() != "") {
+					gazo_url = $('#gazo_url').val()+ tbHanbaiJoho["gazo_url"] + ',' ;
+					$('#gazo_url').val(gazo_url);
+				} else {
+					gazo_url = tbHanbaiJoho["gazo_url"] + ',';
+					$('#gazo_url').val(gazo_url);
+				}
+
+				if ($('#kaiin_zeikomi_kakaku').val() != "") {
+					kaiin_zeikomi_kakaku = $('#kaiin_zeikomi_kakaku').val() + tbHanbaiJoho["kaiin_kakaku_zeikomi"] + ',';
+					$('#kaiin_zeikomi_kakaku').val(kaiin_zeikomi_kakaku);
+				} else {
+					kaiin_zeikomi_kakaku = tbHanbaiJoho["kaiin_kakaku_zeikomi"] + ',';
+					$('#kaiin_zeikomi_kakaku').val(kaiin_zeikomi_kakaku);
+				}
+
+				if ($('#zeikomi_kakaku').val() != "") {
+					zeikomi_kakaku = $('#zeikomi_kakaku').val() + tbHanbaiJoho["kakaku_zeikomi"] + ',';
+					$('#zeikomi_kakaku').val(zeikomi_kakaku);
+				} else {
+					zeikomi_kakaku = tbHanbaiJoho["kakaku_zeikomi"] + ',';
+					$('#zeikomi_kakaku').val(zeikomi_kakaku);
+				}
+
+				if ($('#ippan_zeikomi_kakaku').val() != "") {
+					ippan_zeikomi_kakaku = $('#ippan_zeikomi_kakaku').val() + tbHanbaiJoho["ippan_kakaku_zeikomi"] + ',' ;
+					$('#ippan_zeikomi_kakaku').val(ippan_zeikomi_kakaku);
+				} else {
+					ippan_zeikomi_kakaku = tbHanbaiJoho["ippan_kakaku_zeikomi"] + ',';
+					$('#ippan_zeikomi_kakaku').val(ippan_zeikomi_kakaku);
+				}
+
+				if ($('#konyusu').val() != "") {
+					konyusu = $('#konyusu').val() + $('#buy_number').val() + ',' ;
+					$('#konyusu').val(konyusu);
+				} else {
+					konyusu = $('#buy_number').val() + ',';
+					$('#konyusu').val(konyusu);
+				}
+
+				// console.log($('#wk_hambai_id').val());
+				// console.log($('#hambai_title').val());
+				// console.log($('#hambai_title_chuigaki').val());
+				// console.log($('#hambai_kbn').val());
+				// console.log($('#wk_gaiyo').val());
+				// console.log($('#gazo_url').val());
+				// console.log($('#kaiin_zeikomi_kakaku').val());
+				// console.log($('#zeikomi_kakaku').val());
+				// console.log($('#ippan_zeikomi_kakaku').val());
+				// console.log($('#konyusu').val());
+
+				url = '../shoppingBasket/';
+				$('form').attr('action', url);
+				$('form').submit();
 			}
-			
+
 
 			//alert("かごに入れる");
 		});

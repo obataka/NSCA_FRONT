@@ -57,7 +57,7 @@ class Tb_hambai_konyusha_joho_meisai
 SQL;
                 $sth = $db->prepare($sql);
                 $sth->execute([
-					'hambai_id'             => $param['hambai_id']
+					':hambai_id'             => $param['hambai_id']
 					,':konyu_id'            => $param['konyu_id']
                     ,':koshin_user_id'      => $param['koshin_user_id']
                     ,':hambai_size_kbn'     => $param['size_kbn']
@@ -65,6 +65,7 @@ SQL;
                 ]);
         } catch (\PDOException $e) {
             error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
+            $db->rollBack();
             return FALSE;
         }
         return TRUE;
@@ -82,7 +83,7 @@ SQL;
 SQL;
                 $sth = $db->prepare($sql);
                 $sth->execute([
-					'hambai_id'             => $param['hambai_id']
+					':hambai_id'             => $param['hambai_id']
 					,':konyu_id'            => $param['konyu_id']
                     ,':koshin_user_id'      => $param['koshin_user_id']
                     ,':hambai_size_kbn'     => $param['size_kbn']
@@ -114,6 +115,7 @@ SQL;
                 ]);
         } catch (\PDOException $e) {
             error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
+            $db->rollBack();
             return FALSE;
         }
         return TRUE;
@@ -167,6 +169,55 @@ SQL;
                 ]);
         } catch (\PDOException $e) {
             error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
+            $db->rollBack();
+            return FALSE;
+        }
+        return TRUE;
+    }
+
+    public function insertKonyushaJohoMeisai($db, $param)
+    {
+        try {
+                $sql = <<<SQL
+                INSERT INTO	tb_hambai_konyusha_joho_meisai
+				(
+					konyu_id
+					,hambai_id
+					,hambai_size_kbn
+					,hambai_color_kbn
+					,kakaku
+                    ,suryo
+                    ,torokubi
+					,sakujo_flg
+					,sakusei_user_id
+					,koshin_user_id
+				)
+                
+				SELECT COALESCE(MAX(konyu_id)+1, 1)
+					,:hambai_id
+					,:size_kbn
+					,:color_kbn
+                    ,:kakaku
+                    ,:suryo
+                    ,:torokubi
+					,0
+					,:koshin_user_id
+					,:koshin_user_id
+                FROM tb_hambai_konyusha_joho_meisai;
+SQL;
+                $sth = $db->prepare($sql);
+                $sth->execute([
+                    ':hambai_id'           => $param['hambai_id']
+                    ,':size_kbn'            => $param['size_kbn']
+                    ,':color_kbn'           => $param['color_kbn']
+                    ,':suryo'               => $param['suryo']
+                    ,':kakaku'              => $param['kakaku']
+                    ,':torokubi'            => $param['torokubi']
+                    ,':koshin_user_id'      => $param['koshin_user_id']
+                ]);
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
+            $db->rollBack();
             return FALSE;
         }
         return TRUE;

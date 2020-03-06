@@ -1,7 +1,17 @@
 <?php
-include_once '../ctrl/parts/inputHeader.php';
 
-$includeView = '../views/salesList/salesList_tpl.php';
+include_once '../ctrl/parts/beforeLoginHeader.php';
+
+$includeView = '../views/shoppingConfirm/shoppingConfirm_tpl.php';
+
+$wk_kaiin_no = "";
+
+if (isset($_SESSION['kaiinNo'])) {
+
+    // ログインしている時
+    $wk_kaiin_no = $_SESSION['kaiinNo'];
+}
+
 $gokei_kingaku = (!empty($_POST['gokei_kingaku'])) ? htmlentities($_POST['gokei_kingaku'], ENT_QUOTES, "UTF-8") : "";
 $wk_hambai_id = (!empty($_POST['wk_hambai_id'])) ? htmlentities($_POST['wk_hambai_id'], ENT_QUOTES, "UTF-8") : "";
 $hambai_id = (!empty($_POST['hambai_id'])) ? htmlentities($_POST['hambai_id'], ENT_QUOTES, "UTF-8") : "";
@@ -25,5 +35,6 @@ $size_kbn = (!empty($_POST['size_kbn'])) ? htmlentities($_POST['size_kbns'], ENT
 $color_meisho = (!empty($_POST['color_meisho'])) ? htmlentities($_POST['color_meisho'], ENT_QUOTES, "UTF-8") : "";
 $size_meisho = (!empty($_POST['size_meisho'])) ? htmlentities($_POST['size_meisho'], ENT_QUOTES, "UTF-8") : "";
 $shikaku_kbn = (!empty($_POST['shikaku_kbn'])) ? htmlentities($_POST['shikaku_kbn'], ENT_QUOTES, "UTF-8") : "";
+
 
 include_once $includeView;
