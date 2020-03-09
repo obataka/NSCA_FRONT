@@ -218,6 +218,7 @@ function getDataPaymentList(pageNo){
 						if(i < tbKeiriJoho.length){
 							$("#payment_list"+(i+1)).show();
 				            $("#payment_naiyo"+(i+1)).html(tbKeiriJoho[i]["uchiwake"]);
+				            $("#payment_button"+(i+1)).data('id',tbKeiriJoho[i]["keiri_id"]);
 							$("#payment_button"+(i+1)).show();
 						// データがない場合は非表示にする
 						}else{
@@ -716,9 +717,59 @@ $('.event-buttons-area').on('click', 'button', function() {
  
 	var ceu_id = $(this).data('id');
 	$("#ceu_id").val(ceu_id);
+    $('#event_form').attr('action', '../seminarEntryVis');
     $("#event_form").submit();
 
 });
+
+/************************************************************
+	*支払情報　領収書ボタン押下時
+*************************************************************/
+
+$('.payment-buttons-area').on('click', 'button', function() {
+ 
+	window.open("about:blank", 'printReceipt',"width=600,height=800");
+	var keiri_id = $(this).data('id');
+	$("#keiri_id").val(keiri_id);
+    $('#printReceipt_form').attr('action', '../printReceipt');
+    $("#printReceipt_form").submit();
+
+});
+
+/************************************************************
+	*【パーソナルトレーナーサポートツール】ボタン押下時
+*************************************************************/
+$('#goPTSTool').on('click', function() {
+
+//	window.location.href = '../ceuGetList/';
+alert("パーソナルトレーナーサポートツール");
+
+});
+
+/************************************************************
+	*【S&C資料集】ボタン押下時
+*************************************************************/
+$('#goSAndCDocument').on('click', function() {
+
+//	window.location.href = '../ceuGetList/';
+alert("S&C資料集");
+
+});
+
+/************************************************************
+	*【HPC施設利用申込手続きへ】ボタン押下時
+*************************************************************/
+$('#goHpcUse').on('click', function() {
+
+	window.location.href = '../useHpcList/';
+
+});
+
+
+
+
+
+
 
 
     });

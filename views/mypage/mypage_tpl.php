@@ -249,25 +249,27 @@
 				</div>
 				<div id="shiharai">
 					<h2>支払情報</h2>
+					<div class="payment-buttons-area">
 					<div class="bg_white match_height_2">
 						<ul>
 							<li class="list" id="payment_list1">
 								<span class="list_text" id="payment_naiyo1">テキストテキストテキストテキスト</span>
-								<button class="button" type="button" id="payment_button1" onclick="location.href='#'"><span>領収書</span></button>
+								<button class="button" type="button" id="payment_button1"><span>領収書</span></button>
 							</li>
 							<li class="list" id="payment_list2">
 								<span class="list_text" id="payment_naiyo2">テキストテキストテキストテキスト</span>
-								<button class="button" type="button" id="payment_button2" onclick="location.href='#'"><span>領収書</span></button>
+								<button class="button" type="button" id="payment_button2"><span>領収書</span></button>
 							</li>
 							<li class="list" id="payment_list3">
 								<span class="list_text" id="payment_naiyo3">テキストテキストテキストテキスト</span>
-								<button class="button" type="button" id="payment_button3" onclick="location.href='#'"><span>領収書</span></button>
+								<button class="button" type="button" id="payment_button3"><span>領収書</span></button>
 							</li>
 							<li class="list" id="payment_list4">
 								<span class="list_text" id="payment_naiyo4">テキストテキストテキストテキスト</span>
-								<button class="button" type="button" id="payment_button4" onclick="location.href='#'"><span>領収書</span></button>
+								<button class="button" type="button" id="payment_button4"><span>領収書</span></button>
 							</li>
 						</ul>
+					</div>
 					</div>
 				</div>
 			</section>
@@ -276,9 +278,9 @@
 					<h2>会員コンテンツ</h2>
 					<div class="bg_white match_height_3">
 						<div class="kaiin_btn">
-							<button class="button" onclick="location.href='#'"><span>パーソナルトレーナーサポートツール</span></button>
-							<button class="button" onclick="location.href='#'"><span>S&amp;C資料集</span></button>
-							<button class="button" onclick="location.href='#'"><span>HPC施設利用申込手続きへ</span></button>
+							<button class="button" type="button" id="goPTSTool"><span>パーソナルトレーナーサポートツール</span></button>
+							<button class="button" type="button" id="goSAndCDocument"><span>S&amp;C資料集</span></button>
+							<button class="button" type="button" id="goHpcUse"><span>HPC施設利用申込手続きへ</span></button>
 						</div>	
 					</div>
 				</div>
@@ -358,8 +360,11 @@
 			</div>
 		</div>
 	</div>
-	<form id="event_form" action="../seminarEntryVis/" method="post">
+	<form id="event_form" method="post">
 		<input type="hidden" name="ceu_id" id="ceu_id" value="">
+	</form>
+	<form id="printReceipt_form" method="post" target="printReceipt">
+		<input type="hidden" name="keiri_id" id="keiri_id" value="">
 	</form>
 	<footer id="footer">
 	</footer>
