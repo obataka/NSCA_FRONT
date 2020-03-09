@@ -54,7 +54,6 @@
 			<input type="hidden" name="size_kbn" id="size_kbn" value="<?php echo $size_kbn; ?>">
 			<input type="hidden" name="size_meisho" id="size_meisho" value="<?php echo $size_meisho; ?>">
 			<input type="hidden" name="shikaku_kbn" id="shikaku_kbn" value="<?php echo $shikaku_kbn; ?>">
-			<input type="hidden" name="upflag" id="upflag" value="0">
 
 			<div class="content_wrap">
 				<article class="clearfix">

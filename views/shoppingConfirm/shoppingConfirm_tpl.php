@@ -54,7 +54,6 @@
 			<input type="hidden" name="size_kbn" id="size_kbn" value="<?php echo $size_kbn; ?>">
 			<input type="hidden" name="size_meisho" id="size_meisho" value="<?php echo $size_meisho; ?>">
 			<input type="hidden" name="shikaku_kbn" id="shikaku_kbn" value="<?php echo $shikaku_kbn; ?>">
-			<input type="hidden" name="upflag" id="upflag" value="0">
 			<div class="content_wrap">
 				<div class="product">
 					<table>
@@ -66,27 +65,12 @@
 							</tr>
 						</thead>
 						<tbody id="product_list">
-							<tr>
-								<td data-label="商品名">
-									<p><img src="https://placehold.jp/949494/ffffff/130x90.png">テキストテキストテキストテキストテキストテキストテキスト</p>
-								</td>
-								<td data-label="数量">1</td>
-								<td data-label="税込み単価">00000</td>
-							</tr>
-							<tr>
-								<td data-label="商品名">
-									<p><img src="https://placehold.jp/949494/ffffff/130x90.png">テキストテキストテキストテキストテキストテキストテキスト</p>
-								</td>
-								<td data-label="数量">1</td>
-								<td data-label="税込み単価">00000</td>
-							</tr>
-
 						</tbody>
 					</table>
 					<div class="total">
 						<p>
-							発送手数料<span>円</span><br>
-							商品合計(税込み)<span>円</span>
+							発送手数料<span id="tesuryo"></span><br>
+							商品合計(税込み)<span id="sum"></span>
 						</p>
 					</div>
 				</div>
