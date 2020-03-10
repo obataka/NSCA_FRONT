@@ -6,8 +6,6 @@ session_start();
 require './Config/Config.php';
 require './DBAccess/Db.php';
 
-$return_value = -1;
-
 // POSTデータを取得
 // 商品情報をPOSTデータからSESSIONにセット
 
@@ -35,6 +33,6 @@ $_SESSION['color_meisho'] = (!empty($_POST['color_meisho'])) ? htmlentities($_PO
 $_SESSION['shikaku_kbn'] = (!empty($_POST['shikaku_kbn'])) ? htmlentities($_POST['shikaku_kbn'], ENT_QUOTES, "UTF-8") : "";
 $_SESSION['gokei_kingaku'] = (!empty($_POST['gokei_kingaku'])) ? htmlentities($_POST['gokei_kingaku'], ENT_QUOTES, "UTF-8") : "";
 $_SESSION['buppan_soyo'] = (!empty($_POST['buppan_soyo'])) ? htmlentities($_POST['buppan_soyo'], ENT_QUOTES, "UTF-8") : "";
+$_SESSION['tranScreen'] = (!empty($_POST['tranScreen'])) ? htmlentities($_POST['tranScreen'], ENT_QUOTES, "UTF-8") : "";
 
-echo $return_value;
 die();

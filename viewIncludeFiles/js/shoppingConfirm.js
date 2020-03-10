@@ -7,7 +7,6 @@
         var gokei = 0;
 
         var getCmControl = [];
-        var getSalesCartList = [];
 
         //セッションの値を入れる配列
         var sesSalesCartList = [];
@@ -18,9 +17,16 @@
             url: '../../classes/getCmControl.php',
         }).done((rtn) => {
             getCmControl = JSON.parse(rtn);
-            $('#tesuryo').text(Math.floor(getCmControl['buppan_soyo']) + '円');
+            $('#tesuryo').text(Math.floor(getCmControl['buppan_soryo']) + '円');
 
-            var sesSalesCartList = [];
+            var wk_hambai_id = "";
+            var wk_hambai_title = "";
+            var wk_hambai_title_chuigaki = "";
+            var wk_hambai_kbn = "";
+            var wk_gaiyo = "";
+            var wk_zeikomi_kakaku = "";
+            var wk_suryo = "";
+
             //表示する商品が複数ある場合
             if ($('#wk_hambai_id').val().split(',').length - 1 > 1) {
                 wk_hambai_id = $('#wk_hambai_id').val().split(',');
@@ -29,9 +35,12 @@
                 wk_hambai_kbn = $('#hambai_kbn').val().split(',');
                 wk_gaiyo = $('#wk_gaiyo').val().split(',');
                 wk_gazo_url = $('#gazo_url').val().split(',');
-                wk_kaiin_zeikomi_kakaku = $('#kaiin_zeikomi_kakaku').val().split(',');
-                wk_zeikomi_kakaku = $('#zeikomi_kakaku').val().split(',');
-                wk_ippan_zeikomi_kakaku = $('#ippan_zeikomi_kakaku').val().split(',');
+
+                if ($('#kaiin_no').val()) {
+                    wk_zeikomi_kakaku = $('#kaiin_zeikomi_kakaku').val().split(',');
+                } else {
+                    wk_zeikomi_kakaku = $('#ippan_zeikomi_kakaku').val().split(',');
+                }
                 wk_suryo = $('#konyusu').val().split(',');
 
                 for (let i = 0; i < wk_hambai_id.length; i++) {
@@ -42,9 +51,7 @@
                         'hambai_kbn': wk_hambai_kbn[i],
                         'gaiyo': wk_gaiyo[i],
                         'gazo_url': wk_gazo_url[i],
-                        'kaiin_zeikomi_kakaku': wk_kaiin_zeikomi_kakaku[i],
                         'zeikomi_kakaku': wk_zeikomi_kakaku[i],
-                        'ippan_zeikomi_kakaku': wk_ippan_zeikomi_kakaku[i],
                         'suryo': wk_suryo[i],
 
                     };
@@ -59,9 +66,13 @@
                 wk_hambai_kbn = $('#hambai_kbn').val().split(',');
                 wk_gaiyo = $('#wk_gaiyo').val().split(',');
                 wk_gazo_url = $('#gazo_url').val().split(',');
-                wk_kaiin_zeikomi_kakaku = $('#kaiin_zeikomi_kakaku').val().split(',');
-                wk_zeikomi_kakaku = $('#zeikomi_kakaku').val().split(',');
-                wk_ippan_zeikomi_kakaku = $('#ippan_zeikomi_kakaku').val().split(',');
+
+                if ($('#kaiin_no').val()) {
+                    wk_zeikomi_kakaku = $('#kaiin_zeikomi_kakaku').val().split(',');
+                } else {
+                    wk_zeikomi_kakaku = $('#ippan_zeikomi_kakaku').val().split(',');
+                }
+
                 wk_suryo = $('#konyusu').val().split(',');
 
                 sesSalesCartListRow = {
@@ -71,9 +82,7 @@
                     'hambai_kbn': wk_hambai_kbn[0],
                     'gaiyo': wk_gaiyo[0],
                     'gazo_url': wk_gazo_url[0],
-                    'kaiin_zeikomi_kakaku': wk_kaiin_zeikomi_kakaku[0],
                     'zeikomi_kakaku': wk_zeikomi_kakaku[0],
-                    'ippan_zeikomi_kakaku': wk_ippan_zeikomi_kakaku[0],
                     'suryo': wk_suryo[0],
 
                 };
@@ -93,13 +102,12 @@
                                         <td data-label="数量">` + val['suryo'] + `</td>
                                         <td data-label="税込み単価">` + val['zeikomi_kakaku'] * val['suryo'] + `</td>
                                     </tr>`);
-                gokei = gokei + Math.floor(val['zeikomi_kakaku']) * val['suryo'];
+                    gokei = gokei + Math.floor(val['zeikomi_kakaku']) * val['suryo'];
                 }
-
-                
 
             });
             $('#sum').text(gokei + Math.floor(getCmControl['buppan_soyo']) + '円');
+            $('#gokei_kingaku').val(gokei + Math.floor(getCmControl['buppan_soyo']));
         }).fail((rtn) => {
             return false;
         });
@@ -118,7 +126,18 @@
         * 決済方法選択へ
         ********************/
         $('#next').click(function () {
-            
+            jQuery.ajax({
+                url: '../../classes/setSalesDataToSess.php',
+                data: {
+                    tranScreen: 'shoppingConfirm'
+                }
+            }).done((rtn) => {
+                url = '../paymentSelectNoLogin/';
+                $('form').attr('action', url);
+                $('form').submit();
+            }).fail((rtn) => {
+                return false;
+            });
         });
 
 

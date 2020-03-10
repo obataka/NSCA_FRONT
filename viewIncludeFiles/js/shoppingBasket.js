@@ -41,7 +41,7 @@
                             <table>
                                 <tr>
                                     <th>税込み単価(円)<span>：</span></th>
-                                    <td>` + Math.floor(val['zeikomi_kakaku']) + `円</td>
+                                    <td>` + Math.floor(val['kaiin_zeikomi_kakaku']) + `円</td>
                                 </tr>
                                 <tr>
                                     <th>数量<span>：</span></th>
@@ -49,13 +49,13 @@
                                 </tr>
                                 <tr>
                                     <th>小計(円)<span>：</span></th>
-                                    <td id="shokei_` + i + `">` + Math.floor(val['zeikomi_kakaku']) * val['suryo'] + `円</td>
+                                    <td id="shokei_` + i + `">` + Math.floor(val['kaiin_zeikomi_kakaku']) * val['suryo'] + `円</td>
                                 </tr>
                             </table>
                         </section>
                     </div>`);
 
-                        gokei = gokei + Math.floor(val['zeikomi_kakaku']) * val['suryo'];
+                        gokei = gokei + Math.floor(val['kaiin_zeikomi_kakaku']) * val['suryo'];
                     });
 
                     $('#sum').text(gokei + Math.floor(getCmControl['buppan_soyo']) + '円');
@@ -167,7 +167,7 @@
                                     <table>
                                         <tr>
                                             <th>税込み単価(円)<span>：</span></th>
-                                            <td>` + Math.floor(val['zeikomi_kakaku']) + `円</td>
+                                            <td>` + Math.floor(val['ippan_zeikomi_kakaku']) + `円</td>
                                         </tr>
                                         <tr>
                                             <th>数量<span>：</span></th>
@@ -175,12 +175,12 @@
                                         </tr>
                                         <tr>
                                             <th>小計(円)<span>：</span></th>
-                                            <td id="shokei_` + i + `">` + Math.floor(val['zeikomi_kakaku']) * val['suryo'] + `円</td>
+                                            <td id="shokei_` + i + `">` + Math.floor(val['ippan_zeikomi_kakaku']) * val['suryo'] + `円</td>
                                         </tr>
                                     </table>
                                 </section>
                             </div>`);
-                        gokei = gokei + Math.floor(val['zeikomi_kakaku']) * val['suryo'];
+                        gokei = gokei + Math.floor(val['ippan_zeikomi_kakaku']) * val['suryo'];
 
                     });
                     $('#sum').text(gokei + Math.floor(getCmControl['buppan_soyo']) + '円');
