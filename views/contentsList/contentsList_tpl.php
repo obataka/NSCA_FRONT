@@ -1,30 +1,32 @@
 <!DOCTYPE html>
 <html lang="ja">
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="Content-Style-Type" content="text/css" />
-        <meta name='format-detection' content='telephone=no' />
-        <meta name='viewport' content='width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no' />
-        <title>会員限定コンテンツのご紹介</title>
-        <!-- favicon -->
-        <link rel="icon" href="../../viewIncludeFiles/image/favicon.ico">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
-        <link rel="stylesheet" href="../../viewIncludeFiles/css/fontawesome/web-fonts-with-css/css/fontawesome-all.css">
-        <link rel="stylesheet" href="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.css">
-        <link rel="stylesheet" href="../../viewIncludeFiles/css/style.css" />
-        <link rel="stylesheet" href="../../viewIncludeFiles/css/kaiin_gentei_content.css">
-	    <link rel="stylesheet" href="../../viewIncludeFiles/css/header.css">
 
-        <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.1.1.min.js"></script>
-        <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.js"></script>
-        <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
-        <script type="text/javascript" src="../../viewIncludeFiles/js/contentsList.js"></script>
-		<script type="text/javascript" src="../../viewIncludeFiles/js/header.js"></script>
-		<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
-		<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
-		
-    </head>
-   <body>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta name='format-detection' content='telephone=no' />
+	<meta name='viewport' content='width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+	<title>会員限定コンテンツのご紹介</title>
+	<!-- favicon -->
+	<link rel="icon" href="../../viewIncludeFiles/image/favicon.ico">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+	<link rel="stylesheet" href="../../viewIncludeFiles/css/fontawesome/web-fonts-with-css/css/fontawesome-all.css">
+	<link rel="stylesheet" href="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.css">
+	<link rel="stylesheet" href="../../viewIncludeFiles/css/style.css" />
+	<link rel="stylesheet" href="../../viewIncludeFiles/css/kaiin_gentei_content.css">
+	<link rel="stylesheet" href="../../viewIncludeFiles/css/header.css">
+
+	<script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.js"></script>
+	<script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
+	<script type="text/javascript" src="../../viewIncludeFiles/js/contentsList.js"></script>
+	<script type="text/javascript" src="../../viewIncludeFiles/js/header.js"></script>
+	<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
+	<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
+
+</head>
+
+<body>
 	<header id="header">
 	</header>
 	<div class="wrap">
@@ -40,7 +42,7 @@
 						<li><a href="https://www.nsca-japan.or.jp/12_database/for_athlete.html">・競技別</a></li>
 						<li><a href="https://www.nsca-japan.or.jp/12_database/for_fitness.html">・対象者別</a></li>
 						<li><a href="https://www.nsca-japan.or.jp/12_database/exercise.html">・エクササイズ別</a></li>
-					</ul>	
+					</ul>
 				</div>
 				<div class="bg_gray">
 					<p><a href="https://www.nsca-japan.or.jp/12_database/webjournal.html">ウェブジャーナル</a></p>
@@ -60,7 +62,7 @@
 						<li><a href="https://www.nsca-japan.or.jp/12_database/exercise/speed_agility.html">スピード&amp;アジリティ</a></li>
 						<li><a href="https://www.nsca-japan.or.jp/12_database/exercise/plyometrics.html">プライオメトリックス</a></li>
 						<li><a href="https://www.nsca-japan.or.jp/12_database/exercise/nontraditional.html">ノントラディショナル</a></li>
-					</ul>	
+					</ul>
 				</div>
 				<div class="bg_gray">
 					<p><a href="https://www.nsca-japan.or.jp/12_database/exercise/plus10leaflet.html">リーフレット連動エクササイズ</a></p>
@@ -82,10 +84,11 @@
 					<p>※ご利用前に<a href="https://www.nsca-japan.or.jp/21_site/kiyaku.html" class="blue">利用規約</a>をご一読ください。</p>
 					<button class="button" type="button" value="" onclick="location.href='#'"><span>GO</span></button>
 				</div>
-			</section>				
+			</section>
 		</div>
 	</div>
 	<footer id="footer">
 	</footer>
 </body>
+
 </html>
