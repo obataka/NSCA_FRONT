@@ -411,22 +411,15 @@ function createMousikomiData($result) {
 
 					break;
 			default:
-//                            ' 参加料のチェック
-//                            Dim strFee As String = Server.HtmlDecode(e.Row.Cells(15).Text).Trim
-//                            Dim dicFee As Decimal
-//                            If Decimal.TryParse(strFee, dicFee) = True Then
-//                                ' Decimal型に変換成功
-//                                If strFee = 0 Then
-//                                    ' 参加費がゼロ円の場合は、申込済みだけを表示
+//                   ' 参加料のチェック
+					if(empty($value['nonyu_kingaku'])){	// 参加料null(0円)の場合は、申込済みだけを表示
 //                                    Dim lbtnPayment As LinkButton = DirectCast(e.Row.FindControl("lbtnPayment"), LinkButton) ' 支払いボタン
 //                                    Dim lblNote As Label = DirectCast(e.Row.FindControl("lblNote"), Label)                   ' 支払い状況の表示
 //                                    Dim lblComp As Label = DirectCast(e.Row.FindControl("lblComp"), Label)                   ' [済]表示
 //                                    lbtnPayment.Visible = False
 //                                    lblNote.Visible = False
 //                                    lblComp.Visible = False
-//                                End If
-//                            End If
-
+					}
 		}
 
 
