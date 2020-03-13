@@ -148,7 +148,7 @@ function getDataApplyList(){
         type: 'POST'
 		})
 		.done( (rtn) => {
-alert(rtn);
+//alert(rtn);
             // 申込状況情報、該当なし
                 if (rtn == 0) {
 					$("#apply_list1").show();

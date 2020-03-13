@@ -229,20 +229,32 @@
 					<div class="bg_white match_height_2">
 						<ul>
 							<li class="list" id="apply_list1">
-								<span class="list_text" id="apply_naiyo1"><a>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</a></span>
+								<span class="list_text" id="apply_naiyo1">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</span>
 								<button class="button" type="button" id="apply_button1"><span>支払</span></button>
+								<span class="list_text" id="apply_kakunin1">確認テキストテキストテキスト</span>
+								<span class="list_text" id="apply_tetuzuki1"><a>手続きテキストテキストテキスト</a></span>
+								<button class="button" type="button" id="apply_shosai_button1"><span>詳細</span></button>
 							</li>
 							<li class="list" id="apply_list2">
-								<span class="list_text" id="apply_naiyo2"><a>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</a></span>
+								<span class="list_text" id="apply_naiyo2">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</span>
 								<button class="button" type="button" id="apply_button2"><span>支払番号表示</span></button>
+								<span class="list_text" id="apply_kakunin2">確認テキストテキストテキスト</span>
+								<span class="list_text" id="apply_tetuzuki2"><a>手続きテキストテキストテキスト</a></span>
+								<button class="button" type="button" id="apply_shosai_button2"><span>詳細</span></button>
 							</li>
 							<li class="list" id="apply_list3">
-								<span class="list_text" id="apply_naiyo3"><a>テキストテキストテキストテキスト</a></span>
+								<span class="list_text" id="apply_naiyo3">テキストテキストテキストテキスト</span>
 								<button class="button" type="button" id="apply_button3"><span>支払</span></button>
+								<span class="list_text" id="apply_kakunin3">確認テキストテキストテキスト</span>
+								<span class="list_text" id="apply_tetuzuki3"><a>手続きテキストテキストテキスト</a></span>
+								<button class="button" type="button" id="apply_shosai_button3"><span>詳細</span></button>
 							</li>
 							<li class="list" id="apply_list4">
-								<span class="list_text" id="apply_naiyo4"><a>テキストテキストテキストテキスト</a></span>
+								<span class="list_text" id="apply_naiyo4">テキストテキストテキストテキスト</span>
 								<button class="button" type="button" id="apply_button4"><span>支払</span></button>
+								<span class="list_text" id="apply_kakunin4">確認テキストテキストテキスト</span>
+								<span class="list_text" id="apply_tetuzuki4"><a>手続きテキストテキストテキスト</a></span>
+								<button class="button" type="button" id="apply_shosai_button4"><span>詳細</span></button>
 							</li>
 						</ul>
 					</div>
