@@ -30,9 +30,7 @@ $param = [
 $db = Db::getInstance();
 $db->beginTransaction();
 
-$zeiritsu = getShohizei($db);
-
-$result = (new Tb_hambai_konyusha_joho())->findBySalesCartList($db, $param, $zeiritsu);
+$result = (new Tb_hambai_konyusha_joho())->findBySalesCartList($db, $param);
 // error_log(print_r($result, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/shibata_log.txt');
 
 for ($i = 0; $i < count($result); $i++) {
@@ -59,34 +57,6 @@ if ($result == '') {
     // 該当データありの場合
 } else {
     echo json_encode($result);
-}
-
-//消費税を取得する関数
-function getShohizei($db)
-{
-    $shohizei = (new Cm_control())->findByShohizei($db);
-
-    $zeiritsu = "";
-    //切替日1がnullなら税1
-    if ($shohizei['kirikae_nengappi_1'] == "") {
-        $zeiritsu = $shohizei['zei_1'];
-
-        //切替日1より過去なら税1    
-    } else if ($shohizei['kirikae_nengappi_1'] > date("Y/m/d")) {
-        $zeiritsu = $shohizei['zei_1'];
-
-        //切替日1より未来かつ、切替日2より過去なら税2
-    } else if (($shohizei['kirikae_nengappi_1'] <= date("Y/m/d")) && ($shohizei['kirikae_nengappi_2'] > date("Y/m/d")) || $shohizei['kirikae_nengappi_2'] == "") {
-        $zeiritsu = $shohizei['zei_2'];
-
-        //切替日2より未来なら税3
-    } else if ($shohizei['kirikae_nengappi_2'] < date("Y/m/d")) {
-        $zeiritsu = $shohizei['zei_3'];
-    }
-
-    $zeiritsu = $zeiritsu + 1;
-
-    return $zeiritsu;
 }
 
 die();

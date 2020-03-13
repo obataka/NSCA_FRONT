@@ -53,14 +53,6 @@
 				<article>
 					<section>
 						<div>
-							<p class="sbt_title">利用登録(無料)</p>
-							<p class="kaihi">会費：無料</p>
-						</div>
-						<p class="text">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-						<button class="button sbt_btn" id="__changeRiyo" onclick="location.href='#'"><span>利用登録(無料)への変更</span></button>
-					</section>
-					<section>
-						<div>
 							<p class="sbt_title">NSCA正会員</p>
 							<p class="kaihi">会費：<span id="seikaiin-kaihi"></span>円</p>
 						</div>

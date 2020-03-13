@@ -38,9 +38,7 @@
 			<input type="hidden" name="hambai_title_chuigaki" id="hambai_title_chuigaki" value="<?php echo $hambai_title_chuigaki; ?>">
 			<input type="hidden" name="gazo_url" id="gazo_url" value="<?php echo $gazo_url; ?>">
 			<input type="hidden" name="kaiin_kakaku" id="kaiin_kakaku" value="<?php echo $kaiin_kakaku; ?>">
-			<input type="hidden" name="kaiin_zeikomi_kakaku" id="kaiin_zeikomi_kakaku" value="<?php echo $kaiin_zeikomi_kakaku; ?>">
 			<input type="hidden" name="ippan_kakaku" id="ippan_kakaku" value="<?php echo $ippan_kakaku; ?>">
-			<input type="hidden" name="ippan_zeikomi_kakaku" id="ippan_zeikomi_kakaku" value="<?php echo $ippan_zeikomi_kakaku; ?>">
 			<input type="hidden" name="wk_gaiyo" id="wk_gaiyo" value="<?php echo $gaiyo; ?>">
 			<input type="hidden" name="hambai_kbn" id="hambai_kbn" value="<?php echo $hambai_kbn; ?>">
 			<input type="hidden" name="hambai_settei_kbn" id="hambai_settei_kbn" value="<?php echo $hambai_settei_kbn; ?>">
@@ -48,7 +46,6 @@
 			<input type="hidden" name="setsumei" id="setsumei" value="<?php echo $setsumei; ?>">
 			<input type="hidden" name="kakaku" id="kakaku" value="<?php echo $kakaku; ?>">
 			<input type="hidden" name="konyusu" id="konyusu" value="<?php echo $konyusu; ?>">
-			<input type="hidden" name="zeikomi_kakaku" id="zeikomi_kakaku" value="<?php echo $zeikomi_kakaku; ?>">
 			<input type="hidden" name="color_kbn" id="color_kbn" value="<?php echo $color_kbn; ?>">
 			<input type="hidden" name="color_meisho" id="color_meisho" value="<?php echo $color_meisho; ?>">
 			<input type="hidden" name="size_kbn" id="size_kbn" value="<?php echo $size_kbn; ?>">

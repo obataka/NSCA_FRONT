@@ -60,28 +60,6 @@ class Cm_control
         return $cmControl;
     }
 
-    public function findByShohizei($db)
-    {
-        try {
-            $sth = $db->prepare("SELECT 
-                                    zei_1,
-                                    zei_2,
-                                    zei_3,
-                                    kirikae_nengappi_1,
-                                    kirikae_nengappi_2
-                                 FROM 
-                                    cm_control
-                                 WHERE id = :id;");
-            $sth->execute([':id' => '1',]);
-            $cmControl = $sth->fetch();
-        } catch (\PDOException $e) {
-            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
-            $cmControl = [];
-        }
-
-        return $cmControl;
-    }
-
     public function findByNendoId($db)
     {
         try {

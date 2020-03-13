@@ -1,14 +1,6 @@
 (function ($) {
     $(document).ready(function () {
 
-        if ($('#bei_kaiin').prop('checked', true)) {
-            // テキストボックス有効化
-            $('#bei_kaiin_no').prop('disabled', false);
-        } else {
-            // テキストボックス無効化
-            $('#bei_kaiin_no').prop('disabled', true);
-        }
-
         /****************
          * //都道府県取得
          ****************/
@@ -101,33 +93,13 @@
             }
         });
 
-        /************************
-         * 流山市民ボタンチェンジイベント
-         ************************/
-        $("#nagareyama").change(function () {
-            if ($("input[name='nagareyama']").prop('checked')) {
-                //チェックありのhidden設定
-                $("#wk_sel_nagareyama").val(1);
-                var test = '流山市民です。';
-                $('#sel_nagareyama').val(test);
-            } else {
-                //チェックなしのhidden設定
-                $("#wk_sel_nagareyama").val(0);
-                var test = '流山市民ではありません。';
-                $('#sel_nagareyama').val(test);
-            }
-        });
-
         //米国会員番号のチェック初期表示処理
         var wk_sel_bei_kaiin = $('#sel_bei_kaiin').val();
         if (wk_sel_bei_kaiin != "") {
             $('input[name="bei_kaiin"]').prop("checked", true);
-        }
-
-        //流山市民のチェック初期表示処理
-        var wk_sel_nagareyama = $('#wk_sel_nagareyama').val();
-        if (wk_sel_nagareyama != "") {
-            $('input[name="nagareyama"]').prop("checked", true);
+        } else {
+            $('input[name="bei_kaiin"]').prop("checked", false);
+            $('#bei_kaiin_no').prop('disabled', true);
         }
 
         /********************************

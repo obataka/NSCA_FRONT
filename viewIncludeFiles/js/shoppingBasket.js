@@ -41,7 +41,7 @@
                             <table>
                                 <tr>
                                     <th>税込み単価(円)<span>：</span></th>
-                                    <td>` + Math.floor(val['kaiin_zeikomi_kakaku']) + `円</td>
+                                    <td>` + Math.floor(val['kaiin_kakaku']) + `円</td>
                                 </tr>
                                 <tr>
                                     <th>数量<span>：</span></th>
@@ -49,13 +49,13 @@
                                 </tr>
                                 <tr>
                                     <th>小計(円)<span>：</span></th>
-                                    <td id="shokei_` + i + `">` + Math.floor(val['kaiin_zeikomi_kakaku']) * val['suryo'] + `円</td>
+                                    <td id="shokei_` + i + `">` + Math.floor(val['kaiin_kakaku']) * val['suryo'] + `円</td>
                                 </tr>
                             </table>
                         </section>
                     </div>`);
 
-                        gokei = gokei + Math.floor(val['kaiin_zeikomi_kakaku']) * val['suryo'];
+                        gokei = gokei + Math.floor(val['kaiin_kakaku']) * val['suryo'];
                     });
 
                     $('#sum').text(gokei + Math.floor(getCmControl['buppan_soyo']) + '円');
@@ -92,9 +92,9 @@
                     var wk_hambai_kbn = $('#hambai_kbn').val().split(',');
                     var wk_gaiyo = $('#wk_gaiyo').val().split(',');
                     var wk_gazo_url = $('#gazo_url').val().split(',');
-                    var wk_kaiin_zeikomi_kakaku = $('#kaiin_zeikomi_kakaku').val().split(',');
-                    var wk_zeikomi_kakaku = $('#zeikomi_kakaku').val().split(',');
-                    var wk_ippan_zeikomi_kakaku = $('#ippan_zeikomi_kakaku').val().split(',');
+                    var wk_kaiin_kakaku = $('#kaiin_kakaku').val().split(',');
+                    var wk_kakaku = $('#kakaku').val().split(',');
+                    var wk_ippan_kakaku = $('#ippan_kakaku').val().split(',');
                     var wk_suryo = $('#konyusu').val().split(',');
 
                     //重複している要素があればなくす
@@ -122,15 +122,15 @@
                         return self.indexOf(x) === i;
                     });
 
-                    wk_kaiin_zeikomi_kakaku = wk_kaiin_zeikomi_kakaku.filter(function (x, i, self) {
+                    wk_kaiin_kakaku = wk_kaiin_zeikomi_kakaku.filter(function (x, i, self) {
                         return self.indexOf(x) === i;
                     });
 
-                    wk_zeikomi_kakaku = wk_zeikomi_kakaku.filter(function (x, i, self) {
+                    wk_kakaku = wk_zeikomi_kakaku.filter(function (x, i, self) {
                         return self.indexOf(x) === i;
                     });
 
-                    wk_ippan_zeikomi_kakaku = wk_ippan_zeikomi_kakaku.filter(function (x, i, self) {
+                    wk_ippan_kakaku = wk_ippan_zeikomi_kakaku.filter(function (x, i, self) {
                         return self.indexOf(x) === i;
                     });
 
@@ -147,9 +147,9 @@
                             'hambai_kbn': wk_hambai_kbn[i],
                             'gaiyo': wk_gaiyo[i],
                             'gazo_url': wk_gazo_url[i],
-                            'kaiin_zeikomi_kakaku': wk_kaiin_zeikomi_kakaku[i],
-                            'zeikomi_kakaku': wk_zeikomi_kakaku[i],
-                            'ippan_zeikomi_kakaku': wk_ippan_zeikomi_kakaku[i],
+                            'kaiin_kakaku': wk_kaiin_zeikomi_kakaku[i],
+                            'kakaku': wk_zeikomi_kakaku[i],
+                            'ippan_kakaku': wk_ippan_zeikomi_kakaku[i],
                             'suryo': wk_suryo[i],
 
                         };
@@ -167,7 +167,7 @@
                                     <table>
                                         <tr>
                                             <th>税込み単価(円)<span>：</span></th>
-                                            <td>` + Math.floor(val['ippan_zeikomi_kakaku']) + `円</td>
+                                            <td>` + Math.floor(val['ippan_kakaku']) + `円</td>
                                         </tr>
                                         <tr>
                                             <th>数量<span>：</span></th>
@@ -175,12 +175,12 @@
                                         </tr>
                                         <tr>
                                             <th>小計(円)<span>：</span></th>
-                                            <td id="shokei_` + i + `">` + Math.floor(val['ippan_zeikomi_kakaku']) * val['suryo'] + `円</td>
+                                            <td id="shokei_` + i + `">` + Math.floor(val['ippan_kakaku']) * val['suryo'] + `円</td>
                                         </tr>
                                     </table>
                                 </section>
                             </div>`);
-                        gokei = gokei + Math.floor(val['ippan_zeikomi_kakaku']) * val['suryo'];
+                        gokei = gokei + Math.floor(val['ippan_kakaku']) * val['suryo'];
 
                     });
                     $('#sum').text(gokei + Math.floor(getCmControl['buppan_soyo']) + '円');
@@ -195,9 +195,9 @@
                     var wk_hambai_kbn = $('#hambai_kbn').val().split(',');
                     var wk_gaiyo = $('#wk_gaiyo').val().split(',');
                     var wk_gazo_url = $('#gazo_url').val().split(',');
-                    var wk_kaiin_zeikomi_kakaku = $('#kaiin_zeikomi_kakaku').val().split(',');
-                    var wk_zeikomi_kakaku = $('#zeikomi_kakaku').val().split(',');
-                    var wk_ippan_zeikomi_kakaku = $('#ippan_zeikomi_kakaku').val().split(',');
+                    var wk_kaiin_kakaku = $('#kaiin_kakaku').val().split(',');
+                    var wk_kakaku = $('#kakaku').val().split(',');
+                    var wk_ippan_kakaku = $('#ippan_kakaku').val().split(',');
                     var wk_suryo = $('#konyusu').val().split(',');
 
                     sesSalesCartListRow = {
@@ -207,9 +207,9 @@
                         'hambai_kbn': wk_hambai_kbn[0],
                         'gaiyo': wk_gaiyo[0],
                         'gazo_url': wk_gazo_url[0],
-                        'kaiin_zeikomi_kakaku': wk_kaiin_zeikomi_kakaku[0],
-                        'zeikomi_kakaku': wk_zeikomi_kakaku[0],
-                        'ippan_zeikomi_kakaku': wk_ippan_zeikomi_kakaku[0],
+                        'kaiin_kakaku': wk_kaiin_kakaku[0],
+                        'kakaku': wk_kakaku[0],
+                        'ippan_kakaku': wk_ippan_kakaku[0],
                         'suryo': wk_suryo[0],
 
                     };
@@ -228,7 +228,7 @@
                         <table>
                             <tr>
                                 <th>税込み単価(円)<span>：</span></th>
-                                <td>` + Math.floor(val['zeikomi_kakaku']) + `円</td>
+                                <td>` + Math.floor(val['kakaku']) + `円</td>
                             </tr>
                             <tr>
                                 <th>数量<span>：</span></th>
@@ -236,13 +236,13 @@
                             </tr>
                             <tr>
                                 <th>小計(円)<span>：</span></th>
-                                <td id="shokei_` + i + `">` + Math.floor(val['zeikomi_kakaku']) * val['suryo'] + `円</td>
+                                <td id="shokei_` + i + `">` + Math.floor(val['ippan_kakaku']) * val['suryo'] + `円</td>
                             </tr>
                         </table>
                     </section>
                 </div>`);
 
-                    gokei = gokei + Math.floor(val['zeikomi_kakaku']) * val['suryo'];
+                    gokei = gokei + Math.floor(val['ippan_kakaku']) * val['suryo'];
                 });
 
                 $('#sum').text(gokei + Math.floor(getCmControl['buppan_soyo']) + '円');
@@ -373,11 +373,7 @@
 
                 $('#kaiin_kakaku').val("");
 
-                $('#kaiin_zeikomi_kakaku').val("");
-
                 $('#ippan_kakaku').val("");
-
-                $('#ippan_zeikomi_kakaku').val("");
 
                 $('#wk_gaiyo').val("");
 
@@ -392,8 +388,6 @@
                 $('#kakaku').val("");
 
                 $('#konyusu').val("");
-
-                $('#zeikomi_kakaku').val("");
 
                 $('#color_kbn').val("");
 
@@ -537,9 +531,7 @@
                 var hambai_title_chuigaki = "";
                 var gazo_url = "";
                 var kaiin_kakaku = "";
-                var kaiin_zeikomi_kakaku = "";
                 var ippan_kakaku = "";
-                var ippan_zeikomi_kakaku = "";
                 var gaiyo = "";
                 var hambai_kbn = "";
                 var hambai_settei_kbn = "";
@@ -547,7 +539,6 @@
                 var setsumei = "";
                 var kakaku = "";
                 var konyusu = "";
-                var zeikomi_kakaku = "";
                 var color_kbn = "";
                 var color_meisho = "";
                 var size_kbn = "";
@@ -573,14 +564,8 @@
                     kaiin_kakaku = kaiin_kakaku + val['kaiin_kakaku'] + ',';
                     $('#kaiin_kakaku').val(kaiin_kakaku);
 
-                    kaiin_zeikomi_kakaku = kaiin_zeikomi_kakaku + val['kaiin_zeikomi_kakaku'] + ',';
-                    $('#kaiin_zeikomi_kakaku').val(kaiin_zeikomi_kakaku);
-
                     ippan_kakaku = ippan_kakaku + val['ippan_kakaku'] + ',';
                     $('#ippan_kakaku').val(ippan_kakaku);
-
-                    ippan_zeikomi_kakaku = ippan_zeikomi_kakaku + val['ippan_zeikomi_kakaku'] + ',';
-                    $('#ippan_zeikomi_kakaku').val(ippan_zeikomi_kakaku);
 
                     gaiyo = gaiyo + val['gaiyo'] + ',';
                     $('#wk_gaiyo').val(gaiyo);
@@ -608,9 +593,6 @@
                         konyusu = konyusu + 0 + ', ';
                         $('#konyusu').val(konyusu);
                     }
-
-                    zeikomi_kakaku = zeikomi_kakaku + val['zeikomi_kakaku'] + ',';
-                    $('#zeikomi_kakaku').val(zeikomi_kakaku);
 
                     color_kbn = color_kbn + val['color_kbn'] + ',';
                     $('#color_kbn').val(color_kbn);
@@ -640,9 +622,7 @@
                         hambai_title_chuigaki: $('#hambai_title_chuigaki').val(),
                         gazo_url: $('#gazo_url').val(),
                         kaiin_kakaku: $('#kaiin_kakaku').val(),
-                        kaiin_zeikomi_kakaku: $('#kaiin_zeikomi_kakaku').val(),
                         ippan_kakaku: $('#ippan_kakaku').val(),
-                        ippan_zeikomi_kakaku: $('#ippan_zeikomi_kakaku').val(),
                         gaiyo: $('#wk_gaiyo').val(),
                         hambai_kbn: $('#hambai_kbn').val(),
                         hambai_settei_kbn: $('#hambai_settei_kbn').val(),
@@ -650,7 +630,6 @@
                         setsumei: $('#setsumei').val(),
                         kakaku: $('#kakaku').val(),
                         konyusu: $('#konyusu').val(),
-                        zeikomi_kakaku: $('#zeikomi_kakaku').val(),
                         size_kbn: $('#size_kbn').val(),
                         size_meisho: $('#size_meisho').val(),
                         color_kbn: $('#color_kbn').val(),
@@ -676,9 +655,7 @@
                                 hambai_title_chuigaki: $('#hambai_title_chuigaki').val(),
                                 gazo_url: $('#gazo_url').val(),
                                 kaiin_kakaku: $('#kaiin_kakaku').val(),
-                                kaiin_zeikomi_kakaku: $('#kaiin_zeikomi_kakaku').val(),
                                 ippan_kakaku: $('#ippan_kakaku').val(),
-                                ippan_zeikomi_kakaku: $('#ippan_zeikomi_kakaku').val(),
                                 gaiyo: $('#wk_gaiyo').val(),
                                 hambai_kbn: $('#hambai_kbn').val(),
                                 hambai_settei_kbn: $('#hambai_settei_kbn').val(),
@@ -686,7 +663,6 @@
                                 setsumei: $('#setsumei').val(),
                                 kakaku: $('#kakaku').val(),
                                 konyusu: $('#konyusu').val(),
-                                zeikomi_kakaku: $('#zeikomi_kakaku').val(),
                                 size_kbn: $('#size_kbn').val(),
                                 size_meisho: $('#size_meisho').val(),
                                 color_kbn: $('#color_kbn').val(),
@@ -723,9 +699,7 @@
                 var hambai_title_chuigaki = "";
                 var gazo_url = "";
                 var kaiin_kakaku = "";
-                var kaiin_zeikomi_kakaku = "";
                 var ippan_kakaku = "";
-                var ippan_zeikomi_kakaku = "";
                 var gaiyo = "";
                 var hambai_kbn = "";
                 var hambai_settei_kbn = "";
@@ -733,7 +707,6 @@
                 var setsumei = "";
                 var kakaku = "";
                 var konyusu = "";
-                var zeikomi_kakaku = "";
                 var color_kbn = "";
                 var color_meisho = "";
                 var size_kbn = "";
@@ -759,14 +732,8 @@
                     kaiin_kakaku = kaiin_kakaku + val['kaiin_kakaku'] + ',';
                     $('#kaiin_kakaku').val(kaiin_kakaku);
 
-                    kaiin_zeikomi_kakaku = kaiin_zeikomi_kakaku + val['kaiin_zeikomi_kakaku'] + ',';
-                    $('#kaiin_zeikomi_kakaku').val(kaiin_zeikomi_kakaku);
-
                     ippan_kakaku = ippan_kakaku + val['ippan_kakaku'] + ',';
                     $('#ippan_kakaku').val(ippan_kakaku);
-
-                    ippan_zeikomi_kakaku = ippan_zeikomi_kakaku + val['ippan_zeikomi_kakaku'] + ',';
-                    $('#ippan_zeikomi_kakaku').val(ippan_zeikomi_kakaku);
 
                     gaiyo = gaiyo + val['gaiyo'] + ',';
                     $('#wk_gaiyo').val(gaiyo);
@@ -794,9 +761,6 @@
                         konyusu = konyusu + 0 + ', ';
                         $('#konyusu').val(konyusu);
                     }
-
-                    zeikomi_kakaku = zeikomi_kakaku + val['zeikomi_kakaku'] + ',';
-                    $('#zeikomi_kakaku').val(zeikomi_kakaku);
 
                     color_kbn = color_kbn + val['color_kbn'] + ',';
                     $('#color_kbn').val(color_kbn);
@@ -827,9 +791,7 @@
                         hambai_title_chuigaki: $('#hambai_title_chuigaki').val(),
                         gazo_url: $('#gazo_url').val(),
                         kaiin_kakaku: $('#kaiin_kakaku').val(),
-                        kaiin_zeikomi_kakaku: $('#kaiin_zeikomi_kakaku').val(),
                         ippan_kakaku: $('#ippan_kakaku').val(),
-                        ippan_zeikomi_kakaku: $('#ippan_zeikomi_kakaku').val(),
                         gaiyo: $('#wk_gaiyo').val(),
                         hambai_kbn: $('#hambai_kbn').val(),
                         hambai_settei_kbn: $('#hambai_settei_kbn').val(),
@@ -837,7 +799,6 @@
                         setsumei: $('#setsumei').val(),
                         kakaku: $('#kakaku').val(),
                         konyusu: $('#konyusu').val(),
-                        zeikomi_kakaku: $('#zeikomi_kakaku').val(),
                         size_kbn: $('#size_kbn').val(),
                         size_meisho: $('#size_meisho').val(),
                         color_kbn: $('#color_kbn').val(),
@@ -869,9 +830,7 @@
                 var hambai_title_chuigaki = "";
                 var gazo_url = "";
                 var kaiin_kakaku = "";
-                var kaiin_zeikomi_kakaku = "";
                 var ippan_kakaku = "";
-                var ippan_zeikomi_kakaku = "";
                 var gaiyo = "";
                 var hambai_kbn = "";
                 var hambai_settei_kbn = "";
@@ -879,7 +838,6 @@
                 var setsumei = "";
                 var kakaku = "";
                 var konyusu = "";
-                var zeikomi_kakaku = "";
                 var color_kbn = "";
                 var color_meisho = "";
                 var size_kbn = "";
@@ -904,14 +862,8 @@
                     kaiin_kakaku = kaiin_kakaku + val['kaiin_kakaku'] + ',';
                     $('#kaiin_kakaku').val(kaiin_kakaku);
 
-                    kaiin_zeikomi_kakaku = kaiin_zeikomi_kakaku + val['kaiin_zeikomi_kakaku'] + ',';
-                    $('#kaiin_zeikomi_kakaku').val(kaiin_zeikomi_kakaku);
-
                     ippan_kakaku = ippan_kakaku + val['ippan_kakaku'] + ',';
                     $('#ippan_kakaku').val(ippan_kakaku);
-
-                    ippan_zeikomi_kakaku = ippan_zeikomi_kakaku + val['ippan_zeikomi_kakaku'] + ',';
-                    $('#ippan_zeikomi_kakaku').val(ippan_zeikomi_kakaku);
 
                     gaiyo = gaiyo + val['gaiyo'] + ',';
                     $('#wk_gaiyo').val(gaiyo);
@@ -939,9 +891,6 @@
                         konyusu = konyusu + 0 + ', ';
                         $('#konyusu').val(konyusu);
                     }
-
-                    zeikomi_kakaku = zeikomi_kakaku + val['zeikomi_kakaku'] + ',';
-                    $('#zeikomi_kakaku').val(zeikomi_kakaku);
 
                     color_kbn = color_kbn + val['color_kbn'] + ',';
                     $('#color_kbn').val(color_kbn);
@@ -972,9 +921,7 @@
                         hambai_title_chuigaki: $('#hambai_title_chuigaki').val(),
                         gazo_url: $('#gazo_url').val(),
                         kaiin_kakaku: $('#kaiin_kakaku').val(),
-                        kaiin_zeikomi_kakaku: $('#kaiin_zeikomi_kakaku').val(),
                         ippan_kakaku: $('#ippan_kakaku').val(),
-                        ippan_zeikomi_kakaku: $('#ippan_zeikomi_kakaku').val(),
                         gaiyo: $('#wk_gaiyo').val(),
                         hambai_kbn: $('#hambai_kbn').val(),
                         hambai_settei_kbn: $('#hambai_settei_kbn').val(),
@@ -982,7 +929,6 @@
                         setsumei: $('#setsumei').val(),
                         kakaku: $('#kakaku').val(),
                         konyusu: $('#konyusu').val(),
-                        zeikomi_kakaku: $('#zeikomi_kakaku').val(),
                         size_kbn: $('#size_kbn').val(),
                         size_meisho: $('#size_meisho').val(),
                         color_kbn: $('#color_kbn').val(),
@@ -1007,9 +953,7 @@
                                 hambai_title_chuigaki: $('#hambai_title_chuigaki').val(),
                                 gazo_url: $('#gazo_url').val(),
                                 kaiin_kakaku: $('#kaiin_kakaku').val(),
-                                kaiin_zeikomi_kakaku: $('#kaiin_zeikomi_kakaku').val(),
                                 ippan_kakaku: $('#ippan_kakaku').val(),
-                                ippan_zeikomi_kakaku: $('#ippan_zeikomi_kakaku').val(),
                                 gaiyo: $('#wk_gaiyo').val(),
                                 hambai_kbn: $('#hambai_kbn').val(),
                                 hambai_settei_kbn: $('#hambai_settei_kbn').val(),
@@ -1017,7 +961,6 @@
                                 setsumei: $('#setsumei').val(),
                                 kakaku: $('#kakaku').val(),
                                 konyusu: $('#konyusu').val(),
-                                zeikomi_kakaku: $('#zeikomi_kakaku').val(),
                                 size_kbn: $('#size_kbn').val(),
                                 size_meisho: $('#size_meisho').val(),
                                 color_kbn: $('#color_kbn').val(),
@@ -1052,9 +995,7 @@
                 var hambai_title_chuigaki = "";
                 var gazo_url = "";
                 var kaiin_kakaku = "";
-                var kaiin_zeikomi_kakaku = "";
                 var ippan_kakaku = "";
-                var ippan_zeikomi_kakaku = "";
                 var gaiyo = "";
                 var hambai_kbn = "";
                 var hambai_settei_kbn = "";
@@ -1062,7 +1003,6 @@
                 var setsumei = "";
                 var kakaku = "";
                 var konyusu = "";
-                var zeikomi_kakaku = "";
                 var color_kbn = "";
                 var color_meisho = "";
                 var size_kbn = "";
@@ -1088,14 +1028,8 @@
                     kaiin_kakaku = kaiin_kakaku + val['kaiin_kakaku'] + ',';
                     $('#kaiin_kakaku').val(kaiin_kakaku);
 
-                    kaiin_zeikomi_kakaku = kaiin_zeikomi_kakaku + val['kaiin_zeikomi_kakaku'] + ',';
-                    $('#kaiin_zeikomi_kakaku').val(kaiin_zeikomi_kakaku);
-
                     ippan_kakaku = ippan_kakaku + val['ippan_kakaku'] + ',';
                     $('#ippan_kakaku').val(ippan_kakaku);
-
-                    ippan_zeikomi_kakaku = ippan_zeikomi_kakaku + val['ippan_zeikomi_kakaku'] + ',';
-                    $('#ippan_zeikomi_kakaku').val(ippan_zeikomi_kakaku);
 
                     gaiyo = gaiyo + val['gaiyo'] + ',';
                     $('#wk_gaiyo').val(gaiyo);
@@ -1123,9 +1057,6 @@
                         konyusu = konyusu + 0 + ', ';
                         $('#konyusu').val(konyusu);
                     }
-
-                    zeikomi_kakaku = zeikomi_kakaku + val['zeikomi_kakaku'] + ',';
-                    $('#zeikomi_kakaku').val(zeikomi_kakaku);
 
                     color_kbn = color_kbn + val['color_kbn'] + ',';
                     $('#color_kbn').val(color_kbn);
@@ -1156,9 +1087,7 @@
                         hambai_title_chuigaki: $('#hambai_title_chuigaki').val(),
                         gazo_url: $('#gazo_url').val(),
                         kaiin_kakaku: $('#kaiin_kakaku').val(),
-                        kaiin_zeikomi_kakaku: $('#kaiin_zeikomi_kakaku').val(),
                         ippan_kakaku: $('#ippan_kakaku').val(),
-                        ippan_zeikomi_kakaku: $('#ippan_zeikomi_kakaku').val(),
                         gaiyo: $('#wk_gaiyo').val(),
                         hambai_kbn: $('#hambai_kbn').val(),
                         hambai_settei_kbn: $('#hambai_settei_kbn').val(),
@@ -1166,7 +1095,6 @@
                         setsumei: $('#setsumei').val(),
                         kakaku: $('#kakaku').val(),
                         konyusu: $('#konyusu').val(),
-                        zeikomi_kakaku: $('#zeikomi_kakaku').val(),
                         size_kbn: $('#size_kbn').val(),
                         size_meisho: $('#size_meisho').val(),
                         color_kbn: $('#color_kbn').val(),

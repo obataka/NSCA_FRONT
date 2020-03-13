@@ -4,7 +4,6 @@
         //全レコードを格納する配列
         var getCeuConference = [];
         var getCeuJoho = [];
-        var getCeuSokai = [];
         var getCeuToreken = [];
 
         //イベント種別名称を格納する配列
@@ -93,36 +92,6 @@
                 return false;
             });
 
-            //CEU総会情報
-            jQuery.ajax({
-                url: '../../classes/getCeuSokai.php',
-            }).done((rtn) => {
-                // rtn = 0 の場合は、該当なし
-                if (rtn == 0) {
-                    return false;
-                } else {
-                    getCeuSokai = JSON.parse(rtn);
-                    $.each(getCeuSokai, function (i, val) {
-                        //イベント内容表示
-                        $('#tr_' + val['event_kbn']).after(
-                            '<tr>' +
-                                '<td>' +
-                                    val['shutoku_naiyo'] +
-                                '</td>' +
-                                '<td>' +
-                                    '<div class="btn">' +
-                                        '<button class="button" onclick="location.href=\'' + val['moshikomi_mae_annai_url'] + '\'"><span>詳細</span></button>' +
-                                        '<button class="button shinsei" value="tb_ceu_sokai_joho-'+ val['ceu_id'] +'"><span>申請</span></button>' +
-                                    '</div>' +
-                                '</td>' +
-                            '<tr>'
-                        );
-                    });
-                }
-            }).fail((rtn) => {
-                return false;
-            });
-
             //トレ検情報
             jQuery.ajax({
                 url: '../../classes/getToreken.php',
@@ -160,7 +129,7 @@
         //申請ボタン押下時処理
         $(document).on("click", ".shinsei", function () {
             //ログイン有りの場合
-            if ($('#kaiin_no').val() != "") {
+            if ($('#kaiin_no').val()) {
                 //ボタンのvalueをテーブル名とidに分ける
                 var btn_val = $(this).val().split('-');
                 var tb_name = btn_val[0];

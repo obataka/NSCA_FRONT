@@ -24,7 +24,7 @@
             var wk_hambai_title_chuigaki = "";
             var wk_hambai_kbn = "";
             var wk_gaiyo = "";
-            var wk_zeikomi_kakaku = "";
+            var wk_kakaku = "";
             var wk_suryo = "";
 
             //表示する商品が複数ある場合
@@ -37,9 +37,9 @@
                 wk_gazo_url = $('#gazo_url').val().split(',');
 
                 if ($('#kaiin_no').val()) {
-                    wk_zeikomi_kakaku = $('#kaiin_zeikomi_kakaku').val().split(',');
+                    wk_kakaku = $('#kaiin_kakaku').val().split(',');
                 } else {
-                    wk_zeikomi_kakaku = $('#ippan_zeikomi_kakaku').val().split(',');
+                    wk_kakaku = $('#ippan_kakaku').val().split(',');
                 }
                 wk_suryo = $('#konyusu').val().split(',');
 
@@ -51,7 +51,7 @@
                         'hambai_kbn': wk_hambai_kbn[i],
                         'gaiyo': wk_gaiyo[i],
                         'gazo_url': wk_gazo_url[i],
-                        'zeikomi_kakaku': wk_zeikomi_kakaku[i],
+                        'kakaku': wk_kakaku[i],
                         'suryo': wk_suryo[i],
 
                     };
@@ -68,9 +68,9 @@
                 wk_gazo_url = $('#gazo_url').val().split(',');
 
                 if ($('#kaiin_no').val()) {
-                    wk_zeikomi_kakaku = $('#kaiin_zeikomi_kakaku').val().split(',');
+                    wk_kakaku = $('#kaiin_zeikomi_kakaku').val().split(',');
                 } else {
-                    wk_zeikomi_kakaku = $('#ippan_zeikomi_kakaku').val().split(',');
+                    wk_kakaku = $('#ippan_zeikomi_kakaku').val().split(',');
                 }
 
                 wk_suryo = $('#konyusu').val().split(',');
@@ -82,7 +82,7 @@
                     'hambai_kbn': wk_hambai_kbn[0],
                     'gaiyo': wk_gaiyo[0],
                     'gazo_url': wk_gazo_url[0],
-                    'zeikomi_kakaku': wk_zeikomi_kakaku[0],
+                    'kakaku': wk_kakaku[0],
                     'suryo': wk_suryo[0],
 
                 };
@@ -100,7 +100,7 @@
                                             <p><img src="` + val['gazo_url'] + `">` + val['hambai_title'] + `</p>
                                         </td>
                                         <td data-label="数量">` + val['suryo'] + `</td>
-                                        <td data-label="税込み単価">` + val['zeikomi_kakaku'] * val['suryo'] + `</td>
+                                        <td data-label="税込み単価">` + val['kakaku'] * val['suryo'] + `</td>
                                     </tr>`);
                     gokei = gokei + Math.floor(val['zeikomi_kakaku']) * val['suryo'];
                 }

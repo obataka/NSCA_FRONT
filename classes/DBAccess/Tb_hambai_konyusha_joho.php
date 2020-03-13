@@ -42,7 +42,7 @@ SQL;
         return TRUE;
     }
 
-    public function findBySalesCartList($db, $param, $zeiritsu)
+    public function findBySalesCartList($db, $param)
     {
         try {
             $sth = $db->prepare("SELECT
@@ -55,15 +55,12 @@ SQL;
                                     ,tb_hambai_konyusha_joho_meisai.hambai_size_kbn AS size_kbn
                                     ,tb_hambai_konyusha_joho_meisai.hambai_color_kbn AS color_kbn
                                     ,CAST(tb_hambai_konyusha_joho_meisai.kakaku AS SIGNED) AS kakaku
-                                    ,CAST(tb_hambai_konyusha_joho_meisai.kakaku AS SIGNED) * $zeiritsu AS zeikomi_kakaku
                                     ,tb_hambai_konyusha_joho_meisai.suryo
                                     ,tb_hambai_joho.hambai_title
                                     ,tb_hambai_joho.hambai_title_chuigaki
                                     ,tb_hambai_joho.gazo_url
                                     ,CAST(tb_hambai_joho.kaiin_kakaku AS SIGNED) AS kaiin_kakaku
-                                    ,CAST(tb_hambai_joho.kaiin_kakaku AS SIGNED) * $zeiritsu AS kaiin_zeikomi_kakaku
                                     ,CAST(tb_hambai_joho.ippan_kakaku AS SIGNED) AS ippan_kakaku
-                                    ,CAST(tb_hambai_joho.ippan_kakaku AS SIGNED) * $zeiritsu AS ippan_zeikomi_kakaku
                                     ,tb_hambai_joho.gaiyo
                                     ,tb_hambai_joho.setsumei
                                     ,tb_hambai_joho.hambai_kbn
