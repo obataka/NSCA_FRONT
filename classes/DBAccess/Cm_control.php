@@ -45,19 +45,11 @@ class Cm_control
 
         return $cmControl;
     }
-
-    public function findByShohizei($db)
+    
+    public function findByCmControlNoTran($db)
     {
         try {
-            $sth = $db->prepare("SELECT 
-                                    zei_1,
-                                    zei_2,
-                                    zei_3,
-                                    kirikae_nengappi_1,
-                                    kirikae_nengappi_2
-                                 FROM 
-                                    cm_control
-                                 WHERE id = :id;");
+            $sth = $db->prepare("SELECT * FROM cm_control WHERE id = :id;");
             $sth->execute([':id' => '1',]);
             $cmControl = $sth->fetch();
         } catch (\PDOException $e) {

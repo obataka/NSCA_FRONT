@@ -41,5 +41,185 @@ class Tb_hambai_konyusha_joho_meisai
         return $meishiJoho;
     }
 
+    public function deleteSalesCartData($db, $param)
+    {
+        try {
 
+                $sql = <<<SQL
+                UPDATE tb_hambai_konyusha_joho_meisai
+                SET   sakujo_flg = 1
+					, koshin_user_id = :koshin_user_id
+				WHERE sakujo_flg	= 0
+				  AND hambai_id = :hambai_id
+				  AND konyu_id = :konyu_id
+                  AND hambai_size_kbn = :hambai_size_kbn
+                  AND hambai_color_kbn = :hambai_color_kbn;
+SQL;
+                $sth = $db->prepare($sql);
+                $sth->execute([
+					':hambai_id'             => $param['hambai_id']
+					,':konyu_id'            => $param['konyu_id']
+                    ,':koshin_user_id'      => $param['koshin_user_id']
+                    ,':hambai_size_kbn'     => $param['size_kbn']
+					,':hambai_color_kbn'    => $param['color_kbn']
+                ]);
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
+            $db->rollBack();
+            return FALSE;
+        }
+        return TRUE;
+    }
+
+    public function chkMeisaiExists($db, $param)
+    {
+        try {
+
+                $sql = <<<SQL
+                SELECT *
+                FROM tb_hambai_konyusha_joho_meisai
+                WHERE konyu_id = :konyu_id
+                AND   sakujo_flg = 0;
+SQL;
+                $sth = $db->prepare($sql);
+                $sth->execute([
+					':hambai_id'             => $param['hambai_id']
+					,':konyu_id'            => $param['konyu_id']
+                    ,':koshin_user_id'      => $param['koshin_user_id']
+                    ,':hambai_size_kbn'     => $param['size_kbn']
+					,':hambai_color_kbn'    => $param['color_kbn']
+                ]);
+                $meisaiJoho  = $sth->fetchAll();
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
+            $meisaiJoho = [];
+        }
+        return $meisaiJoho;
+    }
+
+    public function deleteAllSalesCartData($db, $param)
+    {
+        try {
+
+                $sql = <<<SQL
+                UPDATE tb_hambai_konyusha_joho_meisai
+                SET   sakujo_flg = 1
+					, koshin_user_id = :koshin_user_id
+				WHERE sakujo_flg	= 0
+				  AND konyu_id = :konyu_id;
+SQL;
+                $sth = $db->prepare($sql);
+                $sth->execute([
+					':konyu_id'            => $param['konyu_id']
+                    ,':koshin_user_id'      => $param['koshin_user_id']
+                ]);
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
+            $db->rollBack();
+            return FALSE;
+        }
+        return TRUE;
+    }
+
+    public function soryoKeisan($db, $param)
+    {
+        try {
+
+                $sql = <<<SQL
+                SELECT  tb_hambai_joho.hambai_kbn
+                FROM tb_hambai_konyusha_joho_meisai
+                LEFT JOIN tb_hambai_joho
+                ON tb_hambai_konyusha_joho_meisai.hambai_id = tb_hambai_joho.hambai_id
+                WHERE konyu_id = :konyu_id
+                AND   sakujo_flg = 0
+SQL;
+                $sth = $db->prepare($sql);
+                $sth->execute([
+					':konyu_id'            => $param['konyu_id']
+                ]);
+                $meisaiJoho  = $sth->fetchAll();
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
+            $meisaiJoho = [];
+        }
+        return $meisaiJoho;
+    }
+
+    public function updateAllSalesCartData($db, $param)
+    {
+        try {
+                $sql = <<<SQL
+                UPDATE tb_hambai_konyusha_joho_meisai
+                SET   suryo = :suryo
+					, koshin_user_id = :koshin_user_id
+				WHERE sakujo_flg	= 0
+				  AND konyu_id = :konyu_id
+                  AND hambai_id = :hambai_id
+                  AND size_kbn = :size_kbn
+                  AND color_kbn = :color_kbn;
+SQL;
+                $sth = $db->prepare($sql);
+                $sth->execute([
+					':konyu_id'             => $param['konyu_id']
+                    ,':koshin_user_id'      => $param['koshin_user_id']
+                    ,':suryo'               => $param['konyusu']
+                    ,':hambai_id'           => $param['hambai_id']
+                    ,':size_kbn'            => $param['size_kbn']
+                    ,':color_kbn'           => $param['color_kbn']
+                ]);
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
+            $db->rollBack();
+            return FALSE;
+        }
+        return TRUE;
+    }
+
+    public function insertKonyushaJohoMeisai($db, $param)
+    {
+        try {
+                $sql = <<<SQL
+                INSERT INTO	tb_hambai_konyusha_joho_meisai
+				(
+					konyu_id
+					,hambai_id
+					,hambai_size_kbn
+					,hambai_color_kbn
+					,kakaku
+                    ,suryo
+                    ,torokubi
+					,sakujo_flg
+					,sakusei_user_id
+					,koshin_user_id
+				)
+                
+				SELECT COALESCE(MAX(konyu_id)+1, 1)
+					,:hambai_id
+					,:size_kbn
+					,:color_kbn
+                    ,:kakaku
+                    ,:suryo
+                    ,:torokubi
+					,0
+					,:koshin_user_id
+					,:koshin_user_id
+                FROM tb_hambai_konyusha_joho_meisai;
+SQL;
+                $sth = $db->prepare($sql);
+                $sth->execute([
+                    ':hambai_id'           => $param['hambai_id']
+                    ,':size_kbn'            => $param['size_kbn']
+                    ,':color_kbn'           => $param['color_kbn']
+                    ,':suryo'               => $param['suryo']
+                    ,':kakaku'              => $param['kakaku']
+                    ,':torokubi'            => $param['torokubi']
+                    ,':koshin_user_id'      => $param['koshin_user_id']
+                ]);
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
+            $db->rollBack();
+            return FALSE;
+        }
+        return TRUE;
+    }
 }

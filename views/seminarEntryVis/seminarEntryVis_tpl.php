@@ -104,7 +104,7 @@
 						<tr>
 							<th><span class="any"></span>米国会員</th>
 							<td>
-								<input id="bei_kaiin" type="checkbox" name="bei_kaiin" value="bei_kaiin">
+								<input id="bei_kaiin" type="checkbox" name="bei_kaiin" value="">
 								<label class="checkbox" for="bei_kaiin">米国会員番号</label><br class="sp_bl">
 								<input id="bei_kaiin_no" type="text" name="bei_kaiin_no" value="<?php echo $bei_kaiin_no; ?>">
 								<select id="shikaku_kbn" name="shikaku">

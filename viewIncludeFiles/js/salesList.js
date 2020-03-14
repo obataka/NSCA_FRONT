@@ -190,7 +190,7 @@
 *************************************************************/
 
 $('.buttons-area').on('click', 'button', function() {
- 
+	
 	var hambai_id = $(this).data('id');
 	$("#hambai_id").val(hambai_id);
     $("#hambai_form").submit();

@@ -87,7 +87,7 @@
 							<th>会員種別</th>
 							<td>
 								<span id="kaiin_sbt"></span><br>
-								<p class="sbt_change"><a>会員種別の変更</a></p>
+								<p class="sbt_change"><a id="goChangeSbt">会員種別の変更</a></p>
 							</td>
 						</tr>
 						<tr>
@@ -107,10 +107,10 @@
 						</tr>-->
 					</table>
 					<div class="btn_wrap">
-						<button class="button" type="button" onclick="location.href='#'"><span>パスワード再発行</span></button>
-						<button class="button" type="button" onclick="location.href='#'"><span>登録情報修正</span></button>
-						<button class="button" type="button" onclick="location.href='#'"><span>メールアドレスの変更</span></button>
-						<button class="button" type="button" onclick="location.href='#'"><span>保険に入る</span></button>
+						<button class="button" type="button" id="goReissuePassword"><span>パスワード再発行</span></button>
+						<button class="button" type="button" id="goChangeMember"><span>登録情報修正</span></button>
+						<button class="button" type="button" id="goChangeMail"><span>メールアドレスの変更</span></button>
+						<button class="button" type="button" id="goInsurance"><span>保険に入る</span></button>
 					</div>
 				</div>
 			</div>
@@ -131,8 +131,8 @@
 							<p>資格有効期限：<span id="yuko_kigen_n">0000/00/00</span></p>
 						</div>
 						<div class="btn_wrap">
-							<button class="button" type="button" onclick="location.href='#'"><span>試験申込</span></button>
-							<button class="button" type="button" onclick="location.href='#'"><span>試験申込内容状況</span></button>
+							<button class="button" type="button" id="goSelectCSCSCPT"><span>試験申込</span></button>
+							<button class="button" type="button" id="goCheckEntryStatus"><span>試験申込内容状況</span></button>
 						</div>
 					</div>
 				</div>
@@ -140,7 +140,7 @@
 					<h2>CEU</h2>
 					<div class="bg_white match_height_1">
 						<div class="clearfix">
-							<p class="right">CEU報告は<a>こちら</a>から</p>
+							<p class="right">CEU報告は<a id="goCeuReport">こちら</a>から</p>
 						</div>
 						<div class="cscs">
 							<p class="cscs">CSCS　　　　　　　　　　　　　　　<span id="cscs_kazu">3.05/6.0</span></p>
@@ -155,29 +155,31 @@
 							<p id="nsca_msg">「CEU報告」の手続きを行って資格を更新してください</p>
 						</div>						
 						<div class="btn_wrap">
-							<button class="button" type="button" onclick="location.href='#'"><span>CEUクイズ</span></button>
-							<button class="button" type="button" onclick="location.href='#'"><span>内訳詳細を見る</span></button>
+							<button class="button" type="button" id="goCeuQuizlist" ><span>CEUクイズ</span></button>
+							<button class="button" type="button" id="goCeuGetList" ><span>内訳詳細を見る</span></button>
 						</div>         
 					</div>
 				</div>
 			</section>
 			<div id="news">
 				<h2>お知らせ</h2>
+				<div class="info-buttons-area">
 				<div class="bg_white">
 					<ul>
 						<li class="list" id="info_list1"><div class="sub">
 							<span class="list_text" id="info_naiyo1">体力トレーニング検定&reg;(トレ検&reg;)随時、検定を実施しております。</span >
-							<button class="button" type="button" id="info_button1" onclick="location.href='#'"><span>お申込</span></button>
+							<button class="button" type="button" id="info_button1"><span>お申込</span></button>
 						</li>
 						<li class="list" id="info_list2"><div class="sub">
 							<span class="list_text" id="info_naiyo2">郵便物が戻ってきています。ご住所の確認をお願いいたします。</span >
-							<button class="button" type="button" id="info_button2" onclick="location.href='#'"><span>登録情報</span></button>
+							<button class="button" type="button" id="info_button2"><span>登録情報</span></button>
 						</li>
 						<li class="list" id="info_list3"><div class="sub">
 							<span class="list_text" id="info_naiyo3">テキストテキストテキストテキストテキストテキストテキストテキスト</span >
-							<button class="button" type="button" id="info_button3" onclick="location.href='#'"><span>継続手続き</span></button>
+							<button class="button" type="button" id="info_button3"><span>継続手続き</span></button>
 						</li>
 					</ul>
+				</div>
 				</div>
 				<div class="page">
 					<button class="button" type="button"><span id="infoList_page_before"><i class="fas fa-angle-left"></i></span></button>
@@ -196,6 +198,7 @@
 			</div>
 			<div id="event">
 				<h2>イベント</h2>
+				<div class="event-buttons-area">
 				<div class="bg_white">
 					<ul>
 						<li class="list" id="event_list1"><div class="sub">
@@ -203,7 +206,7 @@
 								<p class="sub_2" id="event_nokori1">残りわずか</p>
 							</div>
 							<span class="list_text" id="event_naiyo1">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</span>
-							<button class="button" type="button" id="event_button1" onclick="location.href='#'"><span>お申込</span></button>
+							<button class="button" type="button" id="event_button1"><span>お申込</span></button>
 						</li>
 						<li class="list" id="event_list2">
 							<div class="sub">
@@ -211,12 +214,13 @@
 								<p class="sub_2" id="event_nokori2">残りわずか</p>
 							</div>
 							<span class="list_text" id="event_naiyo2">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</span>
-							<button class="button" type="button" id="event_button2" onclick="location.href='#'"><span>お申込</span></button>
+							<button class="button" type="button" id="event_button2"><span>お申込</span></button>
 						</li>
 					</ul>
 				</div>
+				</div>
 				<div class="page">
-					<p><a>もっと見る</a></p>
+					<p><a id="goSeminarList">もっと見る</a></p>
 				</div>
 			</div>
 			<section>
@@ -225,45 +229,59 @@
 					<div class="bg_white match_height_2">
 						<ul>
 							<li class="list" id="apply_list1">
-								<span class="list_text" id="apply_naiyo1"><a>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</a></span>
-								<button class="button" type="button" id="apply_button1" onclick="location.href='#'"><span>支払</span></button>
+								<span class="list_text" id="apply_naiyo1">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</span>
+								<button class="button" type="button" id="apply_button1"><span>支払</span></button>
+								<span class="list_text" id="apply_kakunin1">確認テキストテキストテキスト</span>
+								<span class="list_text" id="apply_tetuzuki1"><a>手続きテキストテキストテキスト</a></span>
+								<button class="button" type="button" id="apply_shosai_button1"><span>詳細</span></button>
 							</li>
 							<li class="list" id="apply_list2">
-								<span class="list_text" id="apply_naiyo2"><a>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</a></span>
-								<button class="button" type="button" id="apply_button2" onclick="location.href='#'"><span>支払番号表示</span></button>
+								<span class="list_text" id="apply_naiyo2">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</span>
+								<button class="button" type="button" id="apply_button2"><span>支払番号表示</span></button>
+								<span class="list_text" id="apply_kakunin2">確認テキストテキストテキスト</span>
+								<span class="list_text" id="apply_tetuzuki2"><a>手続きテキストテキストテキスト</a></span>
+								<button class="button" type="button" id="apply_shosai_button2"><span>詳細</span></button>
 							</li>
 							<li class="list" id="apply_list3">
-								<span class="list_text" id="apply_naiyo3"><a>テキストテキストテキストテキスト</a></span>
-								<button class="button" type="button" id="apply_button3" onclick="location.href='#'"><span>支払</span></button>
+								<span class="list_text" id="apply_naiyo3">テキストテキストテキストテキスト</span>
+								<button class="button" type="button" id="apply_button3"><span>支払</span></button>
+								<span class="list_text" id="apply_kakunin3">確認テキストテキストテキスト</span>
+								<span class="list_text" id="apply_tetuzuki3"><a>手続きテキストテキストテキスト</a></span>
+								<button class="button" type="button" id="apply_shosai_button3"><span>詳細</span></button>
 							</li>
 							<li class="list" id="apply_list4">
-								<span class="list_text" id="apply_naiyo4"><a>テキストテキストテキストテキスト</a></span>
-								<button class="button" type="button" id="apply_button4" onclick="location.href='#'"><span>支払</span></button>
+								<span class="list_text" id="apply_naiyo4">テキストテキストテキストテキスト</span>
+								<button class="button" type="button" id="apply_button4"><span>支払</span></button>
+								<span class="list_text" id="apply_kakunin4">確認テキストテキストテキスト</span>
+								<span class="list_text" id="apply_tetuzuki4"><a>手続きテキストテキストテキスト</a></span>
+								<button class="button" type="button" id="apply_shosai_button4"><span>詳細</span></button>
 							</li>
 						</ul>
 					</div>
 				</div>
 				<div id="shiharai">
 					<h2>支払情報</h2>
+					<div class="payment-buttons-area">
 					<div class="bg_white match_height_2">
 						<ul>
 							<li class="list" id="payment_list1">
 								<span class="list_text" id="payment_naiyo1">テキストテキストテキストテキスト</span>
-								<button class="button" type="button" id="payment_button1" onclick="location.href='#'"><span>領収書</span></button>
+								<button class="button" type="button" id="payment_button1"><span>領収書</span></button>
 							</li>
 							<li class="list" id="payment_list2">
 								<span class="list_text" id="payment_naiyo2">テキストテキストテキストテキスト</span>
-								<button class="button" type="button" id="payment_button2" onclick="location.href='#'"><span>領収書</span></button>
+								<button class="button" type="button" id="payment_button2"><span>領収書</span></button>
 							</li>
 							<li class="list" id="payment_list3">
 								<span class="list_text" id="payment_naiyo3">テキストテキストテキストテキスト</span>
-								<button class="button" type="button" id="payment_button3" onclick="location.href='#'"><span>領収書</span></button>
+								<button class="button" type="button" id="payment_button3"><span>領収書</span></button>
 							</li>
 							<li class="list" id="payment_list4">
 								<span class="list_text" id="payment_naiyo4">テキストテキストテキストテキスト</span>
-								<button class="button" type="button" id="payment_button4" onclick="location.href='#'"><span>領収書</span></button>
+								<button class="button" type="button" id="payment_button4"><span>領収書</span></button>
 							</li>
 						</ul>
+					</div>
 					</div>
 				</div>
 			</section>
@@ -272,9 +290,9 @@
 					<h2>会員コンテンツ</h2>
 					<div class="bg_white match_height_3">
 						<div class="kaiin_btn">
-							<button class="button" onclick="location.href='#'"><span>パーソナルトレーナーサポートツール</span></button>
-							<button class="button" onclick="location.href='#'"><span>S&amp;C資料集</span></button>
-							<button class="button" onclick="location.href='#'"><span>HPC施設利用申込手続きへ</span></button>
+							<button class="button" type="button" id="goPTSTool"><span>パーソナルトレーナーサポートツール</span></button>
+							<button class="button" type="button" id="goSAndCDocument"><span>S&amp;C資料集</span></button>
+							<button class="button" type="button" id="goHpcUse"><span>HPC施設利用申込手続きへ</span></button>
 						</div>	
 					</div>
 				</div>
@@ -354,6 +372,12 @@
 			</div>
 		</div>
 	</div>
+	<form id="event_form" method="post">
+		<input type="hidden" name="ceu_id" id="ceu_id" value="">
+	</form>
+	<form id="printReceipt_form" method="post" target="printReceipt">
+		<input type="hidden" name="keiri_id" id="keiri_id" value="">
+	</form>
 	<footer id="footer">
 	</footer>
 </body>

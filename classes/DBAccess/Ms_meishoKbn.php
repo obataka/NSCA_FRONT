@@ -209,4 +209,26 @@ class Ms_meishoKbn
 
         return $ms_meisho;
     }
+
+    //–¼Ìƒ}ƒXƒ^‚©‚ç–¼Ì‚ð•Ô‹p
+    public function findByHambaiMeisho($db, $meisho_kbn, $meisho_cd)
+    {
+        try {
+            $sth = $db->prepare("SELECT CHILD.meisho_cd, CHILD.meisho 
+            FROM   ms_meisho_kbn MST
+            INNER JOIN ms_meisho CHILD
+            ON    MST.meisho_id = CHILD.meisho_id
+            WHERE MST.meisho_kbn = $meisho_kbn
+            AND   CHILD.meisho_cd = $meisho_cd
+            ORDER BY CHILD.meisho_cd    
+            ");
+            $sth->execute();
+            $ms_meisho = $sth->fetchAll();
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true) . PHP_EOL, '3', 'error_log.txt');
+            $ms_meisho = [];
+        }
+
+        return $ms_meisho;
+    }
 }

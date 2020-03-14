@@ -42,6 +42,7 @@ class Vmoshikomi_jokyo
 			detail.gohi_kbn,
 			detail.event_kbn,
 			detail.nonyu_hoho_kbn,
+			detail.nonyu_kingaku,
 			detail.hasso_dempyo_no,
 			buppan_kbn
 		FROM vmoshikomi_jokyo detail		
@@ -63,7 +64,7 @@ class Vmoshikomi_jokyo
 			AND issue.kaiin_no		= detail.kaiin_no 
 	  		AND purch.id			= issue.id 
 	  		AND issue.sakujo_flg	= 0
-		  WHERE	detail.event_kbn	NOT IN (40, 10, 41, 42, 60)																	-- 非表示データ 40:会費 10:パーソナルディブロップメント 41:CEU報告 42:パーソナルデベロップメント
+		  WHERE	detail.event_kbn	NOT IN (40, 10, 41, 42, 60)						-- 非表示データ 40:会費 10:パーソナルディブロップメント 41:CEU報告 42:パーソナルデベロップメント
 			AND ((detail.event_kbn IN (3, 50)) OR (DATE_FORMAT(sysdate(),'%Y%m%d') <= DATE_FORMAT(detail.ceu_shutokubi,'%Y%m%d')))	-- CEU取得日が現在または未来(クイズ、動画購入以外)
 			AND ((detail.event_kbn NOT IN (50)) OR (detail.nonyubi IS NULL))													-- 動画購入は未納入の物だけを表示
 			AND ((purch.keiri_shumoku_cd_1 IS NULL) OR (purch.keiri_shumoku_cd_1 <> '12'))													-- 返金済みは表示しない
@@ -94,6 +95,7 @@ class Vmoshikomi_jokyo
 			gohi_kbn,
 			event_kbn,
 			nonyu_hoho_kbn,
+			nonyu_kingaku,
 			vmoshikomi_jokyo.hasso_dempyo_no,
 			buppan_kbn
 		FROM vmoshikomi_jokyo
@@ -128,6 +130,7 @@ class Vmoshikomi_jokyo
 			gohi_kbn,
 			event_kbn,
 			nonyu_hoho_kbn,
+			nonyu_kingaku,
 			vmoshikomi_jokyo.hasso_dempyo_no,
 			buppan_kbn
 		FROM vmoshikomi_jokyo

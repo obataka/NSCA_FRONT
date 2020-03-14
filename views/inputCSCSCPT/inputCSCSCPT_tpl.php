@@ -461,7 +461,7 @@
 				<th><span class="required">必須</span>注意事項</th>
 				<td>
 					<input id="chui" type="checkbox" name="" value="">
-					<label class="checkbox" for="chui">@NSCA.COM ならびに @pearson.com からのメールが届くよう、<br>
+					<label class="checkbox" for="chui">@nsca-japan.or.jp ならびに @pearson.com からのメールが届くよう、<br>
 						必ず受信設定をしてください。</label>
 					<ul class="error_ul">
 						<li class="error" id="err_chui"></li>

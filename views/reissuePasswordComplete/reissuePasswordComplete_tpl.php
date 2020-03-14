@@ -19,6 +19,7 @@
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.3.1.min.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
+		<script type="text/javascript" src="../../viewIncludeFiles/js/reissuePasswordComplete.js"></script>
 
     </head>
     <body>
@@ -28,9 +29,12 @@
 	<div class="wrap mh_c btn_b_wrap">  
 		<h2>パスワード再発行完了</h2>
 		<div class="content_wrap">
-			<p class="h2_text">テキストテキストテキストテキスト</p>
+			<p class="h2_text">パスワードの再発行が完了しました。テキストテキストテキストテキスト</p>
 			<section>
-				<button class="button btn_b btn_b_1" type="button" value="" onclick="location.href='../login/'"><span>ログインページへ</span></button>
+				<button class="button btn_b btn_b_1" type="button" id="goLogin" ><span>ログインページへ</span></button>
+			</section>
+			<section>
+				<button class="button btn_b btn_b_1" type="button" id="goMypage" ><span>マイページへ</span></button>
 			</section>
 		</div>
 	</div>

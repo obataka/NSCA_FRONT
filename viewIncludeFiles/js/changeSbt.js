@@ -34,9 +34,7 @@
         }).done((rtn) => {
             console.log(rtn);
             wk_kaiin_sbt = JSON.parse(rtn);
-            if (wk_kaiin_sbt[0] == 0) {
-                $("#kaiin_sbt").text("利用会員(無料)");
-            } else if (wk_kaiin_sbt[0] == 1) {
+            if (wk_kaiin_sbt[0] == 1) {
                 $("#kaiin_sbt").text("NSCA正会員");
             } else if (wk_kaiin_sbt[0] == 2) {
                 $("#kaiin_sbt").text("学生会員");
@@ -50,23 +48,6 @@
         });
 
         /******************************************
-         * 利用登録（無料）への変更ボタン押下処理
-         ******************************************/
-        $("#__changeRiyo").click(function () {
-            if (wk_kaiin_sbt[0] == 0) {
-                //現在の会員種別が利用会員(無料)の場合メッセージを表示する
-                $("#err_message_sbt").html("すでに利用会員（無料）です。");
-                return false;
-            } else {
-                $('#kaiinSbt').val(0);                //※HIDDEN項目のkaiinSbtに利用登録の値：0をセット
-                $('#kaihi').val(0);                   //※HIDDEN項目のkaihiに利用登録の値：0をセット          
-                url = '../changeSbtConfirm/';
-                $('form').attr('action', url);
-                $('form').submit();
-            }
-        });
-
-        /******************************************
          * NSCA正会員への変更ボタン押下処理
          ******************************************/
         $("#__changeMember").click(function () {
@@ -77,7 +58,7 @@
             } else {
                 $('#kaiinSbt').val(1);                                                             //※HIDDEN項目のkaiinSbtに利用登録の値：1をセット
                 $('#kaihi').val(Math.floor(wk_cmControl['20']).toLocaleString());                  //※HIDDEN項目のkaihiに利用登録の値：13,200をセット          
-                url = '../changeSbtConfirm/';
+                url = '../continueMember/';
                 $('form').attr('action', url);
                 $('form').submit();
             }
@@ -94,7 +75,7 @@
             } else {
                 $('#kaiinSbt').val(2);                                                             //※HIDDEN項目のkaiinSbtに利用登録の値：2をセット
                 $('#kaihi').val(Math.floor(wk_cmControl['21']).toLocaleString());                  //※HIDDEN項目のkaihiに利用登録の値：11,000をセット          
-                url = '../changeSbtConfirm/';
+                url = '../continueMember/';
                 $('form').attr('action', url);
                 $('form').submit();
             }

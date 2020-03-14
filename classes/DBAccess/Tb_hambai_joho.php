@@ -8,7 +8,7 @@ class Tb_hambai_joho
     }
 
     /*
-     * 会員番号で、有効な販売情報一覧を返却する（動画は除く）
+     * 会員番号で、有効な販売情報一覧を返却する
      * @param varchar $kaiinNo
      * @return array|mixed
      */
@@ -36,11 +36,16 @@ class Tb_hambai_joho
 
 	-- 会員種別などにより取得する価格を設定（一般・正会員・学生会員・利用登録・流山市民）
 		CASE 
-			WHEN kaiin_no IS NULL THEN FLOOR(ippan_kakaku * zeiritu)                     -- 一般（登録なし）
-			WHEN nagareyama_shimin = 1 THEN FLOOR(nagareyama_shimin_kakaku * zeiritu)   -- 流山市民
-			WHEN kaiin_sbt_kbn = 1 THEN FLOOR(kaiin_kakaku * zeiritu)                    -- 正会員
-			WHEN kaiin_sbt_kbn = 0 THEN FLOOR(riyo_toroku_kakaku * zeiritu)              -- 利用登録（無料）
-			WHEN kaiin_sbt_kbn = 2 THEN FLOOR(gakusei_kakaku * zeiritu)                  -- 学生会員
+--			WHEN kaiin_no IS NULL THEN FLOOR(ippan_kakaku * zeiritu)                     -- 一般（登録なし）
+--			WHEN nagareyama_shimin = 1 THEN FLOOR(nagareyama_shimin_kakaku * zeiritu)   -- 流山市民
+--			WHEN kaiin_sbt_kbn = 1 THEN FLOOR(kaiin_kakaku * zeiritu)                    -- 正会員
+--			WHEN kaiin_sbt_kbn = 0 THEN FLOOR(riyo_toroku_kakaku * zeiritu)              -- 利用登録（無料）
+--			WHEN kaiin_sbt_kbn = 2 THEN FLOOR(gakusei_kakaku * zeiritu)                  -- 学生会員
+			WHEN kaiin_no IS NULL THEN ippan_kakaku                     -- 一般（登録なし）
+			WHEN nagareyama_shimin = 1 THEN nagareyama_shimin_kakaku   -- 流山市民
+			WHEN kaiin_sbt_kbn = 1 THEN kaiin_kakaku                    -- 正会員
+			WHEN kaiin_sbt_kbn = 0 THEN riyo_toroku_kakaku              -- 利用登録（無料）
+			WHEN kaiin_sbt_kbn = 2 THEN gakusei_kakaku                  -- 学生会員
 		ELSE 0
 		END AS kakaku_zeikomi,
 
@@ -54,7 +59,8 @@ class Tb_hambai_joho
 		END AS kakaku_title,
 
 		-- 一般の場合会員価格も表示する
-		FLOOR(kaiin_kakaku * zeiritu) AS kaiin_kakaku_zeikomi,
+--		FLOOR(kaiin_kakaku * zeiritu) AS kaiin_kakaku_zeikomi,
+		kaiin_kakaku AS kaiin_kakaku_zeikomi,
 		'会員' AS kaiin_kakaku_title,
 
 		tb_hambai_joho.menu_sort_jun,
@@ -76,12 +82,12 @@ class Tb_hambai_joho
 			AND tb_hambai_joho_seigen_shikaku_ari.meisho_cd = 4                        -- 資格認定
 	LEFT JOIN (
 			SELECT 
-		 CASE 
-			WHEN kirikae_nengappi_1 IS NULL OR now() < kirikae_nengappi_1 THEN 1 + zei_1
-			WHEN kirikae_nengappi_2 IS NULL OR now() < kirikae_nengappi_2 THEN 1 + zei_2
-			WHEN now() > kirikae_nengappi_2 THEN 1 + zei_3
-		 END AS zeiritu
-		 , nendo_id
+--		 CASE 
+--			WHEN kirikae_nengappi_1 IS NULL OR now() < kirikae_nengappi_1 THEN 1 + zei_1
+--			WHEN kirikae_nengappi_2 IS NULL OR now() < kirikae_nengappi_2 THEN 1 + zei_2
+--			WHEN now() > kirikae_nengappi_2 THEN 1 + zei_3
+--		 END AS zeiritu,
+		  nendo_id
 		FROM cm_control
 		) cm_control
 		ON 1=1
@@ -102,7 +108,7 @@ class Tb_hambai_joho
 			ON 1=1
 	WHERE tb_hambai_joho.sakujo_flg = 0
 		-- 動画以外
-		AND tb_hambai_joho.shurui <> 2
+--		AND tb_hambai_joho.shurui <> 2
 		-- 掲載期間
 		AND tb_hambai_joho.keisai_kikan_kaishi <= now()
 		AND tb_hambai_joho.keisai_kikan_shuryo >= now()
@@ -137,6 +143,7 @@ ORDER BY menu_sort_jun,hambai_sort_jun
 
     /*
      * 会員番号で、有効な販売情報一覧を返却する（動画）
+     * 販売情報に動画データはセットされなくなったため削除予定
      * @param varchar $kaiinNo
      * @return array|mixed
      */
@@ -301,11 +308,16 @@ ORDER BY menu_sort_jun,hambai_sort_jun
 
 	-- 会員種別などにより取得する価格を設定（一般・正会員・学生会員・利用登録・流山市民）
 		CASE 
-			WHEN kaiin_no IS NULL THEN FLOOR(ippan_kakaku * zeiritu)                     -- 一般（登録なし）
-			WHEN nagareyama_shimin = 1 THEN FLOOR(nagareyama_shimin_kakaku * zeiritu)   -- 流山市民
-			WHEN kaiin_sbt_kbn = 1 THEN FLOOR(kaiin_kakaku * zeiritu)                    -- 正会員
-			WHEN kaiin_sbt_kbn = 0 THEN FLOOR(riyo_toroku_kakaku * zeiritu)              -- 利用登録（無料）
-			WHEN kaiin_sbt_kbn = 2 THEN FLOOR(gakusei_kakaku * zeiritu)                  -- 学生会員
+--			WHEN kaiin_no IS NULL THEN FLOOR(ippan_kakaku * zeiritu)                     -- 一般（登録なし）
+--			WHEN nagareyama_shimin = 1 THEN FLOOR(nagareyama_shimin_kakaku * zeiritu)   -- 流山市民
+--			WHEN kaiin_sbt_kbn = 1 THEN FLOOR(kaiin_kakaku * zeiritu)                    -- 正会員
+--			WHEN kaiin_sbt_kbn = 0 THEN FLOOR(riyo_toroku_kakaku * zeiritu)              -- 利用登録（無料）
+--			WHEN kaiin_sbt_kbn = 2 THEN FLOOR(gakusei_kakaku * zeiritu)                  -- 学生会員
+			WHEN kaiin_no IS NULL THEN ippan_kakaku                     -- 一般（登録なし）
+			WHEN nagareyama_shimin = 1 THEN nagareyama_shimin_kakaku   -- 流山市民
+			WHEN kaiin_sbt_kbn = 1 THEN kaiin_kakaku                    -- 正会員
+			WHEN kaiin_sbt_kbn = 0 THEN riyo_toroku_kakaku              -- 利用登録（無料）
+			WHEN kaiin_sbt_kbn = 2 THEN gakusei_kakaku                  -- 学生会員
 		ELSE 0
 		END AS kakaku_zeikomi,
 
@@ -319,10 +331,12 @@ ORDER BY menu_sort_jun,hambai_sort_jun
 		END AS kakaku_title,
 
 		-- 一般の場合会員価格も表示する
-		FLOOR(kaiin_kakaku * zeiritu) AS kaiin_kakaku_zeikomi,
+--		FLOOR(kaiin_kakaku * zeiritu) AS kaiin_kakaku_zeikomi,
+		kaiin_kakaku AS kaiin_kakaku_zeikomi,
 		'会員' AS kaiin_kakaku_title,
 
-		FLOOR(ippan_kakaku * zeiritu) AS ippan_kakaku_zeikomi,
+--		FLOOR(ippan_kakaku * zeiritu) AS ippan_kakaku_zeikomi,
+		ippan_kakaku AS ippan_kakaku_zeikomi,
 		tb_hambai_joho.menu_sort_jun,
 		tb_hambai_joho.hambai_sort_jun,
 		tb_hambai_joho.umekomi_tag,
@@ -344,12 +358,12 @@ ORDER BY menu_sort_jun,hambai_sort_jun
 			AND tb_hambai_joho_seigen_shikaku_ari.meisho_cd = 4                        -- 資格認定
 	LEFT JOIN (
 			SELECT 
-		 CASE 
-			WHEN kirikae_nengappi_1 IS NULL OR now() < kirikae_nengappi_1 THEN 1 + zei_1
-			WHEN kirikae_nengappi_2 IS NULL OR now() < kirikae_nengappi_2 THEN 1 + zei_2
-			WHEN now() > kirikae_nengappi_2 THEN 1 + zei_3
-		 END AS zeiritu
-		 , nendo_id
+--		 CASE 
+--			WHEN kirikae_nengappi_1 IS NULL OR now() < kirikae_nengappi_1 THEN 1 + zei_1
+--			WHEN kirikae_nengappi_2 IS NULL OR now() < kirikae_nengappi_2 THEN 1 + zei_2
+--			WHEN now() > kirikae_nengappi_2 THEN 1 + zei_3
+--		 END AS zeiritu, 
+		 nendo_id
 		FROM cm_control
 		) cm_control
 		ON 1=1

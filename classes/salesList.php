@@ -14,9 +14,14 @@ $result_array = [];
 /************************************************************
 *セッションから会員番号取得 
 *************************************************************/
+$kaiin_no = '';
 
-//$kaiin_no = "";
-$kaiin_no = "819122001";
+//セッションから会員番号を取得
+if (isset($_SESSION['kaiinNo'])) {
+    $kaiin_no = $_SESSION['kaiinNo'];
+}
+
+//$kaiin_no = "819122001";
 
 /************************************************************
 *販売情報取得 
@@ -55,33 +60,33 @@ if ($result_hambai == "") {
 if($kaiin_no != ""){
 
 	// 販売情報（動画）
-	$result_hambai_doga = (new Tb_hambai_joho())->findSalesListDogaByKaiinNo($kaiin_no);
+//	$result_hambai_doga = (new Tb_hambai_joho())->findSalesListDogaByKaiinNo($kaiin_no);
 	// 該当データなしの場合
-	if ($result_hambai_doga == "") {
+//	if ($result_hambai_doga == "") {
 
 	// 該当データありの場合
-	} else {
+//	} else {
 
-		foreach ($result_hambai_doga as $value) {
-			$hambai_doga_array = array (
-			  'kaiin_no' => $kaiin_no,
-			  'hambai_id' => $value['hambai_id'],
-			  'doga_id' => "",
-			  'shurui' => $value['shurui'],
-			  'hambai_kbn' => $value['hambai_kbn'],
-			  'hambai_title' => $value['hambai_title'],
-			  'chuigaki' => $value['hambai_title_chuigaki'],
-			  'gaiyo' => $value['gaiyo'],
-			  'gazo_url' => $value['gazo_url'],
-			  'kakaku_zeikomi' => $value['kakaku_zeikomi'],
-			  'kakaku_title' => $value['kakaku_title'],
-			  'kaiin_kakaku_zeikomi' => $value['kaiin_kakaku_zeikomi'],
-			  'kaiin_kakaku_title' => $value['kaiin_kakaku_title'],
-			  'sample_url' => $value['sample_url']
-			);
-			array_push($result_array,$hambai_doga_array);
-		}
-	}
+//		foreach ($result_hambai_doga as $value) {
+//			$hambai_doga_array = array (
+//			  'kaiin_no' => $kaiin_no,
+//			  'hambai_id' => $value['hambai_id'],
+//			  'doga_id' => "",
+//			  'shurui' => $value['shurui'],
+//			  'hambai_kbn' => $value['hambai_kbn'],
+//			  'hambai_title' => $value['hambai_title'],
+//			  'chuigaki' => $value['hambai_title_chuigaki'],
+//			  'gaiyo' => $value['gaiyo'],
+//			  'gazo_url' => $value['gazo_url'],
+//			  'kakaku_zeikomi' => $value['kakaku_zeikomi'],
+//			  'kakaku_title' => $value['kakaku_title'],
+//			  'kaiin_kakaku_zeikomi' => $value['kaiin_kakaku_zeikomi'],
+//			  'kaiin_kakaku_title' => $value['kaiin_kakaku_title'],
+//			  'sample_url' => $value['sample_url']
+//			);
+//			array_push($result_array,$hambai_doga_array);
+//		}
+//	}
 
 	// 動画情報
 	$result_doga = (new Tb_doga_joho())->findSalesList($kaiin_no);

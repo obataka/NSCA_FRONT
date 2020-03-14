@@ -29,6 +29,7 @@ class Tb_keiri_joho
 					WHEN tb_keiri_joho.ceu_id IS NOT NULL THEN ceu_meisyo.meisyo
 					ELSE CONCAT(daikeiri_shumokumei , ' ' , ifnull(chukeiri_shumokumei,''))
 				END															    AS uchiwake
+				,tb_keiri_joho.keiri_id											AS keiri_id
 				,tb_keiri_joho.nonyubi											AS nonyubi
 				,tb_keiri_joho.nonyu_kingaku									AS nonyu_kingaku
 				,vms_meisho.meisho                               				AS nonyu_hoho
@@ -99,6 +100,7 @@ class Tb_keiri_joho
 
 			SELECT
 				'物品 販売'								        	AS uchiwake
+				,keiri_id											AS keiri_id
 				,nonyubi											AS nonyubi
 				,SUM(nonyu_kingaku)									AS nonyu_kingaku
 				,vms_meisho.meisho                               	AS nonyu_hoho

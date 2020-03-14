@@ -19,8 +19,14 @@ $("#token").val(param);
 		// Ajaxリクエストが成功した時発動
 		.done( (rtn) => {
             // 会員情報、該当なし
-                if (rtn == 0) {
-		            $("#err_pass_1").html("有効期限が過ぎています。パスワード変更依頼メール画面からもう一度やり直してください。");
+                if (rtn == "") {
+
+					if(param){ // トークンがある場合
+			            $("#err_pass_1").html("有効期限が過ぎています。パスワード変更依頼メール画面からもう一度やり直してください。");
+					}else{ // トークンがない場合
+			            $("#err_pass_1").html("ログアウトされています。ログインしてください。");
+					}
+
                     $("#pass_1").prop("disabled", true);
                     $("#pass_2").prop("disabled", true);
 			        $('button[type="submit"]').prop("disabled", true);
@@ -104,13 +110,18 @@ $("#token").val(param);
 
 		// Ajaxリクエストが成功した時発動
 		.done( (rtn) => {
-                // 会員情報、該当なし
-	                if (rtn == 0) {
-			            $("#err_pass_1").html("有効期限が過ぎています。パスワード変更依頼メール画面からもう一度やり直してください。");
-	                    $("#pass_1").prop("disabled", true);
-	                    $("#pass_2").prop("disabled", true);
-				        $('button[type="submit"]').prop("disabled", true);
-	                    return false;
+	                // 会員情報、該当なし
+	                if (rtn == "") {
+
+						if(param){ // トークンがある場合
+				            $("#err_pass_1").html("有効期限が過ぎています。パスワード変更依頼メール画面からもう一度やり直してください。");
+						}else{ // トークンがない場合
+				            $("#err_pass_1").html("ログアウトされています。ログインしてください。");
+						}
+		                    $("#pass_1").prop("disabled", true);
+		                    $("#pass_2").prop("disabled", true);
+					        $('button[type="submit"]').prop("disabled", true);
+		                    return false;
 					}else{
 
        /********************************
@@ -135,7 +146,7 @@ $("#token").val(param);
 		                        return false;
 		                    } else {
 		                        //エラーがない場合送信完了画面に画面遷移
-		                        location.href = '../reissuePasswordComplete/';       
+		                        location.href = '../reissuePasswordComplete/'; 
 		                    }
 						})
 
@@ -163,13 +174,11 @@ $("#token").val(param);
 		.always( (rtn) => {
 		});
 
-
-
-
-	                    return false;
+        return false;
 
 
         });
+
 
 
     });

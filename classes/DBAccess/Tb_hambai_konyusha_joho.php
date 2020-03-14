@@ -42,7 +42,7 @@ SQL;
         return TRUE;
     }
 
-    public function findBySalesCartList($db, $param, $zeiritsu)
+    public function findBySalesCartList($db, $param)
     {
         try {
             $sth = $db->prepare("SELECT
@@ -54,25 +54,18 @@ SQL;
                                     ,tb_hambai_konyusha_joho_meisai.hambai_id
                                     ,tb_hambai_konyusha_joho_meisai.hambai_size_kbn AS size_kbn
                                     ,tb_hambai_konyusha_joho_meisai.hambai_color_kbn AS color_kbn
-                                    ,CONVERT(INT,tb_hambai_konyusha_joho_meisai.kakaku) AS kakaku
-                                    ,CONVERT(INT,tb_hambai_konyusha_joho_meisai.kakaku) * $zeiritsu AS zeikomi_kakaku
+                                    ,CAST(tb_hambai_konyusha_joho_meisai.kakaku AS SIGNED) AS kakaku
                                     ,tb_hambai_konyusha_joho_meisai.suryo
                                     ,tb_hambai_joho.hambai_title
                                     ,tb_hambai_joho.hambai_title_chuigaki
                                     ,tb_hambai_joho.gazo_url
-                                    ,CONVERT(INT,tb_hambai_joho.kaiin_kakaku) AS kaiin_kakaku
-                                    ,CONVERT(INT,tb_hambai_joho.kaiin_kakaku) * $zeiritsu AS kaiin_zeikomi_kakaku
-                                    ,CONVERT(INT,tb_hambai_joho.ippan_kakaku) AS ippan_kakaku
-                                    ,CONVERT(INT,tb_hambai_joho.ippan_kakaku) * $zeiritsu AS ippan_zeikomi_kakaku
+                                    ,CAST(tb_hambai_joho.kaiin_kakaku AS SIGNED) AS kaiin_kakaku
+                                    ,CAST(tb_hambai_joho.ippan_kakaku AS SIGNED) AS ippan_kakaku
                                     ,tb_hambai_joho.gaiyo
                                     ,tb_hambai_joho.setsumei
                                     ,tb_hambai_joho.hambai_kbn
                                     ,tb_hambai_joho.hambai_settei_kbn
                                     ,tb_hambai_joho.shikaku_kbn
-                                    ,AS hambai_settei_meisho
-                                    ,AS size_meisho
-                                    ,AS color_meisho
-                                    ,AS shikaku_meisho
                                 FROM tb_hambai_konyusha_joho
                                 LEFT JOIN tb_hambai_konyusha_joho_meisai ON tb_hambai_konyusha_joho.konyu_id = tb_hambai_konyusha_joho_meisai.konyu_id
                                 LEFT JOIN tb_hambai_joho ON tb_hambai_konyusha_joho_meisai.hambai_id = tb_hambai_joho.hambai_id
@@ -91,5 +84,101 @@ SQL;
         }
 
         return $tb_ceu_joho;
+    }
+
+    public function deleteAllKonyushaJoho($db, $param)
+    {
+        try {
+
+                $sql = <<<SQL
+                UPDATE tb_hambai_konyusha_joho
+                SET   sakujo_flg = 1
+					, koshin_user_id = :koshin_user_id
+				WHERE sakujo_flg	= 0
+				  AND konyu_id = :konyu_id
+                  AND kaiin_no = :kaiin_no;
+SQL;
+                $sth = $db->prepare($sql);
+                $sth->execute([
+                    ':kaiin_no'            => $param['kaiin_no']
+					,':konyu_id'            => $param['konyu_id']
+                    ,':koshin_user_id'      => $param['koshin_user_id']
+                ]);
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
+            $db->rollBack();
+            return FALSE;
+        }
+        return TRUE;
+    }
+
+    public function updateGokeiKingaku($db, $param, $gokei, $soryo_gokei)
+    {
+        try {
+
+                $sql = <<<SQL
+                UPDATE tb_hambai_konyusha_joho
+                SET   gokei_kingaku = $gokei + $soryo_gokei
+                    , soryo = $soryo_gokei
+					, koshin_user_id = :koshin_user_id
+				WHERE sakujo_flg	= 0
+				  AND konyu_id = :konyu_id
+                  AND kaiin_no = :kaiin_no;
+SQL;
+                $sth = $db->prepare($sql);
+                $sth->execute([
+                    ':kaiin_no'            => $param['kaiin_no']
+					,':konyu_id'            => $param['konyu_id']
+                    ,':koshin_user_id'      => $param['koshin_user_id']
+                ]);
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
+            $db->rollBack();
+            return FALSE;
+        }
+        return TRUE;
+    }
+
+    public function insertKonyushaJoho($db, $param, $gokei)
+    {
+        try {
+
+                $sql = <<<SQL
+                INSERT INTO	tb_hambai_konyusha_joho
+				(
+					kaiin_no
+					,konyusha_kbn
+					,gokei_kingaku
+					,soryo
+					,sofusaki_henko_kbn
+					,sakujo_flg
+					,sakusei_user_id
+					,koshin_user_id
+				)
+			VALUES
+				(
+					:kaiin_no
+					,1
+					,$gokei
+					,:buppan_soyo
+					,0
+					,0
+					,:koshin_user_id
+					,:koshin_user_id
+				);
+SQL;
+                $sth = $db->prepare($sql);
+                $sth->execute([
+                    ':kaiin_no'                 => $param['kaiin_no']
+					,':buppan_soyo'             => $param['buppan_soyo']
+                    ,':sakusei_user_id'         => $param['koshin_user_id']
+                    ,':koshin_user_id'          => $param['koshin_user_id']
+                ]);
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
+            $db->rollBack();
+            return FALSE;
+        }
+        return TRUE;
     }
 }

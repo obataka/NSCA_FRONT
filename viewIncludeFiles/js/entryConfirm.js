@@ -1,6 +1,5 @@
 (function ($) {
     $(document).ready(function () {
-
         //取得学位と学位分野を格納する変数
         var shutoku_gakui = "";
         var gakui_bunya = "";
@@ -18,7 +17,6 @@
             url: '../../classes/getShutokuGakui.php',
         }).done((rtn) => {
             getShutokuGakui = JSON.parse(rtn);
-
             if (getShutokuGakui != "") {
                 //卒業予定日初期表示処理
                 if (getShutokuGakui['sotsugyo_yoteibi'] != "") {
