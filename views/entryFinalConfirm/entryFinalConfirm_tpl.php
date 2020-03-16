@@ -200,7 +200,7 @@
 						<div class="bg_white">
 							<p>学歴証明の書類</p>
 						</div>
-						<input id="syorui_1" type="checkbox" name="syorui" value=""><label class="checkbox" for="syorui_1">必要書類は、融資王にてご提出ください。<br class="pc_none">（※必ず、会員番号が分かる書類を同封してください）</label>
+						<input id="syorui_1" type="checkbox" name="syorui" value=""><label class="checkbox" for="syorui_1">必要書類は、郵送にてご提出ください。<br class="pc_none">（※必ず、会員番号が分かる書類を同封してください）</label>
 						<ul class="error_ul">
 							<li class="error" id="err_syorui_1"></li>
 						</ul>

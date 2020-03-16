@@ -2,19 +2,6 @@
 include_once '../ctrl/parts/inputHeader.php';
 
 $includeView = '../views/changeMember/changeMember_tpl.php';
-$wk_kaiin_no = "";
-//if (isset($_SESSION['kaiinNo'])) {
-//    
-//    // ログインしている
-//    $wk_kaiin_no = $_SESSION['kaiinNo'];
-//
-//} else {
-//
-//    // Sessionに会員番号がないので、未ログインとみなして、ログイン画面に遷移させる
-//    header('Location: https://www.demo-nls02.work/login/');
-//    exit();
-//}
-$wk_kaiin_no = 12345;
 
 // POSTからパラメータを取得する
 $wk_kaiinType = "";
@@ -93,6 +80,10 @@ $web = (!empty($_POST['sel_web'])) ? htmlentities($_POST['sel_web'], ENT_QUOTES,
 $wk_sel_web = (!empty($_POST['wk_sel_web'])) ? htmlentities($_POST['wk_sel_web'], ENT_QUOTES, "UTF-8") : "";
 $qa = (!empty($_POST['sel_qa'])) ? htmlentities($_POST['sel_qa'], ENT_QUOTES, "UTF-8") : "";
 $wk_sel_qa = (!empty($_POST['wk_sel_qa'])) ? htmlentities($_POST['wk_sel_qa'], ENT_QUOTES, "UTF-8") : "";
+$login = (!empty($_POST['sel_login'])) ? htmlentities($_POST['sel_login'], ENT_QUOTES, "UTF-8") : "";
+$wk_sel_login = (!empty($_POST['wk_sel_login'])) ? htmlentities($_POST['wk_sel_login'], ENT_QUOTES, "UTF-8") : "";
+$auth = (!empty($_POST['sel_auth'])) ? htmlentities($_POST['sel_auth'], ENT_QUOTES, "UTF-8") : "";
+$wk_sel_auth = (!empty($_POST['wk_sel_auth'])) ? htmlentities($_POST['wk_sel_auth'], ENT_QUOTES, "UTF-8") : "";
 $sel_chiiki = (!empty($_POST['sel_chiiki'])) ? htmlentities($_POST['sel_chiiki'], ENT_QUOTES, "UTF-8") : "";
 $sel_office_chiiki = (!empty($_POST['sel_office_chiiki'])) ? htmlentities($_POST['sel_office_chiiki'], ENT_QUOTES, "UTF-8") : "";
 

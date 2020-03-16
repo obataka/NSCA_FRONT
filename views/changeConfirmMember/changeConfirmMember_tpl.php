@@ -107,6 +107,10 @@
 					<input type="hidden" name="wk_sel_yubin" id="wk_sel_yubin" value="<?php echo $wk_sel_yubin; ?>">
 					<input type="hidden" name="sel_qa" id="sel_qa" value="<?php echo $qa; ?>">
 					<input type="hidden" name="wk_sel_qa" id="wk_sel_qa" value="<?php echo $wk_sel_qa; ?>">
+					<input type="hidden" name="sel_login" id="sel_login" value="<?php echo $login; ?>">
+					<input type="hidden" name="wk_sel_login" id="wk_sel_login" value="<?php echo $wk_sel_login; ?>">
+					<input type="hidden" name="sel_auth" id="sel_auth" value="<?php echo $auth; ?>">
+					<input type="hidden" name="wk_sel_auth" id="wk_sel_auth" value="<?php echo $wk_sel_auth; ?>">
 					<input type="hidden" name="kaiinType" id="kaiinType" value="<?php echo $wk_kaiinType ?>" />
 					<input type="hidden" name="sel_chiiki" id="sel_chiiki" value="<?php echo $sel_chiiki; ?>">
 					<input type="hidden" name="sel_office_chiiki" id="sel_office_chiiki" value="<?php echo $sel_office_chiiki; ?>">
@@ -118,12 +122,11 @@
 								<th><span class="any"></span>会員種別</th>
 								<td>
 									<p><?php echo $wk_kaiinType; ?></p>
-									<p>英文オプション　<span><?php echo $option;?></span></p>
+									<p>英文オプション　<span><?php echo $option; ?></span></p>
 								</td>
 							</tr>
 						</table>
 					</div>
-					
 				</form>
 				<h2>基本情報</h2>
 				<div class="bg_white">
@@ -284,6 +287,18 @@
 							<th><span class="required">必須</span>アンケート協力</th>
 							<td>
 								<?php echo $qa; ?>
+							</td>
+						</tr>
+						<tr>
+							<th><span class="required">必須</span>ログイン通知メール</th>
+							<td>
+								<?php echo $login; ?>
+							</td>
+						</tr>
+						<tr>
+							<th><span class="required">必須</span>2段階認証</th>
+							<td>
+								<?php echo $auth; ?>
 							</td>
 						</tr>
 						<tr>

@@ -79,6 +79,10 @@ $web = (!empty($_POST['sel_web'])) ? htmlentities($_POST['sel_web'], ENT_QUOTES,
 $wk_sel_web = (!empty($_POST['wk_sel_web'])) ? htmlentities($_POST['wk_sel_web'], ENT_QUOTES, "UTF-8") : "";
 $qa = (!empty($_POST['sel_qa'])) ? htmlentities($_POST['sel_qa'], ENT_QUOTES, "UTF-8") : "";
 $wk_sel_qa = (!empty($_POST['wk_sel_qa'])) ? htmlentities($_POST['wk_sel_qa'], ENT_QUOTES, "UTF-8") : "";
+$login = (!empty($_POST['sel_login'])) ? htmlentities($_POST['sel_login'], ENT_QUOTES, "UTF-8") : "";
+$wk_sel_login = (!empty($_POST['wk_sel_login'])) ? htmlentities($_POST['wk_sel_login'], ENT_QUOTES, "UTF-8") : "";
+$auth = (!empty($_POST['sel_auth'])) ? htmlentities($_POST['sel_auth'], ENT_QUOTES, "UTF-8") : "";
+$wk_sel_auth = (!empty($_POST['wk_sel_auth'])) ? htmlentities($_POST['wk_sel_auth'], ENT_QUOTES, "UTF-8") : "";
 $sel_chiiki = (!empty($_POST['sel_chiiki'])) ? htmlentities($_POST['sel_chiiki'], ENT_QUOTES, "UTF-8") : "";
 $sel_office_chiiki = (!empty($_POST['sel_office_chiiki'])) ? htmlentities($_POST['sel_office_chiiki'], ENT_QUOTES, "UTF-8") : "";
 

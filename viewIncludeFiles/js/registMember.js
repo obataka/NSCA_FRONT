@@ -19,7 +19,6 @@
             } else {
                 getEibunOption = JSON.parse(rtn);
                 //hiddenタグに会費英文オプションをセット
-                console.log(getEibunOption['kaihi_eibun_option']);
                 $('#kaihi_eibun_option').val(Math.floor(getEibunOption['kaihi_eibun_option']));
             }
         }).fail((rtn) => {
@@ -131,6 +130,16 @@
                         $(wk_sel_shikaku_name).prop("checked", true);
                     });
                 }
+
+                //その他(記述)がチェック済みの場合テキストボックスを活性させる
+                // チェックが入っていたら有効化
+                if ($('#shikaku_99').is(':checked')) {
+                    // ボタンを有効化
+                    $('#shikaku_sonota').prop('disabled', false);
+                } else {
+                    // ボタンを無効化
+                    $('#shikaku_sonota').prop('disabled', true);
+                }
             }
         }).fail((rtn) => {
             return false;
@@ -201,6 +210,15 @@
                         var wk_sel_bunya_name = '#bunya_' + wk_sel_bunya_2;
                         $(wk_sel_bunya_name).prop("checked", true);
                     });
+                }
+                //その他(記述)がチェック済みの場合テキストボックスを活性させる
+                // チェックが入っていたら有効化
+                if ($('#bunya_99').is(':checked')) {
+                    // ボタンを有効化
+                    $('#bunya_sonota').prop('disabled', false);
+                } else {
+                    // ボタンを無効化
+                    $('#bunya_sonota').prop('disabled', true);
                 }
             }
         }).fail((rtn) => {
@@ -323,7 +341,7 @@
         /*************************************
          * //画面初期表示で次へボタンを無効にする
          *************************************/
-        $('button[type="submit"]').prop("disabled", true);
+        $('#next_button').prop("disabled", true);
 
         /*************************************
          * //画面初期表示で流山市民のvalueを0にする
@@ -493,7 +511,7 @@
             });
         });
 
-        
+
         /************************
          * 英文購読オプションチェンジイベント
          ************************/
@@ -632,7 +650,6 @@
                 $("#wk_sel_nagareyama").val(wa);
                 var test = '流山市民ではありません。';
                 $('#sel_nagareyama').val(test);
-                var wawawa = $('#sel_nagareyama').val();
             }
         });
 
@@ -738,6 +755,15 @@
                 var text = $(this).attr('id');
                 return $('label[for="' + text + '"]').text();
             }).get();
+            //その他(記述)がチェック済みの場合テキストボックスを活性させる
+            // チェックが入っていたら有効化
+            if ($('#shikaku_99').is(':checked')) {
+                // ボタンを有効化
+                $('#shikaku_sonota').prop('disabled', false);
+            } else {
+                // ボタンを無効化
+                $('#shikaku_sonota').prop('disabled', true);
+            }
         });
 
         /************************
@@ -856,6 +882,16 @@
                 var text = $(this).attr('id');
                 return $('label[for="' + text + '"]').text();
             }).get();
+
+            //その他(記述)がチェック済みの場合テキストボックスを活性させる
+            // チェックが入っていたら有効化
+            if ($('#bunya_99').is(':checked')) {
+                // ボタンを有効化
+                $('#bunya_sonota').prop('disabled', false);
+            } else {
+                // ボタンを無効化
+                $('#bunya_sonota').prop('disabled', true);
+            }
         });
         /********************************
          * 次へボタン有効化処理
@@ -864,10 +900,10 @@
             // チェックが入っていたら有効化
             if ($(this).is(':checked')) {
                 // ボタンを有効化
-                $('button[type="submit"]').prop('disabled', false);
+                $('#next_button').prop('disabled', false);
             } else {
                 // ボタンを無効化
-                $('button[type="submit"]').prop('disabled', true);
+                $('#next_button').prop('disabled', true);
             }
         });
 
@@ -1163,17 +1199,7 @@
                     wk_focus_done = 1;
                 }
             }
-            //建物/部屋番号未入力チェック
-            if ($("#address_tatemono").val() == "") {
-                wk_err_msg == "";
-                wk_err_msg = "建物/部屋番号を入力してください。";
-                $("#err_address_tatemono").html(wk_err_msg);
-                //エラー箇所にフォーカスを当てる
-                if (wk_focus_done == 0) {
-                    $("#address_tatemono").focus();
-                    wk_focus_done = 1;
-                }
-            }
+
             //流山市民のvalueの設定　チェック有り：1　チェック無し：0
             if ($('input[name="nagareyama"]').prop('checked')) {
                 $('input[name="nagareyama"]').val = 1;
@@ -1380,9 +1406,8 @@
                         //メールアドレスセット
                         mail: $("#mail_address_1").val(),
                     },
-                }).done((rtn) =>{
+                }).done((rtn) => {
                     if (rtn == 0) {
-                        console.log(rtn);
                         return false;
                     } else {
                         //登録済みの場合エラーメッセージを表示
@@ -1395,7 +1420,7 @@
                             wk_focus_done = 1;
                         }
                     }
-                }).fail((rtn) =>{
+                }).fail((rtn) => {
                     return false;
                 });
             }
@@ -1409,9 +1434,8 @@
                         //メールアドレスセット
                         mail: $("#mail_address_2").val(),
                     },
-                }).done((rtn) =>{
+                }).done((rtn) => {
                     if (rtn == 0) {
-                        console.log(rtn);
                         return false;
                     } else {
                         //登録済みの場合エラーメッセージを表示
@@ -1424,7 +1448,7 @@
                             wk_focus_done = 1;
                         }
                     }
-                }).fail((rtn) =>{
+                }).fail((rtn) => {
                     return false;
                 });
             }

@@ -156,7 +156,7 @@
 									<select id="gakui_bunya" name="">
 										<option value=""></option>
 									</select>
-									<textarea id="gakui_sonota" placeholder="その他を選択した場合は必須入力となります"></textarea>
+									<textarea id="gakui_sonota" placeholder="具体的な学位分野を入力してください"></textarea>
 								</p>
 								<ul class="error_ul">
 									<li class="error" id="err_gakui"></li>
@@ -171,7 +171,7 @@
 									<li class="error" id="err_hitsuyo"></li>
 								</ul>
 								<ul>
-									<li>①学校教育法が定める4年制もしくは6年制大学の卒業証明書または卒業見込み卒業証明書の原本</li>
+									<li>①学校教育法が定める4年制もしくは6年制大学の卒業証明書または卒業見込み証明書の原本</li>
 									<li>②学位取得を証する証明書(学位授与証明書、修了証明書、transcriptなど)の原本</li>
 									<li>③高度専門士の称号を証する証明書(高度専門士の称号取得が明記されている卒業証明書、高度専門士称号取得証明書など)または取得見込みを証する証明書の原本</li>
 								</ul>

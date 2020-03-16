@@ -625,19 +625,6 @@
                 }
             }
 
-            //建物/部屋番号未入力チェック
-            if ($("#address_tatemono").val() == "") {
-                wk_err_msg == "";
-                wk_err_msg = "建物/部屋番号を入力してください。";
-                $("#err_address_tatemono").html(wk_err_msg);
-             
-                //エラー箇所にフォーカスを当てる
-                if (wk_focus_done == 0) {
-                    $("#address_tatemono").focus();
-                    wk_focus_done = 1;
-                }
-            }
-
             //流山市民のvalueの設定　チェック有り：1　チェック無し：0
             if ($('input[name="nagareyama"]').prop('checked')) {
                 $('input[name="nagareyama"]').val = 1;
@@ -660,26 +647,6 @@
                 }
             }
 
-            //市区町村/番地(ヨミ)全角カナチェック
-            if ($("#address_yomi_shiku").val() !== "") {
-                if (wk_err_msg2 == "") {
-                    var sei = $("#address_yomi_shiku").val();
-                    var re = /^[ァ-ンヴー]*$/;
-                    var sei = sei.match(re);
-                    if (!sei) {
-                        wk_err_msg2 == "";
-                        wk_err_msg2 = "市区町村/番地(ヨミ)は全角カナで入力してください。";
-                        $("#err_address_yomi_shiku").html(wk_err_msg2);
-                    
-                        //エラー箇所にフォーカスを当てる
-                        if (wk_focus_done == 0) {
-                            $("#address_yomi_shiku").focus();
-                            wk_focus_done = 1;
-                        }
-                    }
-                }
-            }
-
             //建物/部屋番号(ヨミ)未入力チェック
             if ($("#address_yomi_tatemono").val() == "") {
                 if (wk_err_msg3 == "") {
@@ -691,26 +658,6 @@
                     if (wk_focus_done == 0) {
                         $("#address_yomi_tatemono").focus();
                         wk_focus_done = 1;
-                    }
-                }
-            }
-
-            //建物/部屋番号(ヨミ)全角カナチェック
-            if ($("#address_yomi_tatemono").val() !== "") {
-                if (wk_err_msg3 == "") {
-                    var sei = $("#address_yomi_tatemono").val();
-                    var re = /^[ァ-ンヴー]*$/;
-                    var sei = sei.match(re);
-                    if (!sei) {
-                        wk_err_msg3 == "";
-                        wk_err_msg3 = "建物/部屋番号(ヨミ)は全角カナで入力してください。";
-                        $("#err_address_yomi_tatemono").html(wk_err_msg3);
-                      
-                        //エラー箇所にフォーカスを当てる
-                        if (wk_focus_done == 0) {
-                            $("#address_yomi_tatemono").focus();
-                            wk_focus_done = 1;
-                        }
                     }
                 }
             }
