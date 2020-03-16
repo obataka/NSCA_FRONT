@@ -226,37 +226,43 @@
 			<section>
 				<div id="moshikomi">
 					<h2>申込状況</h2>
+					<div class="apply-buttons-area">
 					<div class="bg_white match_height_2">
 						<ul>
 							<li class="list" id="apply_list1">
-								<span class="list_text" id="apply_naiyo1">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</span>
+								<span id="apply_naiyo1">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</span>
+								<span id="apply_payment1">済</span>
 								<button class="button" type="button" id="apply_button1"><span>支払</span></button>
-								<span class="list_text" id="apply_kakunin1">確認テキストテキストテキスト</span>
-								<span class="list_text" id="apply_tetuzuki1"><a>手続きテキストテキストテキスト</a></span>
+								<span id="apply_kakunin1">確認テキストテキストテキスト</span>
+								<span class="list_text" id="apply_tetuzuki1">手続きテキストテキストテキスト</span>
 								<button class="button" type="button" id="apply_shosai_button1"><span>詳細</span></button>
 							</li>
 							<li class="list" id="apply_list2">
-								<span class="list_text" id="apply_naiyo2">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</span>
+								<span id="apply_naiyo2">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</span>
+								<span id="apply_payment2">済</span>
 								<button class="button" type="button" id="apply_button2"><span>支払番号表示</span></button>
 								<span class="list_text" id="apply_kakunin2">確認テキストテキストテキスト</span>
-								<span class="list_text" id="apply_tetuzuki2"><a>手続きテキストテキストテキスト</a></span>
+								<span class="list_text" id="apply_tetuzuki2">手続きテキストテキストテキスト</span>
 								<button class="button" type="button" id="apply_shosai_button2"><span>詳細</span></button>
 							</li>
 							<li class="list" id="apply_list3">
-								<span class="list_text" id="apply_naiyo3">テキストテキストテキストテキスト</span>
+								<span id="apply_naiyo3">テキストテキストテキストテキスト</span>
+								<span id="apply_payment3">済</span>
 								<button class="button" type="button" id="apply_button3"><span>支払</span></button>
 								<span class="list_text" id="apply_kakunin3">確認テキストテキストテキスト</span>
-								<span class="list_text" id="apply_tetuzuki3"><a>手続きテキストテキストテキスト</a></span>
+								<span class="list_text" id="apply_tetuzuki3">手続きテキストテキストテキスト</span>
 								<button class="button" type="button" id="apply_shosai_button3"><span>詳細</span></button>
 							</li>
 							<li class="list" id="apply_list4">
-								<span class="list_text" id="apply_naiyo4">テキストテキストテキストテキスト</span>
+								<span id="apply_naiyo4">テキストテキストテキストテキスト</span>
+								<span id="apply_payment4">済</span>
 								<button class="button" type="button" id="apply_button4"><span>支払</span></button>
 								<span class="list_text" id="apply_kakunin4">確認テキストテキストテキスト</span>
-								<span class="list_text" id="apply_tetuzuki4"><a>手続きテキストテキストテキスト</a></span>
+								<span class="list_text" id="apply_tetuzuki4">手続きテキストテキストテキスト</span>
 								<button class="button" type="button" id="apply_shosai_button4"><span>詳細</span></button>
 							</li>
 						</ul>
+					</div>
 					</div>
 				</div>
 				<div id="shiharai">
@@ -374,6 +380,13 @@
 	</div>
 	<form id="event_form" method="post">
 		<input type="hidden" name="ceu_id" id="ceu_id" value="">
+	</form>
+	<form id="cancel_form" method="post">
+		<input type="hidden" name="id" id="id" value="">
+		<input type="hidden" name="settleno" id="settleno" value="">
+		<input type="hidden" name="ceu_id" id="ceu_id" value="">
+		<input type="hidden" name="event_kbn" id="event_kbn" value="">
+		<input type="hidden" name="shutoku_naiyo" id="shutoku_naiyo" value="">
 	</form>
 	<form id="printReceipt_form" method="post" target="printReceipt">
 		<input type="hidden" name="keiri_id" id="keiri_id" value="">

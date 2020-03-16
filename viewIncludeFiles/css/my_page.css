@@ -264,6 +264,9 @@ section {
     color: #fff;
     background: #8a8a8a;
 }
+.text-danger {
+    color: #b22222;
+}
 #moshikomi .list_text a,
 #kyujin_joho .list_text a {
     color: #333;

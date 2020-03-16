@@ -163,13 +163,35 @@ function getDataApplyList(){
 
                         tbApplyJoho = JSON.parse(rtn);
 
-					// イベント表示件数4件分ループ処理する
+					// 申込状況表示件数4件分ループ処理する
 					for(var i = 0; i < 4 ; i++) {
 						// データがある場合はデータをセットする
 						if(i < tbApplyJoho.length){
 							$("#apply_list"+(i+1)).show();
 				            $("#apply_naiyo"+(i+1)).html(tbApplyJoho[i]["shutoku_naiyo"]);
-				            $("#apply_button"+(i+1)).text(tbApplyJoho[i]["button_text"]);
+				            $("#apply_kakunin"+(i+1)).html(tbApplyJoho[i]["kakunin"]);
+				            $("#apply_tetuzuki"+(i+1)).html(tbApplyJoho[i]["tetuzuki"]);
+				            $("#apply_tetuzuki"+(i+1)).data('data_key',i);
+
+							if(tbApplyJoho[i]["shiharai_button"] != ""){
+					            $("#apply_button"+(i+1)).text(tbApplyJoho[i]["shiharai_button"]);
+								$("#apply_button"+(i+1)).show();
+								$("#apply_payment"+(i+1)).hide();
+							}else{
+								$("#apply_button"+(i+1)).hide();
+					            $("#apply_payment"+(i+1)).html(tbApplyJoho[i]["shiharai"]);
+								$("#apply_payment"+(i+1)).show();
+								
+							}
+							if(tbApplyJoho[i]["shosai"] == ""){
+								$("#apply_shosai_button"+(i+1)).hide();
+							}else{
+								$("#apply_shosai_button"+(i+1)).show();
+							}
+							if(tbApplyJoho[i]["kakunin_class"] != ""){
+								$("#apply_kakunin"+(i+1)).addClass(tbApplyJoho[i]["kakunin_class"]);
+							}
+
 						// データがない場合は非表示にする
 						}else{
 							$("#apply_list"+(i+1)).hide();
@@ -719,6 +741,18 @@ $('.event-buttons-area').on('click', 'button', function() {
 	$("#ceu_id").val(ceu_id);
     $('#event_form').attr('action', '../seminarEntryVis');
     $("#event_form").submit();
+
+});
+
+/************************************************************
+	*申込情報　キャンセルはこちらリンク押下時
+*************************************************************/
+
+$('.apply-buttons-area').on('click', 'a', function() {
+ 
+alert($(this).attr("id"));
+//    $('#cancel_form').attr('action', '../entryCancel');
+//    $("#cancel_form").submit();
 
 });
 

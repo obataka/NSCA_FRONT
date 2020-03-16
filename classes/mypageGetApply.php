@@ -47,7 +47,6 @@ if (!empty($result_control)) {
 
 // 申込内容取得
 $result_apply = getMousikomiData($kaiin_no);
-	   error_log(print_r($result_apply, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka2_log.txt');
 if (!empty($result_apply)) {
 	// 申込状況をチェック
 	   error_log(print_r('申込状況をチェック--', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka2_log.txt');
@@ -70,6 +69,7 @@ if (!empty($result_apply2)) {
 //}
 
 
+	   error_log(print_r($result_array, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka2_log.txt');
 
 
     $ret = json_encode($result_array);
@@ -216,6 +216,7 @@ function createMousikomiData($result) {
 
 	foreach ($result as $value) {
 		$yokusei_Flg = FALSE;
+		$shiharai_button = "";
 		$shiharai = "";
 		$kakunin = "";
 		$kakunin_class = "";
@@ -264,7 +265,7 @@ function createMousikomiData($result) {
 
 		if($yokusei_Flg == 0){ // ■ 開放(現行表示仕様) ===========================================
 			if(empty($value['nonyubi'])){
-				$shiharai = "支払い";
+				$shiharai_button = "支払い";
 				$kakunin = "支払方法を選択してご入金お願いします。";
 				$kakunin_class = "text-danger";
 //                        lbtnPayment.Visible = True
@@ -379,7 +380,7 @@ function createMousikomiData($result) {
 				if(in_array($value['event_kbn'] , array(40,42,60))){
 //                            linkCancelBtn.Visible = False
 				}else{
-					$tetuzuki = "キャンセルはこちら";
+					$tetuzuki = "<a id='cancel_button'>キャンセルはこちら</a>";
 //                            linkCancelBtn.Visible = True
 				}
 			}else{ // キャンセル締切日が設定されている
@@ -394,9 +395,9 @@ function createMousikomiData($result) {
 			$kakunin = "";
 			$kakunin_class = "";
 			$tetuzuki = "";
-			if($shiharai != "済"){
-				$shiharai = "";
-			}
+			$shiharai_button = "";
+
+
 //            lblNote.Text = ""
 //            linkPayment.Visible = False
 //            linkCancel.Visible = False
@@ -468,6 +469,7 @@ function createMousikomiData($result) {
 //                   ' 参加料のチェック
 					if(empty($value['nonyu_kingaku'])){	// 参加料null(0円)の場合は、申込済みだけを表示
 						$shiharai = "";
+						$shiharai_button = "";
 						$kakunin = "";
 //                                    Dim lbtnPayment As LinkButton = DirectCast(e.Row.FindControl("lbtnPayment"), LinkButton) ' 支払いボタン
 //                                    Dim lblNote As Label = DirectCast(e.Row.FindControl("lblNote"), Label)                   ' 支払い状況の表示
@@ -487,6 +489,7 @@ function createMousikomiData($result) {
  //■ 抑制中(抑制中の表示仕様)
 
 			$shiharai = "";
+			$shiharai_button = "";
 			$kakunin = "申込状況の反映まで、しばらくお待ちください。";
 			$kakunin_class = "text-danger";
 			$tetuzuki = "";
@@ -519,10 +522,15 @@ function createMousikomiData($result) {
 		$apply_array = array (
 		  'shutoku_naiyo' => $value['shutoku_naiyo'],
 		  'shiharai' => $shiharai,
+		  'shiharai_button' => $shiharai_button,
 		  'kakunin' => $kakunin,
 		  'kakunin_class' => $kakunin_class,
 		  'tetuzuki' => $tetuzuki,
-		  'shosai' => $shosai
+		  'shosai' => $shosai,
+		  'id' => $value['id'],
+		  'settleno' => $value['settleno'],
+		  'ceu_id' => $value['ceu_id'],
+		  'event_kbn' => $value['event_kbn'],
 		);
 		array_push($result_array,$apply_array);
 
