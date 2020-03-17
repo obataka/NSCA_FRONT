@@ -421,7 +421,7 @@
 									</ul>
 								</td>
 							</tr>
-							<tr>
+							<!-- <tr>
 								<th><span class="required">必須</span>ログイン通知メール</th>
 								<td>
 									<input id="login_1" type="radio" name="login" value="1"><label for="login_1">利用する</label><br>
@@ -434,13 +434,13 @@
 							<tr>
 								<th><span class="required">必須</span>2段階認証</th>
 								<td>
-									<input id="auth_1" type="radio" name="auth" value="1"><label for="qa_1">利用する</label><br>
-									<input id="auth_2" type="radio" name="auth" value="2"><label for="qa_2">利用しない</label>
+									<input id="auth_1" type="radio" name="auth" value="1"><label for="auth_1">利用する</label><br>
+									<input id="auth_2" type="radio" name="auth" value="2"><label for="auth_2">利用しない</label>
 									<ul class="error_ul">
 										<li class="error" id="err_auth"></li>
 									</ul>
 								</td>
-							</tr>
+							</tr> -->
 							<tr>
 								<th><span class="any"></span>興味のある分野</th>
 								<td class="clearfix">
@@ -457,7 +457,7 @@
 				</div>
 				<section class="btn_wrap">
 					<button class="button btn_gray" type="button" value="" onclick="location.href='#'"><span>クリア</span></button>
-					<button class="button" type="button" id="next_button" value="" onclick="location.href='#'"><span>次へ</span></button>
+					<button class="button" type="button" id="next_button" value=""><span>次へ</span></button>
 				</section>
 			</form>
 			

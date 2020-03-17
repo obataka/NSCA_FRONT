@@ -2,7 +2,7 @@
     $(document).ready(function () {
         //DBから取得した値を格納する配列の宣言
         var getTbkaiinSentaku = [];
-        var getTbkaiinJoho = []
+        var getTbkaiinJoho = [];
 
         /****************
         * //会員選択データ取得
@@ -381,8 +381,6 @@
             var val2 = $('#job_1 option:selected').val();
             $('#shoku_1').val(val);
             $('#sel_shoku_1').val(val2);
-
-
             var test2 = $('#sel_shoku_2').val();
             // 選択済みの職業がある場合
             if (test2 != "") {
@@ -437,10 +435,10 @@
             $('#office_fax').val(getTbkaiinJoho[42]);
 
             //連絡方法の希望のチェック
-            if (getTbkaiinJoho[114] == "") {
+            if (getTbkaiinJoho[114]) {
                 $('input:radio[name="hoho"]').val(["2"]);
             }
-            if (getTbkaiinJoho[115] == "") {
+            if (getTbkaiinJoho[115]) {
                 $('input:radio[name="hoho"]').val(["1"]);
             }
             //メールでお知らせが選ばれていたらvalueに1を設定
@@ -611,89 +609,6 @@
         }
 
         /********************************
-         * 住所検索ボタン押下処理
-         ********************************/
-        $("#job_address_search").click(function () {
-
-            // エラーメッセージエリア初期化
-            $("#err_address_yubin_nb_1").html("");
-
-            var wk_focus_done = 0;
-            var wk_err_msg = "";
-
-            // 郵便番号上未入力チェック
-            if ($("#address_yubin_nb_1").val() == "") {
-                if (wk_err_msg == "") {
-                    wk_err_msg = "郵便番号が未入力です。";
-                }
-                if (wk_focus_done == 0) {
-                    $("#address_yubin_nb_1").focus();
-                    wk_focus_done = 1;
-                }
-            }
-
-            // 郵便番号下未入力チェック
-            if ($("#yubin_nb_2").val() == "") {
-                if (wk_err_msg == "") {
-                    wk_err_msg = "郵便番号が未入力です。";
-                }
-                if (wk_focus_done == 0) {
-                    $("#yubin_nb_2").focus();
-                    wk_focus_done = 1;
-                }
-            }
-            //郵便番号正規表現チェック
-            var postcode = $("#address_yubin_nb_1").val() + '-' + $("#yubin_nb_2").val();
-            var re = /^\d{3}-?\d{4}$/;
-            var postcode = postcode.match(re);
-            if (!postcode) {
-                if (wk_err_msg == "") {
-                    wk_err_msg = "正しい郵便番号を半角数字で入力してください。";
-                }
-                if (wk_focus_done == 0) {
-                    $("#address_yubin_nb_1").focus();
-                    wk_focus_done = 1;
-                }
-            }
-
-            // エラーがある場合は、メッセージを表示し、処理を終了する
-            if (wk_err_msg != "") {
-                $("#err_address_yubin_nb_1").html(wk_err_msg);
-                return false;
-            }
-
-            //郵便番号検索処理
-            jQuery.ajax({
-                url: '../../classes/searchPostNo.php',
-                type: 'POST',
-                data:
-                {
-                    postNo1: $("#yubin_nb_1").val(),
-                    postNo2: $("#yubin_nb_2").val()
-                },
-            }).done((rtn) => {
-                // rtn = 0 の場合は、該当なし
-                if (rtn == 0) {
-                    $("#err_address_yubin_nb_1").html("郵便番号から住所を取得できません");
-                    return false;
-                } else {
-                    //※正常に住所情報を取得できた時の処理を書く場所
-                    wk_msYubinNo = JSON.parse(rtn);
-                    $("#address_todohuken option").filter(function (index) {
-                        return $(this).text() === wk_msYubinNo[7];
-                    }).prop("selected", true).change();
-                    $("#address_shiku").val(wk_msYubinNo[8]);
-                    $("#address_tatemono").val(wk_msYubinNo[9]);
-                    $("#address_yomi_shiku").val(wk_msYubinNo[5]);
-                    $("#address_yomi_tatemono").val(wk_msYubinNo[6]);
-                }
-            }).fail((rtn) => {
-                $("#err_address_yubin_nb_1").html("郵便番号から住所を取得できません");
-                return false;
-            });
-        });
-
-        /********************************
         * 住所検索ボタン押下処理
         ********************************/
         $("#street_address_search").click(function () {
@@ -754,30 +669,34 @@
                 {
                     postNo1: $("#yubin_nb_1").val(),
                     postNo2: $("#yubin_nb_2").val()
-                },
-                success: function (rtn) {
-                    // rtn = 0 の場合は、該当なし
-                    if (rtn == 0) {
-                        $("#err_address_yubin_nb_1").html("郵便番号から住所を取得できません");
-                        return false;
-                    } else {
-                        //※正常に住所情報を取得できた時の処理を書く場所
-                        wk_msYubinNo = JSON.parse(rtn);
-                        $("#address_todohuken option").filter(function (index) {
-                            return $(this).text() === wk_msYubinNo[7];
-                        }).prop("selected", true).change();
-                        $("#address_shiku").val(wk_msYubinNo[8] + wk_msYubinNo[9]);
-                        $("#address_yomi_shiku").val(wk_msYubinNo[5] + wk_msYubinNo[6]);
-                    }
-                },
-                fail: function (rtn) {
-                    $("#err_address_yubin_nb_1").html("郵便番号から住所を取得できません");
-                    return false;
-                },
-                error: function (rtn) {
-                    $("#err_address_yubin_nb_1").html("郵便番号から住所を取得できません");
-                    return false;
                 }
+            }).done((rtn) => {
+                // rtn = 0 の場合は、該当なし
+                if (rtn == 0) {
+                    $("#err_address_yubin_nb_1").html("郵便番号から住所を取得できません");
+                    $("#address_todohuken").val("");
+                    $("#address_shiku").val("");
+                    $("#address_tatemono").val("");
+                    $("#address_yomi_shiku").val("");
+                    $("#address_yomi_tatemono").val("");
+                    return false;
+                } else {
+                    //※正常に住所情報を取得できた時の処理を書く場所
+                    wk_msYubinNo = JSON.parse(rtn);
+                    $("#address_todohuken option").filter(function (index) {
+                        return $(this).text() === wk_msYubinNo[7];
+                    }).prop("selected", true).change();
+                    $("#address_shiku").val(wk_msYubinNo[8] + wk_msYubinNo[9]);
+                    $("#address_yomi_shiku").val(wk_msYubinNo[5] + wk_msYubinNo[6]);
+                }
+            }).fail((rtn) => {
+                $("#err_address_yubin_nb_1").html("郵便番号から住所を取得できません");
+                $("#address_todohuken").val("");
+                $("#address_shiku").val("");
+                $("#address_tatemono").val("");
+                $("#address_yomi_shiku").val("");
+                $("#address_yomi_tatemono").val("");
+                return false;
             });
         });
 
@@ -841,30 +760,34 @@
                 {
                     postNo1: $("#office_yubin_nb_1").val(),
                     postNo2: $("#office_yubin_nb_2").val()
-                },
-                success: function (rtn) {
-                    // rtn = 0 の場合は、該当なし
-                    if (rtn == 0) {
-                        $("#err_address_yubin_nb_2").html("郵便番号から住所を取得できません");
-                        return false;
-                    } else {
-                        //※正常に住所情報を取得できた時の処理を書く場所
-                        wk_msYubinNo = JSON.parse(rtn);
-                        $("#office_todohuken option").filter(function (index) {
-                            return $(this).text() === wk_msYubinNo[7];
-                        }).prop("selected", true);
-                        $("#office_shiku").val(wk_msYubinNo[8]);
-                        $("#office_tatemono").val(wk_msYubinNo[9]);
-                    }
-                },
-                fail: function (rtn) {
-                    $("#err_address_yubin_nb_2").html("郵便番号から住所を取得できません");
-                    return false;
-                },
-                error: function (rtn) {
-                    $("#err_address_yubin_nb_2").html("郵便番号から住所を取得できません");
-                    return false;
                 }
+            }).done((rtn) => {
+                // rtn = 0 の場合は、該当なし
+                if (rtn == 0) {
+                    $("#err_address_yubin_nb_2").html("郵便番号から住所を取得できません");
+                    $("#office_todohuken").val("");
+                    $("#office_shiku").val("");
+                    $("#office_tatemono").val("");
+                    $("#office_yomi_shiku").val("");
+                    $("#office_yomi_tatemono").val("");
+                    return false;
+                } else {
+                    //※正常に住所情報を取得できた時の処理を書く場所
+                    wk_msYubinNo = JSON.parse(rtn);
+                    $("#office_todohuken option").filter(function (index) {
+                        return $(this).text() === wk_msYubinNo[7];
+                    }).prop("selected", true);
+                    $("#office_shiku").val(wk_msYubinNo[8]);
+                    $("#office_tatemono").val(wk_msYubinNo[9]);
+                }
+            }).fail((rtn) => {
+                $("#err_address_yubin_nb_2").html("郵便番号から住所を取得できません");
+                $("#office_todohuken").val("");
+                $("#office_shiku").val("");
+                $("#office_tatemono").val("");
+                $("#office_yomi_shiku").val("");
+                $("#office_yomi_tatemono").val("");
+                return false;
             });
         });
 
@@ -949,9 +872,9 @@
             }
         });
 
-        // /************************
-        //  * メルマガ配信希望ラジオボタンチェンジイベント
-        //  ************************/
+        /************************
+        * メルマガ配信希望ラジオボタンチェンジイベント
+        ************************/
         $("input:radio[name='merumaga']").change(function () {
             //希望するが選ばれていたらvalueに1を設定
             if ($("input:radio[id='merumaga_1']:checked").val()) {
@@ -1141,40 +1064,40 @@
         /************************
          * ログイン通知メールボタンチェンジイベント
          ************************/
-        $("input:radio[name='login']").change(function () {
-            if ($("input:radio[id='login_1']:checked").val()) {
-                var wa = $("input:radio[id='login_1']:checked").val();
-                $("#wk_sel_login").val(wa);
-                var test1 = $('[name="login"]:checked').attr('id');
-                var test2 = $('label[for="' + test1 + '"]').text();
-                $('#sel_login').val(test2);
-            } else {
-                var wa = $("input:radio[id='login_2']:checked").val();
-                $("#wk_sel_login").val(wa);
-                var test1 = $('[name="login"]:checked').attr('id');
-                var test2 = $('label[for="' + test1 + '"]').text();
-                $('#sel_login').val(test2);
-            }
-        });
+        // $("input:radio[name='login']").change(function () {
+        //     if ($("input:radio[id='login_1']:checked").val()) {
+        //         var wa = $("input:radio[id='login_1']:checked").val();
+        //         $("#wk_sel_login").val(wa);
+        //         var test1 = $('[name="login"]:checked').attr('id');
+        //         var test2 = $('label[for="' + test1 + '"]').text();
+        //         $('#sel_login').val(test2);
+        //     } else {
+        //         var wa = $("input:radio[id='login_2']:checked").val();
+        //         $("#wk_sel_login").val(wa);
+        //         var test1 = $('[name="login"]:checked').attr('id');
+        //         var test2 = $('label[for="' + test1 + '"]').text();
+        //         $('#sel_login').val(test2);
+        //     }
+        // });
 
         /************************
          * 2段階認証ボタンチェンジイベント
          ************************/
-        $("input:radio[name='auth']").change(function () {
-            if ($("input:radio[id='auth_1']:checked").val()) {
-                var wa = $("input:radio[id='auth_1']:checked").val();
-                $("#wk_sel_auth").val(wa);
-                var test1 = $('[name="auth"]:checked').attr('id');
-                var test2 = $('label[for="' + test1 + '"]').text();
-                $('#sel_auth').val(test2);
-            } else {
-                var wa = $("input:radio[id='auth_2']:checked").val();
-                $("#wk_sel_auth").val(wa);
-                var test1 = $('[name="auth"]:checked').attr('id');
-                var test2 = $('label[for="' + test1 + '"]').text();
-                $('#sel_auth').val(test2);
-            }
-        });
+        // $("input:radio[name='auth']").change(function () {
+        //     if ($("input:radio[id='auth_1']:checked").val()) {
+        //         var wa = $("input:radio[id='auth_1']:checked").val();
+        //         $("#wk_sel_auth").val(wa);
+        //         var test1 = $('[name="auth"]:checked').attr('id');
+        //         var test2 = $('label[for="' + test1 + '"]').text();
+        //         $('#sel_auth').val(test2);
+        //     } else {
+        //         var wa = $("input:radio[id='auth_2']:checked").val();
+        //         $("#wk_sel_auth").val(wa);
+        //         var test1 = $('[name="auth"]:checked').attr('id');
+        //         var test2 = $('label[for="' + test1 + '"]').text();
+        //         $('#sel_auth').val(test2);
+        //     }
+        // });
 
         /************************
          * 興味のある分野チェンジイベント
@@ -1213,7 +1136,7 @@
                 url: '../../classes/getTbkaiinJoho.php',
             }).done((rtn) => {
                 getTbkaiinJoho = JSON.parse(rtn);
-                //※正常に情報を取得できた時入力フォームに表示する            
+                //※正常に情報を取得できた時入力フォームに表示する
                 $('#kaiinSbt').val(getTbkaiinJoho[4]);
                 if (getTbkaiinJoho[4] == 1) {
                     $('#kaiinType').val('NSCA正会員');
@@ -1730,7 +1653,8 @@
                         wk_focus_done = 1;
                     }
                 }
-            }            //都道府県選択チェック
+            }
+            //都道府県選択チェック
             if ($("#address_todohuken").val() == 0) {
                 wk_err_msg == "";
                 wk_err_msg = "都道府県を選択してください。";
