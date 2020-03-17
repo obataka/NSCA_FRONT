@@ -235,7 +235,9 @@
 								<button class="button" type="button" id="apply_button1"><span>支払</span></button>
 								<span id="apply_kakunin1">確認テキストテキストテキスト</span>
 								<span class="list_text" id="apply_tetuzuki1">手続きテキストテキストテキスト</span>
+								<span><a id="apply_cancel1">キャンセルはこちら</a></span>
 								<button class="button" type="button" id="apply_shosai_button1"><span>詳細</span></button>
+								<span id="apply_shosai1">不合格</span>
 							</li>
 							<li class="list" id="apply_list2">
 								<span id="apply_naiyo2">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</span>
@@ -243,7 +245,9 @@
 								<button class="button" type="button" id="apply_button2"><span>支払番号表示</span></button>
 								<span class="list_text" id="apply_kakunin2">確認テキストテキストテキスト</span>
 								<span class="list_text" id="apply_tetuzuki2">手続きテキストテキストテキスト</span>
+								<span><a id="apply_cancel2">キャンセルはこちら</a></span>
 								<button class="button" type="button" id="apply_shosai_button2"><span>詳細</span></button>
+								<span id="apply_shosai2">不合格</span>
 							</li>
 							<li class="list" id="apply_list3">
 								<span id="apply_naiyo3">テキストテキストテキストテキスト</span>
@@ -251,7 +255,9 @@
 								<button class="button" type="button" id="apply_button3"><span>支払</span></button>
 								<span class="list_text" id="apply_kakunin3">確認テキストテキストテキスト</span>
 								<span class="list_text" id="apply_tetuzuki3">手続きテキストテキストテキスト</span>
+								<span><a id="apply_cancel3">キャンセルはこちら</a></span>
 								<button class="button" type="button" id="apply_shosai_button3"><span>詳細</span></button>
+								<span id="apply_shosai3">不合格</span>
 							</li>
 							<li class="list" id="apply_list4">
 								<span id="apply_naiyo4">テキストテキストテキストテキスト</span>
@@ -259,7 +265,9 @@
 								<button class="button" type="button" id="apply_button4"><span>支払</span></button>
 								<span class="list_text" id="apply_kakunin4">確認テキストテキストテキスト</span>
 								<span class="list_text" id="apply_tetuzuki4">手続きテキストテキストテキスト</span>
+								<span><a id="apply_cancel4">キャンセルはこちら</a></span>
 								<button class="button" type="button" id="apply_shosai_button4"><span>詳細</span></button>
+								<span id="apply_shosai4">不合格</span>
 							</li>
 						</ul>
 					</div>

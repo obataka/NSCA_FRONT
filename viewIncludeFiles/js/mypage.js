@@ -170,8 +170,15 @@ function getDataApplyList(){
 							$("#apply_list"+(i+1)).show();
 				            $("#apply_naiyo"+(i+1)).html(tbApplyJoho[i]["shutoku_naiyo"]);
 				            $("#apply_kakunin"+(i+1)).html(tbApplyJoho[i]["kakunin"]);
-				            $("#apply_tetuzuki"+(i+1)).html(tbApplyJoho[i]["tetuzuki"]);
-				            $("#apply_tetuzuki"+(i+1)).data('data_key',i);
+							if(tbApplyJoho[i]["tetuzuki"] == "キャンセルはこちら"){
+					            $("#apply_cancel"+(i+1)).show();
+					            $("#apply_cancel"+(i+1)).data('id',i);
+					            $("#apply_tetuzuki"+(i+1)).hide();
+							}else{
+					            $("#apply_cancel"+(i+1)).hide();
+					            $("#apply_tetuzuki"+(i+1)).html(tbApplyJoho[i]["tetuzuki"]);
+					            $("#apply_tetuzuki"+(i+1)).show();
+							}
 
 							if(tbApplyJoho[i]["shiharai_button"] != ""){
 					            $("#apply_button"+(i+1)).text(tbApplyJoho[i]["shiharai_button"]);
@@ -185,8 +192,16 @@ function getDataApplyList(){
 							}
 							if(tbApplyJoho[i]["shosai"] == ""){
 								$("#apply_shosai_button"+(i+1)).hide();
+								$("#apply_shosai"+(i+1)).hide();
 							}else{
-								$("#apply_shosai_button"+(i+1)).show();
+								if(tbApplyJoho[i]["shosai"] == "不合格"){
+									$("#apply_shosai_button"+(i+1)).hide();
+									$("#apply_shosai"+(i+1)).show();
+								}else{
+									$("#apply_shosai_button"+(i+1)).show();
+									$("#apply_shosai_button"+(i+1)).data('id',i);
+									$("#apply_shosai"+(i+1)).hide();
+								}
 							}
 							if(tbApplyJoho[i]["kakunin_class"] != ""){
 								$("#apply_kakunin"+(i+1)).addClass(tbApplyJoho[i]["kakunin_class"]);
@@ -223,7 +238,7 @@ function getDataPaymentList(pageNo){
             // 支払状況情報、該当なし
                 if (rtn == 0) {
 					$("#payment_list1").show();
-		            $("#payment_naiyo1").html("現在支払い情報がございません");
+		            $("#payment_naiyo1").html("今年度のお支払情報はございません");
 					$("#payment_button1").hide();
 					// イベント表示件数3件分ループ処理する
 					for(var i = 1; i < 4 ; i++) {
@@ -750,9 +765,15 @@ $('.event-buttons-area').on('click', 'button', function() {
 
 $('.apply-buttons-area').on('click', 'a', function() {
  
-alert($(this).attr("id"));
-//    $('#cancel_form').attr('action', '../entryCancel');
-//    $("#cancel_form").submit();
+	var i = $(this).data('id');
+	$("#id").val(tbApplyJoho[i]["id"]);
+	$("#settleno").val(tbApplyJoho[i]["settleno"]);
+	$("#ceu_id").val(tbApplyJoho[i]["ceu_id"]);
+	$("#event_kbn").val(tbApplyJoho[i]["event_kbn"]);
+	$("#shutoku_naiyo").val(tbApplyJoho[i]["shutoku_naiyo"]);
+
+    $('#cancel_form').attr('action', '../entryCancel');
+    $("#cancel_form").submit();
 
 });
 

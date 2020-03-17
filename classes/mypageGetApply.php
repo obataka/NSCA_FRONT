@@ -48,8 +48,8 @@ if (!empty($result_control)) {
 // 申込内容取得
 $result_apply = getMousikomiData($kaiin_no);
 if (!empty($result_apply)) {
-	// 申込状況をチェック
-	   error_log(print_r('申込状況をチェック--', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka2_log.txt');
+	// 物販のチェック
+	error_log(print_r('申込状況をチェック--', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka2_log.txt');
 	chkMousikomiData($result_apply);
 }
 
@@ -96,10 +96,11 @@ function getMousikomiData($kaiin_no) {
 
 }
 
-/**********************************************
- * 申込状況をチェック
+/**************************************************************
+ * 物販申込状況をチェック
+ * クレジットで決済までいかない場合はボタン非表示（再購入可能）
  * @params Array $result
- **********************************************/
+ **************************************************************/
 function chkMousikomiData($result) {
 
 	foreach ($result as $value) {
@@ -224,12 +225,15 @@ function createMousikomiData($result) {
 		$shosai = "";
 
 		if (empty($value['id']) || $value['id'] ==""){	// ID=null,0の場合は管理システム作成のため
+	   error_log(print_r('ID=null,0の場合は管理システム作成のため', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka2_log.txt');
 			$yokusei_Flg = TRUE;
 		}elseif($value['staff_kbn'] != 0){	// スタッフ区分<>0の場合（スタッフ）
+	   error_log(print_r('スタッフ区分<>0の場合', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka2_log.txt');
 			$yokusei_Flg = TRUE;
 //		}elseif(in_array($value['event_kbn'] , $array_event)){	
 		}elseif(in_array($value['event_kbn'] , array(40,41,42,60))){	
 		}elseif(empty($value['nonyu_kingaku'])){	// 配列のイベント区分以外で参加料null(0円)
+	   error_log(print_r('参加料null(0円)', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka2_log.txt');
 			$yokusei_Flg = TRUE;
 		}else{
 			// 経過時間チェック
@@ -262,6 +266,8 @@ function createMousikomiData($result) {
 //			        End If
 
 		}
+	   error_log(print_r('*-*-*-*-*-*-*-*-*-*-* 抑制flg *-*-*-*-*-*-*-*-*-*-*', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka2_log.txt');
+	   error_log(print_r($yokusei_Flg, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka2_log.txt');
 
 		if($yokusei_Flg == 0){ // ■ 開放(現行表示仕様) ===========================================
 			if(empty($value['nonyubi'])){
@@ -274,6 +280,7 @@ function createMousikomiData($result) {
 //                        lblNote.CssClass = "form-label text-danger"
 //                        lblComp.Visible = False
 			}else{
+				$kakunin = "入金を確認致しました。";
 //                        lblNote.Text = "入金を確認致しました。"
 //                        lblNote.Visible = True
 //                        lblNote.CssClass = String.Empty
@@ -380,7 +387,7 @@ function createMousikomiData($result) {
 				if(in_array($value['event_kbn'] , array(40,42,60))){
 //                            linkCancelBtn.Visible = False
 				}else{
-					$tetuzuki = "<a id='cancel_button'>キャンセルはこちら</a>";
+					$tetuzuki = "キャンセルはこちら";
 //                            linkCancelBtn.Visible = True
 				}
 			}else{ // キャンセル締切日が設定されている
@@ -480,6 +487,59 @@ function createMousikomiData($result) {
 					}
 		}
 
+		if(!empty($value['moshikomi_go_annai_url'])){
+			$shosai = $value['moshikomi_go_annai_url'];
+		}else{
+			//クイズの不合格かつ納入済みの場合、不合格表示に設定
+			if($value['gohi_kbn'] == "2" && !empty($value['nonyubi'])){
+				$shosai = "不合格";
+			}
+		}
+//                    ' 案内URLの表示切替
+//                    If e.Row.RowType = DataControlRowType.DataRow Then
+//                        ' 申込後・発送後詳細リンク表示のセル内ないのコントロールをチェック
+//                        For Each control As Control In e.Row.Cells(11).Controls
+//                            ' ハイパーリンクコントロールがあるかチェック
+//                            If TypeOf control Is System.Web.UI.WebControls.HyperLink Then
+//                                Dim link As System.Web.UI.WebControls.HyperLink = DirectCast(control, System.Web.UI.WebControls.HyperLink)
+//                                ' 申込後案内URLが取得されていなければ非表示
+//                                If String.IsNullOrEmpty(link.NavigateUrl) Then
+//                                    link.Visible = False
+//                                    'クイズの不合格かつ納入済みの場合、HiperLinkを強引に不合格表示に設定
+//                                    If e.Row.Cells(10).Text = "2" And e.Row.Cells(4).Text <> "&nbsp;" Then
+//                                        link.BackColor = Drawing.Color.Gray
+//                                        link.BorderColor = Drawing.Color.Gray
+//                                        link.Text = "不合格"
+//                                        link.Visible = True
+//                                        link.Enabled = False
+//                                        Exit For
+//                                    End If
+//                                End If
+
+//$value['event_kbn'] = "60"
+//            e.Row.Cells(4).Visible = False ' 納入日
+//            e.Row.Cells(18).Visible = False ' 名刺区分
+
+//                                ' 発送伝票番号があれば表示
+//                                If e.Row.Cells(12).Text = "60" Then
+//                                    ' 物品で未決済以外は詳細ボタンを表示する
+//                                    If e.Row.Cells(18).Text = "0" And e.Row.Cells(4).Text = "&nbsp;" Then
+//                                    Else
+//                                        ' リンク先指定
+//                                        link.NavigateUrl = "~/18_sales/SalesOrder.aspx " &
+//                                                    "?Menu=" & clsCommon.geumMenu.Menu_Sales &
+//                                                    "&Process=" & clsCommon.geumSalesProcess.Process_Member &
+//                                                    "&MemberID=" & ViewState("MemberID") &
+//                                                    "&SalesBuyID=" & e.Row.Cells(17).Text &
+//                                                    "&SalesKn=" & e.Row.Cells(18).Text
+//                                        link.Visible = True
+//                                        ' 別タブで開かないように制御する
+//                                        link.Target = String.Empty
+//                                    End If
+//                                    Exit For
+//                                End If
+
+//                            End If
 
 
 
