@@ -235,7 +235,7 @@
 								<button class="button" type="button" id="apply_button1"><span>支払</span></button>
 								<span id="apply_kakunin1">確認テキストテキストテキスト</span>
 								<span class="list_text" id="apply_tetuzuki1">手続きテキストテキストテキスト</span>
-								<span><a id="apply_cancel1">キャンセルはこちら</a></span>
+								<span><a id="apply_procedures1">キャンセルはこちら</a></span>
 								<button class="button" type="button" id="apply_shosai_button1"><span>詳細</span></button>
 								<span id="apply_shosai1">不合格</span>
 							</li>
@@ -245,7 +245,7 @@
 								<button class="button" type="button" id="apply_button2"><span>支払番号表示</span></button>
 								<span class="list_text" id="apply_kakunin2">確認テキストテキストテキスト</span>
 								<span class="list_text" id="apply_tetuzuki2">手続きテキストテキストテキスト</span>
-								<span><a id="apply_cancel2">キャンセルはこちら</a></span>
+								<span><a id="apply_procedures2">キャンセルはこちら</a></span>
 								<button class="button" type="button" id="apply_shosai_button2"><span>詳細</span></button>
 								<span id="apply_shosai2">不合格</span>
 							</li>
@@ -255,7 +255,7 @@
 								<button class="button" type="button" id="apply_button3"><span>支払</span></button>
 								<span class="list_text" id="apply_kakunin3">確認テキストテキストテキスト</span>
 								<span class="list_text" id="apply_tetuzuki3">手続きテキストテキストテキスト</span>
-								<span><a id="apply_cancel3">キャンセルはこちら</a></span>
+								<span><a id="apply_procedures3">キャンセルはこちら</a></span>
 								<button class="button" type="button" id="apply_shosai_button3"><span>詳細</span></button>
 								<span id="apply_shosai3">不合格</span>
 							</li>
@@ -265,7 +265,7 @@
 								<button class="button" type="button" id="apply_button4"><span>支払</span></button>
 								<span class="list_text" id="apply_kakunin4">確認テキストテキストテキスト</span>
 								<span class="list_text" id="apply_tetuzuki4">手続きテキストテキストテキスト</span>
-								<span><a id="apply_cancel4">キャンセルはこちら</a></span>
+								<span><a id="apply_procedures4">キャンセルはこちら</a></span>
 								<button class="button" type="button" id="apply_shosai_button4"><span>詳細</span></button>
 								<span id="apply_shosai4">不合格</span>
 							</li>

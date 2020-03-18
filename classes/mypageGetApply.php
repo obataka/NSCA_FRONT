@@ -61,14 +61,6 @@ if (!empty($result_apply2)) {
 }
 
 
-// 名刺データ取得
-//	$result_meishi = (new Tb_hambai_konyusha_joho_meisai())->findMeishiJohoByKaiinNo($kaiin_no);
-//if (!empty($result_meishi)) {
-	// 画面表示データ作成
-//	$result_array = createMousikomiMeishiData($result_meishi);
-//}
-
-
 	   error_log(print_r($result_array, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka2_log.txt');
 
 
@@ -209,14 +201,16 @@ function chkMousikomiData($result) {
  **********************************************/
 function createMousikomiData($result) {
 	$result_array = [];
+	$etc_id_array = [];
 	global $kessai_check_jikan;
+	global $kaiin_no;
 
 	$array_event = array(40,41,42,60);		// イベント区分=40、41、42、60（会費・CEU報告・英文オプション・物販）
 	   error_log(print_r('画面表示データ作成', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka2_log.txt');
 
 
 	foreach ($result as $value) {
-		$yokusei_Flg = FALSE;
+		$yokusei_Flg = 0;
 		$shiharai_button = "";
 		$shiharai = "";
 		$kakunin = "";
@@ -226,15 +220,15 @@ function createMousikomiData($result) {
 
 		if (empty($value['id']) || $value['id'] ==""){	// ID=null,0の場合は管理システム作成のため
 	   error_log(print_r('ID=null,0の場合は管理システム作成のため', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka2_log.txt');
-			$yokusei_Flg = TRUE;
+			$yokusei_Flg = 0;
 		}elseif($value['staff_kbn'] != 0){	// スタッフ区分<>0の場合（スタッフ）
 	   error_log(print_r('スタッフ区分<>0の場合', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka2_log.txt');
-			$yokusei_Flg = TRUE;
+			$yokusei_Flg = 0;
 //		}elseif(in_array($value['event_kbn'] , $array_event)){	
 		}elseif(in_array($value['event_kbn'] , array(40,41,42,60))){	
 		}elseif(empty($value['nonyu_kingaku'])){	// 配列のイベント区分以外で参加料null(0円)
 	   error_log(print_r('参加料null(0円)', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka2_log.txt');
-			$yokusei_Flg = TRUE;
+			$yokusei_Flg = 0;
 		}else{
 			// 経過時間チェック
 			// ■ 抑制時間(分)はcm_controlの決済チェック時間
@@ -419,31 +413,45 @@ function createMousikomiData($result) {
 					break;
 			case 60:			// 物販
 
+				//既に同じ購入IDのデータがある場合は支払ボタン非表示
+				// VIEWの支払ボタン区分が実装できなかったため
+				if(in_array($value['etc_id'],$etc_id_array)){
+					$shiharai_button = "";
+				}else{
+					array_push($etc_id_array,$value['etc_id']);
+				}
 
-// VIEWの支払ボタン区分が実装できず************
-// etc_id を配列で持ち、配列の中に同じetc_idがあるかどうかチェックする
-// 存在しない→支払ボタン表示　存在する→支払ボタン非表示
-// 支払ボタンは物販（イベント区分=60）のみ
+		   error_log(print_r('++++++物販+++++', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka5_log.txt');
+		   error_log(print_r($value['buppan_kbn'], true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka5_log.txt');
+		   error_log(print_r($value['hasso_dempyo_no'], true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka5_log.txt');
+		   error_log(print_r($value['nonyubi'], true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka5_log.txt');
+
+		//       ' ■手続き欄(名刺入力)
+		//      ' 名刺の申込ボタンは、1名刺で、未発送で、決済後なら表示
+				if($value['buppan_kbn'] == 1){	// 物販区分=1（名刺）の場合
+				//発送伝票番号=null、納入日!=null、購入ID
+					if(empty($value['hasso_dempyo_no']) && !empty($value['nonyubi'])){ // 発送前
+
+						// 会員番号、購入IDから購入者情報（名刺）データ取得
+						$result_meishi = (new Tb_hambai_konyusha_joho_meisai())->findMeishiJohoByKaiinNoKonyuId($kaiin_no,$value['etc_id']);
+						if (!empty($result_meishi)) {
+							// 【名刺入力フォーム】リンク表示
+							$tetuzuki = "名刺入力フォーム";
+						//	$result_array = createMousikomiMeishiData($result_meishi);
+						}
 
 
-//                            ' ■支払欄
-//                            If e.Row.Cells(19).Text <> "1" Then    支払ボタン区分
-//                                Dim lbtnPayment As LinkButton = DirectCast(e.Row.FindControl("lbtnPayment"), LinkButton)
-//                                lbtnPayment.Visible = False
-//                            End If
 
-
-//       ' ■手続き欄(名刺入力)
-//      ' 名刺の申込ボタンは、1名刺で、未発送で、決済後なら表示
-		if($value['buppan_kbn'] == 1){	// 物販区分=1（名刺）の場合
-		//発送伝票番号=null、納入日!=null、購入ID
-
-
-// 【名刺入力フォーム】リンク　名刺データの購入IDで購入者情報を検索　*************************
-//　物販区分はTB経理情報.経理種目CD2=03→1　で判断しているので、TB販売情報.販売区分IN (7,8)で存在するか確認
+				// 【名刺入力フォーム】リンク　名刺データの購入IDで購入者情報を検索　*************************
+				//　物販区分はTB経理情報.経理種目CD2=03→1　で判断しているので、TB販売情報.販売区分IN (7,8)で存在するか確認
 			
+	//            e.Row.Cells(4).Visible = False ' 納入日
+	//            e.Row.Cells(16).Visible = False ' 発送伝票番号
+	//            e.Row.Cells(18).Visible = False ' 名刺区分
 
-		}
+					}
+				}
+		
 //                            If e.Row.Cells(18).Text = "1" And e.Row.Cells(16).Text = "&nbsp;" And e.Row.Cells(4).Text <> "&nbsp;" Then
 //                                ' 購入IDがあるかチェック
 //                                Dim dtSalesCard As DataTable = DirectCast(ViewState("EntrySalesCard"), DataTable)

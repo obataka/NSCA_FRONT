@@ -170,12 +170,13 @@ function getDataApplyList(){
 							$("#apply_list"+(i+1)).show();
 				            $("#apply_naiyo"+(i+1)).html(tbApplyJoho[i]["shutoku_naiyo"]);
 				            $("#apply_kakunin"+(i+1)).html(tbApplyJoho[i]["kakunin"]);
-							if(tbApplyJoho[i]["tetuzuki"] == "キャンセルはこちら"){
-					            $("#apply_cancel"+(i+1)).show();
-					            $("#apply_cancel"+(i+1)).data('id',i);
+							if(tbApplyJoho[i]["tetuzuki"] != ""){
+					            $("#apply_procedures"+(i+1)).show();
+					            $("#apply_procedures"+(i+1)).html(tbApplyJoho[i]["tetuzuki"]);
+					            $("#apply_procedures"+(i+1)).data('id',i);
 					            $("#apply_tetuzuki"+(i+1)).hide();
 							}else{
-					            $("#apply_cancel"+(i+1)).hide();
+					            $("#apply_procedures"+(i+1)).hide();
 					            $("#apply_tetuzuki"+(i+1)).html(tbApplyJoho[i]["tetuzuki"]);
 					            $("#apply_tetuzuki"+(i+1)).show();
 							}
@@ -737,7 +738,7 @@ $('.info-buttons-area').on('click', 'button', function() {
 });
 
 /************************************************************
-	*もっと見る（イベント）　リンク押下時
+	*イベント情報　もっと見るリンク押下時
 *************************************************************/
 
 $('#goSeminarList').on('click', function() {
@@ -747,7 +748,7 @@ $('#goSeminarList').on('click', function() {
 });
 
 /************************************************************
-	*お申込（イベント）　ボタン押下時
+	*イベント情報　お申込ボタン押下時
 *************************************************************/
 
 $('.event-buttons-area').on('click', 'button', function() {
@@ -765,6 +766,7 @@ $('.event-buttons-area').on('click', 'button', function() {
 
 $('.apply-buttons-area').on('click', 'a', function() {
  
+alert($(this).text());
 	var i = $(this).data('id');
 	$("#id").val(tbApplyJoho[i]["id"]);
 	$("#settleno").val(tbApplyJoho[i]["settleno"]);
