@@ -49,41 +49,41 @@
         ***************************************************************/
         //月日セレクトボックス
         var sel_month = $('#sel_month').val();
-        if (sel_month != "") {
+        if (sel_month) {
             $('#month').val(sel_month);
         }
         var sel_day = $('#sel_day').val();
-        if (sel_day != "") {
+        if (sel_day) {
             $('#day').val(sel_day);
         }
 
         // 性別ラジオボタン
         var wk_sel_gender = $('#wk_sel_gender').val();
-        if (wk_sel_gender != "") {
+        if (wk_sel_gender) {
             $('input:radio[name="gender"]').val([wk_sel_gender]);
         }
 
         //メール受信希望のメールアドレスボタン
         var mail_login = $('#mail_login').val();
-        if (mail_login != "") {
+        if (mail_login) {
             $('input:radio[name="mail"]').val([mail_login]);
         }
 
         //ログイン希望のメールアドレスボタン
         var wk_sel_mail_login = $('#wk_sel_mail_login').val();
-        if (wk_sel_mail_login != "") {
+        if (wk_sel_mail_login) {
             $('input:radio[name="mail_login"]').val([wk_sel_mail_login]);
         }
 
         //メルマガ受信希望ボタン
         var wk_sel_merumaga = $('#merumaga').val();
-        if (wk_sel_merumaga != "") {
+        if (wk_sel_merumaga) {
             $('input:radio[name="merumaga"]').val([wk_sel_merumaga]);
         }
 
         //連絡方法希望ボタン
         var wk_sel_hoho = $('#hoho').val();
-        if (wk_sel_hoho != "") {
+        if (wk_sel_hoho) {
             $('input:radio[name="hoho"]').val([wk_sel_hoho]);
         }
 
@@ -610,10 +610,7 @@
                         wk_focus_done = 1;
                     }
                 }
-            } else {
-                var test2 = $("#address_yubin_nb_1").val() + $("#yubin_nb_2").val();
-
-            }
+            } 
 
             //都道府県選択チェック
             if ($("#address_todohuken").val() == 0) {
@@ -740,7 +737,6 @@
                         $("#mail_address_1").focus();
                         wk_focus_done = 1;
                     }
-                    return false;
                 }
 
                 // 末尾TLDチェック（〜.co,jpなどの末尾ミスチェック用）
@@ -756,7 +752,16 @@
                         $("#mail_address_1").focus();
                         wk_focus_done = 1;
                     }
-                    return false;
+                }
+            } else {
+                wk_err_msg == "";
+                wk_err_msg = "メールアドレスに使用する文字を正しく入力してください。";
+                $("#err_mail_address_1").html(wk_err_msg);
+
+                //エラー箇所にフォーカスを当てる
+                if (wk_focus_done == 0) {
+                    $("#mail_address_1").focus();
+                    wk_focus_done = 1;
                 }
             }
 
@@ -776,8 +781,6 @@
                         $("#mail_address_2").focus();
                         wk_focus_done = 1;
                     }
-
-                    return false;
                 }
 
                 // 末尾TLDチェック（〜.co,jpなどの末尾ミスチェック用）
@@ -793,7 +796,16 @@
                         $("#mail_address_2").focus();
                         wk_focus_done = 1;
                     }
-                    return false;
+                }
+            } else {
+                wk_err_msg == "";
+                wk_err_msg = "メールアドレスに使用する文字を正しく入力してください。";
+                $("#err_mail_address_1").html(wk_err_msg);
+
+                //エラー箇所にフォーカスを当てる
+                if (wk_focus_done == 0) {
+                    $("#mail_address_2").focus();
+                    wk_focus_done = 1;
                 }
             }
 

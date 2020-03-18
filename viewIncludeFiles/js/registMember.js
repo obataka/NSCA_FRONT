@@ -230,13 +230,13 @@
          ***************************************************************/
         //英文購読オプション
         var wk_sel_option = $('#wk_sel_option').val();
-        if (wk_sel_option != "") {
+        if (wk_sel_option) {
             $('input[name="option"]').prop("checked", true);
         }
 
         //入会理由
         var sel_riyu = $('#sel_riyu').val();
-        if (sel_riyu != "") {
+        if (sel_riyu) {
             if (sel_riyu == "ストレングス＆コンディショニングの知識・指導技術向上のため") {
                 $('#riyu_1').prop("checked", true);
             } else if (sel_riyu == "資格認定試験受験および認定保持のため") {
@@ -254,53 +254,53 @@
 
         //NSCA認定資格の保持
         var wk_sel_hoji = $('#wk_sel_hoji').val();
-        if (wk_sel_hoji != "") {
+        if (wk_sel_hoji) {
             $('input[name="nsca_hoji"]').prop("checked", true);
         }
 
         //月日セレクトボックス
         var sel_month = $('#sel_month').val();
-        if (sel_month != "") {
+        if (sel_month) {
             $('#month').val(sel_month);
         }
         var sel_day = $('#sel_day').val();
-        if (sel_day != "") {
+        if (sel_day) {
             $('#day').val(sel_day);
         }
 
         //性別ラジオボタン
         var wk_sel_gender = $('#wk_sel_gender').val();
-        if (wk_sel_gender != "") {
+        if (wk_sel_gender) {
             $('input:radio[name="gender"]').val([wk_sel_gender]);
         }
 
         //流山市民のチェック
         var wk_sel_nagareyama = $('#wk_sel_nagareyama').val();
-        if (wk_sel_nagareyama != "") {
+        if (wk_sel_nagareyama) {
             $('input[name="nagareyama"]').prop("checked", true);
         }
 
         //ログイン希望のメールアドレスボタン
         var wk_sel_mail_login = $('#wk_sel_mail_login').val();
-        if (wk_sel_mail_login != "") {
+        if (wk_sel_mail_login) {
             $('input:radio[name="mail_login"]').val([wk_sel_mail_login]);
         }
 
         //メール受信希望のメールアドレスボタン
         var wk_sel_mail = $('#wk_sel_mail').val();
-        if (wk_sel_mail != "") {
+        if (wk_sel_mail) {
             $('input:radio[name="mail"]').val([wk_sel_mail]);
         }
 
         //メルマガ受信希望ボタン
         var wk_sel_merumaga = $('#wk_sel_merumaga').val();
-        if (wk_sel_merumaga != "") {
+        if (wk_sel_merumaga) {
             $('input:radio[name="merumaga"]').val([wk_sel_merumaga]);
         }
 
         //連絡方法希望ボタン
         var sel_hoho = $('#sel_hoho').val();
-        if (sel_hoho != "") {
+        if (sel_hoho) {
             if (sel_hoho == "メールでお知らせ") {
                 $('#hoho_1').prop("checked", true);
             } else if (sel_hoho == "郵便でお知らせ") {
@@ -310,7 +310,7 @@
 
         //郵便配達先希望ボタン
         var sel_yubin = $('#sel_yubin').val();
-        if (sel_yubin != "") {
+        if (sel_yubin) {
             if (sel_yubin == "自宅") {
                 $('#yubin_1').prop("checked", true);
             } else if (sel_yubin == "勤務先／所属先") {
@@ -320,7 +320,7 @@
 
         //ウェブサイト記載ボタン
         var sel_web = $('#sel_web').val();
-        if (sel_web != "") {
+        if (sel_web) {
             if (sel_web == "希望する") {
                 $('#web_1').prop("checked", true);
             } else if (sel_web == "希望しない") {
@@ -330,7 +330,7 @@
 
         //アンケート協力ボタン
         var sel_qa = $('#sel_qa').val();
-        if (sel_qa != "") {
+        if (sel_qa) {
             if (sel_qa == "協力する") {
                 $('#qa_1').prop("checked", true);
             } else if (sel_qa == "協力しない") {
@@ -951,9 +951,11 @@
             $("#err_keitai_tel").html("");
             $("#err_fax").html("");
             $("#err_mail_address_1").html("");
+            $("#err_mail_1").html("");
+            $("#err_mail_login_1").html("");
             $("#err_mail_address_2").html("");
-            $("#err_mail").html("");
-            $("#err_mail_login").html("");
+            $("#err_mail_2").html("");
+            $("#err_mail_login_2").html("");
             $("#err_merumaga").html("");
             $("#err_pass_1").html("");
             $("#err_pass_2").html("");
@@ -1342,22 +1344,30 @@
                         $("#mail_address_1").focus();
                         wk_focus_done = 1;
                     }
-                    return false;
                 }
                 // 末尾TLDチェック（〜.co,jpなどの末尾ミスチェック用）
                 if (!$("#mail_address_1").val().match(/\.[a-z]+$/)) {
                     //TDLエラー
                     wk_err_msg == "";
                     wk_err_msg = "メールアドレスの形式が不正です。";
-                    $("#err_mail_address_1").html(wk_err_msg);
+                    $("#err_mail_login_1").html(wk_err_msg);
                     //エラー箇所にフォーカスを当てる
                     if (wk_focus_done == 0) {
                         $("#mail_address_1").focus();
                         wk_focus_done = 1;
                     }
-                    return false;
+                }
+            } else {
+                wk_err_msg == "";
+                wk_err_msg = "メールアドレスに使用する文字を正しく入力してください。";
+                $("#err_mail_address_1").html(wk_err_msg);
+                //エラー箇所にフォーカスを当てる
+                if (wk_focus_done == 0) {
+                    $("#mail_address_1").focus();
+                    wk_focus_done = 1;
                 }
             }
+
             //メールアドレス2形式チェック　
             var mail_regex1 = new RegExp('(?:[-!#-\'*+/-9=?A-Z^-~]+\.?(?:\.[-!#-\'*+/-9=?A-Z^-~]+)*|"(?:[!#-\[\]-~]|\\\\[\x09 -~])*")@[-!#-\'*+/-9=?A-Z^-~]+(?:\.[-!#-\'*+/-9=?A-Z^-~]+)*');
             var mail_regex2 = new RegExp('^[^\@]+\@[^\@]+$');
@@ -1366,26 +1376,33 @@
                 if ($("#mail_address_2").val().match(/[^a-zA-Z0-9\!\"\#\$\%\&\'\(\)\=\~\|\-\^\\\@\[\;\:\]\,\.\/\\\<\>\?\_\`\{\+\*\} ]/)) {
                     wk_err_msg == "";
                     wk_err_msg = "メールアドレスに使用する文字を正しく入力してください。";
-                    $("#err_mail_address_1").html(wk_err_msg);
+                    $("#err_mail_address_2").html(wk_err_msg);
                     //エラー箇所にフォーカスを当てる
                     if (wk_focus_done == 0) {
                         $("#mail_address_2").focus();
                         wk_focus_done = 1;
                     }
-                    return false;
                 }
                 // 末尾TLDチェック（〜.co,jpなどの末尾ミスチェック用）
                 if (!$("#mail_address_2").val().match(/\.[a-z]+$/)) {
                     //TDLエラー
                     wk_err_msg == "";
                     wk_err_msg = "メールアドレスの形式が不正です。";
-                    $("#err_mail_address_1").html(wk_err_msg);
+                    $("#err_mail_login_2").html(wk_err_msg);
                     //エラー箇所にフォーカスを当てる
                     if (wk_focus_done == 0) {
                         $("#mail_address_2").focus();
                         wk_focus_done = 1;
                     }
-                    return false;
+                }
+            } else {
+                wk_err_msg == "";
+                wk_err_msg = "メールアドレスに使用する文字を正しく入力してください。";
+                $("#err_mail_address_2").html(wk_err_msg);
+                //エラー箇所にフォーカスを当てる
+                if (wk_focus_done == 0) {
+                    $("#mail_address_2").focus();
+                    wk_focus_done = 1;
                 }
             }
 
@@ -1406,7 +1423,7 @@
                         //登録済みの場合エラーメッセージを表示
                         wk_err_msg == "";
                         wk_err_msg = "すでにご登録頂いているメールアドレス1です。";
-                        $("#err_mail").html(wk_err_msg);
+                        $("#err_mail_1").html(wk_err_msg);
                         //エラー箇所にフォーカスを当てる
                         if (wk_focus_done == 0) {
                             $("#mail_address_1").focus();
@@ -1435,7 +1452,7 @@
                         //登録済みの場合エラーメッセージを表示
                         wk_err_msg == "";
                         wk_err_msg = "すでにご登録頂いているメールアドレス2です。";
-                        $("#err_mail").html(wk_err_msg);
+                        $("#err_mail_2").html(wk_err_msg);
                         //エラー箇所にフォーカスを当てる
                         if (wk_focus_done == 0) {
                             $("#mail_address_2").focus();
@@ -1453,6 +1470,7 @@
                 wk_err_msg == "";
                 wk_err_msg = "メールアドレス1またはメールアドレス2のいずれかを入力してください。";
                 $("#err_mail_address_1").html(wk_err_msg);
+                $("#err_mail_address_2").html(wk_err_msg);
                 //エラー箇所にフォーカスを当てる
                 if (wk_focus_done == 0) {
                     $("#mail_address_1").focus();
@@ -1465,6 +1483,7 @@
                 //チェックされていない場合
                 wk_err_msg == "";
                 wk_err_msg = "ログインする時のメールアドレスを選択してください。";
+                $("#err_mail_address_1").html(wk_err_msg);
                 $("#err_mail_address_2").html(wk_err_msg);
             }
 
@@ -1473,7 +1492,7 @@
                 if ($('#mail_address_1').val() !== "") {
                     wk_err_msg == "";
                     wk_err_msg = "メール受信とログイン時にお使いにならないメールアドレス1を削除してください。";
-                    $("#err_mail_address_2").html(wk_err_msg);
+                    $("#err_mail_address_1").html(wk_err_msg);
                 }
             }
 
@@ -1491,7 +1510,7 @@
                 if (!$('#mail_address_1').val()) {
                     wk_err_msg == "";
                     wk_err_msg = "ログイン時のメールアドレスを入力してください。";
-                    $("#err_mail_address_2").html(wk_err_msg);
+                    $("#err_mail_address_1").html(wk_err_msg);
                 }
             }
 
@@ -1505,7 +1524,7 @@
             }
 
             //メール受信希望未選択チェック
-            if (!$("input:radio[name='mail']:checked").val()) {   
+            if (!$("input:radio[name='mail']:checked").val()) {
                 //チェックされていない場合
                 wk_err_msg == "";
                 wk_err_msg = "メール受信希望のメールアドレスを選択してください。";
@@ -1513,7 +1532,7 @@
             }
 
             //メール受信希望1選択時チェック
-            if ($('input[id="mail_1"]').prop('checked')) {   
+            if ($('input[id="mail_1"]').prop('checked')) {
                 if ($("#mail_address_1").val() == "") {
                     $("#err_mail_address_2").html("");
                     wk_err_msg == "";
@@ -1530,7 +1549,7 @@
                     $("#err_mail_address_2").html(wk_err_msg);
                 }
             }
-            
+
             //メルマガ受信希望選択チェック
             if (!$('input:radio[name="merumaga"]:checked').val()) {
                 //チェックされていない場合

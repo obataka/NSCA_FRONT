@@ -457,7 +457,7 @@
 				</div>
 				<section class="btn_wrap">
 					<button class="button btn_gray" type="button" value="" onclick="location.href='#'"><span>クリア</span></button>
-					<button class="button" type="button" id="next_button" value=""><span>次へ</span></button>
+					<button class="button" type="button" id="next_button" value="" ><span>次へ</span></button>
 				</section>
 			</form>
 			

@@ -30,7 +30,7 @@
                     var test = $('#sel_math').val();
 
                     // 選択済みの都道府県がある場合
-                    if (test != "") {
+                    if (test) {
                         $('#address_todohuken').val(test);
                     }
                 }
@@ -222,35 +222,35 @@
 
         //月日セレクトボックス
         var sel_month = $('#sel_month').val();
-        if (sel_month != "") {
+        if (sel_month) {
             $('#month').val(sel_month);
         }
         var sel_day = $('#sel_day').val();
-        if (sel_day != "") {
+        if (sel_day) {
             $('#day').val(sel_day);
         }
 
         // 性別ラジオボタン
         var wk_sel_gender = $('#wk_sel_gender').val();
-        if (wk_sel_gender != "") {
+        if (wk_sel_gender) {
             $('input:radio[name="gender"]').val([wk_sel_gender]);
         }
 
         //メール受信希望のメールアドレスボタン
         var wk_sel_mail = $('#mail').val();
-        if (wk_sel_mail != "") {
+        if (wk_sel_mail) {
             $('input:radio[name="mail"]').val([wk_sel_mail]);
         }
 
         //メルマガ受信希望ボタン
         var wk_sel_merumaga = $('#merumaga').val();
-        if (wk_sel_merumaga != "") {
+        if (wk_sel_merumaga) {
             $('input:radio[name="merumaga"]').val([wk_sel_merumaga]);
         }
 
         //連絡方法希望ボタン
         var wk_sel_hoho = $('#hoho').val();
-        if (wk_sel_hoho != "") {
+        if (wk_sel_hoho) {
             $('input:radio[name="hoho"]').val([wk_sel_hoho]);
         }
         /********************************
