@@ -60,9 +60,7 @@ if (!empty($result_apply2)) {
 	$result_array = createMousikomiData($result_apply2);
 }
 
-
 	   error_log(print_r($result_array, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka2_log.txt');
-
 
     $ret = json_encode($result_array);
 
@@ -125,7 +123,7 @@ function chkMousikomiData($result) {
 					 $retStatus = "3";
 
 					if($retResult == "OK"){
-	                 // 取引ステータス区分のチェック
+						// 取引ステータス区分のチェック
 						if($retStatus == "3" || $retStatus == "4"){
 							// *********************************************************************************
 							// トランザクション開始
@@ -216,7 +214,9 @@ function createMousikomiData($result) {
 		$kakunin = "";
 		$kakunin_class = "";
 		$tetuzuki = "";
+		$tetuzuki_link = "";
 		$shosai = "";
+		$shosai_url = "";
 
 		if (empty($value['id']) || $value['id'] ==""){	// ID=null,0の場合は管理システム作成のため
 	   error_log(print_r('ID=null,0の場合は管理システム作成のため', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka2_log.txt');
@@ -224,7 +224,6 @@ function createMousikomiData($result) {
 		}elseif($value['staff_kbn'] != 0){	// スタッフ区分<>0の場合（スタッフ）
 	   error_log(print_r('スタッフ区分<>0の場合', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka2_log.txt');
 			$yokusei_Flg = 0;
-//		}elseif(in_array($value['event_kbn'] , $array_event)){	
 		}elseif(in_array($value['event_kbn'] , array(40,41,42,60))){	
 		}elseif(empty($value['nonyu_kingaku'])){	// 配列のイベント区分以外で参加料null(0円)
 	   error_log(print_r('参加料null(0円)', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka2_log.txt');
@@ -268,17 +267,10 @@ function createMousikomiData($result) {
 				$shiharai_button = "支払い";
 				$kakunin = "支払方法を選択してご入金お願いします。";
 				$kakunin_class = "text-danger";
-//                        lbtnPayment.Visible = True
-//                        lblNote.Text = "支払方法を選択してご入金お願いします。"
-//                        lblNote.Visible = True
-//                        lblNote.CssClass = "form-label text-danger"
-//                        lblComp.Visible = False
+				$shiharai = "";
 			}else{
 				$kakunin = "入金を確認致しました。";
-//                        lblNote.Text = "入金を確認致しました。"
-//                        lblNote.Visible = True
-//                        lblNote.CssClass = String.Empty
-//                        lblComp.Visible = True
+				$shiharai = "済";
 			}
 	//     ' 経理IDがない場合は管理システムから追加された参加者データとする
 	//     ' 12/2現在対応が完了しているのはセミナーのみの為、セミナー以外は支払ボタンを非表示とする
@@ -295,32 +287,21 @@ function createMousikomiData($result) {
 							if($value['nonyu_hoho_kbn'] == 2){ // コンビニ
 								if(empty($value['nonyubi'])){
 										$kakunin = "コンビ二からのご入金お願いします。";
-//                                        lblNote.Text = "コンビ二からのご入金お願いします。"
 								}else{
 										$kakunin = "コンビ二からの入金を確認致しました。";
-//                                        lblNote.Text = "コンビ二からの入金を確認致しました。"
 								}
-//                                    lblNote.Visible = True
 							}elseif($value['nonyu_hoho_kbn'] == 4){ // Payeasy
 								if(empty($value['nonyubi'])){
 										$kakunin = "金融機関(Pay-easy)からのご入金お願いします。";
-//                                        lblNote.Text = "金融機関(Pay-easy)からのご入金お願いします。"
 								}else{
 										$kakunin = "金融機関(Pay-easy)からの入金を確認致しました。";
-//                                        lblNote.Text = "金融機関(Pay-easy)からの入金を確認致しました。"
 								}
-//                                    lblNote.Visible = True
-
 							}elseif($value['nonyu_hoho_kbn'] == 1){ // Card
 								if(empty($value['nonyubi'])){
 										$kakunin = "支払方法を選択してご入金お願いします。";
-//                                        lblNote.Text = "支払方法を選択してご入金お願いします。"
 								}else{
 										$kakunin = "金融機関(クレジット)からの入金を確認致しました。";
-//                                        lblNote.Text = "金融機関(クレジット)からの入金を確認致しました。"
 								}
-//                                    lblNote.Visible = True
-
 							}
 							break;
 
@@ -329,17 +310,11 @@ function createMousikomiData($result) {
 							if(empty($value['nonyubi'])){
 										$kakunin = "支払方法が不明な場合はお問い合わせください。";
 										$kakunin_class = "text-danger";
-//                                    lblNote.Text = "支払方法が不明な場合はお問い合わせください。"
-//                                    lblNote.Visible = True
-//                                    lblNote.CssClass = "form-label text-danger"
-//                                    lblComp.Visible = False
+										$shiharai = "";
 							}else{
 										$kakunin = "入金を確認致しました。";
-//                                    lblNote.Text = "入金を確認致しました。"
-//                                    lblNote.Visible = True
-//                                    lblNote.CssClass = String.Empty
+										$kakunin_class = "";
 										$shiharai = "済";
-//                                    lblComp.Visible = True
 							}
 				}
 			}else{ // ■ID(伝票番号)が取得できた場合
@@ -347,64 +322,52 @@ function createMousikomiData($result) {
 				if($value['nonyu_hoho_kbn'] == 2){ // コンビニ
 					if(empty($value['nonyubi'])){
 						$kakunin = "コンビ二からのご入金お願いします。";
-//                                        lblNote.Text = "コンビ二からのご入金お願いします。"
 					}else{
 						$kakunin = "コンビ二からの入金を確認致しました。";
-//                                        lblNote.Text = "コンビ二からの入金を確認致しました。"
 					}
-//                                    lblNote.Visible = True
 				}elseif($value['nonyu_hoho_kbn'] == 4){ // Payeasy
 					if(empty($value['nonyubi'])){
 						$kakunin = "金融機関(Pay-easy)からのご入金お願いします。";
-//                                        lblNote.Text = "金融機関(Pay-easy)からのご入金お願いします。"
 					}else{
 						$kakunin = "金融機関(Pay-easy)からの入金を確認致しました。";
-//                                        lblNote.Text = "金融機関(Pay-easy)からの入金を確認致しました。"
 					}
-//                                    lblNote.Visible = True
 
 				}elseif($value['nonyu_hoho_kbn'] == 1){ // Card
 					if(empty($value['nonyubi'])){
 						$kakunin = "支払方法を選択してご入金お願いします。";
-//                                        lblNote.Text = "支払方法を選択してご入金お願いします。"
 					}else{
 						$kakunin = "金融機関(クレジット)からの入金を確認致しました。";
-//                                        lblNote.Text = "金融機関(クレジット)からの入金を確認致しました。"
 					}
-//                                    lblNote.Visible = True
 				}  
 			}  
 
-           // キャンセルボタンの表示切替制御
+			// キャンセルボタンの表示切替制御
 			if(empty($value['cancel_shimekiribi'])){ // キャンセル締切日が設定されていない
-                 // イベント区分(継続・英文オプション・物販にキャンセルボタンを表示しない)
+				// イベント区分(継続・英文オプション・物販にキャンセルボタンを表示しない)
 				if(in_array($value['event_kbn'] , array(40,42,60))){
-//                            linkCancelBtn.Visible = False
+					$tetuzuki_link = "";
 				}else{
-					$tetuzuki = "キャンセルはこちら";
-//                            linkCancelBtn.Visible = True
+					$tetuzuki_link = "キャンセルはこちら";
 				}
 			}else{ // キャンセル締切日が設定されている
-                        //キャンセル締切日を過ぎていればキャンセルボタンを非表示
+				//キャンセル締切日を過ぎていればキャンセルボタンを非表示
 				if($value['cancel_shimekiribi'] < date("Y/m/d")){
-//                            linkCancelBtn.Visible = False
+					$tetuzuki_link = "";
+				}else{
+					$tetuzuki_link = "キャンセルはこちら";
 				}
 			}
 
-//      スタッフ(講師、アシスタント、ボランティア)での表示切替
+		// スタッフ(講師、アシスタント、ボランティア)での表示切替
 		if($value['staff_kbn'] != 0){	// スタッフ区分<>0の場合（スタッフ）
 			$kakunin = "";
 			$kakunin_class = "";
 			$tetuzuki = "";
+			$tetuzuki_link = "";
 			$shiharai_button = "";
-
-
-//            lblNote.Text = ""
-//            linkPayment.Visible = False
-//            linkCancel.Visible = False
 		}
 
-//       イベント毎の表示切替
+		// イベント毎の表示切替
 		switch ($value['event_kbn']) {
 			case 40:			// 会費
 			case 41:			// CEU報告
@@ -421,134 +384,59 @@ function createMousikomiData($result) {
 					array_push($etc_id_array,$value['etc_id']);
 				}
 
-		   error_log(print_r('++++++物販+++++', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka5_log.txt');
-		   error_log(print_r($value['buppan_kbn'], true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka5_log.txt');
-		   error_log(print_r($value['hasso_dempyo_no'], true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka5_log.txt');
-		   error_log(print_r($value['nonyubi'], true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka5_log.txt');
-
-		//       ' ■手続き欄(名刺入力)
-		//      ' 名刺の申込ボタンは、1名刺で、未発送で、決済後なら表示
+				// ■手続き欄(名刺入力)
+				// 名刺の申込ボタンは、1名刺で、未発送で、決済後なら表示
 				if($value['buppan_kbn'] == 1){	// 物販区分=1（名刺）の場合
 				//発送伝票番号=null、納入日!=null、購入ID
 					if(empty($value['hasso_dempyo_no']) && !empty($value['nonyubi'])){ // 発送前
 
 						// 会員番号、購入IDから購入者情報（名刺）データ取得
 						$result_meishi = (new Tb_hambai_konyusha_joho_meisai())->findMeishiJohoByKaiinNoKonyuId($kaiin_no,$value['etc_id']);
-						if (!empty($result_meishi)) {
-							// 【名刺入力フォーム】リンク表示
-							$tetuzuki = "名刺入力フォーム";
-						//	$result_array = createMousikomiMeishiData($result_meishi);
+						if (!empty($result_meishi)) {	// 【名刺入力フォーム】リンク表示
+							$tetuzuki_link = "名刺入力フォーム";
 						}
-
-
-
-				// 【名刺入力フォーム】リンク　名刺データの購入IDで購入者情報を検索　*************************
-				//　物販区分はTB経理情報.経理種目CD2=03→1　で判断しているので、TB販売情報.販売区分IN (7,8)で存在するか確認
-			
-	//            e.Row.Cells(4).Visible = False ' 納入日
-	//            e.Row.Cells(16).Visible = False ' 発送伝票番号
-	//            e.Row.Cells(18).Visible = False ' 名刺区分
-
 					}
 				}
-		
-//                            If e.Row.Cells(18).Text = "1" And e.Row.Cells(16).Text = "&nbsp;" And e.Row.Cells(4).Text <> "&nbsp;" Then
-//                                ' 購入IDがあるかチェック
-//                                Dim dtSalesCard As DataTable = DirectCast(ViewState("EntrySalesCard"), DataTable)
-//                                Dim drRows() As DataRow = dtSalesCard.Select("購入ID = " & e.Row.Cells(17).Text)
-//                                If drRows.Count > 0 Then
-//                                    Dim hlnkSalesCard As HyperLink = DirectCast(e.Row.FindControl("hlnkSalesCard"), System.Web.UI.WebControls.HyperLink)
-//                                    hlnkSalesCard.NavigateUrl = hlnkSalesCard.NavigateUrl & "?MemberID=" & ViewState("MemberID") & "&SalesBuyID=" & e.Row.Cells(17).Text
-//                                    hlnkSalesCard.Visible = True
-//                                End If
-//                            End If
 
-
-			//      ' ■手続き欄(発送状況)
-			//      ' 1名刺 2英語版認定証なら非表示
-					if($value['buppan_kbn'] == 1 || $value['buppan_kbn'] == 2){
-			//                                lblShipping.Visible = False
-					}else{
-			//                                lblShipping.Visible = True
-						if(empty($value['hasso_dempyo_no'])){ // 発送前
-							$tetuzuki = "受付中";
-			//                                    lblShipping.Text = "受付中"
-						}else{ // 発送済
-							$tetuzuki = "発送済";
-			//                                    lblShipping.Text = "発送済"
-						}
+				// ■手続き欄(発送状況)
+				//  1名刺 2英語版認定証なら非表示
+				if($value['buppan_kbn'] == 1 || $value['buppan_kbn'] == 2){
+				}else{
+					if(empty($value['hasso_dempyo_no'])){ // 発送前
+						$tetuzuki = "受付中";
+					}else{ // 発送済
+						$tetuzuki = "発送済";
 					}
+				}
 
 					break;
 			default:
-//                   ' 参加料のチェック
+					// 参加料のチェック
 					if(empty($value['nonyu_kingaku'])){	// 参加料null(0円)の場合は、申込済みだけを表示
 						$shiharai = "";
 						$shiharai_button = "";
 						$kakunin = "";
-//                                    Dim lbtnPayment As LinkButton = DirectCast(e.Row.FindControl("lbtnPayment"), LinkButton) ' 支払いボタン
-//                                    Dim lblNote As Label = DirectCast(e.Row.FindControl("lblNote"), Label)                   ' 支払い状況の表示
-//                                    Dim lblComp As Label = DirectCast(e.Row.FindControl("lblComp"), Label)                   ' [済]表示
-//                                    lbtnPayment.Visible = False
-//                                    lblNote.Visible = False
-//                                    lblComp.Visible = False
 					}
 		}
 
+		// 申込後案内URL（CEU）が取得されていれば詳細ボタン表示
 		if(!empty($value['moshikomi_go_annai_url'])){
-			$shosai = $value['moshikomi_go_annai_url'];
+			$shosai_url = $value['moshikomi_go_annai_url'];
+			$shosai = "詳細";
 		}else{
 			//クイズの不合格かつ納入済みの場合、不合格表示に設定
 			if($value['gohi_kbn'] == "2" && !empty($value['nonyubi'])){
 				$shosai = "不合格";
 			}
 		}
-//                    ' 案内URLの表示切替
-//                    If e.Row.RowType = DataControlRowType.DataRow Then
-//                        ' 申込後・発送後詳細リンク表示のセル内ないのコントロールをチェック
-//                        For Each control As Control In e.Row.Cells(11).Controls
-//                            ' ハイパーリンクコントロールがあるかチェック
-//                            If TypeOf control Is System.Web.UI.WebControls.HyperLink Then
-//                                Dim link As System.Web.UI.WebControls.HyperLink = DirectCast(control, System.Web.UI.WebControls.HyperLink)
-//                                ' 申込後案内URLが取得されていなければ非表示
-//                                If String.IsNullOrEmpty(link.NavigateUrl) Then
-//                                    link.Visible = False
-//                                    'クイズの不合格かつ納入済みの場合、HiperLinkを強引に不合格表示に設定
-//                                    If e.Row.Cells(10).Text = "2" And e.Row.Cells(4).Text <> "&nbsp;" Then
-//                                        link.BackColor = Drawing.Color.Gray
-//                                        link.BorderColor = Drawing.Color.Gray
-//                                        link.Text = "不合格"
-//                                        link.Visible = True
-//                                        link.Enabled = False
-//                                        Exit For
-//                                    End If
-//                                End If
 
-//$value['event_kbn'] = "60"
-//            e.Row.Cells(4).Visible = False ' 納入日
-//            e.Row.Cells(18).Visible = False ' 名刺区分
-
-//                                ' 発送伝票番号があれば表示
-//                                If e.Row.Cells(12).Text = "60" Then
-//                                    ' 物品で未決済以外は詳細ボタンを表示する
-//                                    If e.Row.Cells(18).Text = "0" And e.Row.Cells(4).Text = "&nbsp;" Then
-//                                    Else
-//                                        ' リンク先指定
-//                                        link.NavigateUrl = "~/18_sales/SalesOrder.aspx " &
-//                                                    "?Menu=" & clsCommon.geumMenu.Menu_Sales &
-//                                                    "&Process=" & clsCommon.geumSalesProcess.Process_Member &
-//                                                    "&MemberID=" & ViewState("MemberID") &
-//                                                    "&SalesBuyID=" & e.Row.Cells(17).Text &
-//                                                    "&SalesKn=" & e.Row.Cells(18).Text
-//                                        link.Visible = True
-//                                        ' 別タブで開かないように制御する
-//                                        link.Target = String.Empty
-//                                    End If
-//                                    Exit For
-//                                End If
-
-//                            End If
-
+		// 物販　物品で未決済以外は詳細ボタンを表示する
+		if($value['event_kbn'] == 60){
+			if($value['buppan_kbn'] == 0 && empty($value['nonyubi'])){
+			}else{
+				$shosai = "詳細";
+			}
+		}
 
 
 // ■ 開放(現行表示仕様) ===========================================end
@@ -561,29 +449,9 @@ function createMousikomiData($result) {
 			$kakunin = "申込状況の反映まで、しばらくお待ちください。";
 			$kakunin_class = "text-danger";
 			$tetuzuki = "";
+			$tetuzuki_link = "";
 			$shosai = "";
-
-//                    ' 支払ボタン
-//                    lbtnPayment.Visible = False
-
-//                    ' 確認事項
-//                    lblNote.Text = "申込状況の反映まで、しばらくお待ちください。"
-//                    lblNote.Visible = True
-//                    lblNote.CssClass = "form-label text-danger"
-//                    ' 支払済み表示
-//                    lblComp.Visible = False
-//                    ' キャンセルボタン
-//                    linkCancelBtn.Visible = False
-
-//                    ' 申込後URL
-//                    For Each control As Control In e.Row.Cells(11).Controls
-//                        ' ハイパーリンクコントロールがあるかチェック
-//                        If TypeOf control Is System.Web.UI.WebControls.HyperLink Then
-//                            Dim link As System.Web.UI.WebControls.HyperLink = DirectCast(control, System.Web.UI.WebControls.HyperLink)
-//                            link.Visible = False
-//                        End If
-//                    Next
-
+			$shosai_url = "";
 
 		} 
 
@@ -594,7 +462,9 @@ function createMousikomiData($result) {
 		  'kakunin' => $kakunin,
 		  'kakunin_class' => $kakunin_class,
 		  'tetuzuki' => $tetuzuki,
+		  'tetuzuki_link' => $tetuzuki_link,
 		  'shosai' => $shosai,
+		  'shosai_url' => $shosai_url,
 		  'id' => $value['id'],
 		  'settleno' => $value['settleno'],
 		  'ceu_id' => $value['ceu_id'],
@@ -602,17 +472,12 @@ function createMousikomiData($result) {
 		);
 		array_push($result_array,$apply_array);
 
-
-
-//		array_push($result_array,$value);
-
 	}
 
-		   error_log(print_r('result_array', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka2_log.txt');
-		   error_log(print_r($result_array, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka2_log.txt');
+		   error_log(print_r('apply_array', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka_apply_log.txt');
+		   error_log(print_r($result_array, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka_apply_log.txt');
 	return $result_array;
 }
-
 
 
 /*

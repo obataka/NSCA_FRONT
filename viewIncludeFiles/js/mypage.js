@@ -152,7 +152,7 @@ function getDataApplyList(){
             // 申込状況情報、該当なし
                 if (rtn == 0) {
 					$("#apply_list1").show();
-		            $("#apply_naiyo1").html("現在申込情報がございません");
+		            $("#apply_naiyo1").html("ご確認いただくお申込がございません。");
 					$("#apply_button1").hide();
 					// イベント表示件数3件分ループ処理する
 					for(var i = 1; i < 4 ; i++) {
@@ -170,19 +170,21 @@ function getDataApplyList(){
 							$("#apply_list"+(i+1)).show();
 				            $("#apply_naiyo"+(i+1)).html(tbApplyJoho[i]["shutoku_naiyo"]);
 				            $("#apply_kakunin"+(i+1)).html(tbApplyJoho[i]["kakunin"]);
-							if(tbApplyJoho[i]["tetuzuki"] != ""){
-					            $("#apply_procedures"+(i+1)).show();
-					            $("#apply_procedures"+(i+1)).html(tbApplyJoho[i]["tetuzuki"]);
-					            $("#apply_procedures"+(i+1)).data('id',i);
+				            $("#apply_tetuzuki"+(i+1)).html(tbApplyJoho[i]["tetuzuki"]);
+							if(tbApplyJoho[i]["tetuzuki_link"] != ""){
+					            $("#apply_tetuzuki_link"+(i+1)).show();
+					            $("#apply_tetuzuki_link"+(i+1)).html(tbApplyJoho[i]["tetuzuki_link"]);
+					            $("#apply_tetuzuki_link"+(i+1)).data('id',i);
 					            $("#apply_tetuzuki"+(i+1)).hide();
 							}else{
-					            $("#apply_procedures"+(i+1)).hide();
-					            $("#apply_tetuzuki"+(i+1)).html(tbApplyJoho[i]["tetuzuki"]);
+					            $("#apply_tetuzuki_link"+(i+1)).hide();
+					            $("#apply_tetuzuki_link"+(i+1)).html("");
 					            $("#apply_tetuzuki"+(i+1)).show();
 							}
 
 							if(tbApplyJoho[i]["shiharai_button"] != ""){
 					            $("#apply_button"+(i+1)).text(tbApplyJoho[i]["shiharai_button"]);
+					            $("#apply_button"+(i+1)).data('id',i);
 								$("#apply_button"+(i+1)).show();
 								$("#apply_payment"+(i+1)).hide();
 							}else{
@@ -761,21 +763,61 @@ $('.event-buttons-area').on('click', 'button', function() {
 });
 
 /************************************************************
-	*申込情報　キャンセルはこちらリンク押下時
+	*申込情報　ボタン(支払い/詳細)押下時
 *************************************************************/
 
-$('.apply-buttons-area').on('click', 'a', function() {
+$('.apply-buttons-area').on('click', 'button', function() {
  
-alert($(this).text());
 	var i = $(this).data('id');
+	var buttton_name = $(this).text();
+	var salesOrder_url = "../salesOrder"; // ご注文内容URL
+
 	$("#id").val(tbApplyJoho[i]["id"]);
 	$("#settleno").val(tbApplyJoho[i]["settleno"]);
 	$("#ceu_id").val(tbApplyJoho[i]["ceu_id"]);
 	$("#event_kbn").val(tbApplyJoho[i]["event_kbn"]);
 	$("#shutoku_naiyo").val(tbApplyJoho[i]["shutoku_naiyo"]);
 
-    $('#cancel_form').attr('action', '../entryCancel');
-    $("#cancel_form").submit();
+	if(buttton_name == "支払い"){
+	    $("#apply_form").attr("action", "../paymentPrice");
+
+// 下記遷移先画面作成後は最後にsubmitする
+    $("#apply_form").submit();
+
+	}else if(buttton_name == "詳細"){
+		if(tbApplyJoho[i]["shosai_url"] == ""){
+alert("ご注文内容画面へ");
+			$("#apply_form").attr("action", salesOrder_url);
+		}else{
+alert("申込後案内URLへ");
+			$("#apply_form").attr("action", tbApplyJoho[i]["shosai_url"]);
+		}
+	}
+
+//    $("#apply_form").submit();
+
+});
+/************************************************************
+	*申込情報　リンク(キャンセルはこちら/名刺入力フォーム)押下時
+*************************************************************/
+
+$('.apply-buttons-area').on('click', 'a', function() {
+ 
+	var i = $(this).data('id');
+	var link_name = $(this).text();
+
+	$("#id").val(tbApplyJoho[i]["id"]);
+	$("#settleno").val(tbApplyJoho[i]["settleno"]);
+	$("#ceu_id").val(tbApplyJoho[i]["ceu_id"]);
+	$("#event_kbn").val(tbApplyJoho[i]["event_kbn"]);
+	$("#shutoku_naiyo").val(tbApplyJoho[i]["shutoku_naiyo"]);
+
+	if(link_name == "キャンセルはこちら"){
+	    $("#apply_form").attr("action", "../entryCancel");
+	}else if(link_name == "名刺入力フォーム"){
+//	    $("#apply_form").attr("action", "../salesCardInfo");
+	}
+    $("#apply_form").submit();
 
 });
 

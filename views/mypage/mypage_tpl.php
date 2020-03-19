@@ -235,7 +235,7 @@
 								<button class="button" type="button" id="apply_button1"><span>支払</span></button>
 								<span id="apply_kakunin1">確認テキストテキストテキスト</span>
 								<span class="list_text" id="apply_tetuzuki1">手続きテキストテキストテキスト</span>
-								<span><a id="apply_procedures1">キャンセルはこちら</a></span>
+								<span><a id="apply_tetuzuki_link1">キャンセルはこちら</a></span>
 								<button class="button" type="button" id="apply_shosai_button1"><span>詳細</span></button>
 								<span id="apply_shosai1">不合格</span>
 							</li>
@@ -245,7 +245,7 @@
 								<button class="button" type="button" id="apply_button2"><span>支払番号表示</span></button>
 								<span class="list_text" id="apply_kakunin2">確認テキストテキストテキスト</span>
 								<span class="list_text" id="apply_tetuzuki2">手続きテキストテキストテキスト</span>
-								<span><a id="apply_procedures2">キャンセルはこちら</a></span>
+								<span><a id="apply_tetuzuki_link2">キャンセルはこちら</a></span>
 								<button class="button" type="button" id="apply_shosai_button2"><span>詳細</span></button>
 								<span id="apply_shosai2">不合格</span>
 							</li>
@@ -255,7 +255,7 @@
 								<button class="button" type="button" id="apply_button3"><span>支払</span></button>
 								<span class="list_text" id="apply_kakunin3">確認テキストテキストテキスト</span>
 								<span class="list_text" id="apply_tetuzuki3">手続きテキストテキストテキスト</span>
-								<span><a id="apply_procedures3">キャンセルはこちら</a></span>
+								<span><a id="apply_tetuzuki_link3">キャンセルはこちら</a></span>
 								<button class="button" type="button" id="apply_shosai_button3"><span>詳細</span></button>
 								<span id="apply_shosai3">不合格</span>
 							</li>
@@ -265,7 +265,7 @@
 								<button class="button" type="button" id="apply_button4"><span>支払</span></button>
 								<span class="list_text" id="apply_kakunin4">確認テキストテキストテキスト</span>
 								<span class="list_text" id="apply_tetuzuki4">手続きテキストテキストテキスト</span>
-								<span><a id="apply_procedures4">キャンセルはこちら</a></span>
+								<span><a id="apply_tetuzuki_link4">キャンセルはこちら</a></span>
 								<button class="button" type="button" id="apply_shosai_button4"><span>詳細</span></button>
 								<span id="apply_shosai4">不合格</span>
 							</li>
@@ -386,16 +386,19 @@
 			</div>
 		</div>
 	</div>
+	<!-- イベント申込用フォーム -->
 	<form id="event_form" method="post">
 		<input type="hidden" name="ceu_id" id="ceu_id" value="">
 	</form>
-	<form id="cancel_form" method="post">
+	<!-- 申込状況（支払・キャンセル・名刺入力・詳細）キャンセル用フォーム -->
+	<form id="apply_form" method="post">
 		<input type="hidden" name="id" id="id" value="">
 		<input type="hidden" name="settleno" id="settleno" value="">
 		<input type="hidden" name="ceu_id" id="ceu_id" value="">
 		<input type="hidden" name="event_kbn" id="event_kbn" value="">
 		<input type="hidden" name="shutoku_naiyo" id="shutoku_naiyo" value="">
 	</form>
+	<!-- 領収書印刷用フォーム -->
 	<form id="printReceipt_form" method="post" target="printReceipt">
 		<input type="hidden" name="keiri_id" id="keiri_id" value="">
 	</form>
