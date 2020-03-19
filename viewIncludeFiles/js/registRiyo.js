@@ -387,8 +387,11 @@
             $("#err_tel").html("");
             $("#err_keitai_tel").html("");
             $("#err_mail_address_1").html("");
+            $("#err_mail_1").html("");
+            $("#err_mail_login_1").html("");
             $("#err_mail_address_2").html("");
-            $("#err_mail").html("");
+            $("#err_mail_2").html("");
+            $("#err_mail_login_2").html("");
             $("#err_merumaga").html("");
             $("#err_pass_1").html("");
             $("#err_pass_2").html("");
@@ -610,7 +613,7 @@
                         wk_focus_done = 1;
                     }
                 }
-            } 
+            }
 
             //都道府県選択チェック
             if ($("#address_todohuken").val() == 0) {
@@ -721,254 +724,263 @@
                 }
             }
 
-            //メールアドレス1形式チェック 2019/01/07
-            var mail_regex1 = new RegExp('(?:[-!#-\'*+/-9=?A-Z^-~]+\.?(?:\.[-!#-\'*+/-9=?A-Z^-~]+)*|"(?:[!#-\[\]-~]|\\\\[\x09 -~])*")@[-!#-\'*+/-9=?A-Z^-~]+(?:\.[-!#-\'*+/-9=?A-Z^-~]+)*');
-            var mail_regex2 = new RegExp('^[^\@]+\@[^\@]+$');
-            if ($("#mail_address_1").val().match(mail_regex1) && $("#mail_address_1").val().match(mail_regex2)) {
 
-                // 全角チェック
-                if ($("#mail_address_1").val().match(/[^a-zA-Z0-9\!\"\#\$\%\&\'\(\)\=\~\|\-\^\\\@\[\;\:\]\,\.\/\\\<\>\?\_\`\{\+\*\} ]/)) {
-                    wk_err_msg == "";
-                    wk_err_msg = "メールアドレスに使用する文字を正しく入力してください。";
-                    $("#err_mail_address_1").html(wk_err_msg);
-
-                    //エラー箇所にフォーカスを当てる
-                    if (wk_focus_done == 0) {
-                        $("#mail_address_1").focus();
-                        wk_focus_done = 1;
-                    }
-                }
-
-                // 末尾TLDチェック（〜.co,jpなどの末尾ミスチェック用）
-                if (!$("#mail_address_1").val().match(/\.[a-z]+$/)) {
-
-                    //TDLエラー
-                    wk_err_msg == "";
-                    wk_err_msg = "メールアドレスの形式が不正です。";
-                    $("#err_mail_address_1").html(wk_err_msg);
-
-                    //エラー箇所にフォーカスを当てる
-                    if (wk_focus_done == 0) {
-                        $("#mail_address_1").focus();
-                        wk_focus_done = 1;
-                    }
-                }
-            } else {
+            //メールアドレス1・メールアドレス2未入力チェック
+            if ($("#mail_address_1").val() == "" && $("#mail_address_2").val() == "") {
                 wk_err_msg == "";
-                wk_err_msg = "メールアドレスに使用する文字を正しく入力してください。";
-                $("#err_mail_address_1").html(wk_err_msg);
+                wk_err_msg = "メールアドレス1またはメールアドレス2のいずれかを入力してください。";
+                $("#err_mail_address_2").html(wk_err_msg);
 
                 //エラー箇所にフォーカスを当てる
                 if (wk_focus_done == 0) {
                     $("#mail_address_1").focus();
                     wk_focus_done = 1;
                 }
-            }
-
-            //メールアドレス2形式チェック　2019/01/07
-            var mail_regex1 = new RegExp('(?:[-!#-\'*+/-9=?A-Z^-~]+\.?(?:\.[-!#-\'*+/-9=?A-Z^-~]+)*|"(?:[!#-\[\]-~]|\\\\[\x09 -~])*")@[-!#-\'*+/-9=?A-Z^-~]+(?:\.[-!#-\'*+/-9=?A-Z^-~]+)*');
-            var mail_regex2 = new RegExp('^[^\@]+\@[^\@]+$');
-            if ($("#mail_address_2").val().match(mail_regex1) && $("#mail_address_2").val().match(mail_regex2)) {
-
-                // 全角チェック
-                if ($("#mail_address_2").val().match(/[^a-zA-Z0-9\!\"\#\$\%\&\'\(\)\=\~\|\-\^\\\@\[\;\:\]\,\.\/\\\<\>\?\_\`\{\+\*\} ]/)) {
-                    wk_err_msg == "";
-                    wk_err_msg = "メールアドレスに使用する文字を正しく入力してください。";
-                    $("#err_mail_address_1").html(wk_err_msg);
-
-                    //エラー箇所にフォーカスを当てる
-                    if (wk_focus_done == 0) {
-                        $("#mail_address_2").focus();
-                        wk_focus_done = 1;
-                    }
-                }
-
-                // 末尾TLDチェック（〜.co,jpなどの末尾ミスチェック用）
-                if (!$("#mail_address_2").val().match(/\.[a-z]+$/)) {
-
-                    //TDLエラー
-                    wk_err_msg == "";
-                    wk_err_msg = "メールアドレスの形式が不正です。";
-                    $("#err_mail_address_1").html(wk_err_msg);
-
-                    //エラー箇所にフォーカスを当てる
-                    if (wk_focus_done == 0) {
-                        $("#mail_address_2").focus();
-                        wk_focus_done = 1;
-                    }
-                }
             } else {
-                wk_err_msg == "";
-                wk_err_msg = "メールアドレスに使用する文字を正しく入力してください。";
-                $("#err_mail_address_1").html(wk_err_msg);
+                //メールアドレス1形式チェック 2019/01/07
+                var mail_regex1 = new RegExp('(?:[-!#-\'*+/-9=?A-Z^-~]+\.?(?:\.[-!#-\'*+/-9=?A-Z^-~]+)*|"(?:[!#-\[\]-~]|\\\\[\x09 -~])*")@[-!#-\'*+/-9=?A-Z^-~]+(?:\.[-!#-\'*+/-9=?A-Z^-~]+)*');
+                var mail_regex2 = new RegExp('^[^\@]+\@[^\@]+$');
+                if ($("#mail_address_1").val().match(mail_regex1) && $("#mail_address_1").val().match(mail_regex2)) {
 
-                //エラー箇所にフォーカスを当てる
-                if (wk_focus_done == 0) {
-                    $("#mail_address_2").focus();
-                    wk_focus_done = 1;
-                }
-            }
-
-            //メールアドレス1重複チェック 2019/01/06
-            if ($('#mail_address_1').val() !== "") {
-                $.ajax({
-                    url: '../../classes/searchMailAddress1.php',
-                    type: 'POST',
-                    data:
-                    {
-                        //メールアドレスセット
-                        mail: $("#mail_address_1").val(),
-                    }
-                })
-
-                    // Ajaxリクエストが成功した時発動
-                    .done((data) => {
-
-                        //登録済みの場合エラーメッセージを表示
+                    // 全角チェック
+                    if ($("#mail_address_1").val().match(/[^a-zA-Z0-9\!\"\#\$\%\&\'\(\)\=\~\|\-\^\\\@\[\;\:\]\,\.\/\\\<\>\?\_\`\{\+\*\} ]/)) {
                         wk_err_msg == "";
-                        wk_err_msg = "すでにご登録頂いているメールアドレス1です。";
-                        $("#err_mail").html(wk_err_msg);
+                        wk_err_msg = "メールアドレスに使用する文字を正しく入力してください。";
+                        $("#err_mail_address_1").html(wk_err_msg);
 
                         //エラー箇所にフォーカスを当てる
                         if (wk_focus_done == 0) {
                             $("#mail_address_1").focus();
                             wk_focus_done = 1;
                         }
-                        return false;
-                    })
-
-                    // Ajaxリクエストが失敗した時発動
-                    .fail((data) => {
-                        return false;
-                    })
-
-                    // Ajaxリクエストが成功・失敗どちらでも発動
-                    .always((data) => {
-                    });
-            }
-
-            //メールアドレス2重複チェック 2019/01/06
-            if ($('#mail_address_2').val() !== "") {
-                $.ajax({
-                    url: '../../classes/searchMailAddress1.php',
-                    type: 'POST',
-                    data:
-                    {
-                        //メールアドレスセット
-                        mail: $("#mail_address_2").val(),
                     }
-                })
 
-                    // Ajaxリクエストが成功した時発動
-                    .done((data) => {
+                    // 末尾TLDチェック（〜.co,jpなどの末尾ミスチェック用）
+                    if (!$("#mail_address_1").val().match(/\.[a-z]+$/)) {
 
-                        //登録済みの場合エラーメッセージを表示
+                        //TDLエラー
                         wk_err_msg == "";
-                        wk_err_msg = "すでにご登録頂いているメールアドレス2です。";
-                        $("#err_mail").html(wk_err_msg);
+                        wk_err_msg = "メールアドレスの形式が不正です。";
+                        $("#err_mail_login_1").html(wk_err_msg);
+
+                        //エラー箇所にフォーカスを当てる
+                        if (wk_focus_done == 0) {
+                            $("#mail_address_1").focus();
+                            wk_focus_done = 1;
+                        }
+                    }
+                } else {
+                    wk_err_msg == "";
+                    wk_err_msg = "メールアドレスに使用する文字を正しく入力してください。";
+                    $("#err_mail_address_1").html(wk_err_msg);
+
+                    //エラー箇所にフォーカスを当てる
+                    if (wk_focus_done == 0) {
+                        $("#mail_address_1").focus();
+                        wk_focus_done = 1;
+                    }
+                }
+
+                //メールアドレス2形式チェック　2019/01/07
+                var mail_regex1 = new RegExp('(?:[-!#-\'*+/-9=?A-Z^-~]+\.?(?:\.[-!#-\'*+/-9=?A-Z^-~]+)*|"(?:[!#-\[\]-~]|\\\\[\x09 -~])*")@[-!#-\'*+/-9=?A-Z^-~]+(?:\.[-!#-\'*+/-9=?A-Z^-~]+)*');
+                var mail_regex2 = new RegExp('^[^\@]+\@[^\@]+$');
+                if ($("#mail_address_2").val().match(mail_regex1) && $("#mail_address_2").val().match(mail_regex2)) {
+
+                    // 全角チェック
+                    if ($("#mail_address_2").val().match(/[^a-zA-Z0-9\!\"\#\$\%\&\'\(\)\=\~\|\-\^\\\@\[\;\:\]\,\.\/\\\<\>\?\_\`\{\+\*\} ]/)) {
+                        wk_err_msg == "";
+                        wk_err_msg = "メールアドレスに使用する文字を正しく入力してください。";
+                        $("#err_mail_address_2").html(wk_err_msg);
 
                         //エラー箇所にフォーカスを当てる
                         if (wk_focus_done == 0) {
                             $("#mail_address_2").focus();
                             wk_focus_done = 1;
                         }
-                        return false;
+                    }
+
+                    // 末尾TLDチェック（〜.co,jpなどの末尾ミスチェック用）
+                    if (!$("#mail_address_2").val().match(/\.[a-z]+$/)) {
+
+                        //TDLエラー
+                        wk_err_msg == "";
+                        wk_err_msg = "メールアドレスの形式が不正です。";
+                        $("#err_mail_login_2").html(wk_err_msg);
+
+                        //エラー箇所にフォーカスを当てる
+                        if (wk_focus_done == 0) {
+                            $("#mail_address_2").focus();
+                            wk_focus_done = 1;
+                        }
+                    }
+                } else {
+                    wk_err_msg == "";
+                    wk_err_msg = "メールアドレスに使用する文字を正しく入力してください。";
+                    $("#err_mail_address_2").html(wk_err_msg);
+
+                    //エラー箇所にフォーカスを当てる
+                    if (wk_focus_done == 0) {
+                        $("#mail_address_2").focus();
+                        wk_focus_done = 1;
+                    }
+                }
+
+                //メールアドレス1重複チェック 2019/01/06
+                if ($('#mail_address_1').val() !== "") {
+                    $.ajax({
+                        url: '../../classes/searchMailAddress1.php',
+                        type: 'POST',
+                        data:
+                        {
+                            //メールアドレスセット
+                            mail: $("#mail_address_1").val(),
+                        }
                     })
 
-                    // Ajaxリクエストが失敗した時発動
-                    .fail((data) => {
-                        $('.error').html('システムエラーが発生しました。');
-                        return false;
-                    });
-            }
+                        // Ajaxリクエストが成功した時発動
+                        .done((data) => {
+                            if (rtn == 0) {
+                                return false;
+                            } else {
+                                //登録済みの場合エラーメッセージを表示
+                                wk_err_msg == "";
+                                wk_err_msg = "すでにご登録頂いているメールアドレスです。";
+                                $("#err_mail_1").html(wk_err_msg);
 
-            //メールアドレス1・メールアドレス2未入力チェック
-            if ($("#mail_address_1").val() == "" && $("#mail_address_2").val() == "") {
-                wk_err_msg == "";
-                wk_err_msg = "メールアドレス1またはメールアドレス2のいずれかを入力してください。";
-                $("#err_mail_address_1").html(wk_err_msg);
+                                //エラー箇所にフォーカスを当てる
+                                if (wk_focus_done == 0) {
+                                    $("#mail_address_1").focus();
+                                    wk_focus_done = 1;
+                                }
+                                return false;
+                            }
+                        })
 
-                //エラー箇所にフォーカスを当てる
-                if (wk_focus_done == 0) {
-                    $("#mail_address_1").focus();
-                    wk_focus_done = 1;
+                        // Ajaxリクエストが失敗した時発動
+                        .fail((data) => {
+                            return false;
+                        })
+
+                        // Ajaxリクエストが成功・失敗どちらでも発動
+                        .always((data) => {
+                        });
                 }
-            }
 
-
-            //ログインするアドレスのチェックボックスが未選択の時 2019/01/06
-            if (!$("input:radio[name='mail_login']:checked").val()) {
-
-                //チェックされていない場合
-                wk_err_msg == "";
-                wk_err_msg = "ログインする時のメールアドレスを選択してください。";
-                $("#err_mail_address_2").html(wk_err_msg);
-            }
-
-            //メールアドレス1は入力されているが、ラジオボタンがどちらもチェックされていない場合 2019/01/07
-            if (!$("input:radio[id='mail_login_1']:checked").val() && !$("input:radio[id='mail_1']:checked").val()) {
-                if ($('#mail_address_1').val() !== "") {
-                    wk_err_msg == "";
-                    wk_err_msg = "メール受信とログイン時にお使いにならないメールアドレス1を削除してください。";
-                    $("#err_mail_address_2").html(wk_err_msg);
-                }
-            }
-
-            //メールアドレス2は入力されているが、ラジオボタンがどちらもチェックされていない場合 2019/01/07
-            if (!$("input:radio[id='mail_login_2']:checked").val() && !$("input:radio[id='mail_2']:checked").val()) {
+                //メールアドレス2重複チェック 2019/01/06
                 if ($('#mail_address_2').val() !== "") {
+                    $.ajax({
+                        url: '../../classes/searchMailAddress1.php',
+                        type: 'POST',
+                        data:
+                        {
+                            //メールアドレスセット
+                            mail: $("#mail_address_2").val(),
+                        }
+                    })
+
+                        // Ajaxリクエストが成功した時発動
+                        .done((data) => {
+                            if (rtn == 0) {
+                                return false;
+                            } else {
+                                //登録済みの場合エラーメッセージを表示
+                                wk_err_msg == "";
+                                wk_err_msg = "すでにご登録頂いているメールアドレスです。";
+                                $("#err_mail_2").html(wk_err_msg);
+
+                                //エラー箇所にフォーカスを当てる
+                                if (wk_focus_done == 0) {
+                                    $("#mail_address_2").focus();
+                                    wk_focus_done = 1;
+                                }
+                                return false;
+                            }
+                        })
+
+                        // Ajaxリクエストが失敗した時発動
+                        .fail((data) => {
+                            $('.error').html('システムエラーが発生しました。');
+                            return false;
+                        });
+                }
+
+                //ログインするアドレスのチェックボックスが未選択の時 2019/01/06
+                if (!$("input:radio[name='mail_login']:checked").val()) {
+
+                    //チェックされていない場合
                     wk_err_msg == "";
-                    wk_err_msg = "メール受信とログイン時にお使いにならないメールアドレス2を削除してください。";
+                    wk_err_msg = "ログインする時のメールアドレスを選択してください。";
                     $("#err_mail_address_2").html(wk_err_msg);
                 }
-            }
 
-            //ログインするメールアドレスが1の時、メールアドレス1の未入力チェック 2019/01/06
-            if ($("input:radio[id='mail_login_1']:checked").val()) {
-                if (!$('#mail_address_1').val()) {
-                    wk_err_msg == "";
-                    wk_err_msg = "ログイン時のメールアドレスを入力してください。";
-                    $("#err_mail_address_2").html(wk_err_msg);
+                //メールアドレス1は入力されているが、ラジオボタンがどちらもチェックされていない場合 2019/01/07
+                if (!$("input:radio[id='mail_login_1']:checked").val() && !$("input:radio[id='mail_1']:checked").val()) {
+                    if ($('#mail_address_1').val() !== "") {
+                        wk_err_msg == "";
+                        wk_err_msg = "メール受信とログイン時にお使いにならないメールアドレス1を削除してください。";
+                        $("#err_mail_address_1").html(wk_err_msg);
+                    }
                 }
-            }
 
-            //ログインするメールアドレスが2の時、メールアドレス2の未入力チェック 2019/01/06
-            if ($("input:radio[id='mail_login_2']:checked").val()) {
-                if (!$('#mail_address_2').val()) {
-                    wk_err_msg == "";
-                    wk_err_msg = "ログイン時のメールアドレスを入力してください。";
-                    $("#err_mail_address_2").html(wk_err_msg);
+                //メールアドレス2は入力されているが、ラジオボタンがどちらもチェックされていない場合 2019/01/07
+                if (!$("input:radio[id='mail_login_2']:checked").val() && !$("input:radio[id='mail_2']:checked").val()) {
+                    if ($('#mail_address_2').val() !== "") {
+                        wk_err_msg == "";
+                        wk_err_msg = "メール受信とログイン時にお使いにならないメールアドレス2を削除してください。";
+                        $("#err_mail_address_2").html(wk_err_msg);
+                    }
                 }
-            }
 
-            //メール受信希望未選択チェック
-            if (!$("input:radio[name='mail']:checked").val()) {
-
-                //チェックされていない場合
-                wk_err_msg == "";
-                wk_err_msg = "メール受信希望のメールアドレスを選択してください。";
-                $("#err_mail").html(wk_err_msg);
-            }
-
-            //メール受信希望1選択時チェック
-            if ($('input[id="mail_1"]').prop('checked')) {
-                if ($("#mail_address_1").val() == "") {
-                    $("#err_mail_address_2").html("");
-                    wk_err_msg == "";
-                    wk_err_msg = "メールアドレス1を入力してください。";
-                    $("#err_mail_address_1").html(wk_err_msg);
+                //ログインするメールアドレスが1の時、メールアドレス1の未入力チェック 2019/01/06
+                if ($("input:radio[id='mail_login_1']:checked").val()) {
+                    if (!$('#mail_address_1').val()) {
+                        wk_err_msg == "";
+                        wk_err_msg = "ログイン時のメールアドレスを入力してください。";
+                        $("#err_mail_address_1").html(wk_err_msg);
+                    }
                 }
+
+                //ログインするメールアドレスが2の時、メールアドレス2の未入力チェック 2019/01/06
+                if ($("input:radio[id='mail_login_2']:checked").val()) {
+                    if (!$('#mail_address_2').val()) {
+                        wk_err_msg == "";
+                        wk_err_msg = "ログイン時のメールアドレスを入力してください。";
+                        $("#err_mail_address_2").html(wk_err_msg);
+                    }
+                }
+
+                //メール受信希望未選択チェック
+                if (!$("input:radio[name='mail']:checked").val()) {
+
+                    //チェックされていない場合
+                    wk_err_msg == "";
+                    wk_err_msg = "メール受信希望のメールアドレスを選択してください。";
+                    $("#err_mail").html(wk_err_msg);
+                }
+
+                //メール受信希望1選択時チェック
+                if ($('input[id="mail_1"]').prop('checked')) {
+                    if ($("#mail_address_1").val() == "") {
+                        $("#err_mail_address_2").html("");
+                        wk_err_msg == "";
+                        wk_err_msg = "メールアドレス1を入力してください。";
+                        $("#err_mail_address_1").html(wk_err_msg);
+                    }
+                }
+
+                //メール受信希望2選択時チェック
+                if ($('input[id="mail_2"]').prop('checked')) {
+                    if ($("#mail_address_2").val() == "") {
+                        $("#err_mail_address_1").html("");
+                        wk_err_msg == "";
+                        wk_err_msg = "メールアドレス2を入力してください。";
+                        $("#err_mail_address_2").html(wk_err_msg);
+                    }
+                }
+
             }
 
-            //メール受信希望2選択時チェック
-            if ($('input[id="mail_2"]').prop('checked')) {
-                if ($("#mail_address_2").val() == "") {
-                    $("#err_mail_address_1").html("");
-                    wk_err_msg == "";
-                    wk_err_msg = "メールアドレス2を入力してください。";
-                    $("#err_mail_address_2").html(wk_err_msg);
-                }
-            }
+
 
             //メルマガ受信希望選択チェック
             if (!$("input:radio[name='merumaga']:checked").val()) {

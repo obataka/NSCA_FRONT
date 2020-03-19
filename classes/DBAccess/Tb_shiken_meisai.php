@@ -99,4 +99,23 @@ class Tb_shiken_meisai
         }
         return $Tb_juken_jotai;
     }
+
+    public function updateJukenJotai_entryCancel($param)
+    {
+        $db = Db::getInstance();
+        $db->beginTransaction();
+        try {
+            $sth = $db->prepare("UPDATE tb_shiken_meisai
+            SET   juken_jotai_kbn   = 9
+            WHERE kaiin_no          = :kaiin_no
+            ");
+            $sth->execute([':kaiin_no' => $param['kaiin_no'],]);
+            $db->commit();
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/eroor_log.txt');
+            $db->rollBack();
+            return false;
+        }
+        return true;
+    }
 }

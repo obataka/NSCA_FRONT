@@ -250,6 +250,12 @@
 								<label for="mail_login_1">このメールアドレスでログインする</label><br>
 								<input id="mail_1" type="radio" name="mail" value="1">
 								<label for="mail_1">このメールアドレスでメールを受信する</label>
+								<ul class="error_ul">
+									<li class="error" id="err_mail_address_1"></li>
+									<li class="error" id="err_mail_1"></li>
+									<li class="error" id="err_mail_login_1"></li>
+								</ul>
+
 								<p class="mt_1">メールアドレス2</p><input id="mail_address_2" class="w_80" type="email" name="mail_address_2" value="<?php echo $mail_address_2; ?>"><br>
 								<input id="mail_login_2" type="radio" name="mail_login" value="2">
 								<label for="mail_login_2">このメールアドレスでログインする</label><br>
@@ -257,10 +263,9 @@
 								<label for="mail_2">このメールアドレスでメールを受信する</label>
 
 								<ul class="error_ul">
-									<li class="error" id="err_mail_address_1"></li>
 									<li class="error" id="err_mail_address_2"></li>
-									<li class="error" id="err_mail"></li>
-									<li class="error" id="err_mail_login"></li>
+									<li class="error" id="err_mail_2"></li>
+									<li class="error" id="err_mail_login_2"></li>
 								</ul>
 							</td>
 						</tr>
