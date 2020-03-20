@@ -17,6 +17,7 @@
             url: '../../classes/getShutuganJokyo.php',
         }).done((rtn) => {
             getShutuganJokyo = JSON.parse(rtn);
+            console.log(getShutuganJokyo);
             $.each(getShutuganJokyo, function (i, val) {
                 if (val['shiken_meisai_id'] == $('#shiken_meisai_id').val()) {
                     //試験種別から名称取得し、表示する
@@ -198,12 +199,21 @@
                         mail_address: address,
                     },
                 }).done((rtn) => {
+                    console.log(rtn);
                     if (rtn == 0) {
                         wk_err_msg = "メールの送信に失敗しました。";
                         $("#err_mail").html(wk_err_msg);
                         return false;
-                    } else {
+                    } else if (rtn == 10) {
+                        wk_err_msg = "すでにキャンセル処理中です。";
+                        $("#err_mail").html(wk_err_msg);
+                        return false;
+                    } else if (rtn == 1) {
                         location.href = '../../entryCancelComplete/';
+                    } else {
+                        wk_err_msg = "メールの送信に失敗しました。";
+                        $("#err_mail").html(wk_err_msg);
+                        return false;
                     }
                 }).fail((rtn) => {
                     wk_err_msg = "メールの送信に失敗しました。";

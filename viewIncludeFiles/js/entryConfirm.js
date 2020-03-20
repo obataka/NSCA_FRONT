@@ -8,7 +8,6 @@
         $('#yotei_year').prop("disabled", true);
         $('#yotei_month').prop("disabled", true);
         $('#yotei_day').prop("disabled", true);
-        $('#gakui_sonota').prop("disabled", true);
 
         /*********************************
          * //最終取得学位取得
@@ -89,6 +88,11 @@
             if (gakui_bunya != "") {
                 $('#gakui_bunya').val(gakui_bunya);
             }
+            if ($('#gakui_bunya option:selected').text() == "その他") {
+                $('#gakui_sonota').show();
+            } else {
+                $('#gakui_sonota').hide();
+            }
 
         }).fail((rtn) => {
             return false;
@@ -130,9 +134,9 @@
             var txt = $('#gakui_bunya option:selected').text();
             $("#wk_txt_bunya").val(txt);
             if ($('#gakui_bunya option:selected').text() == "その他") {
-                $('#gakui_sonota').prop("disabled", false);
+                $('#gakui_sonota').show();
             } else {
-                $('#gakui_sonota').prop("disabled", true);
+                $('#gakui_sonota').hide();
             }
 
         });

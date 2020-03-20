@@ -5,7 +5,7 @@
         <meta http-equiv="Content-Style-Type" content="text/css" />
         <meta name='format-detection' content='telephone=no' />
         <meta name='viewport' content='width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no' />
-        <title>CEUクイズ｜回答入力</title>
+        <title>CEUクイズ｜解答入力</title>
         <!-- favicon -->
         <link rel="icon" href="../../viewIncludeFiles/image/favicon.ico">
         <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/notosansjapanese.css">
@@ -45,13 +45,13 @@
 				?>
 
 
-				<h2>CEUクイズ　回答入力</h2>
+				<h2>CEUクイズ　解答入力</h2>
 				<p class="h2_text"></p>
 				<div class="content_wrap">
 					<div class="spb_arrows height_62">
 						<ul class="nav nav-tabs step-anchor">
-							<li class="active"><span><small>回答入力</small></span></li>
-							<li><span><small>回答内容確認</small></span></li>
+							<li class="active"><span><small>解答入力</small></span></li>
+							<li><span><small>解答内容確認</small></span></li>
 							<li><span><small>決済方法選択</small></span></li>
 							<li><span><small>支払<br class="sp_no">(決済専用サイトへ)</small></span></li>
 						</ul>

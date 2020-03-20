@@ -19,12 +19,10 @@ $font = $tcpdf_fonts->addTTFfont('tcpdf/fonts/MS-Gothic-01.ttf');
 //セッションから値を取得する
 $shimei = (isset($_SESSION['shimei'])) ? $_SESSION['shimei'] : "";
 $uchiwake = (isset($_SESSION['uchiwake'])) ? $_SESSION['uchiwake'] : "";
-$hizuke = (isset($_SESSION['hizuke'])) ? $_SESSION['hizuke'] : "";
 $kingaku = (isset($_SESSION['kingaku'])) ? $_SESSION['kingaku'] : "";
 
 $shimei = '柴田千里';
 $uchiwake = 'テキストテキストテキストテキストテキストテキストテキストテキスト';
-$hizuke = date('Y/m/d');
 $kingaku = 10000;
 
 // 
@@ -37,7 +35,6 @@ $kingaku = 10000;
 $item = array();
 
 $item["ryoshusho"]                  = array("x" => 100.0, "y" => 15.0, "size" => 40);  // 領収書
-$item["hakkobi"]                    = array("x" => 99.0, "y" => 38.0, "size" => 14);  // 発行日
 $item["shimei"]                     = array("x" => 103.0, "y" => 45.0, "size" => 20);  // 氏名
 $item["keisen"]                     = array("x" => 55.0, "y" => 55.0, "size" => 20);  // 罫線
 $item["kingaku"]                    = array("x" => 115.0, "y" => 68.0, "size" => 18);  // 金額
@@ -65,7 +62,7 @@ function GUID()
 }
 
 //ファイルパス作成
-$file_name = '/home/nls001/demo-nls02.work/public_html/printReceipt/Receipt/' . date("ymd") . substr(GUID(), 0, 8) . '.pdf';
+$file_name = '/home/nls001/demo-nls02.work/public_html/printReceipt/Receipt/' . date("Ymd") . substr(GUID(), 0, 8) . '.pdf';
 
 // 
 // *********************************************************************
@@ -75,9 +72,6 @@ $file_name = '/home/nls001/demo-nls02.work/public_html/printReceipt/Receipt/' . 
 // *********************************************************************
 $pdf->SetFont($font, '', $item["ryoshusho"]["size"]);
 $pdf->Text($item["ryoshusho"]["x"], $item["ryoshusho"]["y"], "領収書");
-
-$pdf->SetFont($font, '', $item["hakkobi"]["size"]);
-$pdf->Text($item["hakkobi"]["x"], $item["hakkobi"]["y"], "発行日：" . $hizuke);
 
 $pdf->SetFont($font, '', $item["shimei"]["size"]);
 $pdf->Text($item["shimei"]["x"], $item["shimei"]["y"], $shimei . "様");
@@ -89,10 +83,10 @@ $pdf->SetFont($font, '', $item["kingaku"]["size"]);
 $pdf->Text($item["kingaku"]["x"], $item["kingaku"]["y"], "金額");
 
 $pdf->SetFont($font, '', $item["shohizei"]["size"]);
-$pdf->Text($item["shohizei"]["x"], $item["shohizei"]["y"], "￥" . $kingaku);
+$pdf->Text($item["shohizei"]["x"], $item["shohizei"]["y"], "￥" . number_format($kingaku) . "-");
 
 $pdf->SetFont($font, '', 14);
-$pdf->Text($item["shohizei"]["x"] + 30, $item["shohizei"]["y"] + 0.8, " ※(消費税込)");
+$pdf->Text($item["shohizei"]["x"] + strlen($kingaku) + 30, $item["shohizei"]["y"] + 0.8, " ※(消費税込)");
 
 $pdf->SetFont($font, '', $item["tadashigaki"]["size"]);
 $pdf->Text($item["tadashigaki"]["x"], $item["tadashigaki"]["y"], " 但し：　");

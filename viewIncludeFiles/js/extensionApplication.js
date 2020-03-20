@@ -61,7 +61,7 @@
                                     //氏名とメールアドレス表示
                                     $('#name').append(getKaiinJoho['shimei_sei'] + ' ' + getKaiinJoho['shimei_mei'] + ' 様');
 
-                                    name = getKaiinJoho['shimei_sei'] + ' ' + getKaiinJoho['shimei_mei'] + ' 様'
+                                    name = getKaiinJoho['shimei_sei'] + ' ' + getKaiinJoho['shimei_mei'] + ' 様';
                                     //アドレスを変数に格納する
                                     var mail_1 = getKaiinJoho['email_1'];
                                     var mail_2 = getKaiinJoho['email_2'];

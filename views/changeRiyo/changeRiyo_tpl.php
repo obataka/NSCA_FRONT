@@ -5,7 +5,7 @@
         <meta http-equiv="Content-Style-Type" content="text/css" />
         <meta name='format-detection' content='telephone=no' />
         <meta name='viewport' content='width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no' />
-        <title>登録情報修正｜利用登録 (無料)</title>
+        <title>登録情報修正｜利用登録(無料)</title>
         <!-- favicon -->
         <link rel="icon" href="../../viewIncludeFiles/image/favicon.ico">
         <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/notosansjapanese.css">

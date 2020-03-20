@@ -86,6 +86,10 @@
 				<input type="hidden" name="wk_sel_web" id="wk_sel_web" value="<?php echo $wk_sel_web; ?>">
 				<input type="hidden" name="sel_qa" id="sel_qa" value="<?php echo $qa; ?>">
 				<input type="hidden" name="wk_sel_qa" id="wk_sel_qa" value="<?php echo $wk_sel_qa; ?>">
+				<input type="hidden" name="sel_login" id="sel_login" value="<?php echo $login; ?>">
+				<input type="hidden" name="wk_sel_login" id="wk_sel_login" value="<?php echo $wk_sel_login; ?>">
+				<input type="hidden" name="sel_auth" id="sel_auth" value="<?php echo $auth; ?>">
+				<input type="hidden" name="wk_sel_auth" id="wk_sel_auth" value="<?php echo $wk_sel_auth; ?>">
 				<input type="hidden" name="sel_month" id="sel_month" value="<?php echo $month; ?>">
 				<input type="hidden" name="sel_day" id="sel_day" value="<?php echo $day; ?>">
 				<div class="kihon_joho">
@@ -284,26 +288,6 @@
 									</ul>
 								</td>
 							</tr>
-							<!--<tr class="mail">
-								<th><span class="required">必須</span>メールアドレス</th>
-								<td>
-									<p>メールアドレス1</p><input id="mail_address_1" class="w_80" type="email" name="mail_address_1" value="<?php echo $mail_address_1; ?>"><br>
-									<input id="mail_login_1" type="radio" name="mail_login" value="1">
-									<label for="mail_login_1">このメールアドレスでログインする</label><br>
-									<input id="mail_1" type="radio" name="mail" value="1">
-									<label for="mail_1">このメールアドレスでメールを受信する</label>
-									<p class="mt_1">メールアドレス2</p><input id="mail_address_2" class="w_80" type="email" name="mail_address_2" value="<?php echo $mail_address_2; ?>"><br>
-									<input id="mail_login_2" type="radio" name="mail_login" value="2">
-									<label for="mail_login_2">このメールアドレスでログインする</label><br>
-									<input id="mail_2" type="radio" name="mail" value="2">
-									<label for="mail_2">このメールアドレスでメールを受信する</label>
-									<ul class="error_ul">
-										<li class="error" id="err_mail"></li>
-										<li class="error" id="err_mail_address_2"></li>
-										<li class="error" id="err_mail_address_1"></li>
-									</ul>
-								</td>
-							</tr>-->
 							<tr>
 								<th><span class="required">必須</span>メルマガ配信の希望</th>
 								<td>
@@ -437,6 +421,26 @@
 									</ul>
 								</td>
 							</tr>
+							<!-- <tr>
+								<th><span class="required">必須</span>ログイン通知メール</th>
+								<td>
+									<input id="login_1" type="radio" name="login" value="1"><label for="login_1">利用する</label><br>
+									<input id="login_2" type="radio" name="login" value="2"><label for="login_2">利用しない</label>
+									<ul class="error_ul">
+										<li class="error" id="err_login"></li>
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<th><span class="required">必須</span>2段階認証</th>
+								<td>
+									<input id="auth_1" type="radio" name="auth" value="1"><label for="auth_1">利用する</label><br>
+									<input id="auth_2" type="radio" name="auth" value="2"><label for="auth_2">利用しない</label>
+									<ul class="error_ul">
+										<li class="error" id="err_auth"></li>
+									</ul>
+								</td>
+							</tr> -->
 							<tr>
 								<th><span class="any"></span>興味のある分野</th>
 								<td class="clearfix">
@@ -453,7 +457,7 @@
 				</div>
 				<section class="btn_wrap">
 					<button class="button btn_gray" type="button" value="" onclick="location.href='#'"><span>クリア</span></button>
-					<button class="button" type="button" id="next_button" value="" onclick="location.href='#'"><span>次へ</span></button>
+					<button class="button" type="button" id="next_button" value="" ><span>次へ</span></button>
 				</section>
 			</form>
 			

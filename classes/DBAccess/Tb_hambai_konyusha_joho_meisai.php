@@ -8,12 +8,12 @@ class Tb_hambai_konyusha_joho_meisai
     }
 
     /*
-     * お買い物かご名刺情報を取得する※会員のみ発送前全て
+     * 決済済み名刺購入情報を取得する（マイページ【名刺入力フォーム】リンク表示用）
      * 名刺A販売区分：7、名刺B販売区分:8
      * @param varchar $kaiin_no
      * @return array|mixed
      */
-    public function findMeishiJohoByKaiinNo($kaiin_no)
+    public function findMeishiJohoByKaiinNoKonyuId($kaiin_no,$konyu_id)
     {
         try {
             $db = Db::getInstance();
@@ -27,11 +27,13 @@ class Tb_hambai_konyusha_joho_meisai
 		AND tb_hambai_konyusha_joho_meisai.sakujo_flg = 0
 		AND tb_hambai_konyusha_joho.sakujo_flg = 0
 		AND tb_hambai_konyusha_joho.nonyu_hoho_kbn IS NOT NULL
+		AND tb_hambai_konyusha_joho.konyu_id = :konyu_id
 		AND	tb_hambai_joho.hambai_kbn IN (7,8)
 ;
             ");
             $sth->execute([
 					':kaiin_no' => $kaiin_no
+					,':konyu_id' => $konyu_id
 			]);
             $meishiJoho  = $sth->fetchAll();
         } catch (\PDOException $e) {

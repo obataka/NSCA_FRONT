@@ -13,6 +13,8 @@ if (isset($_SESSION['kaiinNo'])) {
 	$wk_kaiin_no = $_SESSION['kaiinNo'];
 }
 
+$wk_kaiin_no = 10251033;
+
 $param = [
     'kaiin_no'  => $wk_kaiin_no,
 ];
