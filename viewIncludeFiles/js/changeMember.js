@@ -1534,7 +1534,7 @@
             //フリガナ_セイ未入力チェック
             if ($("#name_sei_kana").val() == "") {
                 wk_err_msg = "";
-                wk_err_msg = "フリガナ(姓)を入力してください。";
+                wk_err_msg = "フリガナ(セイ)を入力してください。";
                 $("#err_name_sei_kana").html(wk_err_msg);
                 //エラー箇所にフォーカスを当てる
                 if (wk_focus_done == 0) {
@@ -1549,7 +1549,7 @@
                 var sei = sei.match(re);
                 if (!sei) {
                     wk_err_msg == "";
-                    wk_err_msg = "フリガナ(姓)は全角カナで入力してください。";
+                    wk_err_msg = "フリガナ(メイ)は全角カナで入力してください。";
                     $("#err_name_sei_kana").html(wk_err_msg);
                     //エラー箇所にフォーカスを当てる
                     if (wk_focus_done == 0) {
@@ -1723,7 +1723,7 @@
             //市区町村/番地未入力チェック
             if ($("#address_shiku").val() == "") {
                 wk_err_msg == "";
-                wk_err_msg = "市区町村/番地を入力してください。";
+                wk_err_msg = "市区町村／番地を入力してください。";
                 $("#err_address_shiku").html(wk_err_msg);
                 //エラー箇所にフォーカスを当てる
                 if (wk_focus_done == 0) {
@@ -1747,7 +1747,7 @@
                     var sei = sei.match(re);
                     if (!sei) {
                         wk_err_msg2 == "";
-                        wk_err_msg2 = "市区町村/番地(ヨミ)はカナで入力してください。";
+                        wk_err_msg2 = "市区町村／番地(ヨミ)はカナで入力してください。";
                         $("#err_address_yomi_shiku").html(wk_err_msg2);
                         //エラー箇所にフォーカスを当てる
                         if (wk_focus_done == 0) {
@@ -1766,7 +1766,7 @@
                     var sei = sei.match(re);
                     if (!sei) {
                         wk_err_msg3 == "";
-                        wk_err_msg3 = "建物/部屋番号(ヨミ)はカナで入力してください。";
+                        wk_err_msg3 = "建物／部屋番号(ヨミ)はカナで入力してください。";
                         $("#err_address_yomi_tatemono").html(wk_err_msg3);
                         //エラー箇所にフォーカスを当てる
                         if (wk_focus_done == 0) {

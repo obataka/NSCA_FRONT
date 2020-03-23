@@ -434,7 +434,7 @@
             //フリガナ_セイ未入力チェック
             if ($("#name_sei_kana").val() == "") {
                 wk_err_msg = "";
-                wk_err_msg = "フリガナ(姓)を入力してください。";
+                wk_err_msg = "フリガナ(セイ)を入力してください。";
                 $("#err_name_sei_kana").html(wk_err_msg);
 
                 //エラー箇所にフォーカスを当てる
@@ -451,7 +451,7 @@
                 var sei = sei.match(re);
                 if (!sei) {
                     wk_err_msg == "";
-                    wk_err_msg = "フリガナ(姓)は全角カナで入力してください。";
+                    wk_err_msg = "フリガナ(セイ)は全角カナで入力してください。";
                     $("#err_name_sei_kana").html(wk_err_msg);
 
                     //エラー箇所にフォーカスを当てる
@@ -465,7 +465,7 @@
             //フリガナ_メイ未入力チェック
             if ($("#name_mei_kana").val() == "") {
                 wk_err_msg = "";
-                wk_err_msg = "フリガナ(名)を入力してください。";
+                wk_err_msg = "フリガナ(メイ)を入力してください。";
                 $("#err_name_mei_kana").html(wk_err_msg);
 
                 //エラー箇所にフォーカスを当てる
@@ -482,7 +482,7 @@
                 var sei = sei.match(re);
                 if (!sei) {
                     wk_err_msg == "";
-                    wk_err_msg = "フリガナ(名)は全角カナで入力してください。";
+                    wk_err_msg = "フリガナ(メイ)は全角カナで入力してください。";
                     $("#err_name_mei_kana").html(wk_err_msg);
 
                     //エラー箇所にフォーカスを当てる
@@ -625,7 +625,7 @@
             //市区町村/番地未入力チェック
             if ($("#address_shiku").val() == "") {
                 wk_err_msg == "";
-                wk_err_msg = "市区町村/番地を入力してください。";
+                wk_err_msg = "市区町村／番地を入力してください。";
                 $("#err_address_shiku").html(wk_err_msg);
 
                 //エラー箇所にフォーカスを当てる
@@ -646,7 +646,7 @@
             if ($("#address_yomi_shiku").val() == "") {
                 if (wk_err_msg2 == "") {
                     wk_err_msg2 == "";
-                    wk_err_msg2 = "市区町村/番地(ヨミ)を入力してください。";
+                    wk_err_msg2 = "市区町村／番地(ヨミ)を入力してください。";
                     $("#err_address_yomi_shiku").html(wk_err_msg2);
 
                     //エラー箇所にフォーカスを当てる
@@ -661,7 +661,7 @@
             if ($("#address_yomi_tatemono").val() == "") {
                 if (wk_err_msg3 == "") {
                     wk_err_msg3 == "";
-                    wk_err_msg3 = "建物/部屋番号(ヨミ)を入力してください。";
+                    wk_err_msg3 = "建物／部屋番号(ヨミ)を入力してください。";
                     $("#err_address_yomi_tatemono").html(wk_err_msg3);
 
                     //エラー箇所にフォーカスを当てる
@@ -671,7 +671,8 @@
                     }
                 }
             }
-
+            
+            
             //TEL・携帯未入力チェック
             if ($("#tel").val() == "" && $("#keitai_tel").val() == "") {
                 if (wk_err_msg4 == "") {
@@ -726,7 +727,7 @@
 
 
             //メールアドレス1・メールアドレス2未入力チェック
-            if ($("#mail_address_1").val() == "" && $("#mail_address_2").val() == "") {
+            if (!$("#mail_address_1").val() && !$("#mail_address_2").val()) {
                 wk_err_msg == "";
                 wk_err_msg = "メールアドレス1またはメールアドレス2のいずれかを入力してください。";
                 $("#err_mail_address_2").html(wk_err_msg);
@@ -740,7 +741,7 @@
                 //メールアドレス1形式チェック 2019/01/07
                 var mail_regex1 = new RegExp('(?:[-!#-\'*+/-9=?A-Z^-~]+\.?(?:\.[-!#-\'*+/-9=?A-Z^-~]+)*|"(?:[!#-\[\]-~]|\\\\[\x09 -~])*")@[-!#-\'*+/-9=?A-Z^-~]+(?:\.[-!#-\'*+/-9=?A-Z^-~]+)*');
                 var mail_regex2 = new RegExp('^[^\@]+\@[^\@]+$');
-                if ($("#mail_address_1").val().match(mail_regex1) && $("#mail_address_1").val().match(mail_regex2)) {
+                if ($("#mail_address_1").val() && $("#mail_address_1").val().match(mail_regex1) && $("#mail_address_1").val().match(mail_regex2)) {
 
                     // 全角チェック
                     if ($("#mail_address_1").val().match(/[^a-zA-Z0-9\!\"\#\$\%\&\'\(\)\=\~\|\-\^\\\@\[\;\:\]\,\.\/\\\<\>\?\_\`\{\+\*\} ]/)) {
@@ -769,22 +770,23 @@
                             wk_focus_done = 1;
                         }
                     }
-                } else {
-                    wk_err_msg == "";
-                    wk_err_msg = "メールアドレスに使用する文字を正しく入力してください。";
-                    $("#err_mail_address_1").html(wk_err_msg);
-
-                    //エラー箇所にフォーカスを当てる
-                    if (wk_focus_done == 0) {
-                        $("#mail_address_1").focus();
-                        wk_focus_done = 1;
-                    }
                 }
+                // } else {
+                //     wk_err_msg == "";
+                //     wk_err_msg = "メールアドレスに使用する文字を正しく入力してください。";
+                //     $("#err_mail_address_1").html(wk_err_msg);
+
+                //     //エラー箇所にフォーカスを当てる
+                //     if (wk_focus_done == 0) {
+                //         $("#mail_address_1").focus();
+                //         wk_focus_done = 1;
+                //     }
+                // }
 
                 //メールアドレス2形式チェック　2019/01/07
                 var mail_regex1 = new RegExp('(?:[-!#-\'*+/-9=?A-Z^-~]+\.?(?:\.[-!#-\'*+/-9=?A-Z^-~]+)*|"(?:[!#-\[\]-~]|\\\\[\x09 -~])*")@[-!#-\'*+/-9=?A-Z^-~]+(?:\.[-!#-\'*+/-9=?A-Z^-~]+)*');
                 var mail_regex2 = new RegExp('^[^\@]+\@[^\@]+$');
-                if ($("#mail_address_2").val().match(mail_regex1) && $("#mail_address_2").val().match(mail_regex2)) {
+                if ($("#mail_address_2").val() && $("#mail_address_2").val().match(mail_regex1) && $("#mail_address_2").val().match(mail_regex2)) {
 
                     // 全角チェック
                     if ($("#mail_address_2").val().match(/[^a-zA-Z0-9\!\"\#\$\%\&\'\(\)\=\~\|\-\^\\\@\[\;\:\]\,\.\/\\\<\>\?\_\`\{\+\*\} ]/)) {
@@ -813,20 +815,21 @@
                             wk_focus_done = 1;
                         }
                     }
-                } else {
-                    wk_err_msg == "";
-                    wk_err_msg = "メールアドレスに使用する文字を正しく入力してください。";
-                    $("#err_mail_address_2").html(wk_err_msg);
-
-                    //エラー箇所にフォーカスを当てる
-                    if (wk_focus_done == 0) {
-                        $("#mail_address_2").focus();
-                        wk_focus_done = 1;
-                    }
                 }
+                // } else {
+                //     wk_err_msg == "";
+                //     wk_err_msg = "メールアドレスに使用する文字を正しく入力してください。";
+                //     $("#err_mail_address_2").html(wk_err_msg);
+
+                //     //エラー箇所にフォーカスを当てる
+                //     if (wk_focus_done == 0) {
+                //         $("#mail_address_2").focus();
+                //         wk_focus_done = 1;
+                //     }
+                // }
 
                 //メールアドレス1重複チェック 2019/01/06
-                if ($('#mail_address_1').val() !== "") {
+                if ($('#mail_address_1').val()) {
                     $.ajax({
                         url: '../../classes/searchMailAddress1.php',
                         type: 'POST',
@@ -867,7 +870,7 @@
                 }
 
                 //メールアドレス2重複チェック 2019/01/06
-                if ($('#mail_address_2').val() !== "") {
+                if ($('#mail_address_2').val()) {
                     $.ajax({
                         url: '../../classes/searchMailAddress1.php',
                         type: 'POST',
@@ -915,7 +918,7 @@
 
                 //メールアドレス1は入力されているが、ラジオボタンがどちらもチェックされていない場合 2019/01/07
                 if (!$("input:radio[id='mail_login_1']:checked").val() && !$("input:radio[id='mail_1']:checked").val()) {
-                    if ($('#mail_address_1').val() !== "") {
+                    if ($('#mail_address_1').val()) {
                         wk_err_msg == "";
                         wk_err_msg = "メール受信とログイン時にお使いにならないメールアドレス1を削除してください。";
                         $("#err_mail_address_1").html(wk_err_msg);
@@ -924,7 +927,7 @@
 
                 //メールアドレス2は入力されているが、ラジオボタンがどちらもチェックされていない場合 2019/01/07
                 if (!$("input:radio[id='mail_login_2']:checked").val() && !$("input:radio[id='mail_2']:checked").val()) {
-                    if ($('#mail_address_2').val() !== "") {
+                    if ($('#mail_address_2').val()) {
                         wk_err_msg == "";
                         wk_err_msg = "メール受信とログイン時にお使いにならないメールアドレス2を削除してください。";
                         $("#err_mail_address_2").html(wk_err_msg);
