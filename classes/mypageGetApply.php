@@ -232,8 +232,29 @@ function createMousikomiData($result) {
 			// 経過時間チェック
 			// ■ 抑制時間(分)はcm_controlの決済チェック時間
 			if(!empty($value['koshin_nichiji'])){
+	   error_log(print_r('抑制時間チェック', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka7_log.txt');
 
-//$kessai_check_jikan
+				$yokusei_date = date("Y-m-d H:i:s", strtotime(strval("-".$kessai_check_jikan." min")));
+	   error_log(print_r($value['koshin_nichiji'], true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka7_log.txt');
+	   error_log(print_r($yokusei_date, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka7_log.txt');
+
+
+				if($value['koshin_nichiji'] < $yokusei_date){ //  抑制時間経過　→ 開放　0
+	   error_log(print_r('抑制時間チェック----抑制時間経過　→ 開放----', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka7_log.txt');
+					$yokusei_Flg = 0;
+				}else{
+					if(empty($value['nonyubi'])){             // 未入金 →　抑制中　1
+						$yokusei_Flg = 1;
+	   error_log(print_r('抑制時間チェック----未入金 →　抑制中----', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka7_log.txt');
+					}else{                                     // 入金済　→　開放　0
+	   error_log(print_r('抑制時間チェック----入金済　→　開放----', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka7_log.txt');
+						$yokusei_Flg = 0;
+					}
+				}
+
+
+//strval($kessai_check_jikan)
+//date("Y/m/d H:i:s")
 			}
 //			        ' 更新日時から取得日時までの経過時間を取得する
 //			        If String.IsNullOrEmpty(Server.HtmlDecode(e.Row.Cells(20).Text)) OrElse
