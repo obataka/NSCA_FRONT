@@ -34,8 +34,8 @@ $kaihi_eibun_option = (!empty($_POST['kaihi_eibun_option'])) ? htmlentities($_PO
 $kaihi_eibun_option = intval($kaihi_eibun_option);
 $file_front = (!empty($_POST['file_front'])) ? htmlentities($_POST['file_front'], ENT_QUOTES, "UTF-8") : "";
 $file_back = (!empty($_POST['file_back'])) ? htmlentities($_POST['file_back'], ENT_QUOTES, "UTF-8") : "";
-$filepath_front = (!empty($_POST['filepath_front'])) ? htmlentities($_POST['filepath_front'], ENT_QUOTES, "UTF-8") : "";
-$filepath_back = (!empty($_POST['filepath_back'])) ? htmlentities($_POST['filepath_back'], ENT_QUOTES, "UTF-8") : "";
+$filePath_front = (!empty($_POST['filepath_front'])) ? htmlentities($_POST['filepath_front'], ENT_QUOTES, "UTF-8") : "";
+$filePath_back = (!empty($_POST['filepath_back'])) ? htmlentities($_POST['filepath_back'], ENT_QUOTES, "UTF-8") : "";
 $name_sei = (!empty($_POST['name_sei'])) ? htmlentities($_POST['name_sei'], ENT_QUOTES, "UTF-8") : "";
 $name_mei = (!empty($_POST['name_mei'])) ? htmlentities($_POST['name_mei'], ENT_QUOTES, "UTF-8") : "";
 $name_sei_kana = (!empty($_POST['name_sei_kana'])) ? htmlentities($_POST['name_sei_kana'], ENT_QUOTES, "UTF-8") : "";
@@ -103,11 +103,5 @@ $qa = (!empty($_POST['sel_qa'])) ? htmlentities($_POST['sel_qa'], ENT_QUOTES, "U
 $wk_sel_qa = (!empty($_POST['wk_sel_qa'])) ? htmlentities($_POST['wk_sel_qa'], ENT_QUOTES, "UTF-8") : "";
 $sel_chiiki = (!empty($_POST['sel_chiiki'])) ? htmlentities($_POST['sel_chiiki'], ENT_QUOTES, "UTF-8") : "";
 $sel_office_chiiki = (!empty($_POST['sel_office_chiiki'])) ? htmlentities($_POST['sel_office_chiiki'], ENT_QUOTES, "UTF-8") : "";
-
-if ($filePath_front || $filePath_back) {
-    //確認画面から入力画面に戻ってきた場合
-    $file_front = $_FILES['file_front']['name'];
-    $file_back = $_FILES['file_back']['name'];
-} 
 
 include_once $includeView;

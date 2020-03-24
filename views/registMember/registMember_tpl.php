@@ -144,16 +144,16 @@
 								<th><span class="required">必須</span>学生証</th>
 								<td class="file">
 									<div id="upload_front">
-									  <label for="file_front" id="input_label_front" class="button">アップロード（表面）</label>
-									  <input type="file" id="file_front_up" name="file_front" accept="image/*">
+										<label for="file_front_up" id="input_label_front" class="button">アップロード（表面）</label>
+										<input type="file" id="file_front_up" name="file_front" accept="image/*">
 									</div>
 									<p id="file_front_thumb"></p>
 									<ul class="error_ul">
 										<li class="error" id="err_file_front"></li>
 									</ul>
 									<div id="upload_back">
-										<label for="file_back" id="input_label_back" class="button">アップロード（裏面）</label>
-										<input type="file" id="file_back_up" name="file_back"  accept="image/*">
+										<label for="file_back_up" id="input_label_back" class="button">アップロード（裏面）</label>
+										<input type="file" id="file_back_up" name="file_back" accept="image/*">
 									</div>
 									<p id="file_back_thumb"></p>
 									<ul class="error_ul">

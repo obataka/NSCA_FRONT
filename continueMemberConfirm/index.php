@@ -10,6 +10,8 @@ $option = (!empty($_POST['sel_option'])) ? htmlentities($_POST['sel_option'], EN
 $wk_sel_option = (!empty($_POST['wk_sel_option'])) ? htmlentities($_POST['wk_sel_option'], ENT_QUOTES, "UTF-8") : "";
 $file_front = (!empty($_POST['file_front'])) ? htmlentities($_POST['file_front'], ENT_QUOTES, "UTF-8") : "";
 $file_back = (!empty($_POST['file_back'])) ? htmlentities($_POST['file_back'], ENT_QUOTES, "UTF-8") : "";
+$filePath_front = (!empty($_POST['filepath_front'])) ? htmlentities($_POST['filepath_front'], ENT_QUOTES, "UTF-8") : "";
+$filePath_back = (!empty($_POST['filepath_back'])) ? htmlentities($_POST['filepath_back'], ENT_QUOTES, "UTF-8") : "";
 $name_sei = (!empty($_POST['name_sei'])) ? htmlentities($_POST['name_sei'], ENT_QUOTES, "UTF-8") : "";
 $name_mei = (!empty($_POST['name_mei'])) ? htmlentities($_POST['name_mei'], ENT_QUOTES, "UTF-8") : "";
 $name_sei_kana = (!empty($_POST['name_sei_kana'])) ? htmlentities($_POST['name_sei_kana'], ENT_QUOTES, "UTF-8") : "";
@@ -73,19 +75,73 @@ $sel_chiiki = (!empty($_POST['sel_chiiki'])) ? htmlentities($_POST['sel_chiiki']
 $sel_office_chiiki = (!empty($_POST['sel_office_chiiki'])) ? htmlentities($_POST['sel_office_chiiki'], ENT_QUOTES, "UTF-8") : "";
 
 
-//存在を確認したいディレクトリ（ファイルでもOK）
-$directory_path = "../upload/" . date('Ymd_His');    //ディレクトリが存在するか確認
-//「$directory_path」で指定されたディレクトリが存在するか確認
-mkdir($directory_path, 0777);
-//$directory_path = "../upload";
-$filePath_front = $directory_path . "/" . basename($_FILES['file_front']['name']);
+if ($file_front || $file_back) {
+    //確認画面から入力画面に戻って再び確認画面に遷移した場合
 
-move_uploaded_file($_FILES['file_front']['tmp_name'], $filePath_front);
+    //アップロードするファイルを変更した場合
+    if (basename($_FILES['file_front']['name'])) {
+        //フォルダ名作成
+        $directory_path = "../upload/" . date('Ymd_His');
 
+        //フォルダ作成
+        mkdir($directory_path, 0777);
 
-$filePath_back = $directory_path . "/" . basename($_FILES['file_back']['name']);
+        $filePath_front = $directory_path . "/" . basename($_FILES['file_front']['name']);
 
-move_uploaded_file($_FILES['file_back']['tmp_name'], $filePath_back);
+        move_uploaded_file($_FILES['file_front']['tmp_name'], $filePath_front);
+        $file_front = $filePath_front;
 
+        if (basename($_FILES['file_back']['name'])) {
+
+            $filePath_back = $directory_path . "/" . basename($_FILES['file_back']['name']);
+
+            move_uploaded_file($_FILES['file_back']['tmp_name'], $filePath_back);
+            $file_back = $filePath_back;
+        } else {
+            //変更なしの場合、アップロード処理は行わない
+            $filePath_back = $file_back;
+        }
+    } else {
+        //変更なしの場合、アップロード処理は行わない
+        $filePath_front = $file_front;
+
+        if (basename($_FILES['file_back']['name'])) {
+
+            //フォルダ名作成
+            $directory_path = "../upload/" . date('Ymd_His');
+
+            //フォルダ作成
+            mkdir($directory_path, 0777);
+            $filePath_back = $directory_path . "/" . basename($_FILES['file_back']['name']);
+
+            move_uploaded_file($_FILES['file_back']['tmp_name'], $filePath_back);
+            $file_back = $filePath_back;
+        } else {
+            //変更なしの場合、アップロード処理は行わない
+            $filePath_back = $file_back;
+        }
+    }
+} else {
+    //フォルダ名作成
+    $directory_path = "../upload/" . date('Ymd_His');
+
+    //フォルダ作成
+    mkdir($directory_path, 0777);
+
+    $filePath_front = $directory_path . "/" . basename($_FILES['file_front']['name']);
+
+    move_uploaded_file($_FILES['file_front']['tmp_name'], $filePath_front);
+    $file_front = $filePath_front;
+
+    if (basename($_FILES['file_back']['name'])) {
+        $filePath_back = $directory_path . "/" . basename($_FILES['file_back']['name']);
+
+        move_uploaded_file($_FILES['file_back']['tmp_name'], $filePath_back);
+        $file_back = $filePath_back;
+    } else {
+        $file_back = "";
+        $filePath_back = "";
+    }
+}
 
 include_once $includeView;

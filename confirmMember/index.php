@@ -107,8 +107,8 @@ if (isset($_SESSION['tranScreen']) && ($_SESSION['tranScreen'] != "")) {
     $wk_sel_hoji = (!empty($_POST['wk_sel_hoji'])) ? htmlentities($_POST['wk_sel_hoji'], ENT_QUOTES, "UTF-8") : "";
     $file_front = (!empty($_POST['file_front'])) ? htmlentities($_POST['file_front'], ENT_QUOTES, "UTF-8") : "";
     $file_back = (!empty($_POST['file_back'])) ? htmlentities($_POST['file_back'], ENT_QUOTES, "UTF-8") : "";
-    $filepath_front = (!empty($_POST['filepath_front'])) ? htmlentities($_POST['filepath_front'], ENT_QUOTES, "UTF-8") : "";
-    $filepath_back = (!empty($_POST['filepath_back'])) ? htmlentities($_POST['filepath_back'], ENT_QUOTES, "UTF-8") : "";
+    $filePath_front = (!empty($_POST['filepath_front'])) ? htmlentities($_POST['filepath_front'], ENT_QUOTES, "UTF-8") : "";
+    $filePath_back = (!empty($_POST['filepath_back'])) ? htmlentities($_POST['filepath_back'], ENT_QUOTES, "UTF-8") : "";
     $name_sei = (!empty($_POST['name_sei'])) ? htmlentities($_POST['name_sei'], ENT_QUOTES, "UTF-8") : "";
     $name_mei = (!empty($_POST['name_mei'])) ? htmlentities($_POST['name_mei'], ENT_QUOTES, "UTF-8") : "";
     $name_sei_kana = (!empty($_POST['name_sei_kana'])) ? htmlentities($_POST['name_sei_kana'], ENT_QUOTES, "UTF-8") : "";
@@ -181,9 +181,9 @@ if (isset($_SESSION['tranScreen']) && ($_SESSION['tranScreen'] != "")) {
 if ($wk_kaiinSbt == 2) {
     if ($file_front || $file_back) {
         //確認画面から入力画面に戻って再び確認画面に遷移した場合
-        
+
         //アップロードするファイルを変更した場合
-        if ($file_front != $_FILES['file_front']['name']) {
+        if (basename($_FILES['file_front']['name'])) {
             //フォルダ名作成
             $directory_path = "../upload/" . date('Ymd_His');
 
@@ -193,24 +193,38 @@ if ($wk_kaiinSbt == 2) {
             $filePath_front = $directory_path . "/" . basename($_FILES['file_front']['name']);
 
             move_uploaded_file($_FILES['file_front']['tmp_name'], $filePath_front);
+            $file_front = $filePath_front;
 
+            if (basename($_FILES['file_back']['name'])) {
+
+                $filePath_back = $directory_path . "/" . basename($_FILES['file_back']['name']);
+
+                move_uploaded_file($_FILES['file_back']['tmp_name'], $filePath_back);
+                $file_back = $filePath_back;
+            } else {
+                //変更なしの場合、アップロード処理は行わない
+                $filePath_back = $file_back;
+            }
         } else {
-            $filePath_front = $directory_path . "/" . basename($_FILES['file_front']['name']);
+            //変更なしの場合、アップロード処理は行わない
+            $filePath_front = $file_front;
+
+            if (basename($_FILES['file_back']['name'])) {
+
+                //フォルダ名作成
+                $directory_path = "../upload/" . date('Ymd_His');
+
+                //フォルダ作成
+                mkdir($directory_path, 0777);
+                $filePath_back = $directory_path . "/" . basename($_FILES['file_back']['name']);
+
+                move_uploaded_file($_FILES['file_back']['tmp_name'], $filePath_back);
+                $file_back = $filePath_back;
+            } else {
+                //変更なしの場合、アップロード処理は行わない
+                $filePath_back = $file_back;
+            }
         }
-
-        if ($file_back != $_FILES['file_back']['name']) {
-            //フォルダ名作成
-            $directory_path = "../upload/" . date('Ymd_His');
-
-            //フォルダ作成
-            mkdir($directory_path, 0777);
-
-            $filePath_back = $directory_path . "/" . basename($_FILES['file_back']['name']);
-
-            move_uploaded_file($_FILES['file_back']['tmp_name'], $filePath_back);
-
-        }
-
     } else {
         //フォルダ名作成
         $directory_path = "../upload/" . date('Ymd_His');
@@ -221,12 +235,15 @@ if ($wk_kaiinSbt == 2) {
         $filePath_front = $directory_path . "/" . basename($_FILES['file_front']['name']);
 
         move_uploaded_file($_FILES['file_front']['tmp_name'], $filePath_front);
+        $file_front = $filePath_front;
 
         if (basename($_FILES['file_back']['name'])) {
             $filePath_back = $directory_path . "/" . basename($_FILES['file_back']['name']);
 
             move_uploaded_file($_FILES['file_back']['tmp_name'], $filePath_back);
+            $file_back = $filePath_back;
         } else {
+            $file_back = "";
             $filePath_back = "";
         }
     }

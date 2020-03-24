@@ -51,6 +51,8 @@
 				<input type="hidden" name="wk_sel_option" id="wk_sel_option" value="<?php echo $wk_sel_option; ?>">
 				<input type="hidden" name="file_front" id="file_front" value="<?php echo $file_front; ?>">
 				<input type="hidden" name="file_back" id="file_back" value="<?php echo $file_back; ?>">
+				<input type="hidden" name="filepath_front" id="filepath_front" value="<?php echo $filePath_front; ?>">
+				<input type="hidden" name="filepath_back" id="filepath_back" value="<?php echo $filePath_back; ?>">
 				<input type="hidden" name="name_mei" id="name_mei" value="<?php echo $name_mei; ?>">
 				<input type="hidden" name="name_sei" id="name_sei" value="<?php echo $name_sei; ?>">
 				<input type="hidden" name="name_sei_kana" id="name_sei_kana" value="<?php echo $name_sei_kana; ?>">
@@ -125,12 +127,12 @@
 							</td>
 						</tr>
 						<tr class="kaihi">
-							<th><span>会費<?php 
-							if ($wk_kaiinSbt == 0) {
-								echo $wk_kaihi; 
-							} else {
-								echo $wk_kaihi."円";
-							}?></span></th>
+							<th><span>会費<?php
+										if ($wk_kaiinSbt == 0) {
+											echo $wk_kaihi;
+										} else {
+											echo $wk_kaihi . "円";
+										} ?></span></th>
 						</tr>
 					</table>
 				</div>

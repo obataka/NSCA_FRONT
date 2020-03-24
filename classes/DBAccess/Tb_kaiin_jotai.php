@@ -182,18 +182,55 @@ WHERE tb_kaiin_jotai.sakujo_flg = 0
         return $kaiinJotai;
     }
 
+    public function updateKaiinJotai_sbtChange($db, $param)
+    {
+         try {
+                $sql = <<<SQL
+                UPDATE tb_kaiin_jotai
+                SET
+                      sbt_henko_yoyakubi            = NULL
+                    , yoyaku_kaiin_sbt              = NULL
+                    , tekiyo_kaishibi               = NULL
+                    , koshin_user_id                = :koshin_user_id
+                WHERE
+                      kaiin_no = :kaiin_no;
+SQL;
+                $sth = $db->prepare($sql);
+                $sth->execute([
+                    ':kaiin_no'                 => $param['kaiin_no'],
+                    ':koshin_user_id'           => $param['koshin_user_id'],
+                ]);
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error.txt');
+            $db->rollBack();
+            return FALSE;
+        }
+        return TRUE;
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
+    public function updateKaiinJotai_limitCheck($db, $param)
+    {
+         try {
+                $sql = <<<SQL
+                UPDATE tb_kaiin_jotai
+                SET
+                      taikai_hizuke                 = :yuko_hizuke
+                    , koshin_user_id                = :koshin_user_id
+                WHERE
+                      kaiin_no = :kaiin_no;
+SQL;
+                $sth = $db->prepare($sql);
+                $sth->execute([
+                    ':kaiin_no'                 => $param['kaiin_no'],
+                    ':yuko_hizuke'              => $param['yuko_hizuke'],
+                    ':koshin_user_id'           => $param['koshin_user_id'],
+                ]);
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error.txt');
+            $db->rollBack();
+            return FALSE;
+        }
+        return TRUE;
+    }
 
 }

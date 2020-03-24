@@ -348,6 +348,21 @@
          *************************************/
         $("input:checkbox[id='nagareyama']").val(0);
 
+        /*************************************
+         * //画面初期表示で学生証のサムネイルを表示させる
+         *************************************/
+        var file_front = $('#file_front').val();
+        var file_back = $('#file_back').val();
+
+        if (file_front) {
+            $('#file_front_thumb').html('<img src="' + file_front + '">');
+        }
+
+        if (file_back) {
+            $('#file_back_thumb').html('<img src="' + file_back + '">');
+        }
+
+
         /********************************
         * 住所検索ボタン押下処理
         ********************************/
@@ -1019,15 +1034,13 @@
 
             if ($('#kaiinType').val() == "学生会員") {
                 //学生証(表)チェック 学生会員のみ
-                $(function () {
-                    //inputフィールドの文字数を取得
-                    fileCheck = $('#file_front_up').val().length;
-                    if (fileCheck == 0) {
-                        wk_err_msg = "ファイルを選択してください。";
-                        $("#err_file_front").html(wk_err_msg);
-                        wk_err_msg = "";
-                    }
-                });
+                //inputフィールドの文字数を取得
+                var fileCheck = $('#file_front_up').val().length;
+                if (fileCheck == 0 && !$('#file_front').val()) {
+                    wk_err_msg = "ファイルを選択してください。";
+                    $("#err_file_front").html(wk_err_msg);
+                    wk_err_msg = "";
+                }
 
             }
 
