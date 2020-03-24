@@ -650,7 +650,7 @@ SQL;
         return TRUE;
     }
 
-    public function findBykaiinjoho($param)
+    public function findBykaiinjoho($kaiin_no)
     {
         try {
             $db = Db::getInstance();
@@ -658,7 +658,7 @@ SQL;
                                  AND tb_kaiin_jotai.sakujo_flg = 0 LEFT JOIN tb_kaiin_sonota ON tb_kaiin_joho.kaiin_no = tb_kaiin_sonota.kaiin_no
                                  AND tb_kaiin_sonota.sakujo_flg = 0 LEFT JOIN tb_kaiin_journal ON tb_kaiin_joho.kaiin_no = tb_kaiin_journal.kaiin_no
                                  AND tb_kaiin_journal.sakujo_flg = 0 WHERE tb_kaiin_joho.kaiin_no = :kaiin_no AND tb_kaiin_joho.sakujo_flg = 0");
-            $sth->execute([':kaiin_no' => $param['kaiin_no'],]);
+            $sth->execute([':kaiin_no' => $kaiin_no]);
             // $sth->execute([':kaiin_no' => $kaiin_no,]);
             $Tb_kaiin_joho = $sth->fetch();
         } catch (\PDOException $e) {
