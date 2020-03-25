@@ -35,7 +35,7 @@ if ($cursor) {
             'kaiin_no'          => $cursor[$i]['kaiin_no'],
             'kaiin_sbt'         => $cursor[$i]['kaiin_sbt'],
             'yoyaku_kaiin_sbt'  => $cursor[$i]['yoyaku_kaiin_sbt'],
-            'koshin_user_id'    => 'shibata',
+            'koshin_user_id'    => 'system',
         ];
 
         //TB会員情報更新

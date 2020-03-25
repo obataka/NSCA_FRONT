@@ -201,7 +201,7 @@ SQL;
                     ':koshin_user_id'           => $param['koshin_user_id'],
                 ]);
         } catch (\PDOException $e) {
-            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error.txt');
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/batch_error_log/error.txt');
             $db->rollBack();
             return FALSE;
         }
@@ -226,7 +226,101 @@ SQL;
                     ':koshin_user_id'           => $param['koshin_user_id'],
                 ]);
         } catch (\PDOException $e) {
-            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error.txt');
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/batch_error_log/error.txt');
+            $db->rollBack();
+            return FALSE;
+        }
+        return TRUE;
+    }
+
+    public function updateKaiinJotai_autoQuit($db, $param)
+    {
+         try {
+                $sql = <<<SQL
+                UPDATE tb_kaiin_jotai
+                SET
+                      taikai_hizuke                 = :yuko_hizuke
+                    , taikai_riyu_kbn               = 5
+                    , koshin_user_id                = :koshin_user_id
+                WHERE
+                      kaiin_no = :kaiin_no;
+SQL;
+                $sth = $db->prepare($sql);
+                $sth->execute([
+                    ':kaiin_no'                 => $param['kaiin_no'],
+                    ':yuko_hizuke'              => $param['yuko_hizuke'],
+                    ':koshin_user_id'           => $param['koshin_user_id'],
+                ]);
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/batch_error_log/error.txt');
+            $db->rollBack();
+            return FALSE;
+        }
+        return TRUE;
+    }
+
+    public function updateKaiinJotai_kaiinshoClear($db, $kisanbi)
+    {
+         try {
+                $sql = <<<SQL
+                UPDATE tb_kaiin_jotai
+                SET
+                    kaiinsho_hassobi                 = NULL
+                WHERE
+                    COALESCE(keizoku_hizuke,nyukaibi) < '$kisanbi';
+SQL;
+                $sth = $db->prepare($sql);
+                $sth->execute();
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/batch_error_log/error.txt');
+            $db->rollBack();
+            return FALSE;
+        }
+        return TRUE;
+    }
+
+    public function updateKaiinJotai_gakuseishoClear($db, $param)
+    {
+         try {
+                $sql = <<<SQL
+                UPDATE tb_kaiin_jotai
+                SET
+                    gakuseisho_kakunimbi                 = NULL
+                  , gakuseisho_kakunin_kbn               = NULL
+                  , koshin_user_id                       = :koshin_user_id
+                WHERE
+                    kaiin_no = :kaiin_no;
+SQL;
+                $sth = $db->prepare($sql);
+                $sth->execute([
+                    ':kaiin_no'                 => $param['kaiin_no'],
+                    ':koshin_user_id'           => $param['koshin_user_id'],
+                ]);
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/batch_error_log/error.txt');
+            $db->rollBack();
+            return FALSE;
+        }
+        return TRUE;
+    }
+
+    public function updateKaiinJotai_errorCodeClear($db, $kisanbi)
+    {
+         try {
+                $sql = <<<SQL
+                UPDATE tb_kaiin_jotai
+                SET
+                    kaihi_kessai_error_code                 = NULL
+                  , koshin_user_id                          = 'system'
+                WHERE
+                    kaihi_kessai_jikkobi < '$kisanbi'
+                AND
+                    kaihi_kessai_error_code	IN (1,3);
+SQL;
+                $sth = $db->prepare($sql);
+                $sth->execute();
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/batch_error_log/error.txt');
             $db->rollBack();
             return FALSE;
         }

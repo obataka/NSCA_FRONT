@@ -36,13 +36,13 @@ if ($cursor) {
             'kaiin_no'                  => $cursor[$i]['kaiin_no'],
             'yuko_hizuke'               => $cursor[$i]['yuko_hizuke'],
             'taikai_renraku_juribi'     => $cursor[$i]['taikai_renraku_juribi'],
-            'koshin_user_id'            => 'shibata',
+            'koshin_user_id'            => 'system',
         ];
 
         //退会予約をしているか?
         if ($param['taikai_renraku_juribi']) {
             //会員状況更新
-            $result = (new Tb_kaiin_joho())->updateKaiinJokyo_limitCheck($db, $param, 5);
+            $result = (new Tb_kaiin_joho())->updateKaiinJokyo($db, $param, 5);
             if ($result == false) {
                 //更新失敗の場合
                 $db->rollBack();
@@ -64,7 +64,7 @@ if ($cursor) {
         } else {
             //即時退会
             //会員状況更新
-            $result = (new Tb_kaiin_joho())->updateKaiinJokyo_limitCheck($db, $param, 4);
+            $result = (new Tb_kaiin_joho())->updateKaiinJokyo($db, $param, 4);
             if ($result == false) {
                 //更新失敗の場合
                 $db->rollBack();

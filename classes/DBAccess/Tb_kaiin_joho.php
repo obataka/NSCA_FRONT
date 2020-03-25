@@ -1072,7 +1072,7 @@ SQL;
     }
 
     /*
-     * 有効なTB会員情報を取得する
+     * 有効なTB会員情報を取得する(会員種別変更)
      * @param object $db
      * @return array
      */
@@ -1095,9 +1095,10 @@ SQL;
                 AND tb_kaiin_jotai.sakujo_flg = 0;
 SQL;
             $sth = $db->prepare($sql);
+            $sth->execute();
             $Tb_kaiin_joho = $sth->fetchAll();
         } catch (\PDOException $e) {
-            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error.txt');
+            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/batch_error_log/error.txt');
             $Tb_kaiin_joho = [];
         }
         return $Tb_kaiin_joho;
@@ -1127,7 +1128,7 @@ SQL;
                 ':koshin_user_id'           => $param['koshin_user_id'],
             ]);
         } catch (\PDOException $e) {
-            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error.txt');
+            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/batch_error_log/error.txt');
             $db->rollBack();
             return FALSE;
         }
@@ -1135,7 +1136,7 @@ SQL;
     }
 
     /*
-     * 有効なTB会員情報を取得する
+     * 有効なTB会員情報を取得する(有効日付チェック)
      * @param object $db
      * @return array
      */
@@ -1153,14 +1154,15 @@ SQL;
 		        WHERE tb_kaiin_joho.toroku_jokyo_kbn = 1
 		        AND tb_kaiin_joho.kaiin_sbt_kbn IN (1,2,3)
                 AND tb_kaiin_joho.kaiin_jokyo_kbn <> 5
-		        AND tb_kaiin_jotai.tekiyo_kaishibi < DATE_FORMAT(NOW(), '%Y%m%d')
+		        AND tb_kaiin_jotai.yuko_hizuke < DATE_FORMAT(NOW(), '%Y%m%d')
                 AND tb_kaiin_joho.sakujo_flg = 0
                 AND tb_kaiin_jotai.sakujo_flg = 0;
 SQL;
             $sth = $db->prepare($sql);
+            $sth->execute();
             $Tb_kaiin_joho = $sth->fetchAll();
         } catch (\PDOException $e) {
-            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error.txt');
+            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/batch_error_log/error.txt');
             $Tb_kaiin_joho = [];
         }
         return $Tb_kaiin_joho;
@@ -1172,7 +1174,7 @@ SQL;
      * @param array $param
      * @return boolean
      */
-    public function updateKaiinJokyo_limitCheck($db, $param, $kbn)
+    public function updateKaiinJokyo($db, $param, $kbn)
     {
         try {
             $sql = <<<SQL
@@ -1189,7 +1191,7 @@ SQL;
                 ':koshin_user_id'           => $param['koshin_user_id'],
             ]);
         } catch (\PDOException $e) {
-            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error.txt');
+            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/batch_error_log/error.txt');
             $db->rollBack();
             return FALSE;
         }
@@ -1197,7 +1199,7 @@ SQL;
     }
 
     /*
-     * 有効なTB会員情報を取得する
+     * 有効なTB会員情報を取得する(自然退会)
      * @param object $db
      * @return array
      */
@@ -1207,12 +1209,12 @@ SQL;
             $sql = <<<SQL
                 SELECT
 			    kaiin_no,
-			    yuko_hizuke,
+			    yuko_hizuke
 		        FROM (
                     SELECT
                     tb_kaiin_joho.kaiin_no,
                     tb_kaiin_jotai.yuko_hizuke,
-                    DATE_ADD(tb_kaiin_jotai.yuko_hizuke,INTERVAL 6 MONTH) AS shizen_taikaibi
+                    LAST_DAY(ADDDATE(tb_kaiin_jotai.yuko_hizuke,INTERVAL 6 MONTH)) AS shizen_taikaibi
                     FROM tb_kaiin_joho
                     INNER JOIN tb_kaiin_jotai
                         ON tb_kaiin_joho.kaiin_no = tb_kaiin_jotai.kaiin_no
@@ -1222,13 +1224,50 @@ SQL;
                     AND tb_kaiin_jotai.sakujo_flg = 0
                     ) AS tb_kaiin
 		        WHERE shizen_taikaibi < DATE_FORMAT(NOW(), '%Y%m%d')
-                ORDER BY shizen_taikaibi
-		        ;
+                ORDER BY shizen_taikaibi;
 SQL;
             $sth = $db->prepare($sql);
+            $sth->execute();
             $Tb_kaiin_joho = $sth->fetchAll();
         } catch (\PDOException $e) {
-            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error.txt');
+            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/batch_error_log/error.txt');
+            $Tb_kaiin_joho = [];
+        }
+        return $Tb_kaiin_joho;
+    }
+
+    /*
+     * 有効なTB会員情報を取得する(学生証クリア))
+     * @param object $db
+     * @return array
+     */
+    public function cursor_gakuseishoClear($db)
+    {
+        try {
+            $sql = <<<SQL
+                SELECT
+			    kaiin_no
+		        FROM (
+                    SELECT
+                    tb_kaiin_joho.kaiin_no,
+                    LAST_DAY(ADDDATE(COALESCE(tb_kaiin_jotai.keizoku_hizuke, tb_kaiin_jotai.nyukaibi),INTERVAL 8 MONTH)) AS gakuseisho_shokyobi
+                    FROM tb_kaiin_joho
+                    INNER JOIN tb_kaiin_jotai
+                        ON tb_kaiin_joho.kaiin_no = tb_kaiin_jotai.kaiin_no
+                    WHERE tb_kaiin_joho.toroku_jokyo_kbn = 1
+                    AND tb_kaiin_joho.kaiin_sbt_kbn = 2
+                    AND ((tb_kaiin_jotai.gakuseisho_kakunimbi IS NOT NULL) OR (tb_kaiin_jotai.gakuseisho_kakunin_kbn = 1))
+                    AND tb_kaiin_joho.sakujo_flg = 0
+                    AND tb_kaiin_jotai.sakujo_flg = 0
+                    ) AS tb_kaiin
+		        WHERE gakuseisho_shokyobi < DATE_FORMAT(NOW(), '%Y%m%d')
+                ORDER BY gakuseisho_shokyobi;
+SQL;
+            $sth = $db->prepare($sql);
+            $sth->execute();
+            $Tb_kaiin_joho = $sth->fetchAll();
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/batch_error_log/error.txt');
             $Tb_kaiin_joho = [];
         }
         return $Tb_kaiin_joho;
