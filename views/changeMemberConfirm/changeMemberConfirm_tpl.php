@@ -22,7 +22,7 @@
 	<script type="text/javascript" src="../../viewIncludeFiles/js/header.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
-	<script type="text/javascript" src="../../viewIncludeFiles/js/changeConfirmMember.js"></script>
+	<script type="text/javascript" src="../../viewIncludeFiles/js/changeMemberConfirm.js"></script>
 
 </head>
 
@@ -316,8 +316,8 @@
 				</div>
 			</div>
 			<section class="btn_wrap">
-				<button class="button back" type="button" id="return_button" value="" onclick="location.href='#'"><span>内容を修正する</span></button>
-				<button class="button" type="button" id="next_button" value="" onclick="location.href='#'"><span>次へ</span></button>
+				<button class="button back" type="button" id="return_button" value=""><span>内容を修正する</span></button>
+				<button class="button" type="button" id="next_button" value=""><span>次へ</span></button>
 			</section>
 		</div>
 	</div>

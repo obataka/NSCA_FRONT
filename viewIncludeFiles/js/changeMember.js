@@ -413,7 +413,7 @@
                 var test2 = $('label[for="' + test1 + '"]').text();
                 $('#sel_merumaga').val(test2);
             }
-            $('#url').val(getTbkaiinJoho[29]);
+            $('#url').val(getTbkaiinJoho['url_1']);
 
             // 修正で入力画面に戻ってきた時、職業のセレクトボックスの初期表示処理
             var test1 = $('#sel_shoku_1').val();
@@ -421,7 +421,7 @@
             if (test1) {
                 $('#job_1').val(test1);
             } else {
-                $('#job_1').val(getTbkaiinJoho[31]);
+                $('#job_1').val(getTbkaiinJoho['shokugyo_kbn_1']);
             }
             //値セット処理
             var val = $('#job_1 option:selected').text();
@@ -433,7 +433,7 @@
             if (test2) {
                 $('#job_2').val(test2);
             } else {
-                $('#job_2').val(getTbkaiinJoho[32]);
+                $('#job_2').val(getTbkaiinJoho['shokugyo_kbn_2']);
             }
             //値セット処理
             var val = $('#job_2 option:selected').text();
@@ -446,7 +446,7 @@
             if (test3) {
                 $('#job_3').val(test3);
             } else {
-                $('#job_3').val(getTbkaiinJoho[33]);
+                $('#job_3').val(getTbkaiinJoho['shokugyo_kbn_3']);
             }
             //値セット処理
             var val = $('#job_3 option:selected').text();
@@ -454,10 +454,10 @@
             $('#shoku_3').val(val);
             $('#sel_shoku_3').val(val2);
 
-            $('#office').val(getTbkaiinJoho[34]);
-            if (getTbkaiinJoho[36]) {
-                $('#office_yubin_nb_1').val(getTbkaiinJoho[36].slice(0, 3));
-                $('#office_yubin_nb_2').val(getTbkaiinJoho[36].slice(3, 7));
+            $('#office').val(getTbkaiinJoho['kimmusakimei']);
+            if (getTbkaiinJoho['kimmusaki_yubin_no']) {
+                $('#office_yubin_nb_1').val(getTbkaiinJoho['kimmusaki_yubin_no'].slice(0, 3));
+                $('#office_yubin_nb_2').val(getTbkaiinJoho['kimmusaki_yubin_no'].slice(3, 7));
             };
 
             // 修正で入力画面に戻ってきた時、所属先都道府県のセレクトボックスの初期表示処理
@@ -466,7 +466,7 @@
             if (test2) {
                 $('#office_todohuken').val(test2);
             } else {
-                $('#office_todohuken').val(getTbkaiinJoho[37]);
+                $('#office_todohuken').val(getTbkaiinJoho['kimmusaki_kemmei']);
             }
             //値セット処理
             var val = $('#office_todohuken option:selected').text();
@@ -477,26 +477,26 @@
             $('#sel_office_chiiki').val(val3);
 
             if (!$('#office_shiku').val()) {
-                $('#office_shiku').val(getTbkaiinJoho[39]);
+                $('#office_shiku').val(getTbkaiinJoho['kimmusaki_jusho_1']);
             }
             
             if (!$('#office_tatemono').val()) {
-                $('#office_tatemono').val(getTbkaiinJoho[40]);
+                $('#office_tatemono').val(getTbkaiinJoho['kimmusaki_jusho_2']);
             }
             
             if (!$('#office_tel').val()) {
-                $('#office_tel').val(getTbkaiinJoho[41]);
+                $('#office_tel').val(getTbkaiinJoho['kimmusaki_tel']);
             }
             
             if (!$('#office_fax').val()) {
-                $('#office_fax').val(getTbkaiinJoho[42]);
+                $('#office_fax').val(getTbkaiinJoho['kimmusaki_fax']);
             }
 
             //連絡方法の希望のチェック
-            if (getTbkaiinJoho[114]) {
+            if (getTbkaiinJoho['renraku_hoho_yuso']) {
                 $('input:radio[name="hoho"]').val(["2"]);
             }
-            if (getTbkaiinJoho[115]) {
+            if (getTbkaiinJoho['renraku_hoho_denshi_email']) {
                 $('input:radio[name="hoho"]').val(["1"]);
             }
             //メールでお知らせが選ばれていたらvalueに1を設定
@@ -515,7 +515,7 @@
             }
 
             //郵便物配達先の希望のチェック
-            if (getTbkaiinJoho[119] == "") {
+            if (getTbkaiinJoho['yubin_haitatsusaki_kbn'] == "") {
                 $('input:radio[name="yubin"]').val(["1"]);
             } else {
                 $('input:radio[name="yubin"]').val(["0"]);
@@ -536,7 +536,7 @@
             }
 
             //ウェブサイト掲載のチェック
-            if (getTbkaiinJoho[122] == "") {
+            if (getTbkaiinJoho['website_keisai_kbn'] == "") {
                 $('input:radio[name="web"]').val(["1"]);
             } else {
                 $('input:radio[name="web"]').val(["0"]);
@@ -557,7 +557,7 @@
             }
 
             //アンケート協力のチェック
-            if (getTbkaiinJoho[120] == "") {
+            if (getTbkaiinJoho['daisansha_questionnaire_kbn'] == "") {
                 $('input:radio[name="qa"]').val(["1"]);
             } else {
                 $('input:radio[name="qa"]').val(["0"]);
@@ -1973,7 +1973,7 @@
             $('#wk_sel_bunya').val(bunyaVal);
 
             //エラーがない場合確認画面に画面遷移
-            url = '../changeConfirmMember/';
+            url = '../changeMemberConfirm/';
             $('form').attr('action', url);
             $('form').submit();
         });
