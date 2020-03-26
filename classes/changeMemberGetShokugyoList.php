@@ -5,13 +5,15 @@ session_start();
 
 require './Config/Config.php';
 require './DBAccess/Db.php';
-require './DBAccess/Ms_meishoKbn_Area.php';
+require './DBAccess/Vms_meisho.php';
+
+$meisho_kbn = 23; // 職業
 
 // データ取得処理
-$result = (new Ms_meishoKbn_Area())->findByArea();
+$result = (new Vms_meisho())->findByMeishoKbn($meisho_kbn);
 
 // 該当データなしの場合
-if ($result == '') {
+if (empty($result)) {
     echo 0;
 // 該当データありの場合
 } else {

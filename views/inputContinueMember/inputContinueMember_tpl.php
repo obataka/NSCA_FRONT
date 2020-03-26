@@ -53,6 +53,10 @@
 				<input type="hidden" name="kaihi" id="kaihi" value="<?php echo $wk_kaihi; ?>">
 				<input type="hidden" name="sel_option" id="sel_option" value="<?php echo $option; ?>">
 				<input type="hidden" name="wk_sel_option" id="wk_sel_option" value="<?php echo $wk_sel_option; ?>">
+				<input type="hidden" name="file_front" id="file_front" value="<?php echo $file_front; ?>">
+				<input type="hidden" name="file_back" id="file_back" value="<?php echo $file_back; ?>">
+				<input type="hidden" name="filepath_front" id="filepath_front" value="<?php echo $filePath_front; ?>">
+				<input type="hidden" name="filepath_back" id="filepath_back" value="<?php echo $filePath_back; ?>">
 				<input type="hidden" name="kenmei" id="kenmei" value="<?php echo $kenmei; ?>">
 				<input type="hidden" name="sel_math" id="sel_math" value="<?php echo $sel_math; ?>">
 				<input type="hidden" name="sel_chiiki" id="sel_chiiki" value="<?php echo $sel_chiiki; ?>">
@@ -113,16 +117,6 @@
 						</tr>
 						<tr id="gakuseisho">
 						</tr>
-						<?php if ($wk_kaiinType == "学生会員") {
-							if (move_uploaded_file($_FILES['file_front']['tmp_name'], $filePath_front)) {
-								chmod('../upload/' . $_FILES["file_front"]["name"], 0644);
-								echo '<img src="' . $filePath_front . '">';
-							}
-							if (move_uploaded_file($_FILES['file_back']['tmp_name'], $filePath_back)) {
-								chmod('../upload/' . $_FILES["file_back"]["name"], 0644);
-								echo '<img src="' . $filePath_back . '">';
-							}
-						} ?>
 					</table>
 				</div>
 				<div class="kihon_joho">
@@ -475,10 +469,10 @@
 					</table>
 				</div>
 			</form>
-			<button class="button btn_gray" id="unsubscribe" type="button" value="" onclick="location.href='#'"><span>退会をご希望の方はこちら</span></button>
+			<button class="button btn_gray" id="unsubscribe" type="button" value=""><span>退会をご希望の方はこちら</span></button>
 			<section class="btn_wrap">
-				<button class="button btn_gray" id="clear" type="button" value="" onclick="location.href='#'"><span>クリア</span></button>
-				<button class="button" id="next" type="button" value="" onclick="location.href='#'"><span>次へ</span></button>
+				<button class="button btn_gray" id="clear" type="button" value=""><span>クリア</span></button>
+				<button class="button" id="next" type="button" value=""><span>次へ</span></button>
 			</section>
 		</div>
 	</div>

@@ -1,90 +1,81 @@
+@charset "utf-8";
 header {
-    display: none;
+	display: none;
 }
+
 .content_wrap {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0;
+	padding: 10px 10px 100px;
 }
-.mh_c {
-	min-height: calc(100vh - 51px);
+
+.content {
+	width: 300px;
 }
+
 .login_img {
-    text-align: center;
-    margin-bottom: 40px;
+	text-align: center;
+	margin-bottom: 40px;
 }
+
 img {
-    width: 300px;
+	width: 300px;
 }
+
 input {
-    display: block;
-    width: 300px;
-    height: 35px;
+	display: block;
+	width: 300px;
+	height: 35px;
 	margin: 15px auto;
-    padding: 0 10px!important;
-    -webkit-appearance: none;
+	padding: 0 10px!important;
+	-webkit-appearance: none;
 }
+
 button {
 	margin-bottom: 10px!important;
 }
+
 .login_text p {
-    text-align: center;
-    font-size: 0.8rem;
+	text-align: center;
+	font-size: 0.8rem;
 }
+
 .login_text span {
     padding: 0 0.6em;
 }
+
 input[type="password"] {
 	width: 300px;
 }
+
 .error_ul {
 	margin: 0 0 15px;
 }
-.error {
-	width: 300px;
-}
+
 
 /*IEのみ*/
-_:-ms-lang(x)::-ms-backdrop,
-input {
+
+_:-ms-lang(x)::-ms-backdrop, input {
 	padding-top: 0.3em!important;
 }
 
-/*edgeのみ*/
-@supports (-ms-ime-align:auto) {
-	.mh_c {
-		min-height: calc(100vh - 50px)!important;
-	}
-}
+@media all and (-ms-high-contrast: none) {
 
-@media screen and (max-width: 768px) { 	
-	/*IEのみ*/
-	_:-ms-lang(x)::-ms-backdrop,
-	.mh_c {
-		min-height: calc(100vh - 50px)!important;
-	}
-	_:-ms-lang(x)::-ms-backdrop,
 	.content_wrap {
-		overflow: hidden;
-	}
-	
-	/*edgeのみ*/
-	@supports (-ms-ime-align:auto) {
-		.content_wrap {
-			overflow: hidden;
-		}
+		display: table-cell;
+		margin: 0 auto;
+		padding: 50px 10px;
+		min-height: 100vh;
+		vertical-align: middle;
+		width: 100vw;
 	}
 
-}
-
-
-@media screen and (max-width: 480px) { 
-	.content_wrap {
-		padding: 10px;
-		margin: 80px 0;
-	}
 	.content {
-		position: absolute!important;
+
+		width: 300px;
+		margin: 0 auto;
 	}
+
 }

@@ -73,6 +73,10 @@
 			<input type="hidden" name="kaiinType" id="kaiinType" value="<?php echo $wk_kaiinType; ?>">
 			<input type="hidden" name="kaiinSbt" id="kaiinSbt" value="<?php echo $wk_kaiinSbt; ?>">
 			<input type="hidden" name="kaihi" id="kaihi" value="<?php echo $wk_kaihi; ?>">
+			<input type="hidden" name="file_front" id="file_front" value="<?php echo $file_front; ?>">
+			<input type="hidden" name="file_back" id="file_back" value="<?php echo $file_back; ?>">
+			<input type="hidden" name="filepath_front" id="filepath_front" value="<?php echo $filePath_front; ?>">
+			<input type="hidden" name="filepath_back" id="filepath_back" value="<?php echo $filePath_back; ?>">
 			<input type="hidden" name="sel_option" id="sel_option" value="<?php echo $option; ?>">
 			<input type="hidden" name="wk_sel_option" id="wk_sel_option" value="<?php echo $wk_sel_option; ?>">
 			<input type="hidden" name="kaihi_eibun_option" id="kaihi_eibun_option" value="<?php echo $kaihi_eibun_option; ?>">
@@ -140,31 +144,18 @@
 								<th><span class="required">必須</span>学生証</th>
 								<td class="file">
 									<div id="upload_front">
-									  <label for="file_front" id="input_label_front" class="button">アップロード（表面）</label>
-									  <input type="file" id="file_front" name="file_front" accept="image/*">
+										<label for="file_front_up" id="input_label_front" class="button">アップロード（表面）</label>
+										<input type="file" id="file_front_up" name="file_front" accept="image/*">
 									</div>
-									<p>';
-						if (move_uploaded_file($_FILES['file_front']['tmp_name'], $filePath_front)) {
-							chmod('../upload/' . $_FILES["file_front"]["name"], 0644);
-							print '<img src="' . $filePath_front . '">';
-						}
-						print '</p>
+									<p id="file_front_thumb"></p>
 									<ul class="error_ul">
 										<li class="error" id="err_file_front"></li>
 									</ul>
-
 									<div id="upload_back">
-										<label for="file_back" id="input_label_back" class="button">アップロード（裏面）</label>
-										<input type="file" id="file_back" name="file_back"  accept="image/*">
+										<label for="file_back_up" id="input_label_back" class="button">アップロード（裏面）</label>
+										<input type="file" id="file_back_up" name="file_back" accept="image/*">
 									</div>
-
-
-									<p>';
-						if (move_uploaded_file($_FILES['file_back']['tmp_name'], $filePath_back)) {
-							chmod('../upload/' . $_FILES["file_back"]["name"], 0644);
-							print '<img src="' . $filePath_back . '">';
-						}
-						print '</p>
+									<p id="file_back_thumb"></p>
 									<ul class="error_ul">
 										<li class="error" id="err_file_back"></li>
 									</ul>

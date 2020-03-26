@@ -5,13 +5,13 @@ session_start();
 
 require './Config/Config.php';
 require './DBAccess/Db.php';
-require './DBAccess/Ms_meishoKbn.php';
+require './DBAccess/Cm_todofuken.php';
 
 // データ取得処理
-$result = (new Ms_meishoKbn())->findByMeisho();
+$result = (new Cm_todofuken())->findByTodofuken();
 
 // 該当データなしの場合
-if ($result == '') {
+if (empty($result)) {
     echo 0;
 // 該当データありの場合
 } else {

@@ -37,4 +37,60 @@ SQL;
         }
         return TRUE;
     }
+
+    public function updateKaiinJournal_eibun_sbtChange($db, $param)
+    {
+         try {
+                $sql = <<<SQL
+                UPDATE tb_kaiin_journal
+                SET
+                      journal_hasso_kbn             = 1
+                    , journal_hassosu               = 1
+                    , koshin_user_id                = :koshin_user_id
+                WHERE
+                      kaiin_no = :kaiin_no
+                AND
+                      hasso_teishibi IS NULL
+                AND
+                      IFNULL(journal_hasso_kbn,0) = 0
+                AND
+                      IFNULL(journal_hassosu,0) = 0;
+SQL;
+                $sth = $db->prepare($sql);
+                $sth->execute([
+                    ':kaiin_no'                 => $param['kaiin_no'],
+                    ':koshin_user_id'           => $param['koshin_user_id'],
+                ]);
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/batch_error_log/error.txt');
+            $db->rollBack();
+            return FALSE;
+        }
+        return TRUE;
+    }
+
+    public function updateKaiinJournal_batch($db, $param)
+    {
+         try {
+                $sql = <<<SQL
+                UPDATE tb_kaiin_journal
+                SET
+                      journal_hasso_kbn             = 0
+                    , journal_hassosu               = 0
+                    , koshin_user_id                = :koshin_user_id
+                WHERE
+                      kaiin_no = :kaiin_no;
+SQL;
+                $sth = $db->prepare($sql);
+                $sth->execute([
+                    ':kaiin_no'                 => $param['kaiin_no'],
+                    ':koshin_user_id'           => $param['koshin_user_id'],
+                ]);
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/batch_error_log/error.txt');
+            $db->rollBack();
+            return FALSE;
+        }
+        return TRUE;
+    }
 }

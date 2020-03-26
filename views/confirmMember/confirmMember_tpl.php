@@ -156,10 +156,10 @@
 								<tr>
 								<th><span class="required">必須</span>学生証</th>
 								<td class="file">';
-								if ($filePath_front != "") {
+								if ($filePath_front) {
 									echo '<p>学生証（表）アップロード済み</p><img class="filePath_front" src="' . $filePath_front . '"><br>';
 								}
-								if ($filePath_back != "") {
+								if ($filePath_back) {
 									echo '<p>学生証（裏）アップロード済み</p><img class="filePath_back" src="' . $filePath_back . '"><br>';
 								}
 								echo '</td>

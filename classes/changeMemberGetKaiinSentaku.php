@@ -6,9 +6,9 @@ session_start();
 require './Config/Config.php';
 require './DBAccess/Db.php';
 require './DBAccess/Tb_kaiin_sentaku.php';
+
 //セッションから会員番号を取得
 if (isset($_SESSION['kaiinNo'])) {
-   
     // ログインしている
     $wk_kaiin_no = $_SESSION['kaiinNo'];
 }
@@ -21,7 +21,7 @@ $param = [
 $result = (new Tb_kaiin_sentaku())->findBySentaku($param);
 
 // 該当データなしの場合
-if ($result == '') {
+if (empty($result)) {
     echo 0;
 // 該当データありの場合
 } else {

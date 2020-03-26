@@ -24,16 +24,18 @@ if ($wk_kaiinSbt == 1) {
 }
 
 $option = (!empty($_POST['sel_option'])) ? htmlentities($_POST['sel_option'], ENT_QUOTES, "UTF-8") : "";
-$kaihi_eibun_option = (!empty($_POST['kaihi_eibun_option'])) ? htmlentities($_POST['kaihi_eibun_option'], ENT_QUOTES, "UTF-8") : "";
-$kaihi_eibun_option = intval($kaihi_eibun_option);
 $wk_sel_option = (!empty($_POST['wk_sel_option'])) ? htmlentities($_POST['wk_sel_option'], ENT_QUOTES, "UTF-8") : "";
 $riyu = (!empty($_POST['sel_riyu'])) ? htmlentities($_POST['sel_riyu'], ENT_QUOTES, "UTF-8") : "";
 $wk_sel_riyu = (!empty($_POST['wk_sel_riyu'])) ? htmlentities($_POST['wk_sel_riyu'], ENT_QUOTES, "UTF-8") : "";
 $riyu_sonota = (!empty($_POST['sel_riyu_sonota'])) ? htmlentities($_POST['sel_riyu_sonota'], ENT_QUOTES, "UTF-8") : "";
 $nsca_hoji = (!empty($_POST['sel_hoji'])) ? htmlentities($_POST['sel_hoji'], ENT_QUOTES, "UTF-8") : "";
 $wk_sel_hoji = (!empty($_POST['wk_sel_hoji'])) ? htmlentities($_POST['wk_sel_hoji'], ENT_QUOTES, "UTF-8") : "";
+$kaihi_eibun_option = (!empty($_POST['kaihi_eibun_option'])) ? htmlentities($_POST['kaihi_eibun_option'], ENT_QUOTES, "UTF-8") : "";
+$kaihi_eibun_option = intval($kaihi_eibun_option);
 $file_front = (!empty($_POST['file_front'])) ? htmlentities($_POST['file_front'], ENT_QUOTES, "UTF-8") : "";
 $file_back = (!empty($_POST['file_back'])) ? htmlentities($_POST['file_back'], ENT_QUOTES, "UTF-8") : "";
+$filePath_front = (!empty($_POST['filepath_front'])) ? htmlentities($_POST['filepath_front'], ENT_QUOTES, "UTF-8") : "";
+$filePath_back = (!empty($_POST['filepath_back'])) ? htmlentities($_POST['filepath_back'], ENT_QUOTES, "UTF-8") : "";
 $name_sei = (!empty($_POST['name_sei'])) ? htmlentities($_POST['name_sei'], ENT_QUOTES, "UTF-8") : "";
 $name_mei = (!empty($_POST['name_mei'])) ? htmlentities($_POST['name_mei'], ENT_QUOTES, "UTF-8") : "";
 $name_sei_kana = (!empty($_POST['name_sei_kana'])) ? htmlentities($_POST['name_sei_kana'], ENT_QUOTES, "UTF-8") : "";
@@ -60,10 +62,10 @@ $keitai_tel = (!empty($_POST['keitai_tel'])) ? htmlentities($_POST['keitai_tel']
 $fax = (!empty($_POST['fax'])) ? htmlentities($_POST['fax'], ENT_QUOTES, "UTF-8") : "";
 $mail_address_1 = (!empty($_POST['mail_address_1'])) ? htmlentities($_POST['mail_address_1'], ENT_QUOTES, "UTF-8") : "";
 $mail_address_2 = (!empty($_POST['mail_address_2'])) ? htmlentities($_POST['mail_address_2'], ENT_QUOTES, "UTF-8") : "";
-$mail_login = (!empty($_POST['sel_mail'])) ? htmlentities($_POST['sel_mail'], ENT_QUOTES, "UTF-8") : "";
-$wk_sel_mail_login = (!empty($_POST['wk_sel_mail_login'])) ? htmlentities($_POST['wk_sel_mail_login'], ENT_QUOTES, "UTF-8") : "";
-$mail = (!empty($_POST['sel_mail_login'])) ? htmlentities($_POST['sel_mail_login'], ENT_QUOTES, "UTF-8") : "";
+$mail = (!empty($_POST['sel_mail'])) ? htmlentities($_POST['sel_mail'], ENT_QUOTES, "UTF-8") : "";
 $wk_sel_mail = (!empty($_POST['wk_sel_mail'])) ? htmlentities($_POST['wk_sel_mail'], ENT_QUOTES, "UTF-8") : "";
+$mail_login = (!empty($_POST['sel_mail_login'])) ? htmlentities($_POST['sel_mail_login'], ENT_QUOTES, "UTF-8") : "";
+$wk_sel_mail_login = (!empty($_POST['wk_sel_mail_login'])) ? htmlentities($_POST['wk_sel_mail_login'], ENT_QUOTES, "UTF-8") : "";
 $merumaga = (!empty($_POST['sel_merumaga'])) ? htmlentities($_POST['sel_merumaga'], ENT_QUOTES, "UTF-8") : "";
 $wk_sel_merumaga = (!empty($_POST['wk_sel_merumaga'])) ? htmlentities($_POST['wk_sel_merumaga'], ENT_QUOTES, "UTF-8") : "";
 $pass_1 = (!empty($_POST['pass_1'])) ? htmlentities($_POST['pass_1'], ENT_QUOTES, "UTF-8") : "";
@@ -101,6 +103,5 @@ $qa = (!empty($_POST['sel_qa'])) ? htmlentities($_POST['sel_qa'], ENT_QUOTES, "U
 $wk_sel_qa = (!empty($_POST['wk_sel_qa'])) ? htmlentities($_POST['wk_sel_qa'], ENT_QUOTES, "UTF-8") : "";
 $sel_chiiki = (!empty($_POST['sel_chiiki'])) ? htmlentities($_POST['sel_chiiki'], ENT_QUOTES, "UTF-8") : "";
 $sel_office_chiiki = (!empty($_POST['sel_office_chiiki'])) ? htmlentities($_POST['sel_office_chiiki'], ENT_QUOTES, "UTF-8") : "";
-
 
 include_once $includeView;

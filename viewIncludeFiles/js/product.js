@@ -5,11 +5,12 @@
 		*商品詳細情報取得
 		*************************************************************/
 		var tbHanbaiJoho = [];
-		jQuery.ajax({
+		$.ajax({
 			url: '../../classes/product.php',
 			type: 'POST',
-			data: { hambai_id: $("#hambai_id").val() },
-			success: function (rtn) {
+			data: { hambai_id: $("#hambai_id").val() }
+		})
+		.done( (rtn) => {
 				// 商品詳細情報、該当なし
 				if (rtn == 0) {
 
@@ -56,14 +57,13 @@
 					}
 
 				}
-			},
-			fail: function (rtn) {
+			})
+			.fail( (rtn) => {
+	//						$('#pass_1').html('システムエラーが発生しました。');
 				return false;
-			},
-			error: function (rtn) {
-				return false;
-			}
-		});
+			})
+			.always( (rtn) => {
+			});
 
 		/************************************************************
 			*【買い物かご】ボタン押下時

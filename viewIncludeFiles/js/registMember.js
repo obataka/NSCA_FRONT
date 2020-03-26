@@ -348,6 +348,21 @@
          *************************************/
         $("input:checkbox[id='nagareyama']").val(0);
 
+        /*************************************
+         * //画面初期表示で学生証のサムネイルを表示させる
+         *************************************/
+        var file_front = $('#file_front').val();
+        var file_back = $('#file_back').val();
+
+        if (file_front) {
+            $('#file_front_thumb').html('<img src="' + file_front + '">');
+        }
+
+        if (file_back) {
+            $('#file_back_thumb').html('<img src="' + file_back + '">');
+        }
+
+
         /********************************
         * 住所検索ボタン押下処理
         ********************************/
@@ -531,6 +546,51 @@
             });
         });
 
+        /************************
+         * ファイルアップロードイベント
+         ************************/
+
+        //サムネイル画像表示(表)
+        $(document).on('change', "input[id='file_front_up']", function () {
+            var file = $(this).prop('files')[0];
+
+            // 画像以外は処理を停止
+            if (!file.type.match('image.*')) {
+                // クリア
+                $(this).val('');
+                $('#file_front_thumb').html('');
+                return;
+            }
+
+            // 画像表示
+            var reader = new FileReader();
+            reader.onload = function () {
+                var img_src = $('<img>').attr('src', reader.result);
+                $('#file_front_thumb').html(img_src);
+            }
+            reader.readAsDataURL(file);
+        });
+
+        //サムネイル画像表示(裏)
+        $(document).on('change', "input[id='file_back_up']", function () {
+            var file = $(this).prop('files')[0];
+
+            // 画像以外は処理を停止
+            if (!file.type.match('image.*')) {
+                // クリア
+                $(this).val('');
+                $('#file_back_thumb').html('');
+                return;
+            }
+
+            // 画像表示
+            var reader = new FileReader();
+            reader.onload = function () {
+                var img_src = $('<img>').attr('src', reader.result);
+                $('#file_back_thumb').html(img_src);
+            }
+            reader.readAsDataURL(file);
+        });
 
         /************************
          * 英文購読オプションチェンジイベント
@@ -974,15 +1034,13 @@
 
             if ($('#kaiinType').val() == "学生会員") {
                 //学生証(表)チェック 学生会員のみ
-                $(function () {
-                    //inputフィールドの文字数を取得
-                    fileCheck = $('#file_front').val().length;
-                    if (fileCheck == 0) {
-                        wk_err_msg = "ファイルを選択してください。";
-                        $("#err_file_front").html(wk_err_msg);
-                        wk_err_msg = "";
-                    }
-                });
+                //inputフィールドの文字数を取得
+                var fileCheck = $('#file_front_up').val().length;
+                if (fileCheck == 0 && !$('#file_front').val()) {
+                    wk_err_msg = "ファイルを選択してください。";
+                    $("#err_file_front").html(wk_err_msg);
+                    wk_err_msg = "";
+                }
 
             }
 
@@ -1025,7 +1083,7 @@
             //フリガナ_セイ未入力チェック
             if ($("#name_sei_kana").val() == "") {
                 wk_err_msg = "";
-                wk_err_msg = "フリガナ(姓)を入力してください。";
+                wk_err_msg = "フリガナ(セイ)を入力してください。";
                 $("#err_name_sei_kana").html(wk_err_msg);
                 //エラー箇所にフォーカスを当てる
                 if (wk_focus_done == 0) {
@@ -1040,7 +1098,7 @@
                 var sei = sei.match(re);
                 if (!sei) {
                     wk_err_msg == "";
-                    wk_err_msg = "フリガナ(姓)は全角カナで入力してください。";
+                    wk_err_msg = "フリガナ(セイ)は全角カナで入力してください。";
                     $("#err_name_sei_kana").html(wk_err_msg);
                     //エラー箇所にフォーカスを当てる
                     if (wk_focus_done == 0) {
@@ -1052,7 +1110,7 @@
             //フリガナ_メイ未入力チェック
             if ($("#name_mei_kana").val() == "") {
                 wk_err_msg = "";
-                wk_err_msg = "フリガナ(名)を入力してください。";
+                wk_err_msg = "フリガナ(メイ)を入力してください。";
                 $("#err_name_mei_kana").html(wk_err_msg);
                 //エラー箇所にフォーカスを当てる
                 if (wk_focus_done == 0) {
@@ -1067,7 +1125,7 @@
                 var sei = sei.match(re);
                 if (!sei) {
                     wk_err_msg == "";
-                    wk_err_msg = "フリガナ(名)は全角カナで入力してください。";
+                    wk_err_msg = "フリガナ(メイ)は全角カナで入力してください。";
                     $("#err_name_mei_kana").html(wk_err_msg);
                     //エラー箇所にフォーカスを当てる
                     if (wk_focus_done == 0) {
@@ -1214,7 +1272,7 @@
             //市区町村/番地未入力チェック
             if ($("#address_shiku").val() == "") {
                 wk_err_msg == "";
-                wk_err_msg = "市区町村/番地を入力してください。";
+                wk_err_msg = "市区町村／番地を入力してください。";
                 $("#err_address_shiku").html(wk_err_msg);
                 //エラー箇所にフォーカスを当てる
                 if (wk_focus_done == 0) {
@@ -1238,7 +1296,7 @@
                     var sei = sei.match(re);
                     if (!sei) {
                         wk_err_msg2 == "";
-                        wk_err_msg2 = "市区町村/番地(ヨミ)はカナで入力してください。";
+                        wk_err_msg2 = "市区町村／番地(ヨミ)はカナで入力してください。";
                         $("#err_address_yomi_shiku").html(wk_err_msg2);
                         //エラー箇所にフォーカスを当てる
                         if (wk_focus_done == 0) {
@@ -1257,7 +1315,7 @@
                     var sei = sei.match(re);
                     if (!sei) {
                         wk_err_msg3 == "";
-                        wk_err_msg3 = "建物/部屋番号(ヨミ)はカナで入力してください。";
+                        wk_err_msg3 = "建物／部屋番号(ヨミ)はカナで入力してください。";
                         $("#err_address_yomi_tatemono").html(wk_err_msg3);
                         //エラー箇所にフォーカスを当てる
                         if (wk_focus_done == 0) {
@@ -1331,7 +1389,7 @@
             }
 
             //メールアドレス1・メールアドレス2未入力チェック
-            if ($("#mail_address_1").val() == "" && $("#mail_address_2").val() == "") {
+            if (!$("#mail_address_1").val() && !$("#mail_address_2").val()) {
                 wk_err_msg == "";
                 wk_err_msg = "メールアドレス1またはメールアドレス2のいずれかを入力してください。";
                 $("#err_mail_address_2").html(wk_err_msg);
@@ -1344,7 +1402,7 @@
                 //メールアドレス1形式チェック 
                 var mail_regex1 = new RegExp('(?:[-!#-\'*+/-9=?A-Z^-~]+\.?(?:\.[-!#-\'*+/-9=?A-Z^-~]+)*|"(?:[!#-\[\]-~]|\\\\[\x09 -~])*")@[-!#-\'*+/-9=?A-Z^-~]+(?:\.[-!#-\'*+/-9=?A-Z^-~]+)*');
                 var mail_regex2 = new RegExp('^[^\@]+\@[^\@]+$');
-                if ($("#mail_address_1").val().match(mail_regex1) && $("#mail_address_1").val().match(mail_regex2)) {
+                if ($("#mail_address_1").val() && $("#mail_address_1").val().match(mail_regex1) && $("#mail_address_1").val().match(mail_regex2)) {
                     // 全角チェック
                     if ($("#mail_address_1").val().match(/[^a-zA-Z0-9\!\"\#\$\%\&\'\(\)\=\~\|\-\^\\\@\[\;\:\]\,\.\/\\\<\>\?\_\`\{\+\*\} ]/)) {
                         wk_err_msg == "";
@@ -1368,21 +1426,22 @@
                             wk_focus_done = 1;
                         }
                     }
-                } else {
-                    wk_err_msg == "";
-                    wk_err_msg = "メールアドレスに使用する文字を正しく入力してください。";
-                    $("#err_mail_address_1").html(wk_err_msg);
-                    //エラー箇所にフォーカスを当てる
-                    if (wk_focus_done == 0) {
-                        $("#mail_address_1").focus();
-                        wk_focus_done = 1;
-                    }
                 }
+                // } else {
+                //     wk_err_msg == "";
+                //     wk_err_msg = "メールアドレスに使用する文字を正しく入力してください。";
+                //     $("#err_mail_address_1").html(wk_err_msg);
+                //     //エラー箇所にフォーカスを当てる
+                //     if (wk_focus_done == 0) {
+                //         $("#mail_address_1").focus();
+                //         wk_focus_done = 1;
+                //     }
+                // }
 
                 //メールアドレス2形式チェック　
                 var mail_regex1 = new RegExp('(?:[-!#-\'*+/-9=?A-Z^-~]+\.?(?:\.[-!#-\'*+/-9=?A-Z^-~]+)*|"(?:[!#-\[\]-~]|\\\\[\x09 -~])*")@[-!#-\'*+/-9=?A-Z^-~]+(?:\.[-!#-\'*+/-9=?A-Z^-~]+)*');
                 var mail_regex2 = new RegExp('^[^\@]+\@[^\@]+$');
-                if ($("#mail_address_2").val().match(mail_regex1) && $("#mail_address_2").val().match(mail_regex2)) {
+                if ($("#mail_address_2").val() && $("#mail_address_2").val().match(mail_regex1) && $("#mail_address_2").val().match(mail_regex2)) {
                     // 全角チェック
                     if ($("#mail_address_2").val().match(/[^a-zA-Z0-9\!\"\#\$\%\&\'\(\)\=\~\|\-\^\\\@\[\;\:\]\,\.\/\\\<\>\?\_\`\{\+\*\} ]/)) {
                         wk_err_msg == "";
@@ -1406,19 +1465,20 @@
                             wk_focus_done = 1;
                         }
                     }
-                } else {
-                    wk_err_msg == "";
-                    wk_err_msg = "メールアドレスに使用する文字を正しく入力してください。";
-                    $("#err_mail_address_2").html(wk_err_msg);
-                    //エラー箇所にフォーカスを当てる
-                    if (wk_focus_done == 0) {
-                        $("#mail_address_2").focus();
-                        wk_focus_done = 1;
-                    }
                 }
+                // } else {
+                //     wk_err_msg == "";
+                //     wk_err_msg = "メールアドレスに使用する文字を正しく入力してください。";
+                //     $("#err_mail_address_2").html(wk_err_msg);
+                //     //エラー箇所にフォーカスを当てる
+                //     if (wk_focus_done == 0) {
+                //         $("#mail_address_2").focus();
+                //         wk_focus_done = 1;
+                //     }
+                // }
 
                 //メールアドレス1重複チェック 
-                if ($('#mail_address_1').val() !== "") {
+                if ($('#mail_address_1').val()) {
                     jQuery.ajax({
                         url: '../../classes/searchMailAddress1_2.php',
                         type: 'POST',
@@ -1447,7 +1507,7 @@
                     });
                 }
                 //メールアドレス2重複チェック 
-                if ($('#mail_address_2').val() !== "") {
+                if ($('#mail_address_2').val()) {
                     jQuery.ajax({
                         url: '../../classes/searchMailAddress2_2.php',
                         type: 'POST',
@@ -1486,7 +1546,7 @@
 
                 //メールアドレス1未使用チェック
                 if (!$("input:radio[id='mail_login_1']:checked").val() && !$("input:radio[id='mail_1']:checked").val()) {
-                    if ($('#mail_address_1').val() !== "") {
+                    if ($('#mail_address_1').val()) {
                         wk_err_msg == "";
                         wk_err_msg = "メール受信とログイン時にお使いにならないメールアドレス1を削除してください。";
                         $("#err_mail_address_1").html(wk_err_msg);
@@ -1495,7 +1555,7 @@
 
                 //メールアドレス2未使用チェック
                 if (!$("input:radio[id='mail_login_2']:checked").val() && !$("input:radio[id='mail_2']:checked").val()) {
-                    if ($('#mail_address_2').val() !== "") {
+                    if ($('#mail_address_2').val()) {
                         wk_err_msg == "";
                         wk_err_msg = "メール受信とログイン時にお使いにならないメールアドレス2を削除してください。";
                         $("#err_mail_address_2").html(wk_err_msg);
@@ -1530,7 +1590,7 @@
 
                 //メール受信希望1選択時チェック
                 if ($('input[id="mail_1"]').prop('checked')) {
-                    if ($("#mail_address_1").val() == "") {
+                    if (!$("#mail_address_1").val()) {
                         $("#err_mail_address_2").html("");
                         wk_err_msg == "";
                         wk_err_msg = "メールアドレス1を入力してください。";
@@ -1539,13 +1599,15 @@
                 }
                 //メール受信希望2選択時チェック
                 if ($('input[id="mail_2"]').prop('checked')) {
-                    if ($("#mail_address_2").val() == "") {
+                    if (!$("#mail_address_2").val()) {
                         $("#err_mail_address_1").html("");
                         wk_err_msg == "";
                         wk_err_msg = "メールアドレス2を入力してください。";
                         $("#err_mail_address_2").html(wk_err_msg);
                     }
                 }
+
+
 
             }
 

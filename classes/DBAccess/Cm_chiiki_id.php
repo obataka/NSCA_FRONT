@@ -2,7 +2,7 @@
 
 namespace Was;
 
-class Ms_meishoKbn_Area
+class Cm_chiiki_id
 {
     public function __construct()
     { }
@@ -10,7 +10,7 @@ class Ms_meishoKbn_Area
     /**
      * @return array|mixed
      */
-    public function findByArea()
+    public function findChiikiList()
     {
         try {
             $db = Db::getInstance();
@@ -18,12 +18,12 @@ class Ms_meishoKbn_Area
             FROM  cm_chiiki_id
             ORDER BY meisho_cd;");  
             $sth->execute();
-            $ms_Area = $sth->fetchAll();
+            $ChiikiList = $sth->fetchAll();
         } catch (\PDOException $e) {
             error_log(print_r($e, true) . PHP_EOL, '3', 'error_log.txt');
-            $ms_Area = [];
+            $ChiikiList = [];
         }
 
-        return $ms_Area;
+        return $ChiikiList;
     }
 }

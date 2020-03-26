@@ -57,7 +57,7 @@
 						<p class="kaihi">会費：<span id="seikaiin-kaihi"></span>円</p>
 					</div>
 					<p class="text">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-					<button class="button" id="__registMember"><span>NSCA正会員の<br>登録はこちら</span></button>
+					<button class="button" id="__registMember"><span>NSCA正会員の登録はこちら</span></button>
 				</section>
 				<section>
 					<div>
@@ -65,7 +65,7 @@
 						<p class="kaihi">会費：<span id="gakusei-kaihi"></span>円</p>
 					</div>
 					<p class="text">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-					<button class="button" id="__registGakusei"><span>学生会員の<br>登録はこちら</span></button>
+					<button class="button" id="__registGakusei"><span>学生会員の登録はこちら</span></button>
 				</section>
 				<input type="hidden" name="kaiinSbt" id="kaiinSbt" value="" />
 				<input type="hidden" name="kaihi" id="kaihi" value="" />

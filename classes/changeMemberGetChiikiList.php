@@ -5,10 +5,10 @@ session_start();
 
 require './Config/Config.php';
 require './DBAccess/Db.php';
-require './DBAccess/Ms_meishoKbn_Bunya.php';
+require './DBAccess/Cm_chiiki_id.php';
 
 // データ取得処理
-$result = (new Ms_meishoKbn_Bunya())->findByBunya();
+$result = (new Cm_chiiki_id())->findChiikiList();
 
 // 該当データなしの場合
 if ($result == '') {

@@ -223,13 +223,15 @@
         var data = "";
         data = `<th><span class="required">必須</span>学生証</th>
                 <td class="file">
-                    <label for="file_front" id="input_label_front" class="button">アップロード（表面）</label>
-                    <input type="file" id="file_front" name="file_front" accept="image/*">
+                    <label for="file_front_up" id="input_label_front" class="button">アップロード（表面）</label>
+                    <input type="file" id="file_front_up" name="file_front" accept="image/*">
+                    <p id="file_front_thumb"></p>
                     <ul class="error_ul">
                         <li class="error" id="err_file_front"></li>
                     </ul>
-                    <label for="file_back" id="input_label_back" class="button">アップロード（裏面）</label>
-                    <input type="file" id="file_back" name="file_back"  accept="image/*">
+                    <label for="file_back_up" id="input_label_back" class="button">アップロード（裏面）</label>
+                    <input type="file" id="file_back_up" name="file_back"  accept="image/*">
+                    <p id="file_back_thumb"></p>
                     <ul class="error_ul">
 						<li class="error" id="err_file_back"></li>
 					</ul>
@@ -336,6 +338,53 @@
          *************************************/
         $("input:checkbox[id='nagareyama']").val(0);
 
+        /************************
+         * ファイルアップロードイベント
+         ************************/
+
+        //サムネイル画像表示(表)
+        $(document).on('change', "input[id='file_front_up']", function () {
+            var file = $(this).prop('files')[0];
+
+            // 画像以外は処理を停止
+            if (!file.type.match('image.*')) {
+                // クリア
+                $(this).val('');
+                $('#file_front_thumb').html('');
+                return;
+            }
+
+            // 画像表示
+            var reader = new FileReader();
+            reader.onload = function () {
+                var img_src = $('<img>').attr('src', reader.result);
+                $('#file_front_thumb').html(img_src);
+            }
+            reader.readAsDataURL(file);
+        });
+
+        //サムネイル画像表示(裏)
+        $(document).on('change', "input[id='file_back_up']", function () {
+            var file = $(this).prop('files')[0];
+
+            // 画像以外は処理を停止
+            if (!file.type.match('image.*')) {
+                // クリア
+                $(this).val('');
+                $('#file_back_thumb').html('');
+                return;
+            }
+
+            // 画像表示
+            var reader = new FileReader();
+            reader.onload = function () {
+                var img_src = $('<img>').attr('src', reader.result);
+                $('#file_back_thumb').html(img_src);
+            }
+            reader.readAsDataURL(file);
+        });
+
+
         /********************************
         * 住所検索ボタン押下処理
         ********************************/
@@ -402,6 +451,11 @@
                 // rtn = 0 の場合は、該当なし
                 if (rtn == 0) {
                     $("#err_address_yubin_nb_1").html("郵便番号から住所を取得できません");
+                    $("#address_todohuken").val("");
+                    $("#address_shiku").val("");
+                    $("#address_tatemono").val("");
+                    $("#address_yomi_shiku").val("");
+                    $("#address_yomi_tatemono").val("");
                     return false;
                 } else {
                     //※正常に住所情報を取得できた時の処理を書く場所
@@ -415,6 +469,11 @@
                 }
             }).fail((rtn) => {
                 $("#err_address_yubin_nb_1").html("郵便番号から住所を取得できません");
+                $("#address_todohuken").val("");
+                $("#address_shiku").val("");
+                $("#address_tatemono").val("");
+                $("#address_yomi_shiku").val("");
+                $("#address_yomi_tatemono").val("");
                 return false;
             });
         });
@@ -484,6 +543,11 @@
                 // rtn = 0 の場合は、該当なし
                 if (rtn == 0) {
                     $("#err_address_yubin_nb_2").html("郵便番号から住所を取得できません");
+                    $("#office_todohuken").val("");
+                    $("#office_shiku").val("");
+                    $("#office_tatemono").val("");
+                    $("#office_yomi_shiku").val("");
+                    $("#office_yomi_tatemono").val("");
                     return false;
                 } else {
                     //※正常に住所情報を取得できた時の処理を書く場所
@@ -495,6 +559,11 @@
                 }
             }).fail((rtn) => {
                 $("#err_address_yubin_nb_2").html("郵便番号から住所を取得できません");
+                $("#office_todohuken").val("");
+                $("#office_shiku").val("");
+                $("#office_tatemono").val("");
+                $("#office_yomi_shiku").val("");
+                $("#office_yomi_tatemono").val("");
                 return false;
             });
         });
@@ -876,15 +945,13 @@
 
             if ($('#kaiinType').val() == "学生会員") {
                 //学生証(表)チェック 学生会員のみ
-                $(function () {
-                    //inputフィールドの文字数を取得
-                    fileCheck = $('#file_front').val().length;
-                    if (fileCheck == 0) {
-                        wk_err_msg = "学生証がアップロードされていません。学生会員は学生証をアップロードしてください。";
-                        $("#err_file_front").html(wk_err_msg);
-                        wk_err_msg = "";
-                    }
-                });
+                //inputフィールドの文字数を取得
+                var fileCheck = $('#file_front_up').val().length;
+                if (fileCheck == 0 && !$('#file_front').val()) {
+                    wk_err_msg = "ファイルを選択してください。";
+                    $("#err_file_front").html(wk_err_msg);
+                    wk_err_msg = "";
+                }
 
             }
 
@@ -913,7 +980,7 @@
             //フリガナ_セイ未入力チェック
             if ($("#name_sei_kana").val() == "") {
                 wk_err_msg = "";
-                wk_err_msg = "フリガナ(姓)を入力してください。";
+                wk_err_msg = "フリガナ(セイ)を入力してください。";
                 $("#err_name_sei_kana").html(wk_err_msg);
                 //エラー箇所にフォーカスを当てる
                 if (wk_focus_done == 0) {
@@ -928,7 +995,7 @@
                 var sei = sei.match(re);
                 if (!sei) {
                     wk_err_msg == "";
-                    wk_err_msg = "フリガナ(姓)は全角カナで入力してください。";
+                    wk_err_msg = "フリガナ(セイ)は全角カナで入力してください。";
                     $("#err_name_sei_kana").html(wk_err_msg);
                     //エラー箇所にフォーカスを当てる
                     if (wk_focus_done == 0) {
@@ -940,7 +1007,7 @@
             //フリガナ_メイ未入力チェック
             if ($("#name_mei_kana").val() == "") {
                 wk_err_msg = "";
-                wk_err_msg = "フリガナ(名)を入力してください。";
+                wk_err_msg = "フリガナ(メイ)を入力してください。";
                 $("#err_name_mei_kana").html(wk_err_msg);
                 //エラー箇所にフォーカスを当てる
                 if (wk_focus_done == 0) {
@@ -955,7 +1022,7 @@
                 var sei = sei.match(re);
                 if (!sei) {
                     wk_err_msg == "";
-                    wk_err_msg = "フリガナ(名)は全角カナで入力してください。";
+                    wk_err_msg = "フリガナ(メイ)は全角カナで入力してください。";
                     $("#err_name_mei_kana").html(wk_err_msg);
                     //エラー箇所にフォーカスを当てる
                     if (wk_focus_done == 0) {
@@ -1102,7 +1169,7 @@
             //市区町村/番地未入力チェック
             if ($("#address_shiku").val() == "") {
                 wk_err_msg == "";
-                wk_err_msg = "市区町村/番地を入力してください。";
+                wk_err_msg = "市区町村／番地を入力してください。";
                 $("#err_address_shiku").html(wk_err_msg);
                 //エラー箇所にフォーカスを当てる
                 if (wk_focus_done == 0) {
@@ -1110,17 +1177,7 @@
                     wk_focus_done = 1;
                 }
             }
-            //建物/部屋番号未入力チェック
-            if ($("#address_tatemono").val() == "") {
-                wk_err_msg == "";
-                wk_err_msg = "建物/部屋番号を入力してください。";
-                $("#err_address_tatemono").html(wk_err_msg);
-                //エラー箇所にフォーカスを当てる
-                if (wk_focus_done == 0) {
-                    $("#address_tatemono").focus();
-                    wk_focus_done = 1;
-                }
-            }
+
             //流山市民のvalueの設定　チェック有り：1　チェック無し：0
             if ($('input[name="nagareyama"]').prop('checked')) {
                 $('input[name="nagareyama"]').val = 1;
@@ -1136,7 +1193,7 @@
                     var sei = sei.match(re);
                     if (!sei) {
                         wk_err_msg2 == "";
-                        wk_err_msg2 = "市区町村/番地(ヨミ)はカナで入力してください。";
+                        wk_err_msg2 = "市区町村／番地(ヨミ)はカナで入力してください。";
                         $("#err_address_yomi_shiku").html(wk_err_msg2);
                         //エラー箇所にフォーカスを当てる
                         if (wk_focus_done == 0) {
@@ -1147,24 +1204,6 @@
                 }
             }
 
-            //建物/部屋番号(ヨミ)カナチェック
-            if ($("#address_yomi_tatemono").val() !== "") {
-                if (wk_err_msg3 == "") {
-                    var sei = $("#address_yomi_tatemono").val();
-                    var re = /^[ァ-ンヴー|ｧ-ﾝﾞﾟ\-|0-9]*$/;
-                    var sei = sei.match(re);
-                    if (!sei) {
-                        wk_err_msg3 == "";
-                        wk_err_msg3 = "建物/部屋番号(ヨミ)はカナで入力してください。";
-                        $("#err_address_yomi_tatemono").html(wk_err_msg3);
-                        //エラー箇所にフォーカスを当てる
-                        if (wk_focus_done == 0) {
-                            $("#address_yomi_tatemono").focus();
-                            wk_focus_done = 1;
-                        }
-                    }
-                }
-            }
             //TEL・携帯未入力チェック
             if ($("#tel").val() == "" && $("#keitai_tel").val() == "") {
                 if (wk_err_msg4 == "") {
