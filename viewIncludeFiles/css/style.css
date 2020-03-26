@@ -639,7 +639,6 @@ input[type="number"] {
 
 footer {
     width: 100%;
-    height: 50px;
     background: #777;
 }
 footer p {
@@ -1348,4 +1347,3 @@ button[type="submit"]:disabled:hover::after {
 .iPhone label {
     line-height: 20px;
 }
-
