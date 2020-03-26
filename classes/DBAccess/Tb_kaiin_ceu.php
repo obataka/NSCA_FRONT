@@ -680,4 +680,42 @@ SQL;
         }
         return TRUE;
     }
+
+    public function autoLicenseUpdate($db)
+    {
+        try {
+            $sth = $db->prepare("UPDATE tb_kaiin_ceu
+                                INNER JOIN 
+                                    tb_nintei_meisai
+		                        ON 
+                                    tb_kaiin_ceu.kaiin_no = tb_nintei_meisai.kaiin_no
+		                        AND 
+                                    tb_kaiin_ceu.shiken_sbt_kbn = tb_nintei_meisai.shiken_sbt_kbn
+								SET
+                                    tb_kaiin_ceu.shikaku_koshinryo_nofu_kbn      = 1
+                                    , tb_kaiin_ceu.koshin_user_id                = 'system'
+								WHERE
+									tb_kaiin_ceu.sakujo_flg = 0
+                                AND
+                                    tb_nintei_meisai.sakujo_flg = 0
+                                AND
+                                    tb_nintei_meisai.ninteibi >= '2017/07/01'
+                                AND
+                                    tb_nintei_meisai.ninteibi <= '2017/12/31'
+                                AND
+                                    tb_kaiin_ceu.nendo_id = 5
+                                AND
+                                    tb_nintei_meisai.torikeshi_hizuke IS NULL
+                                AND 
+                                    IFNULL(tb_kaiin_ceu.shikaku_koshinryo_nofu_kbn,0) = 0
+
+								");
+            $sth->execute();
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/batch_error_log/error.txt');
+            $db->rollBack();
+            return FALSE;
+        }
+        return TRUE;
+    }
 }
