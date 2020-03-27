@@ -16,9 +16,8 @@ $('form').submit();
 * 英文オプションが有りの場合、支払方法選択画面に遷移する。
 *******************************************/
 $("#next_button").click(function () {
-alert("start");
         $.ajax({
-            url: '../../classes/changeMemberPost.php',
+            url: '../../classes/changeMemberUpdate.php',
             type: 'POST',
             data:
             {
@@ -82,23 +81,23 @@ alert("start");
             }
         }).done((rtn) => {
             // rtn = 0 の場合は、該当なし
-alert(rtn);
+// ↓commit処理エラーの表示あり、修正後に削除
+//　エラーがでているのに正常で返却されているため、classのエラー処理見直し
+//alert(rtn);
             if (rtn == 0) {
                 return false;
             } else {
                         //エラーがない場合完了画面に画面遷移
                         //英文オプションにチェックがある場合、支払方法選択画面へ画面遷移する
                         if ($("#wk_sel_option").val() == "") {
-                            location.href = '../changeComplete/';
+                            location.href = '../changeMemberComplete/';
                         } else {
                             location.href = '../paymentSelect/';
                         }
               }
         }).fail((rtn) => {
-alert(rtn);
             return false;
         });
-alert("end");
 
 });
 
