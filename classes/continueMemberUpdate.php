@@ -14,7 +14,7 @@ require './DBAccess/Tb_kaiin_sentaku.php';
 $ret = "";
 $wk_no = 0;
 $wk_kaiin_no = "";
-$koshin_user_id = "changeMember";
+$koshin_user_id = "continueMember";
 
 	//セッションから会員番号を取得
 	$wk_kaiin_no = '';

@@ -15,7 +15,7 @@
         *******************************************/
         $("#next_button").click(function () {
             jQuery.ajax({
-                url: '../../classes/changeMemberPost.php',
+                url: '../../classes/continueMemberUpdate.php',
                 type: 'POST',
                 data:
                 {
