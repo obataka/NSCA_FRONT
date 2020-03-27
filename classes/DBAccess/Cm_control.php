@@ -78,6 +78,61 @@ class Cm_control
         return $cmControl;
     }
 
+    /**
+     * 決済連番をカウントアップします
+     */
+    public function countUpKessaiRemban() {
+
+        $db = Db::getInstance();
+        $db->beginTransaction();
+
+        try {
+            $sql = <<<SQL
+                UPDATE cm_control
+                   SET kessai_remban = kessai_remban + 1
+                 WHERE id = :id
+            SQL;
+
+            $sth = $db->prepare($sql);
+            $sth->execute([':id' => '1',]);
+            $db->commit();
+
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/nishiyama_log.txt');
+            $db->rollBack();
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * 決済連番を取得します
+     */
+    public function getKessaiRemban() {
+
+        $db = Db::getInstance();
+        $rtn = '';
+
+        try {
+            $sql = <<<SQL
+                SELECT concat(
+                            DATE_FORMAT(now(), '%Y%m%d'), 
+                            right(concat('000000000000', convert(kessai_remban, char)), 12)
+                       ) as kessai_remban
+                  FROM cm_control
+                 WHERE id = :id
+            SQL;
+
+            $sth = $db->prepare($sql);
+            $sth->execute([':id' => '1',]);
+            $rtn = $sth->fetch(PDO::FETCH_COLUMN);
+
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/nishiyama_log.txt');
+            $rtn = '';
+        }
+      return $rtn;
+    }
 
 
 //

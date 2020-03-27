@@ -40,4 +40,15 @@ class Config
 //    const RESERVE_LIMIT_DANTAI = 2;
 //    const BATCH_INS_USER = 'DailyBatchIns';
 //    const BATCH_UPD_USER = 'DailyBatchUpd';
+
+    /************************************************************************
+    * 納入方法区分
+    *************************************************************************/
+    // クレジット
+    const GEUM_PAY_CARD = 1;
+    // コンビニ
+    const GEUM_PAY_CONVENIENCE = 2;
+    // Pay-easy
+    const GEUM_PAY_PAYEASY = 4;
+    
 }

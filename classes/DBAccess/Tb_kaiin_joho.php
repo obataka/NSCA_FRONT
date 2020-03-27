@@ -1071,6 +1071,8 @@ SQL;
         return TRUE;
     }
 
+
+
     /*
      * 有効なTB会員情報を取得する(会員種別変更)
      * @param object $db
@@ -1272,4 +1274,64 @@ SQL;
         }
         return $Tb_kaiin_joho;
     }
+
+    /*
+     * 認定校生検索処理
+     * @param varchar $param['shimei_sei']
+     * @param varchar $param['shimei_mei']
+     * @param varchar $param['furigana_sei']
+     * @param varchar $param['furigana_mei']
+     * @param datetime $param['seinengappi']
+     * @return 会員情報テーブルデータ
+     */
+    public function findNinteiKousei($param)
+    {
+        $toroku_jokyo = 3; // 登録状況区分：非会員
+        $kaiin_jokyo = 6; // 会員状況区分：非会員
+        $kaiin_sbt = 13; // 会員種別区分：認定校生
+
+        $db = Db::getInstance();
+        try {
+            $sql = <<<SQL
+                SELECT kaiin.kaiin_no
+                  FROM tb_kaiin_joho AS kaiin
+                 WHERE kaiin.sakujo_flg = 0
+                   AND kaiin.toroku_jokyo_kbn = $toroku_jokyo
+                   AND kaiin.kaiin_jokyo_kbn = $kaiin_jokyo
+                   AND kaiin.kaiin_sbt_kbn = $kaiin_sbt
+                   AND kaiin.shimei_sei = :shimei_sei
+                   AND kaiin.shimei_mei = :shimei_mei
+                   AND kaiin.furigana_sei = :furigana_sei
+                   AND kaiin.furigana_mei = :furigana_mei
+                   AND kaiin.seinengappi = :seinengappi
+                   AND (
+                       SELECT meisai.kaiin_no
+                         FROM tb_shiken AS shiken
+                         LEFT JOIN tb_shiken_meisai as meisai
+                           ON meisai.sakujo_flg = 0
+                          AND shiken.kaiin_no = meisai.kaiin_no
+                          AND meisai.uketsukebi >= DATE_SUB(CURRENT_DATE(),INTERVAL 4 YEAR)
+                          AND meisai.uketsukebi <= CURRENT_DATE()
+                        WHERE shiken.kaiin_no = kaiin.kaiin_no
+                        GROUP BY meisai.kaiin_no
+                   ) IS NOT NULL
+            SQL;
+
+            $sth = $db->prepare($sql);
+            $sth->execute([
+                ':shimei_sei' => $param['shimei_sei']
+               ,':shimei_mei' => $param['shimei_mei']
+               ,':furigana_sei' => $param['furigana_sei']
+               ,':furigana_mei' => $param['furigana_mei']
+               ,':seinengappi' => $param['seinengappi']
+            ]);
+            $Tb_kaiin_joho = $sth->fetch();
+
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/nishiyama_log.txt');
+            $Tb_kaiin_joho = [];
+        }
+      return $Tb_kaiin_joho;
+    }
+
 }
