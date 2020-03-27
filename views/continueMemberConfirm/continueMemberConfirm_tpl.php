@@ -13,12 +13,12 @@
 	<link rel="stylesheet" href="../../viewIncludeFiles/css/fontawesome/web-fonts-with-css/css/fontawesome-all.css">
 	<link rel="stylesheet" href="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.css">
 	<link rel="stylesheet" href="../../viewIncludeFiles/css/style.css" />
-	<link rel="stylesheet" href="../../viewIncludeFiles/css/continueConfirmMember.css" />
+	<link rel="stylesheet" href="../../viewIncludeFiles/css/continueMemberConfirm.css" />
 
 	<script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.1.1.min.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
-	<script type="text/javascript" src="../../viewIncludeFiles/js/continueConfirmMember.js"></script>
+	<script type="text/javascript" src="../../viewIncludeFiles/js/continueMemberConfirm.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
 
@@ -318,8 +318,8 @@
 			</table>
 		</div>
 		<section class="btn_wrap">
-			<button class="button btn_gray" id="return_button" type="button" value="" onclick="location.href='#'"><span>内容を修正する</span></button>
-			<button class="button" id="next_button" type="button" value="" onclick="location.href='#'"><span>決済方法へ</span></button>
+			<button class="button btn_gray" id="return_button" type="button" value=""><span>内容を修正する</span></button>
+			<button class="button" id="next_button" type="button" value=""><span>決済方法へ</span></button>
 		</section>
 	</div>
 	<footer id="footer">

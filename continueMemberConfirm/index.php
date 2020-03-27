@@ -1,7 +1,7 @@
 <?php
 include_once '../ctrl/parts/beforeLoginHeader.php';
 
-$includeView = '../views/continueConfirmMember/continueConfirmMember_tpl.php';
+$includeView = '../views/continueMemberConfirm/continueMemberConfirm_tpl.php';
 
 $wk_kaiinType = (!empty($_POST['kaiinType'])) ? htmlentities($_POST['kaiinType'], ENT_QUOTES, "UTF-8") : "";
 $wk_kaiinSbt = (!empty($_POST['kaiinSbt'])) ? htmlentities($_POST['kaiinSbt'], ENT_QUOTES, "UTF-8") : "";

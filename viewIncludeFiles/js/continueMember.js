@@ -1393,7 +1393,7 @@
             $('#wk_sel_bunya').val(bunyaVal);
 
             //エラーがない場合確認画面に画面遷移
-            url = '../continueConfirmMember/';
+            url = '../continueMemberConfirm/';
             $('form').attr('action', url);
             $('form').submit();
 

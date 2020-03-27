@@ -1,7 +1,7 @@
 <?php
 include_once '../ctrl/parts/inputHeader.php';
 
-$includeView = '../views/inputContinueMember/inputContinueMember_tpl.php';
+$includeView = '../views/continueMember/continueMember_tpl.php';
 
 $wk_kaihi = "";
 // POSTからパラメータを取得する
