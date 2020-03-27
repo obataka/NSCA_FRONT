@@ -718,7 +718,7 @@
             }
 
             //郵便番号検索処理
-	        $.ajax({
+            $.ajax({
                 url: '../../classes/searchPostNo.php',
                 type: 'POST',
                 data:
@@ -740,10 +740,10 @@
                     //※正常に住所情報を取得できた時の処理を書く場所
                     wk_msYubinNo = JSON.parse(rtn);
                     $("#address_todohuken option").filter(function (index) {
-                        return $(this).text() === wk_msYubinNo[7];
+                        return $(this).text() === wk_msYubinNo['kemmei_kana'];
                     }).prop("selected", true).change();
-                    $("#address_shiku").val(wk_msYubinNo[8] + wk_msYubinNo[9]);
-                    $("#address_yomi_shiku").val(wk_msYubinNo[5] + wk_msYubinNo[6]);
+                    $("#address_shiku").val(wk_msYubinNo['jusho_1'] + wk_msYubinNo['jusho_2']);
+                    $("#address_yomi_shiku").val(wk_msYubinNo['jusho_1_kana'] + wk_msYubinNo['jusho_2_kana']);
                 }
             }).fail((rtn) => {
                 $("#err_address_yubin_nb_1").html("郵便番号から住所を取得できません");
@@ -809,7 +809,7 @@
             }
 
             //郵便番号検索処理
-	        $.ajax({
+            $.ajax({
                 url: '../../classes/searchPostNo.php',
                 type: 'POST',
                 data:
@@ -831,10 +831,10 @@
                     //※正常に住所情報を取得できた時の処理を書く場所
                     wk_msYubinNo = JSON.parse(rtn);
                     $("#office_todohuken option").filter(function (index) {
-                        return $(this).text() === wk_msYubinNo[7];
+                        return $(this).text() === wk_msYubinNo['kemmei_kana'];
                     }).prop("selected", true);
-                    $("#office_shiku").val(wk_msYubinNo[8]);
-                    $("#office_tatemono").val(wk_msYubinNo[9]);
+                    $("#office_shiku").val(wk_msYubinNo['jusho_1']);
+                    $("#office_tatemono").val(wk_msYubinNo['jusho_2']);
                 }
             }).fail((rtn) => {
                 $("#err_address_yubin_nb_2").html("郵便番号から住所を取得できません");
@@ -1193,10 +1193,10 @@
                 getTbkaiinJoho = JSON.parse(rtn);
                 //※正常に情報を取得できた時入力フォームに表示する
                 $('#kaiinSbt').val(getTbkaiinJoho['kaiin_sbt_kbn']);
-                if (getTbkaiinJoho['kaiin_sbt_kbn'] == 1) {
+                if (getTbkaiinJoho['kaiin_sbt_kbn'] == "1") {
                     $('#kaiinType').val('NSCA正会員');
                     $('#kaiinType').text('NSCA正会員');
-                } else if (getTbkaiinJoho[4] == 2) {
+                } else if (getTbkaiinJoho['kaiin_sbt_kbn'] == "2") {
                     $('#kaiinType').val('学生会員');
                     $('#kaiinType').text('学生会員');
                 } else {
@@ -1257,9 +1257,9 @@
                 $('#sel_chiiki').val(val3);
 
                 $('#address_shiku').val(getTbkaiinJoho['jusho_1']);
-                $('#address_tatemono').val(getTbkaiinJoho['jusho_1']);
+                $('#address_tatemono').val(getTbkaiinJoho['jusho_2']);
                 //流山市民かどうかのチェック
-                if (getTbkaiinJoho['nagareyama_shimin'] == "1") {
+                if (getTbkaiinJoho[57] == "") {
                     $("#nagareyama").prop("checked", true);
                     $('#nagareyama').val("1");
                     //チェックありのhidden設定

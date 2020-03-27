@@ -4,11 +4,11 @@
         /*********************
          * 動画一覧表示処理
          *********************/
-        jQuery.ajax({
+        $.ajax({
             url: '../../classes/getTbDogaJoho.php',
         }).done((rtn) => {
             getDogaList = JSON.parse(rtn);
-            jQuery.ajax({
+            $.ajax({
                 url: '../../classes/getTbDogaKonyushaMeisai.php',
             }).done((rtn) => {
                 getDogaKonyushaMeisaiList = JSON.parse(rtn);

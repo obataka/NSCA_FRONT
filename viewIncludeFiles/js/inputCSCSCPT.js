@@ -4,7 +4,7 @@
         /*********************************
          * //会員情報取得
          *********************************/
-        jQuery.ajax({
+        $.ajax({
             url: '../../classes/getTbkaiinJoho.php',
         }).done((rtn) => {
             getTbkaiinJoho = JSON.parse(rtn);
@@ -91,7 +91,7 @@
         /*********************************
          * //職業取得
          *********************************/
-        jQuery.ajax({
+        $.ajax({
             url: '../../classes/getMeishoList.php',
         }).done((rtn) => {
             // rtn = 0 の場合は、該当なし

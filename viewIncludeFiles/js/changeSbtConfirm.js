@@ -11,7 +11,7 @@
         ******************************************/
         //‰ïˆõŽí•Ê‚ðŠi”[‚·‚é•Ï”
         var wk_kaiin_sbt;
-        jQuery.ajax({
+        $.ajax({
             url: '../../classes/getKaiinSbt.php',
             type: 'POST',
         }).done((rtn) => {
@@ -33,7 +33,7 @@
         //‰ï”ïƒf[ƒ^‚ðŠi”[‚·‚é•Ï”
         var wk_kaihi;
         // ‰ï”ïƒf[ƒ^Žæ“¾ˆ—
-        jQuery.ajax({
+        $.ajax({
             url: '../../classes/getKaihiData.php',
             type: 'POST',
         }).done((rtn) => {

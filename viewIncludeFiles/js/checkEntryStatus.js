@@ -20,7 +20,7 @@
         //試験明細を格納する変数
         var shiken_meisai_id = [];
 
-        jQuery.ajax({
+        $.ajax({
             url: '../../classes/getShutuganJokyo.php',
         }).done((rtn) => {
             // rtn = 0 の場合は、該当なし
@@ -114,7 +114,7 @@
                     //区分を格納する配列
                     var cpraed_kakunin_kbn = [];
                     var sotsugyo_shomeisho_kbn = [];
-                    jQuery.ajax({
+                    $.ajax({
                         url: '../../classes/getTbkaiinJoho.php',
                     }).done((rtn) => {
                         // rtn = 0 の場合は、該当なし
@@ -141,7 +141,7 @@
                     var CPRAED = [];
 
                     //試験種別
-                    jQuery.ajax({
+                    $.ajax({
                         url: '../../classes/getShikenSbt.php',
                     }).done((rtn) => {
                         getShikenSbt = JSON.parse(rtn);
@@ -172,7 +172,7 @@
                     });
 
                     //受験状態
-                    jQuery.ajax({
+                    $.ajax({
                         url: '../../classes/getJukenJotai.php',
                     }).done((rtn) => {
                         getJukenJotai = JSON.parse(rtn);
@@ -189,7 +189,7 @@
                                     cellJokyo2.innerHTML = JukenJotai[tmpi];
                                     
                                     //科目選択
-                                    jQuery.ajax({
+                                    $.ajax({
                                         url: '../../classes/getKamokuSentaku.php',
                                     }).done((rtn) => {
                                         getKamokuSentaku = JSON.parse(rtn);
@@ -211,7 +211,7 @@
                                     });
 
                                     //卒業証明書
-                                    jQuery.ajax({
+                                    $.ajax({
                                         url: '../../classes/getSotsugyoShomeisho.php',
                                     }).done((rtn) => {
                                         getSotsugyoShomeisho = JSON.parse(rtn);
@@ -237,7 +237,7 @@
                                     });
 
                                     //CPRAED
-                                    jQuery.ajax({
+                                    $.ajax({
                                         url: '../../classes/getCPRAED.php',
                                     }).done((rtn) => {
                                         getCPRAED = JSON.parse(rtn);

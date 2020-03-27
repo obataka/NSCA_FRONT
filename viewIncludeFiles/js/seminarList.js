@@ -13,7 +13,7 @@
        * 初期表示処理
        ********************************/
 
-        jQuery.ajax({
+        $.ajax({
             url: '../../classes/getEventSbt.php',
         }).done((rtn) => {
             getEventSbt = JSON.parse(rtn);
@@ -32,7 +32,7 @@
             });
 
             //CEUカンファレンス情報
-            jQuery.ajax({
+            $.ajax({
                 url: '../../classes/getCeuConference.php',
             }).done((rtn) => {
                 // rtn = 0 の場合は、該当なし
@@ -63,7 +63,7 @@
             });
 
             //CEU情報
-            jQuery.ajax({
+            $.ajax({
                 url: '../../classes/getCeuJoho.php',
             }).done((rtn) => {
                 // rtn = 0 の場合は、該当なし
@@ -93,7 +93,7 @@
             });
 
             //トレ検情報
-            jQuery.ajax({
+            $.ajax({
                 url: '../../classes/getToreken.php',
             }).done((rtn) => {
                 // rtn = 0 の場合は、該当なし

@@ -24,7 +24,7 @@
                 var mail_2 = getKaiinJoho['email_2'];
 
                 //TB会員その他取得
-                jQuery.ajax({
+                $.ajax({
                     url: '../../classes/getTbkaiinSonota.php',
                 }).done((rtn) => {
                     getKaiinSonota = JSON.parse(rtn);
