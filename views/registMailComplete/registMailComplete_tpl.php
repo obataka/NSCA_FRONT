@@ -8,25 +8,17 @@
         <title>入会申込｜メール送信完了</title>
         <!-- favicon -->
         <link rel="icon" href="../../viewIncludeFiles/image/favicon.ico">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
         <link rel="stylesheet" href="../../viewIncludeFiles/css/fontawesome/web-fonts-with-css/css/fontawesome-all.css">
-        <link rel="stylesheet" href="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.css">
         <link rel="stylesheet" href="../../viewIncludeFiles/css/style.css" />
-        <link rel="stylesheet" href="../../viewIncludeFiles/css/registMailComplete.css" />
 
         <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.1.1.min.js"></script>
-        <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.js"></script>
-        <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
-        <script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
+		<script type="text/javascript" src="../../viewIncludeFiles/js/header.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
     </head>
     <body>
     <header class="header_logo">
-        <div>
-            <img src="../../viewIncludeFiles/image/NSCA_Japan_rev.png" alt="ロゴ">
-        </div>
     </header>
-    <div class="wrap mh_c btn_b_wrap">
+    <div class="wrap before_login">
         <h1>入会申込　メール送信完了</h1>
         <div class="content_wrap">
             <p class="h2_text">利用登録のURLを送信しました。メールに記載されているURLをクリックして利用登録を進めてください。<br>

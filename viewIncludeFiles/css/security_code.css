@@ -1,51 +1,20 @@
-.mh_c {
-	min-height: calc(100vh - 182px);
-}
-.wrap {
-    padding-top: 20px;
-}
-.content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-}
-input {
-    display: block;
-    width: 300px;
-    height: 35px;
-	margin: 15px auto;
-    border: 1px solid #333;
-    padding: 0 10px!important;
-    -webkit-appearance: none;
-}
+@charset "UTF-8";
+
 button {
 	margin-bottom: 10px!important;
 }
-.error {
-	margin: 0 auto 10px auto;
-	width: 300px;
-}
+
 .to_login {
 	margin: 0 0 15px;
 }
-@media screen and (max-width: 768px) {
-	.mh_c {
-		min-height: calc(100vh - 115px);
-	}
-	.content {
-		position: inherit;
-		transform: none;
-		margin-top: 60px;;
-	}
-	.btn_b {
-		position: inherit!important;
-	}
-	table {
-		margin-bottom: 60px;
-	}
 
-	/*ファイヤ―フォックのみ*/
+.to_login a {
+	font-weight: bold;
+}
+
+@media screen and (max-width: 768px) {
+
+	/*FFのみ*/
 	@-moz-document url-prefix() {
 	  .mh_c {
 			min-height: calc(100vh - 116px)!important;
@@ -70,11 +39,4 @@ button {
 		}
 	}
 
-}
-
-
-@media screen and (max-width: 480px) {
-	.content_wrap {
-		padding: 10px;
-	}
 }

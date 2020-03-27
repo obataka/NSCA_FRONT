@@ -1,13 +1,29 @@
-.wrap {
-    padding-top: 60px;
-}
+@charset "UTF-8";
+
 .riyu textarea {
 	margin-top: 5px;
 }
+
+.top_text.exclamation {
+	padding-left: 18px;
+	position: relative;
+}
+
+.top_text.exclamation::before {
+	content: "\f071";
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+	position: absolute;
+	left: 0;
+	top: -1px;
+	color: red;
+}
+
 #upload_back,
 #upload_front {
     float: none;
 }
+
 .doi .checkbox {
     line-height: 21px;
 }
