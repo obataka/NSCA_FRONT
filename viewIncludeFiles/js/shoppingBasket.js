@@ -14,7 +14,7 @@
             /********************
             * TB販売購入者情報から買い物かごの内容を表示する(会員のみ)
             ********************/
-            jQuery.ajax({
+            $.ajax({
                 url: '../../classes/getSalesCartList.php',
             }).done((rtn) => {
                 getSalesCartList = JSON.parse(rtn);
@@ -23,7 +23,7 @@
                 /********************
                 * CMコントロール情報を取得する
                 ********************/
-                jQuery.ajax({
+                $.ajax({
                     url: '../../classes/getCmControl.php',
                 }).done((rtn) => {
                     getCmControl = JSON.parse(rtn);
@@ -78,7 +78,7 @@
             /********************
             * CMコントロール情報を取得する
             ********************/
-            jQuery.ajax({
+            $.ajax({
                 url: '../../classes/getCmControl.php',
             }).done((rtn) => {
                 //表示する商品が複数ある場合
@@ -266,7 +266,7 @@
             val = $(this).val();
             if ($('#kaiin_no').val() != '') {
                 //DBからも削除する
-                jQuery.ajax({
+                $.ajax({
                     url: '../../classes/deleteSalesCartData.php',
                     type: 'POST',
                     data: {
@@ -318,7 +318,7 @@
                 });
                 $.each(wk_konyu_id, function (i, val) {
                     //DBからも削除する
-                    jQuery.ajax({
+                    $.ajax({
                         url: '../../classes/deleteAllSalesCartData.php',
                         type: 'POST',
                         data: {
@@ -453,7 +453,7 @@
 
 
                 //DB更新
-                jQuery.ajax({
+                $.ajax({
                     url: '../../classes/updateAllSalesCartData.php',
                     type: 'POST',
                     data: {
@@ -612,7 +612,7 @@
                 });
 
                 //DB更新
-                jQuery.ajax({
+                $.ajax({
                     url: '../../classes/updateAllSalesCartData.php',
                     type: 'POST',
                     data: {
@@ -644,7 +644,7 @@
                     if (rtn == 1) {
                         console.log(1);
                         //セッションに値をセットして画面遷移する
-                        jQuery.ajax({
+                        $.ajax({
                             url: '../../classes/setSalesDataToSess.php',
                             type: 'POST',
                             data: {
@@ -780,7 +780,7 @@
                 });
 
                 //セッションに値をセットして画面遷移する
-                jQuery.ajax({
+                $.ajax({
                     url: '../../classes/setSalesDataToSess.php',
                     type: 'POST',
                     data: {
@@ -911,7 +911,7 @@
 
 
                 //DB更新
-                jQuery.ajax({
+                $.ajax({
                     url: '../../classes/updateAllSalesCartData.php',
                     type: 'POST',
                     data: {
@@ -942,7 +942,7 @@
                 }).done((rtn) => {
                     if (rtn == 1) {
                         //セッションに値をセットして画面遷移する
-                        jQuery.ajax({
+                        $.ajax({
                             url: '../../classes/setSalesDataToSess.php',
                             type: 'POST',
                             data: {
@@ -1076,7 +1076,7 @@
                 });
 
                 //セッションに値をセットして画面遷移する
-                jQuery.ajax({
+                $.ajax({
                     url: '../../classes/setSalesDataToSess.php',
                     type: 'POST',
                     data: {

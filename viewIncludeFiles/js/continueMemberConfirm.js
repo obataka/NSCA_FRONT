@@ -5,7 +5,7 @@
         * 内容を修正するボタン押下時に値を保持して画面遷移する
         **************************************************/
         $("#return_button").click(function () {
-            url = '../inputContinueMember/';
+            url = '../continueMember/';
             $('form').attr('action', url);
             $('form').submit();
         });
@@ -15,7 +15,7 @@
         *******************************************/
         $("#next_button").click(function () {
             jQuery.ajax({
-                url: '../../classes/changeMemberPost.php',
+                url: '../../classes/continueMemberUpdate.php',
                 type: 'POST',
                 data:
                 {

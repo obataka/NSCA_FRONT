@@ -47,15 +47,15 @@ $(function(){
 	+				'<p><a href="#">出願状況</a></p>'
 	+			'</div>'
 	+			'<p class="dropdown"><a href="#">CEU情報<i class="fas fa-angle-down fa-fw"></i></a></p>'
-	+			'<div class="dropdown_list_sp">'	
+	+			'<div class="dropdown_list_sp">'
 	+				'<p><a href="#">CEU取得状況</a></p>'
 	+				'<p><a href="#">CEUクイズ</a></p>'
-	+			'</div>'	
+	+			'</div>'
 	+			'<p><a href="#">イベント</a></li>'
 	+			'<p><a href="#">会員限定</a></li>'
 	+			'<p><a href="#">NCSAショップ</a></li>'
 	+			'<p class="dropdown"><a href="#"><i class="fas fa-user-circle fa-fw"></i><span class="user_name">〇〇　〇〇</span>様<i class="fas fa-angle-down fa-fw"></i></a></p>'
-	+			'<div class="dropdown_list_sp">'	
+	+			'<div class="dropdown_list_sp">'
 	+				'<p><a href="#">登録情報変更</a></p>'
 	+				'<!--<p><a href="#">メールアドレス変更</a></p>-->'
 	+				'<p><a href="#">パスワード変更</a></p>'
@@ -65,16 +65,20 @@ $(function(){
     +   '</nav>'
     '</div>'
 
-	
+	var header_logo_html =
+	'<div class="">'
+	+	'<img src="../../viewIncludeFiles/image/NSCA_Japan_rev.png" alt="NSCAジャパン">'
+	+'</div>';
 
 	$("#header").html(header_html);
-	
+	$(".header_logo").html(header_logo_html);
+
 	$('.dropdown li').hover(function(){
 		$("ul:not(:animated)", this).slideDown();
 	}, function(){
 		$("ul.dropdown_list",this).slideUp();
 	});
-	
+
 	var $header = $('#header');
 	// Nav Fixed
 	$(window).scroll(function() {
@@ -90,27 +94,27 @@ $(function(){
 		$('#global-nav').slideToggle();
 		$('.dropdown_list_sp').hide();
 	});
-	
+
 	$('#global-nav').hide();
 	$('.open').click(function(){
 		$('#global-nav').slideToggle();
-		
+
 	});
 
 	$('.dropdown_list_sp').hide();
 	$('.dropdown').click(function(){
-		$('.fa-angle-down',this).toggleClass("down"); 
+		$('.fa-angle-down',this).toggleClass("down");
 		$(this).next('.dropdown_list_sp').slideToggle();
-		
+
 		$('.dropdown_list_sp').not($(this).next('.dropdown_list_sp')).slideUp(function(){
 			$(this).prev('.dropdown').find('.fa-angle-down').removeClass("down");
 		});
-		
+
     });
 		//$(this).not($(this).find(".dropdown_list_sp")).slideUp();
-		
 
-	
+
+
 
 
 });

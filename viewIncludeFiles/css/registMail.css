@@ -1,42 +1,48 @@
-.wrap {
-    padding-top: 20px;
+@charset "UTF-8";
+
+.text_wrap {
+	font-weight: bold;
+	margin-bottom: 30px;
+	max-width: 600px;
 }
-.mh_c {
-    min-height: calc(100vh - 125px);
+
+.text_wrap p {
+	font-size: 1.2em;
+	color: #005699;
 }
-li {
-    text-indent: -1em;
-    padding-left: 1em;
+
+.text_wrap ul {
+	background-color: #ecf2f6;
+	padding: 15px 20px;
 }
-.h2_text {
-    font-size: 18px;
-    font-weight: bold;
-    margin: 0 0 10px;
+
+.text_wrap li {
+	text-indent: -1em;
+	padding-left: 1em;
+	margin-bottom: 3px;
+	word-break: normal;
 }
+
+.text_wrap li:last-child {
+	margin-bottom: 0;
+}
+
+.content {
+	margin-bottom: 30px;
+}
+
+.content .bold {
+	font-weight: bold;
+}
+
+.content input {
+	width: 100%;
+	max-width: 600px;
+}
+
 @media screen and (max-width:768px) {
-	.mh_c {
-		min-height: calc(100vh - 115px);
-	}
-	table {
-		margin-bottom: 80px;
-	}
 
-	/*ファイヤ―フォックス*/
-	@-moz-document url-prefix() {
-		.mh_c {
-			min-height: calc(100vh - 116px)!important;
-		}
-	}
-
-	/*IEのみ*/
-	_:-ms-lang(x)::-ms-backdrop, .mh_c {
-		min-height: calc(100vh - 115px)!important;
-	}
-
-	/*edgeのみ*/
-	@supports (-ms-ime-align:auto) {
-		.mh_c {
-			min-height: calc(100vh - 115px)!important;
-		}
+	.button {
+		width: 200px;
 	}
 }

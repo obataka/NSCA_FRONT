@@ -14,12 +14,12 @@
 	<link rel="stylesheet" href="../../viewIncludeFiles/css/fontawesome/web-fonts-with-css/css/fontawesome-all.css">
 	<link rel="stylesheet" href="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.css">
 	<link rel="stylesheet" href="../../viewIncludeFiles/css/style.css" />
-	<link rel="stylesheet" href="../../viewIncludeFiles/css/continueRequest.css" />
+	<link rel="stylesheet" href="../../viewIncludeFiles/css/continueMemberRequest.css" />
 
 	<script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.1.1.min.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
-	<script type="text/javascript" src="../../viewIncludeFiles/js/continueRequest.js"></script>
+	<script type="text/javascript" src="../../viewIncludeFiles/js/continueMemberRequest.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
 
 </head>
@@ -40,10 +40,10 @@
 						<p>会員有効期限が切れています。継続手続きをお願いいたします。</p>
 					</div>
 					<div class="bottom">
-						<button class="button" id="continue" type="button" value="" onclick="location.href='#'"><span>継続手続き</span></button>
+						<button class="button" id="continue" type="button" value=""><span>継続手続き</span></button>
 					</div>
 				</section>
-				<button class="button btn_gray" id="unsubscribe" type="button" value="" onclick="location.href='#'"><span>退会手続き</span></button>
+				<button class="button btn_gray" id="unsubscribe" type="button" value=""><span>退会手続き</span></button>
 			</div>
 		</form>
 	</div>

@@ -10,7 +10,7 @@
         /*********************
          * 動画情報取得
          *********************/
-        jQuery.ajax({
+        $.ajax({
             url: '../../classes/getTbDogaJoho.php',
         }).done((rtn) => {
             getDogaList = JSON.parse(rtn);

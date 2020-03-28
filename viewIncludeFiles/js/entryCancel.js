@@ -13,7 +13,7 @@
         var name = "";
         var address = "";
 
-        jQuery.ajax({
+        $.ajax({
             url: '../../classes/getShutuganJokyo.php',
         }).done((rtn) => {
             getShutuganJokyo = JSON.parse(rtn);
@@ -26,7 +26,7 @@
                     //科目選択区分
                     var kamoku_kbn = val['kamoku_sentaku_kbn'];
 
-                    jQuery.ajax({
+                    $.ajax({
                         url: '../../classes/getShikenSbt.php',
                     }).done((rtn) => {
                         getShikenSbt = JSON.parse(rtn);
@@ -59,7 +59,7 @@
                                 }
 
                                 //会員情報取得
-                                jQuery.ajax({
+                                $.ajax({
                                     url: '../../classes/getTbkaiinJoho.php',
                                 }).done((rtn) => {
                                     getKaiinJoho = JSON.parse(rtn);
@@ -74,7 +74,7 @@
                                     var mail_2 = getKaiinJoho['email_2'];
 
                                     //TB会員その他取得
-                                    jQuery.ajax({
+                                    $.ajax({
                                         url: '../../classes/getTbkaiinSonota.php',
                                     }).done((rtn) => {
                                         getKaiinSonota = JSON.parse(rtn);
@@ -128,7 +128,7 @@
                     //返金額表示処理
                     //CSCS受験で1科目の場合はCSCS受験料1科目を表示する
                     //2科目の場合はCSCS受験料を表示する
-                    jQuery.ajax({
+                    $.ajax({
                         url: '../../classes/getCmControl.php',
                     }).done((rtn) => {
                         getCmControl = JSON.parse(rtn);
@@ -190,7 +190,7 @@
             if (wk_err_msg != "") {
                 return false;
             } else {
-                jQuery.ajax({
+                $.ajax({
                     url: '../../classes/sendEntryCancelMail.php',
                     type: 'POST',
                     data:

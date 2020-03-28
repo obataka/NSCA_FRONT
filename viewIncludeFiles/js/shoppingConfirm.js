@@ -13,7 +13,7 @@
         /********************
         * CMコントロール情報を取得する
         ********************/
-        jQuery.ajax({
+        $.ajax({
             url: '../../classes/getCmControl.php',
         }).done((rtn) => {
             getCmControl = JSON.parse(rtn);
@@ -126,7 +126,7 @@
         * 決済方法選択へ
         ********************/
         $('#next').click(function () {
-            jQuery.ajax({
+            $.ajax({
                 url: '../../classes/setSalesDataToSess.php',
                 data: {
                     tranScreen: 'shoppingConfirm'

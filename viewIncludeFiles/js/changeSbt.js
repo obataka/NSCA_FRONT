@@ -6,7 +6,7 @@
         $("#error_message_sbt").html("");
 
         // 会費データ取得処理
-        jQuery.ajax({
+        $.ajax({
             url: '../../classes/getKaihiData.php',
             type: 'POST',
         }).done((rtn) => {
@@ -28,7 +28,7 @@
         wk_kaiin_sbt = "";
 
         //会員種別取得処理
-        jQuery.ajax({
+        $.ajax({
             url: '../../classes/getKaiinSbt.php',
             type: 'POST',
         }).done((rtn) => {

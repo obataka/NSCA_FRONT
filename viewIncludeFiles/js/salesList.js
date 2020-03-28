@@ -23,7 +23,7 @@
 	var count_9 = 0;
 	var count_99 = 0;
 
-     jQuery.ajax({
+     $.ajax({
 		url:  '../../classes/salesList.php',
 	    type: 'POST',
 	    success: function(rtn) {

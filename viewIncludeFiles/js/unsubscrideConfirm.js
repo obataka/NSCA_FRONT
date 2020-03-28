@@ -77,7 +77,7 @@
             //             var yuko_hizuke1 = getTbkaiinJotai[0];
                         
             //             //退会書類受理日、退会理由区分、退会理由備考、退会後のお知らせ区分を更新と有効期限のチェック
-            //             jQuery.ajax({
+            //             $.ajax({
             //                 url:  '../../classes/updatekaiinjotai.php',
             //                 type: 'POST',
             //                 data:

@@ -4,7 +4,7 @@
         /********************************
         * TB決済発行取得
         ********************************/
-        jQuery.ajax({
+        $.ajax({
             url: '../../classes/getTbKessaiHakko.php',
         }).done((rtn) => {
             if (rtn == 0) {
@@ -48,7 +48,7 @@
         /********************************
         * TB会員情報取得
         ********************************/
-        jQuery.ajax({
+        $.ajax({
             url: '../../classes/getTbkaiinJoho.php',
         }).done((rtn) => {
             if (rtn == 0) {

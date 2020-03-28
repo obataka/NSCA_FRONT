@@ -1,7 +1,4 @@
 @charset "utf-8";
-header {
-	display: none;
-}
 
 .content_wrap {
 	display: flex;
@@ -9,6 +6,7 @@ header {
 	justify-content: center;
 	margin: 0;
 	padding: 10px 10px 100px;
+	min-height: calc(100vh - 50px);
 }
 
 .content {
@@ -24,15 +22,6 @@ img {
 	width: 300px;
 }
 
-input {
-	display: block;
-	width: 300px;
-	height: 35px;
-	margin: 15px auto;
-	padding: 0 10px!important;
-	-webkit-appearance: none;
-}
-
 button {
 	margin-bottom: 10px!important;
 }
@@ -40,6 +29,7 @@ button {
 .login_text p {
 	text-align: center;
 	font-size: 0.8rem;
+	line-height: 1.8;
 }
 
 .login_text span {
@@ -50,12 +40,7 @@ input[type="password"] {
 	width: 300px;
 }
 
-.error_ul {
-	margin: 0 0 15px;
-}
-
-
-/*IEのみ*/
+/*IE*/
 
 _:-ms-lang(x)::-ms-backdrop, input {
 	padding-top: 0.3em!important;
@@ -67,7 +52,6 @@ _:-ms-lang(x)::-ms-backdrop, input {
 		display: table-cell;
 		margin: 0 auto;
 		padding: 50px 10px;
-		min-height: 100vh;
 		vertical-align: middle;
 		width: 100vw;
 	}

@@ -5,7 +5,7 @@
         $(".error").html("");
 
         // 会費データ取得処理
-        jQuery.ajax({
+        $.ajax({
             url: '../../classes/getKaihiData.php',
             type: 'POST',
         }).done((rtn) =>{

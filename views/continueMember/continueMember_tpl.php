@@ -14,12 +14,12 @@
 	<link rel="stylesheet" href="../../viewIncludeFiles/css/fontawesome/web-fonts-with-css/css/fontawesome-all.css">
 	<link rel="stylesheet" href="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.css">
 	<link rel="stylesheet" href="../../viewIncludeFiles/css/style.css" />
-	<link rel="stylesheet" href="../../viewIncludeFiles/css/inputContinueMember.css" />
+	<link rel="stylesheet" href="../../viewIncludeFiles/css/continueMember.css" />
 
 	<script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.1.1.min.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
-	<script type="text/javascript" src="../../viewIncludeFiles/js/inputContinueMember.js"></script>
+	<script type="text/javascript" src="../../viewIncludeFiles/js/continueMember.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
 

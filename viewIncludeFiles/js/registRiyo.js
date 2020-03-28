@@ -21,7 +21,7 @@
                     getTodofukenList = JSON.parse(rtn);
 
                     $.each(getTodofukenList, function (i, value) {
-                        $('#address_todohuken').append('<option name="' + value[2] + '" value="' + value[0] + '">' + value[1] + '</option>');
+                        $('#address_todohuken').append('<option name="' + value['kemmei'] + '" value="' + value['ken_no'] + '">' + value['kemmei'] + '</option>');
                     });
 
                     // 修正で入力画面に戻ってきた時、都道府県のセレクトボックスの初期表示処理
@@ -179,10 +179,10 @@
                         //※正常に住所情報を取得できた時の処理を書く場所
                         wk_msYubinNo = JSON.parse(rtn);
                         $("#address_todohuken option").filter(function (index) {
-                            return $(this).text() === wk_msYubinNo[7];
+                            return $(this).text() === wk_msYubinNo['kemmei_kana'];
                         }).prop("selected", true);
-                        $("#address_shiku").val(wk_msYubinNo[8] + wk_msYubinNo[9]);
-                        $("#address_yomi_shiku").val(wk_msYubinNo[5] + wk_msYubinNo[6]);
+                        $("#address_shiku").val(wk_msYubinNo['jusho_1'] + wk_msYubinNo['jusho_2']);
+                        $("#address_yomi_shiku").val(wk_msYubinNo['jusho_1_kana'] + wk_msYubinNo['jusho_2_kana']);
                         var val = $('#address_todohuken option:selected').text();
                         var val2 = $('#address_todohuken option:selected').val();
                         var val3 = $('#address_todohuken option:selected').attr('name');

@@ -12,7 +12,7 @@
         /*********************************
          * //最終取得学位取得
          *********************************/
-        jQuery.ajax({
+        $.ajax({
             url: '../../classes/getShutokuGakui.php',
         }).done((rtn) => {
             getShutokuGakui = JSON.parse(rtn);
@@ -40,13 +40,13 @@
         /*********************************
          * //最終取得学位名称取得
          *********************************/
-        jQuery.ajax({
+        $.ajax({
             url: '../../classes/getShutokuGakuiMeisho.php',
         }).done((rtn) => {
             getShutokuGakuiMeisho = JSON.parse(rtn);
             getShutokuGakuiMeisho.reverse();
             $.each(getShutokuGakuiMeisho, function (i, value) {
-                $('#shutoku_gakui').prepend('<input id="gakui_' + value[0] + '" type="radio" name="gakui" value="' + value[0] + '"><label for="gakui_' + value[0] + '">' + value[1] + '</label>');
+                $('#shutoku_gakui').prepend('<input id="gakui_' + value['meisho_cd'] + '" type="radio" name="gakui" value="' + value['meisho_cd'] + '"><label for="gakui_' + value['meisho_cd'] + '">' + value['meisho'] + '</label>');
                 if (value[1] == "学士") {
                     $('#shutoku_gakui').prepend('<br class="sp_br">');
                 }
@@ -76,12 +76,12 @@
         /*********************************
          * //取得学位分野または卒業見込みの学位分野取得
          *********************************/
-        jQuery.ajax({
+        $.ajax({
             url: '../../classes/getShutokuGakuiBunya.php',
         }).done((rtn) => {
             getShutokuGakuiMeisho = JSON.parse(rtn);
             $.each(getShutokuGakuiMeisho, function (i, value) {
-                $('#gakui_bunya').append('<option value="' + value[0] + '">' + value[1] + '</option>');
+                $('#gakui_bunya').append('<option value="' + value['meisho_cd'] + '">' + value['meisho'] + '</option>');
             });
 
             //学位分野の値がある場合、初期表示時に選択済みにする。

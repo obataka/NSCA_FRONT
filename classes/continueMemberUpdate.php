@@ -14,7 +14,7 @@ require './DBAccess/Tb_kaiin_sentaku.php';
 $ret = "";
 $wk_no = 0;
 $wk_kaiin_no = "";
-$koshin_user_id = "changeMember";
+$koshin_user_id = "continueMember";
 
 	//セッションから会員番号を取得
 	$wk_kaiin_no = '';
@@ -24,7 +24,7 @@ $koshin_user_id = "changeMember";
 	    $wk_kaiin_no = $_SESSION['kaiinNo'];
 	}
 
-   error_log(print_r("会員情報更新", true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka_log.txt');
+   error_log(print_r("会員情報更新", true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/changeMember_log.txt');
 
 // POSTデータを取得
 // changeConfirmMember.jsでセットしたPOSTデータを取得する
@@ -196,7 +196,7 @@ $koshin_user_id = "changeMember";
 
 	// 更新失敗の場合、ロールバックして処理終了
 	if (!$result_joho) {
-	   error_log(print_r('会員情報更新失敗', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka_log.txt');
+	   error_log(print_r('会員情報更新失敗', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/changeMember_log.txt');
 	    $db->rollBack();
 	    exit(0);
 	}
@@ -224,7 +224,7 @@ $koshin_user_id = "changeMember";
 
 	// 更新失敗の場合、ロールバックして処理終了
 	if (!$result_sonota) {
-	   error_log(print_r('会員情報その他更新失敗', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka_log.txt');
+	   error_log(print_r('会員情報その他更新失敗', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/changeMember_log.txt');
 	    $db->rollBack();
 	    exit(0);
 	}
@@ -243,7 +243,7 @@ $koshin_user_id = "changeMember";
 
 	// 更新失敗の場合、ロールバックして処理終了
 	if (!$result_journal) {
-	   error_log(print_r('会員情報journal更新失敗', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka_log.txt');
+	   error_log(print_r('会員情報journal更新失敗', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/changeMember_log.txt');
 	    $db->rollBack();
 	    exit(0);
 	}
@@ -264,7 +264,7 @@ $koshin_user_id = "changeMember";
 
 		// 更新失敗の場合、ロールバックして処理終了
 		if (!$result_journal) {
-		   error_log(print_r('会員選択のレコード削除失敗', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka_log.txt');
+		   error_log(print_r('会員選択のレコード削除失敗', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/changeMember_log.txt');
 		    $db->rollBack();
 		    exit(0);
 		}
@@ -288,7 +288,7 @@ $koshin_user_id = "changeMember";
 
 			// 更新失敗の場合、ロールバックして処理終了
 			if (!$result_shikaku) {
-			   error_log(print_r('会員選択失敗', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka_log.txt');
+			   error_log(print_r('会員選択失敗', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/changeMember_log.txt');
 			    $db->rollBack();
 			    exit(0);
 			}
@@ -309,7 +309,7 @@ $koshin_user_id = "changeMember";
 
 			// 更新失敗の場合、ロールバックして処理終了
 			if (!$result_chiiki) {
-			   error_log(print_r('会員選択失敗', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka_log.txt');
+			   error_log(print_r('会員選択失敗', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/changeMember_log.txt');
 			    $db->rollBack();
 			    exit(0);
 			}
@@ -332,7 +332,7 @@ $koshin_user_id = "changeMember";
 
 			// 更新失敗の場合、ロールバックして処理終了
 			if (!$result_bunya) {
-			   error_log(print_r('会員選択失敗', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/tanaka_log.txt');
+			   error_log(print_r('会員選択失敗', true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/changeMember_log.txt');
 			    $db->rollBack();
 			    exit(0);
 			}

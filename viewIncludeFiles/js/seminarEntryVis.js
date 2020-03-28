@@ -4,7 +4,7 @@
         /****************
          * //都道府県取得
          ****************/
-        jQuery.ajax({
+        $.ajax({
             url: '../../classes/getTodofukenList.php',
         }).done((rtn) => {
             // rtn = 0 の場合は、該当なし
@@ -43,7 +43,7 @@
         /****************
          * //米国会員資格取得
          ****************/
-        jQuery.ajax({
+        $.ajax({
             url: '../../classes/getBeikokuShikaku.php',
         }).done((rtn) => {
             // rtn = 0 の場合は、該当なし
@@ -156,7 +156,7 @@
             }
 
             //郵便番号検索処理
-            jQuery.ajax({
+            $.ajax({
                 url: '../../classes/searchPostNo.php',
                 type: 'POST',
                 data:
@@ -188,7 +188,7 @@
         /********************************
         * イベント情報表示処理
         ********************************/
-        jQuery.ajax({
+        $.ajax({
             url: '../../classes/getEventJoho.php',
             type: 'POST',
             data: {
@@ -198,7 +198,7 @@
         }).done((rtn) => {
             getEventJoho = JSON.parse(rtn);
             //イベント区分表示
-            jQuery.ajax({
+            $.ajax({
                 url: '../../classes/getEventSbt.php',
             }).done((rtn) => {
                 getEventSbt = JSON.parse(rtn);
@@ -225,7 +225,7 @@
                     //会員種別によって、表示内容を変える
                     if ($('#kaiin_no').val() != "") {
                         //会員種別取得
-                        jQuery.ajax({
+                        $.ajax({
                             url: '../../classes/getKaiinSbt.php',
                             type: 'POST',
                         }).done((rtn) => {

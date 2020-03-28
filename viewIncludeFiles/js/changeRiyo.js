@@ -23,7 +23,7 @@
                     getTodofukenList = JSON.parse(rtn);
 
                     $.each(getTodofukenList, function (i, value) {
-                        $('#address_todohuken').append('<option name="' + value[2] + '" value="' + value[0] + '">' + value[1] + '</option>');
+                        $('#address_todohuken').append('<option name="' + value['kemmei'] + '" value="' + value['ken_no'] + '">' + value['kemmei'] + '</option>');
                     });
 
                     // 修正で入力画面に戻ってきた時、都道府県のセレクトボックスの初期表示処理
