@@ -13,11 +13,13 @@
         <link rel="stylesheet" href="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.css">
         <link rel="stylesheet" href="../../viewIncludeFiles/css/style.css" />
         <link rel="stylesheet" href="../../viewIncludeFiles/css/kessai_kanryo.css">
-	    <link rel="stylesheet" href="../../viewIncludeFiles/css/header.css">
+        <link rel="stylesheet" href="../../viewIncludeFiles/css/header.css">
+        <link rel="stylesheet" href="../../viewIncludeFiles/plugins/sweetalert2.min.css">
 
         <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.1.1.min.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
+        <script type="text/javascript" src="../../viewIncludeFiles/plugins/sweetalert2.min.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/header.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
@@ -25,7 +27,9 @@
     </head>
    <body>
 	<header id="header">
-	</header>
+    </header>
+    <input type="hidden" id="authCode" name="authCode" value="<?php echo $authCode; ?>">
+    <input type="hidden" id="seqNo" name="seqNo" value="<?php echo $seqNo; ?>">
 	<div class="wrap mh_c btn_b_wrap">
 		<h2 class="mb_10">決済完了</h2>
 		<div class="content_wrap">

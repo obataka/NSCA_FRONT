@@ -47,12 +47,27 @@ class FregiConfig
 	// 有効期限切れ
     const DEALSTATUS_EXPIREOVER = "7";
 
+	// 店舗ID
+	const SHOP_ID = "17612";
 
+	// トークン発行キー
+	const TOKEY_KEY = "794c30757b53bb2e";
 
+	// ■■　API URL　■■同一名の上段は本番、下段がテスト
 
+	// 承認・顧客登録処理
+	// const AUTHORIZATION_API_URL = "https://ssl.f-regi.com/connect/authm.cgi";
+	const AUTHORIZATION_API_URL = "https://ssl.f-regi.com/connecttest/authm.cgi";
+	
+	// 売上処理
+	// const SALES_API_URL = "https://ssl.f-regi.com/connect/sale.cgi";
+	const SALES_API_URL = "https://ssl.f-regi.com/connecttest/sale.cgi";
 
+	// コンビニ決済処理
+	// const CONVENI_API_URL = "https://ssl.f-regi.com/connect/convorder.cgi";
+	const CONVENI_API_URL = "https://ssl.f-regi.com/connecttest/convorder.cgi";
 
-
-
-
+	// 顧客情報取得
+	// const GET_CUSTOMER_INFO_API_URL = "https://ssl.f-regi.com/connect/customerinfo.cgi";
+	const GET_CUSTOMER_INFO_API_URL = "https://ssl.f-regi.com/connecttest/customerinfo.cgi";
 }

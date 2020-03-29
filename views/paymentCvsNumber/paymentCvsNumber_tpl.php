@@ -29,7 +29,7 @@
 	<div class="wrap mh_c btn_b_wrap">
 		<h2 class="mb_10">支払い番号発行</h2>
 		<div class="content_wrap">
-			<p>テキストテキストテキストテキストテキストテキスト</p>
+			<p>コンビニ：<?php echo $conveni; ?> 支払番号：<?php echo $payNo; ?> 取引番号：<?php echo $transNo; ?></p>
             <p class="text">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
         	<button class="button btn_b btn_b_1" type="button" id="my_page" value=""><span>マイページへ</span></button>
 		</div>

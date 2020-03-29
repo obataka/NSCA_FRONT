@@ -39,4 +39,31 @@ class Util
             return FALSE;
         }
     }
+
+    /**
+     * 決済処理CGIリクエスト
+     * $url CGI URL
+     * $param パラメータ
+     * 
+     * curlでFREGI CGIへリクエストし、
+     * CGIの結果を改行コードで分割した配列を返却する
+     * レスポンスで返却される値はFREGI APIの各仕様書参照
+     */
+    static function payment_post_request($url, $param) {
+        $ch = curl_init();
+
+        //配列をhttp_build_queryでエンコード
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($param));
+
+        //相手側からのデータの返り値を文字列で取得
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        //送信先の指定
+        curl_setopt($ch, CURLOPT_URL, $url);
+
+        $result = curl_exec($ch);
+        curl_close($ch);
+
+        return explode("\n", $result);
+    }
 }
