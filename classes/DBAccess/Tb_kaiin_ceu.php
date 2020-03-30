@@ -718,4 +718,116 @@ SQL;
         }
         return TRUE;
     }
+
+    /*
+     * 登録
+     * @param array $param
+     * @return boolean
+     */
+    public function insertRec($param)
+    {
+        $db = Db::getInstance();
+        $db->beginTransaction();
+        try {
+            $sql = <<<SQL
+            INSERT
+              INTO tb_kaiin_ceu (
+                kaiin_no
+                 , nendo_id
+                 , shiken_sbt_kbn
+                 , cpraed_kakunin_kbn
+                 , cpraed_kakunimbi
+                 , category_a_gokei
+                 , category_b_gokei
+                 , category_c_gokei
+                 , category_d_gokei
+                 , hitsuyo_ceusu
+                 , hitsuyo_ceu_zansu
+                 , genzai_shutoku_ceusu
+                 , shikaku_koshinryo_nofu_kbn
+                 , nonyubi
+                 , nonyu_hoho_kbn
+                 , nonyu_kingaku
+                 , kanryo_hizuke
+                 , sakujo_flg
+                 , sakusei_user_id
+                 , koshin_user_id
+                 , sakusei_nichiji
+                 , koshin_nichiji
+                 , biko
+                 , d_shinsei_category_a_gokei
+                 , d_shinsei_category_b_gokei
+                 , d_shinsei_category_c_gokei
+                 , d_shinsei_category_d_gokei
+            )
+            VALUES (
+                   :kaiin_no
+                 , :nendo_id
+                 , :shiken_sbt_kbn
+                 , :cpraed_kakunin_kbn
+                 , :cpraed_kakunimbi
+                 , :category_a_gokei
+                 , :category_b_gokei
+                 , :category_c_gokei
+                 , :category_d_gokei
+                 , :hitsuyo_ceusu
+                 , :hitsuyo_ceu_zansu
+                 , :genzai_shutoku_ceusu
+                 , :shikaku_koshinryo_nofu_kbn
+                 , :nonyubi
+                 , :nonyu_hoho_kbn
+                 , :nonyu_kingaku
+                 , :kanryo_hizuke
+                 , :sakujo_flg
+                 , :sakusei_user_id
+                 , :koshin_user_id
+                 , :sakusei_nichiji
+                 , :koshin_nichiji
+                 , :biko
+                 , :d_shinsei_category_a_gokei
+                 , :d_shinsei_category_b_gokei
+                 , :d_shinsei_category_c_gokei
+                 , :d_shinsei_category_d_gokei
+            );
+            SQL;
+            $sth = $db->prepare($sql);
+            $sth->execute([
+                ':kaiin_no' => $param['kaiin_no'],
+                ':nendo_id' => $param['nendo_id'],
+                ':shiken_sbt_kbn' => $param['shiken_sbt_kbn'],
+                ':cpraed_kakunin_kbn' => $param['cpraed_kakunin_kbn'],
+                ':cpraed_kakunimbi' => $param['cpraed_kakunimbi'],
+                ':category_a_gokei' => $param['category_a_gokei'],
+                ':category_b_gokei' => $param['category_b_gokei'],
+                ':category_c_gokei' => $param['category_c_gokei'],
+                ':category_d_gokei' => $param['category_d_gokei'],
+                ':hitsuyo_ceusu' => $param['hitsuyo_ceusu'],
+                ':hitsuyo_ceu_zansu' => $param['hitsuyo_ceu_zansu'],
+                ':genzai_shutoku_ceusu' => $param['genzai_shutoku_ceusu'],
+                ':shikaku_koshinryo_nofu_kbn' => $param['shikaku_koshinryo_nofu_kbn'],
+                ':nonyubi' => $param['nonyubi'],
+                ':nonyu_hoho_kbn' => $param['nonyu_hoho_kbn'],
+                ':nonyu_kingaku' => $param['nonyu_kingaku'],
+                ':kanryo_hizuke' => $param['kanryo_hizuke'],
+                ':sakujo_flg' => $param['sakujo_flg'],
+                ':sakusei_user_id' => $param['sakusei_user_id'],
+                ':koshin_user_id' => $param['koshin_user_id'],
+                ':sakusei_nichiji' => $param['sakusei_nichiji'],
+                ':koshin_nichiji' => $param['koshin_nichiji'],
+                ':biko' => $param['biko'],
+                ':d_shinsei_category_a_gokei' => $param['d_shinsei_category_a_gokei'],
+                ':d_shinsei_category_b_gokei' => $param['d_shinsei_category_b_gokei'],
+                ':d_shinsei_category_c_gokei' => $param['d_shinsei_category_c_gokei'],
+                ':d_shinsei_category_d_gokei' => $param['d_shinsei_category_d_gokei']
+            ]);
+            $db->commit();
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/nishiyama_log.txt');
+            $db->rollBack();
+            return FALSE;
+        }
+        return TRUE;
+    }
+
+
 }

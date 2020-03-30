@@ -115,8 +115,9 @@ if($tb_kessai_hakko->insertRec($fregiData)) {
         case '01' :
             switch($keiriShumoku2) {
                 case '01' :
+                    $kaiinNo = null; // 会員番号
                     $oldKaiinNo = null; // 旧会員番号（認定校生）
-                    $certificateFlg = false; // 旧認定校生フラグ 
+                    $certificateFlg = 0; // 旧認定校生フラグ
 
                     $oldKaiinNo = $payFunc->getKaiinNoForMemberCertificate(
                         $_SESSION['shimei_sei'],
@@ -126,9 +127,15 @@ if($tb_kessai_hakko->insertRec($fregiData)) {
                         $_SESSION['seinengappi']
                     );
 
-                    if(!empty($oldKaiinNo)) $certificateFlg = true;
+                    if(!empty($oldKaiinNo)) $certificateFlg = 1;
 
-                    // 会員データの登録
+                    // 会員データの新規登録（会員番号をセッションに保存）
+                    $kaiinNo = $payFunc->insertMemberData($oldKaiinNo, $payType, $certificateFlg);
+                    $_SESSION['kaiinNo'] = $kaiinNo;
+
+                    // 旧認定校性のデータを新規会員番号に更新
+                    if($certificateFlg == 1) 
+
                     
                     break;
             }

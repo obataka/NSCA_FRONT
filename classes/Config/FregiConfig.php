@@ -19,6 +19,19 @@ class FregiConfig
 
 
 
+	// ■■　カード支払回数指定区分　■■
+
+	// 一括支払い
+    const PAY_MODE_LUMP = 10;
+	// 2回払い
+    const PAY_MODE_2 = 60;
+	// 分割払い
+    const PAY_MODE_INSTALLMENTS = 61;
+	// リボ払い
+    const PAY_MODE_REVOLVING = 80;
+
+
+
 	// ■■　処理成否　■■
 
 	// 成功
@@ -49,7 +62,14 @@ class FregiConfig
 
 
 
+	// ■■　その他定数　■■
 
+	// SHOPID
+	const SHOP_ID = 17612;
+	// 文字コード
+	const CHAR_CODE = "euc";
+	// 有効期限
+	const MAX_EXPIRE = 14;
 
 
 
