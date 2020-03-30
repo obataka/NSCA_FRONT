@@ -57,7 +57,7 @@
          * //職業取得
          *********************************/
         jQuery.ajax({
-            url: '../../classes/Common/getShokugyoList.php',
+            url: '../../classes/Common/getShokugyoList.php'
         }).done((rtn) => {
             if (rtn == 0) {
                 return false;
@@ -97,7 +97,7 @@
         * //NSCA以外の認定資格取得
         *********************************/
         jQuery.ajax({
-            url: '../../classes/Common/getShikakuList.php',
+            url: '../../classes/Common/getShikakuList.php'
         }).done((rtn) => {
             // rtn = 0 の場合は、該当なし
             if (rtn == 0) {
@@ -139,7 +139,7 @@
         * //興味のある地域取得
         *********************************/
         jQuery.ajax({
-            url: '../../classes/Common/getChiikiList.php',
+            url: '../../classes/Common/getChiikiList.php'
         }).done((rtn) => {
             // rtn = 0 の場合は、該当なし
             if (rtn == 0) {
@@ -176,7 +176,7 @@
         * //興味のある分野取得
         *********************************/
         jQuery.ajax({
-            url: '../../classes/Common/getBunyaList.php',
+            url: '../../classes/Common/getBunyaList.php'
         }).done((rtn) => {
             // rtn = 0 の場合は、該当なし
             if (rtn == 0) {
@@ -440,7 +440,7 @@
 
             //郵便番号検索処理
             jQuery.ajax({
-                url: '../../classes/searchPostNo.php',
+                url: '../../classes/Common/searchPostNo.php',
                 type: 'POST',
                 data:
                 {
@@ -574,7 +574,7 @@
         var wk_cmControl;
         // 会費データ取得処理
         jQuery.ajax({
-            url: '../../classes/getKaihiData.php',
+            url: '../../classes/Common/getKaihiData.php',
             type: 'POST',
         }).done((rtn) => {
             // rtn = 0 の場合は、該当なし

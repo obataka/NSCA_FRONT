@@ -5,7 +5,7 @@
          * //都道府県取得
          ****************/
         $.ajax({
-            url: '../../classes/getTodofukenList.php',
+            url: '../../classes/Common/getTodofukenList.php'
         }).done((rtn) => {
             // rtn = 0 の場合は、該当なし
             if (rtn == 0) {
@@ -157,7 +157,7 @@
 
             //郵便番号検索処理
             $.ajax({
-                url: '../../classes/searchPostNo.php',
+                url: '../../classes/Common/searchPostNo.php',
                 type: 'POST',
                 data:
                 {

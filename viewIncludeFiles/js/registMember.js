@@ -29,7 +29,7 @@
          * //都道府県取得
          ****************/
         $.ajax({
-            url: '../../classes/getTodofukenList.php',
+            url: '../../classes/Common/getTodofukenList.php'
         }).done((rtn) => {
             // rtn = 0 の場合は、該当なし
             if (rtn == 0) {
@@ -103,7 +103,7 @@
         * //NSCA以外の認定資格取得
         *********************************/
         $.ajax({
-            url: '../../classes/getShikakuList.php',
+            url: '../../classes/Common/getShikakuList.php'
         }).done((rtn) => {
             // rtn = 0 の場合は、該当なし
             if (rtn == 0) {
@@ -149,7 +149,7 @@
         * //興味のある地域取得
         *********************************/
         $.ajax({
-            url: '../../classes/getAreaList.php',
+            url: '../../classes/Common/getChiikiList.php'
         }).done((rtn) => {
             // rtn = 0 の場合は、該当なし
             if (rtn == 0) {
@@ -186,7 +186,7 @@
         * //興味のある分野取得
         *********************************/
         $.ajax({
-            url: '../../classes/getBunyaList.php',
+            url: '../../classes/Common/getBunyaList.php'
         }).done((rtn) => {
             // rtn = 0 の場合は、該当なし
             if (rtn == 0) {
@@ -418,7 +418,7 @@
 
             //郵便番号検索処理
             $.ajax({
-                url: '../../classes/searchPostNo.php',
+                url: '../../classes/Common/searchPostNo.php',
                 type: 'POST',
                 data:
                 {
@@ -510,7 +510,7 @@
 
             //郵便番号検索処理
             $.ajax({
-                url: '../../classes/searchPostNo.php',
+                url: '../../classes/Common/searchPostNo.php',
                 type: 'POST',
                 data:
                 {

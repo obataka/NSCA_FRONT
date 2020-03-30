@@ -92,7 +92,7 @@
          * //職業取得
          *********************************/
         $.ajax({
-            url: '../../classes/getMeishoList.php',
+            url: '../../classes/Common/getShokugyoList.php'
         }).done((rtn) => {
             // rtn = 0 の場合は、該当なし
             if (rtn == 0) {

@@ -13,12 +13,9 @@ if (isset($_SESSION['kaiinNo'])) {
     $wk_kaiin_no = $_SESSION['kaiinNo'];
 }
 
-$param = [
-    'kaiin_no'  => $wk_kaiin_no,
-];
 
 // データ取得処理
-$result = (new Tb_kaiin_sentaku())->findBySentaku($param);
+$result = (new Tb_kaiin_sentaku())->findBySentaku($wk_kaiin_no);
 
 // 該当データなしの場合
 if (empty($result)) {

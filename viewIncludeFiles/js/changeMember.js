@@ -19,7 +19,7 @@
         * //都道府県取得
         ****************/
         $.ajax({
-            url: '../../classes/changeMemberGetTodofukenList.php'
+            url: '../../classes/Common/getTodofukenList.php'
         }).done((rtn) => {
             // rtn = 0 の場合は、該当なし
             if (rtn == 0) {
@@ -41,7 +41,7 @@
          * //職業取得
          *********************************/
         $.ajax({
-            url: '../../classes/changeMemberGetShokugyoList.php'
+            url: '../../classes/Common/getShokugyoList.php'
         }).done((rtn) => {
             // rtn = 0 の場合は、該当なし
             if (rtn == 0) {
@@ -68,7 +68,7 @@
         *********************************/
         function checkShikaku() {
         $.ajax({
-                url: '../../classes/changeMemberGetShikakuList.php'
+            url: '../../classes/Common/getShikakuList.php'
             }).done((rtn) => {
                 // rtn = 0 の場合は、該当なし
                 if (rtn == 0) {
@@ -87,7 +87,7 @@
                     });
                     if (getTbkaiinSentaku) {
                         $.each(getTbkaiinSentaku, function (index, value) {
-                            if (value['meisho_cd'] == 22) {
+                            if (value['meisho_kbn'] == 22) {
                                 //NSCA以外の認定資格のチェックボックスを選択状態にする。
                                 var wk_sel_shikaku_name = '#shikaku_' + value['meisho_cd'];
                                 $(wk_sel_shikaku_name).prop("checked", true);
@@ -132,7 +132,7 @@
         *********************************/
         function checkChiiki() {
         $.ajax({
-                url: '../../classes/changeMemberGetChiikiList.php'
+            url: '../../classes/Common/getChiikiList.php'
             }).done((rtn) => {
                 // rtn = 0 の場合は、該当なし
                 if (rtn == 0) {
@@ -187,7 +187,7 @@
         *********************************/
         function checkBunya() {
         $.ajax({
-                url: '../../classes/changeMemberGetBunyaList.php'
+	            url: '../../classes/Common/getBunyaList.php'
             }).done((rtn) => {
                 if (rtn == 0) {
                     return false;
@@ -252,7 +252,7 @@
         $.ajax({
             url: '../../classes/changeMemberGetKaiinJoho.php'
         }).done((rtn1) => {
-            getTbkaiinJoho = JSON.parse(rtn1);
+           getTbkaiinJoho = JSON.parse(rtn1);
             //※正常に情報を取得できた時入力フォームに表示する
             $('#kaiinSbt').val(getTbkaiinJoho['kaiin_sbt_kbn']);
             if (getTbkaiinJoho['kaiin_sbt_kbn'] == 1) {
@@ -719,7 +719,7 @@
 
             //郵便番号検索処理
             $.ajax({
-                url: '../../classes/searchPostNo.php',
+                url: '../../classes/Common/searchPostNo.php',
                 type: 'POST',
                 data:
                 {
@@ -810,7 +810,7 @@
 
             //郵便番号検索処理
             $.ajax({
-                url: '../../classes/searchPostNo.php',
+                url: '../../classes/Common/searchPostNo.php',
                 type: 'POST',
                 data:
                 {

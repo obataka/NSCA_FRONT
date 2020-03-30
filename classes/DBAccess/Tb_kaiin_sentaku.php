@@ -11,24 +11,18 @@ class Tb_kaiin_sentaku
     /**
      * @return array|mixed
      */
-    public function findBySentaku()
+    public function findBySentaku($kaiin_no)
     {
-        $wk_kaiin_no = "";
-        if (isset($_SESSION['kaiin_no'])) {
-                $wk_kaiin_no = $_SESSION['kaiin_no'];
-        }
-        // $wk_kaiin_no = 10251033;
-        //$wk_kaiin_no = 819121118;
         try {
             $db = Db::getInstance();
             $sth = $db->prepare("SELECT meisho_kbn, meisho_cd, biko
             FROM   tb_kaiin_sentaku
             WHERE kaiin_no = :kaiin_no
             ");
-            $sth->execute([':kaiin_no' => $wk_kaiin_no,]);
+            $sth->execute([':kaiin_no' => $kaiin_no]);
             $Tb_kaiin_sentaku = $sth->fetchAll();
         } catch (\PDOException $e) {
-            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/sugai_log.txt');
+            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
             $Tb_kaiin_sentaku = [];
         }
 
@@ -50,7 +44,7 @@ SQL;
             ]);
             $db->commit();
         } catch (\PDOException $e) {
-            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/sugai_log.txt');
+            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
             $db->rollBack();
             return FALSE;
         }
@@ -111,7 +105,7 @@ SQL;
                 }
             }
         } catch (\PDOException $e) {
-            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/sugai_log.txt');
+            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
             $db->rollBack();
             return FALSE;
         }
@@ -166,7 +160,7 @@ SQL;
                 }
             }
         } catch (\PDOException $e) {
-            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/sugai_log.txt');
+            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
             $db->rollBack();
             return FALSE;
         }
@@ -227,7 +221,7 @@ SQL;
                 }
             }
         } catch (\PDOException $e) {
-            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/sugai_log.txt');
+            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
             $db->rollBack();
             return FALSE;
         }

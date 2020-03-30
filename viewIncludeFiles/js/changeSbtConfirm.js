@@ -34,7 +34,7 @@
         var wk_kaihi;
         // 会費データ取得処理
         $.ajax({
-            url: '../../classes/getKaihiData.php',
+                url: '../../classes/Common/searchPostNo.php',
             type: 'POST',
         }).done((rtn) => {
             // rtn = 0 の場合は、該当なし
