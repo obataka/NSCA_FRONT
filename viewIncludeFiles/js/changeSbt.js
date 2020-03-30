@@ -16,8 +16,8 @@
                 return false;
             } else {
                 wk_cmControl = JSON.parse(rtn);
-                $("#seikaiin-kaihi").html(Math.floor(wk_cmControl['20']).toLocaleString());           //※ここに配列の20番目をカンマ編集してセット
-                $("#gakusei-kaihi").html(Math.floor(wk_cmControl['21']).toLocaleString());            //※ここに配列の21番目をカンマ編集してセット
+                $("#seikaiin-kaihi").html(Math.floor(wk_cmControl['kaihi_seikaiin']).toLocaleString());           //※ここに配列の20番目をカンマ編集してセット
+                $("#gakusei-kaihi").html(Math.floor(wk_cmControl['kaihi_gakuseikaiin']).toLocaleString());            //※ここに配列の21番目をカンマ編集してセット
             }
         }).fail((rtn) => {
             $("#err_message").html("会費データが取得できません");
@@ -34,9 +34,9 @@
         }).done((rtn) => {
             console.log(rtn);
             wk_kaiin_sbt = JSON.parse(rtn);
-            if (wk_kaiin_sbt[0] == 1) {
+            if (wk_kaiin_sbt['kaiin_sbt_kbn'] == 1) {
                 $("#kaiin_sbt").text("NSCA正会員");
-            } else if (wk_kaiin_sbt[0] == 2) {
+            } else if (wk_kaiin_sbt['kaiin_sbt_kbn'] == 2) {
                 $("#kaiin_sbt").text("学生会員");
             } else {
                 $("#err_message_sbt").html("会員種別データが取得できません");
@@ -51,7 +51,7 @@
          * NSCA正会員への変更ボタン押下処理
          ******************************************/
         $("#__changeMember").click(function () {
-            if (wk_kaiin_sbt[0] == 1) {
+            if (wk_kaiin_sbt['kaiin_sbt_kbn'] == 1) {
                 //現在の会員種別がNSCA正会員の場合メッセージを表示する
                 $("#err_message_sbt").html("すでにNSCA正会員です。");
                 return false;
@@ -68,7 +68,7 @@
         * 学生会員への変更ボタン押下処理
         ******************************************/
         $("#__changeGakusei").click(function () {
-            if (wk_kaiin_sbt[0] == 2) {
+            if (wk_kaiin_sbt['kaiin_sbt_kbn'] == 2) {
                 //現在の会員種別が学生会員の場合メッセージを表示する
                 $("#err_message_sbt").html("すでに学生会員です。");
                 return false;

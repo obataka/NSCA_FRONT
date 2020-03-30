@@ -15,8 +15,8 @@
                 return false;
             } else {
                 wk_cmControl = JSON.parse(rtn);
-                $("#seikaiin-kaihi").html(Math.floor(wk_cmControl['20']).toLocaleString());           //※ここに配列の20番目をカンマ編集してセット
-                $("#gakusei-kaihi").html(Math.floor(wk_cmControl['21']).toLocaleString());            //※ここに配列の21番目をカンマ編集してセット
+                $("#seikaiin-kaihi").html(Math.floor(wk_cmControl['kaihi_seikaiin']).toLocaleString());           //※ここに配列の20番目をカンマ編集してセット
+                $("#gakusei-kaihi").html(Math.floor(wk_cmControl['kaihi_gakuseikaiin']).toLocaleString());            //※ここに配列の21番目をカンマ編集してセット
             }
         }).fail((rtn) =>{
             $("#err_message").html("会費データが取得できません");
@@ -40,7 +40,7 @@
          ******************************************/
         $("#__registMember").click(function () {
             $('#kaiinSbt').val(1);                                                             //※HIDDEN項目のkaiinSbtに利用登録の値：1をセット
-            $('#kaihi').val(Math.floor(wk_cmControl['20']).toLocaleString());                  //※HIDDEN項目のkaihiに利用登録の値：13,200をセット          
+            $('#kaihi').val(Math.floor(wk_cmControl['kaihi_seikaiin']).toLocaleString());                  //※HIDDEN項目のkaihiに利用登録の値：13,200をセット          
             url = '../registMember/';
             $('form').attr('action', url);
             $('form').submit();
@@ -51,7 +51,7 @@
         ******************************************/
         $("#__registGakusei").click(function () {
             $('#kaiinSbt').val(2);                                                             //※HIDDEN項目のkaiinSbtに利用登録の値：2をセット
-            $('#kaihi').val(Math.floor(wk_cmControl['21']).toLocaleString());                  //※HIDDEN項目のkaihiに利用登録の値：11,000をセット          
+            $('#kaihi').val(Math.floor(wk_cmControl['kaihi_gakuseikaiin']).toLocaleString());                  //※HIDDEN項目のkaihiに利用登録の値：11,000をセット          
             url = '../registMember/';
             $('form').attr('action', url);
             $('form').submit();

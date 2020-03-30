@@ -173,11 +173,11 @@
                     //※正常に住所情報を取得できた時の処理を書く場所
                     wk_msYubinNo = JSON.parse(rtn);
                     $("#address_todohuken option").filter(function (index) {
-                        return $(this).text() === wk_msYubinNo[7];
+                        return $(this).text() === wk_msYubinNo['kemmei_kana'];
                     }).prop("selected", true).change();
-
-                    $("#address_shiku").val(wk_msYubinNo[8] + wk_msYubinNo[9]);
-                    $("#address_yomi_shiku").val(wk_msYubinNo[5] + wk_msYubinNo[6]);
+                    $("#address_shiku").val(wk_msYubinNo['jusho_1'] + wk_msYubinNo['jusho_2']);
+                    $("#address_yomi_shiku").val(wk_msYubinNo['jusho_1_kana'] + wk_msYubinNo['jusho_2_kana']);
+                }
                 }
             }).fail((rtn) => {
                 $("#err_yubin_nb").html("郵便番号から住所を取得できません");

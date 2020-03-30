@@ -53,7 +53,7 @@
 
                 //取得学位の値がある場合、初期表示時に選択済みにする。
                 if (shutoku_gakui != "") {
-                    $("input:radio[id='gakui_" + value[0] + "']").prop("checked", true);
+                    $("input:radio[id='gakui_" + value['meisho_cd'] + "']").prop("checked", true);
                     if (document.getElementById("gakui_5").checked) {
                         //卒業見込みが選択された場合、卒業予定日を使用可能にする。
                         //それ以外は使用不可にする。

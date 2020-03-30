@@ -18,17 +18,17 @@
                 getTbkaiinJoho = JSON.parse(rtn);
                 
                 //メールアドレス1受取
-                $mail1 = getTbkaiinJoho[124];
+                $mail1 = getTbkaiinJoho['email_1_oshirase_uketori'];
         
                 //メールアドレス2受取
-                $mail2 = getTbkaiinJoho[126];
+                $mail2 = getTbkaiinJoho['email_2_oshirase_uketori'];
         
                 //お知らせ受取、ログイン時に選択したメールアドレスを表示
-                if ($mail1  == "") {
-                    $('#mail_address').html(getTbkaiinJoho[27]);
+                if ($mail1  == "1") {
+                    $('#mail_address').html(getTbkaiinJoho['email_1']);
                 }
-                if ($mail2 == "") {
-                    $('#mail_address').html(getTbkaiinJoho[28]);
+                if ($mail2 == "1") {
+                    $('#mail_address').html(getTbkaiinJoho['email_2']);
                 }
                                                                          
             }        
@@ -108,7 +108,7 @@
 
 
             //メールアドレス1の時、登録済みのメールアドレスかどうかチェックする
-            if ($mail1 == "") {
+            if ($mail1 == "1") {
                 
                 $.ajax({
                     url:  '../../classes/searchMailAddress1.php',
@@ -122,7 +122,7 @@
                 // Ajaxリクエストが成功した時発動
                 .done( (rtn) => {
                     if (rtn == 0) {
-                        //未登録の場合、メールアドレス更新                    
+                        //未登録の場合、メールアドレス更新
                         $.ajax({
                             url:  '../../classes/reissueMailAddress1.php',
                             type: 'POST',
@@ -199,7 +199,7 @@
 
 
             //メールアドレス2の時、登録済みのメールアドレスかどうかチェックする
-            if ($mail2 == "") {
+            if ($mail2 == "1") {
                 
                 $.ajax({
                     url:  '../../classes/searchMailAddress2.php',
