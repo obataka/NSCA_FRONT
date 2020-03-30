@@ -9,22 +9,18 @@
 	<title></title>
 	<!-- favicon -->
 	<link rel="icon" href="../../viewIncludeFiles/image/favicon.ico">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/notosansjapanese.css">
 	<link rel="stylesheet" href="../../viewIncludeFiles/css/fontawesome/web-fonts-with-css/css/fontawesome-all.css">
 	<link rel="stylesheet" href="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.css">
 	<link rel="stylesheet" href="../../viewIncludeFiles/css/style.css" />
 	<link rel="stylesheet" href="../../viewIncludeFiles/css/nyukai_moshikomi.css">
 
 	<script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.1.1.min.js"></script>
-	<script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.js"></script>
-	<script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
+
 	<script type="text/javascript" src="../../viewIncludeFiles/js/registMember.js"></script>
-	<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
-	<script type="text/javascript" src="../../viewIncludeFiles/js/iPhone.js"></script>
+	<script type="text/javascript" src="../../viewIncludeFiles/js/header.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
 	<script>
 		$(function() {
-			$("select").wrap("<span class='select_wrap'></span>");
 
 			$("#file_front").on('change', function() {
 				var file = $(this).prop('files')[0];
@@ -54,11 +50,8 @@
 
 <body>
 	<header class="header_logo">
-		<div>
-			<img src="../../viewIncludeFiles/image/NSCA_Japan_rev.png" alt="ロゴ">
-		</div>
 	</header>
-	<div class="wrap">
+	<div class="wrap before_login">
 		<h1>入会申込 登録情報入力</h1>
 		<div class="spb_arrows">
 			<ul class="nav nav-tabs step-anchor">
@@ -68,7 +61,7 @@
 				<li><span><small>完了</small></span></li>
 			</ul>
 		</div>
-		<p class="top_text">※18歳未満の方は、入会申込フォームからお申込みいただくことはできません。電話またはメールにて<a href="https://www.nsca-japan.or.jp/06_qanda/top.html#contact" target="_blank">お問い合わせ</a>ください。</p>
+		<p class="top_text exclamation">18歳未満の方は、入会申込フォームからお申込みいただくことはできません。電話またはメールにて<a href="https://www.nsca-japan.or.jp/06_qanda/top.html#contact" target="_blank">お問い合わせ</a>ください。</p>
 		<form action="" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="kaiinType" id="kaiinType" value="<?php echo $wk_kaiinType; ?>">
 			<input type="hidden" name="kaiinSbt" id="kaiinSbt" value="<?php echo $wk_kaiinSbt; ?>">
@@ -191,7 +184,7 @@
 					<tr class="nsca_hoji">
 						<th><span class="any"></span>NSCA認定資格の保持</th>
 						<td>
-							<input id="nsca_hoji" type="checkbox" name="nsca_hoji"><label class="checkbox" for="nsca_hoji">CSCS、NSCA-CPTの資格をすでに保持している方は<br>チェックしてください。</label>
+							<input id="nsca_hoji" type="checkbox" name="nsca_hoji"><label class="checkbox" for="nsca_hoji">CSCS、NSCA-CPTの資格をすでに保持している方は<br class="pc_only">チェックしてください。</label>
 						</td>
 					</tr>
 				</table>
@@ -264,55 +257,59 @@
 							<th><span class="required">必須</span>生年月日</th>
 							<td>
 								<p>西暦</p><input id="year" type="text" name="year" value="<?php echo $year; ?>">年
-								<select id="month" name="month">
-									<option value="00"></option>
-									<option value="01">1</option>
-									<option value="02">2</option>
-									<option value="03">3</option>
-									<option value="04">4</option>
-									<option value="05">5</option>
-									<option value="06">6</option>
-									<option value="07">7</option>
-									<option value="08">8</option>
-									<option value="09">9</option>
-									<option value="10">10</option>
-									<option value="11">11</option>
-									<option value="12">12</option>
-								</select>月
-								<select id="day" name="day">
-									<option value="00"></option>
-									<option value="01">1</option>
-									<option value="02">2</option>
-									<option value="03">3</option>
-									<option value="04">4</option>
-									<option value="05">5</option>
-									<option value="06">6</option>
-									<option value="07">7</option>
-									<option value="08">8</option>
-									<option value="09">9</option>
-									<option value="10">10</option>
-									<option value="11">11</option>
-									<option value="12">12</option>
-									<option value="13">13</option>
-									<option value="14">14</option>
-									<option value="15">15</option>
-									<option value="16">16</option>
-									<option value="17">17</option>
-									<option value="18">18</option>
-									<option value="19">19</option>
-									<option value="20">20</option>
-									<option value="21">21</option>
-									<option value="22">22</option>
-									<option value="23">23</option>
-									<option value="24">24</option>
-									<option value="25">25</option>
-									<option value="26">26</option>
-									<option value="27">27</option>
-									<option value="28">28</option>
-									<option value="29">29</option>
-									<option value="30">30</option>
-									<option value="31">31</option>
-								</select>日
+								<span class='select_wrap'>
+									<select id="month" name="month">
+										<option value="00"></option>
+										<option value="01">1</option>
+										<option value="02">2</option>
+										<option value="03">3</option>
+										<option value="04">4</option>
+										<option value="05">5</option>
+										<option value="06">6</option>
+										<option value="07">7</option>
+										<option value="08">8</option>
+										<option value="09">9</option>
+										<option value="10">10</option>
+										<option value="11">11</option>
+										<option value="12">12</option>
+									</select>
+								</span>月
+								<span class='select_wrap'>
+									<select id="day" name="day">
+										<option value="00"></option>
+										<option value="01">1</option>
+										<option value="02">2</option>
+										<option value="03">3</option>
+										<option value="04">4</option>
+										<option value="05">5</option>
+										<option value="06">6</option>
+										<option value="07">7</option>
+										<option value="08">8</option>
+										<option value="09">9</option>
+										<option value="10">10</option>
+										<option value="11">11</option>
+										<option value="12">12</option>
+										<option value="13">13</option>
+										<option value="14">14</option>
+										<option value="15">15</option>
+										<option value="16">16</option>
+										<option value="17">17</option>
+										<option value="18">18</option>
+										<option value="19">19</option>
+										<option value="20">20</option>
+										<option value="21">21</option>
+										<option value="22">22</option>
+										<option value="23">23</option>
+										<option value="24">24</option>
+										<option value="25">25</option>
+										<option value="26">26</option>
+										<option value="27">27</option>
+										<option value="28">28</option>
+										<option value="29">29</option>
+										<option value="30">30</option>
+										<option value="31">31</option>
+									</select>
+								</span>日
 								<ul class="error_ul">
 									<li class="error" id="err_birthday"></li>
 								</ul>
@@ -339,9 +336,12 @@
 									<li class="error" id="err_address_yubin_nb_1"></li>
 								</ul>
 
-								<p class="mt_1">都道府県</p><select id="address_todohuken" name="math">
-									<option value=""></option>
-								</select>
+								<p class="mt_1">都道府県</p>
+								<span class='select_wrap'>
+									<select id="address_todohuken" name="math">
+										<option value=""></option>
+									</select>
+								</span>
 								<ul class="error_ul">
 									<li class="error" id="err_address_todohuken"></li>
 								</ul>
@@ -452,15 +452,27 @@
 						<tr class="job">
 							<th><span class="any"></span>職業</th>
 							<td>
-								<p><select id="job_1" class="w_70" name="job_1">
-										<option value=""></option>
-									</select></p>
-								<p class="mt_1"><select id="job_2" class="w_70" name="job_2">
-										<option value=""></option>
-									</select></p>
-								<p class="mt_1"><select id="job_3" class="w_70" name="job_3">
-										<option value=""></option>
-									</select></p>
+								<p>
+									<span class='select_wrap'>
+										<select id="job_1" class="w_70" name="job_1">
+											<option value=""></option>
+										</select>
+									</span>
+								</p>
+								<p class="mt_1">
+									<span class='select_wrap'>
+										<select id="job_2" class="w_70" name="job_2">
+											<option value=""></option>
+										</select>
+									</span>
+								</p>
+								<p class="mt_1">
+									<span class='select_wrap'>
+										<select id="job_3" class="w_70" name="job_3">
+											<option value=""></option>
+										</select>
+									</span>
+								</p>
 							</td>
 						</tr>
 						<tr>
@@ -477,11 +489,16 @@
 								<ul class="error_ul">
 									<li class="error" id="err_address_yubin_nb_2"></li>
 								</ul>
-								<p class="mt_1">都道府県</p><select id="office_todohuken" name="office_math">
-									<option value=""></option>
-								</select>
-								<p class="mt_1">市区町村／番地</p><input id="office_shiku" class="w_80" type="text" name="office_shiku" value="<?php echo $office_shiku; ?>">
-								<p class="mt_1">建物／部屋番号</p><input id="office_tatemono" class="w_80" type="text" name="office_tatemono" value="<?php echo $office_tatemono; ?>">
+								<p class="mt_1">都道府県</p>
+								<span class='select_wrap'>
+									<select id="office_todohuken" name="office_math">
+										<option value=""></option>
+									</select>
+								</span>
+								<p class="mt_1">市区町村／番地</p>
+								<input id="office_shiku" class="w_80" type="text" name="office_shiku" value="<?php echo $office_shiku; ?>">
+								<p class="mt_1">建物／部屋番号</p>
+								<input id="office_tatemono" class="w_80" type="text" name="office_tatemono" value="<?php echo $office_tatemono; ?>">
 							</td>
 						</tr>
 						<tr>
@@ -1192,8 +1209,7 @@
 			<button id="next_button" class="button btn_1" type="button" value="">次へ</button>
 		</form>
 	</div>
-	<footer>
-		<p><small>&copy; Copyright &copy; 2016 NSCA JAPAN. All Rights Reserved.</small></p>
+	<footer id="footer">
 	</footer>
 </body>
 
