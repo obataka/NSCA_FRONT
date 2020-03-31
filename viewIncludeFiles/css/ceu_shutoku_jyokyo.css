@@ -19,13 +19,16 @@ section{
 	text-decoration: underline;
 }
 .link ul {
-	padding: 20px;
+	margin: 20px 0;
 }
-h3 {
+.link ul li {
+	padding-bottom: 5px;
+}
+h2 {
 	background: none;
-    color: #333;
-    padding: 0;
-    margin-top: 40px;
+	color: #333;
+	padding: 0;
+	margin-top: 40px;
 }
 table {
 	margin-top: 20px;
@@ -38,8 +41,8 @@ table:last-child {
 	margin-bottom: 50px;
 }
 tr {
-    display: table-row!important;
-    padding: 0!important;
+	display: table-row!important;
+	padding: 0!important;
 	border: none;
 }
 th {
@@ -47,9 +50,10 @@ th {
 	padding: 1em;
 	background: #005699;
 	color: #fff;
+	width: 25%!important;
 }
 td {
-    width: 25%;
+	width: 25%;
 	text-align: center;
 	padding: 1em
 }
@@ -65,8 +69,8 @@ td {
 	background: #eee;
 }
 .ceu_jyokyo tr:last-child {
-    background: #005699;
-    color: #fff;
+	background: #005699;
+	color: #fff;
 }
 .ceu_joho th {
 	padding: 0.5em;
@@ -82,8 +86,15 @@ td {
 	width: 30%;
 }
 @media screen and (max-width: 768px){
+	section {
+		display: block;
+	}
+	.ceu {
+		margin-bottom: 20px;
+	}
 	.ceu,
 	.link {
+		width: 100%;
 		padding: 10px;
 	}
 	.link ul {
