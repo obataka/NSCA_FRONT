@@ -260,11 +260,20 @@
 							<td>
 								<p>メールアドレス1：<?php echo $mail_address_1; ?></p>
 								<p>メールアドレス2：<?php echo $mail_address_2; ?></p>
+								<p>ログインに使用するメールアドレス：
+									<?php
+									if ($wk_sel_mail_login == 1) {
+										echo $mail_address_1;
+									} elseif ($wk_sel_mail_login == 2) {
+										echo $mail_address_2;
+									}
+									?>
+								</p>
 								<p>メール受信希望のメールアドレス：
 									<?php
-									if ($mail == 1) {
+									if ($wk_sel_mail == 1) {
 										echo $mail_address_1;
-									} elseif ($mail == 2) {
+									} elseif ($wk_sel_mail == 2) {
 										echo $mail_address_2;
 									}
 									?>
