@@ -80,7 +80,7 @@
 		$('#buy_button').on('click', function () {
 			//商品を追加（データベースお買い物かごへ登録）※会員のみ
 			if ($('#kaiin_no').val()) {
-				jQuery.ajax({
+				$.ajax({
 					url: '../../classes/insertSalesCartData.php',
 					type: 'POST',
 					data: {
@@ -96,16 +96,13 @@
 					}
 				}).done((rtn) => {
 					if (rtn == 1) {
-						console.log(1);
 						url = '../shoppingBasket/';
 						$('form').attr('action', url);
 						$('form').submit();
 					} else {
-						console.log(0);
 						return false;
 					}
 				}).fail((rtn) => {
-					console.log(011);
 					return false;
 				});
 			} else {

@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="../../viewIncludeFiles/css/fontawesome/web-fonts-with-css/css/fontawesome-all.css">
 	<link rel="stylesheet" href="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.css">
 	<link rel="stylesheet" href="../../viewIncludeFiles/css/style.css" />
-	<link rel="stylesheet" href="../../viewIncludeFiles/css/nsca_japan_shop.css">
+	<link rel="stylesheet" href="../../viewIncludeFiles/css/salesList.css">
 	<link rel="stylesheet" href="../../viewIncludeFiles/css/header.css">
 
 	<script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.1.1.min.js"></script>
@@ -391,7 +391,6 @@
 		<input type="hidden" name="shikaku_kbn" id="shikaku_kbn" value="<?php echo $shikaku_kbn; ?>">
 	</form>
 	<form id="doga_form" action="../productMovie/" method="post">
-		<input type="hidden" name="hambai_doga_id" id="hambai_doga_id" value="">
 		<input type="hidden" name="doga_id" id="doga_id" value="">
 	</form>
 
