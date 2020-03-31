@@ -14,10 +14,9 @@
 
         <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.1.1.min.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/js/login.js"></script>
-        <script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
     </head>
     <body id="login">
-        <form action="?" method="POST" autocomplete="off" id="loginForm" name="loginForm">
+        <form method="POST" id="loginForm" name="loginForm">
             <div class="content_wrap">
                 <div class="content">
                     <div class="login_img">
@@ -39,7 +38,6 @@
                 </div>
             </div>
         </form>
-        <footer id="footer">
-        </footer>
+        <?php include('../views/templates/footer.php'); ?>
     </body>
 </html>
