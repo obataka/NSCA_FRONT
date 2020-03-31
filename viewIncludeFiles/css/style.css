@@ -12,11 +12,11 @@
 }
 
 body {
-    word-break: break-all;
-    color: #333;
-    font-family: "游ゴシック","メイリオ", "Meiryo", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "Osaka", "ＭＳ Ｐゴシック", sans-serif;
-    -webkit-text-size-adjust: 100%;
-    font-size: 14px;
+	word-break: break-all;
+	color: #333;
+	font-family: "游ゴシック","メイリオ", "Meiryo", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "Osaka", "ＭＳ Ｐゴシック", sans-serif;
+	-webkit-text-size-adjust: 100%;
+	font-size: 14px;
 	font-weight: 500;
 	background: #f9f9f9;
 	line-height: 1.4;
