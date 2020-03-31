@@ -14,7 +14,7 @@
         * 次へボタン押下時にDBの値を更新して支払方法選択画面に遷移する。
         *******************************************/
         $("#next_button").click(function () {
-            jQuery.ajax({
+            $.ajax({
                 url: '../../classes/continueMemberUpdate.php',
                 type: 'POST',
                 data:

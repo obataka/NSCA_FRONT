@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="../../viewIncludeFiles/css/fontawesome/web-fonts-with-css/css/fontawesome-all.css">
 	<link rel="stylesheet" href="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.css">
 	<link rel="stylesheet" href="../../viewIncludeFiles/css/style.css" />
-	<link rel="stylesheet" href="../../viewIncludeFiles/css/toroku_syusei.css">
+	<link rel="stylesheet" href="../../viewIncludeFiles/css/changeMember.css">
 	<link rel="stylesheet" href="../../viewIncludeFiles/css/header.css">
 
 	<script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.1.1.min.js"></script>

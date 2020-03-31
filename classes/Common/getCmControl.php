@@ -3,9 +3,9 @@ namespace Was;
 
 session_start();
 
-require './Config/Config.php';
-require './DBAccess/Db.php';
-require './DBAccess/Cm_control.php';
+require '../Config/Config.php';
+require '../DBAccess/Db.php';
+require '../DBAccess/Cm_control.php';
 
 $ret = '';
 
@@ -13,7 +13,7 @@ $ret = '';
 $result = (new Cm_control())->findById(1);
 
 // 該当データなしの場合
-if ($result == '') {
+if (empty($result)) {
     echo 0;
 // 該当データありの場合
 } else {

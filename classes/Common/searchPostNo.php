@@ -17,7 +17,7 @@ $postNo2 = (!empty($_POST['postNo2'])) ? htmlentities($_POST['postNo2'], ENT_QUO
 $result = (new Ms_yubin_no())->findByYubinno($postNo1 . $postNo2);
 
 // 該当データなしの場合
-if ($result == '') {
+if (empty($result)) {
     echo 0;
 // 該当データありの場合
 } else {
