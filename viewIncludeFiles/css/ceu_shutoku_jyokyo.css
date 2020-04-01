@@ -1,3 +1,5 @@
+@charset "utf-8";
+
 section{
 	display: flex;
 	flex-wrap: wrap;
@@ -15,10 +17,25 @@ section{
 .link p {
 	font-size: 15px;
 }
+
+.ceu .percent {
+	position: relative;
+	height: 20px;
+	background-color: #B1B1B1;
+	border: solid 1px #414141;
+}
+.percent span {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 17%;
+	height: 20px;
+	background-color: #777777;
+}
 .link a {
 	text-decoration: underline;
 }
-.link ul {
+.ceu>div, .link ul {
 	margin: 20px 0;
 }
 .link ul li {
@@ -47,15 +64,13 @@ tr {
 }
 th {
 	text-align: center;
-	padding: 1em;
+	padding: 14px;
 	background: #005699;
 	color: #fff;
-	width: 25%!important;
 }
 td {
-	width: 25%;
 	text-align: center;
-	padding: 1em
+	padding: 14px;
 }
 td:first-child {
 	text-align: left;
@@ -63,6 +78,9 @@ td:first-child {
 th,
 td {
 	border: 1px solid #ddd;
+}
+.ceu_jyokyo th, .ceu_jyokyo td  {
+	width: 25%;
 }
 .ceu_jyokyo tr:first-child,
 .ceu_jyokyo tr:nth-of-type(6){
@@ -73,19 +91,22 @@ td {
 	color: #fff;
 }
 .ceu_joho th {
-	padding: 0.5em;
+	width: 10%;
 }
 .ceu_joho td {
 	width: 10%;
-}
-.ceu_joho td:first-child {
-	width: 12%;
 	text-align: center;
 }
-.ceu_joho td:last-child {
+.ceu_joho th:first-child, .ceu_joho td:first-child {
+	width: 12%;	
+}
+.ceu_joho th:last-child, .ceu_joho td:last-child {
 	width: 30%;
 }
 @media screen and (max-width: 768px){
+	.pc-only {
+		display: none;
+	}
 	section {
 		display: block;
 	}
@@ -114,6 +135,7 @@ td {
 		text-align: right;
 		width: 100%!important;
 		height: 40px;
+		padding: 8px;
 	}
 	td:first-child {
 		background: #005699;
