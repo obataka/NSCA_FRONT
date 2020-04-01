@@ -23,7 +23,7 @@
 	<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/js/changeMember.js"></script>
-	
+
 	<script>
 		$(function() {
 			$("select").wrap("<span class='select_wrap'></span>");
@@ -94,7 +94,7 @@
 				<input type="hidden" name="sel_day" id="sel_day" value="<?php echo $day; ?>">
 				<div class="kihon_joho">
 					<div class="kaiin_sbt bg_white">
-						<table>
+						<table class="form_table">
 							<tr>
 								<th><span class="any"></span>会員種別</th>
 								<td>
@@ -108,7 +108,7 @@
 					</div>
 					<h2>基本情報</h2>
 					<div class="bg_white">
-						<table>
+						<table class="form_table">
 							<tr class="name">
 								<th><span class="required">必須</span>氏名</th>
 								<td class="clearfix">
@@ -371,7 +371,7 @@
 				<div class="oshirase">
 					<h2>お知らせ／連絡方法／アンケート</h2>
 					<div class="bg_white">
-						<table>
+						<table class="form_table">
 							<tr>
 								<th><span class="required">必須</span>連絡方法の希望</th>
 								<td>
@@ -460,7 +460,7 @@
 					<button class="button" type="button" id="next_button" value="" ><span>次へ</span></button>
 				</section>
 			</form>
-			
+
 		</div>
 	</div>
 	<footer id="footer">

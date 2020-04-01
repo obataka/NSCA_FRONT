@@ -1,0 +1,280 @@
+@charset "utf-8";
+
+.form_wrap {
+	background: #fff;
+	padding: 0 40px;
+}
+
+.form_wrap th {
+	width: 35%;
+	text-align: left;
+}
+
+.form_wrap td {
+	width: 65%;
+	padding: 40px 0;
+}
+
+.birthday .select_wrap {
+	margin: 0 1em;
+}
+
+.birthday input {
+	width: 29%!important;
+	margin-right: 1em;
+}
+
+.address .checkbox {
+	margin-bottom: 0;
+	margin-top: 1em;
+}
+
+.yubin_1,
+.yubin_2 {
+	width: 20%!important;
+}
+
+.yubin_1 {
+	margin-right: 0.5em;
+}
+.yubin_2 {
+	margin-left: 0.5em;
+}
+
+.job select{
+	margin-bottom: 1em;
+}
+
+.job select:last-child {
+	margin-bottom: 0;
+}
+
+.chiiki .checkbox {
+	width: 6em;
+	margin-right: 0;
+}
+
+.chiiki p {
+	margin-bottom: 1em;
+}
+
+.file label {
+	padding: 7px 20px;
+	display: inline-block;
+	width: auto;
+	height: auto;
+	line-height: inherit;
+	font-size: inherit;
+	position: relative;
+	font-weight: inherit;
+}
+
+.file #upload_front,
+.file #upload_back {
+	margin-top: 0.5em;
+	margin-bottom: 1.5em;
+}
+
+.file p img {
+	max-width: 400px;
+}
+
+input[type="file"] {
+	visibility: hidden;
+}
+
+/*.file label::after {
+	content: "選択されていません";
+	font-size: 14px;
+	height: 20px;
+	line-height: 20px;
+	position: absolute;
+	right: -140px;
+	top: calc(50% - 10px);
+	color: #333;
+}*/
+
+.file label.changed::after {
+	content: "";
+}
+
+/*.filename_front,
+.filename_back{
+   font-size: 12px;
+}*/
+
+.gender p
+.mail p {
+	margin-right: 3em;
+}
+
+.mail p:nth-child(2) {
+	text-indent: 0;
+	font-size: 100%;
+}
+
+.ti {
+	margin-left: 25px;
+	margin-top: 0;
+	line-height: 1.4;
+	font-size: 0.9em;
+}
+
+.gender p
+.mail p {
+	margin-right: 3em;
+}
+
+.mail p:nth-child(2) {
+	text-indent: 0;
+	font-size: 100%;
+}
+
+.pass_text {
+	margin-bottom: 20px;
+}
+
+#toroku_syusei_kakunin_riyo .mail p:nth-child(2),
+#toroku_syusei_kakunin .mail p:nth-child(2) {
+	text-indent: 0;
+	margin-top: 1em;
+	font-size: 100%;
+}
+
+.name div {
+	margin-right: 3em;
+	width: 44%!important;
+}
+
+table div:last-child {
+	margin-right: 0;
+}
+
+form td div {
+	float: left;
+}
+
+#nintei-shikaku-wrap {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+#nintei-shikaku-wrap div {
+    width: 50%;
+}
+
+#job_address_search,
+#street_address_search {
+	height: 35px;
+	width: 80px;
+	margin-left: 10px;
+	display: inline-block;
+	font-size: 13px;
+	line-height: 35px;
+	cursor: pointer;
+	vertical-align: top;
+}
+
+.up_text li:before {
+	content: "※";
+}
+.up_text li {
+	text-indent: -1em;
+	padding-left: 1em;
+	line-height: 25px;
+}
+.up_text li:last-of-type {
+	margin-bottom: 0;
+}
+
+.any {
+    margin-left: 45px;
+}
+
+.required {
+	margin-left: 0;
+	margin-right: 1em;
+	border: 1px solid red;
+	color: red;
+	padding: 1px 5px;
+	font-size: 11px;
+	display: inline-block;
+	position: relative;
+	top: -2px;
+	font-weight: bold;
+}
+
+/*registMember*/
+.registMember .riyu textarea {
+	margin-top: 5px;
+}
+
+.registMember .top_text.exclamation {
+	padding-left: 18px;
+	position: relative;
+}
+
+.registMember .top_text.exclamation::before {
+	content: "\f071";
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+	position: absolute;
+	left: 0;
+	top: -1px;
+	color: red;
+}
+
+.registMember #upload_back,
+.registMember #upload_front {
+	float: none;
+}
+
+
+@media screen and (max-width: 768px){
+
+	.form_wrap {
+		padding: 0;
+		margin-bottom: 50px;
+	}
+
+	.form_wrap th {
+		display: block;
+		width: 100%;
+		background: #eaeaea;
+		height: 50px;
+		line-height: 1.4;
+		padding: 15px;
+		font-weight: normal;
+	}
+
+	.form_wrap td {
+		width: 100%;
+		display: block;
+		padding: 15px 20px;
+		font-size: 12px;
+		line-height: 25px;
+	}
+
+	.ti {
+		margin-left: 0;
+	}
+
+	.required{
+		background: #fff;
+		margin-right: 0.5em;
+		padding: 3px 5px;
+		font-size: 11px;
+		display: inline-block;
+		height: 18px;
+		line-height: 10px;
+	}
+
+	.chiiki .checkbox {
+		width: 7em;
+	}
+
+	.any {
+		display: none;
+	}
+
+}

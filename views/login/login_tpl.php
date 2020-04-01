@@ -27,7 +27,7 @@
                     <ul class="error_ul mb_15">
                         <li class="error"></li>
                     </ul>
-                    <button class="button btn_1 mt_30" type="button" name="__send" id="__send" value=""><span>Login</span></button>
+                    <button class="button btn_center mt_30" type="button" name="__send" id="__send" value=""><span>Login</span></button>
                     <div class="login_text">
                         <p>
                             <a href="../changePasswordMail/">パスワードをお忘れですか？</a><br>

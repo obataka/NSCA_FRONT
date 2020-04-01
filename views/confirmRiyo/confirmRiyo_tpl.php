@@ -39,7 +39,7 @@
 			</div>
 			<h2>新規登録</h2>
 			<div class="shinki_toroku bg_white">
-				<table>
+				<table class="form_table">
 					<tr class="kaiin">
 						<th><span class="any"></span>会員種別</th>
 						<td>
@@ -87,7 +87,7 @@
 					<input type="hidden" name="wk_sel_mail_login" id="wk_sel_mail_login" value="<?php echo $wk_sel_mail_login; ?>">
 					<h2>基本情報</h2>
 					<div class="bg_white">
-						<table>
+						<table class="form_table">
 							<tr class="name">
 								<th><span class="required">必須</span>氏名</th>
 								<td class="clearfix">
@@ -167,7 +167,7 @@
 			<div class="oshirase">
 				<h2>お知らせ／連絡方法／アンケート</h2>
 				<div class="bg_white">
-					<table>
+					<table class="form_table">
 						<tr>
 							<th><span class="required">必須</span>連絡方法の希望</th>
 								<td>

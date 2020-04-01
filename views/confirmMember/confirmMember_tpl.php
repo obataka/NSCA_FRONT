@@ -126,7 +126,7 @@
 					<input type="hidden" name="office_kenmei" id="office_kenmei" value="<?php echo $office_kenmei; ?>">
 					<h2>新規登録</h2>
 					<div class="bg_white">
-						<table>
+						<table class="form_table">
 							<tr class="kaiin">
 								<th><span class="any"></span>会員種別</th>
 								<td>
@@ -136,7 +136,7 @@
 										if ($wk_sel_option != "") {
 											$wk_kaihi += $kaihi_eibun_option;
 											echo number_format($wk_kaihi) . '円(英文購読オプション含む 12,960円)';
-											$wk_kaihi -= $kaihi_eibun_option;		//会費を初期化する　数値が加算されたままPOSTで渡したくないため		
+											$wk_kaihi -= $kaihi_eibun_option;		//会費を初期化する　数値が加算されたままPOSTで渡したくないため
 										} else {
 											echo number_format($wk_kaihi) . '円';
 										}
@@ -188,7 +188,7 @@
 				<h2>基本情報</h2>
 				<div class="bg_white">
 					<input type="hidden" name="name_sei" id="name_sei" value="<?php echo $name_sei; ?>">
-					<table>
+					<table class="form_table">
 						<tr class="name">
 							<th><span class="required">必須</span>氏名</th>
 							<td class="clearfix">
@@ -356,7 +356,7 @@
 			<div class="oshirase">
 				<h2>お知らせ／連絡方法／アンケート</h2>
 				<div class="bg_white">
-					<table>
+					<table class="form_table">
 						<tr>
 							<th><span class="required">必須</span>連絡方法の希望</th>
 							<td>

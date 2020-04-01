@@ -36,15 +36,15 @@
 							<li class="active"><span><small>確認</small></span></li>
 							<li><span><small>完了</small></span></li>
 						</ul>
-					</div>				
+					</div>
 					<form action="?" method="post" autocomplete="off" id="confirmForm">
 						<div class="kihon_joho">
 							<input type="hidden" name="name_sei" id="name_sei" value="<?php echo $name_sei; ?>">
 							<input type="hidden" name="name_mei" id="name_mei" value="<?php echo $name_mei; ?>">
-							<input type="hidden" name="sei_kana_name" id="sei_kana_name" value="<?php echo $sei_kana_name; ?>">	
+							<input type="hidden" name="sei_kana_name" id="sei_kana_name" value="<?php echo $sei_kana_name; ?>">
 							<input type="hidden" name="sei_mei_name" id="sei_mei_name" value="<?php echo $sei_mei_name; ?>">
 							<input type="hidden" name="sei_mei_name" id="sei_mei_name" value="<?php echo $sei_mei_name; ?>">
-							<input type="hidden" name="seireki_name" id="seireki_name" value="<?php echo $seireki_name; ?>">	
+							<input type="hidden" name="seireki_name" id="seireki_name" value="<?php echo $seireki_name; ?>">
 							<input type="hidden" name="month" id="month" value="<?php echo $month; ?>">
 							<input type="hidden" name="day" id="day" value="<?php echo $day; ?>">
 							<input type="hidden" name="sel_gender" id="sel_gender" value="<?php echo $gender; ?>">
@@ -72,71 +72,72 @@
 							<input type="hidden" name="kenmei" id="kenmei" value="<?php echo $kenmei; ?>">
 							<h2>基本情報</h2>
 							<div class="bg_white">
-								<table>
-									<tr class="name">
-										<th><span class="required">必須</span>氏名</th>
-										<td class="clearfix">
-											<div>
-												<?php echo $name_sei; ?> <?php echo $name_mei; ?>
-											</div>
-										</td>
-									</tr>
-									<tr class="name">
-										<th><span class="required">必須</span>フリガナ</th>
-										<td class="clearfix">
-											<div>
-												<?php echo $sei_kana_name; ?> <?php echo $sei_mei_name; ?>
-											</div>
-										</td>
-									</tr>
-									<tr class="birthday">
-										<th><span class="required">必須</span>生年月日</th>
-										<td>
-											<?php echo $seireki_name; ?>年
-											<?php echo $month; ?>月
-											<?php echo $day; ?>日
-										</td>
-									</tr>
-									<tr class="gender">
-										<th><span class="required">必須</span>性別</th>
-										<td>
-											<?php echo $gender; ?>
-										</td>
-									</tr>
-									<tr class="address">
-										<th><span class="required">必須</span>住所</th>
-										<td>
-											<?php echo $address_yubin_nb_1; ?>-<?php echo $yubin_nb_2; ?><br>
-											<?php echo $kenmei; ?><?php echo $address_shiku; ?><?php echo $address_tatemono; ?>
-										</td>
-									</tr>
-									<tr>
-										<th><span class="required">必須</span>住所(ヨミ)</th>
-										<td>
-											<?php echo $address_yomi_shiku; ?><br>
-											<?php echo $address_yomi_tatemono; ?>
-										</td>
-									</tr>
-									<tr>
-										<th><span class="required">必須</span>電話番号</th>
-										<td>
-											<?php echo $tel; ?><?php echo $keitai_tel; ?>
-										</td>
-									</tr>
-									<tr>
-										<th><span class="required">必須</span>メルマガ配信の希望</th>
-										<td>
-											<?php echo $sel_merumaga; ?>
-										</td>
-									</tr>
+								<table class="form_table">
+									<tbody>
+										<tr class="name">
+											<th><span class="required">必須</span>氏名</th>
+											<td class="clearfix">
+												<div>
+													<?php echo $name_sei; ?> <?php echo $name_mei; ?>
+												</div>
+											</td>
+										</tr>
+										<tr class="name">
+											<th><span class="required">必須</span>フリガナ</th>
+											<td class="clearfix">
+												<div>
+													<?php echo $sei_kana_name; ?> <?php echo $sei_mei_name; ?>
+												</div>
+											</td>
+										</tr>
+										<tr class="birthday">
+											<th><span class="required">必須</span>生年月日</th>
+											<td>
+												<?php echo $seireki_name; ?>年
+												<?php echo $month; ?>月
+												<?php echo $day; ?>日
+											</td>
+										</tr>
+										<tr class="gender">
+											<th><span class="required">必須</span>性別</th>
+											<td>
+												<?php echo $gender; ?>
+											</td>
+										</tr>
+										<tr class="address">
+											<th><span class="required">必須</span>住所</th>
+											<td>
+												<?php echo $address_yubin_nb_1; ?>-<?php echo $yubin_nb_2; ?><br>
+												<?php echo $kenmei; ?><?php echo $address_shiku; ?><?php echo $address_tatemono; ?>
+											</td>
+										</tr>
+										<tr>
+											<th><span class="required">必須</span>住所(ヨミ)</th>
+											<td>
+												<?php echo $address_yomi_shiku; ?><br>
+												<?php echo $address_yomi_tatemono; ?>
+											</td>
+										</tr>
+										<tr>
+											<th><span class="required">必須</span>電話番号</th>
+											<td>
+												<?php echo $tel; ?><?php echo $keitai_tel; ?>
+											</td>
+										</tr>
+										<tr>
+											<th><span class="required">必須</span>メルマガ配信の希望</th>
+											<td>
+												<?php echo $sel_merumaga; ?>
+											</td>
+										</tr>
+									</tbody>
 								</table>
 							</div>
-							
 						</div>
 					<div class="oshirase">
 						<h2>お知らせ／連絡方法／アンケート</h2>
 						<div class="bg_white">
-							<table>
+							<table class="form_table">
 									<tr>
 										<th><span class="required">必須</span>連絡方法の希望</th>
 										<td>
@@ -150,7 +151,7 @@
 						<button id="return_button" class="button back" type="button" value=""><span>内容を修正する</span></button>
 						<button id="next_button" class="button" type="submit" value=""><span>次へ</span></button>
 					</section>
-                                    </form>
+					</form>
 				</div>
 			</div>
 		<footer id="footer">
