@@ -87,6 +87,8 @@ if ($result == "") {
                     if ($loginCtrlRet == 0) {
                         $ret = 99;
                         $_SESSION['kaiinNo'] = $result['kaiin_no'];
+                        $_SESSION['shimeiSei'] = $result['shimei_sei'];
+                        $_SESSION['shimeiMei'] = $result['shimei_mei'];
                     // ログイン管理準備処理失敗時
                     } else {
                         $ret = 4;
@@ -108,6 +110,8 @@ if ($result == "") {
                             if ($loginCtrlRet == 0) {
                                 $ret = 99;
                                 $_SESSION['kaiinNo'] = $result['kaiin_no'];
+                                $_SESSION['shimeiSei'] = $result['shimei_sei'];
+                                $_SESSION['shimeiMei'] = $result['shimei_mei'];
                             // ログイン管理準備処理失敗時
                             } else {
                                 $ret = 4;
@@ -130,6 +134,8 @@ if ($result == "") {
                             if ($loginCtrlRet == 0) {
                                 $ret = 99;
                                 $_SESSION['kaiinNo'] = $result['kaiin_no'];
+                                $_SESSION['shimeiSei'] = $result['shimei_sei'];
+                                $_SESSION['shimeiMei'] = $result['shimei_mei'];
                             // ログイン管理準備処理失敗時
                             } else {
                                 $ret = 4;

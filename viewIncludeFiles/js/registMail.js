@@ -92,9 +92,11 @@
                     return false;
                 } else {
 
-                    //エラーがない場合送信完了画面に画面遷移
-                    location.href = '../registMailComplete/';
-                }          
+                    //エラーがない場合確認画面に画面遷移
+                    url = '../registMailComplete/';
+                    $('form').attr('action', url);
+                    $('form').submit();
+                }
             })
 
             // Ajaxリクエストが失敗した時発動

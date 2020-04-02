@@ -6,7 +6,7 @@
         * イベント情報表示処理
         ********************************/
 
-		jQuery.ajax({
+        $.ajax({
 			url: '../../classes/getEventJoho.php',
 			type: 'POST',
 			data: {
@@ -18,8 +18,8 @@
 			//イベント区分表示
 			$('#sel_event_sbt').val(getEventJoho[0]['event_kbn']);
 
-			jQuery.ajax({
-				url: '../../classes/getEventSbt.php',
+        $.ajax({
+				url: '../../classes/getEventSbt.php'
 			}).done((rtn) => {
 				getEventSbt = JSON.parse(rtn);
 				$.each(getEventSbt, function (i, val) {
@@ -52,7 +52,7 @@
 					//会員種別によって、表示内容を変える
 					if ($('#kaiin_no').val() != "") {
 						//会員種別取得
-						jQuery.ajax({
+				        $.ajax({
 							url: '../../classes/getKaiinSbt.php',
 							type: 'POST',
 						}).done((rtn) => {
@@ -120,8 +120,8 @@
         ********************************/
 		//イベント一覧から遷移してきた場合、DBの会員情報を表示させる。
 		if ($('#kaiin_no').val() != "") {
-			jQuery.ajax({
-				url: '../../classes/getTbkaiinJoho.php',
+				$.ajax({
+				url: '../../classes/getTbkaiinJoho.php'
 			}).done((rtn) => {
 				// rtn = 0 の場合は、該当なし
 				if (rtn == 0) {

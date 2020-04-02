@@ -11,7 +11,7 @@ require '../DBAccess/Cm_chiiki_id.php';
 $result = (new Cm_chiiki_id())->findChiikiList();
 
 // 該当データなしの場合
-if ($result == '') {
+if (empty($result)) {
     echo 0;
 // 該当データありの場合
 } else {

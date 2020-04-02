@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="../../viewIncludeFiles/css/fontawesome/web-fonts-with-css/css/fontawesome-all.css">
         <link rel="stylesheet" href="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.css">
         <link rel="stylesheet" href="../../viewIncludeFiles/css/style.css" />
-        <link rel="stylesheet" href="../../viewIncludeFiles/css/toroku_syusei_kanryo.css">
+        <link rel="stylesheet" href="../../viewIncludeFiles/css/changeMemberComplete.css">
 	    <link rel="stylesheet" href="../../viewIncludeFiles/css/header.css">
 
         <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.1.1.min.js"></script>
@@ -39,7 +39,7 @@
 					</ul>
 				</div>
 				<p class="h2_text">テキストテキストテキストテキストテキストテキスト</p>
-				<button class="button btn_b btn_b_1 btn_1" type="button" value="" onclick="location.href='#'"><span>トップへ</span></button>
+				<button class="button btn_b btn_b_1 btn_1" type="button" id="goTop"><span>トップへ</span></button>
 			</div>
 		</div>
 		<footer id="footer">

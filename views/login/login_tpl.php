@@ -14,10 +14,9 @@
 
         <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.1.1.min.js"></script>
         <script type="text/javascript" src="../../viewIncludeFiles/js/login.js"></script>
-        <script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
     </head>
     <body id="login">
-        <form action="?" method="POST" autocomplete="off" id="loginForm" name="loginForm">
+        <form method="POST" id="loginForm" name="loginForm">
             <div class="content_wrap">
                 <div class="content">
                     <div class="login_img">
@@ -28,7 +27,7 @@
                     <ul class="error_ul mb_15">
                         <li class="error"></li>
                     </ul>
-                    <button class="button btn_1 mt_30" type="button" name="__send" id="__send" value=""><span>Login</span></button>
+                    <button class="button btn_center mt_30" type="button" name="__send" id="__send" value=""><span>Login</span></button>
                     <div class="login_text">
                         <p>
                             <a href="../changePasswordMail/">パスワードをお忘れですか？</a><br>
@@ -39,7 +38,6 @@
                 </div>
             </div>
         </form>
-        <footer id="footer">
-        </footer>
+        <?php include('../views/templates/footer.php'); ?>
     </body>
 </html>

@@ -23,7 +23,7 @@
         /****************
          * //都道府県取得
          ****************/
-        jQuery.ajax({
+        $.ajax({
             url: '../../classes/Common/getTodofukenList.php',
         }).done((rtn) => {
             // rtn = 0 の場合は、該当なし
@@ -56,7 +56,7 @@
         /*********************************
          * //職業取得
          *********************************/
-        jQuery.ajax({
+        $.ajax({
             url: '../../classes/Common/getShokugyoList.php'
         }).done((rtn) => {
             if (rtn == 0) {
@@ -96,7 +96,7 @@
         /*********************************
         * //NSCA以外の認定資格取得
         *********************************/
-        jQuery.ajax({
+        $.ajax({
             url: '../../classes/Common/getShikakuList.php'
         }).done((rtn) => {
             // rtn = 0 の場合は、該当なし
@@ -139,7 +139,7 @@
         /*********************************
         * //興味のある地域取得
         *********************************/
-        jQuery.ajax({
+        $.ajax({
             url: '../../classes/Common/getChiikiList.php'
         }).done((rtn) => {
             // rtn = 0 の場合は、該当なし
@@ -177,7 +177,7 @@
         /*********************************
         * //興味のある分野取得
         *********************************/
-        jQuery.ajax({
+        $.ajax({
             url: '../../classes/Common/getBunyaList.php'
         }).done((rtn) => {
             // rtn = 0 の場合は、該当なし
@@ -442,7 +442,7 @@
             }
 
             //郵便番号検索処理
-            jQuery.ajax({
+            $.ajax({
                 url: '../../classes/Common/searchPostNo.php',
                 type: 'POST',
                 data:
@@ -533,7 +533,7 @@
             }
 
             //郵便番号検索処理
-            jQuery.ajax({
+            $.ajax({
                 url: '../../classes/Common/searchPostNo.php',
                 type: 'POST',
                 data:
@@ -575,8 +575,8 @@
          ************************/
         var wk_cmControl;
         // 会費データ取得処理
-        jQuery.ajax({
-            url: '../../classes/Common/getKaihiData.php',
+        $.ajax({
+            url: '../../classes/Common/getCmControl.php',
             type: 'POST',
         }).done((rtn) => {
             // rtn = 0 の場合は、該当なし

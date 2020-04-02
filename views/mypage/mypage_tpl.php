@@ -35,7 +35,7 @@
 					$("html, body").animate({scrollTop:position}, speed, "swing");
 					return false;
 				});
-				
+
 				$(window).on('resize load', function(){
 					var winW = $(window).width();
 					if (winW > 800) {
@@ -44,14 +44,13 @@
 						$('.match_height_3').matchHeight();
 					}
 				});
-				
+
 			});
 		</script>
-		
+
     </head>
     <body>
-	<header id="header">
-	</header>
+	<?php include('../views/templates/header.php'); ?>
 	<div class="wrap">
 		<div class="link">
 			<ul>
@@ -153,11 +152,11 @@
 							<p>取得率：<span id="nsca_hiritu">42％</span></p>
 							<img src="https://placehold.jp/280x30.png">
 							<p id="nsca_msg">「CEU報告」の手続きを行って資格を更新してください</p>
-						</div>						
+						</div>
 						<div class="btn_wrap">
 							<button class="button" type="button" id="goCeuQuizlist" ><span>CEUクイズ</span></button>
 							<button class="button" type="button" id="goCeuGetList" ><span>内訳詳細を見る</span></button>
-						</div>         
+						</div>
 					</div>
 				</div>
 			</section>
@@ -307,7 +306,7 @@
 							<button class="button" type="button" id="goPTSTool"><span>パーソナルトレーナーサポートツール</span></button>
 							<button class="button" type="button" id="goSAndCDocument"><span>S&amp;C資料集</span></button>
 							<button class="button" type="button" id="goHpcUse"><span>HPC施設利用申込手続きへ</span></button>
-						</div>	
+						</div>
 					</div>
 				</div>
 				<div id="denshi_book">
@@ -402,7 +401,6 @@
 	<form id="printReceipt_form" method="post" target="printReceipt">
 		<input type="hidden" name="keiri_id" id="keiri_id" value="">
 	</form>
-	<footer id="footer">
-	</footer>
+	<?php include('../views/templates/footer.php'); ?>
 </body>
 </html>

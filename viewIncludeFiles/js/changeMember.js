@@ -740,7 +740,7 @@
                     //※正常に住所情報を取得できた時の処理を書く場所
                     wk_msYubinNo = JSON.parse(rtn);
                     $("#address_todohuken option").filter(function (index) {
-                        return $(this).text() === wk_msYubinNo['kemmei_kana'];
+                        return $(this).text() === wk_msYubinNo['kemmei'];
                     }).prop("selected", true).change();
                     $("#address_shiku").val(wk_msYubinNo['jusho_1'] + wk_msYubinNo['jusho_2']);
                     $("#address_yomi_shiku").val(wk_msYubinNo['jusho_1_kana'] + wk_msYubinNo['jusho_2_kana']);
@@ -831,7 +831,7 @@
                     //※正常に住所情報を取得できた時の処理を書く場所
                     wk_msYubinNo = JSON.parse(rtn);
                     $("#office_todohuken option").filter(function (index) {
-                        return $(this).text() === wk_msYubinNo['kemmei_kana'];
+                        return $(this).text() === wk_msYubinNo['kemmei'];
                     }).prop("selected", true);
                     $("#office_shiku").val(wk_msYubinNo['jusho_1']);
                     $("#office_tatemono").val(wk_msYubinNo['jusho_2']);

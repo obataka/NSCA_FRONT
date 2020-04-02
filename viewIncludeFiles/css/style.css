@@ -76,27 +76,27 @@ header {
 }
 
 .wrap {
-    padding: 165px 10px 60px 10px;
+    padding: 175px 10px 60px 10px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
 .wrap.before_login {
-	padding-top: 40px;
+	padding-top: 50px;
 	min-height: calc(100vh - 124px);
 }
 
 h1 {
 	margin: 0;
 	font-size: 25px;
-	border-bottom: solid 2px #005699;
-	margin-bottom: 40px;
+	/*border-bottom: solid 2px #005699;*/
+	margin-bottom: 30px;
 	position: relative;
 	font-weight: normal;
 	padding-bottom: 2px;
 }
 
-h1:before {
+/*h1:before {
 	content: '';
 	width: 100%;
 	height: 1px;
@@ -105,7 +105,7 @@ h1:before {
 	position: absolute;
 	left: 0;
 	bottom: -5px;
-}
+}*/
 
 .top_text {
 	margin: 35px 0;
@@ -184,12 +184,14 @@ input[type="checkbox"] {
     display: none;
 }
 .checkbox {
-    padding-left: 25px;
-    position:relative;
-    margin-right: 20px;
-    display: inline-block;
-    margin-bottom: 3px;
+	padding-left: 25px;
+	position: relative;
+	margin-right: 20px;
+	display: inline-block;
+	margin-bottom: 3px;
 	cursor: pointer;
+	padding: 2px 0 2px 25px;
+	margin-bottom: 5px;
 }
 .checkbox:hover:before {
 	border-color: #005699;
@@ -276,6 +278,7 @@ input[type="radio"] + label:hover:before {
 .btn_wrap button:first-of-type {
     margin-right: 50px;
 }
+
 .button {
 	height: 50px;
 	width: 300px;
@@ -302,32 +305,24 @@ input[type="radio"] + label:hover:before {
 	background: #F9F9F9;
 }
 
-.btn_1 {
+.btn_center {
 	margin-left: auto;
 	margin-right: auto;
 }
+
 .btn_gray,
 .back {
     background: #888;
     border: #888;
     border: 1px solid #888;
 }
+
 .btn_gray:hover,
 .back:hover {
     color: #888!important;
     border: 1px solid #888;
 }
-#job_address_search,
-#street_address_search {
-    height: 35px;
-    width: 80px;
-    margin-left: 10px;
-    display: inline-block;
-    font-size: 13px;
-    line-height: 35px;
-    cursor: pointer;
-	vertical-align: top;
-}
+
 
 /*table*/
 table {
@@ -342,71 +337,23 @@ table tr:last-of-type {
 }
 th {
 	width: 35%;
-    text-align: left;
+	text-align: left;
 }
 td {
 	width: 65%;
-    padding: 40px 0;
-}
-
-.kaiin p:first-of-type {
-    margin-bottom: 10px;
-}
-
-/*フォーム*/
-.birthday .select_wrap {
-    margin: 0 1em;
-}
-
-.birthday input {
-    width: 29%!important;
-    margin-right: 1em;
-}
-
-.address .checkbox {
-    margin-bottom: 0;
-    margin-top: 1em;
-}
-
-.yubin_1,
-.yubin_2 {
-    width: 20%!important;
-}
-
-.yubin_1 {
-    margin-right: 0.5em;
-}
-.yubin_2 {
-    margin-left: 0.5em;
-}
-
-.job select{
-    margin-bottom: 1em;
-}
-
-.job select:last-child {
-    margin-bottom: 0;
-}
-
-.chiiki .checkbox {
-    width: 6em;
-    margin-right: 0;
-}
-
-.chiiki p {
-    margin-bottom: 1em;
+	padding: 40px 0;
 }
 
 select {
-    -webkit-appearance: none;
+	-webkit-appearance: none;
 	border-radius: 0;
 	border: 1px solid #A9A9A9;
 	background: #fff;
 	padding: 5px;
 	font-family: inherit;
 	width: 20%;
-    height: 35px;
-    line-height: 23px;
+	height: 35px;
+	line-height: 23px;
 	position: relative;
 }
 
@@ -416,19 +363,19 @@ select::-ms-expand {
 
 .select_wrap:before {
 	position: absolute;
-    top: 50%;
-    right: -10px;
-    transform: translate(-160%, -20%);
-    content: '';
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
-    border-top: 6px solid #666666;
-    pointer-events: none;
-    z-index: 1;
+	top: 50%;
+	right: -10px;
+	transform: translate(-160%, -20%);
+	content: '';
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	border-top: 6px solid #666666;
+	pointer-events: none;
+	z-index: 1;
 }
 
 .select_wrap {
-    position: relative;
+	position: relative;
 }
 
 input {
@@ -440,22 +387,21 @@ textarea {
 	border-radius: 0;
 	border: 1px solid #A9A9A9;
 	width: 100%;
-    height: 100px;
-    resize: none;
-    padding: 0.5em;
-    vertical-align: bottom;
+	height: 100px;
+	resize: none;
+	padding: 0.5em;
+	vertical-align: bottom;
 	font-family: inherit;
 }
-
 
 input[type="text"],
 input[type="email"],
 input[type="tel"],
 input[type="password"],
 input[type="email"] {
-    width: 100%;
-    height: 35px;
-    padding: 5px;
+	width: 100%;
+	height: 35px;
+	padding: 5px;
 	border-radius: 0;
 	border: 1px solid #A9A9A9;
 	margin-bottom: 5px;
@@ -469,167 +415,69 @@ input.input_w_300 {
 	padding: 0 10px!important;
 }
 
-.pass_text {
-	margin-bottom: 20px;
-}
-
-.file input {
-    display:none;
-}
-
-.file label {
-	padding: 7px 20px;
-    display: inline-block;
-    width: auto;
-    height: auto;
-    line-height: inherit;
-    font-size: inherit;
-	position: relative;
-	font-weight: inherit;
-}
-
-.file p {
-	margin-top: 0.5em;
-	margin-bottom: 1.5em;
-}
-
-.file p img {
-	max-width: 100%;
-}
-
-input[type="file"] {
-   display: none;
-}
-
-.file label::after {
-   content: "選択されていません";
-   font-size: 14px;
-   height: 20px;
-   line-height: 20px;
-   position: absolute;
-   right: -140px;
-   top: calc(50% - 10px);
-	color: #333;
-}
-
-.file label.changed::after {
-   content: "";
-}
-
-.filename_front,
-.filename_back{
-   font-size: 12px;
-}
-
-.ti {
-	margin-left: 25px;
-    margin-top: 0;
-    line-height: 1.4;
-    font-size: 0.9em;
-}
-
-.gender p
-.mail p {
-    margin-right: 3em;
-}
-
-.mail p:nth-child(2) {
-    text-indent: 0;
-    font-size: 100%;
-}
-
-#toroku_syusei_kakunin_riyo .mail p:nth-child(2),
-#toroku_syusei_kakunin .mail p:nth-child(2) {
-    text-indent: 0;
-    margin-top: 1em;
-    font-size: 100%;
-}
-
-.name div {
-    margin-right: 3em;
-    width: 44%!important;
-}
-
-table div:last-child {
-    margin-right: 0;
-}
-
-form td div {
-	float: left;
-}
-
-#nintei-shikaku-wrap {
-	display: flex;
-    flex-wrap: wrap;
-}
-
-#nintei-shikaku-wrap div {
-    width: 50%;
-}
-
 input[type="number"] {
 	padding-left: 5px;
 }
 
 /*定款　規定*/
-.teikan_text {
+.agreement_text {
 	margin: 25px 0 10px;
 }
-.teikan_wrap {
+.agreement {
 	font-size: 11px;
-	padding: 40px;
 	margin-bottom: 60px;
+	background: #fff;
+	padding: 40px;
 }
-.teikan,
-.kiyaku,
-.kitei {
+.agreement > div {
 	margin-bottom: 40px;
-    background-color: #FFF;
-    height: 450px;
-    overflow: auto;
-    padding: 25px;
+	background-color: #FFF;
+	height: 450px;
+	overflow: auto;
+	padding: 25px;
 	border: 1px solid #8f8f8f;
 }
-.kitei {
+
+.agreement > div:last-child {
     margin-bottom: 0;
 }
-.teikan_wrap .title {
-    font-size: 14px;
-    text-align: center;
-    color: #669FCC;
-    font-weight: bold;
-    margin-bottom: 10px;
+.agreement .title {
+	font-size: 14px;
+	text-align: center;
+	color: #005699;
+	font-weight: bold;
+	margin-bottom: 10px;
 }
-.chapter {
-    text-align: center;
-    font-size: 14px;
+.agreement .chapter {
+	text-align: center;
+	font-size: 14px;
 }
-.teikan th {
-    width: 6em;
+.agreement .teikan th {
+	width: 6em;
 }
-.teikan td {
-    width: 9em;
-    display: inline-table;
+.agreement. teikan td {
+	width: 9em;
+	display: inline-table;
 }
-.teikan tr {
-    border: none;
-    padding: 1px 0;
+.agreement .teikan tr {
+	border: none;
+	padding: 1px 0;
 }
-.doi {
-    text-align: center;
-    margin: 10px 0;
-    font-size: 15px;
+.agreement .doi {
+	text-align: center;
+	margin: 10px 0;
+	font-size: 15px;
 	line-height: 36.5px;
 	margin-top: 30px;
 }
-.doi .checkbox {
-    line-height: 20px;
+.agreement .doi .checkbox {
+	line-height: 18px;
 }
-
-/*会員種別*/
-.teikan_wrap dd {
+.agreement dd {
     margin-bottom: 1em;
 }
+/*会員種別*/
+
 .kaiin_sbt form {
 	display: flex;
     flex-wrap: wrap;
@@ -650,70 +498,6 @@ input[type="number"] {
 .sbt_title {
 	font-weight: bold;
 	font-size: 16px;
-}
-
-
-/*.currnt,
-.chenge {
-    float: left;
-    width: 50%;
-}
-.current_sbt div {
-    padding: 2em;
-}
-.current_sbt {
-    border: 1px solid #005699;
-    width: 100%;
-    margin: 3em 0;
-}
-.current_sbt span:before {
-    content: "";
-    border: 2px solid #005699;
-    margin-right: 1em;
-}
-.current_sbt p:nth-child(2n) {
-    padding-left: 3em;
-    margin-top: 1em
-}
-*/
-.up_text li:before {
-    content: "※";
-}
-.up_text li {
-	text-indent: -1em;
-    padding-left: 1em;
-    line-height: 25px;
-}
-.up_text li:last-of-type {
-    margin-bottom: 0;
-}
-.shinki_toroku,
-.kihon_joho,
-.oshirase {
-    margin-bottom: 100px;
-}
-
-.any {
-    margin-left: 45px;
-}
-.spb_arrows {
-    margin: 20px 0;
-}
-
-.required {
-    margin-left: 0;
-    margin-right: 1em;
-    border: 1px solid red;
-    color: red;
-    padding: 1px 5px;
-    font-size: 11px;
-    display: inline-block;
-    vertical-align: middle;
-	font-weight: bold;
-}
-
-.error_ul.mb_15 {
-	margin-bottom: 15px;
 }
 
 .error {
@@ -757,6 +541,10 @@ footer p {
 }
 
 /**ステッププログレスバー*/
+.spb_arrows {
+    margin: 20px 0;
+}
+
 .spb_arrows .sw-container {
 	min-height: 200px;
 }
@@ -1053,24 +841,10 @@ button[type="button"]:disabled:hover::after {
 	.w_70 {
         width: 100%!important;
     }
-	.ti {
-        margin-left: 0;
-    }
+
 	.back {
 		margin-bottom: 20px!important;
 	}
-    .required{
-		background: #fff;
-		margin-right: 0.5em;
-		padding: 3px 5px;
-		font-size: 11px;
-		display: inline-block;
-		height: 18px;
-		line-height: 10px;
-    }
-    .chiiki .checkbox {
-        width: 7em;
-    }
 
 	select {
 		width: 20%;
@@ -1080,11 +854,10 @@ button[type="button"]:disabled:hover::after {
 	select {
 		font-size: 16px;
 	}
+
 	tr {
-		padding: 0;
-		margin-bottom: 60px;
 		font-size: 16px;
-        border: none;
+		border: none;
 	}
 
     td {
@@ -1093,7 +866,6 @@ button[type="button"]:disabled:hover::after {
 		padding: 0 30px;
 		font-size: 12px;
 		line-height: 25px;
-		margin: 15px 0 30px;
     }
 
     th {
@@ -1104,32 +876,26 @@ button[type="button"]:disabled:hover::after {
 		line-height: 50px;
 		padding-left: 10px;
 		font-weight: normal;
-    }
+	}
 
     .kaiin th p {
         background: none;
         color: #333;
     }
 
-    .kihon_joho td div:first-child,
-    .oshirase td div:first-child {
-        margin-top: 0!important;
-    }
-
-    .any {
-        display: none;
-    }
-
-    .teikan,
-	.kiyaku,
-	.kitei {
+    .agreement > div {
         padding: 1em;
 		height: 200px;
 		margin-bottom: 20px;
     }
 
-	.teikan_wrap {
+	.agreement {
 		padding: 20px;
+	}
+
+	.agreement_text {
+		font-size: 0.9em;
+		margin: 0 0 10px;
 	}
 
 	.teikan th {
@@ -1222,106 +988,8 @@ button[type="button"]:disabled:hover::after {
 	}
 }
 
-@media screen and (max-width: 670px){
-	.btn_wrap {
-		display: block;
-	}
-	.btn_wrap button:nth-of-type(2) {
-		margin: 0 auto;
-	}
-	.btn_wrap button:first-of-type {
-		margin: 0 auto 20px auto;
-	}
-}
 
 @media screen and (max-width: 480px){
-	.w_50,
-	.w_80 {
-        width: 100%!important;
-    }
-    .sp_no {
-		display: none;
-		margin-left: 1.5em;
-    }
-    .sp_bl {
-		display: block;
-    }
-    .content {
-		position: inherit!important;
-		border: none;
-		width: 100%;
-    }
-
-    table {
-		font-size: 10px!important;
-    }
-	th {
-		padding-left: 10px;
-	}
-	td {
-		padding: 0 10px;
-	}
-    table p {
-		font-size: 12px;
-    }
-	.name div {
-		margin-right: 1.5em;
-		width: 46%!important;
-	}
-    .file label {
-		width: 100%;
-		text-align: center;
-    }
-    .yubin_1 {
-		width: 25%!important;
-    }
-    .yubin_2 {
-		width: 30%!important;
-    }
-	select {
-		width: 130px;
-	}
-	.birthday select {
-		width: 18%!important;
-	}
-    .birthday .select_wrap {
-		margin: 0 10px;
-    }
-	.birthday input {
-		margin-right: 10px;
-	}
-    .mail label {
-        margin-right: 0!important;
-    }
-    .mail p:nth-child(2) {
-        margin-top: 0;
-    }
-    label {
-        font-size: 12px;
-        margin-right: 1em!important;
-    }
-    .shinki_toroku p {
-        margin-bottom: 0;
-        font-size: 12px;
-    }
-	.teikan_wrap {
-		padding: 10px;
-	}
-    .teikan_text {
-        font-size: 12px;
-    }
-    .text_content_3 .button {
-        margin: 1em auto!important;
-    }
-    .img_2 img:first-child {
-        width: 100%;
-    }
-	.kaiin_sbt {
-		padding: 0;
-	}
-	#nintei-shikaku-wrap div {
-		width: 100%;
-	}
 
 	/*ステッププログレス*/
 	.spb_arrows>ul.step-anchor>li.active>span:before {
