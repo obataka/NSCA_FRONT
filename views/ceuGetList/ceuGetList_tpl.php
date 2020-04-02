@@ -12,7 +12,7 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/notosansjapanese.css">
 	<link rel="stylesheet" href="../../viewIncludeFiles/css/fontawesome/web-fonts-with-css/css/fontawesome-all.css">
 	<link rel="stylesheet" href="../../viewIncludeFiles/css/style.css" />
-	<link rel="stylesheet" href="../../viewIncludeFiles/css/ceu_shutoku_jyokyo.css">
+	<link rel="stylesheet" href="../../viewIncludeFiles/css/ceu.css">
 	<link rel="stylesheet" href="../../viewIncludeFiles/css/header.css">
 	<script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.1.1.min.js"></script>
 	<script type="text/javascript" src="../../viewIncludeFiles/js/ceuGetList.js"></script>
@@ -20,7 +20,7 @@
 	<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
 </head>
 
-<body>
+<body class="ceuGetList">
 	<?php include('../views/templates/header.php'); ?>
 	<div class="wrap">
 		<h1>CEU取得状況</h1>
@@ -31,19 +31,23 @@
 					<div>
 						<div class="ceu-wrap">
 							<div class="text-wrap">
-								<span>CSCS</span>
-								<span>1.0/6.0<span>(CEU取得率/CEU必要数)</span></span>
-								<span>取得率：17％</span>
+								<span id="cscs-margin">CSCS</span>
+								<span class="span-wrap">
+									<span>1.0/6.0<span>(CEU取得率/CEU必要数)</span></span>
+									<span>取得率：17％</span>
+								</span>
 							</div>
 							<div class="percent">
 								<span></span>
 							</div>
 						</div>
-						<div class="ceu-wrap">
+						<div>
 							<div class="text-wrap">
-								<span>NSCA-CPT</span>
-								<span>1.0/6.0<span>(CEU取得率/CEU必要数)</span></span>
-								<span>取得率：17％</span>
+								<span id="nsca-cpt-margin">NSCA-CPT</span>
+								<span class="span-wrap">
+									<span>1.0/6.0<span>(CEU取得率/CEU必要数)</span></span>
+									<span>取得率：17％</span>
+								</span>
 							</div>
 							<div class="percent">
 								<span></span>
@@ -54,16 +58,16 @@
 				<div class="link">
 					<p>CEUリンク集</p>
 					<ul>
-						<li id="kyoiku"><a href="">継続教育（CEU）について</a></li>
-						<li id="program"><a href="">特別プログラム(*D)</a></li>
-						<li id="ceu_kanri"><a href="">CEU管理の移行(日本←→米国)</a></li>
-						<li id="qa"><a href="">Q&amp;A</a></li>
+						<li id="kyoiku"><a class="link_blank" href="" target="_blank">継続教育（CEU）について<i class="fas fa-window-restore"></i></a></li>
+						<li id="program"><a class="link_blank" href="" target="_blank">特別プログラム(*D)<i class="fas fa-window-restore"></i></a></li>
+						<li id="ceu_kanri"><a class="link_blank" href="" target="_blank">CEU管理の移行(日本←→米国)<i class="fas fa-window-restore"></i></a></li>
+						<li id="qa"><a class="link_blank" href="" target="_blank">Q&amp;A<i class="fas fa-window-restore"></i></a></li>
 					</ul>
 				</div>
 			</section>
 			<div class="ceu_jyokyo">
 				<h2>CEU取得状況</h2>
-				<table>
+				<table class="ceu_table">
 					<thead>
 						<tr>
 							<th></th>
@@ -123,7 +127,7 @@
 			</div>
 			<div class="ceu_joho">
 				<h2>CEU情報</h2>
-				<table>
+				<table class="ceu_table">
 					<thead>
 						<tr>
 							<th>取得日</th>
