@@ -266,7 +266,7 @@
 									<li class="error" id="err_address_tatemono"></li>
 								</ul>
 								<input id="nagareyama" type="checkbox" name="nagareyama" value="nagareyama">
-								<label class="checkbox" for="nagareyama">流山市民の方はチェックしてください</label>
+								<label class="checkbox" for="nagareyama">流山市民の方はチェックしてください。</label>
 							</td>
 						</tr>
 						<tr>
@@ -285,7 +285,7 @@
 						<tr>
 							<th><span class="required">必須</span>電話番号</th>
 							<td>
-								<p>TELまたは携帯のどちらかをご入力ください</p>
+								<p>TELまたは携帯のどちらかをご入力ください。</p>
 								<p class="mt_1">TEL</p><input id="tel" class="w_50" type="tel" name="tel" value="<?php echo $tel; ?>">
 								<ul class="error_ul">
 									<li class="error" id="err_tel"></li>
@@ -429,7 +429,7 @@
 						<tr class="chiiki">
 							<th><span class="any"></span>興味のある地域</th>
 							<td>
-								<p>居住地域以外でセミナー開催の情報を知りたい地域<br>
+								<p>居住地域以外でセミナー開催の情報を知りたい地域を選択してください。<br>
 									(マイページトップにおすすめセミナーとして表示されます)</p>
 								<div id="Area">
 								</div>

@@ -73,9 +73,15 @@ $(function(){
 	//$("#header").html(header_html);
 	//$(".header_logo").html(header_logo_html);
 
-	$('.dropdown li').mouseover(function() {
+	/*$('.dropdown li').mouseover(function() {
 		$("ul:not(:animated)", this).slideDown();
 	}).mouseout(function() {
+		$("ul.dropdown_list",this).slideUp();
+	});*/
+
+	$('.dropdown li').hover(function() {
+		$("ul:not(:animated)", this).slideDown();
+	},function() {
 		$("ul.dropdown_list",this).slideUp();
 	});
 

@@ -8,21 +8,17 @@
         <title>登録情報修正｜利用登録(無料)</title>
         <!-- favicon -->
         <link rel="icon" href="../../viewIncludeFiles/image/favicon.ico">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/notosansjapanese.css">
         <link rel="stylesheet" href="../../viewIncludeFiles/css/fontawesome/web-fonts-with-css/css/fontawesome-all.css">
-        <link rel="stylesheet" href="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.css">
         <link rel="stylesheet" href="../../viewIncludeFiles/css/style.css" />
+		<link rel="stylesheet" href="../../viewIncludeFiles/css/form.css">
+		<link rel="stylesheet" href="../../viewIncludeFiles/css/spb_arrows.css">
         <link rel="stylesheet" href="../../viewIncludeFiles/css/toroku_syusei_riyo.css">
 	    <link rel="stylesheet" href="../../viewIncludeFiles/css/header.css">
 
         <script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.1.1.min.js"></script>
-        <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.js"></script>
-        <script type="text/javascript" src="../../viewIncludeFiles/plugins/jQueryUI/jquery.ui.datepicker-ja.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/header.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/changeRiyo.js"></script>
-		<script type="text/javascript" src="../../viewIncludeFiles/js/android.js"></script>
-		<script type="text/javascript" src="../../viewIncludeFiles/js/iPhone.js"></script>
-		<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
+
 		<script>
 			$(function(){
 				$("select").wrap("<span class='select_wrap'></span>");
@@ -185,7 +181,7 @@
 											<ul class="error_ul">
 												<li class="error" id="err_address_tatemono"></li>
 											</ul>
-											<input id="nagareyama" type="checkbox" name="nagareyama" value=""><label class="checkbox" for="nagareyama">流山市民の方はチェックしてください</label>
+											<input id="nagareyama" type="checkbox" name="nagareyama" value=""><label class="checkbox" for="nagareyama">流山市民の方はチェックしてください。</label>
 										</td>
 									</tr>
 									<tr>
@@ -204,7 +200,7 @@
 									<tr>
 										<th><span class="required">必須</span>電話番号</th>
 										<td>
-											<p>TELまたは携帯のどちらかをご入力ください</p>
+											<p>TELまたは携帯のどちらかをご入力ください。</p>
 											<p class="mt_1">TEL</p><input id="tel" class="w_50" type="tel" name="tel" value="<?php echo $tel; ?>">
 											<ul class="error_ul">
 												<li class="error" id="err_tel"></li>

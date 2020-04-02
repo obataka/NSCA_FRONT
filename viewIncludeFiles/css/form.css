@@ -3,6 +3,7 @@
 .form_wrap {
 	background: #fff;
 	padding: 0 40px;
+	margin-bottom: 80px;
 }
 
 .form_wrap th {
@@ -12,16 +13,15 @@
 
 .form_wrap td {
 	width: 65%;
-	padding: 40px 0;
+	padding: 30px 0;
 }
 
 .birthday .select_wrap {
-	margin: 0 1em;
+	margin-left: 1em;
 }
 
 .birthday input {
-	width: 29%!important;
-	margin-right: 1em;
+	width: 100px!important;
 }
 
 .address .checkbox {
@@ -75,12 +75,15 @@
 	margin-bottom: 1.5em;
 }
 
-.file p img {
+.file img {
 	max-width: 400px;
+	width: 100%;
 }
 
 input[type="file"] {
 	visibility: hidden;
+	position: absolute;
+	width: 0;
 }
 
 /*.file label::after {
@@ -113,6 +116,11 @@ input[type="file"] {
 	font-size: 100%;
 }
 
+.mail_radio_wrap {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
 .ti {
 	margin-left: 25px;
 	margin-top: 0;
@@ -131,7 +139,11 @@ input[type="file"] {
 }
 
 .pass_text {
-	margin-bottom: 20px;
+	margin-bottom: 10px;
+}
+
+.form_wrap td p.kome {
+	font-size: 0.9em;
 }
 
 #toroku_syusei_kakunin_riyo .mail p:nth-child(2),
@@ -142,16 +154,17 @@ input[type="file"] {
 }
 
 .name div {
-	margin-right: 3em;
-	width: 44%!important;
+	margin-right: 2em;
+	width: 44%;
+	float: left;
 }
 
 table div:last-child {
 	margin-right: 0;
 }
 
-form td div {
-	float: left;
+.riyu input[type="radio"] + label {
+    margin-right: 0;
 }
 
 #nintei-shikaku-wrap {
@@ -160,7 +173,15 @@ form td div {
 }
 
 #nintei-shikaku-wrap div {
-    width: 50%;
+	width: calc(50% - 5px);
+}
+
+#nintei-shikaku-wrap div:nth-child(odd) {
+	margin-right: 5px;
+}
+
+#nintei-shikaku-wrap div:nth-child(even) {
+	margin-left: 5px;
 }
 
 #job_address_search,
@@ -181,7 +202,8 @@ form td div {
 .up_text li {
 	text-indent: -1em;
 	padding-left: 1em;
-	line-height: 25px;
+	font-size: 0.9em;
+	margin-bottom: 0.5em;
 }
 .up_text li:last-of-type {
 	margin-bottom: 0;
@@ -204,17 +226,12 @@ form td div {
 	font-weight: bold;
 }
 
-/*registMember*/
-.registMember .riyu textarea {
-	margin-top: 5px;
-}
-
-.registMember .top_text.exclamation {
+.top_text.exclamation {
 	padding-left: 18px;
 	position: relative;
 }
 
-.registMember .top_text.exclamation::before {
+.top_text.exclamation::before {
 	content: "\f071";
 	font-family: "Font Awesome 5 Free";
 	font-weight: 900;
@@ -224,10 +241,12 @@ form td div {
 	color: red;
 }
 
-.registMember #upload_back,
-.registMember #upload_front {
-	float: none;
+.riyu textarea {
+	margin-top: 5px;
 }
+
+
+
 
 
 @media screen and (max-width: 768px){
@@ -251,7 +270,7 @@ form td div {
 		width: 100%;
 		display: block;
 		padding: 15px 20px;
-		font-size: 12px;
+		font-size: 14px;
 		line-height: 25px;
 	}
 
@@ -275,6 +294,15 @@ form td div {
 
 	.any {
 		display: none;
+	}
+
+	input.w_50,
+	input.w_80 {
+		width: 100%!important;
+	}
+
+	.job select {
+		width: 100%;
 	}
 
 }

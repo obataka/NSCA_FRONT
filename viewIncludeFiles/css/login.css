@@ -29,7 +29,14 @@ button {
 .login_text p {
 	text-align: center;
 	font-size: 0.8rem;
-	line-height: 1.8;
+}
+
+.login_text p:first-of-type {
+	margin-bottom: 10px;
+}
+
+.login_text a i {
+	margin-left: 2px;
 }
 
 .login_text span {
@@ -38,6 +45,10 @@ button {
 
 input[type="password"] {
 	width: 300px;
+}
+
+input.input_w_300 {
+	margin: 0 0 15px;
 }
 
 /*IE*/
