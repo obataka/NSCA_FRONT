@@ -1,6 +1,8 @@
 <?php
 namespace Was;
 
+session_start();
+
 require './Config/Config.php';
 require './Config/FregiConfig.php';
 require './paymentSelect_constants.php';
@@ -10,10 +12,6 @@ require './DBAccess/Cm_control.php';
 require './DBAccess/Tb_kaiin_joho.php';
 require './DBAccess/Tb_kessai_hakko.php';
 
-$cons = new Config();
-$fregiCons = new FregiConfig();
-$payCons = new paymentSelect_constants();
-$payfunc = new paymentSelect_functions();
 $cm_control = new Cm_control();
 $tb_kaiin_joho = new Tb_kaiin_joho();
 $tb_kessai_hakko = new Tb_kessai_hakko();
@@ -22,7 +20,7 @@ $result = null;
 /*************************************************************************************************************************************
 * SESSIONデータを取得
 *************************************************************************************************************************************/
-$tranScreen = isset($_SESSION['tran_screen']) ? $_SESSION['tran_screen'] : '';
+$tranScreen = isset($_SESSION['tranScreen']) ? $_SESSION['tranScreen'] : '';
 $memberType = isset($_SESSION['member_type']) ? $_SESSION['member_type'] : '';
 $selOption = isset($_SESSION['sel_option']) ? $_SESSION['sel_option'] : '';
 $keiriShumoku1 = isset($_SESSION['keiri_shumoku_cd_1']) ? $_SESSION['keiri_shumoku_cd_1'] : '';
@@ -40,15 +38,15 @@ $payType = isset($_POST['pay_type']) ? $_POST['pay_type'] : '';
 *
 **************************************************************************************************************************************/
 
-$fregiId = $payFunc->getFregiId();
-if($fregiId == 0) {
+$fregiId = paymentSelect_functions::getFregiId();
+if(empty($fregiId)) {
     echo false;
     die();
 }
 
 // 登録データを設定
 $fregiData = array();
-$fregiData['shop_id'] = $fregiCons->SHOP_ID;
+$fregiData['shop_id'] = FregiConfig::SHOP_ID;
 $fregiData['id'] = $fregiId;
 $fregiData['pay'] = isset($_SESSION['pay']) ? $_SESSION['pay'] : '';
 $fregiData['user_name_1'] = isset($_SESSION['shimei_sei']) ? $_SESSION['shimei_sei'] : '';
@@ -63,7 +61,7 @@ $fregiData['item_title'] = isset($_SESSION['item_title']) ? $_SESSION['item_titl
 $fregiData['item_name'] = isset($_SESSION['item_name']) ? $_SESSION['item_name'] : '';
 $fregiData['item_name_kana'] = isset($_SESSION['item_name_kana']) ? $_SESSION['item_name_kana'] : '';
 $fregiData['expire'] = isset($_SESSION['expire']) ? $_SESSION['expire'] : '';
-$fregiData['char_code'] = $fregiCons->CHAR_CODE;
+$fregiData['char_code'] = FregiConfig::CHAR_CODE;
 $fregiData['settleno'] = null; // ASP版では、F-REGIにリダイレクトしたあと取得している模様
 $fregiData['seq_no'] = null;
 $fregiData['pay_ment_type'] = null;
@@ -84,10 +82,8 @@ $fregiData['error_code'] = null; // ASP版では、F-REGIにリダイレクト�
 $fregiData['error_message'] = null; // ASP版では、F-REGIにリダイレクトしたあと取得している模様
 $fregiData['kaiin_no'] = isset($_SESSION['kaiin_no']) ? $_SESSION['kaiin_no'] : '';
 $fregiData['sakujo_flg'] = 0;
-$fregiData['sakusei_user_id'] = 'paymentSelect';
-$fregiData['koshin_user_id'] = 'paymentSelect';
-$fregiData['sakusei_nichiji'] = null;
-$fregiData['koshin_nichiji'] = null;
+$fregiData['sakusei_user_id'] = $fregiData['koshin_user_id'] = paymentSelect_constants::USER_ID;
+$fregiData['sakusei_nichiji'] = $fregiData['koshin_nichiji'] = date('Y/m/d H:i:s');
 $fregiData['cscs_shikaku_koshinryo_nofu_kbn'] = null;
 $fregiData['cpt_shikaku_koshinryo_nofu_kbn'] = null;
 $fregiData['scsc_koshinryo'] = null;
@@ -99,51 +95,68 @@ $fregiData['konyubi'] = null;
 $fregiData['pay_type_specify'] = $payType;
 $payKbn = null;
 switch($payType) {
-    case $fregiCons->PAY_TYPE_CARD :
-        $fregiData['pay_mode_specify'] = $fregiCons->PAY_MODE_LUMP;
-        $payKbn = $cons->GEUM_PAY_CARD;
+    case FregiConfig::PAY_TYPE_CARD :
+        $fregiData['pay_mode_specify'] = FregiConfig::PAY_MODE_LUMP;
+        $payKbn = Config::GEUM_PAY_CARD;
         break;
-    case $fregiCons->PAY_TYPE_CONVENIENCE :
-        $payKbn = $cons->GEUM_PAY_CONVENIENCE;
+    case FregiConfig::PAY_TYPE_CONVENIENCE :
+        $payKbn = Config::GEUM_PAY_CONVENIENCE;
         break;
 }
 
 // F-REGI決済データの登録
-if($tb_kessai_hakko->insertRec($fregiData)) {
-    // 各申込データの登録
-    switch($keiriShumoku1) {
-        case '01' :
-            switch($keiriShumoku2) {
-                case '01' :
-                    $kaiinNo = null; // 会員番号
-                    $oldKaiinNo = null; // 旧会員番号（認定校生）
-                    $certificateFlg = 0; // 旧認定校生フラグ
+if(!$tb_kessai_hakko->insertRec($fregiData)) {
+    echo false;
+    die();
+}
 
-                    $oldKaiinNo = $payFunc->getKaiinNoForMemberCertificate(
-                        $_SESSION['shimei_sei'],
-                        $_SESSION['shimei_mei'],
-                        $_SESSION['furigana_sei'],
-                        $_SESSION['furigana_mei'],
-                        $_SESSION['seinengappi']
-                    );
+// 各申込データの登録
+switch($keiriShumoku1) {
+    case '01' :
+        switch($keiriShumoku2) {
+            case '01' :
+                $kaiinNo = null; // 会員番号
+                $oldKaiinNo = null; // 旧会員番号（認定校生）
+                $certificateFlg = 0; // 旧認定校生フラグ
 
-                    if(!empty($oldKaiinNo)) $certificateFlg = 1;
+                $oldKaiinNo = paymentSelect_functions::getKaiinNoForMemberCertificate(
+                    $_SESSION['shimei_sei'],
+                    $_SESSION['shimei_mei'],
+                    $_SESSION['furigana_sei'],
+                    $_SESSION['furigana_mei'],
+                    $_SESSION['seinengappi']
+                );
 
-                    // 会員データの新規登録（会員番号をセッションに保存）
-                    $kaiinNo = $payFunc->insertMemberData($oldKaiinNo, $payType, $certificateFlg);
-                    $_SESSION['kaiinNo'] = $kaiinNo;
+                if(!empty($oldKaiinNo)) $certificateFlg = 1;
 
-                    // 旧認定校性のデータを新規会員番号に更新
-                    if($certificateFlg == 1) 
+                // 会員データの新規登録（会員番号をセッションに保存）
+                $kaiinNo = paymentSelect_functions::insertMemberData($oldKaiinNo, $payType, $certificateFlg);
+                if(empty($kaiinNo)) {
+                    echo false;
+                    die();
+                }
+                $_SESSION['kaiinNo'] = $kaiinNo;
 
-                    
-                    break;
-            }
-            break;
-    }
+                // 旧認定校性のデータを新規会員番号に更新
+                if($certificateFlg == 1){
+                    if(!paymentSelect_functions::updateMemberCertificate($oldKaiinNo)) {
+                        echo false;
+                        die();
+                    }
+                }
+
+                // 会員選択データの登録
+                if(!paymentSelect_functions::insertMemberSelectData) {
+                    echo false;
+                    die();
+                }
+                
+                break;
+        }
+        break;
 }
 
 
 
-
+echo true;
 die();

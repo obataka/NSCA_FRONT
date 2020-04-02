@@ -9,9 +9,6 @@ require './paymentSelect_constants.php';
 require './DBAccess/Db.php';
 require './DBAccess/Tb_kessai_hakko.php';
 
-$cons = new Config();
-$fregiCons = new FregiConfig();
-$payCons = new paymentSelect_constants();
 $tb_kessai_hakko = new Tb_kessai_hakko();
 $result = null;
 $checkMode = null;
@@ -19,7 +16,7 @@ $checkMode = null;
 /*************************************************************************************************************************************
 * SESSIONデータを取得
 *************************************************************************************************************************************/
-$tranScreen = isset($_SESSION['tran_screen']) ? $_SESSION['tran_screen'] : '';
+$tranScreen = isset($_SESSION['tranScreen']) ? $_SESSION['tranScreen'] : '';
 $memberType = isset($_SESSION['member_type']) ? $_SESSION['member_type'] : '';
 
 /*************************************************************************************************************************************
@@ -33,7 +30,7 @@ $memberType = isset($_SESSION['member_type']) ? $_SESSION['member_type'] : '';
 
 // 画面ごとにチェックフラグを立てる
 switch($tranScreen) {
-    case $payCons->MENU_CONFIRM_MEMBER : // 新規会員申込み
+    case paymentSelect_constants::MENU_CONFIRM_MEMBER : // 新規会員申込み
         $checkMode = 1;
         break;
     /****************************************************************************************
@@ -52,7 +49,7 @@ if(isset($_SESSION['settle_no']) && isset($_SESSION['id']) && !isset($_SESSION['
     if(empty($fregiData)) {
         $result = 1;
     } else {
-        if(fregiData[0]['kessai_kekka'] == $fregiCons->STATUS_OK) {
+        if($fregiData[0]['kessai_kekka'] == FregiConfig::STATUS_OK) {
             $result = 2;
         } else {
             $result = 3;

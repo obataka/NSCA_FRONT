@@ -1,31 +1,15 @@
 <?php
+
 namespace Was;
 
-class Tb_doga_konyusha_meisai
+class Tb_ceu_conference_koen_sankasha
 {
     public function __construct()
     {
     }
 
-    public function findByDogaKonyushaMeisai($param)
-    {
-        try {
-            $db = Db::getInstance();
-            $sth = $db->prepare("SELECT *
-            FROM   tb_doga_konyusha_meisai
-            WHERE kaiin_no = :kaiin_no
-            ");
-            $sth->execute([':kaiin_no' => $param['kaiin_no'],]);
-            $Tb_kessai_hakko = $sth->fetchAll();
-        } catch (\PDOException $e) {
-            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/eroor_log.txt');
-            $Tb_kessai_hakko = [];
-        }
-        return $Tb_kessai_hakko;
-    }
-
     /*
-     * ‰ïˆõ”Ô†XVˆ—iÚ‘±‹y‚Ñƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“‚ÍŠO‘¤À{j
+     * ä¼šå“¡ç•ªå·æ›´æ–°å‡¦ç†ï¼ˆæ¥ç¶šåŠã³ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³ã¯å¤–å´å®Ÿæ–½ï¼‰
      * @param object $db
      * @param array $param
      * @return boolean
@@ -34,7 +18,7 @@ class Tb_doga_konyusha_meisai
     {
         try {
             $sql = <<<SQL
-            UPDATE tb_doga_konyusha_meisai
+            UPDATE tb_ceu_conference_koen_sankasha
                SET kaiin_no = :kaiin_no
                  , koshin_user_id = :koshin_user_id
              WHERE sakujo_flg = 0

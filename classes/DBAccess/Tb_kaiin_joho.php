@@ -1369,14 +1369,14 @@ SQL;
 
             $sth = $db->prepare($sql);
             $sth->execute([
-               ,':toroku_jokyo' => $toroku_jokyo
-               ,':kaiin_jokyo' => $kaiin_jokyo
-               ,':kaiin_sbt' => $kaiin_sbt
-               ,':shimei_sei' => $param['shimei_sei']
-               ,':shimei_mei' => $param['shimei_mei']
-               ,':furigana_sei' => $param['furigana_sei']
-               ,':furigana_mei' => $param['furigana_mei']
-               ,':seinengappi' => $param['seinengappi']
+                ':toroku_jokyo' => $toroku_jokyo,
+                ':kaiin_jokyo' => $kaiin_jokyo,
+                ':kaiin_sbt' => $kaiin_sbt,
+                ':shimei_sei' => $param['shimei_sei'],
+                ':shimei_mei' => $param['shimei_mei'],
+                ':furigana_sei' => $param['furigana_sei'],
+                ':furigana_mei' => $param['furigana_mei'],
+                ':seinengappi' => $param['seinengappi']
             ]);
             $Tb_kaiin_joho = $sth->fetch();
 
@@ -1448,32 +1448,34 @@ SQL;
     }
 
     /*
-     * 会員情報の取得処理
-     * @param varchar $kaiinNo
-     * @return 会員情報テーブル
+     * 削除フラグ更新処理（接続及びトランザクションは外側実施）
+     * @param object $db
+     * @param array $param
+     * @return boolean
      */
-    public function findByKaiinNo($kaiinNo)
+    public function updateSakujoFlg_noTran($db, $param)
     {
-        $db = Db::getInstance();
         try {
             $sql = <<<SQL
-                SELECT *
-                  FROM tb_kaiin_joho
-                 WHERE sakujo_flg = 0
-                   AND kaiin_no = :kaiinNo
+            UPDATE tb_kaiin_joho
+               SET sakujo_flg = :sakujo_flg
+                 , koshin_user_id = :koshin_user_id
+             WHERE sakujo_flg = 0
+               AND kaiin_no = :kaiin_no;
             SQL;
 
             $sth = $db->prepare($sql);
             $sth->execute([
-                ':kaiinNo' => $kaiinNo
+                ':sakujo_flg' => $param['sakujo_flg'],
+                ':koshin_user_id' => $param['koshin_user_id'],
+                ':kaiin_no' => $param['kaiin_no']
             ]);
-            $Tb_kaiin_joho = $sth->fetch();
 
         } catch (\PDOException $e) {
-            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/nishiyama_log.txt');
-            $Tb_kaiin_joho = [];
+            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/nishiyama_log.txt');
+            return FALSE;
         }
-      return $Tb_kaiin_joho;
-    }    
+        return TRUE;
+    }
 
 }
