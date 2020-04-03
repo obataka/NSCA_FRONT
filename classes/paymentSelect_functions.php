@@ -37,20 +37,24 @@ Class paymentSelect_functions {
     
     /*****************************************************************************
     * F-Regi決済用の連番を取得する
-    * @return : 決済連番
+    *
+    * @param  : db DBオブジェクト
+    * @return : 成功 決済連番 / 失敗 null
     ******************************************************************************/
-    public static function getFregiId() {
+    public static function getFregiId($db) {
+
+        // テーブルオブジェクト初期化
         $cm_control = new Cm_control();
         $result = null;
 
         // 決済連番をカウントアップする 
-        if ($cm_control->countUpKessaiRemban()) {
+        if ($cm_control->countUpKessaiRemban_noTran($db)) {
             // 決済連番を取得
             $result = $cm_control->getKessaiRemban();
         }
 
         if (empty($result)) {
-            return 0;
+            return null;
         } else {
             return $result['kessai_remban'];
         }
@@ -59,16 +63,17 @@ Class paymentSelect_functions {
     /*****************************************************************************
     * すでに認定校生データが存在するかを確認し、存在した場合に会員番号を返す
     *
-    * @param  : param 会員データ
+    * @param  : kaiinParam 会員データ
     * @return : 会員番号
     ******************************************************************************/
-    public static function getKaiinNoForMemberCertificate($param) {
+    public static function getKaiinNoForMemberCertificate($kaiinParam) {
 
+        // テーブルオブジェクト初期化
         $tb_kaiin_joho = new Tb_kaiin_joho();
-        $kaiin_joho = $tb_kaiin_joho->findNinteiKousei($param);
+        $kaiin_joho = $tb_kaiin_joho->findNinteiKousei($kaiinParam);
 
         if(empty($kaiin_joho)) {
-            return 0;
+            return null;
         } else {
             return $kaiin_joho['kaiin_no'];
         }
@@ -77,11 +82,13 @@ Class paymentSelect_functions {
     /*****************************************************************************
     * 会員データの登録を行う。登録後、登録データの会員番号を返却する
     *
+    * @param  : db DBオブジェクト
     * @param  : oldKaiinNo 旧会員番号
     * @param  : payType 支払方法タイプ
     * @param  : certificateFlg 認定校フラグ
+    * @return : 成功 新たに採番した会員番号 / 失敗 null
     ******************************************************************************/
-    public static function insertMemberData($oldKaiinNo, $payType, $certificateFlg) {
+    public static function insertMemberData($db, $oldKaiinNo, $payType, $certificateFlg) {
 
         // テーブルオブジェクト初期化
         $tb_kaiin_joho = new Tb_kaiin_joho();
@@ -200,33 +207,27 @@ Class paymentSelect_functions {
 
         // 1) 会員番号を取得
         $kaiin_no = getNewKaiinNo($param['kaiin_sbt_kbn']);
-        if(empty($kaiin_no)) return 0;
+        if(empty($kaiin_no)) return null;
 
-        // 2) tb_kaiin_joho の登録
         // 認定校生の場合、備考を引き継ぐ
         if($certificateFlg == 1) {
             $old_kaiin_joho = $tb_kaiin_joho->findNinteiKousei($param);
             if(!empty($old_kaiin_joho)) $param['biko'] = $old_kaiin_joho['biko'];
         }
 
-        // トランザクション開始
-        $db = Db::getInstance();
-        $db->beginTransaction();
-
+        // 2) tb_kaiin_joho の登録
         $param['toroku_jokyo_kbn'] = $toroku_jokyo;
         $param['kaiin_jokyo_kbn'] = $kaiin_jokyo;
         $param['country'] = $country;
         $param['web_nyukai_kbn'] = $web_nyukai;
         if(!$tb_kaiin_joho->insertRec_noTran($db, $param)) {
-            $db->rollBack();
-            return 0;
+            return null;
         }
 
         // 3) tb_kaiin_jotai の登録
         $param['gakuseisho_kakunin_kbn'] = $gakuseisho_kakunin;
         if(!$tb_kaiin_jotai->insertRec_noTran($db, $param)) {
-            $db->rollBack();
-            return 0;
+            return null;
         }
 
         // 4) tb_kaiin_journal の登録
@@ -235,48 +236,39 @@ Class paymentSelect_functions {
         $param['beikoku_website_id_kbn'] = $usa_website_id;
         $param['kaigai_hasso_id_tsuchi_kbn'] = $kaigai_hasso_id_tsuchi;
         if(!$tb_kaiin_journal->insertRec_noTran($db, $param)) {
-            $db->rollBack();
-            return 0;
+            return null;
         }
 
         // 5) tb_kaiin_sonota の登録
         $param['card_toroku'] = $card_toroku;
         if(!$tb_kaiin_sonota->insertRec_noTran($db, $param)) {
-            $db->rollBack();
-            return 0;
+            return null;
         }
 
         // 6) tb_kaiin_pick_up の登録
         if(!$tb_kaiin_pick_up->insertRec_noTran($db, $param)) {
-            $db->rollBack();
-            return 0;
+            return null;
         }
 
         // 認定校生以外の場合に新規登録
         if($certificateFlg == 0) {
             // 7) tb_kaiin_nintei の登録
             if(!$tb_kaiin_nintei->insertRec_noTran($db, $param)) {
-                $db->rollBack();
-                return 0;
+                return null;
             }
     
             // 8-1) tb_kaiin_ceu(CSCS)
             $param['shiken_sbt_kbn'] = $shiken_sbt_cscs;
             if(!$tb_kaiin_ceu->insertRec_noTran($db, $param)) {
-                $db->rollBack();
-                return 0;
+                return null;
             }
 
             // 8-2) tb_kaiin_ceu(CPT)
             $param['shiken_sbt_kbn'] = $shiken_sbt_cpt;
             if(!$tb_kaiin_ceu->insertRec_noTran($db, $param)) {
-                $db->rollBack();
-                return 0;
+                return null;
             }
         }
-
-        // トランザクション終了（コミット）
-        $db->commit();
 
         // 9) tb_kaiin_sentaku は、別で登録
         // 10) 会員番号をセッションに保存
@@ -287,7 +279,7 @@ Class paymentSelect_functions {
     * 会員種別によって採番後の新しい会員番号を返却する
     *
     * @param  : kaiin_sbt_kbn 会員種別
-    * @return : 採番後の新しい会員番号
+    * @return : 成功 新たに採番した会員番号 / 失敗 null
     ******************************************************************************/
     private static function getNewKaiinNo($kaiin_sbt_kbn) {
 
@@ -390,7 +382,7 @@ Class paymentSelect_functions {
                 return 'USA' .sprintf('%06d', strval($intKaiinNo + 1));
             }
         }
-        return 0;
+        return null;
     }
 
     /*****************************************************************************
@@ -400,12 +392,11 @@ Class paymentSelect_functions {
     * TB会員情報、TB会員状態、TB会員ジャーナル、TB会員その他、
     * TB会員ピックアップ、TB会員選択　は新規作成する為、削除フラグを更新する
     *
+    * @param  : db DBオブジェクト
     * @param  : oldKaiinNo 旧会員番号
-    * @param  : kaiinNo 会員番号
-    * @param  : userId ユーザーID
     * @return : 成功 true / 失敗 false
     ******************************************************************************/
-    public static function updateMemberCertificate($oldKaiinNo) {
+    public static function updateMemberCertificate($db, $oldKaiinNo) {
 
         // テーブルオブジェクト初期化
         $tb_kaiin_joho = new Tb_kaiin_joho();
@@ -437,129 +428,103 @@ Class paymentSelect_functions {
         $param['koshin_user_id'] = payment_constants::USER_ID; // ユーザーID
         if(empty($param['kaiin_no'])) return false;
 
-        // トランザクション開始
-        $db = Db::getInstance();
-        $db->beginTransaction();
-
         // 1) 旧認定校生データを削除
         if(!$tb_kaiin_joho->updateSakujoFlg_noTran($db, $param)) {
-            $db->rollBack();
             return false;
         }
         if(!$tb_kaiin_jotai->updateSakujoFlg_noTran($db, $param)) {
-            $db->rollBack();
             return false;
         }
         if(!$tb_kaiin_journal->updateSakujoFlg_noTran($db, $param)) {
-            $db->rollBack();
             return false;
         }
         if(!$tb_kaiin_sonota->updateSakujoFlg_noTran($db, $param)) {
-            $db->rollBack();
             return false;
         }
         if(!$tb_kaiin_pick_up->updateSakujoFlg_noTran($db, $param)) {
-            $db->rollBack();
             return false;
         }
         if(!$tb_kaiin_sentaku->updateSakujoFlgByKaiinNo_noTran($db, $param)) {
-            $db->rollBack();
             return false;
         }
 
         // 2) 認定情報データを最新の会員番号に更新
         if(!$tb_kaiin_nintei->updateKaiinNoByOldKaiinNo_noTran($db, $param)) {
-            $db->rollBack();
             return false;
         }
         if(!$tb_kaiin_yakushoku->updateKaiinNoByOldKaiinNo_noTran($db, $param)) {
-            $db->rollBack();
             return false;
         }
         if(!$tb_kaiin_ceu->updateKaiinNoByOldKaiinNo_noTran($db, $param)) {
-            $db->rollBack();
             return false;
         }
 
         // 3) 経理情報データを最新の会員番号に更新
         if(!$tb_keiri_joho->updateKaiinNoByOldKaiinNo_noTran($db, $param)) {
-            $db->rollBack();
             return false;
         }
         if(!$tb_kessai_hakko->updateKaiinNoByOldKaiinNo_noTran($db, $param)) {
-            $db->rollBack();
             return false;
         }
 
         // 4) 試験情報データを最新の会員番号に更新
         if(!$tb_shiken->updateKaiinNoByOldKaiinNo_noTran($db, $param)) {
-            $db->rollBack();
             return false;
         }
         if(!$tb_shiken_meisai->updateKaiinNoByOldKaiinNo_noTran($db, $param)) {
-            $db->rollBack();
             return false;
         }
 
         // 5) 動画情報データを最新の会員番号に更新
         if(!$tb_doga_konyusha_meisai->updateKaiinNoByOldKaiinNo_noTran($db, $param)) {
-            $db->rollBack();
             return false;
         }
 
         // 6) カンファレンス情報データを最新の会員番号に更新
         if(!$tb_ceu_conference_joho_meisai->updateKaiinNoByOldKaiinNo_noTran($db, $param)) {
-            $db->rollBack();
             return false;
         }
         if(!$tb_ceu_conference_koen_sankasha->updateKaiinNoByOldKaiinNo_noTran($db, $param)) {
-            $db->rollBack();
             return false;
         }
 
         // 7) クイズ情報データを最新の会員番号に更新
         if(!$tb_ceu_quiz_joho_meisai->updateKaiinNoByOldKaiinNo_noTran($db, $param)) {
-            $db->rollBack();
             return false;
         }
 
         // 8) CEU情報データを最新の会員番号に更新
         // ※検定員・総会・トレ検・レベル1情報データは下記テーブルに統合されたため、同時に更新
         if(!$tb_ceu_joho_meisai->updateKaiinNoByOldKaiinNo_noTran($db, $param)) {
-            $db->rollBack();
             return false;
         }
 
         // 9) 過去試験情報データを最新の会員番号に更新
         if(!$tb_kako_shiken_joho_meisai->updateKaiinNoByOldKaiinNo_noTran($db, $param)) {
-            $db->rollBack();
             return false;
         }
 
         // 10)片方合格データを最新の会員番号に更新
         if(!$tb_kataho_gokaku->updateKaiinNoByOldKaiinNo_noTran($db, $param)) {
-            $db->rollBack();
             return false;
         }
 
         // 11)認定明細データを最新の会員番号に更新
         if(!$tb_nintei_meisai->updateKaiinNoByOldKaiinNo_noTran($db, $param)) {
-            $db->rollBack();
             return false;
         }
 
-        // トランザクション終了（コミット）
-        $db->commit();
         return true;
     }
 
     /*****************************************************************************
     * 会員選択データの登録を行う
     * 古い会員選択データはすべて物理削除し、画面で選択されたデータをすべて登録します。
-    *
+    * 
+    * @param  : db DBオブジェクト
     * @return : 成功 true / 失敗 false
     ******************************************************************************/
-    public static function insertMemberSelectData() {
+    public static function insertMemberSelectData($db) {
 
         // テーブルオブジェクト初期化
         $tb_kaiin_sentaku = new Tb_kaiin_sentaku();
@@ -570,14 +535,9 @@ Class paymentSelect_functions {
         $param['sakujo_flg'] = 0;
         $param['sakusei_user_id'] = $param['koshin_user_id'] = payment_constants::USER_ID;
         $param['sakusei_nichiji'] = $param['koshin_nichiji'] = date('Y/m/d H:i:s');
-        
-        // トランザクション開始
-        $db = Db::getInstance();
-        $db->beginTransaction();
 
         // 会員選択データの削除
         if(!$tb_kaiin_sentaku->deleteRec_noToran($db, $param)) {
-            $db->rollBack();
             return false;
         }
         
@@ -587,7 +547,6 @@ Class paymentSelect_functions {
         $shikakuSonota = isset($_SESSION['sel_shikaku_sonota']) ? $_SESSION['sel_shikaku_sonota'] : null;
         if(!empty($arrayShikaku)) {
             if(!insertKaiinSentakuByArray($db, $tb_kaiin_sentaku, $param, 22, $arrayShikaku, $shikakuSonota)) {
-                $db->rollBack();
                 return false;
             }
         }
@@ -597,7 +556,6 @@ Class paymentSelect_functions {
         $arrayChiiki = !empty($chiiki) ? explode(',',$chiiki) : null;
         if(!empty($arrayChiiki)) {
             if(!insertKaiinSentakuByArray($db, $tb_kaiin_sentaku, $param, 32, $arrayChiiki, null)) {
-                $db->rollBack();
                 return false;
             }
         }
@@ -608,13 +566,10 @@ Class paymentSelect_functions {
         $bunyaSonota = isset($_SESSION['sel_bunya_sonota']) ? $_SESSION['sel_bunya_sonota'] : null;
         if(!empty($arrayBunya)) {
             if(!insertKaiinSentakuByArray($db, $tb_kaiin_sentaku, $param, 24, $arrayBunya, $bunyaSonota)) {
-                $db->rollBack();
                 return false;
             }
         }
 
-        // トランザクション終了（コミット）
-        $db->commit();
         return true;
     }
 
@@ -638,7 +593,122 @@ Class paymentSelect_functions {
         return true;
     }
 
+    /*****************************************************************************
+    * 経理データ用伝票番号を取得する
+    *
+    * @param  : db DBオブジェクト
+    * @return : 成功 新たに採番した経理番号 / 失敗 null
+    ******************************************************************************/
+    private static function getAccountingId($db) {
 
+        // テーブルオブジェクトの初期化
+        $cm_control = new Cm_control();
+        $result = null;
+
+        // 経理伝票番号をカウントアップする 
+        if ($cm_control->countUpKeiriDempyoNo_noTran($db)) {
+            // 経理伝票番号を取得
+            $result = $cm_control->findById(1);
+        }
+
+        if (empty($result)) {
+            return null;
+        } else {
+            return $result['keiri_dempyo_no'];
+        }
+    }
+
+    /*****************************************************************************
+    * 経理情報テーブルに新規登録する
+    * 既に該当データが存在する場合は失敗
+    * (VB版の英文購読オプション専用処理と統合)
+    *
+    * @param  : db DBオブジェクト
+    * @param  : fregiParam Fregi決済データ
+    * @param  : keiriDempyoNo 経理伝票番号
+    * @param  : shiken_meisai_id 試験明細ID
+    * @param  : notKaiinNo 非会員の会員番号
+    * @param  : selOpFlg 英文オプション専用フラグ
+    * @return : 成功 true / 失敗 false
+    ******************************************************************************/
+    public static function insertAccountingDataMember($db, $fregiParam, $keiriDempyoNo, $shiken_meisai_id, $noKaiinNo, $selOpFlg) {
+
+        // テーブルオブジェクトの初期化
+        $tb_keiri_joho = new Tb_keiri_joho();
+
+        // パラメータの設定
+        $param = array();
+        $param['keiri_id'] = null;
+        $param['keiri_dempyo_no'] = $keiriDempyoNo;
+        $param['id'] = $fregiParam['id'];
+
+        // 会員番号
+        if(isset($_SESSION['kaiinNo'])) {
+            $param['kaiin_no'] =  $_SESSION['kaiinNo'];
+        } else {
+            $param['kaiin_no'] =  $noKaiinNo;
+        }
+
+        // 英文購読オプション用かどうかの判定
+        if($selOpFlg == true) {
+            $param['keiri_shumoku_cd_1'] = '10'; // 英文購読オプション
+            $param['keiri_shumoku_cd_2'] = null;
+            $param['keiri_shumoku_cd_3'] = null;
+        } else {
+            $param['keiri_shumoku_cd_1'] = isset($_SESSION['keiri_shumoku_cd_1']) ? $_SESSION['keiri_shumoku_cd_1'] : null;
+            $param['keiri_shumoku_cd_2'] = isset($_SESSION['keiri_shumoku_cd_2']) ? $_SESSION['keiri_shumoku_cd_2'] : null;
+            $param['keiri_shumoku_cd_3'] = isset($_SESSION['keiri_shumoku_cd_3']) ? $_SESSION['keiri_shumoku_cd_3'] : null;
+        }
+        $param['ceu_id'] = null;
+        $param['ceu_meisai_id'] = null;
+        $param['hpc_yoyaku_id'] = null;
+        $param['etc_id'] = null;
+        $param['etc_meisai_id'] = null;
+        $param['exa_id'] = null;
+
+        // 試験明細ID
+        if($shiken_meisai_id = 0) {
+            $param['shiken_meisai_id'] = null;
+        } else {
+            $param['shiken_meisai_id'] = $shiken_meisai_id;
+        }
+
+        $param['keiri_nyuryokubi'] = date('Y/m/d');
+        $param['hoken_id'] = null;
+        $param['nonyubi'] = null;
+        $param['nonyu_kingaku'] = null;
+        $param['keiri_biko'] = null;
+
+        // 支払方法
+        switch($fregiData['pay_type_specify']) {
+            case FregiConfig::PAY_TYPE_CARD :
+                $param['nonyu_hoho_kbn'] = Config::GEUM_PAY_CARD;
+                break;
+            case FregiConfig::PAY_TYPE_CONVENIENCE :
+                $param['nonyu_hoho_kbn'] = Config::GEUM_PAY_CONVENIENCE;
+                break;
+            case FregiConfig::PAY_TYPE_PAYEASY :
+                $param['nonyu_hoho_kbn'] = Config::GEUM_PAY_PAYEASY;
+                break;
+        }
+
+        $param['shikentoshi'] = null;
+        $param['fusoku_flg'] = null;
+        $param['naiyo'] = null;
+        $param['sakujo_flg'] = 0;
+        $param['sakusei_user_id'] = $param['koshin_user_id'] = payment_constants::USER_ID;
+        $param['sakusei_nichiji'] = $param['koshin_nichiji'] = date('Y/m/d H:i:s');
+
+        // すでに該当データが存在するかを確認
+        $keiri_joho = $tb_keiri_joho->findByKeiriDempyoNoAndId($param);
+
+        // 該当データが存在しない場合、経理情報テーブルを新規登録する
+        if(empty($keiri_joho)) {
+            return $tb_keiri_joho->insertRec_noTran($db, $param);
+        } else {
+            return false;
+        }
+    }
 
 
 }

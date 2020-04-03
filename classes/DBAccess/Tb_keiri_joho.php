@@ -228,5 +228,148 @@ SQL;
         return TRUE;
     }
 
+    /*
+     * 経理情報テーブル検索処理
+     * @param array $param
+     * @return 経理情報テーブルデータ
+     */
+    public function findByKeiriDempyoNoAndId($param)
+    {
+		$db = Db::getInstance();
+		$rtn = null;
+        try {
+            $sql = <<<SQL
+            SELECT *
+              FROM tb_keiri_joho
+             WHERE sakujo_flg = 0
+               AND keiri_dempyo_no = :keiri_dempyo_no
+               AND id = :id;
+            SQL;
+
+            $sth = $db->prepare($sql);
+            $sth->execute([
+                ':keiri_dempyo_no' => $param['keiri_dempyo_no'],
+                ':id' => $param['id']
+			]);
+			$rtn = $sth->fetch();
+
+        } catch (\PDOException $e) {
+			error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/nishiyama_log.txt');
+			$rtn = [];
+        }
+        return $rtn;
+    }
+
+    /*
+     * 登録（接続及びトランザクションは外側実施）
+     * @param object $db
+     * @param array $param
+     * @return boolean
+     */
+    public function insertRec_noTran($db, $param)
+    {
+        try {
+            $sql = <<<SQL
+            INSERT
+              INTO tb_keiri_joho(
+                   keiri_id
+                 , keiri_dempyo_no
+                 , id
+                 , kaiin_no
+                 , keiri_shumoku_cd_1
+                 , keiri_shumoku_cd_2
+                 , keiri_shumoku_cd_3
+                 , ceu_id
+                 , ceu_meisai_id
+                 , exa_id
+                 , shiken_meisai_id
+                 , hpc_yoyaku_id
+                 , etc_id
+                 , etc_meisai_id
+                 , keiri_nyuryokubi
+                 , hoken_id
+                 , nonyubi
+                 , nonyu_kingaku
+                 , keiri_biko
+                 , nonyu_hoho_kbn
+                 , shikentoshi
+                 , fusoku_flg
+                 , naiyo
+                 , sakujo_flg
+                 , sakusei_user_id
+                 , koshin_user_id
+                 , sakusei_nichiji
+                 , koshin_nichiji
+            )
+            VALUES (
+                   :keiri_id
+                 , :keiri_dempyo_no
+                 , :id
+                 , :kaiin_no
+                 , :keiri_shumoku_cd_1
+                 , :keiri_shumoku_cd_2
+                 , :keiri_shumoku_cd_3
+                 , :ceu_id
+                 , :ceu_meisai_id
+                 , :exa_id
+                 , :shiken_meisai_id
+                 , :hpc_yoyaku_id
+                 , :etc_id
+                 , :etc_meisai_id
+                 , :keiri_nyuryokubi
+                 , :hoken_id
+                 , :nonyubi
+                 , :nonyu_kingaku
+                 , :keiri_biko
+                 , :nonyu_hoho_kbn
+                 , :shikentoshi
+                 , :fusoku_flg
+                 , :naiyo
+                 , :sakujo_flg
+                 , :sakusei_user_id
+                 , :koshin_user_id
+                 , :sakusei_nichiji
+                 , :koshin_nichiji
+            );
+            SQL;
+
+            $sth = $db->prepare($sql);
+            $sth->execute([
+                ':keiri_id' => $param['keiri_id'],
+                ':keiri_dempyo_no' => $param['keiri_dempyo_no'],
+                ':id' => $param['id'],
+                ':kaiin_no' => $param['kaiin_no'],
+                ':keiri_shumoku_cd_1' => $param['keiri_shumoku_cd_1'],
+                ':keiri_shumoku_cd_2' => $param['keiri_shumoku_cd_2'],
+                ':keiri_shumoku_cd_3' => $param['keiri_shumoku_cd_3'],
+                ':ceu_id' => $param['ceu_id'],
+                ':ceu_meisai_id' => $param['ceu_meisai_id'],
+                ':exa_id' => $param['exa_id'],
+                ':shiken_meisai_id' => $param['shiken_meisai_id'],
+                ':hpc_yoyaku_id' => $param['hpc_yoyaku_id'],
+                ':etc_id' => $param['etc_id'],
+                ':etc_meisai_id' => $param['etc_meisai_id'],
+                ':keiri_nyuryokubi' => $param['keiri_nyuryokubi'],
+                ':hoken_id' => $param['hoken_id'],
+                ':nonyubi' => $param['nonyubi'],
+                ':nonyu_kingaku' => $param['nonyu_kingaku'],
+                ':keiri_biko' => $param['keiri_biko'],
+                ':nonyu_hoho_kbn' => $param['nonyu_hoho_kbn'],
+                ':shikentoshi' => $param['shikentoshi'],
+                ':fusoku_flg' => $param['fusoku_flg'],
+                ':naiyo' => $param['naiyo'],
+                ':sakujo_flg' => $param['sakujo_flg'],
+                ':sakusei_user_id' => $param['sakusei_user_id'],
+                ':koshin_user_id' => $param['koshin_user_id'],
+                ':sakusei_nichiji' => $param['sakusei_nichiji'],
+                ':koshin_nichiji' => $param['koshin_nichiji']
+            ]);
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/nishiyama_log.txt');
+            return FALSE;
+        }
+        return TRUE;
+    }
+
 
 }

@@ -17,7 +17,9 @@ $checkMode = null;
 * SESSIONデータを取得
 *************************************************************************************************************************************/
 $tranScreen = isset($_SESSION['tranScreen']) ? $_SESSION['tranScreen'] : '';
-$memberType = isset($_SESSION['member_type']) ? $_SESSION['member_type'] : '';
+$kessaiHakkoId = isset($_SESSION['id']) ? $_SESSION['id'] : '';
+$settleNo = isset($_SESSION['settle_no']) ? $_SESSION['settle_no'] : '';
+$extpayment = isset($_SESSION['extpayment']) ? $_SESSION['extpayment'] : '';
 
 /*************************************************************************************************************************************
 * 
@@ -43,9 +45,9 @@ switch($tranScreen) {
 *****************************************************************************************/
 
 // 初回支払いか再支払い（一度コンビニで決済）か延長手続き決済かをチェック
-if(isset($_SESSION['settle_no']) && isset($_SESSION['id']) && !isset($_SESSION['extpayment'])) {
+if(!empty($kessaiHakkoId) && !empty($settleNo) && empty($extpayment)) {
 
-    $fregiData = $tb_kessai_hakko->findByIdAndSettleno($kessai_hakko_id, $settleno);
+    $fregiData = $tb_kessai_hakko->findByIdAndSettleno($kessaiHakkoId, $settleNo);
     if(empty($fregiData)) {
         $result = 1;
     } else {
@@ -56,7 +58,7 @@ if(isset($_SESSION['settle_no']) && isset($_SESSION['id']) && !isset($_SESSION['
         }
     }
 } else {
-    if(isset($_SESSION['extpayment'])) {
+    if(!empty($extpayment)) {
         $result = 4;
     } else {
         $result = 1;
@@ -64,5 +66,4 @@ if(isset($_SESSION['settle_no']) && isset($_SESSION['id']) && !isset($_SESSION['
 }
 
 echo $result;
-
 die();

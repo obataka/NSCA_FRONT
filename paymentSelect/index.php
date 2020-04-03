@@ -52,8 +52,8 @@ function getSessionData() {
     // 支払情報の設定
     // $pay_name = '新規会員会費';
     $payName = isset($_SESSION['pay_name']) ? $_SESSION['pay_name'] : '';
-    $shimeiSei = isset($_SESSION['shimei_sei']) ? $_SESSION['shimei_sei'] : '';
-    $shimeiMei = isset($_SESSION['shimei_mei']) ? $_SESSION['shimei_mei'] : '';
+    $shimeiSei = isset($_SESSION['name_sei']) ? $_SESSION['name_sei'] : '';
+    $shimeiMei = isset($_SESSION['name_mei']) ? $_SESSION['name_mei'] : '';
     $payment = isset($_SESSION['kaihi']) ? $_SESSION['kaihi'] : '0';
     $selOption = isset($_SESSION['sel_option']) ? $_SESSION['sel_option'] : '';
     $kaihiEibunOption = isset($_SESSION['kaihi_eibun_option']) ? $_SESSION['kaihi_eibun_option'] : '0';

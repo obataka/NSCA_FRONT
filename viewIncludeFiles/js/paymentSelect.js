@@ -17,9 +17,9 @@
 		$('#pay_credit_start').click(function() {
 
 			// 決済種別を取得
-			let payType = checkFregiSettle();
+			let payMode = checkFregiSettle();
 
-			switch (payType) {
+			switch (payMode) {
 				case 1:
 
 					break;
@@ -84,58 +84,6 @@
 
 	};
 
-	/**
-	 * Fregiデータの登録処理
-	 * <return>
-	 * 		成功 : true / 失敗 : false
-	 * </return>
-	 */
-	function insertFregiData(fregiId, ) {
 
-		$.ajax({
-			url: '../../classes/paymentSelect_insertFregiData.php',
-			type: 'POST',
-			data: {
-				shop_id: 17612,
-				id: fregiId,
-				pay: $('pay').val,
-				username1: $('user_name_1').val,
-				username2: $('user_name_2').val,
-				user_name_kana_1: $('user_name_kana_1').val,
-				user_name_kana_2: $('user_name_kana_2').val,
-				user_tel: $('user_tel').val,
-				user_id: $('user_id').val,
-				auth_key: $('auth_key').val,
-				item_title: $('item_title').val,
-				item_name: $('item_name').val,
-				item_name_kana: $('item_name_kana').val,
-				expire: 14,
-				char_code: 'euc',
-				pay_type_specify: $('pay_type_specify').val,
-				pay_mode_specify: $('pay_mode_specify').val,
-				ceu_id: $('ceu_id').val,
-				ceu_meisai_id: $('ceu_meisai_id').val,
-				shiken_meisai_id: $('shiken_meisai_id').val,
-				zenshiken_meisai_id: $('zenshiken_meisai_id').val,
-				etc_id: $('etc_id').val,
-				etc_meisai_id: $('etc_meisai_id').val,
-				keiri_shumoku_cd_1: $('keiri_shumoku_cd_1').val,
-				keiri_shumoku_cd_2: $('keiri_shumoku_cd_2').val,
-				keiri_shumoku_cd_3: $('keiri_shumoku_cd_3').val,
-				kaiin_no: $('kaiin_no').val,
-				sakujo_flg: $('sakujo_flg').val,
-				sakusei_user_id: $('sakusei_user_id').val,
-				koshin_user_id: $('koshin_user_id').val
-			}
-		})
-		.done( () => {
-			return true;
-		})
-		.fail( () => {
-			$('#err_msg').html('システムエラーが発生しました。');
-			return false;
-		});
-
-	};
 
 })(jQuery);
