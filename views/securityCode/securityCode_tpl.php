@@ -36,7 +36,7 @@
 								<i class="fas fa-angle-right"></i>
 							</a>
 						</div>
-						<button class="button mt_30" type="button" name="__send" id="__send" value="">
+						<button class="button mt_30 btn_left" type="button" name="__send" id="__send" value="">
 							<span>確認</span>
 						</button>
 					</div>

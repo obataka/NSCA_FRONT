@@ -142,8 +142,15 @@ input[type="file"] {
 	margin-bottom: 10px;
 }
 
-.form_wrap td p.kome {
+.form_wrap td p.kome,
+.form_wrap td p.text_blue {
 	font-size: 0.9em;
+	margin: 5px 0;
+	font-weight: bold;
+}
+
+.form_wrap td p.text_blue {
+	color: #005699;
 }
 
 #toroku_syusei_kakunin_riyo .mail p:nth-child(2),
@@ -185,7 +192,8 @@ table div:last-child {
 }
 
 #job_address_search,
-#street_address_search {
+#street_address_search,
+.zip_btn {
 	height: 35px;
 	width: 80px;
 	margin-left: 10px;
@@ -194,6 +202,7 @@ table div:last-child {
 	line-height: 35px;
 	cursor: pointer;
 	vertical-align: top;
+	min-width: auto;
 }
 
 .up_text li:before {
@@ -261,7 +270,6 @@ table div:last-child {
 		width: 100%;
 		background: #eaeaea;
 		height: 50px;
-		line-height: 1.4;
 		padding: 15px;
 		font-weight: normal;
 	}
@@ -271,7 +279,6 @@ table div:last-child {
 		display: block;
 		padding: 15px 20px;
 		font-size: 14px;
-		line-height: 25px;
 	}
 
 	.ti {

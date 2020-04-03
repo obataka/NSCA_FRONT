@@ -65,6 +65,10 @@ a.link_blank:hover {
 	content: "※";
 }
 
+.sp_only {
+	display: none;
+}
+
 input {
 	font-family: inherit;
 }
@@ -156,7 +160,6 @@ h2 {
 
 .btn_wrap{
 	display: flex;
-	flex-wrap: wrap;
 	margin-bottom: 30px;
 	justify-content: center;
 }
@@ -167,6 +170,10 @@ h2 {
 
 .mt_1{
 	margin-top: 1em;
+}
+
+.mt_30 {
+	margin-top: 30px;
 }
 
 .w_80 {
@@ -216,7 +223,8 @@ label {
 
 /*checkbox*/
 input[type="checkbox"] {
-    display: none;
+	visibility: hidden;
+	position: absolute;
 }
 .checkbox {
 	padding-left: 25px;
@@ -233,7 +241,7 @@ input[type="checkbox"] {
     content: "";
     display: block;
     position: absolute;
-    top: 0;
+    top: 1px;
     left: 0;
     width: 18px;
     height: 18px;
@@ -246,7 +254,7 @@ input[type="checkbox"] + .checkbox:after {
     content: "";
     display: block;
     position: absolute;
-    top: 2px;
+    top: 3px;
     left: 6px;
     width: 5px;
     height: 10px;
@@ -263,7 +271,8 @@ input[type="checkbox"]:checked + .checkbox:after {
 
 /*radio*/
 input[type="radio"] {
-	display: none;
+	visibility: hidden;
+	position: absolute;
 }
 
 input[type="radio"] + label {
@@ -309,28 +318,25 @@ input[type="radio"] + label:hover:before {
 }
 
 /*button*/
-.btn_wrap button:first-of-type {
+.btn_wrap button:not(:last-of-type) {
     margin-right: 50px;
 }
 
 .button {
 	height: 50px;
-	width: 300px;
 	border: 1px solid #005699;
 	color: #fff;
 	line-height: 50px;
 	font-weight: bold;
-	display: block;
+	display: inline-block;
 	text-align: center;
 	background: #005699;
 	font-size: 18px;
 	transition: background 0.4s,color 0.4s;
 	font-family: inherit;
 	border-radius: 3px;
-}
-
-.button.mt_30 {
-	margin-top: 30px;
+	width: 100%;
+	max-width: 300px;
 }
 
 .button:hover {
@@ -339,9 +345,44 @@ input[type="radio"] + label:hover:before {
 	background: #F9F9F9;
 }
 
+.btn_wrap button:not(:last-of-type) {
+	margin-right: 50px;
+}
+
 .btn_center {
 	margin-left: auto;
 	margin-right: auto;
+	display: block;
+}
+
+.btn_b {
+	position: absolute!important;
+	bottom: 50px;
+}
+
+.btn_b_1 {
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+
+.btn_b_2 {
+	width: calc(100% - 60px);
+	justify-content: space-between;
+}
+
+.btn_b button {
+	margin: 0;
+}
+
+button.clear_btn {
+    background-color: #669fcc;
+    border-color: #669fcc;
+}
+
+button.clear_btn:hover {
+	background-color: #fff;
+	border-color: #669fcc;
 }
 
 .btn_gray,
@@ -558,26 +599,6 @@ input[type="number"] {
 	line-height: 15px;
 }
 
-.btn_b {
-    position: absolute!important;
-    bottom: 50px;
-}
-
-.btn_b_1 {
-    left: 0;
-    right: 0;
-	margin: auto;
-}
-
-.btn_b_2 {
-	width: calc(100% - 60px);
-	justify-content: space-between;
-}
-
-.btn_b button {
-	margin: 0;
-}
-
 footer {
 	width: 100%;
 	background: #777;
@@ -596,18 +617,22 @@ footer p {
     display: block;
 	width: 100%;
 }
+
 #datepicker tr {
     border: none;
 	display: table-row;
 }
+
 #datepicker td {
     width: auto;
     padding: 0;
     border: 1px solid #eee;
 }
+
 #datepicker span:hover {
     cursor: pointer;
 }
+
 #datepicker {
     width: 100%;
 	margin-top: 10px;
@@ -709,12 +734,20 @@ button[type="button"]:disabled:hover::after {
 		display: none;
 	}
 
+	.sp_only {
+		display: block;
+	}
+
 	.sp_no {
 		display: none;
 	}
 
 	.sp_bl {
 		display: block;
+	}
+
+	.sp_flex {
+		display: flex;
 	}
 
 	.header_logo {
@@ -820,12 +853,23 @@ button[type="button"]:disabled:hover::after {
 
 /*button*/
 	.btn_wrap {
-		justify-content: space-evenly;
+		flex-wrap: wrap;
+	}
+
+	.button {
+		width: 80%;
+		max-width: none;
+		min-width: 300px;
 	}
 
 	.button:hover {
 		color: #fff;
 		background: #005699;
+	}
+
+	button.clear_btn:hover {
+		background-color: #669fcc;
+		border-color: #669fcc;
 	}
 
 	.btn_gray:hover,
@@ -835,12 +879,24 @@ button[type="button"]:disabled:hover::after {
 		border: 1px solid #888;
 	}
 
+	.btn_left {
+		width: 300px;
+	}
+
 	.btn_b_2 {
 		width: calc(100% - 20px);
 	}
 
 	.btn_b button {
 		margin: 0 auto;
+	}
+
+	.btn_wrap button:not(:last-of-type) {
+		margin: 0 0 20px;
+	}
+
+	.btn_wrap.clear_btn_wrap {
+		min-width: 50%;
 	}
 
 	.checkbox:hover:before {
@@ -875,46 +931,9 @@ button[type="button"]:disabled:hover::after {
 		margin-top: 0;
 	}
 
-	/*ファイヤ―フォックスのみ*/
-	@-moz-document url-prefix() {
-		.spb_arrows>ul.step-anchor>li>span.spb_border:before {
-			top: 223%;
-		}
-		.spb_arrows > ul.step-anchor > li > span.spb_border::after,
-		.spb_arrows > ul.step-anchor > li > span::after {
-			top: 230%;
-		}
-	}
-
-	/*IEのみ*/
-	_:-ms-lang(x)::-ms-backdrop,
-	.spb_arrows_6ver li span {
-		line-height: inherit!important;
-	}
-
-	/*edgeのみ*/
-	@supports (-ms-ime-align:auto) {
-		.spb_arrows>ul.step-anchor>li>span.spb_border:before {
-			top: 223%;
-		}
-		.spb_arrows > ul.step-anchor > li > span.spb_border::after,
-		.spb_arrows > ul.step-anchor > li > span::after {
-			top: 230%;
-		}
-	}
 }
 
 
-/*ファイヤ―フォックスのみ*/
-@-moz-document url-prefix() {
-	#job_address_search,
-	#street_address_search {
-		line-height: 17px;
-	}
-	.button {
-		line-height: 48px;
-	}
-}
 
 /*edgeのみ*/
 @supports (-ms-ime-align:auto) {
