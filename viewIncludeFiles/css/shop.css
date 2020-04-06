@@ -59,17 +59,17 @@
 	margin-bottom: 15px;
 }
 
-.shop_table td:nth-of-type(2) {
+.shop_table td.tanka_td {
 	width: 120px;
 	text-align: right;
 }
 
-.shop_table td:nth-of-type(3) {
+.shop_table td.suryo_td {
 	width: 70px;
 	text-align: right;
 }
 
-.shop_table td:nth-of-type(4) {
+.shop_table td.syokei_td {
 	width: 100px;
 	text-align: right;
 }
@@ -118,6 +118,14 @@
 		background-color: #fff;
 	}
 
+	.shop_table tr {
+		border-bottom: 1px solid #d2d2d2;
+	}
+
+	.shop_table tr:last-of-type {
+		border: none;
+	}
+
 	.shop_table_wrap td {
 		font-size: 14px;
 	}
@@ -138,20 +146,20 @@
 	}
 
 	.shop_table tr:first-child td:nth-of-type(1) {
-		padding-top: 0px;
+		padding-top: 10px;
 	}
 
-	.shop_table td:last-child {
-		border-bottom: 1px solid #d2d2d2;
+	.shop_table td.syokei_td {
 		padding-bottom: 15px;
 	}
 
-	.shop_table tr:last-child td:last-child {
+	.shop_table tr:last-child td.syokei_td {
 		border-bottom: none;
 	}
 
 	.shop_table .syohin_wrap .syohin_img_wrap {
-		width: 100%;
+		vertical-align: top;
+		width: 120px;
 	}
 
 	.shop_table .syohin_wrap img {
@@ -161,8 +169,50 @@
 	}
 
 	.shop_table .syohin_wrap .syohin_text_wrap {
-		width: 100%;
-		margin: 10px 0;
+		margin: 0 0 0 10px;
+		width: calc(100% - 135px);
+	}
+
+	.shop_table td.tanka_td,
+	.shop_table td.suryo_td,
+	.shop_table td.syokei_td {
+		width: calc(100% - 140px)!important;
+		margin-left: 135px;
+		text-align: right!important;
+	}
+
+	.shop_table td.tanka_td {
+		padding-top: 15px;
+	}
+
+	.shop_table td.suryo_td {
+		padding-bottom: 10px;
+		padding-top: 5px;
+	}
+
+	.shop_table td.syokei_td {
+		border-top: 1px solid #d2d2d2;
+		padding-bottom: 20px;
+	}
+
+	.shop_table td.tanka_td > div,
+	.shop_table td.suryo_td > div,
+	.shop_table td.syokei_td > div {
+		clear: both;
+		overflow: hidden;
+	}
+
+	.shop_table td.tanka_td > div > div,
+	.shop_table td.suryo_td > div > div,
+	.shop_table td.syokei_td > div > div {
+		display: inline-block;
+	}
+
+	.shop_table td.tanka_td > div > div:first-child,
+	.shop_table td.suryo_td > div > div:first-child,
+	.shop_table td.syokei_td > div > div:first-child {
+		display: inline-block;
+		float: left;
 	}
 
 	.note_kingaku {
@@ -184,6 +234,7 @@
 		height: auto;
 		font-weight: bold;
 		display: table-cell;
+		font-size: 16px;
 	}
 
 	.note_kingaku table td {

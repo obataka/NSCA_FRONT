@@ -43,12 +43,14 @@ a:hover {
 
 a.link_blank {
 	transition: all 0.2s;
+	display: inline-block;
 }
 
 a.link_blank i {
-	vertical-align: top;
-	margin-left: 1px;
+	vertical-align: middle;
+	margin-left: 2px;
 	margin-right: 1px;
+	margin-bottom: 4px;
 }
 
 a.link_blank:hover {
@@ -75,12 +77,12 @@ input {
 
 input,
 select {
-    vertical-align: middle;
+	vertical-align: middle;
 }
 
 header {
-    width: 100%;
-    border-bottom: 1px solid #aaa;
+	width: 100%;
+	border-bottom: 1px solid #aaa;
 	background: #fff;
 }
 
@@ -89,15 +91,18 @@ header {
 	height: 74px;
 }
 .header_logo div {
-    max-width: 1200px;
-    margin: 0 auto;
+	max-width: 1200px;
+	margin: 0 auto;
 }
+
 .header_logo img {
 	width: 150px;
 }
+
 .sp_bl {
     display: none;
 }
+
 .flex_wrap {
 	display: flex;
 	flex-wrap: wrap;
@@ -105,12 +110,13 @@ header {
 }
 
 .wrap {
-    padding: 175px 10px 60px 10px;
-    max-width: 1200px;
-    margin: 0 auto;
+	padding: 175px 10px 60px 10px;
+	max-width: 1200px;
+	margin: 0 auto;
 }
 
-.wrap.before_login {
+.wrap.before_login,
+.wrap.not_login {
 	padding-top: 50px;
 	min-height: calc(100vh - 124px);
 }

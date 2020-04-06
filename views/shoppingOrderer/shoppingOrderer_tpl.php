@@ -23,7 +23,7 @@
 		//条件分岐して読み込んでください
 		//ログインしていないときは以下
 		include('../views/templates/header_logo.php');
-		echo '<div class="wrap before_login">';
+		echo '<div class="wrap not_login">';
 
 		//ログイン中は以下
 		//include('../views/templates/header_logo.php');

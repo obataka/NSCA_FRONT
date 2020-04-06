@@ -24,7 +24,7 @@
 		//条件分岐して読み込んでください
 		//ログインしていないときは以下
 		include('../views/templates/header_logo.php');
-		echo '<div class="wrap before_login">';
+		echo '<div class="wrap not_login">';
 
 		//ログイン中は以下
 		//include('../views/templates/header_logo.php');
@@ -98,11 +98,10 @@
 											<div>
 												<div class="midashi">商品名</div>
 												<span>体力トレーニング検定2級問題集体力トレーニング検定2級問題集体力トレーニング検定2級問題集体力トレーニング検定2級問題集体力トレーニング検定2級問題集</span>
-											</div>
 										</div>
 									</div>
 								</td>
-								<td>
+								<td class="tanka_td">
 									<div>
 										<div class="midashi sp_only">
 											税込単価(円)
@@ -112,7 +111,7 @@
 										</div>
 									</div>
 								</td>
-								<td>
+								<td class="suryo_td">
 									<div>
 										<div class="midashi sp_only">
 											数量
@@ -122,7 +121,7 @@
 										</div>
 									</div>
 								</td>
-								<td>
+								<td class="syokei_td">
 									<div>
 										<div class="midashi sp_only">
 											小計(円)
@@ -151,7 +150,7 @@
 										</div>
 									</div>
 								</td>
-								<td>
+								<td class="tanka_td">
 									<div>
 										<div class="midashi sp_only">
 											税込単価(円)
@@ -161,7 +160,7 @@
 										</div>
 									</div>
 								</td>
-								<td>
+								<td class="suryo_td">
 									<div>
 										<div class="midashi sp_only">
 											数量
@@ -171,7 +170,7 @@
 										</div>
 									</div>
 								</td>
-								<td>
+								<td class="syokei_td">
 									<div>
 										<div class="midashi sp_only">
 											小計(円)
