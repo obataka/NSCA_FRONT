@@ -1,15 +1,16 @@
 <?php
+namespace Was;
 
 session_start();
 
-require './paymentSelect_constants.php';
-$payCons = new paymentSelect_constants();
+require '../classes/paymentSelect_constants.php';
 
 /*************************************************************************************************************************************
 * SESSIONデータを取得
 *************************************************************************************************************************************/
 $kaiinNo = isset($_SESSION['kaiinNo']) ? $_SESSION['kaiinNo'] : '';
-$tranScreen = isset($_SESSION['tran_screen']) ? $_SESSION['tran_screen'] : '';
+// $tranScreen = isset($_SESSION['tran_screen']) ? $_SESSION['tran_screen'] : '';
+$tranScreen = paymentSelect_constants::MENU_CONFIRM_MEMBER;
 
 /*************************************************************************************************************************************
 * 画面表示用変数
@@ -26,19 +27,19 @@ $includeHeader = '../ctrl/parts/loginHeader.php';
 $includeView = '../views/paymentSelect/paymentSelect_tpl.php';
 
 // デフォルトで会員とする
-$_SESSION['member_type'] = $payCons->PROC_TYPE_MEMBER;
-$memberType = $payCons->PROC_TYPE_MEMBER;
+$_SESSION['member_type'] = paymentSelect_constants::PROC_TYPE_MEMBER;
+$memberType = paymentSelect_constants::PROC_TYPE_MEMBER;
 
 // 遷移元画面判定
 switch ($tranScreen){
-    case $payCons->MENU_CONFIRM_MEMBER : // 新規会員申込み
+    case paymentSelect_constants::MENU_CONFIRM_MEMBER : // 新規会員申込み
 
         // 未ログイン用ヘッダーを設定
         $includeHeader = '../ctrl/parts/beforeLoginHeader.php';
 
         // 会員種別を非会員に設定
-        $_SESSION['member_type'] = $payCons->PROC_TYPE_VISITOR;
-        $memberType = $payCons->PROC_TYPE_VISITOR;
+        $_SESSION['member_type'] = paymentSelect_constants::PROC_TYPE_VISITOR;
+        $memberType = paymentSelect_constants::PROC_TYPE_VISITOR;
 
         // 画面表示用にSESSIONデータを取得
         getSessionData();

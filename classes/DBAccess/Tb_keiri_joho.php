@@ -212,7 +212,7 @@ SQL;
                  , koshin_user_id = :koshin_user_id
              WHERE sakujo_flg = 0
                AND kaiin_no = :old_kaiin_no;
-            SQL;
+SQL;
 
             $sth = $db->prepare($sql);
             $sth->execute([
@@ -244,7 +244,7 @@ SQL;
              WHERE sakujo_flg = 0
                AND keiri_dempyo_no = :keiri_dempyo_no
                AND id = :id;
-            SQL;
+SQL;
 
             $sth = $db->prepare($sql);
             $sth->execute([
@@ -331,7 +331,7 @@ SQL;
                  , :sakusei_nichiji
                  , :koshin_nichiji
             );
-            SQL;
+SQL;
 
             $sth = $db->prepare($sql);
             $sth->execute([

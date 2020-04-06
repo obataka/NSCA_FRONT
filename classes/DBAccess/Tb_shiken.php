@@ -23,7 +23,7 @@ class Tb_shiken
                  , koshin_user_id = :koshin_user_id
              WHERE sakujo_flg = 0
                AND kaiin_no = :old_kaiin_no;
-            SQL;
+SQL;
 
             $sth = $db->prepare($sql);
             $sth->execute([

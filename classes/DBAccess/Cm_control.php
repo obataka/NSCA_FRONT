@@ -90,7 +90,7 @@ class Cm_control
                 UPDATE cm_control
                    SET kessai_remban = kessai_remban + 1
                  WHERE id = 1
-            SQL;
+SQL;
 
             $sth = $db->prepare($sql);
             $sth->execute();
@@ -118,11 +118,11 @@ class Cm_control
                        ) as kessai_remban
                   FROM cm_control
                  WHERE id = 1
-            SQL;
+SQL;
 
             $sth = $db->prepare($sql);
             $sth->execute();
-            $rtn = $sth->fetch(PDO::FETCH_COLUMN);
+            $rtn = $sth->fetch();
 
         } catch (\PDOException $e) {
             error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/nishiyama_log.txt');
@@ -143,7 +143,7 @@ class Cm_control
                 UPDATE cm_control
                    SET kessai_remban = kessai_remban + 1
                  WHERE id = 1
-            SQL;
+SQL;
 
             $sth = $db->prepare($sql);
             $sth->execute();

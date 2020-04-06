@@ -243,7 +243,7 @@ SQL;
                  , koshin_user_id = :koshin_user_id
              WHERE sakujo_flg = 0
                AND kaiin_no = :kaiin_no;
-            SQL;
+SQL;
 
             $sth = $db->prepare($sql);
             $sth->execute([
@@ -272,7 +272,7 @@ SQL;
                 DELETE 
                   FROM tb_kaiin_sentaku
                  WHERE kaiin_no = :kaiin_no;
-            SQL;
+SQL;
 
             $sth = $db->prepare($sql);
             $sth->execute([
@@ -317,7 +317,7 @@ SQL;
                      , :sakusei_nichiji
                      , :koshin_nichiji
                 );
-            SQL;
+SQL;
 
             $sth = $db->prepare($sql);
             $sth->execute([

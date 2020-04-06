@@ -3,33 +3,6 @@ namespace Was;
 
 session_start();
 
-require './Config/Config.php';
-require './Config/FregiConfig.php';
-require './paymentSelect_constants.php';
-require './DBAccess/Db.php';
-require './DBAccess/Cm_control.php';
-require './DBAccess/Tb_kaiin_joho.php';
-require './DBAccess/Tb_kaiin_jotai.php';
-require './DBAccess/Tb_kaiin_journal.php';
-require './DBAccess/Tb_kaiin_sonota.php';
-require './DBAccess/Tb_kaiin_pick_up.php';
-require './DBAccess/Tb_kaiin_nintei.php';
-require './DBAccess/Tb_kaiin_yakushoku.php';
-require './DBAccess/Tb_kaiin_ceu.php';
-require './DBAccess/Tb_kaiin_sentaku.php';
-require './DBAccess/Tb_keiri_joho.php';
-require './DBAccess/Tb_kessai_hakko.php';
-require './DBAccess/Tb_shiken.php';
-require './DBAccess/Tb_shiken_meisai.php';
-require './DBAccess/Tb_doga_konyusha_meisai.php';
-require './DBAccess/Tb_ceu_conference_joho_meisai.php';
-require './DBAccess/Tb_ceu_conference_koen_sankasha.php';
-require './DBAccess/Tb_ceu_quiz_joho_meisai.php';
-require './DBAccess/Tb_ceu_joho_meisai.php';
-require './DBAccess/Tb_kako_shiken_joho_meisai.php';
-require './DBAccess/Tb_kataho_gokaku.php';
-require './DBAccess/Tb_nintei_meisai.php';
-
 /*************************************************************************************************************************************
 * PaymentSelect内で使用する汎用的な関数を定義するクラス
 *************************************************************************************************************************************/
@@ -205,8 +178,9 @@ Class paymentSelect_functions {
         $shiken_sbt_cscs = 1; // 試験種別区分：CSCS
         $shiken_sbt_cpt = 2; // 試験種別区分：CPT
 
-        // 1) 会員番号を取得
-        $kaiin_no = getNewKaiinNo($param['kaiin_sbt_kbn']);
+       // 1) 会員番号を取得
+        $kaiin_no = self::getNewKaiinNo(1);
+        // $kaiin_no = self::getNewKaiinNo($param['kaiin_sbt_kbn']);
         if(empty($kaiin_no)) return null;
 
         // 認定校生の場合、備考を引き継ぐ
@@ -313,8 +287,7 @@ Class paymentSelect_functions {
                 '8' .$today .'01', 
                 '8' .$today .'99'
             );
-            
-            if(empty($kaiin_joho)) {
+            if(empty($kaiin_joho) || empty($kaiin_joho['kaiin_no'])) {
                 return '8' .$today .'01';
             } else {
                 return strval(intval($kaiin_joho['kaiin_no']) + 1);
@@ -526,51 +499,61 @@ Class paymentSelect_functions {
     ******************************************************************************/
     public static function insertMemberSelectData($db) {
 
-        // テーブルオブジェクト初期化
-        $tb_kaiin_sentaku = new Tb_kaiin_sentaku();
+        try {
+                error_log(print_r('選択データ登録 ' .date('Y/m/d h:i:s'), true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/nishiyama_log.txt');
+            // テーブルオブジェクト初期化
+            $tb_kaiin_sentaku = new Tb_kaiin_sentaku();
 
-        // パラメータの準備
-        $param = array();
-        $param['kaiin_no'] = isset($_SESSION['kaiinNo']) ? $_SESSION['kaiinNo'] : '';
-        $param['sakujo_flg'] = 0;
-        $param['sakusei_user_id'] = $param['koshin_user_id'] = payment_constants::USER_ID;
-        $param['sakusei_nichiji'] = $param['koshin_nichiji'] = date('Y/m/d H:i:s');
+            // パラメータの準備
+            $param = array();
+            $param['kaiin_no'] = isset($_SESSION['kaiinNo']) ? $_SESSION['kaiinNo'] : '';
+            $param['sakujo_flg'] = 0;
+            $param['sakusei_user_id'] = $param['koshin_user_id'] = payment_constants::USER_ID;
+            $param['sakusei_nichiji'] = $param['koshin_nichiji'] = date('Y/m/d H:i:s');
 
-        // 会員選択データの削除
-        if(!$tb_kaiin_sentaku->deleteRec_noToran($db, $param)) {
-            return false;
-        }
-        
-        // NSCA以外の認定資格の登録
-        $shikaku = isset($_SESSION['wk_sel_shikaku']) ? $_SESSION['wk_sel_shikaku'] : '';
-        $arrayShikaku = !empty($shikaku) ? explode(',',$shikaku) : null;
-        $shikakuSonota = isset($_SESSION['sel_shikaku_sonota']) ? $_SESSION['sel_shikaku_sonota'] : null;
-        if(!empty($arrayShikaku)) {
-            if(!insertKaiinSentakuByArray($db, $tb_kaiin_sentaku, $param, 22, $arrayShikaku, $shikakuSonota)) {
+                error_log(print_r('選択データ削除前 ' .date('Y/m/d h:i:s'), true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/nishiyama_log.txt');
+            // 会員選択データの削除
+            if(!$tb_kaiin_sentaku->deleteRec_noToran($db, $param)) {
+                error_log(print_r('選択データ削除失敗 ' .date('Y/m/d h:i:s'), true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/nishiyama_log.txt');
                 return false;
             }
-        }
-
-        // 興味のある地域の登録
-        $chiiki = isset($_SESSION['wk_sel_k_chiiki']) ? $_SESSION['wk_sel_k_chiiki'] : '';
-        $arrayChiiki = !empty($chiiki) ? explode(',',$chiiki) : null;
-        if(!empty($arrayChiiki)) {
-            if(!insertKaiinSentakuByArray($db, $tb_kaiin_sentaku, $param, 32, $arrayChiiki, null)) {
-                return false;
+            
+            // NSCA以外の認定資格の登録
+            $shikaku = isset($_SESSION['wk_sel_shikaku']) ? $_SESSION['wk_sel_shikaku'] : '';
+            $arrayShikaku = !empty($shikaku) ? explode(',',$shikaku) : null;
+            $shikakuSonota = isset($_SESSION['sel_shikaku_sonota']) ? $_SESSION['sel_shikaku_sonota'] : null;
+            if(!empty($arrayShikaku)) {
+                error_log(print_r('認定資格登録開始 ' .date('Y/m/d h:i:s'), true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/nishiyama_log.txt');
+                if(!self::insertKaiinSentakuByArray($db, $tb_kaiin_sentaku, $param, 22, $arrayShikaku, $shikakuSonota)) {
+                    return false;
+                }
             }
-        }
 
-        // 興味のある分野の登録
-        $bunya = isset($_SESSION['wk_sel_bunya']) ? $_SESSION['wk_sel_bunya'] : '';
-        $arrayBunya = !empty($bunya) ? explode(',',$bunya) : null;
-        $bunyaSonota = isset($_SESSION['sel_bunya_sonota']) ? $_SESSION['sel_bunya_sonota'] : null;
-        if(!empty($arrayBunya)) {
-            if(!insertKaiinSentakuByArray($db, $tb_kaiin_sentaku, $param, 24, $arrayBunya, $bunyaSonota)) {
-                return false;
+            // 興味のある地域の登録
+            $chiiki = isset($_SESSION['wk_sel_k_chiiki']) ? $_SESSION['wk_sel_k_chiiki'] : '';
+            $arrayChiiki = !empty($chiiki) ? explode(',',$chiiki) : null;
+            if(!empty($arrayChiiki)) {
+                error_log(print_r('興味のある地域登録開始 ' .date('Y/m/d h:i:s'), true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/nishiyama_log.txt');
+                if(!self::insertKaiinSentakuByArray($db, $tb_kaiin_sentaku, $param, 32, $arrayChiiki, null)) {
+                    return false;
+                }
             }
-        }
 
-        return true;
+            // 興味のある分野の登録
+            $bunya = isset($_SESSION['wk_sel_bunya']) ? $_SESSION['wk_sel_bunya'] : '';
+            $arrayBunya = !empty($bunya) ? explode(',',$bunya) : null;
+            $bunyaSonota = isset($_SESSION['sel_bunya_sonota']) ? $_SESSION['sel_bunya_sonota'] : null;
+            if(!empty($arrayBunya)) {
+                error_log(print_r('興味のある分野登録開始 ' .date('Y/m/d h:i:s'), true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/nishiyama_log.txt');
+                if(!self::insertKaiinSentakuByArray($db, $tb_kaiin_sentaku, $param, 24, $arrayBunya, $bunyaSonota)) {
+                    return false;
+                }
+            }
+
+            return true;
+        } catch(Exception $e) {
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/nishiyama_log.txt');
+        }
     }
 
     /*****************************************************************************
@@ -599,7 +582,7 @@ Class paymentSelect_functions {
     * @param  : db DBオブジェクト
     * @return : 成功 新たに採番した経理番号 / 失敗 null
     ******************************************************************************/
-    private static function getAccountingId($db) {
+    public static function getAccountingId($db) {
 
         // テーブルオブジェクトの初期化
         $cm_control = new Cm_control();

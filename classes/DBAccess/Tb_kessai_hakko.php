@@ -118,7 +118,7 @@ class Tb_kessai_hakko
                , :yoyaku_kaiin_sbt
                , :konyubi
             );
-            SQL;
+SQL;
 
             $sth = $db->prepare($sql);
             $sth->execute([
@@ -291,7 +291,7 @@ class Tb_kessai_hakko
                , :yoyaku_kaiin_sbt
                , :konyubi
             );
-            SQL;
+SQL;
 
             $sth = $db->prepare($sql);
             $sth->execute([
@@ -463,7 +463,7 @@ SQL;
                  WHERE sakujo_flg = 0
                    AND id = :id
                    AND settleno = :settleno
-            SQL;
+SQL;
 
             $sth = $db->prepare($sql);
             $sth->execute([
@@ -493,8 +493,8 @@ SQL;
                SET kaiin_no = :kaiin_no
                  , koshin_user_id = :koshin_user_id
              WHERE sakujo_flg = 0
-               AND kaiin_no = :old_kaiin_no;
-            SQL;
+               AND kaiin_no = :old_kaiin_no
+SQL;
 
             $sth = $db->prepare($sql);
             $sth->execute([

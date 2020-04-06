@@ -789,7 +789,7 @@ SQL;
                  , :d_shinsei_category_c_gokei
                  , :d_shinsei_category_d_gokei
             );
-            SQL;
+SQL;
             $sth = $db->prepare($sql);
             $sth->execute([
                 ':kaiin_no' => $param['kaiin_no'],
@@ -898,7 +898,7 @@ SQL;
                  , :d_shinsei_category_c_gokei
                  , :d_shinsei_category_d_gokei
             );
-            SQL;
+SQL;
             $sth = $db->prepare($sql);
             $sth->execute([
                 ':kaiin_no' => $param['kaiin_no'],
@@ -951,7 +951,7 @@ SQL;
                  , koshin_user_id = :koshin_user_id
              WHERE sakujo_flg = 0
                AND kaiin_no = :old_kaiin_no;
-            SQL;
+SQL;
 
             $sth = $db->prepare($sql);
             $sth->execute([

@@ -1365,7 +1365,7 @@ SQL;
                         WHERE shiken.kaiin_no = kaiin.kaiin_no
                         GROUP BY meisai.kaiin_no
                    ) IS NOT NULL
-            SQL;
+SQL;
 
             $sth = $db->prepare($sql);
             $sth->execute([
@@ -1402,7 +1402,7 @@ SQL;
                   FROM tb_kaiin_joho
                  WHERE sakujo_flg = 0
                    AND kaiin_no BETWEEN :kaiinNoFrom AND :kaiinNoTo
-            SQL;
+SQL;
 
             $sth = $db->prepare($sql);
             $sth->execute([
@@ -1432,7 +1432,7 @@ SQL;
                   FROM tb_kaiin_joho
                  WHERE sakujo_flg = 0
                    AND kaiin_no LIKE :keyword
-            SQL;
+SQL;
 
             $sth = $db->prepare($sql);
             $sth->execute([
@@ -1462,7 +1462,7 @@ SQL;
                  , koshin_user_id = :koshin_user_id
              WHERE sakujo_flg = 0
                AND kaiin_no = :kaiin_no;
-            SQL;
+SQL;
 
             $sth = $db->prepare($sql);
             $sth->execute([

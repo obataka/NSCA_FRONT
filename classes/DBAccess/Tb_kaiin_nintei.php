@@ -146,7 +146,7 @@ class Tb_kaiin_nintei
                , :sakusei_nichiji
                , :koshin_nichiji
          );
-         SQL;
+SQL;
          $sth = $db->prepare($sql);
          $sth->execute([
                ':kaiin_no' => $param['kaiin_no'],
@@ -246,7 +246,7 @@ class Tb_kaiin_nintei
                , :sakusei_nichiji
                , :koshin_nichiji
          );
-         SQL;
+SQL;
          $sth = $db->prepare($sql);
          $sth->execute([
                ':kaiin_no' => $param['kaiin_no'],
@@ -296,7 +296,7 @@ class Tb_kaiin_nintei
                  , koshin_user_id = :koshin_user_id
              WHERE sakujo_flg = 0
                AND kaiin_no = :old_kaiin_no;
-            SQL;
+SQL;
 
             $sth = $db->prepare($sql);
             $sth->execute([

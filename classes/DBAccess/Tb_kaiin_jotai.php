@@ -399,7 +399,7 @@ SQL;
                  , :koshin_nichiji
                  , :kaiinsho_hassobi
             );
-            SQL;
+SQL;
             $sth = $db->prepare($sql);
             $sth->execute([
                 ':kaiin_no' => $param['kaiin_no'],
@@ -511,7 +511,7 @@ SQL;
                  , :koshin_nichiji
                  , :kaiinsho_hassobi
             );
-            SQL;
+SQL;
             $sth = $db->prepare($sql);
             $sth->execute([
                 ':kaiin_no' => $param['kaiin_no'],
@@ -565,7 +565,7 @@ SQL;
                  , koshin_user_id = :koshin_user_id
              WHERE sakujo_flg = 0
                AND kaiin_no = :kaiin_no;
-            SQL;
+SQL;
 
             $sth = $db->prepare($sql);
             $sth->execute([

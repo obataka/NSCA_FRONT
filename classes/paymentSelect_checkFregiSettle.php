@@ -57,6 +57,7 @@ if(!empty($kessaiHakkoId) && !empty($settleNo) && empty($extpayment)) {
             $result = 3;
         }
     }
+    
 } else {
     if(!empty($extpayment)) {
         $result = 4;

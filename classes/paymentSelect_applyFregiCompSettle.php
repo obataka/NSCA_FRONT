@@ -10,7 +10,26 @@ require './paymentSelect_functions.php';
 require './DBAccess/Db.php';
 require './DBAccess/Cm_control.php';
 require './DBAccess/Tb_kaiin_joho.php';
+require './DBAccess/Tb_kaiin_jotai.php';
+require './DBAccess/Tb_kaiin_journal.php';
+require './DBAccess/Tb_kaiin_sonota.php';
+require './DBAccess/Tb_kaiin_pick_up.php';
+require './DBAccess/Tb_kaiin_nintei.php';
+require './DBAccess/Tb_kaiin_yakushoku.php';
+require './DBAccess/Tb_kaiin_ceu.php';
+require './DBAccess/Tb_kaiin_sentaku.php';
+require './DBAccess/Tb_keiri_joho.php';
 require './DBAccess/Tb_kessai_hakko.php';
+require './DBAccess/Tb_shiken.php';
+require './DBAccess/Tb_shiken_meisai.php';
+require './DBAccess/Tb_doga_konyusha_meisai.php';
+require './DBAccess/Tb_ceu_conference_joho_meisai.php';
+require './DBAccess/Tb_ceu_conference_koen_sankasha.php';
+require './DBAccess/Tb_ceu_quiz_joho_meisai.php';
+require './DBAccess/Tb_ceu_joho_meisai.php';
+require './DBAccess/Tb_kako_shiken_joho_meisai.php';
+require './DBAccess/Tb_kataho_gokaku.php';
+require './DBAccess/Tb_nintei_meisai.php';
 
 $cm_control = new Cm_control();
 $tb_kaiin_joho = new Tb_kaiin_joho();
@@ -22,8 +41,10 @@ $result = null;
 *************************************************************************************************************************************/
 $tranScreen = isset($_SESSION['tranScreen']) ? $_SESSION['tranScreen'] : '';
 $selOption = isset($_SESSION['sel_option']) ? $_SESSION['sel_option'] : '';
-$keiriShumoku1 = isset($_SESSION['keiri_shumoku_cd_1']) ? $_SESSION['keiri_shumoku_cd_1'] : '';
-$keiriShumoku2 = isset($_SESSION['keiri_shumoku_cd_2']) ? $_SESSION['keiri_shumoku_cd_2'] : '';
+$keiriShumoku1 = '01';
+$keiriShumoku2 = '01';
+// $keiriShumoku1 = isset($_SESSION['keiri_shumoku_cd_1']) ? $_SESSION['keiri_shumoku_cd_1'] : '';
+// $keiriShumoku2 = isset($_SESSION['keiri_shumoku_cd_2']) ? $_SESSION['keiri_shumoku_cd_2'] : '';
 
 /*************************************************************************************************************************************
 * POSTデータを取得
@@ -116,7 +137,6 @@ try {
                     $kaiinNo = null; // 会員番号
                     $oldKaiinNo = null; // 旧会員番号（認定校生）
                     $certificateFlg = 0; // 旧認定校生フラグ
-
                     $oldKaiinNo = paymentSelect_functions::getKaiinNoForMemberCertificate(
                         $_SESSION['name_sei'],
                         $_SESSION['name_mei'],
@@ -141,11 +161,13 @@ try {
                             throw new Exception();
                         }
                     }
-
+                    error_log(print_r('旧認定校生データ更新処理終了 ' .date('Y/m/d h:i:s'), true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/nishiyama_log.txt');
                     // 会員選択データの登録
                     if(!paymentSelect_functions::insertMemberSelectData($db)) {
+                        error_log(print_r('選択データ追加失敗 ' .date('Y/m/d h:i:s'), true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/nishiyama_log.txt');
                         throw new Exception();
                     }
+                        error_log(print_r('選択データ追加成功 ' .date('Y/m/d h:i:s'), true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/nishiyama_log.txt');
                     
                     // 経理伝票番号の取得
                     $keiriDempyoNo = paymentSelect_functions::getAccountingId($db);

@@ -95,7 +95,7 @@ SQL;
     }
 
     /*
-     * “o˜^
+     * ç™»éŒ²
      * @param array $param
      * @return boolean
      */
@@ -150,7 +150,7 @@ SQL;
                  , :sakusei_nichiji
                  , :koshin_nichiji
             );
-            SQL;
+SQL;
             $sth = $db->prepare($sql);
             $sth->execute([
                 ':kaiin_no' => $param['kaiin_no'],
@@ -184,7 +184,7 @@ SQL;
     }
 
     /*
-     * “o˜^iÚ‘±‹y‚Ñƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“‚ÍŠO‘¤ŽÀŽ{j
+     * ç™»éŒ²ï¼ˆæŽ¥ç¶šåŠã³ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³ã¯å¤–å´å®Ÿæ–½ï¼‰
      * @param object $db
      * @param array $param
      * @return boolean
@@ -238,7 +238,7 @@ SQL;
                  , :sakusei_nichiji
                  , :koshin_nichiji
             );
-            SQL;
+SQL;
             $sth = $db->prepare($sql);
             $sth->execute([
                 ':kaiin_no' => $param['kaiin_no'],
@@ -270,7 +270,7 @@ SQL;
     }
 
     /*
-     * íœƒtƒ‰ƒOXVˆ—iÚ‘±‹y‚Ñƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“‚ÍŠO‘¤ŽÀŽ{j
+     * å‰Šé™¤ãƒ•ãƒ©ã‚°æ›´æ–°å‡¦ç†ï¼ˆæŽ¥ç¶šåŠã³ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³ã¯å¤–å´å®Ÿæ–½ï¼‰
      * @param object $db
      * @param array $param
      * @return boolean
@@ -284,7 +284,7 @@ SQL;
                  , koshin_user_id = :koshin_user_id
              WHERE sakujo_flg = 0
                AND kaiin_no = :kaiin_no;
-            SQL;
+SQL;
 
             $sth = $db->prepare($sql);
             $sth->execute([
