@@ -61,8 +61,8 @@
 	                        <div class="btn">
 	                            <button class="button" type="button" onclick="location.href='#'"><span>詳しく見る</span></button>
 	                            <button class="button" type="button" onclick="location.href='../../hpcUseInput'"><span>予約する</span></button>
-	                        </div>      
-	                    </div>                  
+	                        </div>
+	                    </div>
 	                </div>
 	                <div class="kojin_content_wrap clearfix">
 	                   <img src="https://placehold.jp/150x150.png">
@@ -73,9 +73,9 @@
 	                        <span class="sub">一般利用</span>
 	                        <div class="btn">
 	                            <button class="button" type="button" onclick="location.href='#'"><span>詳しく見る</span></button>
-	                            <button class="button" type="button" onclick="location.href='#'"><span>予約する</span></button>
-	                        </div> 
-	                    </div>                  
+	                            <button class="button" type="button" onclick="location.href='../../seminarRoom'"><span>予約する</span></button>
+	                        </div>
+	                    </div>
 	                </div>
 	                <div class="kojin_content_wrap clearfix">
 	                   <img src="https://placehold.jp/150x150.png">
@@ -87,8 +87,8 @@
 	                        <div class="btn">
 	                            <button class="button" type="button" onclick="location.href='#'"><span>詳しく見る</span></button>
 	                            <button class="button" type="button" onclick="location.href='#'"><span>予約する</span></button>
-	                        </div> 
-	                    </div>                  
+	                        </div>
+	                    </div>
 	                </div>
 	            </div>
 	            <div class="kigyo">
@@ -100,8 +100,8 @@
 	                        <div class="btn">
 	                            <button class="button" type="button" onclick="location.href='#'"><span>詳しく見る</span></button>
 	                            <button class="button" type="button" onclick="location.href='#'"><span>予約する</span></button>
-	                        </div>      
-	                    </div>                  
+	                        </div>
+	                    </div>
 	                </div>
 	                <div class="kigyo_content_wrap clearfix">
 	                   <img src="https://placehold.jp/150x150.png">
@@ -111,8 +111,8 @@
 	                        <div class="btn">
 	                            <button class="button" type="button" onclick="location.href='#'"><span>詳しく見る</span></button>
 	                            <button class="button" type="button" onclick="location.href='#'"><span>予約する</span></button>
-	                        </div> 
-	                    </div>                  
+	                        </div>
+	                    </div>
 	                </div>
 	            </div>
 					<!--<a href="#"><button class="button button_b" type="button" value="">マイページへ</button></a>-->
