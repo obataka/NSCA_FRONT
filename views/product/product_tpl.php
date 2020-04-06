@@ -35,31 +35,9 @@
 			</div>
 			<h3>商品購入</h3>
 			<form id="product_form" method="POST" action="">
-				<input type="hidden" name="kaiin_no" id="kaiin_no" value="<?php echo $wk_kaiin_no; ?>">
-				<input type="hidden" name="konyu_id" id="konyu_id" value="<?php echo $konyu_id; ?>">
-				<input type="hidden" name="gokei_kingaku" id="gokei_kingaku" value="<?php echo $gokei_kingaku; ?>">
 				<input type="hidden" name="hambai_id" id="hambai_id" value="<?php echo $hambai_id; ?>">
-				<input type="hidden" name="wk_hambai_id" id="wk_hambai_id" value="<?php echo $wk_hambai_id; ?>">
-				<input type="hidden" name="hambai_title" id="hambai_title" value="<?php echo $hambai_title; ?>">
-				<input type="hidden" name="hambai_title_chuigaki" id="hambai_title_chuigaki" value="<?php echo $hambai_title_chuigaki; ?>">
-				<input type="hidden" name="gazo_url" id="gazo_url" value="<?php echo $gazo_url; ?>">
-				<input type="hidden" name="kaiin_kakaku" id="kaiin_kakaku" value="<?php echo $kaiin_kakaku; ?>">
-				<input type="hidden" name="kaiin_zeikomi_kakaku" id="kaiin_zeikomi_kakaku" value="<?php echo $kaiin_zeikomi_kakaku; ?>">
-				<input type="hidden" name="ippan_kakaku" id="ippan_kakaku" value="<?php echo $ippan_kakaku; ?>">
-				<input type="hidden" name="ippan_zeikomi_kakaku" id="ippan_zeikomi_kakaku" value="<?php echo $ippan_zeikomi_kakaku; ?>">
-				<input type="hidden" name="wk_gaiyo" id="wk_gaiyo" value="<?php echo $gaiyo; ?>">
-				<input type="hidden" name="hambai_kbn" id="hambai_kbn" value="<?php echo $hambai_kbn; ?>">
-				<input type="hidden" name="hambai_settei_kbn" id="hambai_settei_kbn" value="<?php echo $hambai_settei_kbn; ?>">
-				<input type="hidden" name="hambai_settei_meisho" id="hambai_settei_meisho" value="<?php echo $hambai_settei_meisho; ?>">
-				<input type="hidden" name="setsumei" id="setsumei" value="<?php echo $setsumei; ?>">
-				<input type="hidden" name="kakaku" id="kakaku" value="<?php echo $kakaku; ?>">
-				<input type="hidden" name="konyusu" id="konyusu" value="<?php echo $konyusu; ?>">
-				<input type="hidden" name="zeikomi_kakaku" id="zeikomi_kakaku" value="<?php echo $zeikomi_kakaku; ?>">
-				<input type="hidden" name="color_kbn" id="color_kbn" value="<?php echo $color_kbn; ?>">
-				<input type="hidden" name="color_meisho" id="color_meisho" value="<?php echo $color_meisho; ?>">
-				<input type="hidden" name="size_kbn" id="size_kbn" value="<?php echo $size_kbn; ?>">
-				<input type="hidden" name="size_meisho" id="size_meisho" value="<?php echo $size_meisho; ?>">
-				<input type="hidden" name="shikaku_kbn" id="shikaku_kbn" value="<?php echo $shikaku_kbn; ?>">
+				<input type="hidden" name="price" id="price" value="">
+				<input type="hidden" name="hambai_kbn" id="hambai_kbn" value="">
 				<div class="product">
 					<p class="product_title"><span id="product_title">体力トレーニング検定1級問題集</span></p>
 					<section>
@@ -90,7 +68,6 @@
 							</tr>
 						</table>
 					</section>
-
 				</div>
 				<h3>詳細説明</h3>
 				<div class="setsumei">

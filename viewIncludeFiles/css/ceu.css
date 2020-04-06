@@ -1,3 +1,5 @@
+@charset "utf-8";
+
 section{
 	display: flex;
 	flex-wrap: wrap;
@@ -15,19 +17,45 @@ section{
 .link p {
 	font-size: 15px;
 }
-.link a {
-	text-decoration: underline;
+.ceu .ceu-wrap {
+	margin-bottom: 20px;
 }
-.link ul {
-	padding: 20px;
+.ceu #cscs-margin {
+	margin-right: 54px;
 }
-h3 {
+.ceu #nsca-cpt-margin {
+	margin-right: 20px;
+}
+.ceu .span-wrap {
+	display: inline-block;
+}
+.ceu .percent {
+	position: relative;
+	height: 20px;
+	background-color: #f9f9f9;
+	border: solid 1px #414141;
+}
+.percent span {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 17%;
+	height: 20px;
+	background-color: #669fcc;
+}
+.ceu>div, .link ul {
+	margin: 20px 0;
+}
+.link ul li {
+	padding-bottom: 5px;
+}
+h2 {
 	background: none;
-    color: #333;
-    padding: 0;
-    margin-top: 40px;
+	color: #333;
+	padding: 0;
+	margin-top: 40px;
 }
-table {
+.ceu_table {
 	margin-top: 20px;
 	border: 1px solid #ddd;
 }
@@ -37,81 +65,94 @@ table:first-of-type {
 table:last-child {
 	margin-bottom: 50px;
 }
-tr {
-    display: table-row!important;
-    padding: 0!important;
+.ceu_table tr {
+	display: table-row!important;
+	padding: 0!important;
 	border: none;
 }
-th {
+.ceu_table th, .ceu_table td {
 	text-align: center;
-	padding: 1em;
+	padding: 14px;
+} 
+.ceu_table th {
 	background: #005699;
 	color: #fff;
 }
-td {
-    width: 25%;
-	text-align: center;
-	padding: 1em
-}
-td:first-child {
+.ceu_table td:first-child {
 	text-align: left;
 }
-th,
-td {
+.ceu_table th,
+.ceu_table td {
 	border: 1px solid #ddd;
+}
+.ceu_jyokyo th, .ceu_jyokyo td  {
+	width: 25%;
 }
 .ceu_jyokyo tr:first-child,
 .ceu_jyokyo tr:nth-of-type(6){
 	background: #eee;
 }
 .ceu_jyokyo tr:last-child {
-    background: #005699;
-    color: #fff;
+	background: #005699;
+	color: #fff;
 }
 .ceu_joho th {
-	padding: 0.5em;
+	width: 10%;
 }
 .ceu_joho td {
 	width: 10%;
-}
-.ceu_joho td:first-child {
-	width: 12%;
 	text-align: center;
 }
-.ceu_joho td:last-child {
+.ceu_joho th:first-child, .ceu_joho td:first-child {
+	width: 12%;	
+}
+.ceu_joho th:last-child, .ceu_joho td:last-child {
 	width: 30%;
 }
 @media screen and (max-width: 768px){
+	section {
+		display: block;
+	}
+	.ceu {
+		margin-bottom: 20px;
+	}
 	.ceu,
 	.link {
+		width: 100%;
 		padding: 10px;
 	}
 	.link ul {
 		padding: 5px;
 	}
-	table {
+	.ceu_table {
 		width: 100%;
+		border: none;
 	}
-	thead {
+	.ceu_table .pc-only {
 		display: none;
 	}
-	tr {
+	.ceu_table thead {
+		display: none;
+	}
+	.ceu_table tr {
 		width: 100%;
 	}
-	td {
+	.ceu_table td {
 		display: block;
 		text-align: right;
 		width: 100%!important;
 		height: 40px;
+		padding: 8px;
+		border-top: none;
 	}
-	td:first-child {
+	.ceu_table td:first-child {
 		background: #005699;
 		color: #fff;
 		font-weight: bold;
 		text-align: center;
 		border: none;
 	}
-	td:before {
+	.ceu_table td:before {
 		content: attr(data-label);
 		float: left;
 		font-weight: bold;
@@ -126,18 +167,7 @@ td {
 		color: #333;
 	}
 }
-@media screen and (max-width: 480px){
-	section {
-		display: block;
-	}
-	.ceu,
-	.link {
-		width: 100%;
-	}
-	.link {
-		margin-top: 10px;
-	}
-}
+
 
 
 

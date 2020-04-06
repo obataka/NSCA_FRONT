@@ -44,7 +44,7 @@
 						</div>
 					</div>
 					<section>
-						<button class="button" type="submit" value="" onclick="location.href='#'"><span>メール送信</span></button>
+						<button class="button" type="button" value=""><span>メール送信</span></button>
 					</section>
 				</form>
 

@@ -5,7 +5,7 @@
          * //都道府県取得
          ****************/
         $.ajax({
-            url: '../../classes/getTodofukenList.php',
+            url: '../../classes/Common/getTodofukenList.php'
         })
 
             // Ajaxリクエストが成功した時発動
@@ -151,7 +151,7 @@
 
             //郵便番号検索処理
             $.ajax({
-                url: '../../classes/searchPostNo.php',
+                url: '../../classes/Common/searchPostNo.php',
                 type: 'POST',
                 data:
                 {
@@ -179,7 +179,7 @@
                         //※正常に住所情報を取得できた時の処理を書く場所
                         wk_msYubinNo = JSON.parse(rtn);
                         $("#address_todohuken option").filter(function (index) {
-                            return $(this).text() === wk_msYubinNo['kemmei_kana'];
+                            return $(this).text() === wk_msYubinNo['kemmei'];
                         }).prop("selected", true);
                         $("#address_shiku").val(wk_msYubinNo['jusho_1'] + wk_msYubinNo['jusho_2']);
                         $("#address_yomi_shiku").val(wk_msYubinNo['jusho_1_kana'] + wk_msYubinNo['jusho_2_kana']);

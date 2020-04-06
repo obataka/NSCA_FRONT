@@ -14,14 +14,11 @@
 		<link rel="stylesheet" href="../../viewIncludeFiles/css/security_code.css" />
 
 		<script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.1.1.min.js"></script>
-		<script type="text/javascript" src="../../viewIncludeFiles/js/header.js"></script>
-		<script type="text/javascript" src="../../viewIncludeFiles/js/footer.js"></script>
 		<script type="text/javascript" src="../../viewIncludeFiles/js/securityCode.js"></script>
 	</head>
 	<body>
-		<header class="header_logo">
-		</header>
-		<form action="?" method="POST" autocomplete="off" id="" name="">
+		<?php include('../views/templates/header_logo.php'); ?>
+		<form method="POST" autocomplete="off" id="" name="">
 			<div class="wrap before_login">
 				<h1>セキュリティコード入力</h1>
 				<p class="h2_text">ログイン利用として登録されているメールアドレス宛に送信された、セキュリティコードを入力して下さい。<br />
@@ -39,13 +36,13 @@
 								<i class="fas fa-angle-right"></i>
 							</a>
 						</div>
-						<button class="button mt_30" type="button" name="__send" id="__send" value="">
+						<button class="button mt_30 btn_left" type="button" name="__send" id="__send" value="">
 							<span>確認</span>
 						</button>
 					</div>
 				</div>
 			</div>
 		</form>
-		<footer id="footer"></footer>
+		<?php include('../views/templates/footer.php'); ?>
 	</body>
 </html>

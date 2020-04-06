@@ -3,12 +3,14 @@ namespace Was;
 
 session_start();
 
-require './Config/Config.php';
-require './DBAccess/Db.php';
-require './DBAccess/Cm_todofuken.php';
+require '../Config/Config.php';
+require '../DBAccess/Db.php';
+require '../DBAccess/Cm_control.php';
+
+$ret = '';
 
 // データ取得処理
-$result = (new Cm_todofuken())->findByTodofuken();
+$result = (new Cm_control())->findById(1);
 
 // 該当データなしの場合
 if (empty($result)) {

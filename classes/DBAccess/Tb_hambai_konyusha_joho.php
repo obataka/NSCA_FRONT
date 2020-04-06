@@ -139,46 +139,78 @@ SQL;
         return TRUE;
     }
 
-    public function insertKonyushaJoho($db, $param, $gokei)
+    /*
+     * 会員のかごに入れた商品情報を登録する（ショップジャパン）
+     * @param varchar $db
+     * @param varchar $param
+     * @return boolean
+     */
+    public function insert($db, $param)
     {
         try {
 
                 $sql = <<<SQL
                 INSERT INTO	tb_hambai_konyusha_joho
 				(
-					kaiin_no
-					,konyusha_kbn
-					,gokei_kingaku
-					,soryo
-					,sofusaki_henko_kbn
-					,sakujo_flg
-					,sakusei_user_id
-					,koshin_user_id
+					  kaiin_no
+					, konyusha_kbn
+					, gokei_kingaku
+					, soryo
+					, sofusaki_henko_kbn
+					, sakujo_flg
+					, uketsuke_flg
+					, sakusei_user_id
+					, koshin_user_id
+                    , sakusei_nichiji
+                    , koshin_nichiji
 				)
 			VALUES
 				(
-					:kaiin_no
-					,1
-					,$gokei
-					,:buppan_soyo
-					,0
-					,0
-					,:koshin_user_id
-					,:koshin_user_id
+					  :kaiin_no
+					, :konyusha_kbn
+					, :gokei_kingaku
+					, :soryo
+					, 0
+					, 0
+					, 0
+					, :user_id
+					, :user_id
+                    , now()
+                    , now()
 				);
 SQL;
                 $sth = $db->prepare($sql);
                 $sth->execute([
-                    ':kaiin_no'                 => $param['kaiin_no']
-					,':buppan_soyo'             => $param['buppan_soyo']
-                    ,':sakusei_user_id'         => $param['koshin_user_id']
-                    ,':koshin_user_id'          => $param['koshin_user_id']
+                    ':kaiin_no'           => $param['kaiin_no']
+					,':konyusha_kbn'      => $param['konyusha_kbn']
+                    ,':gokei_kingaku'     => $param['gokei_kingaku']
+                    ,':soryo'             => $param['soryo']
+                    ,':user_id'           => $param['user_id']
                 ]);
         } catch (\PDOException $e) {
             error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
-            $db->rollBack();
             return FALSE;
         }
         return TRUE;
     }
+
+    /*
+     * 直前に登録した購入販売情報の購入IDを取得する
+     * @param varchar $db
+     * @return $konyu_id
+     */
+
+    public function getLastKonyuId($db)
+    {
+        try {
+
+			$konyu_id = $db->lastInsertId();
+
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
+            return FALSE;
+        }
+        return $konyu_id;
+    }
+
 }

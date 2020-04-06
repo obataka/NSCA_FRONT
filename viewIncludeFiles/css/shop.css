@@ -1,0 +1,246 @@
+@charset "UTF-8";
+
+.shop_table_wrap {
+	margin-bottom: 80px;
+}
+
+.shop_table {
+	background-color: #fff;
+}
+
+.shop_table thead {
+	background-color: #005699;
+	color: #fff;
+}
+
+.shop_table th {
+	width: auto;
+	padding: 15px 10px;
+	border: 1px solid #d2d2d2;
+	text-align: center;
+}
+
+.shop_table td {
+	width: auto;
+	vertical-align: middle;
+	padding: 15px 10px;
+	border: 1px solid #d2d2d2;
+}
+
+.shop_table td:nth-of-type(1) {
+	text-align: left;
+}
+
+.shop_table .syohin_wrap .syohin_img_wrap {
+	display: inline-block;
+	width: 180px;
+	vertical-align: middle;
+}
+
+.shop_table .syohin_wrap img {
+	max-width: 180px;
+	display: block;
+	max-height: 200px;
+	width: auto;
+	height: auto;
+	margin: 0 auto;
+}
+
+.shop_table .syohin_wrap .syohin_text_wrap {
+	display: inline-block;
+	width: calc(100% - 205px);
+	margin-left: 20px;
+	margin-top: 10px;
+	margin: 10px 0 10px 20px;
+	vertical-align: middle;
+}
+
+.syohin_text_wrap > div:not(:last-of-type) {
+	margin-bottom: 15px;
+}
+
+.shop_table td.tanka_td {
+	width: 120px;
+	text-align: right;
+}
+
+.shop_table td.suryo_td {
+	width: 70px;
+	text-align: right;
+}
+
+.shop_table td.syokei_td {
+	width: 100px;
+	text-align: right;
+}
+
+.note_kingaku {
+	padding: 5px 0 15px;
+	border: 1px solid #d2d2d2;
+	border-top: none;
+	font-weight: bold;
+	font-size: 16px;
+	text-align: right;
+	background-color: #ffffff;
+}
+
+.note_kingaku table {
+	width: auto;
+	margin-left: auto;
+}
+
+.note_kingaku table tr {
+	border: none;
+}
+
+.note_kingaku table th {
+	padding: 10px 0 0;
+	width: auto;
+	color: #005699;
+	background-color: transparent;
+}
+
+.note_kingaku table td {
+	width: 170px;
+	padding: 10px 20px 0 10px;
+}
+
+.shop_table .midashi {
+	font-weight: bold;
+	color: #005699;
+}
+
+@media screen and (max-width: 768px){
+
+	.shop_table_wrap {
+		margin-bottom: 50px;
+		padding: 15px 10px 20px;
+		background-color: #fff;
+	}
+
+	.shop_table tr {
+		border-bottom: 1px solid #d2d2d2;
+	}
+
+	.shop_table tr:last-of-type {
+		border: none;
+	}
+
+	.shop_table_wrap td {
+		font-size: 14px;
+	}
+
+	.shop_table thead {
+		display: none;
+	}
+
+	.shop_table td {
+		width: 100%!important;
+		padding: 10px 0 0;
+		border: none;
+		text-align: left!important;
+	}
+
+	.shop_table td:nth-of-type(1) {
+		padding-top: 25px;
+	}
+
+	.shop_table tr:first-child td:nth-of-type(1) {
+		padding-top: 10px;
+	}
+
+	.shop_table td.syokei_td {
+		padding-bottom: 15px;
+	}
+
+	.shop_table tr:last-child td.syokei_td {
+		border-bottom: none;
+	}
+
+	.shop_table .syohin_wrap .syohin_img_wrap {
+		vertical-align: top;
+		width: 120px;
+	}
+
+	.shop_table .syohin_wrap img {
+		width: 100%;
+		max-width: none;
+		max-height: none;
+	}
+
+	.shop_table .syohin_wrap .syohin_text_wrap {
+		margin: 0 0 0 10px;
+		width: calc(100% - 135px);
+	}
+
+	.shop_table td.tanka_td,
+	.shop_table td.suryo_td,
+	.shop_table td.syokei_td {
+		width: calc(100% - 140px)!important;
+		margin-left: 135px;
+		text-align: right!important;
+	}
+
+	.shop_table td.tanka_td {
+		padding-top: 15px;
+	}
+
+	.shop_table td.suryo_td {
+		padding-bottom: 10px;
+		padding-top: 5px;
+	}
+
+	.shop_table td.syokei_td {
+		border-top: 1px solid #d2d2d2;
+		padding-bottom: 20px;
+	}
+
+	.shop_table td.tanka_td > div,
+	.shop_table td.suryo_td > div,
+	.shop_table td.syokei_td > div {
+		clear: both;
+		overflow: hidden;
+	}
+
+	.shop_table td.tanka_td > div > div,
+	.shop_table td.suryo_td > div > div,
+	.shop_table td.syokei_td > div > div {
+		display: inline-block;
+	}
+
+	.shop_table td.tanka_td > div > div:first-child,
+	.shop_table td.suryo_td > div > div:first-child,
+	.shop_table td.syokei_td > div > div:first-child {
+		display: inline-block;
+		float: left;
+	}
+
+	.note_kingaku {
+		padding: 10px;
+		margin-top: 10px;
+		border: 1px solid #d2d2d2;
+	}
+
+	.note_kingaku table {
+		width: 100%;
+	}
+
+	.note_kingaku table th,
+	.note_kingaku table td {
+		width: auto;
+		background-color: transparent;
+		text-align: left;
+		padding: 0;
+		height: auto;
+		font-weight: bold;
+		display: table-cell;
+		font-size: 16px;
+	}
+
+	.note_kingaku table td {
+		text-align: right;
+	}
+
+
+
+}

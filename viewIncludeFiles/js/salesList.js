@@ -25,12 +25,11 @@
 
      $.ajax({
 		url:  '../../classes/salesList.php',
-	    type: 'POST',
-	    success: function(rtn) {
+	    type: 'POST'
+		}).done((rtn) => {
 	            tbHanbaiJoho = JSON.parse(rtn);
-
 	        // 該当なし
-	        if (tbHanbaiJoho[0]["hambai_id"] == "") {
+	        if (tbHanbaiJoho[0]["hambai_id"] == "" && tbHanbaiJoho[0]["doga_id"] == "") {
 
 
 			}else{
@@ -45,7 +44,7 @@
 							sample_url = "";
 						}
 						var sample_url = (tbHanbaiJoho[i]["sample_url"]) ? tbHanbaiJoho[i]["sample_url"]: "";
-						var hambai_doga_id = (tbHanbaiJoho[i]["hambai_id"]) ? ("H"+tbHanbaiJoho[i]["hambai_id"]): ("D"+tbHanbaiJoho[i]["doga_id"]);
+						var doga_id = (tbHanbaiJoho[i]["doga_id"]) ? tbHanbaiJoho[i]["doga_id"]: "";
 	                    var tbody = '<tr>' 
 	                              + '<td>'
 	                              + '<div>'
@@ -56,12 +55,12 @@
 	                              + '<br><br>'
 	                              + '<a href="' + sample_url + '" target="_blank">サンプル動画を見る</a>'
 	                              + '</p></div>'
-	                              + '<button class="button  pc_bl" type="button"  data-id="' + hambai_doga_id + '"><span>詳細</span></button>'
+	                              + '<button class="button  pc_bl" type="button"  data-id="' + doga_id + '"><span>詳細</span></button>'
 	                              + '</td>'
 	                              + '<td data-label="販売価格" class="price">' + tbHanbaiJoho[i]["kakaku_title"] 
 								  + '価格：<span id="cscs_price_' + [i] + '">' + kakaku + '円</span></td>'
 	                              + '<td class="sp_bl">'
-	                              + '<button class="button" type="button" onClick="goSyosai(' + hambai_doga_id + ')"><span>詳細</span></button>'
+	                              + '<button class="button" type="button" onClick="goSyosai(' + doga_id + ')"><span>詳細</span></button>'
 	                              + '</td>'
 	                              + '</tr>';
 
@@ -174,15 +173,10 @@
 				$('#login_button').hide();
 				$('#no_login_info').hide();
 			}
-	    },
-		fail: function(rtn) {
-//		$('#err_pass_1').html('システムエラーが発生しました。');
+
+		}).fail((rtn) => {
 			return false;
-	    },
-	    error: function(rtn) {
-	        return false;
-	    }
-	 });
+		});
 
 
 /************************************************************
@@ -203,13 +197,7 @@ $('.buttons-area').on('click', 'button', function() {
 $('.buttons-doga-area').on('click', 'button', function() {
  
 	var hambai_doga_id = $(this).data('id');
-	if(hambai_doga_id.substr( 0, 1 ) === "H"){
-		$("#hambai_doga_id").val(hambai_doga_id.substr(1));
-		$("#doga_id").val("");
-	}else{
-		$("#hambai_doga_id").val("");
-		$("#doga_id").val(hambai_doga_id.substr(1));
-	}
+	$("#doga_id").val(doga_id);
     $("#doga_form").submit();
 });
 

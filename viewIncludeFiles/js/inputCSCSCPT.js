@@ -92,7 +92,7 @@
          * //職業取得
          *********************************/
         $.ajax({
-            url: '../../classes/getMeishoList.php',
+            url: '../../classes/Common/getShokugyoList.php'
         }).done((rtn) => {
             // rtn = 0 の場合は、該当なし
             if (rtn == 0) {
@@ -105,7 +105,7 @@
                     //※正常に職業情報を取得できた時の処理を書く場所
                     getMeishoList = JSON.parse(rtn);
                     $.each(getMeishoList, function (i, value) {
-                        $('#job').append('<input id="job_' + value[0] + '" type="checkbox" name="job" value="' + value[0] + '"><label class="checkbox" for="job_' + value[0] + '">' + value[1] + '</label><br>');
+                        $('#job').append('<input id="job_' + value['meisho_cd'] + '" type="checkbox" name="job" value="' + value['meisho_cd'] + '"><label class="checkbox" for="job_' + value['meisho_cd'] + '">' + value['meisho'] + '</label><br>');
                     });
                 }
             }

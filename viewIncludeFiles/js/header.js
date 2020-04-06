@@ -1,6 +1,6 @@
 $(function(){
 
-	var header_html = '<div class="logo_img clearfix">'
+	/*var header_html = '<div class="logo_img clearfix">'
 	+	'<p class="logo"><img src="../../viewIncludeFiles/image/NSCA_Japan_rev.png"></p>'
 	+	'<ul class="dropdown sp_none">'
 	+		'<li><a href="../mypage/" class="underline"><i class="fas fa-home"></i></a></li>'
@@ -68,29 +68,35 @@ $(function(){
 	var header_logo_html =
 	'<div class="">'
 	+	'<img src="../../viewIncludeFiles/image/NSCA_Japan_rev.png" alt="NSCAジャパン">'
-	+'</div>';
+	+'</div>';*/
 
-	$("#header").html(header_html);
-	$(".header_logo").html(header_logo_html);
+	//$("#header").html(header_html);
+	//$(".header_logo").html(header_logo_html);
 
-	$('.dropdown li').hover(function(){
+	/*$('.dropdown li').mouseover(function() {
 		$("ul:not(:animated)", this).slideDown();
-	}, function(){
+	}).mouseout(function() {
+		$("ul.dropdown_list",this).slideUp();
+	});*/
+
+	$('.dropdown li').hover(function() {
+		$("ul:not(:animated)", this).slideDown();
+	},function() {
 		$("ul.dropdown_list",this).slideUp();
 	});
 
-	var $header = $('#header');
+	var header = $('#header');
 	// Nav Fixed
 	$(window).scroll(function() {
 		if ($(window).scrollTop() > 350) {
-			$header.addClass('fixed');
+			header.addClass('fixed');
 		} else {
-			$header.removeClass('fixed');
+			header.removeClass('fixed');
 		}
 	});
 	// Nav Toggle Button
 	$('#nav-toggle').click(function(){
-		$header.toggleClass('open');
+		header.toggleClass('open');
 		$('#global-nav').slideToggle();
 		$('.dropdown_list_sp').hide();
 	});
@@ -110,7 +116,7 @@ $(function(){
 			$(this).prev('.dropdown').find('.fa-angle-down').removeClass("down");
 		});
 
-    });
+	});
 		//$(this).not($(this).find(".dropdown_list_sp")).slideUp();
 
 

@@ -78,7 +78,82 @@ class Cm_control
         return $cmControl;
     }
 
+    /*
+     * 決済連番をカウントアップします（外側でトランザクション開始）
+     * @param object db
+     * @return 成功 true / 失敗 false
+     */
+    public function countUpKessaiRemban_noTran($db) 
+    {
+        try {
+            $sql = <<<SQL
+                UPDATE cm_control
+                   SET kessai_remban = kessai_remban + 1
+                 WHERE id = 1
+SQL;
 
+            $sth = $db->prepare($sql);
+            $sth->execute();
+
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/nishiyama_log.txt');
+            return false;
+        }
+        return true;
+    }
+
+    /*
+     * 決済連番をフォーマットして取得します
+     */
+    public function getKessaiRemban()
+    {
+        $db = Db::getInstance();
+        $rtn = [];
+
+        try {
+            $sql = <<<SQL
+                SELECT concat(
+                            DATE_FORMAT(now(), '%Y%m%d'), 
+                            right(concat('000000000000', convert(kessai_remban, char)), 12)
+                       ) as kessai_remban
+                  FROM cm_control
+                 WHERE id = 1
+SQL;
+
+            $sth = $db->prepare($sql);
+            $sth->execute();
+            $rtn = $sth->fetch();
+
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/nishiyama_log.txt');
+            $rtn = [];
+        }
+      return $rtn;
+    }
+
+    /*
+     * 経理伝票番号をカウントアップします（外側でトランザクション開始）
+     * @param object db
+     * @return 成功 true / 失敗 false
+     */
+    public function countUpKeiriDempyoNo_noTran($db) 
+    {
+        try {
+            $sql = <<<SQL
+                UPDATE cm_control
+                   SET kessai_remban = kessai_remban + 1
+                 WHERE id = 1
+SQL;
+
+            $sth = $db->prepare($sql);
+            $sth->execute();
+
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/nishiyama_log.txt');
+            return false;
+        }
+        return true;
+    }
 
 //
 //    /**

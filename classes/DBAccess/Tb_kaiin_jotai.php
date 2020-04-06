@@ -327,4 +327,258 @@ SQL;
         return TRUE;
     }
 
+    /*
+     * 登録
+     * @param array $param
+     * @return boolean
+     */
+    public function insertRec($param)
+    {
+        $db = Db::getInstance();
+        $db->beginTransaction();
+        try {
+            $sql = <<<SQL
+            INSERT
+              INTO tb_kaiin_jotai (
+                   kaiin_no
+                 , nyukaibi
+                 , nyukai_moshikomibi
+                 , shokai_nyukaibi
+                 , keizoku_hizuke
+                 , yuko_hizuke
+                 , taikai_hizuke
+                 , taikai_shorui_juribi
+                 , nyukai_riyu_kbn
+                 , nyukai_riyu_biko
+                 , taikai_riyu_kbn
+                 , taikai_riyu_biko
+                 , gakuseisho_kakunin_kbn
+                 , gakuseisho_kakunimbi
+                 , sbt_henko_yoyakubi
+                 , yoyaku_kaiin_sbt
+                 , eibun_option_keizoku_flg
+                 , tekiyo_kaishibi
+                 , kaihi_nyukimbi
+                 , kaihi_shiharai_hoho_kbn
+                 , kaihi_kessai_jikkobi
+                 , kaihi_kessai_error_code
+                 , sakujo_flg
+                 , sakusei_user_id
+                 , koshin_user_id
+                 , sakusei_nichiji
+                 , koshin_nichiji
+                 , kaiinsho_hassobi
+            )
+            VALUES (
+                   :kaiin_no
+                 , :nyukaibi
+                 , :nyukai_moshikomibi
+                 , :shokai_nyukaibi
+                 , :keizoku_hizuke
+                 , :yuko_hizuke
+                 , :taikai_hizuke
+                 , :taikai_shorui_juribi
+                 , :nyukai_riyu_kbn
+                 , :nyukai_riyu_biko
+                 , :taikai_riyu_kbn
+                 , :taikai_riyu_biko
+                 , :gakuseisho_kakunin_kbn
+                 , :gakuseisho_kakunimbi
+                 , :sbt_henko_yoyakubi
+                 , :yoyaku_kaiin_sbt
+                 , :eibun_option_keizoku_flg
+                 , :tekiyo_kaishibi
+                 , :kaihi_nyukimbi
+                 , :kaihi_shiharai_hoho_kbn
+                 , :kaihi_kessai_jikkobi
+                 , :kaihi_kessai_error_code
+                 , :sakujo_flg
+                 , :sakusei_user_id
+                 , :koshin_user_id
+                 , :sakusei_nichiji
+                 , :koshin_nichiji
+                 , :kaiinsho_hassobi
+            );
+SQL;
+            $sth = $db->prepare($sql);
+            $sth->execute([
+                ':kaiin_no' => $param['kaiin_no'],
+                ':nyukaibi' => $param['nyukaibi'],
+                ':nyukai_moshikomibi' => $param['nyukai_moshikomibi'],
+                ':shokai_nyukaibi' => $param['shokai_nyukaibi'],
+                ':keizoku_hizuke' => $param['keizoku_hizuke'],
+                ':yuko_hizuke' => $param['yuko_hizuke'],
+                ':taikai_hizuke' => $param['taikai_hizuke'],
+                ':taikai_shorui_juribi' => $param['taikai_shorui_juribi'],
+                ':nyukai_riyu_kbn' => $param['nyukai_riyu_kbn'],
+                ':nyukai_riyu_biko' => $param['nyukai_riyu_biko'],
+                ':taikai_riyu_kbn' => $param['taikai_riyu_kbn'],
+                ':taikai_riyu_biko' => $param['taikai_riyu_biko'],
+                ':gakuseisho_kakunin_kbn' => $param['gakuseisho_kakunin_kbn'],
+                ':gakuseisho_kakunimbi' => $param['gakuseisho_kakunimbi'],
+                ':sbt_henko_yoyakubi' => $param['sbt_henko_yoyakubi'],
+                ':yoyaku_kaiin_sbt' => $param['yoyaku_kaiin_sbt'],
+                ':eibun_option_keizoku_flg' => $param['eibun_option_keizoku_flg'],
+                ':tekiyo_kaishibi' => $param['tekiyo_kaishibi'],
+                ':kaihi_nyukimbi' => $param['kaihi_nyukimbi'],
+                ':kaihi_shiharai_hoho_kbn' => $param['kaihi_shiharai_hoho_kbn'],
+                ':kaihi_kessai_jikkobi' => $param['kaihi_kessai_jikkobi'],
+                ':kaihi_kessai_error_code' => $param['kaihi_kessai_error_code'],
+                ':sakujo_flg' => $param['sakujo_flg'],
+                ':sakusei_user_id' => $param['sakusei_user_id'],
+                ':koshin_user_id' => $param['koshin_user_id'],
+                ':sakusei_nichiji' => $param['sakusei_nichiji'],
+                ':koshin_nichiji' => $param['koshin_nichiji'],
+                ':kaiinsho_hassobi' => $param['kaiinsho_hassobi']
+            ]);
+            $db->commit();
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/nishiyama_log.txt');
+            $db->rollBack();
+            return FALSE;
+        }
+        return TRUE;
+    }
+
+    /*
+     * 登録（接続及びトランザクションは外側実施）
+     * @param object $db
+     * @param array $param
+     * @return boolean
+     */
+    public function insertRec_noTran($db, $param)
+    {
+        try {
+            $sql = <<<SQL
+            INSERT
+              INTO tb_kaiin_jotai (
+                   kaiin_no
+                 , nyukaibi
+                 , nyukai_moshikomibi
+                 , shokai_nyukaibi
+                 , keizoku_hizuke
+                 , yuko_hizuke
+                 , taikai_hizuke
+                 , taikai_shorui_juribi
+                 , nyukai_riyu_kbn
+                 , nyukai_riyu_biko
+                 , taikai_riyu_kbn
+                 , taikai_riyu_biko
+                 , gakuseisho_kakunin_kbn
+                 , gakuseisho_kakunimbi
+                 , sbt_henko_yoyakubi
+                 , yoyaku_kaiin_sbt
+                 , eibun_option_keizoku_flg
+                 , tekiyo_kaishibi
+                 , kaihi_nyukimbi
+                 , kaihi_shiharai_hoho_kbn
+                 , kaihi_kessai_jikkobi
+                 , kaihi_kessai_error_code
+                 , sakujo_flg
+                 , sakusei_user_id
+                 , koshin_user_id
+                 , sakusei_nichiji
+                 , koshin_nichiji
+                 , kaiinsho_hassobi
+            )
+            VALUES (
+                   :kaiin_no
+                 , :nyukaibi
+                 , :nyukai_moshikomibi
+                 , :shokai_nyukaibi
+                 , :keizoku_hizuke
+                 , :yuko_hizuke
+                 , :taikai_hizuke
+                 , :taikai_shorui_juribi
+                 , :nyukai_riyu_kbn
+                 , :nyukai_riyu_biko
+                 , :taikai_riyu_kbn
+                 , :taikai_riyu_biko
+                 , :gakuseisho_kakunin_kbn
+                 , :gakuseisho_kakunimbi
+                 , :sbt_henko_yoyakubi
+                 , :yoyaku_kaiin_sbt
+                 , :eibun_option_keizoku_flg
+                 , :tekiyo_kaishibi
+                 , :kaihi_nyukimbi
+                 , :kaihi_shiharai_hoho_kbn
+                 , :kaihi_kessai_jikkobi
+                 , :kaihi_kessai_error_code
+                 , :sakujo_flg
+                 , :sakusei_user_id
+                 , :koshin_user_id
+                 , :sakusei_nichiji
+                 , :koshin_nichiji
+                 , :kaiinsho_hassobi
+            );
+SQL;
+            $sth = $db->prepare($sql);
+            $sth->execute([
+                ':kaiin_no' => $param['kaiin_no'],
+                ':nyukaibi' => $param['nyukaibi'],
+                ':nyukai_moshikomibi' => $param['nyukai_moshikomibi'],
+                ':shokai_nyukaibi' => $param['shokai_nyukaibi'],
+                ':keizoku_hizuke' => $param['keizoku_hizuke'],
+                ':yuko_hizuke' => $param['yuko_hizuke'],
+                ':taikai_hizuke' => $param['taikai_hizuke'],
+                ':taikai_shorui_juribi' => $param['taikai_shorui_juribi'],
+                ':nyukai_riyu_kbn' => $param['nyukai_riyu_kbn'],
+                ':nyukai_riyu_biko' => $param['nyukai_riyu_biko'],
+                ':taikai_riyu_kbn' => $param['taikai_riyu_kbn'],
+                ':taikai_riyu_biko' => $param['taikai_riyu_biko'],
+                ':gakuseisho_kakunin_kbn' => $param['gakuseisho_kakunin_kbn'],
+                ':gakuseisho_kakunimbi' => $param['gakuseisho_kakunimbi'],
+                ':sbt_henko_yoyakubi' => $param['sbt_henko_yoyakubi'],
+                ':yoyaku_kaiin_sbt' => $param['yoyaku_kaiin_sbt'],
+                ':eibun_option_keizoku_flg' => $param['eibun_option_keizoku_flg'],
+                ':tekiyo_kaishibi' => $param['tekiyo_kaishibi'],
+                ':kaihi_nyukimbi' => $param['kaihi_nyukimbi'],
+                ':kaihi_shiharai_hoho_kbn' => $param['kaihi_shiharai_hoho_kbn'],
+                ':kaihi_kessai_jikkobi' => $param['kaihi_kessai_jikkobi'],
+                ':kaihi_kessai_error_code' => $param['kaihi_kessai_error_code'],
+                ':sakujo_flg' => $param['sakujo_flg'],
+                ':sakusei_user_id' => $param['sakusei_user_id'],
+                ':koshin_user_id' => $param['koshin_user_id'],
+                ':sakusei_nichiji' => $param['sakusei_nichiji'],
+                ':koshin_nichiji' => $param['koshin_nichiji'],
+                ':kaiinsho_hassobi' => $param['kaiinsho_hassobi']
+            ]);
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/nishiyama_log.txt');
+            return FALSE;
+        }
+        return TRUE;
+    }
+
+    /*
+     * 削除フラグ更新処理（接続及びトランザクションは外側実施）
+     * @param object $db
+     * @param array $param
+     * @return boolean
+     */
+    public function updateSakujoFlg_noTran($db, $param)
+    {
+        try {
+            $sql = <<<SQL
+            UPDATE tb_kaiin_jotai
+               SET sakujo_flg = :sakujo_flg
+                 , koshin_user_id = :koshin_user_id
+             WHERE sakujo_flg = 0
+               AND kaiin_no = :kaiin_no;
+SQL;
+
+            $sth = $db->prepare($sql);
+            $sth->execute([
+                ':sakujo_flg' => $param['sakujo_flg'],
+                ':koshin_user_id' => $param['koshin_user_id'],
+                ':kaiin_no' => $param['kaiin_no']
+            ]);
+
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true) . PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/nishiyama_log.txt');
+            return FALSE;
+        }
+        return TRUE;
+    }
+
 }

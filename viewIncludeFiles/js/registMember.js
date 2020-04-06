@@ -29,7 +29,7 @@
          * //都道府県取得
          ****************/
         $.ajax({
-            url: '../../classes/getTodofukenList.php',
+            url: '../../classes/Common/getTodofukenList.php'
         }).done((rtn) => {
             // rtn = 0 の場合は、該当なし
             if (rtn == 0) {
@@ -62,7 +62,7 @@
          * //職業取得
          *********************************/
         $.ajax({
-            url: '../../classes/getMeishoList.php',
+            url: '../../classes/Common/getShokugyoList.php',
         }).done((rtn) => {
             // rtn = 0 の場合は、該当なし
             if (rtn == 0) {
@@ -103,7 +103,7 @@
         * //NSCA以外の認定資格取得
         *********************************/
         $.ajax({
-            url: '../../classes/getShikakuList.php',
+            url: '../../classes/Common/getShikakuList.php'
         }).done((rtn) => {
             // rtn = 0 の場合は、該当なし
             if (rtn == 0) {
@@ -149,7 +149,7 @@
         * //興味のある地域取得
         *********************************/
         $.ajax({
-            url: '../../classes/getAreaList.php',
+            url: '../../classes/Common/getChiikiList.php'
         }).done((rtn) => {
             // rtn = 0 の場合は、該当なし
             if (rtn == 0) {
@@ -158,7 +158,7 @@
                 //※正常に地域情報を取得できた時の処理を書く場所
                 getAreaList = JSON.parse(rtn);
                 $.each(getAreaList, function (i, value) {
-                    $('#Area').append('<input id="chiiki_' + value['meisho_cd'] + '" type="checkbox" name="chiiki" value="' + value['meisho_cd'] + '"><label class="checkbox" for="chiiki_' + value['meisho_cd'] + '">' + value['meisho'] + '</label>');
+                    $('#Area').append('<input id="chiiki_' + value['meisho_cd'] + '" type="checkbox" name="chiiki" value="' + value['meisho_cd'] + '"><label class="checkbox" for="chiiki_' + value['meisho_cd'] + '">' + value['chiikimei'] + '</label>');
                     if (value[1] == "甲信越") {
                         $('#Area').append('<br class="sp_no">');
                     }
@@ -186,7 +186,7 @@
         * //興味のある分野取得
         *********************************/
         $.ajax({
-            url: '../../classes/getBunyaList.php',
+            url: '../../classes/Common/getBunyaList.php'
         }).done((rtn) => {
             // rtn = 0 の場合は、該当なし
             if (rtn == 0) {
@@ -418,7 +418,7 @@
 
             //郵便番号検索処理
             $.ajax({
-                url: '../../classes/searchPostNo.php',
+                url: '../../classes/Common/searchPostNo.php',
                 type: 'POST',
                 data:
                 {
@@ -439,7 +439,7 @@
                     //※正常に住所情報を取得できた時の処理を書く場所
                     wk_msYubinNo = JSON.parse(rtn);
                     $("#address_todohuken option").filter(function (index) {
-                        return $(this).text() === wk_msYubinNo['kemmei_kana'];
+                        return $(this).text() === wk_msYubinNo['kemmei'];
                     }).prop("selected", true).change();
 
                     $("#address_shiku").val(wk_msYubinNo['jusho_1'] + wk_msYubinNo['jusho_2']);
@@ -510,7 +510,7 @@
 
             //郵便番号検索処理
             $.ajax({
-                url: '../../classes/searchPostNo.php',
+                url: '../../classes/Common/searchPostNo.php',
                 type: 'POST',
                 data:
                 {
@@ -531,7 +531,7 @@
                     //※正常に住所情報を取得できた時の処理を書く場所
                     wk_msYubinNo = JSON.parse(rtn);
                     $("#office_todohuken option").filter(function (index) {
-                        return $(this).text() === wk_msYubinNo['kemmei_kana'];
+                        return $(this).text() === wk_msYubinNo['kemmei'];
                     }).prop("selected", true).change();
                     $("#office_shiku").val(wk_msYubinNo['jusho_1'] + wk_msYubinNo['jusho_2']);
                 }
@@ -762,7 +762,7 @@
                 $("#wk_sel_mail_login").val(wa);
                 var test1 = $('[name="mail_login"]:checked').attr('id');
                 var test2 = $('label[for="' + test1 + '"]').text();
-                $('#sel_mail').val(test2);
+                $('#sel_mail_login').val(test2);
             } else {
                 //アドレス2hidden設定
                 var wa = $("input:radio[id='mail_login_2']:checked").val();
@@ -843,6 +843,8 @@
             } else {
                 // ボタンを無効化
                 $('#shikaku_sonota').prop('disabled', true);
+                // テキストエリアをクリア
+                $('#shikaku_sonota').val("");
             }
         });
 
@@ -971,6 +973,8 @@
             } else {
                 // ボタンを無効化
                 $('#bunya_sonota').prop('disabled', true);
+                // テキストエリアをクリア
+                $('#bunya_sonota').val("");
             }
         });
         /********************************
@@ -1011,11 +1015,9 @@
             $("#err_keitai_tel").html("");
             $("#err_fax").html("");
             $("#err_mail_address_1").html("");
-            $("#err_mail_1").html("");
-            $("#err_mail_login_1").html("");
+            $("#err_mail").html("");
+            $("#err_mail_login").html("");
             $("#err_mail_address_2").html("");
-            $("#err_mail_2").html("");
-            $("#err_mail_login_2").html("");
             $("#err_merumaga").html("");
             $("#err_pass_1").html("");
             $("#err_pass_2").html("");
@@ -1392,6 +1394,7 @@
             if (!$("#mail_address_1").val() && !$("#mail_address_2").val()) {
                 wk_err_msg == "";
                 wk_err_msg = "メールアドレス1またはメールアドレス2のいずれかを入力してください。";
+                $("#err_mail_address_1").html(wk_err_msg);
                 $("#err_mail_address_2").html(wk_err_msg);
                 //エラー箇所にフォーカスを当てる
                 if (wk_focus_done == 0) {
@@ -1419,7 +1422,7 @@
                         //TDLエラー
                         wk_err_msg == "";
                         wk_err_msg = "メールアドレスの形式が不正です。";
-                        $("#err_mail_login_1").html(wk_err_msg);
+                        $("#err_mail_address_1").html(wk_err_msg);
                         //エラー箇所にフォーカスを当てる
                         if (wk_focus_done == 0) {
                             $("#mail_address_1").focus();
@@ -1458,7 +1461,7 @@
                         //TDLエラー
                         wk_err_msg == "";
                         wk_err_msg = "メールアドレスの形式が不正です。";
-                        $("#err_mail_login_2").html(wk_err_msg);
+                        $("#err_mail_address_2").html(wk_err_msg);
                         //エラー箇所にフォーカスを当てる
                         if (wk_focus_done == 0) {
                             $("#mail_address_2").focus();
@@ -1494,7 +1497,7 @@
                             //登録済みの場合エラーメッセージを表示
                             wk_err_msg == "";
                             wk_err_msg = "すでにご登録頂いているメールアドレスです。";
-                            $("#err_mail_1").html(wk_err_msg);
+                            $("#err_mail_address_1").html(wk_err_msg);
                             //エラー箇所にフォーカスを当てる
                             if (wk_focus_done == 0) {
                                 $("#mail_address_1").focus();
@@ -1523,7 +1526,7 @@
                             //登録済みの場合エラーメッセージを表示
                             wk_err_msg == "";
                             wk_err_msg = "すでにご登録頂いているメールアドレスです。";
-                            $("#err_mail_2").html(wk_err_msg);
+                            $("#err_mail_address_2").html(wk_err_msg);
                             //エラー箇所にフォーカスを当てる
                             if (wk_focus_done == 0) {
                                 $("#mail_address_2").focus();
@@ -1541,11 +1544,19 @@
                     //チェックされていない場合
                     wk_err_msg == "";
                     wk_err_msg = "ログインする時のメールアドレスを選択してください。";
-                    $("#err_mail_address_2").html(wk_err_msg);
+                    $("#err_mail_login").html(wk_err_msg);
+                }
+
+                //メール受信希望未選択チェック
+                if (!$("input:radio[name='mail']:checked").val()) {
+                    //チェックされていない場合
+                    wk_err_msg == "";
+                    wk_err_msg = "メール受信希望のメールアドレスを選択してください。";
+                    $("#err_mail").html(wk_err_msg);
                 }
 
                 //メールアドレス1未使用チェック
-                if (!$("input:radio[id='mail_login_1']:checked").val() && !$("input:radio[id='mail_1']:checked").val()) {
+                if ((!$("input:radio[id='mail_login_1']:checked").val() && !$("input:radio[id='mail_1']:checked").val()) && ($("input:radio[id='mail_login_2']:checked").val() && $("input:radio[id='mail_2']:checked").val())) {
                     if ($('#mail_address_1').val()) {
                         wk_err_msg == "";
                         wk_err_msg = "メール受信とログイン時にお使いにならないメールアドレス1を削除してください。";
@@ -1554,7 +1565,7 @@
                 }
 
                 //メールアドレス2未使用チェック
-                if (!$("input:radio[id='mail_login_2']:checked").val() && !$("input:radio[id='mail_2']:checked").val()) {
+                if ((!$("input:radio[id='mail_login_2']:checked").val() && !$("input:radio[id='mail_2']:checked").val()) && ($("input:radio[id='mail_login_1']:checked").val() && $("input:radio[id='mail_1']:checked").val())) {
                     if ($('#mail_address_2').val()) {
                         wk_err_msg == "";
                         wk_err_msg = "メール受信とログイン時にお使いにならないメールアドレス2を削除してください。";
@@ -1567,7 +1578,7 @@
                     if (!$('#mail_address_1').val()) {
                         wk_err_msg == "";
                         wk_err_msg = "ログイン時のメールアドレスを入力してください。";
-                        $("#err_mail_address_1").html(wk_err_msg);
+                        $("#err_mail_login").html(wk_err_msg);
                     }
                 }
 
@@ -1576,39 +1587,26 @@
                     if (!$('#mail_address_2').val()) {
                         wk_err_msg == "";
                         wk_err_msg = "ログイン時のメールアドレスを入力してください。";
-                        $("#err_mail_address_2").html(wk_err_msg);
+                        $("#err_mail_login").html(wk_err_msg);
                     }
-                }
-
-                //メール受信希望未選択チェック
-                if (!$("input:radio[name='mail']:checked").val()) {
-                    //チェックされていない場合
-                    wk_err_msg == "";
-                    wk_err_msg = "メール受信希望のメールアドレスを選択してください。";
-                    $("#err_mail").html(wk_err_msg);
                 }
 
                 //メール受信希望1選択時チェック
-                if ($('input[id="mail_1"]').prop('checked')) {
+                if ($('input:radio[id="mail_1"]').prop('checked')) {
                     if (!$("#mail_address_1").val()) {
-                        $("#err_mail_address_2").html("");
                         wk_err_msg == "";
-                        wk_err_msg = "メールアドレス1を入力してください。";
-                        $("#err_mail_address_1").html(wk_err_msg);
+                        wk_err_msg = "メール受信希望のメールアドレスを入力してください。";
+                        $("#err_mail").html(wk_err_msg);
                     }
                 }
                 //メール受信希望2選択時チェック
-                if ($('input[id="mail_2"]').prop('checked')) {
+                if ($('input:radio[id="mail_2"]').prop('checked')) {
                     if (!$("#mail_address_2").val()) {
-                        $("#err_mail_address_1").html("");
                         wk_err_msg == "";
-                        wk_err_msg = "メールアドレス2を入力してください。";
-                        $("#err_mail_address_2").html(wk_err_msg);
+                        wk_err_msg = "メール受信希望のメールアドレスを入力してください。";
+                        $("#err_mail").html(wk_err_msg);
                     }
                 }
-
-
-
             }
 
 

@@ -1,32 +1,41 @@
+@charset "UTF-8";
+
 header {
 	position: fixed;
 	z-index: 999;
 }
+
 header a:hover {
 	border: none;
 }
+
 .logo_img {
     max-width: 1200px;
     margin: 0 auto;
 }
+
 .logo_img img {
     width: 180px;
     padding: 10px;
 }
+
 header ul {
 	display: flex;
     flex-wrap: nowrap;
     justify-content: space-around;
 }
+
 header ul li ul {
 	display: block;
 }
+
 header li {
 	line-height: 45px;
 	text-align: center;
 	display: inline-block;
 	width: 100%;
 }
+
 header a,
 header .active {
 	color: #333;
@@ -35,6 +44,7 @@ header .active {
 	padding: 10px 0;
 	font-weight: bold;
 }
+
 header .active:hover {
 	cursor: default;
 }
@@ -42,20 +52,25 @@ header a:hover {
 	color: #005699;
 	text-decoration: none;
 }
+
 .dropdown_list {
 	display: none;
 }
+
 .dropdown_list li {
     line-height: normal;
 	width: 100%;
 }
+
 .dropdown_list a {
-	color: #333;	
+	color: #333;
 	display: block;
 }
+
 .dropdown_list li:last-child:after {
 	border: none;
 }
+
 .underline::after {
 	background-color: #FFFFFF;
 	bottom: 0;
@@ -68,12 +83,15 @@ header a:hover {
 	width: 0;
 	top: -15px;
 }
+
 .underline:hover::after {
 	width: 100%;
 }
+
 .user_name {
 	color: #333333;
 }
+
 .pc_none {
 	display: none;
 }
@@ -135,7 +153,7 @@ header a:hover {
 		top: 22px;
 	}
 	.wrap {
-		padding-top: 137px;
+		padding-top: 104px;
 	}
 	header {
 		height: 77px;
@@ -252,7 +270,7 @@ header a:hover {
 	margin-right: -1px;
 	text-align: center;
 	margin-top: 28px;
-}	
+}
 .Android #nav-toggle {
 	width: 40px!important;
 }
@@ -264,6 +282,3 @@ header a:hover {
 .iPhone #nav-toggle {
 	width: 40px!important;
 }
-	
-	
-	

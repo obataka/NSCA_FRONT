@@ -177,7 +177,13 @@ SQL;
         return TRUE;
     }
 
-    public function insertKonyushaJohoMeisai($db, $param)
+    /*
+     * 会員のかごに入れた商品情報を登録する（ショップジャパン）
+     * @param varchar $db
+     * @param varchar $param
+     * @return boolean
+     */
+    public function insert($db, $param)
     {
         try {
                 $sql = <<<SQL
@@ -187,41 +193,79 @@ SQL;
 					,hambai_id
 					,hambai_size_kbn
 					,hambai_color_kbn
+					,hambai_sentakushi_kbn
 					,kakaku
                     ,suryo
                     ,torokubi
 					,sakujo_flg
 					,sakusei_user_id
 					,koshin_user_id
+                    , sakusei_nichiji
+                    , koshin_nichiji
 				)
-                
-				SELECT COALESCE(MAX(konyu_id)+1, 1)
+				VALUES 
+				(
+                     :konyu_id
 					,:hambai_id
 					,:size_kbn
 					,:color_kbn
+					,:hambai_sentakushi_kbn
                     ,:kakaku
                     ,:suryo
-                    ,:torokubi
+                    ,now()
 					,0
-					,:koshin_user_id
-					,:koshin_user_id
-                FROM tb_hambai_konyusha_joho_meisai;
+					,:user_id
+					,:user_id
+                    , now()
+                    , now()
+				);
 SQL;
                 $sth = $db->prepare($sql);
                 $sth->execute([
-                    ':hambai_id'           => $param['hambai_id']
-                    ,':size_kbn'            => $param['size_kbn']
-                    ,':color_kbn'           => $param['color_kbn']
-                    ,':suryo'               => $param['suryo']
-                    ,':kakaku'              => $param['kakaku']
-                    ,':torokubi'            => $param['torokubi']
-                    ,':koshin_user_id'      => $param['koshin_user_id']
+                     ':konyu_id'               => $param['konyu_id']
+                    ,':hambai_id'              => $param['hambai_id']
+                    ,':size_kbn'               => $param['size_kbn']
+                    ,':color_kbn'              => $param['color_kbn']
+                    ,':hambai_sentakushi_kbn'  => $param['hambai_sentakushi_kbn']
+                    ,':kakaku'                 => $param['kakaku']
+                    ,':suryo'                  => $param['suryo']
+                    ,':user_id'                => $param['user_id']
                 ]);
         } catch (\PDOException $e) {
             error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
-            $db->rollBack();
             return FALSE;
         }
         return TRUE;
     }
+
+    /*
+     * 買い物かご情報を取得する
+     * @param varchar $konyu_id
+     * @return array|mixed
+     */
+    public function findByKonyuId($konyu_id)
+    {
+        try {
+            $db = Db::getInstance();
+            $sth = $db->prepare("
+	SELECT * FROM tb_hambai_konyusha_joho_meisai
+	LEFT JOIN tb_hambai_konyusha_joho 
+		ON tb_hambai_konyusha_joho_meisai.konyu_id = tb_hambai_konyusha_joho.konyu_id
+	WHERE tb_hambai_konyusha_joho_meisai.konyu_id = :konyu_id
+		AND tb_hambai_konyusha_joho_meisai.sakujo_flg = 0
+		AND tb_hambai_konyusha_joho.sakujo_flg = 0
+		AND tb_hambai_konyusha_joho.konyubi IS NULL
+;
+            ");
+            $sth->execute([
+					':konyu_id' => $konyu_id
+			]);
+            $meishiJoho  = $sth->fetchAll();
+        } catch (\PDOException $e) {
+            error_log(print_r($e, true). PHP_EOL, '3', '/home/nls001/demo-nls02.work/public_html/app_error_log/error_log.txt');
+            $meishiJoho = [];
+        }
+        return $meishiJoho;
+    }
+
 }

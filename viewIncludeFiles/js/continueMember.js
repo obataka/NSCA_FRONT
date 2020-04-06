@@ -23,7 +23,7 @@
         /****************
          * //都道府県取得
          ****************/
-        jQuery.ajax({
+        $.ajax({
             url: '../../classes/Common/getTodofukenList.php',
         }).done((rtn) => {
             // rtn = 0 の場合は、該当なし
@@ -33,8 +33,8 @@
                 //※正常に住所情報を取得できた時の処理を書く場所
                 getTodofukenList = JSON.parse(rtn);
                 $.each(getTodofukenList, function (i, value) {
-                    $('#address_todohuken').append('<option name="' + value[2] + '" value="' + value[0] + '">' + value[1] + '</option>');
-                    $('#office_todohuken').append('<option name="' + value[2] + '" value="' + value[0] + '">' + value[1] + '</option>');
+                    $('#address_todohuken').append('<option name="' + value['kemmei'] + '" value="' + value['ken_no'] + '">' + value['kemmei'] + '</option>');
+                    $('#office_todohuken').append('<option name="' + value['kemmei'] + '" value="' + value['ken_no'] + '">' + value['kemmei'] + '</option>');
                 });
                 // 修正で入力画面に戻ってきた時、都道府県のセレクトボックスの初期表示処理
                 var test1 = $('#sel_math').val();
@@ -56,8 +56,8 @@
         /*********************************
          * //職業取得
          *********************************/
-        jQuery.ajax({
-            url: '../../classes/Common/getShokugyoList.php',
+        $.ajax({
+            url: '../../classes/Common/getShokugyoList.php'
         }).done((rtn) => {
             if (rtn == 0) {
                 return false;
@@ -65,9 +65,9 @@
                 //※正常に職業情報を取得できた時の処理を書く場所
                 getMeishoList = JSON.parse(rtn);
                 $.each(getMeishoList, function (i, value) {
-                    $('#job_1').append('<option value="' + value[0] + '">' + value[1] + '</option>');
-                    $('#job_2').append('<option value="' + value[0] + '">' + value[1] + '</option>');
-                    $('#job_3').append('<option value="' + value[0] + '">' + value[1] + '</option>');
+                    $('#job_1').append('<option value="' + value['meisho_cd'] + '">' + value['meisho'] + '</option>');
+                    $('#job_2').append('<option value="' + value['meisho_cd'] + '">' + value['meisho'] + '</option>');
+                    $('#job_3').append('<option value="' + value['meisho_cd'] + '">' + value['meisho'] + '</option>');
                 });
 
                 // 修正で入力画面に戻ってきた時、職業のセレクトボックスの初期表示処理
@@ -96,8 +96,8 @@
         /*********************************
         * //NSCA以外の認定資格取得
         *********************************/
-        jQuery.ajax({
-            url: '../../classes/Common/getShikakuList.php',
+        $.ajax({
+            url: '../../classes/Common/getShikakuList.php'
         }).done((rtn) => {
             // rtn = 0 の場合は、該当なし
             if (rtn == 0) {
@@ -106,7 +106,8 @@
                 //※正常に資格情報を取得できた時の処理を書く場所
                 getShikakuList = JSON.parse(rtn);
                 $.each(getShikakuList, function (i, value) {
-                    $('#nintei-shikaku-wrap').append('<div><input id="shikaku_' + value[0] + '" type="checkbox" name="shikaku" value="' + value[0] + '"><label class="checkbox" for="shikaku_' + value[0] + '">' + value[1] + '</label></div>');
+                    $('#nintei-shikaku-wrap').append('<div><input id="shikaku_' + value['meisho_cd'] + '" type="checkbox" name="shikaku" value="' + value['meisho_cd']
+                    + '"><label class="checkbox" for="shikaku_' + value['meisho_cd'] + '">' + value['meisho'] + '</label></div>');
                 });
 
                 // NSCA以外の認定資格：確認画面からの戻りなどで、すでに選択済みの値がある場合は選択状態にするための処理
@@ -138,8 +139,8 @@
         /*********************************
         * //興味のある地域取得
         *********************************/
-        jQuery.ajax({
-            url: '../../classes/Common/getChiikiList.php',
+        $.ajax({
+            url: '../../classes/Common/getChiikiList.php'
         }).done((rtn) => {
             // rtn = 0 の場合は、該当なし
             if (rtn == 0) {
@@ -148,7 +149,8 @@
                 //※正常に地域情報を取得できた時の処理を書く場所
                 getAreaList = JSON.parse(rtn);
                 $.each(getAreaList, function (i, value) {
-                    $('#Area').append('<input id="chiiki_' + value[0] + '" type="checkbox" name="chiiki" value="' + value[0] + '"><label class="checkbox" for="chiiki_' + value[0] + '">' + value[1] + '</label>');
+                    $('#Area').append('<input id="chiiki_' + value['meisho_cd'] + '" type="checkbox" name="chiiki" value="' 
+										+ value['meisho_cd'] + '"><label class="checkbox" for="chiiki_' + value['meisho_cd'] + '">' + value['chiikimei'] + '</label>');
                     if (value[1] == "甲信越") {
                         $('#Area').append('<br class="sp_no">');
                     }
@@ -175,8 +177,8 @@
         /*********************************
         * //興味のある分野取得
         *********************************/
-        jQuery.ajax({
-            url: '../../classes/Common/getBunyaList.php',
+        $.ajax({
+            url: '../../classes/Common/getBunyaList.php'
         }).done((rtn) => {
             // rtn = 0 の場合は、該当なし
             if (rtn == 0) {
@@ -185,7 +187,8 @@
                 //※正常に分野情報を取得できた時の処理を書く場所
                 getBunyaList = JSON.parse(rtn);
                 $.each(getBunyaList, function (i, value) {
-                    $('#Bunya').append('<input id="bunya_' + value[0] + '" type="checkbox" name="bunya" value="' + value[0] + '"><label class="checkbox" for="bunya_' + value[0] + '">' + value[1] + '</label><br>');
+                    $('#Bunya').append('<input id="bunya_' + value['meisho_cd'] + '" type="checkbox" name="bunya" value="' + value['meisho_cd'] 
+                    + '"><label class="checkbox" for="bunya_' + value['meisho_cd'] + '">' + value['meisho'] + '</label><br>');
                 });
 
                 //興味のある分野：確認画面からの戻りなどで、すでに選択済みの値がある場合は選択状態にするための処理
@@ -439,8 +442,8 @@
             }
 
             //郵便番号検索処理
-            jQuery.ajax({
-                url: '../../classes/searchPostNo.php',
+            $.ajax({
+                url: '../../classes/Common/searchPostNo.php',
                 type: 'POST',
                 data:
                 {
@@ -461,11 +464,10 @@
                     //※正常に住所情報を取得できた時の処理を書く場所
                     wk_msYubinNo = JSON.parse(rtn);
                     $("#address_todohuken option").filter(function (index) {
-                        return $(this).text() === wk_msYubinNo[7];
+                        return $(this).text() === wk_msYubinNo['kemmei_kana'];
                     }).prop("selected", true).change();
-
-                    $("#address_shiku").val(wk_msYubinNo[8] + wk_msYubinNo[9]);
-                    $("#address_yomi_shiku").val(wk_msYubinNo[5] + wk_msYubinNo[6]);
+                    $("#address_shiku").val(wk_msYubinNo['jusho_1'] + wk_msYubinNo['jusho_2']);
+                    $("#address_yomi_shiku").val(wk_msYubinNo['jusho_1_kana'] + wk_msYubinNo['jusho_2_kana']);
                 }
             }).fail((rtn) => {
                 $("#err_address_yubin_nb_1").html("郵便番号から住所を取得できません");
@@ -531,7 +533,7 @@
             }
 
             //郵便番号検索処理
-            jQuery.ajax({
+            $.ajax({
                 url: '../../classes/Common/searchPostNo.php',
                 type: 'POST',
                 data:
@@ -553,9 +555,9 @@
                     //※正常に住所情報を取得できた時の処理を書く場所
                     wk_msYubinNo = JSON.parse(rtn);
                     $("#office_todohuken option").filter(function (index) {
-                        return $(this).text() === wk_msYubinNo[7];
+                        return $(this).text() === wk_msYubinNo['kemmei_kana'];
                     }).prop("selected", true).change();
-                    $("#office_shiku").val(wk_msYubinNo[8] + wk_msYubinNo[9]);
+                    $("#office_shiku").val(wk_msYubinNo['jusho_1'] + wk_msYubinNo['jusho_2']);
                 }
             }).fail((rtn) => {
                 $("#err_address_yubin_nb_2").html("郵便番号から住所を取得できません");
@@ -573,8 +575,8 @@
          ************************/
         var wk_cmControl;
         // 会費データ取得処理
-        jQuery.ajax({
-            url: '../../classes/getKaihiData.php',
+        $.ajax({
+            url: '../../classes/Common/getCmControl.php',
             type: 'POST',
         }).done((rtn) => {
             // rtn = 0 の場合は、該当なし

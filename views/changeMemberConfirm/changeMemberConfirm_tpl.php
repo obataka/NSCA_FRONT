@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="../../viewIncludeFiles/css/fontawesome/web-fonts-with-css/css/fontawesome-all.css">
 	<link rel="stylesheet" href="../../viewIncludeFiles/plugins/jQueryUI/jquery-ui.css">
 	<link rel="stylesheet" href="../../viewIncludeFiles/css/style.css" />
-	<link rel="stylesheet" href="../../viewIncludeFiles/css/toroku_syusei_kakunin.css">
+	<link rel="stylesheet" href="../../viewIncludeFiles/css/changeMemberConfirm.css">
 	<link rel="stylesheet" href="../../viewIncludeFiles/css/header.css">
 
 	<script type="text/javascript" src="../../viewIncludeFiles/js/jquery-3.1.1.min.js"></script>
@@ -117,7 +117,7 @@
 					<input type="hidden" name="kenmei" id="kenmei" value="<?php echo $kenmei; ?>">
 					<input type="hidden" name="office_kenmei" id="office_kenmei" value="<?php echo $office_kenmei; ?>">
 					<div class="bg_white">
-						<table>
+						<table class="form_table">
 							<tr>
 								<th><span class="any"></span>会員種別</th>
 								<td>
@@ -130,7 +130,7 @@
 				</form>
 				<h2>基本情報</h2>
 				<div class="bg_white">
-					<table>
+					<table class="form_table">
 						<tr class="name">
 							<th><span class="required">必須</span>氏名</th>
 							<td class="clearfix">
@@ -255,7 +255,7 @@
 			<div class="oshirase">
 				<h2>お知らせ／連絡方法／アンケート</h2>
 				<div class="bg_white">
-					<table>
+					<table class="form_table">
 						<tr>
 							<th><span class="required">必須</span>連絡方法の希望</th>
 							<td>
